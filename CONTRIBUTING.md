@@ -10,6 +10,6 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) sp
 - perf: A code change that improves performance
 - test: Adding missing tests or correcting existing tests
 - chore: Daily tasks, maintenance, etc
-- build: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
-- ci: Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)
+- build: Changes that affect the build system or external dependencies 
+- ci: Changes to our CI configuration files and scripts 
 - revert: Reverts a previous commit

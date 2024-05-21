@@ -9,7 +9,9 @@
   },
   "excludes": [
     "**/node_modules",
-    "**/*-lock.json"
+    "**/*-lock.json",
+    "**/dist",
+    "**/kaplay"
   ],
   "plugins": [
     "https://plugins.dprint.dev/typescript-0.90.5.wasm",
