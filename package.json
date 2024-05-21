@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "node scripts/buildDoc.js && astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
@@ -17,6 +17,7 @@
     "typescript": "^5.4.5"
   },
   "devDependencies": {
-    "daisyui": "^4.11.1"
+    "daisyui": "^4.11.1",
+    "dprint": "^0.45.1"
   }
 }

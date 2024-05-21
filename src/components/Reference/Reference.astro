@@ -1,0 +1,20 @@
+---
+import doc from '@/../doc.json' assert { type: "json" };
+const docKeys = Object.keys(doc.types) as Array<keyof typeof doc.types>;
+
+console.log(docKeys)
+---
+
+<main>
+    { 
+        docKeys.map((key) => (
+            <div>
+                <h2>{key}</h2>
+                <p>{doc.types[key]}</p>
+
+            </div>
+        ))
+    }
+
+</main>
+

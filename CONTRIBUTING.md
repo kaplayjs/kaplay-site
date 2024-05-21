@@ -1,7 +1,8 @@
 # Contribution Rules
 
-Follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification 
--  feat: A new feature
+Follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification
+
+- feat: A new feature
 - fix: A bug fix
 - docs: Documentation only changes
 - style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
