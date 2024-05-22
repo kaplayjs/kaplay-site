@@ -1,20 +1,19 @@
 ---
-import doc from '@/../doc.json' assert { type: "json" };
-const docKeys = Object.keys(doc.types) as Array<keyof typeof doc.types>;
-
-console.log(docKeys)
+import doc from "@/../doc.json";
+import ReferenceEntry from "./ReferenceEntry.astro";
+const kaboomDoc: any = doc.types.KaboomCtx[0].members;
+const kaboomDocKeys: any = Object.keys(kaboomDoc) as Array<
+    keyof typeof kaboomDoc
+>;
 ---
 
 <main>
-    { 
-        docKeys.map((key) => (
-            <div>
-                <h2>{key}</h2>
-                <p>{doc.types[key]}</p>
-
-            </div>
+    {
+        kaboomDocKeys.map((key: string) => (
+            <ReferenceEntry
+                name={key}
+                type={kaboomDoc[key]}
+            />
         ))
     }
-
 </main>
-

@@ -1,0 +1,23 @@
+---
+import kaplayGif from "@/assets/kaplay.gif";
+import Image from "astro/components/Image.astro";
+import SidebarLink from "./SidebarLink.astro";
+---
+
+<div class="p-4 bg-base-200 flex flex-col items-center gap-2">
+    <figure>
+        <img
+            src={kaplayGif.src}
+            alt="kaplay logo"
+            class="object-cover w-52"
+        >
+    </figure>
+    <ul class="flex-col gap-2 w-full">
+        <SidebarLink link="/">
+            Home
+        </SidebarLink>
+        <SidebarLink link="https://kaboomjs.com/discord" target="_blank">
+            Discord
+        </SidebarLink>
+    </ul>
+</div>

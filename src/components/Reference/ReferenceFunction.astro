@@ -1,0 +1,35 @@
+---
+import { parseType } from "@/util/parseType";
+import { Code } from "astro:components";
+
+type Props = {
+    name: string;
+    type: any;
+};
+
+const { name, type } = Astro.props;
+
+const parseParms = (type: any) => {
+    const parameters = type.parameters ?? [];
+    let functionParams: string[] = [];
+
+    parameters.forEach((p: any) => {
+        functionParams.push(`${name}: ${parseType(p.type.kind, type)}`);
+    });
+
+    return functionParams.join(", ");
+};
+
+const parseReturnType = (type: any) => {
+    return parseType(type.type.kind, type);
+};
+---
+
+<h1 class="text-xl flex">
+    <span class="font-medium">{name}</span>
+    <span class="">
+        <span class="font-medium">(</span>{parseParms(type)}<span
+            class="font-medium"
+        >)</span><span class="font-medium">: </span>{parseReturnType(type)}
+    </span>
+</h1>

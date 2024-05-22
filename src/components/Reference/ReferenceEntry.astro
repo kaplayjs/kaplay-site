@@ -1,4 +1,49 @@
 ---
-import doc from '@/../doc.json';
-console.log(doc)
+import { Code } from "astro:components";
+import ReferenceFunction from "./ReferenceFunction.astro";
+
+type Props = {
+    name: string;
+    type: any;
+};
+
+const { name, type } = Astro.props;
+
+const parseName = (type: any) => {
+    if (type.kind === "MethodSignature") {
+        return "function";
+    }
+};
+
+const getExample = (type: any) => {
+    return type.jsDoc?.tags?.example?.join("").replace(/^```js\s+|```$/g, "")
+        ?? "";
+};
 ---
+
+<article>
+    {
+        type.map((item: any) => (
+            <article class="p-4" id={item.name}>
+                {
+                    parseName(item) === "function" && (
+                        <ReferenceFunction
+                            name={name}
+                            type={item}
+                        />
+                    )
+                }
+                <p class="">
+                    {item.jsDoc?.doc ?? "No description"}
+                </p>
+                <p>
+                    <Code
+                        code={getExample(item)}
+                        lang="js"
+                        class="p-2"
+                    />
+                </p>
+            </article>
+        ))
+    }
+</article>

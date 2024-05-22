@@ -7,6 +7,9 @@
   },
   "markdown": {
   },
+  "markup": {
+    "indentWidth": 4
+  },
   "excludes": [
     "**/node_modules",
     "**/*-lock.json",
@@ -16,6 +19,7 @@
   "plugins": [
     "https://plugins.dprint.dev/typescript-0.90.5.wasm",
     "https://plugins.dprint.dev/json-0.19.2.wasm",
-    "https://plugins.dprint.dev/markdown-0.17.0.wasm"
+    "https://plugins.dprint.dev/markdown-0.17.0.wasm",
+    "https://plugins.dprint.dev/g-plane/markup_fmt-v0.8.0.wasm"
   ]
 }

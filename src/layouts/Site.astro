@@ -1,0 +1,10 @@
+---
+import Sidebar from "@/components/Sidebar/Sidebar.astro";
+---
+
+<div class="flex w-screen h-screen max-w-screen max-h-screen">
+    <Sidebar />
+    <main class="max-h-screen overflow-y-auto">
+        <slot />
+    </main>
+</div>

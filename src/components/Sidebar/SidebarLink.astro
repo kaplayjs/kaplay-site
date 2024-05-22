@@ -1,0 +1,18 @@
+---
+type Props = {
+    link: string;
+    target?: string;
+};
+
+const { link, target } = Astro.props;
+---
+
+<li>
+    <a
+        href={link}
+        class="btn btn-ghost w-full btn-sm justify-start text-left"
+        target={target}
+    >
+        <slot />
+    </a>
+</li>

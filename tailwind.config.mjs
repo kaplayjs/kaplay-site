@@ -7,4 +7,10 @@ export default {
     plugins: [
         require("daisyui"),
     ],
+    /** @type {import('daisyui').Config} */
+    daisyui: {
+        themes: ["dim", "cupcake"],
+        darkTheme: "ddim",
+        logs: false,
+    },
 };
