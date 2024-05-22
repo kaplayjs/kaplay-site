@@ -26,3 +26,4 @@ pnpm-debug.log*
 doc.json
 
 kaplay/
+.wrangler/
