@@ -3,11 +3,12 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "node scripts/buildDoc.js && astro dev",
-    "start": "astro dev",
-    "build": "astro check && astro build",
+    "dev": "npm run doc && astro dev",
+    "start": "npm run doc && astro dev",
+    "build": "npm run doc && astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "doc": "node scripts/buildDoc.js"
   },
   "dependencies": {
     "@astrojs/check": "^0.7.0",

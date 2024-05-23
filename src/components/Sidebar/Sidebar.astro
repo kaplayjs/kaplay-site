@@ -1,7 +1,6 @@
 ---
-import kaplayGif from "@/assets/kaplay.png";
+import kaplayGif from "../../assets/kaplay.gif";
 import SidebarLink from "./SidebarLink.astro";
-import Image from "astro/components/Image.astro";
 
 type LinkListEntry = {
     title: string;
@@ -20,10 +19,10 @@ const { mode, linkList } = Astro.props;
 
 <div class="p-4 bg-base-200 flex flex-col items-center gap-4">
     <figure>
-        <Image
-            src={kaplayGif}
+        <img
+            src={kaplayGif.src}
             alt="kaplay logo"
-            class="object-cover w-52"
+            class="w-52 h-24 aspect-auto object-contain"
         >
     </figure>
     <nav class="w-full">
