@@ -128,24 +128,3 @@ loadSound("horse", "sounds/horse.mp3");
 
 To learn more check out this [MDN doc](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/set_up_a_local_testing_server).
 
-## Using Replit
-
-Replit has templates that gets rid of manual setup. Fork from either of these 2 templates:
-
-### [Official Template](https://replit.com/@replit/Kaboom)
-
-This is a complete package including
-
-- In-editor tutorial
-- NPM / typescript support
-- Autocomplete
-- Assets Library
-- Replit DB & Auth integration
-
-![official template](setup/replit.png)
-
-### [Lighter Template](https://replit.com/@replit/Kaboom-light)
-
-A lighter version that only contains the barebone HTML and JS file.
-
-Cool! Now you should be all ready to start using Kaboom. Try this [intro tutorial](/doc/intro) if you don't know how to start.
