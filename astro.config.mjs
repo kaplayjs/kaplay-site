@@ -9,6 +9,7 @@ export default defineConfig({
     redirects: {
         "/": "/guides/setup",
         "/guides": "/guides/setup",
+        "/guides/start/": "/guides/setup",
     },
     image: {
         service: passthroughImageService(),
