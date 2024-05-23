@@ -6,11 +6,7 @@ import { defineConfig, passthroughImageService } from "astro/config";
 export default defineConfig({
     integrations: [tailwind()],
     srcDir: "src",
-    redirects: {
-        "/": "/guides/setup",
-        "/guides": "/guides/setup",
-        "/guides/start/": "/guides/setup",
-    },
+
     image: {
         service: passthroughImageService(),
     },
