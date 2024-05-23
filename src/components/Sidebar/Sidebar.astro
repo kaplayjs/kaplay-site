@@ -1,23 +1,58 @@
 ---
 import kaplayGif from "@/assets/kaplay.gif";
-import Image from "astro/components/Image.astro";
 import SidebarLink from "./SidebarLink.astro";
+import Image from "astro/components/Image.astro";
+
+type LinkListEntry = {
+    title: string;
+    link: string;
+};
+
+export type SidebarProps = {
+    mode: "guides" | "reference";
+    linkList?: LinkListEntry[];
+};
+
+type Props = SidebarProps;
+
+const { mode, linkList } = Astro.props;
 ---
 
-<div class="p-4 bg-base-200 flex flex-col items-center gap-2">
+<div class="p-4 bg-base-200 flex flex-col items-center gap-4">
     <figure>
-        <img
-            src={kaplayGif.src}
+        <Image
+            src={kaplayGif}
             alt="kaplay logo"
             class="object-cover w-52"
         >
     </figure>
-    <ul class="flex-col gap-2 w-full">
-        <SidebarLink link="/">
-            Home
-        </SidebarLink>
-        <SidebarLink link="https://kaboomjs.com/discord" target="_blank">
-            Discord
-        </SidebarLink>
-    </ul>
+    <nav class="w-full">
+        <ul class="flex-col gap-2">
+            <SidebarLink link="/guides/setup">
+                Home
+            </SidebarLink>
+            <SidebarLink link="https://kaboomjs.com/discord" target="_blank">
+                Discord
+            </SidebarLink>
+        </ul>
+        <div class="divider"></div>
+        <ul class="flex-col gap-2">
+            <SidebarLink link="/guides/setup">
+                Guides
+            </SidebarLink>
+            <SidebarLink link="/reference">
+                Reference Docs
+            </SidebarLink>
+        </ul>
+        <div class="divider"></div>
+        <ul class="flex-col gap-2">
+            {
+                linkList?.map(({ title, link }) => (
+                    <SidebarLink link={link}>
+                        {title}
+                    </SidebarLink>
+                ))
+            }
+        </ul>
+    </nav>
 </div>

@@ -1,12 +1,14 @@
 ---
 import Sidebar from "@/components/Sidebar/Sidebar.astro";
+
+import type { SidebarProps } from "@/components/Sidebar/Sidebar.astro";
 import Site from "./Site.astro";
 
-interface Props {
+type Props = {
     title: string;
-}
+} & SidebarProps;
 
-const { title } = Astro.props;
+const { title, mode, linkList } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -19,7 +21,10 @@ const { title } = Astro.props;
         <title>{title}</title>
     </head>
     <body>
-        <Site>
+        <Site
+            mode={mode}
+            linkList={linkList}
+        >
             <slot />
         </Site>
     </body>

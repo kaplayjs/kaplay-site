@@ -6,6 +6,7 @@ export default {
     },
     plugins: [
         require("daisyui"),
+        require("@tailwindcss/typography"),
     ],
     /** @type {import('daisyui').Config} */
     daisyui: {

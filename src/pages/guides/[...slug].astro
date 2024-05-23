@@ -1,0 +1,34 @@
+---
+import Prose from "@/components/Content/Prose.astro";
+import Layout from "@/layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+    const entries = await getCollection("guides");
+
+    return entries.map(entry => ({
+        params: { slug: entry.slug },
+        props: { entry },
+    }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const guides = await getCollection("guides");
+
+const sortedGuides = guides.sort((a, b) => a.data.order - b.data.order);
+const linkList = sortedGuides.map(guide => ({
+    title: guide.data.title,
+    link: `/guides/${guide.slug}`,
+}));
+---
+
+<Layout
+    title="KAPLAY"
+    mode="guides"
+    linkList={linkList}
+>
+    <Prose>
+        <Content />
+    </Prose>
+</Layout>

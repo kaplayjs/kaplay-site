@@ -1,10 +1,18 @@
 ---
+import type { SidebarProps } from "@/components/Sidebar/Sidebar.astro";
 import Sidebar from "@/components/Sidebar/Sidebar.astro";
+
+type Props = SidebarProps;
+
+const { mode, linkList } = Astro.props;
 ---
 
 <div class="flex w-screen h-screen max-w-screen max-h-screen">
-    <Sidebar />
-    <main class="max-h-screen overflow-y-auto">
+    <Sidebar
+        mode={mode}
+        linkList={linkList}
+    />
+    <main class="max-h-screen overflow-y-auto flex-1 flex">
         <slot />
     </main>
 </div>

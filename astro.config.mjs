@@ -6,4 +6,8 @@ import tailwind from "@astrojs/tailwind";
 export default defineConfig({
     integrations: [tailwind()],
     srcDir: "src",
+    redirects: {
+        "/": "/guides/setup",
+        "/guides": "/guides/setup",
+    },
 });

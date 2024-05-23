@@ -24,7 +24,7 @@ const getExample = (type: any) => {
 <article>
     {
         type.map((item: any) => (
-            <article class="p-4" id={item.name}>
+            <article class="p-4 flex flex-col gap-1" id={item.name}>
                 {
                     parseName(item) === "function" && (
                         <ReferenceFunction
@@ -37,11 +37,15 @@ const getExample = (type: any) => {
                     {item.jsDoc?.doc ?? "No description"}
                 </p>
                 <p>
-                    <Code
-                        code={getExample(item)}
-                        lang="js"
-                        class="p-2"
-                    />
+                    {
+                        item.jsDoc?.tags?.example && (
+                            <Code
+                                code={getExample(item)}
+                                lang="js"
+                                class="p-2 rounded-md"
+                            />
+                        )
+                    }
                 </p>
             </article>
         ))
