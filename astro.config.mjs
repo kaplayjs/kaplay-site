@@ -6,7 +6,9 @@ import { defineConfig, passthroughImageService } from "astro/config";
 export default defineConfig({
     integrations: [tailwind()],
     srcDir: "src",
-
+    server: {
+        port: 3200,
+    },
     image: {
         service: passthroughImageService(),
     },
