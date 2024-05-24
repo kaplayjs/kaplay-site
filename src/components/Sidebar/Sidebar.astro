@@ -2,29 +2,37 @@
 import Image from "astro/components/Image.astro";
 import kaplayGif from "../../assets/kaplay.gif";
 import SidebarLink from "./SidebarLink.astro";
+import SidebarList from "./SidebarList.astro";
 
 type LinkListEntry = {
     title: string;
     link: string;
 };
 
+export type SidebarEntry = {
+    linkList: LinkListEntry[];
+    folder: string;
+};
+
 export type SidebarProps = {
-    mode: "guides" | "reference";
-    linkList?: LinkListEntry[];
+    sidebarMode?: "guides" | "reference";
 };
 
 type Props = SidebarProps;
 
-const { mode, linkList } = Astro.props;
+const { sidebarMode } = Astro.props;
 ---
 
-<div class="p-4 bg-base-200 flex flex-col items-center gap-4 overflow-y-auto">
+<div
+    class="p-4 bg-base-200 flex flex-col items-center gap-4 overflow-y-auto overflow-x-clip max-w-60"
+    style="scrollbar-gutter: stable;"
+>
     <figure>
         <Image
             src={kaplayGif}
             alt="kaplay logo"
             class="w-52 h-24 aspect-auto object-contain"
-        >
+        />
     </figure>
     <nav class="w-full">
         <ul class="flex-col gap-2">
@@ -45,14 +53,6 @@ const { mode, linkList } = Astro.props;
             </SidebarLink>
         </ul>
         <div class="divider"></div>
-        <ul class="flex-col gap-2">
-            {
-                linkList?.map(({ title, link }) => (
-                    <SidebarLink link={link}>
-                        {title}
-                    </SidebarLink>
-                ))
-            }
-        </ul>
+        <SidebarList {sidebarMode}>
     </nav>
 </div>

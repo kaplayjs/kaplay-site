@@ -1,15 +1,34 @@
 ---
 import doc from "@/../doc.json";
 import ReferenceEntry from "./ReferenceEntry.astro";
+
+type Props = {
+    mode: "KaboomCtx" | "all";
+};
+
+const allDoc = doc.types;
+const allDocKeys: string[] = Object.keys(doc.types).filter(k =>
+    k !== "KaboomCtx"
+);
 const kaboomDoc: any = doc.types.KaboomCtx[0].members;
 const kaboomDocKeys: any = Object.keys(kaboomDoc) as Array<
     keyof typeof kaboomDoc
 >;
+
+const { mode } = Astro.props;
 ---
 
 <main>
     {
-        kaboomDocKeys.map((key: string) => (
+        mode === "all" && allDocKeys.map((key: string) => (
+            <ReferenceEntry
+                name={key}
+                type={allDoc[key as keyof typeof allDoc]}
+            />
+        ))
+    }
+    {
+        mode === "KaboomCtx" && kaboomDocKeys.map((key: string) => (
             <ReferenceEntry
                 name={key}
                 type={kaboomDoc[key]}

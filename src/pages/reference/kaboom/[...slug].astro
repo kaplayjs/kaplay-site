@@ -1,0 +1,23 @@
+---
+import doc from "@/../doc.json";
+import ReferenceEntry from "@/components/Reference/ReferenceEntry.astro";
+import Layout from "@/layouts/Layout.astro";
+
+export async function getStaticPaths() {
+    const kaboomDoc: any = doc.types.KaboomCtx[0].members;
+    const kaboomDocKeys: string[] = Object.keys(kaboomDoc);
+
+    return kaboomDocKeys.map((key) => ({
+        params: { slug: key },
+        props: { type: kaboomDoc[key], name: key },
+    }));
+}
+
+const { type, name } = Astro.props;
+---
+
+<Layout title="KAPLAY" sidebarMode="reference">
+    <div class="w-full max-w-screen-lg">
+        <ReferenceEntry type={type} name={name} />
+    </div>
+</Layout>

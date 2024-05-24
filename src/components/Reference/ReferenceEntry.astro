@@ -1,53 +1,74 @@
 ---
 import { Code } from "astro:components";
+import ReferenceConst from "./ReferenceConst.astro";
 import ReferenceFunction from "./ReferenceFunction.astro";
+import ReferenceObject from "./ReferenceObject.astro";
 
-type Props = {
+export type ReferenceEntryProps = {
     name: string;
     type: any;
+    level?: number;
 };
 
-const { name, type } = Astro.props;
+const { name, type, level = 0 } = Astro.props;
+
+export const entryClassesByLevel = [
+    "px-2",
+    "px-4",
+];
+
+export const titleClassesByLevel = [
+    "text-2xl",
+    "text-xl",
+];
+export const descriptionClassesByLevel = [
+    "text-lg",
+    "text-base",
+];
 
 const parseName = (type: any) => {
     if (type.kind === "MethodSignature") {
         return "function";
+    } else if (type.kind === "PropertySignature") {
+        return "const";
+    } else if (type.kind === "FunctionDeclaration") {
+        return "function";
+    } else if (type.kind === "VariableDeclaration") {
+        return "const";
+    } else if (type.kind === "InterfaceDeclaration") {
+        return "object";
+        console.log(type.kind);
     }
 };
 
-const getExample = (type: any) => {
+export const getExample = (type: any) => {
     return type.jsDoc?.tags?.example?.join("").replace(/^```js\s+|```$/g, "")
         ?? "";
 };
 ---
 
-<article>
-    {
-        type.map((item: any) => (
-            <article class="p-4 flex flex-col gap-1" id={item.name}>
-                {
-                    parseName(item) === "function" && (
-                        <ReferenceFunction
-                            name={name}
-                            type={item}
-                        />
-                    )
-                }
-                <p class="">
-                    {item.jsDoc?.doc ?? "No description"}
-                </p>
-                <p>
-                    {
-                        item.jsDoc?.tags?.example && (
-                            <Code
-                                code={getExample(item)}
-                                lang="js"
-                                class="p-2 rounded-md"
-                            />
-                        )
-                    }
-                </p>
-            </article>
-        ))
-    }
-</article>
+{
+    type.map((item: any) => (
+    parseName(item) === "function" && (
+        <ReferenceFunction
+            name={name}
+            type={item}
+            level={level}
+        />
+    )
+    || parseName(item) === "const" && (
+        <ReferenceConst
+            name={name}
+            type={item}
+            level={level}
+        />
+    )
+    || parseName(item) === "object" && (
+        <ReferenceObject
+            name={name}
+            type={item}
+            level={level}
+        />
+    )
+    ))
+}

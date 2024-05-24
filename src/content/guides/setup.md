@@ -127,4 +127,3 @@ loadSound("horse", "sounds/horse.mp3");
 ```
 
 To learn more check out this [MDN doc](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/set_up_a_local_testing_server).
-

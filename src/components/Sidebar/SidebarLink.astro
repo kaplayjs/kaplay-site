@@ -7,7 +7,7 @@ type Props = {
 const { link, target } = Astro.props;
 ---
 
-<li>
+<li class="sidebar-link">
     <a
         href={link}
         class="btn btn-ghost w-full btn-sm justify-start text-left text-lg"
@@ -16,3 +16,10 @@ const { link, target } = Astro.props;
         <slot />
     </a>
 </li>
+
+<style>
+.sidebar-link {
+    text-overflow: ellipsis;
+    text-wrap: nowrap;
+}
+</style>

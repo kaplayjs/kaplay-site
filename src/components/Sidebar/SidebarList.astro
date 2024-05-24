@@ -1,0 +1,90 @@
+---
+import doc from "@/../doc.json";
+import { referenceCategories } from "@/data/reference";
+import { getCollection } from "astro:content";
+import type { SidebarEntry, SidebarProps } from "./Sidebar.astro";
+import SidebarFolder from "./SidebarFolder.astro";
+import SidebarLink from "./SidebarLink.astro";
+
+type Props = SidebarProps;
+
+const { sidebarMode } = Astro.props;
+
+let renderList: SidebarEntry[] = [];
+
+if (sidebarMode === "guides") {
+    const guides = await getCollection("guides");
+    const sortedGuides = guides.sort((a, b) => a.data.order - b.data.order);
+    const sortedList = sortedGuides.map(guide => ({
+        title: guide.data.title,
+        link: `/guides/${guide.slug}`,
+    }));
+
+    renderList = [
+        {
+            folder: "Guides",
+            linkList: sortedList,
+        },
+    ];
+} else if (sidebarMode === "reference") {
+    const kaboomCtxDoc: any = doc.types.KaboomCtx[0].members;
+    const kaboomCtxKeys: string[] = Object.keys(kaboomCtxDoc);
+    const gameObjDoc: any = doc.types.GameObjRaw[0].members;
+    const gameObjKeys: string[] = Object.keys(gameObjDoc);
+
+    const kaboomCtxLinks = kaboomCtxKeys.map((key: string) => ({
+        title: key,
+        link: `/reference/kaboom/${key}`,
+    }));
+
+    const gameObjLinks = gameObjKeys.map((key: string) => ({
+        title: `GameObj.${key}`,
+        link: `/reference/GameObjRaw/#${key}`,
+    }));
+
+    const linksPerCategory = {
+        "Game Obj": gameObjLinks,
+        "Components": [],
+    };
+
+    const categoryLinks: SidebarEntry[] = [];
+
+    Object.keys(referenceCategories).map((categoryName) => {
+        const category = referenceCategories[
+            categoryName as keyof typeof referenceCategories
+        ];
+
+        categoryLinks.push({
+            folder: categoryName,
+            linkList: [
+                ...kaboomCtxLinks.filter((link) =>
+                    category.includes(link.title)
+                ),
+                ...linksPerCategory[
+                    categoryName as keyof typeof linksPerCategory
+                ],
+            ],
+        });
+    });
+
+    renderList = [
+        ...categoryLinks,
+    ];
+}
+---
+
+<>
+    {
+        renderList?.map(({ linkList, folder }) => (
+            <SidebarFolder title={folder} id={folder}>
+                {
+                    linkList.map(({ title, link }) => (
+                        <SidebarLink link={link}>
+                            {title}
+                        </SidebarLink>
+                    ))
+                }
+            </SidebarFolder>
+        ))
+    }
+</>

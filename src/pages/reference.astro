@@ -1,19 +1,11 @@
 ---
-import doc from "@/../doc.json";
 import ReferenceList from "@/components/Reference/ReferenceList.astro";
 import Layout from "@/layouts/Layout.astro";
-const kaboomDoc: any = doc.types.KaboomCtx[0].members;
-const kaboomDocKeys: any[] = Object.keys(kaboomDoc);
-const linkList = kaboomDocKeys.map((key: string) => ({
-    title: key,
-    link: `/reference/#${key}`,
-}));
 ---
 
 <Layout
     title="KAPLAY | Reference Documentation"
-    mode="reference"
-    linkList={linkList}
+    sidebarMode="reference"
 >
-    <ReferenceList />
+    <ReferenceList mode="all" />
 </Layout>

@@ -1,0 +1,39 @@
+---
+type Props = {
+    title: string;
+    id: string;
+};
+
+const { title, id } = Astro.props;
+---
+
+<div class="folder | flex flex-col" id={id} folder-state="open">
+    <p class="btn btn-ghost w-full btn-sm justify-start text-left text-lg">
+        {title}
+    </p>
+    <ul class="folder-content | flex-col gap-2 px-4">
+        <slot />
+    </ul>
+</div>
+
+<style>
+.folder[folder-state="closed"] .folder-content {
+    display: none;
+}
+</style>
+
+<script>
+const folders = document.querySelectorAll(".folder");
+
+folders.forEach((folder) => {
+    folder.addEventListener("click", () => {
+        const folderState = folder.getAttribute("folder-state");
+
+        if (folderState === "open") {
+            folder.setAttribute("folder-state", "closed");
+        } else {
+            folder.setAttribute("folder-state", "open");
+        }
+    });
+});
+</script>

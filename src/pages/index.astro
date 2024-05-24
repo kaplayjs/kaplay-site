@@ -1,11 +1,15 @@
 ---
+import Prose from "@/components/Content/Prose.astro";
 import ReferenceList from "@/components/Reference/ReferenceList.astro";
 import Layout from "@/layouts/Layout.astro";
+import { getEntry } from "astro:content";
+
+const indexEntry = getEntry("misc", "index");
+const { Content } = await (await indexEntry).render();
 ---
 
-<Layout
-    title="KAPLAY | Reference Documentation"
-    mode="reference"
->
-    <ReferenceList />
+<Layout title="KAPLAY | Reference Documentation" sidebarMode="guides">
+    <Prose>
+        <Content />
+    </Prose>
 </Layout>

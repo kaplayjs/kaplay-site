@@ -1,0 +1,20 @@
+---
+import { parseType } from "@/util/parseType";
+import {
+    type ReferenceEntryProps,
+    titleClassesByLevel,
+} from "./ReferenceEntry.astro";
+
+type Props = ReferenceEntryProps;
+
+const { name, level = 0, type } = Astro.props;
+
+const parseReturnType = (type: any) => {
+    return parseType(type.type.kind, type);
+};
+---
+
+<h1 class="flex" class:list={[titleClassesByLevel[level]]}>
+    <span class="font-medium">{name}</span>
+    <span>: {parseReturnType(type)}</span>
+</h1>

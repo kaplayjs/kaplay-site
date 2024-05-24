@@ -14,19 +14,11 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
-const guides = await getCollection("guides");
-
-const sortedGuides = guides.sort((a, b) => a.data.order - b.data.order);
-const linkList = sortedGuides.map(guide => ({
-    title: guide.data.title,
-    link: `/guides/${guide.slug}`,
-}));
 ---
 
 <Layout
-    title="KAPLAY"
-    mode="guides"
-    linkList={linkList}
+    title="KAPLAY Guides"
+    sidebarMode="guides"
 >
     <Prose>
         <Content />
