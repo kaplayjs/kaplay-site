@@ -37,7 +37,6 @@ const parseName = (type: any) => {
         return "const";
     } else if (type.kind === "InterfaceDeclaration") {
         return "object";
-        console.log(type.kind);
     }
 };
 
@@ -47,28 +46,42 @@ export const getExample = (type: any) => {
 };
 ---
 
-{
-    type.map((item: any) => (
-    parseName(item) === "function" && (
-        <ReferenceFunction
-            name={name}
-            type={item}
-            level={level}
-        />
-    )
-    || parseName(item) === "const" && (
-        <ReferenceConst
-            name={name}
-            type={item}
-            level={level}
-        />
-    )
-    || parseName(item) === "object" && (
-        <ReferenceObject
-            name={name}
-            type={item}
-            level={level}
-        />
-    )
-    ))
-}
+<article class="flex flex-col gap-1" id={name}>
+    {
+        type.map((item: any) => (
+        parseName(item) === "function" && (
+            <ReferenceFunction
+                name={name}
+                type={item}
+                level={level}
+            />
+
+            <p>
+                {
+                    item.jsDoc?.tags?.example && (
+                        <Code
+                            code={getExample(item)}
+                            lang="js"
+                            class="p-2 rounded-md"
+                        />
+                    )
+                }
+            </p>
+        )
+        || parseName(item) === "const" && (
+            <ReferenceConst
+                name={name}
+                type={item}
+                level={level}
+            />
+        )
+        || parseName(item) === "object" && (
+            <ReferenceObject
+                name={name}
+                type={item}
+                level={level}
+            />
+        )
+        ))
+    }
+</article>

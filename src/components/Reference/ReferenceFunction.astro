@@ -17,7 +17,6 @@ const parseParms = (type: any) => {
     let functionParams: string[] = [];
 
     parameters.forEach((p: any) => {
-        console.log(p);
         functionParams.push(
             `${p.name}${p.questionToken ? "?" : ""}:  ${
                 parseType(p.type.kind, p)
@@ -33,32 +32,19 @@ const parseReturnType = (type: any) => {
 };
 ---
 
-<article class="flex flex-col gap-1" id={name}>
-    <h1 class:list={[titleClassesByLevel[level]]} class="flex gap-2">
-        <div class="flex">
-            <span class="font-medium">
-                {name}
-            </span>
-            <span class="font-medium">(</span>
-            <span>{parseParms(type)}</span>
-            <span class="font-medium">)</span>
-            <span class="font-medium">: </span>
-        </div>
-        <span>{" " + parseReturnType(type)}</span>
-    </h1>
+<h1 class:list={[titleClassesByLevel[level]]} class="flex gap-2">
+    <div class="flex">
+        <span class="font-medium">
+            {name}
+        </span>
+        <span class="font-medium">(</span>
+        <span>{parseParms(type)}</span>
+        <span class="font-medium">)</span>
+        <span class="font-medium">: </span>
+    </div>
+    <span>{" " + parseReturnType(type)}</span>
+</h1>
 
-    <p class:list={[descriptionClassesByLevel[level]]}>
-        {type.jsDoc?.doc ?? "No description"}
-    </p>
-    <p>
-        {
-            type.jsDoc?.tags?.example && (
-                <Code
-                    code={getExample(type)}
-                    lang="js"
-                    class="p-2 rounded-md"
-                />
-            )
-        }
-    </p>
-</article>
+<p class:list={[descriptionClassesByLevel[level]]}>
+    {type.jsDoc?.doc ?? "No description"}
+</p>

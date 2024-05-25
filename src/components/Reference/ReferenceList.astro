@@ -15,16 +15,26 @@ const kaboomDocKeys: any = Object.keys(kaboomDoc) as Array<
     keyof typeof kaboomDoc
 >;
 
+const reallyAllDoc = {
+    ...allDoc,
+    ...kaboomDoc,
+};
+const reallyAllDocKeys = Object.keys(reallyAllDoc).filter(k =>
+    k !== "KaboomCtx"
+);
+
 const { mode } = Astro.props;
 ---
 
 <main>
     {
-        mode === "all" && allDocKeys.map((key: string) => (
+        mode === "all" && reallyAllDocKeys.map((key: string) => (
             <ReferenceEntry
                 name={key}
-                type={allDoc[key as keyof typeof allDoc]}
+                type={reallyAllDoc[key as keyof typeof reallyAllDoc]}
             />
+
+            <div class="divider"></div>
         ))
     }
     {

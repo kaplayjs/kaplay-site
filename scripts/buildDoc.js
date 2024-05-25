@@ -33,7 +33,7 @@ function transform(o, f) {
 }
 
 // transform and prune typescript ast to a format more meaningful to us
-const stmts = transform(f.statements, (k, v) => {
+const statements = transform(f.statements, (k, v) => {
     switch (k) {
         case "end":
         case "flags":
@@ -89,46 +89,56 @@ const stmts = transform(f.statements, (k, v) => {
 
 // contain the type data for doc gen
 const types = {};
-const sections = [{
-    name: "Start",
-    entries: ["kaboom"],
-}];
+const groups = {};
 
-const isFile = (path) =>
-    fs.stat(path).then((stat) => stat.isFile()).catch(() => false);
-
-for (const stmt of stmts) {
-    if (!types[stmt.name]) {
-        types[stmt.name] = [];
+for (const statement of statements) {
+    if (!types[statement.name]) {
+        types[statement.name] = [];
     }
 
-    types[stmt.name].push(stmt);
+    types[statement.name].push(statement);
 
-    if (stmt.name === "KaboomCtx") {
-        if (stmt.kind !== "InterfaceDeclaration") {
+    if (statement.name === "KaboomCtx") {
+        if (statement.kind !== "InterfaceDeclaration") {
             throw new Error("KaboomCtx must be an interface.");
         }
 
-        for (const name in stmt.members) {
-            const mem = stmt.members[name];
+        for (const name in statement.members) {
+            const mem = statement.members[name];
             const tags = mem[0].jsDoc?.tags ?? {};
 
-            if (tags["section"]) {
-                const name = tags["section"][0];
-                const docPath = path.resolve(`doc/sections/${name}.md`);
-                sections.push({
-                    name: name,
-                    entries: [],
-                    doc: await isFile(docPath)
-                        ? await fs.readFile(docPath, "utf8")
-                        : null,
-                });
+            if (tags["group"]) {
+                const name = tags["group"][0];
+
+                if (!groups[name]) {
+                    groups[name] = {
+                        name: name,
+                        entries: [
+                            mem[0].name,
+                        ],
+                    };
+                } else {
+                    const section = groups[name];
+                    section.entries.push(mem[0].name);
+                }
             }
+        }
+    } else {
+        const tags = statement.jsDoc?.tags ?? {};
 
-            const curSection = sections[sections.length - 1];
+        if (tags["group"]) {
+            const name = tags["group"][0];
 
-            if (name && !curSection.entries.includes(name)) {
-                curSection.entries.push(name);
+            if (!groups[name]) {
+                groups[name] = {
+                    name: name,
+                    entries: [
+                        statement.name,
+                    ],
+                };
+            } else {
+                const section = groups[name];
+                section.entries.push(statement.name);
             }
         }
     }
@@ -138,8 +148,6 @@ await fs.writeFile(
     "doc.json",
     JSON.stringify({
         types,
-        sections,
+        groups,
     }),
 );
-
-console.log("doc built");

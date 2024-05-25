@@ -7,8 +7,14 @@ type Props = {
 const { title, id } = Astro.props;
 ---
 
-<div class="folder | flex flex-col" id={id} folder-state="open">
-    <p class="btn btn-ghost w-full btn-sm justify-start text-left text-lg">
+<div
+    class="folder | flex flex-col"
+    id={id}
+    folder-state={title === "Start" ? "open" : "closed"}
+>
+    <p
+        class="folder-title | btn btn-ghost w-full btn-sm justify-start text-left text-lg"
+    >
         {title}
     </p>
     <ul class="folder-content | flex-col gap-2 px-4">
@@ -26,7 +32,9 @@ const { title, id } = Astro.props;
 const folders = document.querySelectorAll(".folder");
 
 folders.forEach((folder) => {
-    folder.addEventListener("click", () => {
+    const folderTitle = folder.querySelector(".folder-title");
+
+    folderTitle?.addEventListener("click", () => {
         const folderState = folder.getAttribute("folder-state");
 
         if (folderState === "open") {
