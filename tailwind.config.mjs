@@ -13,6 +13,7 @@ export default {
         themes: [{
             "kaplay": {
                 ...require("daisyui/src/theming/themes")["dim"],
+                "primary": "#7fc963",
             },
         }, "cupcake"],
         darkTheme: "kaplay",
