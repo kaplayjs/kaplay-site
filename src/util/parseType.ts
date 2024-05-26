@@ -7,7 +7,7 @@ export const parseType = (keyword: string, type: any) => {
         case "BooleanKeyword":
             return "boolean";
         case "UnionType":
-            return type.type.types.map((t: any) =>
+            return type?.type?.types?.map((t: any) =>
                 t.typeName ?? t.literal?.text ?? t.kind
             ).join(
                 " | ",

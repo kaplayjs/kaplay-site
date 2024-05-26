@@ -8,8 +8,9 @@ const { sidebarMode } = Astro.props;
 ---
 
 <div class="flex w-screen h-screen max-w-screen max-h-screen">
-    <Sidebar {sidebarMode} />
-    <main class="max-h-screen overflow-y-auto flex-1 flex p-4">
-        <slot />
-    </main>
+    <Sidebar {sidebarMode}>
+        <main class="max-h-screen overflow-y-auto w-full p-4">
+            <slot />
+        </main>
+    </Sidebar>
 </div>

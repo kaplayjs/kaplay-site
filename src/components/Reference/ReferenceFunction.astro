@@ -6,6 +6,7 @@ import {
     type ReferenceEntryProps,
     titleClassesByLevel,
 } from "./ReferenceEntry.astro";
+import ReferenceLink from "./ReferenceLink.astro";
 
 type Props = ReferenceEntryProps;
 
@@ -27,19 +28,22 @@ const parseParms = (type: any) => {
 };
 
 const parseReturnType = (type: any) => {
+    if (name === "kaboom") {
+        return "";
+    }
+
     return parseType(type.type.kind, type);
 };
 ---
 
-<h1 class:list={[titleClassesByLevel[level]]} class="flex gap-2">
-    <div class="flex">
-        <span class="font-medium">
-            {name}
-        </span>
-        <span class="font-medium">(</span>
-        <span>{parseParms(type)}</span>
-        <span class="font-medium">)</span>
-        <span class="font-medium">: </span>
-    </div>
-    <span>{" " + parseReturnType(type)}</span>
+<h1 class:list={[titleClassesByLevel[level]]}>
+    <span class="font-medium">{name}<span class="font-medium">(</span><span>{
+            parseParms(type)
+        }</span><span class="font-medium">)</span><span class="font-medium"
+        >:</span>
+    </span>
+
+    <ReferenceLink href={`#${parseReturnType(type)}`}>
+        {parseReturnType(type)}
+    </ReferenceLink>
 </h1>
