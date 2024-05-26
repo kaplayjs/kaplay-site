@@ -17,7 +17,12 @@ const { Content } = await entry.render();
 ---
 
 <Layout
-    title="KAPLAY Guides"
+    meta={{
+        title: "KAPLAY Guides, " + entry.data.title,
+        description: entry.data.description,
+        image: entry.data.image,
+        keywords: "kaplayjs, guides, documentation",
+    }}
     sidebarMode="guides"
 >
     <Prose>

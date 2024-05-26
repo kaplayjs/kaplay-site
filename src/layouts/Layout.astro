@@ -2,11 +2,19 @@
 import type { SidebarProps } from "@/components/Sidebar/Sidebar.astro";
 import Site from "./Site.astro";
 
+type MetaTagData = {
+    title?: string;
+    description?: string;
+    image?: string;
+    themeColor?: string;
+    keywords?: string;
+};
+
 type Props = {
-    title: string;
+    meta?: MetaTagData;
 } & SidebarProps;
 
-const { title, sidebarMode } = Astro.props;
+const { sidebarMode, meta } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -15,8 +23,25 @@ const { title, sidebarMode } = Astro.props;
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/png" href="/favicon.png" />
+        <link rel="canonical" href="kaplayjs.com" />
+        <link rel="sitemap" href="/sitemap-index.xml" />
         <meta name="generator" content={Astro.generator} />
-        <title>{title}</title>
+        <meta name="description" content={meta?.description} />
+        <meta property="og:title" content={meta?.title} />
+        <meta property="og:description" content={meta?.description} />
+        <meta property="og:image" content={meta?.image} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="kaplayjs.com" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@kaplayjs" />
+        <meta name="twitter:creator" content="@kaplayjs" />
+        <meta name="twitter:title" content={meta?.title} />
+        <meta name="twitter:description" content={meta?.description} />
+        <meta name="twitter:image" content={meta?.image} />
+        <meta name="theme-color" content={meta?.themeColor ?? "#6ba672"} />
+        <meta name="keywords" content={meta?.keywords} />
+
+        <title>{meta?.title}</title>
         <!-- <ViewTransitions /> -->
     </head>
     <body>

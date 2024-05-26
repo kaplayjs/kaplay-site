@@ -1,6 +1,10 @@
 ---
+import { parseType } from "@/util/parseType";
 import { Code } from "astro:components";
+import type { MethodSignature } from "typescript";
+import ReferenceBody from "./ReferenceBody.astro";
 import ReferenceConst from "./ReferenceConst.astro";
+import ReferenceExample from "./ReferenceExample.astro";
 import ReferenceFunction from "./ReferenceFunction.astro";
 import ReferenceObject from "./ReferenceObject.astro";
 
@@ -21,34 +25,41 @@ export const titleClassesByLevel = [
     "text-2xl",
     "text-xl",
 ];
+
 export const descriptionClassesByLevel = [
     "text-lg",
     "text-base",
 ];
 
+export const membersClassesByLevel = [
+    "",
+    "badge badge-ghost badge-xl",
+];
+
 const parseName = (type: any) => {
-    if (type.kind === "MethodSignature") {
+    if (
+        type.kind === "MethodSignature"
+        || type.kind === "FunctionDeclaration"
+        || type.kind === "FunctionType"
+    ) {
         return "function";
-    } else if (type.kind === "PropertySignature") {
+    } else if (
+        type.kind === "PropertySignature"
+    ) {
         return "const";
-    } else if (type.kind === "FunctionDeclaration") {
-        return "function";
     } else if (type.kind === "VariableDeclaration") {
         return "const";
     } else if (type.kind === "InterfaceDeclaration") {
         return "object";
+    } else {
+        return "const";
     }
-};
-
-export const getExample = (type: any) => {
-    return type.jsDoc?.tags?.example?.join("").replace(/^```js\s+|```$/g, "")
-        ?? "";
 };
 ---
 
 <article class="flex flex-col gap-1" id={name}>
     {
-        type.map((item: any) => (
+        type?.map((item: any) => (
         parseName(item) === "function" && (
             <ReferenceFunction
                 name={name}
@@ -56,17 +67,8 @@ export const getExample = (type: any) => {
                 level={level}
             />
 
-            <p>
-                {
-                    item.jsDoc?.tags?.example && (
-                        <Code
-                            code={getExample(item)}
-                            lang="js"
-                            class="p-2 rounded-md"
-                        />
-                    )
-                }
-            </p>
+            <ReferenceBody type={item} level={level} />
+            <ReferenceExample type={item} />
         )
         || parseName(item) === "const" && (
             <ReferenceConst
@@ -74,6 +76,9 @@ export const getExample = (type: any) => {
                 type={item}
                 level={level}
             />
+
+            <ReferenceBody type={item} level={level} />
+            <ReferenceExample type={item} />
         )
         || parseName(item) === "object" && (
             <ReferenceObject
@@ -81,7 +86,20 @@ export const getExample = (type: any) => {
                 type={item}
                 level={level}
             />
+
+            <ReferenceBody type={item} level={level} />
+            <ReferenceExample type={item} />
         )
         ))
     }
 </article>
+
+<style is:global>
+.badge-xl {
+    height: 2rem/* 32px */;
+    font-size: 1.25rem/* 20px */;
+    line-height: 2rem/* 32px */;
+    padding-left: 0.875rem/* 14px */;
+    padding-right: 0.875rem/* 14px */;
+}
+</style>

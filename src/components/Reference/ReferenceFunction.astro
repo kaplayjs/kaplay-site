@@ -3,7 +3,6 @@ import { parseType } from "@/util/parseType";
 import { Code } from "astro:components";
 import {
     descriptionClassesByLevel,
-    getExample,
     type ReferenceEntryProps,
     titleClassesByLevel,
 } from "./ReferenceEntry.astro";
@@ -44,7 +43,3 @@ const parseReturnType = (type: any) => {
     </div>
     <span>{" " + parseReturnType(type)}</span>
 </h1>
-
-<p class:list={[descriptionClassesByLevel[level]]}>
-    {type.jsDoc?.doc ?? "No description"}
-</p>

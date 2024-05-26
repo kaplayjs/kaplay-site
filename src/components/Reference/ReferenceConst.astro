@@ -1,6 +1,7 @@
 ---
 import { parseType } from "@/util/parseType";
 import {
+    membersClassesByLevel,
     type ReferenceEntryProps,
     titleClassesByLevel,
 } from "./ReferenceEntry.astro";
@@ -10,11 +11,21 @@ type Props = ReferenceEntryProps;
 const { name, level = 0, type } = Astro.props;
 
 const parseReturnType = (type: any) => {
-    return parseType(type.type.kind, type);
+    return parseType(type.type?.type?.kind ?? type?.type?.kind, type);
 };
 ---
 
-<h1 class="flex" class:list={[titleClassesByLevel[level]]}>
-    <span class="font-medium">{name}</span>
-    <span>: {parseReturnType(type)}</span>
+<h1
+    class="flex items-start justify-start gap-2"
+    class:list={[titleClassesByLevel[level]]}
+>
+    <span
+        class="font-medium"
+        class:list={[
+            membersClassesByLevel[
+                level
+            ],
+        ]}
+    >{name}:</span>
+    <span>{parseReturnType(type)}</span>
 </h1>

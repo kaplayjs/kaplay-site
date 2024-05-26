@@ -7,42 +7,26 @@ type Props = {
 };
 
 const allDoc = doc.types;
-const allDocKeys: string[] = Object.keys(doc.types).filter(k =>
-    k !== "KaboomCtx"
-);
-const kaboomDoc: any = doc.types.KaboomCtx[0].members;
-const kaboomDocKeys: any = Object.keys(kaboomDoc) as Array<
-    keyof typeof kaboomDoc
->;
-
-const reallyAllDoc = {
-    ...allDoc,
-    ...kaboomDoc,
-};
-const reallyAllDocKeys = Object.keys(reallyAllDoc).filter(k =>
-    k !== "KaboomCtx"
-);
+const kaboomCtxDoc = allDoc.KaboomCtx[0].members;
+const docGroups = doc.groups;
+const docGroupKeys = Object.keys(docGroups) as Array<keyof typeof docGroups>;
 
 const { mode } = Astro.props;
 ---
 
 <main>
     {
-        mode === "all" && reallyAllDocKeys.map((key: string) => (
+        mode === "all" && docGroupKeys.map((key) => (
+        docGroups[key].entries.map((entry) => (
             <ReferenceEntry
-                name={key}
-                type={reallyAllDoc[key as keyof typeof reallyAllDoc]}
+                name={entry}
+                type={allDoc[entry as keyof typeof allDoc] ?? kaboomCtxDoc[
+                    entry as keyof typeof kaboomCtxDoc
+                ]}
             />
 
             <div class="divider"></div>
         ))
-    }
-    {
-        mode === "KaboomCtx" && kaboomDocKeys.map((key: string) => (
-            <ReferenceEntry
-                name={key}
-                type={kaboomDoc[key]}
-            />
         ))
     }
 </main>

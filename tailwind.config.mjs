@@ -10,8 +10,12 @@ export default {
     ],
     /** @type {import('daisyui').Config} */
     daisyui: {
-        themes: ["dim", "cupcake"],
-        darkTheme: "ddim",
+        themes: [{
+            "kaplay": {
+                ...require("daisyui/src/theming/themes")["dim"],
+            },
+        }, "cupcake"],
+        darkTheme: "kaplay",
         logs: false,
     },
 };

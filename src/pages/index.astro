@@ -8,7 +8,16 @@ const indexEntry = getEntry("misc", "index");
 const { Content } = await (await indexEntry).render();
 ---
 
-<Layout title="KAPLAY | Reference Documentation" sidebarMode="guides">
+<Layout
+    sidebarMode="guides"
+    meta={{
+        title: "KAPLAY, The JavaScript easy game library",
+        description:
+            "KAPLAY is a JavaScript game library that makes it easy to create games. Is the successor of KABOOM.JS.",
+        image: "/kaplaylogo.png",
+        keywords: "kaplay, kaboom, game, library, javascript, easy, simple",
+    }}
+>
     <Prose>
         <Content />
     </Prose>
