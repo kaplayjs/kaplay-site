@@ -16,7 +16,14 @@ export async function getStaticPaths() {
 const { type, name } = Astro.props;
 ---
 
-<Layout title="KAPLAY" sidebarMode="reference">
+<Layout
+    meta={{
+        title: `KAPLAY - ${name}`,
+        description: `${type[0].jsDoc.doc ?? "No description provided."}`,
+        image: "/kaplaylogo.png",
+    }}
+    sidebarMode="reference"
+>
     <div class="w-full max-w-screen-lg">
         <ReferenceEntry type={type} name={name} />
     </div>
