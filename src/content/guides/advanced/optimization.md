@@ -1,13 +1,14 @@
 ---
+category: Advanced
 title: Optimization
-description: Tips on optimizing performance / maintainability for kaboom games.
+description: Tips on optimizing performance / maintainability for KAPLAY games.
 slug: optimization
 order: 5
 ---
 
 # Optimization Tips
 
-Here's some tips on optimizing performance / maintainability for kaboom games
+Here's some tips on optimizing performance / maintainability for KAPLAY games
 
 ## Cleanup One-off Objects
 
@@ -44,7 +45,7 @@ for (let i = 0; i < 1000; i++) {
 
 ## Use `await`
 
-Kaboom use a lot of `Promise` and `Promise`-like in time / event related stuff, use `await` on those to make code look nicer
+KAPLAY use a lot of `Promise` and `Promise`-like in time / event related stuff, use `await` on those to make code look nicer
 
 ```js
 async function example() {
@@ -55,10 +56,10 @@ async function example() {
 
 ## Avoid Global Namespace
 
-By default Kaboom uses a lot of common names like `pos`, `sprite` that occupies global namespace, it's often better to use `global: false` to not export kaboom functions to `window`
+By default KAPLAY uses a lot of common names like `pos`, `sprite` that occupies global namespace, it's often better to use `global: false` to not export KAPLAY functions to `window`
 
 ```js
-kaboom({
+kaplay({
     global: false,
 });
 

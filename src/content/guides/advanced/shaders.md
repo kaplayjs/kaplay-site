@@ -1,6 +1,7 @@
 ---
+category: Advanced
 title: Shaders
-description: Learn how to write and use custom shaders in Kaboom.
+description: Learn how to write and use custom shaders in KAPLAY.
 slug: shaders
 order: 4
 ---
@@ -9,7 +10,7 @@ order: 4
 
 ## Vertex shader
 
-A vertex shader can manipulate data on vertex level. Usually a vertex shader can change any of the vertex's properties, but for kaboom only the position can be altered. In most instances the mesh will be a four point quad, thus the shader is called 4 times, once for each point in the quad.
+A vertex shader can manipulate data on vertex level. Usually a vertex shader can change any of the vertex's properties, but for KAPLAY only the position can be altered. In most instances the mesh will be a four point quad, thus the shader is called 4 times, once for each point in the quad.
 A default vertex shader would look like this. The function is passed the position, uv coordinate and color of the vertex and needs to return the updated position.
 
 ```

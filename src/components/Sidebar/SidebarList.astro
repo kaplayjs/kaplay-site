@@ -12,6 +12,7 @@ const groups = doc.groups;
 const groupsKeys = Object.keys(doc.groups) as (keyof typeof doc.groups)[];
 
 let renderList: SidebarEntry[] = [];
+let allOpen = false;
 
 if (sidebarMode === "guides") {
     const guides = await getCollection("guides");
@@ -21,12 +22,42 @@ if (sidebarMode === "guides") {
         link: `/guides/${guide.slug}`,
     }));
 
+    const guidesWithoutCategory = sortedGuides.filter(guide =>
+        !guide.data.category
+    ).map(guide => ({
+        title: guide.data.title,
+        link: `/guides/${guide.slug}`,
+    }));
+
+    const guidesByCategory = sortedGuides.reduce((acc, guide) => {
+        const category = guide.data.category;
+
+        if (!category) {
+            return acc;
+        }
+
+        if (!acc[category]) {
+            acc[category] = [];
+        }
+        acc[category].push(guide);
+        return acc;
+    }, {} as Record<string, any[]>);
+
     renderList = [
+        ...Object.keys(guidesByCategory).map((category) => ({
+            folder: category,
+            linkList: guidesByCategory[category].map((guide: any) => ({
+                title: guide.data.title,
+                link: `/guides/${guide.slug}`,
+            })),
+        })),
         {
-            folder: "Guides",
-            linkList: sortedList,
+            folder: "Misc",
+            linkList: guidesWithoutCategory,
         },
     ];
+
+    allOpen = true;
 } else if (sidebarMode === "reference") {
     const categoryLinks: SidebarEntry[] = [];
 
@@ -49,7 +80,7 @@ if (sidebarMode === "guides") {
 <>
     {
         renderList?.map(({ linkList, folder }) => (
-            <SidebarFolder title={folder} id={folder}>
+            <SidebarFolder title={folder} id={folder} isOpen={allOpen}>
                 {
                     linkList.map(({ title, link }) => (
                         <SidebarLink link={link}>

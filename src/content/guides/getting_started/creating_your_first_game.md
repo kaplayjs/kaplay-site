@@ -1,24 +1,21 @@
 ---
-title: Getting started
-description: Learn the basics of Kaboom and make a simple game.
+category: Getting Started
+title: Creating your first game
+description: Learn the basics of KAPLAY and make a simple game.
 slug: intro
-order: 2
+order: 3
 ---
 
-# Intro to Kaboom
+# Creating your first game
 
-Welcome! Kaboom is a JavaScript library that helps you make games fast and fun :D
-
-This is an intro tutorial that will cover the basic concepts and make a very simple [Chrome Dino](https://en.wikipedia.org/wiki/Dinosaur_Game) - ish game. For setting up Kaboom development, see the [setup guide](/doc/setup).
+This is an intro tutorial that will cover the basic concepts and make a very simple [Chrome Dino](https://en.wikipedia.org/wiki/Dinosaur_Game) - ish game. For setting up KAPLAY development, see the [Installation Guide](/guides/install).
 
 ![game](intro/game.png)
 
-(scroll to bottom to see / copy the full game code)
-
-Let's start by initializing the context with the `kaboom()` function.
+Let's start by initializing the context with the `kaplay()` function.
 
 ```js
-kaboom();
+kaplay();
 ```
 
 This should give you a blank canvas with a nice checkerboard pattern like this
@@ -57,7 +54,7 @@ add([
 
 Feel free to tweak some parameters and see how it affects what happens on screen.
 
-In Kaboom, each game object is composed from multiple components. Each component will give the game obj certain functionality.
+In KAPLAY, each game object is composed from multiple components. Each component will give the game obj certain functionality.
 
 > A game object is basically any character in the game, like the player character, a bullet, a rock, a cloud
 
@@ -69,7 +66,7 @@ If you're having trouble understanding, consider this Human Bean:
 
 ![humanbean](intro/humanbean.png)
 
-Human are also composed from a list of components, each component provides different functionalities, which is exactly what component means in Kaboom. `add()` is the function you use to assemble all the components into a game object in kaboom:
+Human are also composed from a list of components, each component provides different functionalities, which is exactly what component means in KAPLAY. `add()` is the function you use to assemble all the components into a game object in KAPLAY:
 
 ![assemble](intro/assemble.png)
 
@@ -256,7 +253,7 @@ spawnTree();
 
 See? We're calling `spawnTree()` recursively / endlessly, with a random interval between 0.5 - 1.5 seconds each time.
 
-Before adding a score counter, let's actually complete the game loop first, by sending player to a gameover scene when they hit a tree. We can achieve this with kaboom's `scene()` system
+Before adding a score counter, let's actually complete the game loop first, by sending player to a gameover scene when they hit a tree. We can achieve this with KAPLAY's `scene()` system
 
 ```js
 scene("game", () => {
@@ -279,8 +276,7 @@ Consider this example above, we're declaring 2 scenes here, "game" and "lose". T
 Let's first move everything game code we have into a scene.
 
 ```js
-// don't move these init / loader functions
-kaboom();
+kaplay();
 loadSprite("bean", "sprites/bean.png");
 
 scene("game", () => {
@@ -340,8 +336,6 @@ onUpdate(() => {
 
 We can use the `onUpdate()` function, which takes a function, and runs it every frame. In this case we're going to increment the score, and update the score label's text every frame.
 
-(todo)
-
 Full game code here:
 
 ```js
@@ -350,7 +344,7 @@ const JUMP_FORCE = 800;
 const SPEED = 480;
 
 // initialize context
-kaboom();
+kaplay();
 
 // load assets
 loadSprite("bean", "sprites/bean.png");

@@ -1,4 +1,5 @@
 ---
+category: Advanced
 title: Custom Components
 description: Learn about create your own components for your game objects.
 slug: components
@@ -7,7 +8,7 @@ order: 3
 
 # Custom Components
 
-Kaboom uses a flexible component system that helps you compose game logic.
+KAPLAY uses a flexible component system that helps you compose game logic.
 
 Let's take a look at how the default component `lifespan()` is implemented.
 
@@ -63,6 +64,6 @@ function mycomp() {
 }
 ```
 
-Most kaboom built-in components are built using public interfaces, feel free to check them out. Also check out the "drag", "platformer", "doublejump" demos with their own custom components.
+Most KAPLAY built-in components are built using public interfaces, feel free to check them out. Also check out the "drag", "platformer", "doublejump" demos with their own custom components.
 
-Check out the [component demo](https://kaboomjs.com/play?example=component).
+Check out the [component demo](https://play.kaboomjs.com).

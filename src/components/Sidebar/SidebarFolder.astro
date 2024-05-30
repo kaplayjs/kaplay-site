@@ -2,15 +2,17 @@
 type Props = {
     title: string;
     id: string;
+    isOpen?: boolean;
 };
 
-const { title, id } = Astro.props;
+const { title, id, isOpen } = Astro.props;
+const folderIsOpen = isOpen ?? title === "Start";
 ---
 
 <div
     class="folder | flex flex-col"
     id={id}
-    folder-state={title === "Start" || title === "Guides" ? "open" : "closed"}
+    folder-state={folderIsOpen ? "open" : "closed"}
 >
     <p
         class="folder-title | btn btn-ghost w-full btn-sm justify-start text-left text-lg"

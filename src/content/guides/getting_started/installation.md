@@ -1,16 +1,17 @@
 ---
+category: Getting Started
 title: Installation
-description: Learn how to install Kaboom.
-slug: setup
+description: Learn how to install KAPLAY.
+slug: install
 order: 1
 ---
 
 # Installation
 
-The most easy way to get started with Kaboom is to use the [CLI tool](https://www.npmjs.com/package/create-kaboom), which will generate a Kaboom project for you:
+The most easy way to get started with KAPLAY is to use the [CLI tool](https://www.npmjs.com/package/create-kaplay), which will generate a project for you:
 
 ```sh
-$ npm init kaboom -- mygame
+$ npx create-kaplay mygame
 $ cd mygame
 $ npm run dev
 ```
@@ -20,48 +21,37 @@ This will create your game in the `mygame` directory, and start a development se
 To see all options, run:
 
 ```sh
-$ npm init kaboom -- --help
+$ create-kaplay --help
 ```
 
 ## Using a CDN
 
-Getting the package from a CDN provider is the quickest and easiest way to start using Kaboom.
+If you prefer to use KAPLAY without any bundlers, you can use a CDN to include it directly in your HTML file,
+or import it with ECMAScript modules.
 
 ```html
 <script type="module">
+    // import kaplay
+    import kaplay from "https://unpkg.com/kaplay@3000.1.17/dist/kaboom.mjs";
 
-// import kaboom.js
-import kaboom from "https://unpkg.com/kaboom@3000.1.17/dist/kaboom.mjs";
-
-// initialize kaboom context
-kaboom();
-
-// add a piece of text at position (120, 80)
-add([
-    text("hello"),
-    pos(120, 80),
-]);
-
+    // start kaplay
+    kaplay();
 </script>
 ```
-
-You can paste this directly in a `.html` file and open with the browser. This will give you the standard fullscreen Kaboom canvas. Feel free to put more HTML in there.
-
-The Kaboom package is deployed to npm, so it's availbale on various CDN providers, like `unpkg`, `skypack`, `jsdelivr`, etc.
 
 You can also just include it with a `<script>` tag.
 
 ```html
-<script src="https://unpkg.com/kaboom@3000.1.17/dist/kaboom.js"></script>
+<script src="https://unpkg.com/kaplay@3000.1.17/dist/kaboom.js"></script>
 
 <script>
-    kaboom();
+    kaplay();
 </script>
 ```
 
 ## Setup your own Node.js environment
 
-With Node.js and npm it's easier have some other packages and use version control, also it's easier to get typescript autocomplete support, but it requires a bit more setup. (This is the way of `create-kaboom`)
+With Node.js and npm it's easier have some other packages and use version control, also it's easier to get typescript autocomplete support, but it requires a bit more setup. (This is the way of `create-kaplay`)
 
 ```sh
 $ npm install kaboom
@@ -79,14 +69,9 @@ This is a short example of how to use Kaboom with ["esbuild"](https://esbuild.gi
 Once you have `esbuild` installed, and you have this in a `.js` or `.ts` file:
 
 ```js
-import kaboom from "kaboom";
+import kaplay from "kaplay";
 
-kaboom();
-
-add([
-    text("hello"),
-    pos(120, 80),
-]);
+kaplay();
 ```
 
 just run
@@ -95,7 +80,7 @@ just run
 $ esbuild game.js --bundle > build.js
 ```
 
-and it'll find the Kaboom package and include it in the built `build.js`, include `build.js` in your HTML and you're good to go. Feel free to automate this process.
+and it'll find the KAPLAY package and include it in the built `build.js`, include `build.js` in your HTML and you're good to go. Feel free to automate this process.
 
 ## Loading Assets
 

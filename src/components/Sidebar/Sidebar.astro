@@ -33,7 +33,7 @@ const { sidebarMode } = Astro.props;
         <div class="border-r-8 h-52"></div>
     </label>
 
-    <div class="drawer-content flex flex-col items-center justify-center">
+    <div class="drawer-content flex flex-col items-start justify-start">
         <slot />
     </div>
     <div class="drawer-side" style="scrollbar-gutter: stable;">
@@ -50,6 +50,9 @@ const { sidebarMode } = Astro.props;
                     class="w-52 h-24 aspect-auto object-contain"
                 />
             </figure>
+            <div class="px-4 pb-4">
+                <p class="badge badge-primary badge-lg">3001.0.0-alpha.7</p>
+            </div>
             <ul class="flex-col gap-2">
                 <SidebarLink link="/">
                     Home
@@ -72,7 +75,7 @@ const { sidebarMode } = Astro.props;
             </ul>
             <div class="divider"></div>
             <ul class="flex-col gap-2">
-                <SidebarLink link="/guides/setup">
+                <SidebarLink link="/guides/install">
                     Guides
                 </SidebarLink>
                 <SidebarLink link="/reference">
