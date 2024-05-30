@@ -1,6 +1,7 @@
 ---
+import kaplayPackageJson from "@/../kaplay/package.json";
+import kaplayGif from "@/assets/kaplay.gif";
 import Image from "astro/components/Image.astro";
-import kaplayGif from "../../assets/kaplay.gif";
 import SidebarLink from "./SidebarLink.astro";
 import SidebarList from "./SidebarList.astro";
 
@@ -51,7 +52,9 @@ const { sidebarMode } = Astro.props;
                 />
             </figure>
             <div class="px-4 pb-4">
-                <p class="badge badge-primary badge-lg">3001.0.0-alpha.7</p>
+                <p class="badge badge-primary badge-lg">
+                    {kaplayPackageJson.version}
+                </p>
             </div>
             <ul class="flex-col gap-2">
                 <SidebarLink link="/">

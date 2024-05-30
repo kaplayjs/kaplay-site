@@ -19,6 +19,7 @@ const typeMembersKey = Object.keys(type.members);
                         name={key}
                         type={type.members[key]}
                         level={1}
+                        parent={`${name}-`}
                     />
                 </div>
             ))

@@ -1,7 +1,4 @@
 ---
-import { parseType } from "@/util/parseType";
-import { Code } from "astro:components";
-import type { MethodSignature } from "typescript";
 import ReferenceBody from "./ReferenceBody.astro";
 import ReferenceConst from "./ReferenceConst.astro";
 import ReferenceExample from "./ReferenceExample.astro";
@@ -12,9 +9,10 @@ export type ReferenceEntryProps = {
     name: string;
     type: any;
     level?: number;
+    parent?: string;
 };
 
-const { name, type, level = 0 } = Astro.props;
+const { name, type, level = 0, parent = "" } = Astro.props;
 
 export const entryClassesByLevel = [
     "px-2",
@@ -57,7 +55,7 @@ const parseName = (type: any) => {
 };
 ---
 
-<article class="flex flex-col gap-1" id={name}>
+<article class="flex flex-col gap-1" id={`${parent}${name}`}>
     {
         type?.map((item: any) => (
         parseName(item) === "function" && (
