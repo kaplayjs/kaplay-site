@@ -29,10 +29,7 @@ Then let's add some stuff to screen, like an image. Copy this piece of code to y
 loadSprite("bean", "sprites/bean.png");
 
 // add something to screen
-add([
-    sprite("bean"),
-    pos(80, 40),
-]);
+add([sprite("bean"), pos(80, 40)]);
 ```
 
 Introducing Frog the "Bean"! A happy frog that enjoys life. You'll see Bean a lot around here.
@@ -43,13 +40,7 @@ Before explaining what this code does, let's try adding some more stuff to it an
 
 ```js
 // add something to screen
-add([
-    sprite("bean"),
-    pos(80, 40),
-    scale(3),
-    rotate(30),
-    color(0, 0, 255),
-]);
+add([sprite("bean"), pos(80, 40), scale(3), rotate(30), color(0, 0, 255)]);
 ```
 
 Feel free to tweak some parameters and see how it affects what happens on screen.
@@ -74,12 +65,7 @@ It's actually kinda like playing with lego pieces! Let's keep this in mind and s
 
 ```js
 // putting together our player character
-const bean = add([
-    sprite("bean"),
-    pos(80, 40),
-    area(),
-    body(),
-]);
+const bean = add([sprite("bean"), pos(80, 40), area(), body()]);
 
 // .jump() when "space" key is pressed
 onKeyPress("space", () => {
@@ -89,10 +75,10 @@ onKeyPress("space", () => {
 
 Let's see what components we're using:
 
-- `sprite()` makes it render as a sprite, with the `"bean"` sprite we just loaded with `loadSprite()`
-- `pos()` gives it a position on screen, at X: 80 Y: 40
-- `area()` gives it a collider area, so we can check for collisions with other characters later on
-- `body()` gives it a physical body, making it fall due to gravity and ability to jump,
+-   `sprite()` makes it render as a sprite, with the `"bean"` sprite we just loaded with `loadSprite()`
+-   `pos()` gives it a position on screen, at X: 80 Y: 40
+-   `area()` gives it a collider area, so we can check for collisions with other characters later on
+-   `body()` gives it a physical body, making it fall due to gravity and ability to jump,
 
 We're also testing out our player character with a little interaction here. `onKeyPress()` registers an event that runs every time user presses a certain key. In this case, we're calling the `.jump()` method (which is provided by the `body()` component) when `"space"` key is pressed. Go ahead and slap that space key!
 
@@ -112,12 +98,12 @@ add([
 
 Woah! That looks like a lot, but it's actually really simple, let's look at each component
 
-- `rect()` renders a rectangle. It accepts 2 arguments, the width and height, which we give it the game width (returned by `width()`) and height of 48 pixels
-- `pos()` position. We give it a x: 0 and y: `height() - 48` so it sits right on the bottom of the screen
-- `outline()` renders an outline of `4` pixels
-- `area()` adds a collider to it
-- `body({ isStatic: true })` the object won't move, and all non static objects won't move past it
-- `color()` makes it render with an RGB color, we give it a R: 127 G: 200 B: 255 which is a blue-ish color
+-   `rect()` renders a rectangle. It accepts 2 arguments, the width and height, which we give it the game width (returned by `width()`) and height of 48 pixels
+-   `pos()` position. We give it a x: 0 and y: `height() - 48` so it sits right on the bottom of the screen
+-   `outline()` renders an outline of `4` pixels
+-   `area()` adds a collider to it
+-   `body({ isStatic: true })` the object won't move, and all non static objects won't move past it
+-   `color()` makes it render with an RGB color, we give it a R: 127 G: 200 B: 255 which is a blue-ish color
 
 Now, before run, we should define the gravity of our world:
 
@@ -158,8 +144,8 @@ add([
 
 A lot of these we have already seen you should know what they do, but some new ones here:
 
-- `anchor()` defines the origin point of positioning. By default `pos()` defines the top left point of the shape, here we change it to the bottom left point because we want it to be just above the platform, so we give it Y position of `height() - 48`
-- `move()` makes it move towards a direction infinitely. In this case we move towards the `LEFT` by `480` pixels per second
+-   `anchor()` defines the origin point of positioning. By default `pos()` defines the top left point of the shape, here we change it to the bottom left point because we want it to be just above the platform, so we give it Y position of `height() - 48`
+-   `move()` makes it move towards a direction infinitely. In this case we move towards the `LEFT` by `480` pixels per second
 
 ![tree](intro/tree.png)
 
@@ -257,15 +243,11 @@ Before adding a score counter, let's actually complete the game loop first, by s
 
 ```js
 scene("game", () => {
-    add([
-        sprite("bean"),
-    ]);
+    add([sprite("bean")]);
 });
 
 scene("lose", () => {
-    add([
-        text("Game Over"),
-    ]);
+    add([text("Game Over")]);
 });
 
 go("game");
@@ -294,11 +276,7 @@ Then we can add a "lose" scene independent to your core game content here.
 
 ```js
 scene("lose", () => {
-    add([
-        text("Game Over"),
-        pos(center()),
-        anchor("center"),
-    ]);
+    add([text("Game Over"), pos(center()), anchor("center")]);
 });
 ```
 
@@ -316,10 +294,7 @@ Ok! Now we've arrived at the final part of our game: score counter.
 
 ```js
 let score = 0;
-const scoreLabel = add([
-    text(score),
-    pos(24, 24),
-]);
+const scoreLabel = add([text(score), pos(24, 24)]);
 ```
 
 Here we've declared a number variable to store the score, and added a game obj with `text()` component to display the text.
@@ -414,10 +389,7 @@ scene("game", () => {
     // keep track of score
     let score = 0;
 
-    const scoreLabel = add([
-        text(score),
-        pos(24, 24),
-    ]);
+    const scoreLabel = add([text(score), pos(24, 24)]);
 
     // increment score every frame
     onUpdate(() => {

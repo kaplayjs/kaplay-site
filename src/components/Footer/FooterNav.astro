@@ -1,0 +1,13 @@
+---
+type Props = {
+    title: string;
+};
+
+const { title } = Astro.props;
+---
+
+<nav class="flex flex-col">
+    <h3 class="text-lg footer-title">{title}</h3>
+
+    <slot />
+</nav>

@@ -7,12 +7,7 @@ console.log("building doc...");
 // generate .d.ts / docs data
 let dts = await fs.readFile(`kaplay/src/types.ts`, "utf-8");
 
-const f = ts.createSourceFile(
-    "ts",
-    dts,
-    ts.ScriptTarget.Latest,
-    true,
-);
+const f = ts.createSourceFile("ts", dts, ts.ScriptTarget.Latest, true);
 
 function transform(o, f) {
     for (const k in o) {
@@ -90,6 +85,21 @@ const statements = transform(f.statements, (k, v) => {
 // contain the type data for doc gen
 const types = {};
 const groups = {};
+const sortedGroups = {};
+const miscGroup = {
+    name: "Misc",
+    entries: [],
+};
+
+const groupsOrder = [
+    "Start",
+    "Assets",
+    "Game Obj",
+    "Components",
+    "Scene",
+    "Events",
+    "Info",
+];
 
 for (const statement of statements) {
     if (!types[statement.name]) {
@@ -113,9 +123,7 @@ for (const statement of statements) {
                 if (!groups[name]) {
                     groups[name] = {
                         name: name,
-                        entries: [
-                            mem[0].name,
-                        ],
+                        entries: [mem[0].name],
                     };
                 } else {
                     const section = groups[name];
@@ -132,14 +140,26 @@ for (const statement of statements) {
             if (!groups[name]) {
                 groups[name] = {
                     name: name,
-                    entries: [
-                        statement.name,
-                    ],
+                    entries: [statement.name],
                 };
             } else {
                 const section = groups[name];
                 section.entries.push(statement.name);
             }
+        } else {
+            miscGroup.entries.push(statement.name);
+        }
+    }
+
+    groups["Misc"] = miscGroup;
+
+    for (const group of groupsOrder) {
+        sortedGroups[group] = groups[group];
+    }
+
+    for (const group of Object.keys(groups)) {
+        if (!sortedGroups[group]) {
+            sortedGroups[group] = groups[group];
         }
     }
 }
@@ -148,6 +168,6 @@ await fs.writeFile(
     "doc.json",
     JSON.stringify({
         types,
-        groups,
+        groups: sortedGroups,
     }),
 );

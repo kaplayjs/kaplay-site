@@ -50,7 +50,7 @@ KAPLAY use a lot of `Promise` and `Promise`-like in time / event related stuff, 
 ```js
 async function example() {
     await k.wait(3);
-    await k.tween(0, 100, 1, (x) => mark.pos.x = x);
+    await k.tween(0, 100, 1, (x) => (mark.pos.x = x));
 }
 ```
 
@@ -88,7 +88,7 @@ await player.tween(
     player.pos,
     k.mousePos(),
     0.5,
-    (p) => player.pos = p,
+    (p) => (player.pos = p),
     k.easings.easeOutQuad,
 );
 
@@ -143,5 +143,5 @@ gameScene.destory();
 
 Loading assets takes time, compress them when you can.
 
-- Compress `.ttf` or `.otf` to `.woff2` (with [google/woff2](https://github.com/google/woff2))
-- Compress `.wav` files to `.ogg` or `.mp3`
+-   Compress `.ttf` or `.otf` to `.woff2` (with [google/woff2](https://github.com/google/woff2))
+-   Compress `.wav` files to `.ogg` or `.mp3`

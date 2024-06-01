@@ -25,25 +25,25 @@ const folderIsOpen = isOpen ?? title === "Start";
 </div>
 
 <style>
-.folder[folder-state="closed"] .folder-content {
-    display: none;
-}
+    .folder[folder-state="closed"] .folder-content {
+        display: none;
+    }
 </style>
 
 <script>
-const folders = document.querySelectorAll(".folder");
+    const folders = document.querySelectorAll(".folder");
 
-folders.forEach((folder) => {
-    const folderTitle = folder.querySelector(".folder-title");
+    folders.forEach((folder) => {
+        const folderTitle = folder.querySelector(".folder-title");
 
-    folderTitle?.addEventListener("click", () => {
-        const folderState = folder.getAttribute("folder-state");
+        folderTitle?.addEventListener("click", () => {
+            const folderState = folder.getAttribute("folder-state");
 
-        if (folderState === "open") {
-            folder.setAttribute("folder-state", "closed");
-        } else {
-            folder.setAttribute("folder-state", "open");
-        }
+            if (folderState === "open") {
+                folder.setAttribute("folder-state", "closed");
+            } else {
+                folder.setAttribute("folder-state", "open");
+            }
+        });
     });
-});
 </script>

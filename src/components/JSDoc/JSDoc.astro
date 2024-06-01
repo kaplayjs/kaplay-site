@@ -1,0 +1,16 @@
+---
+import JSDocTag from "./JSDocTag.astro";
+
+const { data, parent } = Astro.props;
+const jsDoc = data.jsDoc || {};
+---
+
+<p class="prose">
+    {jsDoc.doc}
+    {
+        jsDoc.tags &&
+            Object.entries(jsDoc?.tags)?.map(([name, items]) => (
+                <JSDocTag tag={name} items={items as string[]} />
+            ))
+    }
+</p>

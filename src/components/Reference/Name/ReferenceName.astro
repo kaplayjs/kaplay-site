@@ -1,0 +1,9 @@
+---
+import ReferenceLink from "../ReferenceLink.astro";
+
+const { data } = Astro.props;
+---
+
+<span class="font-medium"
+    ><ReferenceLink href={`#${data.name}`}>{data.name}</ReferenceLink></span
+>

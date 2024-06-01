@@ -1,0 +1,44 @@
+---
+import FooterLink from "./FooterLink.astro";
+import FooterNav from "./FooterNav.astro";
+---
+
+<footer class="p-10 bg-base-200 text-base-content text-base rounded">
+    <div
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+    >
+        <FooterNav title="KAPLAY">
+            <FooterLink href="/guides/install"> Installing KAPLAY </FooterLink>
+            <FooterLink href="/guides/starting"> Basics of KAPLAY </FooterLink>
+            <FooterLink href="/#kaplay-vs-kaboomjs-whats-the-difference">
+                KAPLAY vs Kaboom.js
+            </FooterLink>
+        </FooterNav>
+        <FooterNav title="Resources">
+            <FooterLink href="https://play.kaplayjs.com" external>
+                Start playing around with KAPLAYGROUND
+            </FooterLink>
+            <FooterLink href="https://discord.com/invite/aQ6RuQm3TF" external>
+                Ask questions on Discord
+            </FooterLink>
+        </FooterNav>
+        <FooterNav title="Contribute">
+            <FooterLink href="https://github.com/marklovers/kaplay" external>
+                GitHub
+            </FooterLink>
+        </FooterNav>
+    </div>
+
+    <div class="divider"></div>
+
+    <aside
+        class="flex flex-col sm:flex-row gap-6 justify-center sm:justify-between items-center"
+    >
+        <div class="flex items-center gap-4">
+            <img alt="Logo" src="/kaplaylogo.png" class="w-20" />
+            <div>
+                <p class="text-2xl">KatTeam</p>
+            </div>
+        </div>
+    </aside>
+</footer>

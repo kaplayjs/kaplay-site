@@ -1,0 +1,28 @@
+---
+import JSDocExample from "./JSDocExample.astro";
+
+type Props = {
+    tag: string;
+    items: string[];
+};
+
+const { tag, items } = Astro.props;
+const hiddenTags = ["group"];
+if (hiddenTags.includes(tag)) return;
+---
+
+{
+    () => {
+        switch (tag) {
+            case "example":
+                return <JSDocExample example={items} />;
+            default:
+                return (
+                    <p class="gap-2">
+                        <code class="inline mr-1">{tag}</code>
+                        <span>{items[0]}</span>
+                    </p>
+                );
+        }
+    }
+}

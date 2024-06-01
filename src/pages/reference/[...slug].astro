@@ -5,8 +5,8 @@ import Layout from "@/layouts/Layout.astro";
 
 export async function getStaticPaths() {
     const allDoc: any = doc.types;
-    const allDocKeys: string[] = Object.keys(doc.types).filter(k =>
-        k !== "KaboomCtx"
+    const allDocKeys: string[] = Object.keys(doc.types).filter(
+        (k) => k !== "KaboomCtx"
     );
 
     return allDocKeys.map((key) => ({
@@ -27,6 +27,6 @@ const { type, name } = Astro.props;
     sidebarMode="reference"
 >
     <div class="w-full max-w-screen-lg">
-        <ReferenceEntry type={type} name={name} />
+        <ReferenceEntry data={type} />
     </div>
 </Layout>

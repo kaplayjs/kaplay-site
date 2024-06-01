@@ -1,0 +1,16 @@
+---
+// Render something if the index is not the end of the array
+
+type Props = {
+    index: number;
+    length: number;
+    reverse?: boolean;
+};
+
+const { index, length, reverse = false } = Astro.props;
+const isNotFinal = index !== length;
+const isFinal = index === length;
+const condition = reverse ? isFinal : isNotFinal;
+---
+
+{condition && <slot />}

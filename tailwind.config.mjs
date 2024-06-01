@@ -4,18 +4,18 @@ export default {
     theme: {
         extend: {},
     },
-    plugins: [
-        require("daisyui"),
-        require("@tailwindcss/typography"),
-    ],
+    plugins: [require("daisyui"), require("@tailwindcss/typography")],
     /** @type {import('daisyui').Config} */
     daisyui: {
-        themes: [{
-            "kaplay": {
-                ...require("daisyui/src/theming/themes")["dim"],
-                "primary": "#7fc963",
+        themes: [
+            {
+                kaplay: {
+                    ...require("daisyui/src/theming/themes")["dim"],
+                    primary: "#7fc963",
+                },
             },
-        }, "cupcake"],
+            "cupcake",
+        ],
         darkTheme: "kaplay",
         logs: false,
     },

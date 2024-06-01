@@ -7,14 +7,10 @@ order: 7
 
 # Migrating from v2000 to v3000
 
-- `obj._id` is renamed to `obj.id`
+-   `obj._id` is renamed to `obj.id`
 
 ```js
-const obj = add([
-    pos(300, 200),
-    sprite("bean"),
-    area(),
-]);
+const obj = add([pos(300, 200), sprite("bean"), area()]);
 
 // before
 console.log(obj._id);
@@ -23,37 +19,30 @@ console.log(obj._id);
 console.log(obj.id);
 ```
 
-- `origin()` is renamed to `anchor()`
+-   `origin()` is renamed to `anchor()`
 
 ```js
 // before
-add([
-    sprite("bean"),
-    origin("center"),
-]);
+add([sprite("bean"), origin("center")]);
 
 // v3000
-add([
-    sprite("bean"),
-    anchor("center"),
-]);
+add([sprite("bean"), anchor("center")]);
 ```
 
-- `obj.onHover()` in `area()` comp is renamed to `obj.onHoverUpdate()`, `obj.onHover()` now only runs once when obj is hovered
+-   `obj.onHover()` in `area()` comp is renamed to `obj.onHoverUpdate()`, `obj.onHover()` now only runs once when obj is hovered
 
 ```js
-const obj = add([
-    pos(300, 200),
-    sprite("bean"),
-    area(),
-]);
+const obj = add([pos(300, 200), sprite("bean"), area()]);
 
 // before
-obj.onHover(() => {
-    console.log("this will print every frame when obj is hovered");
-}, () => {
-    console.log("this will print every frame when obj is not hovered");
-});
+obj.onHover(
+    () => {
+        console.log("this will print every frame when obj is hovered");
+    },
+    () => {
+        console.log("this will print every frame when obj is not hovered");
+    },
+);
 
 // v3000
 obj.onHover(() => {
@@ -69,14 +58,10 @@ obj.onHoverEnd(() => {
 });
 ```
 
-- `obj.pushOut()` is renamed to `obj.resolveCollision()`
+-   `obj.pushOut()` is renamed to `obj.resolveCollision()`
 
 ```js
-const player = add([
-    sprite("bean"),
-    pos(300, 200),
-    area(),
-]);
+const player = add([sprite("bean"), pos(300, 200), area()]);
 
 // before
 player.pushOut(rock);
@@ -85,96 +70,57 @@ player.pushOut(rock);
 player.resolveCollision(rocker);
 ```
 
-- `solid()` comp becomes an option in `body({ isStatic: true })`
+-   `solid()` comp becomes an option in `body({ isStatic: true })`
 
 ```js
 // before
-add([
-    sprite("bean"),
-    area(),
-    body(),
-    solid(),
-]);
+add([sprite("bean"), area(), body(), solid()]);
 
 // v3000
-add([
-    sprite("bean"),
-    area(),
-    body({ isStatic: true }),
-]);
+add([sprite("bean"), area(), body({ isStatic: true })]);
 ```
 
-- gravity now needs to be manually enabled, `gravity()` is renamed to `setGravity()` and `getGravity()`
+-   gravity now needs to be manually enabled, `gravity()` is renamed to `setGravity()` and `getGravity()`
 
 ```js
 // before, gravity will be enabled by body() component
-add([
-    pos(100, 100),
-    sprite("bean"),
-    area(),
-    body(),
-]);
+add([pos(100, 100), sprite("bean"), area(), body()]);
 
 // v3000, use gravity() to manually enable gravity
 setGravity(1600);
 
-add([
-    pos(100, 100),
-    sprite("bean"),
-    area(),
-    body(),
-]);
+add([pos(100, 100), sprite("bean"), area(), body()]);
 ```
 
-- `body.weight` is renamed to `body.gravityScale`
+-   `body.weight` is renamed to `body.gravityScale`
 
 ```js
 // before
-add([
-    body({ weight: 2 }),
-]);
+add([body({ weight: 2 })]);
 
 // before
-add([
-    body({ gravityScale: 2 }),
-]);
+add([body({ gravityScale: 2 })]);
 ```
 
-- `body.doubleJump()` is removed in favor of new `doubleJump()` component
+-   `body.doubleJump()` is removed in favor of new `doubleJump()` component
 
 ```js
-const obj = add([
-    pos(100, 100),
-    sprite("bean"),
-    area(),
-    body(),
-]);
+const obj = add([pos(100, 100), sprite("bean"), area(), body()]);
 
 obj.doubleJump();
 
 // after
-const obj = add([
-    pos(100, 100),
-    sprite("bean"),
-    area(),
-    body(),
-    doubleJump(),
-]);
+const obj = add([pos(100, 100), sprite("bean"), area(), body(), doubleJump()]);
 
 obj.doubleJump();
 ```
 
-- `body.onFall()` is renamed to `body.onFallOff()`, `body.onFall()` now runs when body is in the air and starts to fall
+-   `body.onFall()` is renamed to `body.onFallOff()`, `body.onFall()` now runs when body is in the air and starts to fall
 
 ```js
 gravity(1600);
 
-const obj = add([
-    pos(100, 100),
-    sprite("bean"),
-    area(),
-    body(),
-]);
+const obj = add([pos(100, 100), sprite("bean"), area(), body()]);
 
 // before
 obj.onFall(() => {
@@ -191,14 +137,11 @@ obj.onFall(() => {
 });
 ```
 
-- removed `outview()` in favor of `offscreen()`, which is less accurate but much faster
+-   removed `outview()` in favor of `offscreen()`, which is less accurate but much faster
 
 ```js
 // before
-add([
-    sprite("flower"),
-    outview({ hide: true }),
-]);
+add([sprite("flower"), outview({ hide: true })]);
 
 // v3000
 add([
@@ -208,30 +151,20 @@ add([
 ]);
 ```
 
-- removed `cleanup()` in favor of `offscreen({ destroy: true })`
+-   removed `cleanup()` in favor of `offscreen({ destroy: true })`
 
 ```js
 // before
-add([
-    pos(player.pos),
-    sprite("bullet"),
-    cleanup(),
-]);
+add([pos(player.pos), sprite("bullet"), cleanup()]);
 
 // v3000
-add([
-    pos(player.pos),
-    sprite("bullet"),
-    offscreen({ destroy: true }),
-]);
+add([pos(player.pos), sprite("bullet"), offscreen({ destroy: true })]);
 ```
 
-- `sprite.flipX` and `sprite.flipY` becomes properties instead of functions
+-   `sprite.flipX` and `sprite.flipY` becomes properties instead of functions
 
 ```js
-const bean = add([
-    sprite("bean"),
-]);
+const bean = add([sprite("bean")]);
 
 // before
 bean.flipX(true);
@@ -240,12 +173,10 @@ bean.flipX(true);
 bean.flipX = true;
 ```
 
-- `sprite.onAnimStart()` and `sprite.onAnimEnd()` now triggers on any animation
+-   `sprite.onAnimStart()` and `sprite.onAnimEnd()` now triggers on any animation
 
 ```js
-const bean = add([
-    sprite("bean"),
-]);
+const bean = add([sprite("bean")]);
 
 // before
 bean.onAnimStart("walk", () => {
@@ -260,14 +191,14 @@ bean.onAnimStart((anim) => {
 });
 ```
 
-- `obj.scale` now is always a `Vec2`
+-   `obj.scale` now is always a `Vec2`
 
 ```js
 scale(2); // scale is vec2(2, 2)
 obj.scale; // vec2(2, 2)
 ```
 
-- `loadFont()` now only loads `.ttf`, `.otf`, `.woff` etc fonts that browser support, use `loadBitmapFont()` to load bitmap fonts
+-   `loadFont()` now only loads `.ttf`, `.otf`, `.woff` etc fonts that browser support, use `loadBitmapFont()` to load bitmap fonts
 
 ```js
 // before
@@ -278,7 +209,7 @@ loadBitmapFont("unscii", "/examples/fonts/unscii_8x8.png", 8, 8);
 loadFont("apl386", "/examples/fonts/apl386.ttf");
 ```
 
-- removed builtin fonts `apl386`, `apl386o`, `sink` and `sinko`, using browser built-in `monospace` font as default font now
+-   removed builtin fonts `apl386`, `apl386o`, `sink` and `sinko`, using browser built-in `monospace` font as default font now
 
 ```js
 // v3000, manually load these fonts if you need them
@@ -291,7 +222,7 @@ loadFont("apl386", "/examples/fonts/apl386.ttf", {
 });
 ```
 
-- changed vertex format from `vec3` to `vec2` (only applied in shaders)
+-   changed vertex format from `vec3` to `vec2` (only applied in shaders)
 
 ```js
 // before
@@ -317,33 +248,25 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
 );
 ```
 
-- `anchor` (previously `origin`) no longer controls text alignment (only controls the anchor of the whole text area), use `text({ align: "left" })` option for text alignment
+-   `anchor` (previously `origin`) no longer controls text alignment (only controls the anchor of the whole text area), use `text({ align: "left" })` option for text alignment
 
 ```js
 // before
-add([
-    pos(center()),
-    origin("center"),
-    text("oh hi"),
-]);
+add([pos(center()), origin("center"), text("oh hi")]);
 
 // v3000
-add([
-    pos(center()),
-    anchor("center"),
-    text("oh hi", { align: "center" }),
-]);
+add([pos(center()), anchor("center"), text("oh hi", { align: "center" })]);
 ```
 
-- changed text styling syntax to bbcode
+-   changed text styling syntax to bbcode
 
 ```js
 const textOpts = {
     styles: {
-        "green": {
+        green: {
             color: rgb(128, 128, 255),
         },
-        "wavy": (idx, ch) => ({
+        wavy: (idx, ch) => ({
             color: hsl2rgb((time() * 0.2 + idx * 0.1) % 1, 0.7, 0.8),
             pos: vec2(0, wave(-4, 4, time() * 6 + idx * 0.5)),
         }),
@@ -351,9 +274,7 @@ const textOpts = {
 };
 
 // before
-add([
-    text("[oh hi].green here's some [styled].wavy text", textOpts),
-]);
+add([text("[oh hi].green here's some [styled].wavy text", textOpts)]);
 
 // v3000
 add([
@@ -361,68 +282,54 @@ add([
 ]);
 ```
 
-- changed all event handlers to return an `EventController` object, instead of a function to cancel
+-   changed all event handlers to return an `EventController` object, instead of a function to cancel
 
 ```js
 // before
-const cancel = onUpdate(() => {/* ... */});
+const cancel = onUpdate(() => {
+    /* ... */
+});
 cancel();
 
 // v3000
-const ev = onUpdate(() => {/* ... */});
+const ev = onUpdate(() => {
+    /* ... */
+});
 ev.paused = true;
 ev.cancel();
 ```
 
-- changed the interface for `addLevel()`
+-   changed the interface for `addLevel()`
 
 ```js
 // before
-addLevel([
-    "@  ^ $$",
-    "=======",
-], {
+addLevel(["@  ^ $$", "======="], {
     width: 32,
     height: 32,
-    "=": () => [
-        sprite("grass"),
-        area(),
-        body({ isStatic: true }),
-    ],
-    "$": () => [
-        sprite("coin"),
-        area(),
-        "coin",
-    ],
+    "=": () => [sprite("grass"), area(), body({ isStatic: true })],
+    $: () => [sprite("coin"), area(), "coin"],
     any: (symbol) => {
         if (symbol === "@") {
-            return [/* ... */];
+            return [
+                /* ... */
+            ];
         }
     },
 });
 
 // v3000
-addLevel([
-    "@  ^ $$",
-    "=======",
-], {
+addLevel(["@  ^ $$", "======="], {
     tileWidth: 32,
     tileHeight: 32,
     tiles: {
-        "=": () => [
-            sprite("grass"),
-            area(),
-            body({ isStatic: true }),
-        ],
-        "$": () => [
-            sprite("coin"),
-            area(),
-            "coin",
-        ],
+        "=": () => [sprite("grass"), area(), body({ isStatic: true })],
+        $: () => [sprite("coin"), area(), "coin"],
     },
     wildcardTile: (symbol) => {
         if (symbol === "@") {
-            return [/* ... */];
+            return [
+                /* ... */
+            ];
         }
     },
 });

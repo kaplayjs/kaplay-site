@@ -1,0 +1,9 @@
+---
+import TypeSig from "@/components/TypeSig/TypeSig";
+
+const { data } = Astro.props;
+
+if (data.name === "kaplay") return;
+---
+
+<>: <TypeSig data={data?.type?.type ?? data?.type} /></>

@@ -1,103 +1,51 @@
 ---
-import ReferenceBody from "./ReferenceBody.astro";
-import ReferenceConst from "./ReferenceConst.astro";
-import ReferenceExample from "./ReferenceExample.astro";
-import ReferenceFunction from "./ReferenceFunction.astro";
-import ReferenceObject from "./ReferenceObject.astro";
+import JSDoc from "../JSDoc/JSDoc.astro";
+import TypeTypeArguments from "../TypeSig/TypeTypeArguments";
+import ReferenceMembers from "./Name/ReferenceMembers.astro";
+import ReferenceName from "./Name/ReferenceName.astro";
+import ReferenceParams from "./Name/ReferenceParams.astro";
+import ReferenceReturn from "./Name/ReferenceReturn.astro";
 
-export type ReferenceEntryProps = {
-    name: string;
-    type: any;
-    level?: number;
+export type Props = {
+    data: any;
     parent?: string;
 };
 
-const { name, type, level = 0, parent = "" } = Astro.props;
-
-export const entryClassesByLevel = [
-    "px-2",
-    "px-4",
-];
-
-export const titleClassesByLevel = [
-    "text-2xl",
-    "text-xl",
-];
-
-export const descriptionClassesByLevel = [
-    "text-lg",
-    "text-base",
-];
-
-export const membersClassesByLevel = [
-    "",
-    "badge badge-ghost badge-xl",
-];
-
-const parseName = (type: any) => {
-    if (
-        type.kind === "MethodSignature"
-        || type.kind === "FunctionDeclaration"
-        || type.kind === "FunctionType"
-    ) {
-        return "function";
-    } else if (
-        type.kind === "PropertySignature"
-    ) {
-        return "const";
-    } else if (type.kind === "VariableDeclaration") {
-        return "const";
-    } else if (type.kind === "InterfaceDeclaration") {
-        return "object";
-    } else {
-        return "const";
-    }
-};
+const { data, parent = "" } = Astro.props;
+const Title = parent ? "h2" : "h1";
 ---
 
-<article class="flex flex-col gap-1" id={`${parent}${name}`}>
-    {
-        type?.map((item: any) => (
-        parseName(item) === "function" && (
-            <ReferenceFunction
-                name={name}
-                type={item}
-                level={level}
-            />
-
-            <ReferenceBody type={item} level={level} />
-            <ReferenceExample type={item} />
-        )
-        || parseName(item) === "const" && (
-            <ReferenceConst
-                name={name}
-                type={item}
-                level={level}
-            />
-
-            <ReferenceBody type={item} level={level} />
-            <ReferenceExample type={item} />
-        )
-        || parseName(item) === "object" && (
-            <ReferenceObject
-                name={name}
-                type={item}
-                level={level}
-            />
-
-            <ReferenceBody type={item} level={level} />
-            <ReferenceExample type={item} />
-        )
-        ))
-    }
+<article
+    class="flex flex-col gap-1 text-fira"
+    class:list={{
+        "p-2": parent,
+    }}
+    id={`${parent}${data.name}`}
+>
+    <Title
+        class:list={{
+            "text-xl": !parent,
+            "text-lg": parent,
+        }}
+    >
+        <ReferenceName {data} /><TypeTypeArguments {data} /><ReferenceParams
+            {data}
+        /><ReferenceReturn {data} />
+        <ReferenceMembers {data} />
+    </Title>
+    <JSDoc {data} />
 </article>
 
 <style is:global>
-.badge-xl {
-    height: 2rem/* 32px */;
-    font-size: 1.25rem/* 20px */;
-    line-height: 2rem/* 32px */;
-    padding-left: 0.875rem/* 14px */;
-    padding-right: 0.875rem/* 14px */;
-}
+    .text-fira {
+        font-family: "Fira Code Variable", monospace;
+    }
+
+    .badge-xl {
+        height: 2rem /* 32px */;
+        font-size: 1.25rem /* 20px */;
+        line-height: 2rem /* 32px */;
+        padding-left: 0.875rem /* 14px */;
+        padding-right: 0.875rem /* 14px */;
+    }
 </style>

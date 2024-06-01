@@ -22,7 +22,7 @@ For those who don't know MarkJam, it is an official competition dedicated to gam
 
 ![mark](https://imgur.com/VBOCyud.png)
 
-*_Mark, examples character in [Kaboom Legacy](https://legacy.kaboomjs.com)_
+\*_Mark, examples character in [Kaboom Legacy](https://legacy.kaboomjs.com)_
 
 The main idea of Mark Jam is that people from the community can have a recurring jam where they can participate and grow as devs. We want to see the amazing games created with Kaboom and Mark
 

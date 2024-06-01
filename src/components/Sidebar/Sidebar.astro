@@ -37,19 +37,18 @@ const { sidebarMode } = Astro.props;
     <div class="drawer-content flex flex-col items-start justify-start">
         <slot />
     </div>
-    <div class="drawer-side" style="scrollbar-gutter: stable;">
-        <label
-            for="sidebar"
-            aria-label="close sidebar"
-            class="drawer-overlay"
+    <div class="drawer-side">
+        <label for="sidebar" aria-label="close sidebar" class="drawer-overlay"
         ></label>
         <div class="p-4 w-80 min-h-full bg-base-200 text-base-content">
             <figure>
-                <Image
-                    src={kaplayGif}
-                    alt="kaplay logo"
-                    class="w-52 h-24 aspect-auto object-contain"
-                />
+                <a class="btn btn-ghost h-max" href="/">
+                    <Image
+                        src={kaplayGif}
+                        alt="kaplay logo"
+                        class="w-52 h-24 aspect-auto object-contain"
+                    />
+                </a>
             </figure>
             <div class="px-4 pb-4">
                 <p class="badge badge-primary badge-lg">
@@ -57,9 +56,7 @@ const { sidebarMode } = Astro.props;
                 </p>
             </div>
             <ul class="flex-col gap-2">
-                <SidebarLink link="/">
-                    Home
-                </SidebarLink>
+                <SidebarLink link="/"> Home </SidebarLink>
                 <SidebarLink
                     link="https://kaboomjs.com/discord"
                     target="_blank"
@@ -78,12 +75,8 @@ const { sidebarMode } = Astro.props;
             </ul>
             <div class="divider"></div>
             <ul class="flex-col gap-2">
-                <SidebarLink link="/guides/install">
-                    Guides
-                </SidebarLink>
-                <SidebarLink link="/reference">
-                    Reference Docs
-                </SidebarLink>
+                <SidebarLink link="/guides/install"> Guides </SidebarLink>
+                <SidebarLink link="/reference"> Reference Docs </SidebarLink>
             </ul>
             <div class="divider"></div>
             <SidebarList {sidebarMode} />

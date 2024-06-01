@@ -17,31 +17,34 @@ let allOpen = false;
 if (sidebarMode === "guides") {
     const guides = await getCollection("guides");
     const sortedGuides = guides.sort((a, b) => a.data.order - b.data.order);
-    const sortedList = sortedGuides.map(guide => ({
+    const sortedList = sortedGuides.map((guide) => ({
         title: guide.data.title,
         link: `/guides/${guide.slug}`,
     }));
 
-    const guidesWithoutCategory = sortedGuides.filter(guide =>
-        !guide.data.category
-    ).map(guide => ({
-        title: guide.data.title,
-        link: `/guides/${guide.slug}`,
-    }));
+    const guidesWithoutCategory = sortedGuides
+        .filter((guide) => !guide.data.category)
+        .map((guide) => ({
+            title: guide.data.title,
+            link: `/guides/${guide.slug}`,
+        }));
 
-    const guidesByCategory = sortedGuides.reduce((acc, guide) => {
-        const category = guide.data.category;
+    const guidesByCategory = sortedGuides.reduce(
+        (acc, guide) => {
+            const category = guide.data.category;
 
-        if (!category) {
+            if (!category) {
+                return acc;
+            }
+
+            if (!acc[category]) {
+                acc[category] = [];
+            }
+            acc[category].push(guide);
             return acc;
-        }
-
-        if (!acc[category]) {
-            acc[category] = [];
-        }
-        acc[category].push(guide);
-        return acc;
-    }, {} as Record<string, any[]>);
+        },
+        {} as Record<string, any[]>,
+    );
 
     renderList = [
         ...Object.keys(guidesByCategory).map((category) => ({
@@ -71,9 +74,7 @@ if (sidebarMode === "guides") {
         });
     });
 
-    renderList = [
-        ...categoryLinks,
-    ];
+    renderList = [...categoryLinks];
 }
 ---
 
@@ -81,13 +82,9 @@ if (sidebarMode === "guides") {
     {
         renderList?.map(({ linkList, folder }) => (
             <SidebarFolder title={folder} id={folder} isOpen={allOpen}>
-                {
-                    linkList.map(({ title, link }) => (
-                        <SidebarLink link={link}>
-                            {title}
-                        </SidebarLink>
-                    ))
-                }
+                {linkList.map(({ title, link }) => (
+                    <SidebarLink link={link}>{title}</SidebarLink>
+                ))}
             </SidebarFolder>
         ))
     }

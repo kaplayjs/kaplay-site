@@ -1,0 +1,12 @@
+---
+type Props = {
+    href: string;
+    external?: boolean;
+};
+
+const { href, external } = Astro.props;
+---
+
+<a class="link link-hover" {href} target={external ? "_blank" : "_parent"}>
+    <slot />
+</a>

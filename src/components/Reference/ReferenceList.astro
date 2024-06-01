@@ -9,24 +9,27 @@ type Props = {
 const allDoc = doc.types;
 const kaboomCtxDoc = allDoc.KaboomCtx[0].members;
 const docGroups = doc.groups;
-const docGroupKeys = Object.keys(docGroups) as Array<keyof typeof docGroups>;
-
-const { mode } = Astro.props;
+const docEntries = Object.values(docGroups)
+    .map((group) => group.entries)
+    .flat();
 ---
 
 <main>
     {
-        mode === "all" && docGroupKeys.map((key) => (
-        docGroups[key].entries.map((entry) => (
-            <ReferenceEntry
-                name={entry}
-                type={allDoc[entry as keyof typeof allDoc] ?? kaboomCtxDoc[
-                    entry as keyof typeof kaboomCtxDoc
-                ]}
-            />
+        docEntries.map((entry) => {
+            const referenceList =
+                allDoc[entry as keyof typeof allDoc] ??
+                kaboomCtxDoc[entry as keyof typeof kaboomCtxDoc];
 
-            <div class="divider"></div>
-        ))
-        ))
+            return (
+                <>
+                    {referenceList.map((reference) => (
+                        <ReferenceEntry data={reference} />
+                    ))}
+
+                    <div class="divider" />
+                </>
+            );
+        })
     }
 </main>

@@ -1,0 +1,32 @@
+---
+import TypeSig from "@/components/TypeSig/TypeSig";
+
+const { data } = Astro.props;
+
+const getParams = (type: any) => {
+    const paramsToCheck = "parameters";
+
+    if (type?.[paramsToCheck] ?? type?.type?.[paramsToCheck]) {
+        return type?.[paramsToCheck] ?? type?.type?.[paramsToCheck];
+    }
+};
+
+const optionalMark = (data: any) => {
+    return data.questionToken ? "?" : "";
+};
+
+if (!getParams(data)) return;
+---
+
+<span
+    >{"("}{
+        getParams(data).map((param: any, i: number) => (
+            <>
+                {param.name}
+                {optionalMark(param)}: <TypeSig data={param.type} /><!--  -->{
+                    i !== getParams(data).length - 1 && <>{", "}</>
+                }
+            </>
+        ))
+    }{")"}</span
+>

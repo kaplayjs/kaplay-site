@@ -1,11 +1,15 @@
 ---
 type Props = {
     href: string;
+    styled?: boolean;
 };
 
-const { href } = Astro.props;
+const { href, styled } = Astro.props;
 ---
 
-<a class="decoration-dashed" href={href}>
-    <slot />
-</a>
+<a
+    href={href}
+    class:list={{
+        "decoration-current underline decoration-dashed": styled,
+    }}><slot /><!-- --></a
+>

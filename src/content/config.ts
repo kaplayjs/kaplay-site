@@ -20,6 +20,6 @@ const miscCollection = defineCollection({
 });
 
 export const collections = {
-    "guides": guideCollection,
-    "misc": miscCollection,
+    guides: guideCollection,
+    misc: miscCollection,
 };

@@ -1,6 +1,7 @@
 ---
 import type { SidebarProps } from "@/components/Sidebar/Sidebar.astro";
 import Site from "./Site.astro";
+import "@fontsource-variable/fira-code";
 
 type MetaTagData = {
     title?: string;
@@ -17,7 +18,7 @@ type Props = {
 const { sidebarMode, meta } = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
