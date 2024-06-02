@@ -23,7 +23,7 @@ if (!getParams(data)) return;
         getParams(data).map((param: any, i: number) => (
             <>
                 {param.name}
-                {optionalMark(param)}: <TypeSig data={param.type} /><!--  -->{
+                {optionalMark(param)}: <TypeSig data={param.type} client:load /><!--  -->{
                     i !== getParams(data).length - 1 && <>{", "}</>
                 }
             </>

@@ -9,12 +9,6 @@ type Props = {
 const TypeSig: FC<Props> = ({ data }) => {
     const keyword = data?.kind;
 
-    console.log;
-
-    if (data?.kind === "UnionType") {
-        console.log(data.types);
-    }
-
     return (
         <>
             {(() => {
@@ -31,6 +25,7 @@ const TypeSig: FC<Props> = ({ data }) => {
                                 <TypeLink
                                     href={`#${data.elementType.typeName}`}
                                     styled
+                                    data={data}
                                 >
                                     {data.elementType.typeName}
                                 </TypeLink>
@@ -50,7 +45,11 @@ const TypeSig: FC<Props> = ({ data }) => {
                     case "TypeReference":
                         return (
                             <span>
-                                <TypeLink href={`#${data.typeName}`} styled>
+                                <TypeLink
+                                    href={`#${data.typeName}`}
+                                    styled
+                                    data={data}
+                                >
                                     <>{data.typeName}</>
                                 </TypeLink>
                             </span>

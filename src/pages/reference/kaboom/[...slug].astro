@@ -2,6 +2,7 @@
 import doc from "@/../doc.json";
 import ReferenceEntry from "@/components/Reference/ReferenceEntry.astro";
 import Layout from "@/layouts/Layout.astro";
+import "@/styles/reference.css";
 
 export async function getStaticPaths() {
     const kaboomDoc: any = doc.types.KaboomCtx[0].members;
