@@ -1,5 +1,4 @@
 import mdx from "@astrojs/mdx";
-import preact from "@astrojs/preact";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import astroMetaTags from "astro-meta-tags";
@@ -11,7 +10,6 @@ import { defineConfig, passthroughImageService } from "astro/config";
 export default defineConfig({
     site: "https://kaplayjs.com",
     integrations: [
-        preact(),
         tailwind(),
         mdx(),
         astroMetaTags(),
