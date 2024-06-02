@@ -54,6 +54,6 @@ objects.
 In KAPLAY, there's many built-in components that you can use to create your game
 objects.
 
--   `pos(x, y)`: Set the position of the object.
--   `rect(width, height)`: Draw a rectangle.
--   `color(r, g, b)`: Set the color of the object.
+- `pos(x, y)`: Set the position of the object.
+- `rect(width, height)`: Draw a rectangle.
+- `color(r, g, b)`: Set the color of the object.

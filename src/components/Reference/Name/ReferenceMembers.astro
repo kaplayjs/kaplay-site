@@ -10,12 +10,10 @@ if (!members) return;
 
 {
     Object.keys(members).map((member: any) => {
-        const membersData = members[member];
+    const membersData = members[member];
 
-        return membersData.map((memberData: any) => {
-            return (
-                <ReferenceEntry data={memberData} parent={`${parentName}-`} />
-            );
+    return membersData.map((memberData: any) => {
+        return <ReferenceEntry data={memberData} parent={`${parentName}-`} />;
         });
     })
 }

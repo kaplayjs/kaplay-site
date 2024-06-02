@@ -17,19 +17,20 @@ const docEntries = Object.values(docGroups)
 <main>
     {
         docEntries.map((entry) => {
-            const referenceList =
-                allDoc[entry as keyof typeof allDoc] ??
-                kaboomCtxDoc[entry as keyof typeof kaboomCtxDoc];
+        const referenceList = allDoc[entry as keyof typeof allDoc]
+            ?? kaboomCtxDoc[entry as keyof typeof kaboomCtxDoc];
 
-            return (
-                <>
-                    {referenceList.map((reference) => (
+        return (
+            <>
+                {
+                    referenceList.map((reference) => (
                         <ReferenceEntry data={reference} />
-                    ))}
+                    ))
+                }
 
-                    <div class="divider" />
-                </>
-            );
+                <div class="divider" />
+            </>
+        );
         })
     }
 </main>

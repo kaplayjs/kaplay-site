@@ -1,13 +1,13 @@
 ---
-import TypeSig from "@/components/TypeSig/TypeSig";
+import TypeSignature from "@/components/TypeSig2/TypeSignature.astro";
 
 const { data } = Astro.props;
 
-const getParams = (type: any) => {
+const getParams = (data: any) => {
     const paramsToCheck = "parameters";
 
-    if (type?.[paramsToCheck] ?? type?.type?.[paramsToCheck]) {
-        return type?.[paramsToCheck] ?? type?.type?.[paramsToCheck];
+    if (data?.[paramsToCheck] ?? data?.type?.[paramsToCheck]) {
+        return data?.[paramsToCheck] ?? data?.type?.[paramsToCheck];
     }
 };
 
@@ -18,15 +18,13 @@ const optionalMark = (data: any) => {
 if (!getParams(data)) return;
 ---
 
-<span
-    >{"("}{
-        getParams(data).map((param: any, i: number) => (
-            <>
-                {param.name}
-                {optionalMark(param)}: <TypeSig data={param.type} client:load /><!--  -->{
-                    i !== getParams(data).length - 1 && <>{", "}</>
-                }
-            </>
-        ))
-    }{")"}</span
->
+<span>{"("}{
+    getParams(data).map((param: any, i: number) => (
+        <>
+            {param.name}
+            {optionalMark(param)}: <TypeSignature data={param.type} />{
+                i !== getParams(data).length - 1 && <>{", "}</>
+            }
+        </>
+    ))
+}{")"}</span>

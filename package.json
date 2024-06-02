@@ -31,8 +31,6 @@
     "clsx": "^2.1.1",
     "daisyui": "^4.11.1",
     "dprint": "^0.45.1",
-    "prettier": "3.2.5",
-    "prettier-plugin-astro": "^0.14.0",
     "tailwind-merge": "^2.3.0"
   }
 }

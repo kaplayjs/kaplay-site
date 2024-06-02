@@ -1,0 +1,77 @@
+---
+import ReferenceParams from "../Reference/Name/ReferenceParams.astro";
+import ReferenceEntry from "../Reference/ReferenceEntry.astro";
+import BasicTypeSignature from "./BasicTypeSignature.astro";
+
+type Props = {
+    data?: any;
+    parentData?: any;
+};
+
+const { data, parentData } = Astro.props;
+
+const keyword = data?.kind;
+---
+
+{
+    () => {
+    if (keyword === "LiteralType") {
+        return <BasicTypeSignature data={data.literal} />;
+    } else if (keyword === "ParenthesizedType") {
+        return <BasicTypeSignature data={data.type} />;
+    } else if (keyword === "UnionType") {
+        return (
+        <>
+            {
+                data.types.map((type: any, i: number) => (
+                    <span>
+                        <BasicTypeSignature data={type} />
+                        {i === data.types.length - 1 ? "" : " | "}
+                    </span>
+                ))
+            }
+        </>
+    );
+    } else if (keyword === "FunctionType") {
+        return (
+        <span>
+            <ReferenceParams data={data} />
+            {"=>"}
+            <BasicTypeSignature data={data.type} /></span>
+    );
+    } else if (keyword === "TypeLiteral") {
+        return (
+        <>{
+            Object.entries(data.members).map((
+                [name, variants]: [string, any],
+            ) => variants.map((mem: any, index: number) => (
+                <ReferenceEntry data={mem} parent={`${parentData?.name}-`} />
+            )))
+        }</>
+    );
+    } else if (keyword === "IntersectionType") {
+        return (
+        <>
+            {
+                data.types.map((type: any, i: number) => (
+                    <span>
+                        <BasicTypeSignature data={type} />
+                        {i === data.types.length - 1 ? "" : " & "}
+                    </span>
+                ))
+            }
+        </>
+    );
+    } else if (keyword === "ArrayType") {
+        return <span><BasicTypeSignature data={data.elementType} />[]</span>;
+    } else if (keyword === "IndexedAccessType") {
+        return (
+        <><BasicTypeSignature data={data.objectType} />[<BasicTypeSignature
+                data={data.indexType}
+            />]</>
+    );
+    } else {
+        return <BasicTypeSignature data={data} />;
+        }
+    }
+}

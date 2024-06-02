@@ -1,6 +1,6 @@
 ---
 import JSDoc from "../JSDoc/JSDoc.astro";
-import TypeTypeArguments from "../TypeSig/TypeTypeArguments";
+import TypeSignatureGenerics from "../TypeSig2/TypeSignatureGenerics.astro";
 import ReferenceMembers from "./Name/ReferenceMembers.astro";
 import ReferenceName from "./Name/ReferenceName.astro";
 import ReferenceParams from "./Name/ReferenceParams.astro";
@@ -28,7 +28,7 @@ const Title = parent ? "h2" : "h1";
             "text-lg": parent,
         }}
     >
-        <ReferenceName {data} /><TypeTypeArguments {data} /><ReferenceParams
+        <ReferenceName {data} /><TypeSignatureGenerics {data} /><ReferenceParams
             {data}
         /><ReferenceReturn {data} />
         <ReferenceMembers {data} />

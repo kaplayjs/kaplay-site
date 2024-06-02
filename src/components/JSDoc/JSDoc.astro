@@ -8,9 +8,9 @@ const jsDoc = data.jsDoc || {};
 <p class="prose">
     {jsDoc.doc}
     {
-        jsDoc.tags &&
-            Object.entries(jsDoc?.tags)?.map(([name, items]) => (
-                <JSDocTag tag={name} items={items as string[]} />
-            ))
+        jsDoc.tags
+        && Object.entries(jsDoc?.tags)?.map(([name, items]) => (
+            <JSDocTag tag={name} items={items as string[]} />
+        ))
     }
 </p>

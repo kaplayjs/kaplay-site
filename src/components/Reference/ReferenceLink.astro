@@ -1,15 +1,40 @@
 ---
+import doc from "@/../doc.json";
+
 type Props = {
-    href: string;
+    name: string;
     styled?: boolean;
 };
 
-const { href, styled } = Astro.props;
+const { name, styled = false } = Astro.props;
+const docEntry = (doc as any).types[name] ?? null;
+const isStyled = docEntry ? styled : false;
 ---
 
-<a
-    class="type-btn"
+<btn
+    class="type-btn cursor-pointer"
     class:list={{
-        "decoration-current underline decoration-dashed": styled,
-    }}><slot /><!-- --></a
->
+        "decoration-current underline decoration-dashed": isStyled,
+    }}
+    data-link-type={name}
+>{name}</btn>
+
+<script>
+    import { openExample } from "@/stores/docStore";
+
+    const typeButtons = document.querySelectorAll(".type-btn");
+    const typeModal = document.querySelector<HTMLDialogElement>("#type-modal");
+
+    typeButtons.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+            const target = e.target as HTMLElement;
+            const linkType = target.dataset.linkType;
+
+            if (linkType) {
+                openExample.set(linkType);
+            }
+
+            typeModal?.showModal();
+        });
+    });
+</script>

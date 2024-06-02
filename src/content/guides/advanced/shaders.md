@@ -57,8 +57,8 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
 
 There are two ways to load a shader:
 
--   loadShader takes two strings with the vertex and fragment shader code.
--   loadShaderURL takes file URLs for the vertex and fragment shaders.
+- loadShader takes two strings with the vertex and fragment shader code.
+- loadShaderURL takes file URLs for the vertex and fragment shaders.
 
 # Passing data
 
@@ -113,5 +113,5 @@ Some shaders, like gaussian blur, need multiple passes in order to work. This ca
 GLSL has a variety of functions which makes it easier to express your ideas in code. So be sure to look these up.
 Here are some resources to get started on writing GLSL shaders.
 
--   [https://thebookofshaders.com/]
--   [https://www.khronos.org/files/webgl/webgl-reference-card-1_0.pdf]
+- [https://thebookofshaders.com/]
+- [https://www.khronos.org/files/webgl/webgl-reference-card-1_0.pdf]

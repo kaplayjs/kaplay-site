@@ -1,9 +1,9 @@
 ---
-import TypeSig from "@/components/TypeSig/TypeSig";
+import TypeSignature from "@/components/TypeSig2/TypeSignature.astro";
 
 const { data } = Astro.props;
 
 if (data.name === "kaplay") return;
 ---
 
-<>: <TypeSig data={data?.type?.type ?? data?.type} /></>
+<>: <TypeSignature data={data?.type?.type ?? data?.type} /></>

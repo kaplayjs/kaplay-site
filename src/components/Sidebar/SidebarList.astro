@@ -82,9 +82,11 @@ if (sidebarMode === "guides") {
     {
         renderList?.map(({ linkList, folder }) => (
             <SidebarFolder title={folder} id={folder} isOpen={allOpen}>
-                {linkList.map(({ title, link }) => (
-                    <SidebarLink link={link}>{title}</SidebarLink>
-                ))}
+                {
+                    linkList.map(({ title, link }) => (
+                        <SidebarLink link={link}>{title}</SidebarLink>
+                    ))
+                }
             </SidebarFolder>
         ))
     }

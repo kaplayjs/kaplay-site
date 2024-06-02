@@ -1,0 +1,53 @@
+---
+import ReferenceLink from "../Reference/ReferenceLink.astro";
+import TypeSignature from "./TypeSignature.astro";
+import TypeSignatureGenerics from "./TypeSignatureGenerics.astro";
+
+type Props = {
+    data?: any;
+};
+
+const { data } = Astro.props;
+const keyword = data?.kind;
+---
+
+<>{
+        () => {
+        if (keyword === "NumberKeyword") {
+            return <span>number</span>;
+        } else if (keyword === "StringKeyword") {
+            return <span>string</span>;
+        } else if (keyword === "BooleanKeyword") {
+            return <span>boolean</span>;
+        } else if (keyword === "AnyKeyword") {
+            return <span>any</span>;
+        } else if (keyword === "NullKeyword") {
+            return <span>null</span>;
+        } else if (keyword === "UndefinedKeyword") {
+            return <span>undefined</span>;
+        } else if (keyword === "VoidKeyword") {
+            return <span>void</span>;
+        } else if (keyword === "NeverKeyword") {
+            return <span>never</span>;
+        } else if (keyword === "StringLiteral") {
+            return <span>{data.text}</span>;
+        } else if (keyword === "TypeParameter") {
+            return <span>{data.name}</span>;
+        } else if (keyword === "TypeReference") {
+            return <span><ReferenceLink name={data.typeName} styled /></span>;
+        } else if (
+            keyword === "LiteralType"
+            || keyword === "ParenthesizedType"
+            || keyword === "UnionType"
+            || keyword === "FunctionType"
+            || keyword === "TypeLiteral"
+            || keyword === "ArrayType"
+            || keyword === "IntersectionType"
+            || keyword === "IndexedAccessType"
+        ) {
+            return <TypeSignature {data} />;
+        } else {
+            return <span>{keyword}</span>;
+            }
+        }
+    }<TypeSignatureGenerics {data} /></>

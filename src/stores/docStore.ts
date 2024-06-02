@@ -1,4 +1,3 @@
-import { atom } from 'nanostores';
+import { atom } from "nanostores";
 
-export const openExample = atom(null);
-
+export const openExample = atom("KaboomCtx");

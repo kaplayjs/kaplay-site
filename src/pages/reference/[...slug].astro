@@ -7,7 +7,7 @@ import "@/styles/reference.css";
 export async function getStaticPaths() {
     const allDoc: any = doc.types;
     const allDocKeys: string[] = Object.keys(doc.types).filter(
-        (k) => k !== "KaboomCtx"
+        (k) => k !== "KaboomCtx",
     );
 
     return allDocKeys.map((key) => ({

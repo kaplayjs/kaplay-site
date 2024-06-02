@@ -59,10 +59,10 @@ $ npm install kaboom
 
 You'll need to use a bundler to use Kaboom with NPM. There's a lot of options like:
 
--   `esbuild`,
--   `webpack`,
--   `parcel`,
--   `vitejs`,
+- `esbuild`,
+- `webpack`,
+- `parcel`,
+- `vitejs`,
 
 This is a short example of how to use Kaboom with ["esbuild"](https://esbuild.github.io/).
 
@@ -86,11 +86,11 @@ and it'll find the KAPLAY package and include it in the built `build.js`, includ
 
 You might have encountered errors when trying to `loadSprite()` from local file system, that is because browser won't allow loading local files with JavaScript. To get around that you'll need to use a static file that serves the files through HTTP. There're a lot of programs that helps you to do that.
 
--   `$ python3 -m http.server` if you have [python3](https://www.python.org) installed
--   `$ python -m SimpleHTTPServer` if you have [python2](https://www.python.org) installed
--   `$ serve` if you have [serve](https://github.com/vercel/serve) installed
--   `$ caddy file-server` if you have [caddy](https://caddyserver.com/) installed
--   `$ static-here` if you have [static-here](https://github.com/amasad/static-here) installed
+- `$ python3 -m http.server` if you have [python3](https://www.python.org) installed
+- `$ python -m SimpleHTTPServer` if you have [python2](https://www.python.org) installed
+- `$ serve` if you have [serve](https://github.com/vercel/serve) installed
+- `$ caddy file-server` if you have [caddy](https://caddyserver.com/) installed
+- `$ static-here` if you have [static-here](https://github.com/amasad/static-here) installed
 
 Let's say you have a folder structure like this:
 

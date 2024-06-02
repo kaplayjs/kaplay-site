@@ -13,16 +13,16 @@ if (hiddenTags.includes(tag)) return;
 
 {
     () => {
-        switch (tag) {
-            case "example":
-                return <JSDocExample example={items} />;
-            default:
-                return (
-                    <p class="gap-2 prose">
-                        <code class="inline mr-1">{tag}</code>
-                        <span>{items[0]}</span>
-                    </p>
-                );
+    switch (tag) {
+        case "example":
+            return <JSDocExample example={items} />;
+    default:
+        return (
+        <p class="gap-2 prose">
+            <code class="inline mr-1">{tag}</code>
+            <span>{items[0]}</span>
+        </p>
+    );
         }
     }
 }
