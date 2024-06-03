@@ -1,5 +1,6 @@
 ---
-const { data } = Astro.props;
+const { data, parent } = Astro.props;
 ---
 
-<span class="font-medium"><a href={`#${data.name}`}>{data.name}</a></span>
+<span class="font-medium"><a href={`#${parent}${data.name}`}>{data.name}</a
+    ></span>

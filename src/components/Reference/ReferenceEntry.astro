@@ -30,7 +30,7 @@ const Title = parent ? "h2" : "h1";
             "text-lg": parent,
         }}
     >
-        <ReferenceName {data} /><TypeSignatureGenerics {data} />{
+        <ReferenceName {data} {parent} /><TypeSignatureGenerics {data} />{
             optionalMark(data)
         }<ReferenceParams {data} /><ReferenceReturn {data} />
     </Title>
