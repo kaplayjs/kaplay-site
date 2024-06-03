@@ -1,4 +1,5 @@
 ---
+import hamburgerIcon from "@/assets/hamburger.webp";
 import type { SidebarProps } from "@/components/Sidebar/Sidebar.astro";
 import Sidebar from "@/components/Sidebar/Sidebar.astro";
 
@@ -9,7 +10,20 @@ const { sidebarMode } = Astro.props;
 
 <div class="flex w-screen h-screen max-w-screen max-h-screen">
     <Sidebar {sidebarMode}>
-        <main class="max-h-screen overflow-y-auto w-full">
+        <header class="h-16 lg:hidden">
+            <nav class="lg:hidden flex bg-base-200 w-full h-16 fixed">
+                <label
+                    for="sidebar"
+                    class="lg:hidden flex"
+                >
+                    <figure>
+                        <img src={hamburgerIcon.src} width="64" height="64" />
+                    </figure>
+                </label>
+            </nav>
+        </header>
+
+        <main class="flex-1 overflow-y-auto w-full">
             <slot />
         </main>
     </Sidebar>

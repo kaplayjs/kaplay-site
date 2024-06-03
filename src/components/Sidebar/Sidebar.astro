@@ -27,15 +27,8 @@ const { sidebarMode } = Astro.props;
 <div class="drawer lg:drawer-open">
     <input id="sidebar" type="checkbox" class="drawer-toggle" />
 
-    <label
-        for="sidebar"
-        class="lg:hidden flex items-center fixed z-10 top-1/2 translate-y-[-50%] left-0 h-full"
-    >
-        <div class="border-r-[14px] h-[80%] py-8 border-base-200 to"></div>
-    </label>
-
     <div
-        class="drawer-content flex flex-col items-start justify-start max-lg:px-4"
+        class="drawer-content flex flex-col items-start justify-start max-h-screen"
     >
         <slot />
     </div>
