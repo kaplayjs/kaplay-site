@@ -21,16 +21,13 @@ const keyword = data?.kind;
         return <BasicTypeSignature data={data.type} />;
     } else if (keyword === "UnionType") {
         return (
-        <>
-            {
-                data.types.map((type: any, i: number) => (
-                    <span>
-                        <BasicTypeSignature data={type} />
-                        {i === data.types.length - 1 ? "" : " | "}
-                    </span>
-                ))
-            }
-        </>
+        <>{
+            data.types.map((type: any, i: number) => (
+                <span><BasicTypeSignature data={type} />{
+                        i === data.types.length - 1 ? "" : " | "
+                    }</span>
+            ))
+        }</>
     );
     } else if (keyword === "FunctionType") {
         return (
@@ -54,10 +51,9 @@ const keyword = data?.kind;
         <>
             {
                 data.types.map((type: any, i: number) => (
-                    <span>
-                        <BasicTypeSignature data={type} />
-                        {i === data.types.length - 1 ? "" : " & "}
-                    </span>
+                    <span><BasicTypeSignature data={type} />{
+                            i === data.types.length - 1 ? "" : " & "
+                        }</span>
                 ))
             }
         </>

@@ -11,7 +11,7 @@ const getParams = (data: any) => {
     }
 };
 
-const optionalMark = (data: any) => {
+export const optionalMark = (data: any) => {
     return data.questionToken ? "?" : "";
 };
 
@@ -20,11 +20,8 @@ if (!getParams(data)) return;
 
 <span>{"("}{
     getParams(data).map((param: any, i: number) => (
-        <>
-            {param.name}
-            {optionalMark(param)}: <TypeSignature data={param.type} />{
-                i !== getParams(data).length - 1 && <>{", "}</>
-            }
-        </>
+        <>{param.name}{optionalMark(param)}: <TypeSignature
+                data={param.type}
+            />{i !== getParams(data).length - 1 && <>{", "}</>}</>
     ))
 }{")"}</span>

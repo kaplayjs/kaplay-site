@@ -3,7 +3,9 @@ import JSDoc from "../JSDoc/JSDoc.astro";
 import TypeSignatureGenerics from "../TypeSig2/TypeSignatureGenerics.astro";
 import ReferenceMembers from "./Name/ReferenceMembers.astro";
 import ReferenceName from "./Name/ReferenceName.astro";
-import ReferenceParams from "./Name/ReferenceParams.astro";
+import ReferenceParams, {
+    optionalMark,
+} from "./Name/ReferenceParams.astro";
 import ReferenceReturn from "./Name/ReferenceReturn.astro";
 
 export type Props = {
@@ -28,9 +30,9 @@ const Title = parent ? "h2" : "h1";
             "text-lg": parent,
         }}
     >
-        <ReferenceName {data} /><TypeSignatureGenerics {data} /><ReferenceParams
-            {data}
-        /><ReferenceReturn {data} />
+        <ReferenceName {data} /><TypeSignatureGenerics {data} />{
+            optionalMark(data)
+        }<ReferenceParams {data} /><ReferenceReturn {data} />
     </Title>
     <JSDoc {data} />
     <ReferenceMembers {data} />
