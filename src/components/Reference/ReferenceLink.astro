@@ -11,21 +11,24 @@ const docEntry = (doc as any).types[name] ?? null;
 const isStyled = docEntry ? styled : false;
 ---
 
-<btn
+<span
     class="type-btn cursor-pointer"
     class:list={{
         "decoration-current underline decoration-dashed": isStyled,
     }}
     data-link-type={name}
->{name}</btn>
+    data-is-type={docEntry ? "true" : "false"}
+>{name}</span>
 
 <script>
     import { openExample } from "@/stores/docStore";
 
-    const typeButtons = document.querySelectorAll(".type-btn");
+    const typeButtons = document.querySelectorAll<HTMLElement>(".type-btn");
     const typeModal = document.querySelector<HTMLDialogElement>("#type-modal");
 
     typeButtons.forEach((btn) => {
+        if (btn.dataset.isType === "false") return;
+
         btn.addEventListener("click", (e) => {
             const target = e.target as HTMLElement;
             const linkType = target.dataset.linkType;
