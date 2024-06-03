@@ -40,8 +40,8 @@ of **components** that define the object's behavior ("the script of your actor")
 kaplay(); // remember to initialize the game
 
 add([
-    // this is a component
-    rect(32, 32),
+  // this is a component
+  rect(32, 32),
 ]);
 ```
 
@@ -57,3 +57,22 @@ objects.
 - `pos(x, y)`: Set the position of the object.
 - `rect(width, height)`: Draw a rectangle.
 - `color(r, g, b)`: Set the color of the object.
+
+## Scenes
+
+Scenes are what wrap the game objects. They are the acts of the theater. For
+example, normally you have a scene for the main menu, another for the game
+itself, and another for the game over screen.
+
+In KAPLAY, you can create scenes with the `scene()` function:
+
+```js
+kaplay(); // remember to initialize the game
+
+scene("game", () => {
+  add([
+    // a component
+    rect(32, 32),
+  ]);
+});
+```
