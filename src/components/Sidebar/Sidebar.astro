@@ -29,12 +29,14 @@ const { sidebarMode } = Astro.props;
 
     <label
         for="sidebar"
-        class="lg:hidden fixed z-10 top-1/2 translate-y-[-50%] left-0"
+        class="lg:hidden flex items-center fixed z-10 top-1/2 translate-y-[-50%] left-0 h-full"
     >
-        <div class="border-r-8 h-52"></div>
+        <div class="border-r-[14px] h-[80%] py-8 border-base-200 to"></div>
     </label>
 
-    <div class="drawer-content flex flex-col items-start justify-start">
+    <div
+        class="drawer-content flex flex-col items-start justify-start max-lg:px-4"
+    >
         <slot />
     </div>
     <div class="drawer-side">
