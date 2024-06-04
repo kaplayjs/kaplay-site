@@ -3,7 +3,7 @@ category: Advanced
 title: Shaders
 description: Learn how to write and use custom shaders in KAPLAY.
 slug: shaders
-order: 4
+order: 6
 ---
 
 # Writing a shader
@@ -66,9 +66,9 @@ Without parameters, a shader would be static, or would have to be redefined each
 
 ```ts
 loadShader(
-    "invert",
-    null,
-    `
+  "invert",
+  null,
+  `
 	uniform float u_time;
 	
 	vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
@@ -76,17 +76,17 @@ loadShader(
 		float t = (sin(u_time * 4.0) + 1.0) / 2.0;
 		return mix(c, vec4(1.0 - c.r, 1.0 - c.g, 1.0 - c.b, c.a), t);
 	}
-`,
+`
 );
 
 add([
-    sprite("bean"),
-    pos(80, 40),
-    scale(8),
-    // Use the shader with shader() component and pass uniforms
-    shader("invert", () => ({
-        u_time: time(),
-    })),
+  sprite("bean"),
+  pos(80, 40),
+  scale(8),
+  // Use the shader with shader() component and pass uniforms
+  shader("invert", () => ({
+    u_time: time(),
+  })),
 ]);
 ```
 
@@ -95,12 +95,12 @@ When using the direct draw API, like drawSprite or drawUVQuad, the shader and un
 
 ```ts
 drawSprite({
-    sprite: "bean",
-    pos: vec2(100, 200),
-    shader: "invert",
-    uniforms: {
-        u_time: time(),
-    },
+  sprite: "bean",
+  pos: vec2(100, 200),
+  shader: "invert",
+  uniforms: {
+    u_time: time(),
+  },
 });
 ```
 
