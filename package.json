@@ -8,7 +8,8 @@
     "build": "npm run doc && astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "doc": "node scripts/buildDoc.js"
+    "doc": "node scripts/buildDoc.js",
+    "build:publish": "npm run build && wrangler pages deploy dist"
   },
   "dependencies": {
     "@astrojs/check": "^0.7.0",
@@ -29,6 +30,7 @@
     "clsx": "^2.1.1",
     "daisyui": "^4.11.1",
     "dprint": "^0.45.1",
-    "tailwind-merge": "^2.3.0"
+    "tailwind-merge": "^2.3.0",
+    "wrangler": "^3.58.0"
   }
 }
