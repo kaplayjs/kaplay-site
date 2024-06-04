@@ -6,14 +6,18 @@ slug: shaders
 order: 6
 ---
 
-# Writing a shader
+# Shaders
 
-## Vertex shader
+In this guide you will learn how to write and use custom shaders in KAPLAY.
+
+## Writing a shader
+
+### Vertex shader
 
 A vertex shader can manipulate data on vertex level. Usually a vertex shader can change any of the vertex's properties, but for KAPLAY only the position can be altered. In most instances the mesh will be a four point quad, thus the shader is called 4 times, once for each point in the quad.
 A default vertex shader would look like this. The function is passed the position, uv coordinate and color of the vertex and needs to return the updated position.
 
-```
+```js
 vec4 vert(vec2 pos, vec2 uv, vec4 color) {
   return def_vert();
 }
@@ -22,7 +26,7 @@ vec4 vert(vec2 pos, vec2 uv, vec4 color) {
 The default vertex shader returns the primitive's vertex unchanged.
 If a modified vertex is to be returned, it should be a 4 dimensional vector with x, y the position of the vertex, z=0 and w=1. Since there is no z-buffer, and the view is orthogonal, z has no effect. The w coordinate is 1 because we are returning a point, not a vector. Vectors can't be moved, therefore their w would be 0 and would not be influenced by the translation part of the matrix.
 
-## Fragment shader
+### Fragment shader
 
 Once the positions of all vertices is determined, the primitive is rasterized. For each pixel drawn, the fragment shader is called. This shader can no longer change the position, but it can affect the color.
 A default fragment shader would look like this.
@@ -53,22 +57,22 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
 }
 ```
 
-# Loading a shader
+## Loading a shader
 
 There are two ways to load a shader:
 
 - loadShader takes two strings with the vertex and fragment shader code.
 - loadShaderURL takes file URLs for the vertex and fragment shaders.
 
-# Passing data
+## Passing data
 
 Without parameters, a shader would be static, or would have to be redefined each frame if some dynamism was expected. Therefore a shader can have parameters which can change every time the scene is rendered. These parameters are called uniforms. Every function passing a shader also has a parameter to pass uniforms to the shader. For example, the following sprite effect defines a function which returns an object with a uniform called u_time. This function is called each frame, and the parameters are sent to the shader before rendering.
 
 ```ts
 loadShader(
-  "invert",
-  null,
-  `
+    "invert",
+    null,
+    `
 	uniform float u_time;
 	
 	vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
@@ -76,17 +80,17 @@ loadShader(
 		float t = (sin(u_time * 4.0) + 1.0) / 2.0;
 		return mix(c, vec4(1.0 - c.r, 1.0 - c.g, 1.0 - c.b, c.a), t);
 	}
-`
+`,
 );
 
 add([
-  sprite("bean"),
-  pos(80, 40),
-  scale(8),
-  // Use the shader with shader() component and pass uniforms
-  shader("invert", () => ({
-    u_time: time(),
-  })),
+    sprite("bean"),
+    pos(80, 40),
+    scale(8),
+    // Use the shader with shader() component and pass uniforms
+    shader("invert", () => ({
+        u_time: time(),
+    })),
 ]);
 ```
 
@@ -95,20 +99,20 @@ When using the direct draw API, like drawSprite or drawUVQuad, the shader and un
 
 ```ts
 drawSprite({
-  sprite: "bean",
-  pos: vec2(100, 200),
-  shader: "invert",
-  uniforms: {
-    u_time: time(),
-  },
+    sprite: "bean",
+    pos: vec2(100, 200),
+    shader: "invert",
+    uniforms: {
+        u_time: time(),
+    },
 });
 ```
 
-# Multipass shaders
+## Multipass shaders
 
 Some shaders, like gaussian blur, need multiple passes in order to work. This can be done by making a framebuffer (makeCanvas), drawing inside this framebuffer (by using the drawon component or Canvas.draw), and using the famebuffer's texture (frameBuffer.tex) to draw a quad (uvquad component or drawUVQuad).
 
-# Learning more about shaders
+## Learning more about shaders
 
 GLSL has a variety of functions which makes it easier to express your ideas in code. So be sure to look these up.
 Here are some resources to get started on writing GLSL shaders.

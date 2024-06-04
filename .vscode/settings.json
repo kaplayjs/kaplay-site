@@ -1,3 +1,9 @@
 {
-  "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[mdx]": {
+    "editor.defaultFormatter": "dprint.dprint"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "dprint.dprint"
+  }
 }

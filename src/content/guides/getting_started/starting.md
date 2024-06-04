@@ -40,8 +40,8 @@ of **components** that define the object's behavior ("the script of your actor")
 kaplay(); // remember to initialize the game
 
 add([
-  // this is a component
-  rect(32, 32),
+    // this is a component
+    rect(32, 32),
 ]);
 ```
 
@@ -70,9 +70,9 @@ In KAPLAY, you can create scenes with the `scene()` function:
 kaplay(); // remember to initialize the game
 
 scene("game", () => {
-  add([
-    // a component
-    rect(32, 32),
-  ]);
+    add([
+        // a component
+        rect(32, 32),
+    ]);
 });
 ```

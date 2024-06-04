@@ -49,4 +49,4 @@ Now, as Itch.io, only upload a zip with your fabolous `index.html` game file.
 
 ### Tag your game
 
-You can tag your game in the different platforms with the tag `kaboomjs`. Probbably we will see it and even promote in our Twitter :D
+You can tag your game in the different platforms with the tag `kaplayjs`. Probbably we will see it and even promote in our Twitter :D
