@@ -1,9 +1,9 @@
 ---
 title: MarkJam 3 Announcement
-author: lajbel
+author: Jammed People
 date: 7/16/2022
 description: We are glad to announce MarkJam 3, the next jam official by kaboom
-image: markjam-3.png
+image: banners/markjam-3.png
 ---
 
 # MarkJam 3 Announcement

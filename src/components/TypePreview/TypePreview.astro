@@ -8,7 +8,7 @@
         <div id="modal-type"></div>
     </div>
     <form method="dialog" class="modal-backdrop">
-        <button>close</button>
+        <button class="cursor-default">close</button>
     </form>
 </dialog>
 
@@ -38,5 +38,15 @@
 
         goToLink?.setAttribute("href", `#${value}`);
         openInNewLink?.setAttribute("href", `#${value}`);
+
+        modalContent.querySelectorAll("[data-link-type]").forEach((el) => {
+            el.addEventListener("click", () => {
+                const type = el.getAttribute("data-link-type");
+                if (!type) return;
+
+                openExample.set(type);
+                modal?.showModal();
+            });
+        });
     });
 </script>

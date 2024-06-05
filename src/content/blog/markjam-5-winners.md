@@ -3,7 +3,7 @@ title: "MarkJam 5 Winners"
 author: Hungry Judges
 date: 11/16/2022
 description: With the theme EAT, people made cool stuff
-image: markjam-5-winners.png
+image: banners/markjam-5-winners.png
 ---
 
 # MarkJam #5 winners

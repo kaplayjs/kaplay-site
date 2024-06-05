@@ -1,9 +1,9 @@
 ---
-title: "MarkJam 4 Winners"
-author: MarkJam 4 Judges
+title: MarkJam 4 Winners
+author: Knight Judges
 date: 9/16/2022
 description: With the theme SWORD, people make cool games
-image: markjam-4-winners.png
+image: banners/markjam-4-winners.png
 ---
 
 # MarkJam 4 Winners

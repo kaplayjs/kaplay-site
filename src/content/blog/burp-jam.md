@@ -1,14 +1,14 @@
 ---
 title: Burp Jam
-author: danie & tga
+author: lajbel and tga
 date: 10/10/22
 description: The new jam of Kaboom, about burps!
-image: burpjam.png
+image: banners/burpjam.png
 ---
 
 # Burp Jam
 
-> danie & tga, 10/10/2022
+> lajbel and tga, 10/10/2022
 
 Kaboom new jam! Burp Jam, a jam where the goal is to upload the best burp sound ever, and we will implement it in `burp()`
 

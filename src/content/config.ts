@@ -1,5 +1,17 @@
 import { defineCollection, z } from "astro:content";
 
+const blogCollection = defineCollection({
+    type: "content", // v2.5.0 and later
+    schema: z.object({
+        title: z.string(),
+        description: z.string(),
+        author: z.string(),
+        image: z.optional(z.string()),
+        date: z.string(),
+        hidde: z.optional(z.boolean()),
+    }),
+});
+
 const guideCollection = defineCollection({
     type: "content", // v2.5.0 and later
     schema: z.object({
@@ -20,6 +32,7 @@ const miscCollection = defineCollection({
 });
 
 export const collections = {
+    blog: blogCollection,
     guides: guideCollection,
     misc: miscCollection,
 };

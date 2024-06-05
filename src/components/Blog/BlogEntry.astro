@@ -1,0 +1,50 @@
+---
+// A card that represents a blog post. With Image of the blog, title, author, date and a short description.
+
+import { getEntry } from "astro:content";
+
+type Props = {
+    entry: string;
+};
+
+const { entry: entryName } = Astro.props;
+
+const entry = await getEntry("blog", entryName);
+if (!entry) return;
+
+const entryData = entry.data;
+---
+
+<article class="flex bg-base-200 rounded-box">
+    <figure class="flex-none w-52 relative">
+        <img
+            src={entryData.image}
+            alt="Placeholder"
+            class="absolute inset-0 w-full h-full object-cover rounded-l-box"
+        />
+    </figure>
+    <div class="flex-auto p-6">
+        <main class="flex flex-col flex-wrap">
+            <h1 class="text-xl font-semibold">
+                <a href={"/blog/" + entryName} class="hover:underline">{
+                    entryData.title
+                }</a>
+            </h1>
+            <p class="text-xl font-semibold text-gray-500">
+                {entryData.author}
+            </p>
+            <time class="flex-none text-base font-medium text-gray-500">
+                {
+                    new Date(entryData.date).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                    })
+                }
+            </time>
+        </main>
+        <p class="mt-4">
+            {entryData.description}
+        </p>
+    </div>
+</article>

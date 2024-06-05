@@ -1,0 +1,29 @@
+---
+import BlogEntry from "@/components/Blog/BlogEntry.astro";
+import Prose from "@/components/Content/Prose.astro";
+import Layout from "@/layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const blogs = await getCollection("blog");
+const orderedBlogs = blogs.sort((a, b) =>
+    Number(new Date(b.data.date)) - Number(new Date(a.data.date))
+);
+---
+
+<Layout
+    meta={{
+        description: "A collection of blog posts about KAPLAY.",
+    }}
+>
+    <Prose>
+        <h1>Blog</h1>
+        <p>
+            A collection of blog posts about KAPLAY, the development process,
+            game jams, and other topics related to game development.
+        </p>
+    </Prose>
+
+    <div class="flex flex-col gap-4 px-4 pb-4 max-w-screen-lg">
+        {orderedBlogs.map((blog) => <BlogEntry entry={blog.slug} />)}
+    </div>
+</Layout>
