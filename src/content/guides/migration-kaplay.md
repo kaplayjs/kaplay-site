@@ -1,7 +1,7 @@
 ---
 title: Migrating to KAPLAY 
 description: Migrate your codebase from Kaboom v3000 to KAPLAY v3001.
-slug: migration-3001
+slug: migration-kaplay
 order: 6
 ---
 
