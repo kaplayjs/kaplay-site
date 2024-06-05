@@ -9,7 +9,9 @@
     "preview": "astro preview",
     "astro": "astro",
     "doc": "node scripts/buildDoc.js",
-    "build:publish": "npm run build && wrangler pages deploy dist"
+    "build:publish": "npm run build && wrangler pages deploy dist",
+    "lunaria:build": "lunaria build",
+    "lunaria:preview": "lunaria preview"
   },
   "dependencies": {
     "@astrojs/check": "^0.7.0",
@@ -17,6 +19,7 @@
     "@astrojs/sitemap": "^3.1.5",
     "@astrojs/tailwind": "^5.1.0",
     "@fontsource-variable/fira-code": "^5.0.18",
+    "@lunariajs/core": "^0.1.0",
     "@nanostores/preact": "^0.5.1",
     "astro": "^4.9.1",
     "astro-meta-tags": "^0.3.0",

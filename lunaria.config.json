@@ -1,0 +1,28 @@
+{
+  "$schema": "./node_modules/@lunariajs/core/config.schema.json",
+  "repository": {
+    "name": "marklovers/kaplay-site",
+    "branch": "main"
+  },
+  "defaultLocale": {
+    "label": "English",
+    "lang": "en"
+  },
+  "locales": [
+    {
+      "label": "English",
+      "lang": "en"
+    },
+    {
+      "label": "Español",
+      "lang": "es"
+    }
+  ],
+  "files": [
+    {
+      "location": "**/*.mdx",
+      "pattern": "@lang/@path",
+      "type": "universal"
+    }
+  ]
+}
