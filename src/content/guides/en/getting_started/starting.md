@@ -2,7 +2,6 @@
 category: Getting Started
 title: Basic Concepts
 description: Learn about the basics of KAPLAY.
-slug: starting
 order: 2
 ---
 

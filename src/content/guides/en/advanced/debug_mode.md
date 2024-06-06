@@ -2,7 +2,6 @@
 category: Advanced
 title: Debug Mode
 description: The Debug Mode is a tool that helps you to debug your game.
-slug: debug
 order: 3
 ---
 

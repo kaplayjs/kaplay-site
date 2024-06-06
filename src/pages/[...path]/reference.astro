@@ -3,6 +3,11 @@ import ReferenceList from "@/components/Reference/ReferenceList.astro";
 import TypePreview from "@/components/TypePreview/TypePreview.astro";
 import Layout from "@/layouts/Layout.astro";
 import "@/styles/reference.css";
+import { getStaticPathsByLocales } from "@/util/path";
+
+export function getStaticPaths() {
+    return getStaticPathsByLocales();
+}
 ---
 
 <Layout

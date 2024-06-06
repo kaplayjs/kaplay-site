@@ -1,7 +1,6 @@
 ---
 title: Publishing
 description: Learn how to publish your Kaboom game in platforms like Itch.io or Newgrounds.com.
-slug: publishing
 order: 6
 ---
 
@@ -28,11 +27,11 @@ kaboom({
 
 First, go to your account, then **Upload a new project**
 
-![image](publishing/itchio-1.png)
+![image](/publishing/itchio-1.png)
 
 Then, in **Kind of project**, you should select **HTML**, so itch.io will let you upload a web game
 
-![image](publishing/itchio-2.png)
+![image](/publishing/itchio-2.png)
 
 After that, the only thing left to do is to upload your zip with your game files, or if you have a single `ìndex.html` file
 (very tasteful) upload it!
@@ -43,7 +42,7 @@ After that, the only thing left to do is to upload your zip with your game files
 
 First, go to the up arrow and select Game
 
-![image](publishing/newgrounds-1.png)
+![image](/publishing/newgrounds-1.png)
 
 Now, as Itch.io, only upload a zip with your fabolous `index.html` game file.
 

@@ -1,7 +1,6 @@
 ---
 title: Migrating to v3000
 description: Migrate your codebase from Kaboom v2000 to v3000.
-slug: migration-3000
 order: 7
 ---
 

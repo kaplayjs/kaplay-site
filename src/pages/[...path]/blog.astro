@@ -2,12 +2,17 @@
 import BlogEntry from "@/components/Blog/BlogEntry.astro";
 import Prose from "@/components/Content/Prose.astro";
 import Layout from "@/layouts/Layout.astro";
+import { getStaticPathsByLocales } from "@/util/path";
 import { getCollection } from "astro:content";
 
 const blogs = await getCollection("blog");
 const orderedBlogs = blogs.sort((a, b) =>
     Number(new Date(b.data.date)) - Number(new Date(a.data.date))
 );
+
+export function getStaticPaths() {
+    return getStaticPathsByLocales();
+}
 ---
 
 <Layout

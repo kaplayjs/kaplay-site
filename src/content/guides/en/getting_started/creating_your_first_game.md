@@ -2,7 +2,6 @@
 category: Getting Started
 title: Creating your first game
 description: Learn the basics of KAPLAY and make a simple game.
-slug: intro
 order: 3
 ---
 

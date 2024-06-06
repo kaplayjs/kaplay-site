@@ -1,15 +1,18 @@
 ---
 import Prose from "@/components/Content/Prose.astro";
 import Layout from "@/layouts/Layout.astro";
+import { getStaticPathsByLocales } from "@/util/path";
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
-    const entries = await getCollection("guides");
+    const entries = await getCollection("blog");
 
-    return entries.map((entry) => ({
-        params: { slug: entry.slug },
-        props: { entry },
-    }));
+    return entries.map((entry) => {
+        return {
+            params: { slug: entry.slug, path: undefined },
+            props: { entry },
+        };
+    });
 }
 
 const { entry } = Astro.props;
@@ -18,12 +21,11 @@ const { Content } = await entry.render();
 
 <Layout
     meta={{
-        title: "KAPLAY Guides, " + entry.data.title,
+        title: "KAPLAY Blogs, " + entry.data.title,
         description: entry.data.description,
         image: entry.data.image,
         keywords: "kaplayjs, guides, documentation",
     }}
-    sidebarMode="guides"
 >
     <Prose>
         <Content />

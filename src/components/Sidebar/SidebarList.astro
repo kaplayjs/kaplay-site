@@ -19,14 +19,14 @@ if (sidebarMode === "guides") {
     const sortedGuides = guides.sort((a, b) => a.data.order - b.data.order);
     const sortedList = sortedGuides.map((guide) => ({
         title: guide.data.title,
-        link: `/guides/${guide.slug}`,
+        link: `/guides/${guide.slug.split("/")[2]}`,
     }));
 
     const guidesWithoutCategory = sortedGuides
         .filter((guide) => !guide.data.category)
         .map((guide) => ({
             title: guide.data.title,
-            link: `/guides/${guide.slug}`,
+            link: `/guides/${guide.slug.split("/")[2]}`,
         }));
 
     const guidesByCategory = sortedGuides.reduce(
@@ -51,7 +51,7 @@ if (sidebarMode === "guides") {
             folder: category,
             linkList: guidesByCategory[category].map((guide: any) => ({
                 title: guide.data.title,
-                link: `/guides/${guide.slug}`,
+                link: `/guides/${guide.slug.split("/")[2]}`,
             })),
         })),
         {
