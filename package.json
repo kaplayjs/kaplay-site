@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "npm run doc && astro dev",
     "start": "npm run doc && astro dev",
-    "build": "npm run doc && astro check && astro build",
+    "build": "npm run doc && astro check && astro build && npm run lunaria:build",
     "preview": "astro preview",
     "astro": "astro",
     "doc": "node scripts/buildDoc.js",
