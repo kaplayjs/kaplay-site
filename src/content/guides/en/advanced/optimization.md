@@ -1,5 +1,4 @@
 ---
-category: Advanced
 title: Optimization
 description: Tips on optimizing performance / maintainability for KAPLAY games.
 order: 5

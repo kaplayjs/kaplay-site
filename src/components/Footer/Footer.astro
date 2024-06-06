@@ -3,7 +3,7 @@ import FooterLink from "./FooterLink.astro";
 import FooterNav from "./FooterNav.astro";
 ---
 
-<footer class="p-10 bg-base-200 text-base-content text-base rounded">
+<footer class="w-full p-10 bg-base-200 text-base-content text-base rounded">
     <div
         class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
     >
@@ -27,6 +27,16 @@ import FooterNav from "./FooterNav.astro";
                 GitHub
             </FooterLink>
         </FooterNav>
+        <FooterNav title="SUPPORT">
+            <script
+                is:inline
+                type="text/javascript"
+                src="https://storage.ko-fi.com/cdn/widget/Widget_2.js"
+            ></script><script is:inline="text/javascript">
+                kofiwidget2.init("Support KAPLAY on Ko-Fi", "#7fc963", "D1D0Z04EB");
+                kofiwidget2.draw();
+            </script>
+        </FooterNav>
     </div>
 
     <div class="divider"></div>
@@ -34,10 +44,10 @@ import FooterNav from "./FooterNav.astro";
     <aside
         class="flex flex-col sm:flex-row gap-6 justify-center sm:justify-between items-center"
     >
-        <div class="flex items-center gap-4">
-            <img alt="Logo" src="/kaplaylogo.png" class="w-20" />
+        <div class="flex items-center gap-4 justify-center">
+            <img alt="Logo" src="/kaplaylogo.png" class="w-40" />
             <div>
-                <p class="text-2xl">KatTeam</p>
+                <p class="text-2xl">KAPLAY Team</p>
             </div>
         </div>
     </aside>

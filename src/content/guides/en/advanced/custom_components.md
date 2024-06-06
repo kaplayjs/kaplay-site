@@ -1,5 +1,4 @@
 ---
-category: Advanced
 title: Custom Components
 description: Learn about create your own components for your game objects.
 order: 4

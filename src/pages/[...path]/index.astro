@@ -1,6 +1,5 @@
 ---
 import Prose from "@/components/Content/Prose.astro";
-import Footer from "@/components/Footer/Footer.astro";
 import Layout from "@/layouts/Layout.astro";
 import { getStaticPathsByLocales } from "@/util/path";
 import { getEntry } from "astro:content";
@@ -9,11 +8,14 @@ export function getStaticPaths() {
     return getStaticPathsByLocales();
 }
 
-const indexEntry = getEntry("misc", "index");
+const { t, lang } = Astro.props;
+const indexEntry = getEntry("misc", `${lang}`);
 const { Content } = await (await indexEntry).render();
 ---
 
 <Layout
+    {t}
+    {lang}
     sidebarMode="guides"
     meta={{
         title: "KAPLAY, The JavaScript easy game library",
@@ -26,6 +28,4 @@ const { Content } = await (await indexEntry).render();
     <Prose>
         <Content />
     </Prose>
-
-    <Footer />
 </Layout>

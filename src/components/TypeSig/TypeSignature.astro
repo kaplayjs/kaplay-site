@@ -40,8 +40,8 @@ const keyword = data?.kind;
         return (
         <>{
             Object.entries(data.members).map((
-                [name, variants]: [string, any],
-            ) => variants.map((mem: any, index: number) => (
+                [, variants]: [string, any],
+            ) => variants.map((mem: any) => (
                 <ReferenceEntry data={mem} parent={`${parentData?.name}-`} />
             )))
         }</>

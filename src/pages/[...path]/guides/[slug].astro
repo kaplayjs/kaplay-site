@@ -30,7 +30,7 @@ export async function getStaticPaths() {
     return entriesByLocale.filter(Boolean);
 }
 
-const { entry } = Astro.props;
+const { entry, t, lang } = Astro.props;
 const { Content } = await entry.render();
 ---
 
@@ -42,6 +42,8 @@ const { Content } = await entry.render();
         keywords: "kaplayjs, guides, documentation",
     }}
     sidebarMode="guides"
+    {t}
+    {lang}
 >
     <Prose>
         <Content />

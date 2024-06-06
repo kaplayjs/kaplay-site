@@ -11,6 +11,8 @@
     "jsxImportSource": "preact"
   },
   "exclude": [
-    "kaplay"
+    "kaplay",
+    "scripts",
+    "dist"
   ]
 }

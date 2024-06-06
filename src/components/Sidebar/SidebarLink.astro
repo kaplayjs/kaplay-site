@@ -1,15 +1,20 @@
 ---
+import type { Locale } from "@/util/i18n";
+import { getLangedRoute } from "@/util/path";
+
 type Props = {
     link: string;
     target?: string;
+    lang?: Locale;
+    noTranslate?: boolean;
 };
 
-const { link, target } = Astro.props;
+const { link, target, noTranslate, lang = "en" } = Astro.props;
 ---
 
 <li class="sidebar-link">
     <a
-        href={link}
+        href={noTranslate ? link : getLangedRoute(lang, link)}
         class="btn btn-ghost w-full btn-sm justify-start text-left text-lg"
         target={target}
     >

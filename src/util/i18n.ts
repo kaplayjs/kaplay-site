@@ -1,4 +1,5 @@
 import { englishLocales } from "@/locales/en";
+import { spanishLocales } from "@/locales/es";
 
 export type Locale = typeof locales[number];
 export type LocaleMap = {
@@ -11,9 +12,14 @@ export type LocaleSubKeys = {
     [K in LocaleKeys]: keyof LocaleMap[K];
 };
 
-// Automate this
+// TODO: Automate this
 export type TranslationStringsSidebar = `sidebar.${LocaleSubKeys["sidebar"]}`;
-export type TranslationString = TranslationStringsSidebar;
+export type TranslationStringsGuides = `guides.${LocaleSubKeys["guides"]}`;
+export type TranslationStringsMisc = `misc.${LocaleSubKeys["misc"]}`;
+export type TranslationString =
+    | TranslationStringsSidebar
+    | TranslationStringsGuides
+    | TranslationStringsMisc;
 
 export const locales = ["en", "es"] as const;
 export const DEFAULT_LANG = "en";
@@ -22,7 +28,7 @@ export const localesNames = ["en", "es"] as const;
 
 export const localesMap = {
     en: englishLocales,
-    es: null,
+    es: spanishLocales,
 };
 
 function splitLocaleKey(key: TranslationString) {
@@ -39,7 +45,7 @@ export function t(locale: Locale, key: TranslationString) {
     const localeMap = localesMap[locale];
     const defaultLocaleMap = localesMap[locales[0]];
 
-    localeMap?.[localKey]?.[localSubKey]
+    return localeMap?.[localKey]?.[localSubKey]
         ?? defaultLocaleMap[localKey][localSubKey];
 }
 

@@ -8,6 +8,8 @@ import { getStaticPathsByLocales } from "@/util/path";
 export function getStaticPaths() {
     return getStaticPathsByLocales();
 }
+
+const { t, lang } = Astro.props;
 ---
 
 <Layout
@@ -19,6 +21,8 @@ export function getStaticPaths() {
         keywords: "kaplay, reference, documentation, api, kaplayjs, kaboomjs",
     }}
     sidebarMode="reference"
+    {t}
+    {lang}
 >
     <div class="w-full p-4">
         <ReferenceList mode="all" />

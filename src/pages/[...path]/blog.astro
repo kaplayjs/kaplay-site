@@ -13,12 +13,16 @@ const orderedBlogs = blogs.sort((a, b) =>
 export function getStaticPaths() {
     return getStaticPathsByLocales();
 }
+
+const { t, lang } = Astro.props;
 ---
 
 <Layout
     meta={{
         description: "A collection of blog posts about KAPLAY.",
     }}
+    {t}
+    {lang}
 >
     <Prose>
         <h1>Blog</h1>

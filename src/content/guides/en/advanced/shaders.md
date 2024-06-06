@@ -1,5 +1,4 @@
 ---
-category: Advanced
 title: Shaders
 description: Learn how to write and use custom shaders in KAPLAY.
 order: 6

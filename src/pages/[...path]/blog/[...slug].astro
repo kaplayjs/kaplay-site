@@ -7,19 +7,23 @@ import { getCollection } from "astro:content";
 export async function getStaticPaths() {
     const entries = await getCollection("blog");
 
-    return entries.map((entry) => {
-        return {
-            params: { slug: entry.slug, path: undefined },
-            props: { entry },
-        };
+    return getStaticPathsByLocales().flatMap((locale) => {
+        return entries.map((entry) => {
+            return {
+                params: { slug: entry.slug, ...locale.params },
+                props: { entry, ...locale.props },
+            };
+        });
     });
 }
 
-const { entry } = Astro.props;
+const { entry, t, lang } = Astro.props;
 const { Content } = await entry.render();
 ---
 
 <Layout
+    {t}
+    {lang}
     meta={{
         title: "KAPLAY Blogs, " + entry.data.title,
         description: entry.data.description,

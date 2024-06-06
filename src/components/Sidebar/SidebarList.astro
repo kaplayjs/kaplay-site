@@ -1,5 +1,6 @@
 ---
 import doc from "@/../doc.json";
+import type { LocaleSubKeys } from "@/util/i18n";
 import { getCollection } from "astro:content";
 import type { SidebarEntry, SidebarProps } from "./Sidebar.astro";
 import SidebarFolder from "./SidebarFolder.astro";
@@ -7,7 +8,7 @@ import SidebarLink from "./SidebarLink.astro";
 
 type Props = SidebarProps;
 
-const { sidebarMode } = Astro.props;
+const { sidebarMode, t, lang: pageLang } = Astro.props;
 const groups = doc.groups;
 const groupsKeys = Object.keys(doc.groups) as (keyof typeof doc.groups)[];
 
@@ -17,34 +18,21 @@ let allOpen = false;
 if (sidebarMode === "guides") {
     const guides = await getCollection("guides");
     const sortedGuides = guides.sort((a, b) => a.data.order - b.data.order);
-    const sortedList = sortedGuides.map((guide) => ({
-        title: guide.data.title,
-        link: `/guides/${guide.slug.split("/")[2]}`,
-    }));
 
-    const guidesWithoutCategory = sortedGuides
-        .filter((guide) => !guide.data.category)
-        .map((guide) => ({
-            title: guide.data.title,
-            link: `/guides/${guide.slug.split("/")[2]}`,
-        }));
+    const guidesByCategory = sortedGuides.reduce((acc, guide) => {
+        const [lang, folder] = guide.slug.split("/");
+        const folderName = t(`guides.${folder as LocaleSubKeys["guides"]}`);
 
-    const guidesByCategory = sortedGuides.reduce(
-        (acc, guide) => {
-            const category = guide.data.category;
+        if (lang !== pageLang) return acc;
 
-            if (!category) {
-                return acc;
-            }
+        if (!acc[folderName]) {
+            acc[folderName] = [];
+        }
 
-            if (!acc[category]) {
-                acc[category] = [];
-            }
-            acc[category].push(guide);
-            return acc;
-        },
-        {} as Record<string, any[]>,
-    );
+        acc[folderName].push(guide);
+
+        return acc;
+    }, {} as Record<string, any>);
 
     renderList = [
         ...Object.keys(guidesByCategory).map((category) => ({
@@ -54,10 +42,6 @@ if (sidebarMode === "guides") {
                 link: `/guides/${guide.slug.split("/")[2]}`,
             })),
         })),
-        {
-            folder: "Misc",
-            linkList: guidesWithoutCategory,
-        },
     ];
 
     allOpen = true;
@@ -84,7 +68,12 @@ if (sidebarMode === "guides") {
             <SidebarFolder title={folder} id={folder} isOpen={allOpen}>
                 {
                     linkList.map(({ title, link }) => (
-                        <SidebarLink link={link}>{title}</SidebarLink>
+                        <SidebarLink
+                            {link}
+                            lang={pageLang}
+                            noTranslate={sidebarMode === "reference"}
+                        >
+                            {title}</SidebarLink>
                     ))
                 }
             </SidebarFolder>

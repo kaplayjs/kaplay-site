@@ -1,1 +1,19 @@
-oops
+---
+import Prose from "@/components/Content/Prose.astro";
+import Layout from "@/layouts/Layout.astro";
+import { getLangedRoute, getPropsFromPath } from "@/util/path";
+
+const { t, lang } = getPropsFromPath(Astro.url.pathname);
+---
+
+<Layout {t} {lang}>
+    <Prose>
+        <h1>404</h1>
+        <p class="min-h-screen">
+            {t("misc.404_message")}
+            <a href={getLangedRoute(lang, "/")}>
+                {t("misc.404_link")}
+            </a>.
+        </p>
+    </Prose>
+</Layout>

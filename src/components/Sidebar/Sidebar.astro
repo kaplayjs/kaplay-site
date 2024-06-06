@@ -1,6 +1,8 @@
 ---
 import kaplayPackageJson from "@/../kaplay/package.json";
 import kaplayGif from "@/assets/kaplay.gif";
+import type { Locale, TranslationString } from "@/util/i18n";
+import { getLangedRoute } from "@/util/path";
 import Image from "astro/components/Image.astro";
 import SidebarLink from "./SidebarLink.astro";
 import SidebarList from "./SidebarList.astro";
@@ -17,18 +19,20 @@ export type SidebarEntry = {
 
 export type SidebarProps = {
     sidebarMode?: "guides" | "reference";
+    t: (key: TranslationString) => string;
+    lang: Locale;
 };
 
 type Props = SidebarProps;
 
-const { sidebarMode } = Astro.props;
+const { sidebarMode, t, lang } = Astro.props;
 ---
 
 <div class="drawer lg:drawer-open">
     <input id="sidebar" type="checkbox" class="drawer-toggle" />
 
     <div
-        class="drawer-content flex flex-col items-start justify-start max-h-screen"
+        class="drawer-content flex flex-col items-start justify-start max-h-screen overflow-y-auto w-full"
     >
         <slot />
     </div>
@@ -40,7 +44,7 @@ const { sidebarMode } = Astro.props;
         ></label>
         <div class="p-4 w-80 min-h-full bg-base-200 text-base-content">
             <figure>
-                <a class="btn btn-ghost h-max" href="/">
+                <a class="btn btn-ghost h-max" href={getLangedRoute(lang, "/")}>
                     <Image
                         src={kaplayGif}
                         alt="kaplay logo"
@@ -54,31 +58,47 @@ const { sidebarMode } = Astro.props;
                 </p>
             </div>
             <ul class="flex-col gap-2">
-                <SidebarLink link="/"> Home </SidebarLink>
+                <SidebarLink link="/" {lang}>{t("sidebar.home")}</SidebarLink>
                 <SidebarLink
                     link="https://kaboomjs.com/discord"
                     target="_blank"
+                    {lang}
+                    noTranslate
                 >
                     Discord
                 </SidebarLink>
                 <SidebarLink
                     link="https://github.com/marklovers/kaplay"
                     target="_blank"
+                    {lang}
+                    noTranslate
                 >
                     GitHub
                 </SidebarLink>
-                <SidebarLink link="https://play.kaplayjs.com " target="_blank">
-                    Playground <div class="badge badge-primary">WIP</div>
+                <SidebarLink
+                    link="https://play.kaplayjs.com"
+                    target="_blank"
+                    {lang}
+                    noTranslate
+                >
+                    {t("sidebar.playground")}
+                    <div class="badge badge-primary">WIP</div>
                 </SidebarLink>
             </ul>
             <div class="divider"></div>
             <ul class="flex-col gap-2">
-                <SidebarLink link="/guides/install">Guides</SidebarLink>
-                <SidebarLink link="/reference">Reference Docs</SidebarLink>
-                <SidebarLink link="/blog">Blog</SidebarLink>
+                <SidebarLink link="/guides/install" {lang}>{
+                    t("sidebar.guides")
+                }</SidebarLink>
+                <SidebarLink link="/reference" {lang}>{
+                    t("sidebar.refdoc")
+                }</SidebarLink>
+                <SidebarLink link="/blog" {lang}>{
+                    t("sidebar.blog")
+                }</SidebarLink>
             </ul>
             <div class="divider"></div>
-            <SidebarList {sidebarMode} />
+            <SidebarList {sidebarMode} {t} {lang} />
         </div>
     </div>
 </div>
