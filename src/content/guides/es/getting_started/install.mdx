@@ -10,10 +10,10 @@ import kaplayPackageJson from "@/../kaplay/package.json";
 export const version = kaplayPackageJson.version;
 
 export const ecmaImport = `<script type="module">
-    // import kaplay
+    // importa kaplay
     import kaplay from "https://unpkg.com/kaplay@${version}/dist/kaboom.mjs";
 
-    // start kaplay
+    // inicia kaplay
 
     kaplay();
 
@@ -36,43 +36,43 @@ $ cd mygame
 $ npm run dev
 ```
 
-This will create your game in the `mygame` directory, and start a development server for you to preview your game. If you edit `src/main.js` and refresh the page, you will see your changes.
+Esto va a crear tu juego en el directorio `mygame`, y va a iniciar un servidor de desarrollo para que puedas previsualizar tu juego. Si editas `src/main.js` y refrescas la página, verás tus cambios.
 
-To see all options, run:
+Para ver todas las opciones, ejecuta:
 
 ```sh
 $ create-kaplay --help
 ```
 
-## Using a CDN
+## Usando un CDN
 
-If you prefer to use KAPLAY without any bundlers, you can use a CDN to include it directly in your HTML file,
-or import it with ECMAScript modules.
+Si prefieres usar KAPLAY sin ningún bundler, puedes usar un CDN para incluirlo directamente en tu archivo HTML,
+o importarlo con módulos ECMAScript.
 
 <Code code={ecmaImport} lang="html" />
 
-You can also just include it with a `<script>` tag.
+También puedes simplemente incluirlo con una etiqueta `<script>`.
 
 <Code code={jsImport} lang="html" />
 
-## Setup your own Node.js environment
+## Configura tu propio entorno Node.js
 
-With Node.js and npm it's easier have some other packages and use version control, also it's easier to get typescript autocomplete support, but it requires a bit more setup. (This is the way of `create-kaplay`)
+Con Node.js y npm es más fácil tener otros paquetes y usar control de versiones, también es más fácil obtener soporte de autocompletado de TypeScript, pero requiere un poco más de configuración. (Esta es la forma de `create-kaplay`)
 
 ```sh
 $ npm install kaboom
 ```
 
-You'll need to use a bundler to use Kaboom with NPM. There's a lot of options like:
+Vas a necesitar un bundler para usar Kaboom con NPM. Hay muchas opciones como:
 
 - `esbuild`,
 - `webpack`,
 - `parcel`,
 - `vitejs`,
 
-This is a short example of how to use Kaboom with ["esbuild"](https://esbuild.github.io/).
+Este es un ejemplo corto de cómo usar Kaboom con ["esbuild"](https://esbuild.github.io/).
 
-Once you have `esbuild` installed, and you have this in a `.js` or `.ts` file:
+Una vez que tengas `esbuild` instalado, y tengas esto en un archivo `.js` o `.ts`:
 
 ```js
 import kaplay from "kaplay";
@@ -80,25 +80,24 @@ import kaplay from "kaplay";
 kaplay();
 ```
 
-just run
+Solo ejecuta:
 
 ```sh
 $ esbuild game.js --bundle > build.js
 ```
 
-and it'll find the KAPLAY package and include it in the built `build.js`, include `build.js` in your HTML and you're good to go. Feel free to automate this process.
+y va a encontrar el paquete de KAPLAY y lo va a incluir en el archivo `build.js`, incluye `build.js` en tu HTML y listo. Siéntete libre de automatizar este proceso.
 
-## Loading Assets
+## Cargando assets
 
-You might have encountered errors when trying to `loadSprite()` from local file system, that is because browser won't allow loading local files with JavaScript. To get around that you'll need to use a static file that serves the files through HTTP. There're a lot of programs that helps you to do that.
+Tal vez hayas encontrado errores al intentar `loadSprite()` desde el sistema de archivos local, eso es porque el navegador no permite cargar archivos locales con JavaScript. Para evitar eso, necesitarás usar un servidor de archivos estáticos que sirva los archivos a través de HTTP. Hay muchos programas que te ayudan a hacer eso.
 
-- `$ python3 -m http.server` if you have [python3](https://www.python.org) installed
-- `$ python -m SimpleHTTPServer` if you have [python2](https://www.python.org) installed
-- `$ serve` if you have [serve](https://github.com/vercel/serve) installed
-- `$ caddy file-server` if you have [caddy](https://caddyserver.com/) installed
-- `$ static-here` if you have [static-here](https://github.com/amasad/static-here) installed
+- `$ python3 -m http.server` si tienes [python3](https://www.python.org) instalado
+- `$ python -m SimpleHTTPServer` si tienes [python2](https://www.python.org) instalado
+- `$ serve` si tienes [serve](https://github.com/vercel/serve) instalado
+- `$ caddy file-server` si tienes [caddy](https://caddyserver.com/) instalado
 
-Let's say you have a folder structure like this:
+Vamos a decir que tienes una estructura de carpetas como esta:
 
 ```sh
 .
@@ -110,11 +109,11 @@ Let's say you have a folder structure like this:
 └── index.html
 ```
 
-and you have the static file server running on port `8000`, just go to `http://localhost:8000/index.html`, and you should be able to load stuff from relative paths like
+y tienes el servidor de archivos estáticos corriendo en el puerto `8000`, simplemente ve a `http://localhost:8000/index.html`, y deberías ser capaz de cargar cosas desde rutas relativas como
 
 ```js
 loadSprite("froggy", "sprites/froggy.png");
 loadSound("horse", "sounds/horse.mp3");
 ```
 
-To learn more check out this [MDN doc](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/set_up_a_local_testing_server).
+Para aprender más, revisa esta [documentación de MDN](https://developer.mozilla.org/es/docs/Learn/Common_questions/Tools_and_setup/set_up_a_local_testing_server).

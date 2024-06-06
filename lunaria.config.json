@@ -21,12 +21,12 @@
   "files": [
     {
       "location": "src/content/guides/**/*.mdx",
-      "pattern": "@path/@lang",
+      "pattern": "src/content/guides/@lang/@path",
       "type": "universal"
     },
     {
       "location": "src/content/guides/**/*.md",
-      "pattern": "@path/@lang",
+      "pattern": "src/content/guides/@lang/@path",
       "type": "universal"
     }
   ]
