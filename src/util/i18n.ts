@@ -1,5 +1,5 @@
-import { englishLocales } from "@/locales/en";
-import { spanishLocales } from "@/locales/es";
+import { englishLocales } from "@/locales/en/ui";
+import { spanishLocales } from "@/locales/es/ui";
 
 export type Locale = typeof locales[number];
 export type LocaleMap = {
