@@ -10,11 +10,11 @@ easy API and a focus on games, you can create games quickly without writing many
 
 **KAPLAYGROUND** is the official playground of KAPLAY, where you can test our examples and learn how to use KAPLAY.
 
-We are also working in **KAPLAY** **Editor**, a games editor for KAPLAY, where you can create games in your browser.
+We are also working on **KAPLAY** **Editor**, a games editor for KAPLAY, where you can create games in your browser.
 
 ## Features
 
-- Creation levels using ASCII maps.
+- Creation of levels using ASCII maps.
 - An ECS (Entity Component System) architecture
 - A powerful event system
 - Arcade physics, fast and simple
