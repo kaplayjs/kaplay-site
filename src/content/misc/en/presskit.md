@@ -5,8 +5,8 @@ description: KAPLAY Presskit for journalists and content creators
 
 ## About
 
-**KAPLAY** (/ˈkæpleɪ/) is a JavaScript library that helps you make games fast and fun! With an
-easy API and a focus on games, you can create games quickly without writing many lines of code.
+**KAPLAY** (_/ˈkæpleɪ/_) is a **JavaScript** library that helps you make games **fast** and **fun**! With an
+easy API and a focus on **games**, you can create games **quickly** without writing many lines of code.
 
 **KAPLAYGROUND** is the official playground of KAPLAY, where you can test our examples and learn how to use KAPLAY.
 
