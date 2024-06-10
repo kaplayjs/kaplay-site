@@ -41,18 +41,18 @@ written in all caps, **KAPLAY**, not **KaPlay** or **Kaplay**. Anyway **kaplay**
 
 **KAPLAY logo (outlined, webp animation)**
 
-![KAPLAY LOGO outlined and animated](assets/kaplay-o.webp)
+![KAPLAY LOGO outlined and animated](../assets/kaplay-o.webp)
 
 **KAPLAY logo (webp animation)**
 
-![KAPLAY LOGO animated](assets/kaplay.webp)
+![KAPLAY LOGO animated](../assets/kaplay.webp)
 
 **KAPLAY logo (outlined, png)**
-![KAPLAY LOGO outlined](assets/kaplay-o.png)
+![KAPLAY LOGO outlined](../assets/kaplay-o.png)
 
 **KAPLAY logo (png)**
 
-![KAPLAY LOGO](assets/kaplay.png)
+![KAPLAY LOGO](../assets/kaplay.png)
 
 ## Colors
 
@@ -71,24 +71,24 @@ written in all caps, **KAPLAY**, not **KaPlay** or **Kaplay**. Anyway **kaplay**
 
 ### Platformer
 
-![](assets/2024-06-10-15-51-54.png)
+![](../assets/2024-06-10-15-51-54.png)
 
 ### Drag and Drop
 
-![](assets/2024-06-10-15-48-20.png)
+![](../assets/2024-06-10-15-48-20.png)
 
 ### Shooter
 
-![](assets/2024-06-10-15-53-05.png)
+![](../assets/2024-06-10-15-53-05.png)
 
 ### RPG
 
-![](assets/2024-06-10-15-53-26.png)
+![](../assets/2024-06-10-15-53-26.png)
 
 ### Visual Novel
 
-![](assets/2024-06-10-15-55-16.png)
+![](../assets/2024-06-10-15-55-16.png)
 
 ### KAPLAYGROUND
 
-![](assets/2024-06-10-15-56-25.png)
+![](../assets/2024-06-10-15-56-25.png)
