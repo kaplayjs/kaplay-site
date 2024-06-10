@@ -1,6 +1,6 @@
 ---
 import kaplayPackageJson from "@/../kaplay/package.json";
-import kaplayGif from "@/assets/kaplay.gif";
+import kaplayOutlined from "@/assets/kaplay-o.webp";
 import type { Locale, TranslationString } from "@/util/i18n";
 import { getLangedRoute } from "@/util/path";
 import Image from "astro/components/Image.astro";
@@ -46,7 +46,7 @@ const { sidebarMode, t, lang } = Astro.props;
             <figure>
                 <a class="btn btn-ghost h-max" href={getLangedRoute(lang, "/")}>
                     <Image
-                        src={kaplayGif}
+                        src={kaplayOutlined}
                         alt="kaplay logo"
                         class="w-52 h-24 aspect-auto object-contain"
                     />
