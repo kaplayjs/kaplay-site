@@ -15,12 +15,12 @@ We are also working on **KAPLAY** **Editor**, a games editor for KAPLAY, where y
 ## Features
 
 - Creation of levels using ASCII maps.
-- An ECS (Entity Component System) architecture
-- A powerful event system
-- Arcade physics, fast and simple
-- A bunch of examples to get you started quickly [here](https://play.kaplayjs.com)
-- A large community of developers who creates plugins and share them with the community on our official Discord
-- Fully compatible with Kaboom.js 3000
+- An ECS (Entity Component System) architecture.
+- A powerful event system.
+- Arcade physics, fast and simple.
+- A bunch of examples to get you started quickly [here](https://play.kaplayjs.com).
+- A large community of developers who creates plugins and share them with the community on our official Discord.
+- Fully compatible with Kaboom.js 3000.
 
 ## The backstory
 
