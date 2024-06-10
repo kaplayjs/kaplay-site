@@ -1,0 +1,31 @@
+---
+import BlogEntry from "@/components/Blog/BlogEntry.astro";
+import Prose from "@/components/Content/Prose.astro";
+import Layout from "@/layouts/Layout.astro";
+import { getStaticPathsByLocales } from "@/util/path";
+
+export function getStaticPaths() {
+    return getStaticPathsByLocales();
+}
+
+const { t, lang } = Astro.props;
+---
+
+<Layout
+    meta={{
+        description: "A collection of blog posts about KAPLAY.",
+    }}
+    {t}
+    {lang}
+>
+    <Prose>
+        <h1>Community</h1>
+        <p>
+            KAPLAY has a large community of users and contributors. We are very
+            proud of the community that has grown around us. Here, we will share
+            some games and content made by the community.
+        </p>
+    </Prose>
+
+    <div class="flex flex-col gap-4 px-4 pb-4 max-w-screen-lg"> </div>
+</Layout>

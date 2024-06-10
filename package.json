@@ -9,6 +9,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "doc": "node scripts/buildDoc.js",
+    "markdoc": "node scripts/markdownDoc.js",
     "build:publish": "npm run build && wrangler pages deploy dist",
     "lunaria:build": "lunaria build",
     "lunaria:preview": "lunaria preview"
