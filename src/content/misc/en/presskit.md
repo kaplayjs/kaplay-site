@@ -5,13 +5,13 @@ description: KAPLAY Presskit for journalists and content creators
 
 ## About
 
-KAPLAY (/ˈkæpleɪ/) is a JavaScript library that helps you make games fast and fun! With an
+**KAPLAY** (/ˈkæpleɪ/) is a JavaScript library that helps you make games fast and fun! With an
 easy API and a focus on games, you can create games quickly with no much
 lines of code.
 
-KAPLAYGROUND is the official playground of KAPLAY, where you can test our examples and learn how to use KAPLAY.
+**KAPLAYGROUND** is the official playground of KAPLAY, where you can test our examples and learn how to use KAPLAY.
 
-We are also working in KAPLAY Editor, a games editor for KAPLAY, where you can create games in your browser.
+We are also working in **KAPLAY** **Editor**, a games editor for KAPLAY, where you can create games in your browser.
 
 ## Features
 
@@ -25,13 +25,13 @@ We are also working in KAPLAY Editor, a games editor for KAPLAY, where you can c
 
 ## The backstory
 
-On 21 May 2024 we took the decision to create this spiritual successor of
-kaboom, being also a fork of it.
+On _21 May 2024_ we took the decision to create this spiritual successor of
+**Kaboom.js**, being also a fork of it.
 
 This was due to Kaboom.js being abandoned by Replit, the original creator of
 Kaboom.js, and the community was left without a maintainer.
 
-The idea is to expand what kaboom was under a new identity, KAPLAY itself is
+The idea is to expand what kaboom was under a new identity, **KAPLAY** itself is
 fully compatible with Kaboom.
 
 ## Logos, names and other assets
