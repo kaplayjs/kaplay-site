@@ -22,7 +22,7 @@ const docEntries = Object.values(docGroups)
     return (
         <>
             {
-                referenceList.map((reference) => (
+                referenceList?.map((reference) => (
                     <ReferenceEntry data={reference} />
                 ))
             }

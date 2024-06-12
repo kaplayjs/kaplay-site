@@ -12,7 +12,7 @@ type Props = {
 const { link, target, noTranslate, lang = "en" } = Astro.props;
 ---
 
-<li class="sidebar-link">
+<li class="sidebar-link list-none">
     <a
         href={noTranslate ? link : getLangedRoute(lang, link)}
         class="btn btn-ghost w-full btn-sm justify-start text-left text-lg"

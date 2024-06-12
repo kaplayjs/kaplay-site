@@ -1,5 +1,6 @@
 ---
 import doc from "@/../doc.json";
+import packageJson from "@/../kaplay/package.json";
 import type { LocaleSubKeys } from "@/util/i18n";
 import { getCollection } from "astro:content";
 import type { SidebarEntry, SidebarProps } from "./Sidebar.astro";
@@ -11,6 +12,7 @@ type Props = SidebarProps;
 const { sidebarMode, t, lang: pageLang } = Astro.props;
 const groups = doc.groups;
 const groupsKeys = Object.keys(doc.groups) as (keyof typeof doc.groups)[];
+const version = packageJson.version;
 
 let renderList: SidebarEntry[] = [];
 let allOpen = false;
@@ -64,7 +66,8 @@ if (sidebarMode === "guides") {
 
 <>
     {
-        renderList?.map(({ linkList, folder }) => (
+        version.startsWith("3001")
+        && renderList?.map(({ linkList, folder }) => (
             <SidebarFolder title={folder} id={folder} isOpen={allOpen}>
                 {
                     linkList.map(({ title, link }) => (
@@ -77,6 +80,18 @@ if (sidebarMode === "guides") {
                     ))
                 }
             </SidebarFolder>
+        ))
+    }
+    {
+        renderList?.map(({ linkList, folder }) => (
+        linkList.map(({ title, link }) => (
+            <SidebarLink
+                {link}
+                lang={pageLang}
+                noTranslate={sidebarMode === "reference"}
+            >
+                {title}</SidebarLink>
+        ))
         ))
     }
 </>
