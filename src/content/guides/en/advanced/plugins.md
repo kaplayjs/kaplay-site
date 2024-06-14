@@ -29,6 +29,9 @@ Now you can use the plugin in your game:
 const k = kaplay({
     plugins: [myPlugin],
 });
+
+// call the method!
+k.hi();
 ```
 
 Also there's exist an alternative way to use plugins:
