@@ -56,14 +56,14 @@ written in all caps, **KAPLAY**, not **KaPlay** or **Kaplay**. Anyway **kaplay**
 ## Colors
 
 <table>
-  <tr>
-    <td style="background-color: #6bc96c; color: #000000;">#ffd700</td>
-    <td style="background-color: #5ba675; color: #000000;">#5ba675</td>
-    <td style="background-color: #1f102a; color: #ffffff;">#1f102a</td>
-    <td style="background-color: #cc425e; color: #ffffff;">#cc425e</td>
-    <td style="background-color: #4a3052; color: #ffffff;">#4a3052</td>
-    <td style="background-color: #ffffff; color: #000000;">#ffffff</td>
-</tr>
+  <tr class="flex flex-col text-center lg:flex-row">
+    <td class="w-20" style="background-color: #6bc96c; color: #000000;">#ffd700</td>
+    <td class="w-20" style="background-color: #5ba675; color: #000000;">#5ba675</td>
+    <td class="w-20" style="background-color: #1f102a; color: #ffffff;">#1f102a</td>
+    <td class="w-20" style="background-color: #cc425e; color: #ffffff;">#cc425e</td>
+    <td class="w-20" style="background-color: #4a3052; color: #ffffff;">#4a3052</td>
+    <td class="w-20" style="background-color: #ffffff; color: #000000;">#ffffff</td>
+  </tr>
 </table>
 
 ## Screenshots
