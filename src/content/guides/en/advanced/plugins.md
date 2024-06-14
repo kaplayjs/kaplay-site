@@ -38,3 +38,5 @@ const k = kaplay();
 
 k.plug(myPlugin);
 ```
+
+You can explore plugins made by the community in our [Discord](https://discord.gg/kaboom-883781994583056384).
