@@ -83,8 +83,9 @@ if (sidebarMode === "guides") {
         ))
     }
     {
-        renderList?.map(({ linkList, folder }) => (
-        linkList.map(({ title, link }) => (
+        version.startsWith("3000")
+        && renderList?.map(({ linkList, folder }) => (
+            linkList.map(({ title, link }) => (
             <SidebarLink
                 {link}
                 lang={pageLang}
