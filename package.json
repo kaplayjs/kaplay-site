@@ -8,7 +8,7 @@
     "build": "npm run doc && astro check && astro build && npm run lunaria:build",
     "preview": "astro preview",
     "astro": "astro",
-    "doc": "node scripts/buildDoc.js",
+    "doc": "cd kaplay && dts-bundle-generator -o dist/doc.d.ts dist/declaration/types.d.ts & cd .. & node scripts/buildDoc.js",
     "markdoc": "node scripts/markdownDoc.js",
     "build:publish": "npm run build && wrangler pages deploy dist",
     "lunaria:build": "lunaria build",

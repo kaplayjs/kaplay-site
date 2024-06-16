@@ -4,7 +4,7 @@ import ts from "typescript";
 console.log("building doc...");
 
 // generate .d.ts / docs data
-let dts = await fs.readFile(`kaplay/src/types.ts`, "utf-8");
+let dts = await fs.readFile(`kaplay/dist/doc.d.ts`, "utf-8");
 
 const f = ts.createSourceFile("ts", dts, ts.ScriptTarget.Latest, true);
 
@@ -101,8 +101,6 @@ const groupsOrder = [
 ];
 
 for (const statement of statements) {
-    if (!statement.name) continue;
-
     if (!types[statement.name]) {
         types[statement.name] = [];
     }
