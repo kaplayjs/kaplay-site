@@ -101,6 +101,8 @@ const groupsOrder = [
 ];
 
 for (const statement of statements) {
+    if (!statement.name) continue;
+
     if (!types[statement.name]) {
         types[statement.name] = [];
     }

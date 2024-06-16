@@ -76,13 +76,19 @@ const { sidebarMode, t, lang } = Astro.props;
                     GitHub
                 </SidebarLink>
                 <SidebarLink
+                    link="/changelog"
+                    {lang}
+                    noTranslate
+                >
+                    What's new on v3001
+                </SidebarLink>
+                <SidebarLink
                     link="https://play.kaplayjs.com"
                     target="_blank"
                     {lang}
                     noTranslate
                 >
                     {t("sidebar.playground")}
-                    <div class="badge badge-primary">WIP</div>
                 </SidebarLink>
             </ul>
             <div class="divider"></div>
