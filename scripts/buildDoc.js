@@ -95,9 +95,14 @@ const groupsOrder = [
     "Assets",
     "Game Obj",
     "Components",
+    "Component Types",
     "Scene",
+    "Input",
     "Events",
     "Info",
+    "Timer",
+    "Math",
+    "Misc",
 ];
 
 for (const statement of statements) {
