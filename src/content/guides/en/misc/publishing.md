@@ -1,10 +1,10 @@
 ---
 title: Publishing
-description: Learn how to publish your Kaboom game in platforms like Itch.io or Newgrounds.com.
+description: Learn how to publish your KAPLAY game in platforms like Itch.io or Newgrounds.com.
 order: 6
 ---
 
-# Publishing a Kaboom game
+# Publishing a KAPLAY game
 
 When we finish our game, the most important time it's here...
 Publish it!
@@ -18,7 +18,7 @@ We should prepare our game to pubish in the different platforms.
 - use a custom `canvas` is a good idea too
 
 ```js
-kaboom({
+kaplay({
     canvas: document.queryElement("#myCanvas"),
 });
 ```

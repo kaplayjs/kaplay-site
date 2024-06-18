@@ -180,7 +180,7 @@ bean.onCollide("tree", () => {
 
 `.onCollide()` is a function provided by the `area()` component. It registers an event that runs every time the object collides with another object with a certain tag, passed by the first argument. In this case, it means every time Bean collides with another game obj with tag `"tree"`, run the callback.
 
-Inside the callback we're doing 2 things. `addKaboom()` spawns an explosion animation which is basically kaboom's logo, it accepts 1 argument the position to spawn, which we pass in the player's current position with `.pos` (which is provided by the `pos()` component).
+Inside the callback we're doing 2 things. `addKaboom()` spawns an explosion animation, it accepts 1 argument the position to spawn, which we pass in the player's current position with `.pos` (which is provided by the `pos()` component).
 
 The second thing is `shake()`, which just shakes the screen,
 

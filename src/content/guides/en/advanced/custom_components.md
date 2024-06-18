@@ -64,4 +64,4 @@ function mycomp() {
 
 Most KAPLAY built-in components are built using public interfaces, feel free to check them out. Also check out the "drag", "platformer", "doublejump" demos with their own custom components.
 
-Check out the [component demo](https://play.kaboomjs.com).
+Check out the [component demo](https://play.kaplayjs.com/?example=component).

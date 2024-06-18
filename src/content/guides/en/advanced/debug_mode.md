@@ -6,7 +6,7 @@ order: 3
 
 # Debug Mode
 
-The debug mode is a Kaboom integrated tool that helps you to debug your game.
+The debug mode is a KAPLAY integrated tool that helps you to debug your game.
 Now, we will see how to use it.
 
 ## Inspect Mode
