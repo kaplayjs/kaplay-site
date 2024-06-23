@@ -12,9 +12,13 @@ export default {
                 kaplay: {
                     ...require("daisyui/src/theming/themes")["dim"],
                     primary: "#7fc963",
+                    "--animation-btn": 0,
+                },
+                kaplayLight: {
+                    ...require("daisyui/src/theming/themes")["emerald"],
+                    "--animation-btn": 0,
                 },
             },
-            "cupcake",
         ],
         darkTheme: "kaplay",
         logs: false,

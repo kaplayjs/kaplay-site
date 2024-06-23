@@ -15,12 +15,42 @@ const { link, target, noTranslate, lang = "en" } = Astro.props;
 <li class="sidebar-link list-none">
     <a
         href={noTranslate ? link : getLangedRoute(lang, link)}
-        class="btn btn-ghost w-full btn-sm justify-start text-left text-lg"
+        class="sidebar-link-a btn btn-ghost w-full btn-sm justify-start text-left text-lg"
         target={target}
+        data-link={link}
     >
         <slot />
     </a>
 </li>
+
+<script>
+    const setUrl = () => {
+        const url = new URL(location.href);
+        const pathname = url.pathname;
+        const sidebar = document.querySelector<HTMLElement>(".drawer-side");
+        const links = document.querySelectorAll<HTMLElement>(".sidebar-link-a");
+
+        links.forEach((link) => {
+            const href = link.dataset.link;
+            link.classList.remove("btn-primary");
+            link.classList.add("btn-ghost");
+
+            if (href === pathname) {
+                link.classList.remove("btn-ghost");
+                link.classList.add("btn-primary");
+                link.dataset.curScroll = sidebar?.scrollTop.toString();
+
+                if (sidebar) {
+                    sidebar.scrollTop = link.offsetTop
+                        - sidebar.clientHeight / 2;
+                }
+            }
+        });
+    };
+
+    document.addEventListener("astro:after-swap", () => setUrl());
+    document.addEventListener("DOMContentLoaded", () => setUrl());
+</script>
 
 <style>
     .sidebar-link {

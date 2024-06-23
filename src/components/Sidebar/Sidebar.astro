@@ -1,9 +1,11 @@
 ---
 import kaplayPackageJson from "@/../kaplay/package.json";
 import kaplayOutlined from "@/assets/kaplay-o.webp";
+import { Counter } from "@/components/Content/Counter";
 import type { Locale, TranslationString } from "@/util/i18n";
 import { getLangedRoute } from "@/util/path";
 import Image from "astro/components/Image.astro";
+import SidebarChangeLink from "./SidebarChangeLink.astro";
 import SidebarLink from "./SidebarLink.astro";
 import SidebarList from "./SidebarList.astro";
 
@@ -28,21 +30,22 @@ type Props = SidebarProps;
 const { sidebarMode, t, lang } = Astro.props;
 ---
 
-<div class="drawer lg:drawer-open">
+<div class="drawer lg:drawer-open h-full z-20">
     <input id="sidebar" type="checkbox" class="drawer-toggle" />
 
-    <div
-        class="drawer-content flex flex-col items-start justify-start max-h-screen overflow-y-auto w-full"
-    >
+    <div class="drawer-content w-full">
         <slot />
     </div>
-    <div class="drawer-side">
+    <div class="drawer-side h-dvh">
         <label
             for="sidebar"
             aria-label="close sidebar"
             class="drawer-overlay"
         ></label>
-        <div class="p-4 w-80 min-h-full bg-base-200 text-base-content">
+        <div
+            class="p-4 w-72 min-h-full bg-base-300 text-base-content"
+            transition:persist
+        >
             <figure>
                 <a class="btn btn-ghost h-max" href={getLangedRoute(lang, "/")}>
                     <Image
@@ -52,6 +55,7 @@ const { sidebarMode, t, lang } = Astro.props;
                     />
                 </a>
             </figure>
+            <Counter />
             <div class="px-4 pb-4">
                 <p class="badge badge-primary badge-lg">
                     {kaplayPackageJson.version}
@@ -93,15 +97,15 @@ const { sidebarMode, t, lang } = Astro.props;
             </ul>
             <div class="divider"></div>
             <ul class="flex-col gap-2">
-                <SidebarLink link="/guides/install" {lang}>{
+                <SidebarChangeLink link="/guides/install" {lang}>{
                     t("sidebar.guides")
-                }</SidebarLink>
-                <SidebarLink link="/reference" {lang}>{
+                }</SidebarChangeLink>
+                <SidebarChangeLink link="/reference" {lang}>{
                     t("sidebar.refdoc")
-                }</SidebarLink>
-                <SidebarLink link="/blog" {lang}>{
+                }</SidebarChangeLink>
+                <SidebarChangeLink link="/blog" {lang}>{
                     t("sidebar.blog")
-                }</SidebarLink>
+                }</SidebarChangeLink>
             </ul>
             <div class="divider"></div>
             <SidebarList {sidebarMode} {t} {lang} />

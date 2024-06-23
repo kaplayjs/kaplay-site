@@ -4,6 +4,8 @@ import Footer from "@/components/Footer/Footer.astro";
 import type { SidebarProps } from "@/components/Sidebar/Sidebar.astro";
 import Sidebar from "@/components/Sidebar/Sidebar.astro";
 import "@fontsource-variable/fira-code";
+import { ViewTransitions } from "astro:transitions";
+import "../styles/base.css";
 
 type MetaTagData = {
     title?: string;
@@ -17,6 +19,7 @@ type Props = {
     meta?: MetaTagData;
 } & SidebarProps;
 
+const { url } = Astro;
 const { sidebarMode, meta, t, lang } = Astro.props;
 ---
 
@@ -28,6 +31,8 @@ const { sidebarMode, meta, t, lang } = Astro.props;
         <link rel="icon" type="image/png" href="/favicon.png" />
         <link rel="canonical" href="kaplayjs.com" />
         <link rel="sitemap" href="/sitemap-index.xml" />
+        <link rel="alternate" hreflang="x-default" href={url.href} />
+        <link rel="alternate" hreflang="en" href={url.href} />
         <meta name="generator" content={Astro.generator} />
         <meta name="description" content={meta?.description} />
         <meta property="og:title" content={meta?.title} />
@@ -45,7 +50,7 @@ const { sidebarMode, meta, t, lang } = Astro.props;
         <meta name="keywords" content={meta?.keywords} />
 
         <title>{meta?.title}</title>
-        <!-- <ViewTransitions /> -->
+        <ViewTransitions />
     </head>
     <body>
         <Sidebar {sidebarMode} {t} {lang}>
