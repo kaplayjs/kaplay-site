@@ -36,7 +36,7 @@ const { type, lang } = Astro.props;
     }}
     sidebarMode="reference"
 >
-    <div class="w-full p-4">
+    <div class="w-full min-h-dvh p-4">
         {type?.map((refData) => <DocEntry data={refData} />)}
     </div>
 

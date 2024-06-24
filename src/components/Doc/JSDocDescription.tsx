@@ -1,5 +1,6 @@
 import { component$ } from "@builder.io/qwik";
 import { marked } from "marked";
+import { TypeLink } from "./TypeLink";
 
 type Props = {
     data?: any;
@@ -17,15 +18,18 @@ export const JSDocDescription = component$(({ data }: Props) => {
                 <>
                     {e.kind === "JSDocText" && <>{e.text}</>}
                     {e.kind === "JSDocLink" && (
-                        <a
-                            class="text-primary decoration-transparent"
-                            href={`#${e.name}`}
-                            dangerouslySetInnerHTML={await marked.parseInline(
-                                e.text,
-                                {},
-                            )}
+                        <TypeLink
+                            name={e.name}
                         >
-                        </a>
+                            <span
+                                dangerouslySetInnerHTML={await marked
+                                    .parseInline(
+                                        e.text,
+                                        {},
+                                    )}
+                            >
+                            </span>
+                        </TypeLink>
                     )}
                 </>
             ))}

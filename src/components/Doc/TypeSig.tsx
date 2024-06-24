@@ -109,6 +109,8 @@ export const TypeSig = component$(({ data, parentData }: Props) => {
                     />]
                 </>
             );
+        case "TypeQuery":
+            return <TypeLink name={data.exprName?.escapedText}></TypeLink>;
         default:
             return (
                 <>

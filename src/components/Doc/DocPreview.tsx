@@ -1,20 +1,19 @@
 import doc from "@/../doc.json";
+import { isKaboomCtxMember } from "@/util/doc";
 import { $, component$, useOnDocument, useSignal } from "@builder.io/qwik";
 import { DocEntry } from "./DocEntry";
 
-export const DocPreview = component$((props) => {
-    const docEntries = useSignal([]);
+export const DocPreview = component$(() => {
+    const docEntries = useSignal<any[]>([]);
 
     useOnDocument(
         "onSetDocPreview",
         $((e: CustomEvent<number>) => {
-            console.log("docsetted");
             const allDoc = doc.types as any;
-            const foundDoc = allDoc[e.detail];
+            const kaboomDoc = allDoc.KaboomCtx[0].members as any;
+            const foundDoc = allDoc[e.detail] ?? kaboomDoc[e.detail] ?? [];
 
             docEntries.value = foundDoc;
-
-            console.log(foundDoc);
         }),
     );
 
@@ -22,11 +21,12 @@ export const DocPreview = component$((props) => {
         <dialog id="type-modal" class="modal">
             <div class="modal-box absolute right-4 lg:h-96 overflow-y-auto w-fit">
                 <div class="flex justify-end gap-2">
-                    <a id="go-to" class="btn btn-ghost" href="">Go To</a>
                     <a
                         id="open-in-new"
                         class="btn btn-ghost"
-                        href=""
+                        href={(isKaboomCtxMember(docEntries.value[0]?.name)
+                            ? "/doc/ctx/"
+                            : "/doc/") + docEntries.value[0]?.name}
                         target="_blank"
                     >
                         Open in new tab

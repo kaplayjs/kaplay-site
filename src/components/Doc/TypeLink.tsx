@@ -7,7 +7,8 @@ type Props = {
 };
 
 export const TypeLink = component$(({ name }: Props) => {
-    const docEntry = (doc as any).types[name] ?? null;
+    const docEntry = (doc as any).types[name]
+        ?? (doc as any).types.KaboomCtx[0].members[name] ?? null;
     const isStyled = Boolean(docEntry);
 
     const handleClick = $((e: PointerEvent) => {
@@ -30,7 +31,7 @@ export const TypeLink = component$(({ name }: Props) => {
 
     return (
         <span
-            class={cn("type-btn cursor-pointer", {
+            class={cn("type-btn text-primary cursor-pointer", {
                 "decoration-current underline decoration-dashed": isStyled,
             })}
             data-link-type={name}
