@@ -3,8 +3,8 @@ import hamburgerIcon from "@/assets/hamburger.webp";
 import Footer from "@/components/Footer/Footer.astro";
 import type { SidebarProps } from "@/components/Sidebar/Sidebar.astro";
 import Sidebar from "@/components/Sidebar/Sidebar.astro";
-import "@fontsource-variable/fira-code";
 import { ViewTransitions } from "astro:transitions";
+import "@fontsource-variable/fira-code";
 import "../styles/base.css";
 
 type MetaTagData = {
@@ -48,6 +48,10 @@ const { sidebarMode, meta, t, lang } = Astro.props;
         <meta name="twitter:image" content={meta?.image} />
         <meta name="theme-color" content={meta?.themeColor ?? "#6ba672"} />
         <meta name="keywords" content={meta?.keywords} />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/base16/summerfruit-dark.min.css"
+        />
 
         <title>{meta?.title}</title>
         <ViewTransitions />

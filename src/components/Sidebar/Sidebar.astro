@@ -55,7 +55,6 @@ const { sidebarMode, t, lang } = Astro.props;
                     />
                 </a>
             </figure>
-            <Counter />
             <div class="px-4 pb-4">
                 <p class="badge badge-primary badge-lg">
                     {kaplayPackageJson.version}
@@ -100,7 +99,7 @@ const { sidebarMode, t, lang } = Astro.props;
                 <SidebarChangeLink link="/guides/install" {lang}>{
                     t("sidebar.guides")
                 }</SidebarChangeLink>
-                <SidebarChangeLink link="/reference" {lang}>{
+                <SidebarChangeLink link="/doc/kaplay" {lang}>{
                     t("sidebar.refdoc")
                 }</SidebarChangeLink>
                 <SidebarChangeLink link="/blog" {lang}>{

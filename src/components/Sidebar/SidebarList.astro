@@ -49,14 +49,21 @@ if (sidebarMode === "guides") {
     allOpen = true;
 } else if (sidebarMode === "reference") {
     const categoryLinks: SidebarEntry[] = [];
+    const kaboomCtxMembers = Object.keys(doc.types.KaboomCtx[0].members);
 
     groupsKeys.map((groupName) => {
         categoryLinks.push({
             folder: groupName,
-            linkList: groups[groupName].entries.map((item: any) => ({
-                title: item,
-                link: `#${item}`,
-            })),
+            linkList: groups[groupName].entries.map((item: any) => {
+                const isKaboomCtxMember = kaboomCtxMembers.includes(item);
+
+                return {
+                    title: item,
+                    link: isKaboomCtxMember
+                        ? `/doc/ctx/${item}`
+                        : `/doc/${item}`,
+                };
+            }),
         });
     });
 

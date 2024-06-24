@@ -1,7 +1,8 @@
 {
   "lineWidth": 80,
   "typescript": {
-    "indentWidth": 4
+    "indentWidth": 4,
+    "jsx.forceNewLinesSurroundingContent": false
   },
   "json": {
   },

@@ -1,6 +1,6 @@
 ---
-import ReferenceList from "@/components/Reference/ReferenceList.astro";
-import TypePreview from "@/components/TypePreview/TypePreview.astro";
+import DocList from "@/components/Doc/DocList.astro";
+import { DocPreview } from "@/components/Doc/DocPreview";
 import Layout from "@/layouts/Layout.astro";
 import "@/styles/reference.css";
 import { getStaticPathsByLocales } from "@/util/path";
@@ -25,7 +25,8 @@ const { t, lang } = Astro.props;
     {lang}
 >
     <div class="w-full p-4">
-        <ReferenceList mode="all" />
+        <DocList />
     </div>
-    <TypePreview />
+
+    <DocPreview />
 </Layout>

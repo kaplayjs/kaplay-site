@@ -2,3 +2,14 @@ body {
   min-height: 100dvh;
   font-family: "Fredoka", sans-serif;
 }
+
+/** SHIKI  **/
+
+.shiki {
+  @apply p-2 my-2 rounded-box;
+}
+
+/** UTILS **/
+.text-fira {
+  font-family: "Fira Code Variable", monospace;
+}

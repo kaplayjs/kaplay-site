@@ -1,10 +1,6 @@
 ---
 import doc from "@/../doc.json";
-import ReferenceEntry from "./ReferenceEntry.astro";
-
-type Props = {
-    mode: "KaboomCtx" | "all";
-};
+import { DocEntry } from "./DocEntry";
 
 const allDoc = doc.types;
 const kaboomCtxDoc = allDoc.KaboomCtx[0].members;
@@ -21,11 +17,7 @@ const docEntries = Object.values(docGroups)
 
     return (
         <>
-            {
-                referenceList?.map((reference) => (
-                    <ReferenceEntry data={reference} />
-                ))
-            }
+            {referenceList?.map((reference) => <DocEntry data={reference} />)}
 
             <div class="divider" />
         </>

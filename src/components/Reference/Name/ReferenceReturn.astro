@@ -1,9 +1,0 @@
----
-import TypeSignature from "@/components/TypeSig/TypeSignature.astro";
-
-const { data } = Astro.props;
-
-if (data.name === "kaplay") return;
----
-
-<>: <TypeSignature data={data?.type?.type ?? data?.type} /></>
