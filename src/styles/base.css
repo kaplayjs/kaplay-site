@@ -3,6 +3,15 @@ body {
   font-family: "Fredoka", sans-serif;
 }
 
+.sidebar-link {
+  text-overflow: ellipsis;
+  text-wrap: nowrap;
+}
+
+.folder[folder-state="closed"] .folder-content {
+  display: none;
+}
+
 /** SHIKI  **/
 
 .shiki {

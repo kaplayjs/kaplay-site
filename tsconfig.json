@@ -8,7 +8,8 @@
       ]
     },
     "jsx": "react-jsx",
-    "jsxImportSource": "@builder.io/qwik"
+    "jsxImportSource": "@builder.io/qwik",
+    "resolveJsonModule": true
   },
   "exclude": [
     "kaplay",

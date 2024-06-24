@@ -35,6 +35,7 @@ const { Content } = await entry.render();
 ---
 
 <Layout
+    lang={lang}
     meta={{
         title: "KAPLAY Guides, " + entry.data.title,
         description: entry.data.description,
@@ -42,8 +43,6 @@ const { Content } = await entry.render();
         keywords: "kaplayjs, guides, documentation",
     }}
     sidebarMode="guides"
-    {t}
-    {lang}
 >
     <Prose>
         <Content />

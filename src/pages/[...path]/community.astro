@@ -11,11 +11,10 @@ const { t, lang } = Astro.props;
 ---
 
 <Layout
+    lang={lang}
     meta={{
         description: "A collection of blog posts about KAPLAY.",
     }}
-    {t}
-    {lang}
 >
     <Prose>
         <h1>Community</h1>

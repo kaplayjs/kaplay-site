@@ -12,13 +12,12 @@ export default defineConfig({
     site: "https://kaplayjs.com",
     integrations: [
         qwik(),
-        tailwind(),
         mdx(),
+        tailwind(),
         astroMetaTags(),
         robotsTxt(),
         sitemap(),
     ],
-    compressHTML: false,
     srcDir: "src",
     server: {
         port: 3200,

@@ -8,15 +8,14 @@ export function getStaticPaths() {
     return getStaticPathsByLocales();
 }
 
-const { t, lang } = Astro.props;
+const { lang } = Astro.props;
 const entry = await getEntry("misc", `en/presskit`);
 if (!entry) return;
 const { Content } = await entry.render();
 ---
 
 <Layout
-    {t}
-    {lang}
+    lang={lang}
     sidebarMode="guides"
     meta={{
         title: "KAPLAY, Presskit",

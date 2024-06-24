@@ -17,13 +17,12 @@ export async function getStaticPaths() {
     });
 }
 
-const { entry, t, lang } = Astro.props;
+const { entry, lang } = Astro.props;
 const { Content } = await entry.render();
 ---
 
 <Layout
-    {t}
-    {lang}
+    lang={lang}
     meta={{
         title: "KAPLAY Blogs, " + entry.data.title,
         description: entry.data.description,

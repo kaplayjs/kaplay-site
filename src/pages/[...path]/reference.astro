@@ -9,10 +9,11 @@ export function getStaticPaths() {
     return getStaticPathsByLocales();
 }
 
-const { t, lang } = Astro.props;
+const { lang } = Astro.props;
 ---
 
 <Layout
+    lang={lang}
     meta={{
         title: "KAPLAY, Reference Documentation",
         description:
@@ -21,8 +22,6 @@ const { t, lang } = Astro.props;
         keywords: "kaplay, reference, documentation, api, kaplayjs, kaboomjs",
     }}
     sidebarMode="reference"
-    {t}
-    {lang}
 >
     <div class="w-full p-4">
         <DocList />

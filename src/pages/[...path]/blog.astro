@@ -14,15 +14,15 @@ export function getStaticPaths() {
     return getStaticPathsByLocales();
 }
 
-const { t, lang } = Astro.props;
+const { lang } = Astro.props;
 ---
 
 <Layout
+    lang={lang}
     meta={{
         description: "A collection of blog posts about KAPLAY.",
     }}
-    {t}
-    {lang}
+    sidebarMode="blog"
 >
     <Prose>
         <h1>Blog</h1>

@@ -6,7 +6,7 @@ import { getLangedRoute, getPropsFromPath } from "@/util/path";
 const { t, lang } = getPropsFromPath(Astro.url.pathname);
 ---
 
-<Layout {t} {lang}>
+<Layout {lang}>
     <Prose>
         <h1>404</h1>
         <p class="min-h-screen">

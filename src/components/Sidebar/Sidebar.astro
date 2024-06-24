@@ -1,13 +1,14 @@
 ---
 import kaplayPackageJson from "@/../kaplay/package.json";
 import kaplayOutlined from "@/assets/kaplay-o.webp";
-import { Counter } from "@/components/Content/Counter";
-import type { Locale, TranslationString } from "@/util/i18n";
+import { $lang } from "@/stores";
+import type { Locale } from "@/util/i18n";
+import { t } from "@/util/i18n";
 import { getLangedRoute } from "@/util/path";
 import Image from "astro/components/Image.astro";
 import SidebarChangeLink from "./SidebarChangeLink.astro";
 import SidebarLink from "./SidebarLink.astro";
-import SidebarList from "./SidebarList.astro";
+import { SidebarList } from "./SidebarList";
 
 type LinkListEntry = {
     title: string;
@@ -20,14 +21,13 @@ export type SidebarEntry = {
 };
 
 export type SidebarProps = {
-    sidebarMode?: "guides" | "reference";
-    t: (key: TranslationString) => string;
-    lang: Locale;
+    sidebarMode?: "guides" | "reference" | "blog";
 };
 
 type Props = SidebarProps;
 
-const { sidebarMode, t, lang } = Astro.props;
+const lang = $lang.get();
+const { sidebarMode } = Astro.props;
 ---
 
 <div class="drawer lg:drawer-open h-full z-20">
@@ -61,7 +61,9 @@ const { sidebarMode, t, lang } = Astro.props;
                 </p>
             </div>
             <ul class="flex-col gap-2">
-                <SidebarLink link="/" {lang}>{t("sidebar.home")}</SidebarLink>
+                <SidebarLink link="/" {lang}>{
+                    t(lang, "sidebar.home")
+                }</SidebarLink>
                 <SidebarLink
                     link="https://kaboomjs.com/discord"
                     target="_blank"
@@ -91,23 +93,23 @@ const { sidebarMode, t, lang } = Astro.props;
                     {lang}
                     noTranslate
                 >
-                    {t("sidebar.playground")}
+                    {t(lang, "sidebar.playground")}
                 </SidebarLink>
             </ul>
             <div class="divider"></div>
             <ul class="flex-col gap-2">
                 <SidebarChangeLink link="/guides/install" {lang}>{
-                    t("sidebar.guides")
+                    t(lang, "sidebar.guides")
                 }</SidebarChangeLink>
                 <SidebarChangeLink link="/doc/kaplay" {lang}>{
-                    t("sidebar.refdoc")
+                    t(lang, "sidebar.refdoc")
                 }</SidebarChangeLink>
                 <SidebarChangeLink link="/blog" {lang}>{
-                    t("sidebar.blog")
+                    t(lang, "sidebar.blog")
                 }</SidebarChangeLink>
             </ul>
             <div class="divider"></div>
-            <SidebarList {sidebarMode} {t} {lang} />
+            <SidebarList sidebarMode={sidebarMode} />
         </div>
     </div>
 </div>

@@ -25,12 +25,11 @@ export async function getStaticPaths() {
     });
 }
 
-const { type, t, lang } = Astro.props;
+const { type, lang } = Astro.props;
 ---
 
 <Layout
-    {t}
-    {lang}
+    lang={lang}
     meta={{
         title: "KAPLAY Docs, " + type[0].name,
         description: type[0].name,

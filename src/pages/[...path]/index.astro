@@ -8,13 +8,12 @@ export function getStaticPaths() {
     return getStaticPathsByLocales();
 }
 
-const { t, lang } = Astro.props;
+const { lang } = Astro.props;
 const indexEntry = getEntry("misc", `${lang}`);
 const { Content } = await (await indexEntry).render();
 ---
 
 <Layout
-    {t}
     {lang}
     sidebarMode="guides"
     meta={{
