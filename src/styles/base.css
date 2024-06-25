@@ -15,6 +15,7 @@ body {
 /** SHIKI  **/
 
 .shiki {
+  overflow: auto;
   @apply p-2 my-2 rounded-box;
 }
 
