@@ -7,6 +7,8 @@
   "json": {
   },
   "markdown": {
+    "lineWidth": 80,
+    "textWrap": "always"
   },
   "markup": {
     "indentWidth": 4,

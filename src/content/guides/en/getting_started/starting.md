@@ -7,17 +7,18 @@ order: 2
 # Basic Concepts
 
 As we said, KAPLAY is a game library that makes it easy to create games in
-JavaScript. For that, we have three main concepts: Scenes, Game Objects,
-and Components.
+JavaScript. For that, we have three main concepts: Scenes, Game Objects, and
+Components.
 
-We can think games as a theater, where scenes are the acts, game objects are the actors and components are the script that the actors follow.
+We can think games as a theater, where scenes are the acts, game objects are the
+actors and components are the script that the actors follow.
 
 ![alt text](assets/theater.png)
 
 ## Initialization
 
-All KAPLAY games start with the `kaplay()` function. This function also
-make avaible all methods and functions that you will use to create your game.
+All KAPLAY games start with the `kaplay()` function. This function also make
+avaible all methods and functions that you will use to create your game.
 
 ```js
 kaplay();
@@ -32,7 +33,8 @@ If a game is a theater, then objects are the actors. They are the things that
 move, interact, and make the game interesting.
 
 In KAPLAY, you can create objects with the `add()` function, it takes an array
-of **components** that define the object's behavior ("the script of your actor").
+of **components** that define the object's behavior ("the script of your
+actor").
 
 ```js
 kaplay(); // remember to initialize the game
