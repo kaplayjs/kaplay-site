@@ -2,10 +2,10 @@
 import kaplayPackageJson from "@/../kaplay/package.json";
 import kaplayOutlined from "@/assets/kaplay-o.webp";
 import { $lang } from "@/stores";
-import type { Locale } from "@/util/i18n";
 import { t } from "@/util/i18n";
 import { getLangedRoute } from "@/util/path";
 import Image from "astro/components/Image.astro";
+import { getBlogEntries, getDocEntries, getGuidesEntries } from "./entries";
 import SidebarChangeLink from "./SidebarChangeLink.astro";
 import SidebarLink from "./SidebarLink.astro";
 import { SidebarList } from "./SidebarList";
@@ -28,6 +28,15 @@ type Props = SidebarProps;
 
 const lang = $lang.get();
 const { sidebarMode } = Astro.props;
+let renderList: SidebarEntry[] = [];
+
+if (sidebarMode === "guides") {
+    renderList = await getGuidesEntries();
+} else if (sidebarMode === "reference") {
+    renderList = await getDocEntries();
+} else if (sidebarMode === "blog") {
+    renderList = await getBlogEntries();
+}
 ---
 
 <div class="drawer lg:drawer-open h-full z-20">
@@ -109,7 +118,10 @@ const { sidebarMode } = Astro.props;
                 }</SidebarChangeLink>
             </ul>
             <div class="divider"></div>
-            <SidebarList sidebarMode={sidebarMode} />
+            <SidebarList
+                sidebarMode={sidebarMode}
+                sidebarEntries={renderList}
+            />
         </div>
     </div>
 </div>
