@@ -26,7 +26,12 @@ body {
 
 .shiki {
   overflow: auto;
-  @apply p-2 my-2 rounded-box;
+  @apply p-2 my-2 rounded-box bg-base-300 !important;
+}
+
+.astro-code {
+  overflow: auto;
+  @apply p-2 my-2 rounded-box bg-base-300 !important;
 }
 
 /** UTILS **/
