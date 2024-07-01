@@ -1,4 +1,6 @@
 ---
+import kaplayOutlined from "@/assets/kaplay-o.webp";
+import Image from "astro/components/Image.astro";
 import FooterLink from "./FooterLink.astro";
 import FooterNav from "./FooterNav.astro";
 ---
@@ -64,7 +66,12 @@ import FooterNav from "./FooterNav.astro";
         class="flex flex-col sm:flex-row gap-6 justify-center sm:justify-between items-center"
     >
         <div class="flex items-center gap-4 justify-center">
-            <img alt="Logo" src="/kaplaylogo.png" class="w-40" />
+            <Image
+                src={kaplayOutlined}
+                alt="kaplay logo"
+                height={70}
+            />
+
             <div>
                 <p class="text-2xl">KAPLAY Team</p>
             </div>
