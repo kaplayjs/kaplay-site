@@ -81,6 +81,23 @@ const statements = transform(f.statements, (k, v) => {
     }
 });
 
+// modify statements to make it more readable
+for (const statement of statements) {
+    if (!statement.name === undefined) continue;
+
+    if (statement.kind === "FirstStatement") {
+        const declaration = statement.declarationList.declarations[0];
+
+        statements.push({
+            ...statement,
+            ...declaration,
+            kind: "FunctionDeclaration",
+            name: declaration.name,
+            jsDoc: statement.jsDoc,
+        });
+    }
+}
+
 // contain the type data for doc gen
 const types = {};
 const groups = {};
@@ -111,6 +128,8 @@ for (const statement of statements) {
     }
 
     types[statement.name].push(statement);
+
+    if (statement.name === undefined) continue;
 
     if (statement.name === "KaboomCtx") {
         if (statement.kind !== "InterfaceDeclaration") {
