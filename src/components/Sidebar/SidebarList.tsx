@@ -1,11 +1,6 @@
 import { $lang } from "@/stores";
 
-import {
-    component$,
-    useComputed$,
-    useSignal,
-    useTask$,
-} from "@builder.io/qwik";
+import { component$, useComputed$, useSignal } from "@builder.io/qwik";
 import type { SidebarEntry, SidebarProps } from "./Sidebar.astro";
 import { SidebarFolder } from "./SidebarFolder";
 import { SidebarLink } from "./SidebarLink";
@@ -57,6 +52,7 @@ export const SidebarList = component$(
                                     link={link}
                                     lang={$lang.get()}
                                     noTranslate={sidebarMode === "reference"}
+                                    key={link}
                                 >
                                     {title}
                                 </SidebarLink>

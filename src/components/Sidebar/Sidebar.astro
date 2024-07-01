@@ -7,7 +7,7 @@ import { getLangedRoute } from "@/util/path";
 import Image from "astro/components/Image.astro";
 import { getBlogEntries, getDocEntries, getGuidesEntries } from "./entries";
 import SidebarChangeLink from "./SidebarChangeLink.astro";
-import SidebarLink from "./SidebarLink.astro";
+import { SidebarLink } from "./SidebarLink";
 import { SidebarList } from "./SidebarList";
 
 type LinkListEntry = {
@@ -39,6 +39,8 @@ if (sidebarMode === "guides") {
 }
 ---
 
+<script src="./paintLinks.ts" />
+
 <div class="drawer lg:drawer-open h-full z-20">
     <input id="sidebar" type="checkbox" class="drawer-toggle" />
 
@@ -61,6 +63,8 @@ if (sidebarMode === "guides") {
                         src={kaplayOutlined}
                         alt="kaplay logo"
                         class="w-52 h-24 aspect-auto object-contain"
+                        width={208}
+                        height={100}
                     />
                 </a>
             </figure>
@@ -70,7 +74,7 @@ if (sidebarMode === "guides") {
                 </p>
             </div>
             <ul class="flex-col gap-2">
-                <SidebarLink link="/" {lang}>{
+                <SidebarLink link="/" lang={lang}>{
                     t(lang, "sidebar.home")
                 }</SidebarLink>
                 <SidebarLink

@@ -36,7 +36,11 @@ import FooterNav from "./FooterNav.astro";
             <FooterLink href="https://x.com/kaplayjs" external>
                 Twitter/X
             </FooterLink>
-            <FooterLink href="https://mastodon.gamedev.place/@kaplay" external>
+            <FooterLink
+                href="https://mastodon.gamedev.place/@kaplay"
+                external
+                rel="me"
+            >
                 Mastodon (gamedev.place)
             </FooterLink>
             <FooterLink href="https://www.reddit.com/r/KaplayJS/" external>
@@ -45,6 +49,7 @@ import FooterNav from "./FooterNav.astro";
         </FooterNav>
         <FooterNav title="SUPPORT">
             <a href="https://ko-fi.com/D1D0Z04EB" target="_blank"><img
+                    width="144"
                     height="36"
                     style="border:0px;height:36px;"
                     src="https://storage.ko-fi.com/cdn/kofi1.png?v=3"

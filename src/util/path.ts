@@ -1,4 +1,9 @@
-import { DEFAULT_LANG, type Locale, localedT, localesNames } from "./i18n";
+import {
+    DEFAULT_LANG,
+    type Locale,
+    localedT,
+    locales as localesNames,
+} from "./i18n";
 
 export function getStaticPathsByLocales(locales = localesNames) {
     const defaultLocale = locales[0];
@@ -9,8 +14,8 @@ export function getStaticPathsByLocales(locales = localesNames) {
                 path: locale === defaultLocale ? undefined : locale,
             },
             props: {
-                t: localedT(locale),
-                lang: locale,
+                t: localedT(locale as Locale),
+                lang: locale as Locale,
             },
         };
     });

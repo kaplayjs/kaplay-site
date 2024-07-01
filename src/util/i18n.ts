@@ -1,7 +1,7 @@
 import { englishLocales } from "@/locales/en/ui";
 import { spanishLocales } from "@/locales/es/ui";
 
-export type Locale = typeof locales[number];
+export type Locale = "en" | "es";
 export type LocaleMap = {
     [K in keyof typeof englishLocales]: {
         [K2 in keyof typeof englishLocales[K]]: string;
@@ -21,10 +21,10 @@ export type TranslationString =
     | TranslationStringsGuides
     | TranslationStringsMisc;
 
-export const locales = ["en", "es"] as const;
+export const locales = import.meta.env.NODE_ENV === "fastproduction"
+    ? ["en"]
+    : ["en", "es"] as const;
 export const DEFAULT_LANG = "en";
-
-export const localesNames = ["en", "es"] as const;
 
 export const localesMap = {
     en: englishLocales,
@@ -43,7 +43,7 @@ export function t(locale: Locale, key: TranslationString) {
     const localKey = keys[0];
     const localSubKey = keys[1];
     const localeMap = localesMap[locale];
-    const defaultLocaleMap = localesMap[locales[0]];
+    const defaultLocaleMap = localesMap[locales[0] as Locale];
 
     return localeMap?.[localKey]?.[localSubKey]
         ?? defaultLocaleMap[localKey][localSubKey];

@@ -20,6 +20,7 @@ export const Code = component$((props: Props) => {
         const content = await highlight(props.content, props.language);
         highlightedContent.value = content;
     });
+
     return (
         <>
             <pre dangerouslySetInnerHTML={highlightedContent.value} />

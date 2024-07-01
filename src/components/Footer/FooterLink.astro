@@ -2,11 +2,17 @@
 type Props = {
     href: string;
     external?: boolean;
+    rel?: string;
 };
 
-const { href, external } = Astro.props;
+const { href, external, rel } = Astro.props;
 ---
 
-<a class="link link-hover" {href} target={external ? "_blank" : "_parent"}>
+<a
+    class="link link-hover"
+    {href}
+    target={external ? "_blank" : "_parent"}
+    rel={rel}
+>
     <slot />
 </a>

@@ -12,6 +12,11 @@ body {
   display: none;
 }
 
+.sidebar-link {
+  text-overflow: ellipsis;
+  text-wrap: nowrap;
+}
+
 .drawer-side {
   scroll-behavior: smooth;
   scrollbar-gutter: stable;

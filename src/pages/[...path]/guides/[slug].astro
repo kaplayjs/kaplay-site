@@ -30,7 +30,7 @@ export async function getStaticPaths() {
     return entriesByLocale.filter(Boolean);
 }
 
-const { entry, t, lang } = Astro.props;
+const { entry, lang } = Astro.props;
 const { Content } = await entry.render();
 ---
 
