@@ -29,7 +29,7 @@ export const SidebarList = component$(
         return (
             <>
                 <input
-                    class="input input-primary"
+                    class="input input-primary w-full my-2"
                     placeholder="Search here"
                     bind:value={filter}
                 />
