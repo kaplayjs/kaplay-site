@@ -7,7 +7,6 @@
     "start": "npm run doc && astro dev",
     "build": "npm run doc && astro check && astro build && npm run lunaria:build",
     "preview": "astro preview",
-    "cf:preview": "wrangler pages dev dist",
     "astro": "astro",
     "doc": "node scripts/buildDoc.js",
     "predoc": "cd kaplay && dts-bundle-generator -o dist/doc.d.ts dist/declaration/types.d.ts",
@@ -15,6 +14,8 @@
     "build:publish": "npm run build && wrangler pages deploy dist",
     "lunaria:build": "lunaria build",
     "lunaria:preview": "lunaria preview",
+    "cf:deploy": "wrangler pages deploy dist",
+    "cf:preview": "wrangler pages dev dist",
     "f:dev": "astro dev",
     "f:build": "NODE_ENV=fastproduction astro build"
   },
