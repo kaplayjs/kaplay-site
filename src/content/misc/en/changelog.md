@@ -6,14 +6,14 @@ description: The new features and changes in KAPLAY v3001
 # Changelog
 
 As you know, KAPLAY is a fork of Kaboom.js, and the latest stable version of
-Kaboom.js was v3000. We are releasing v3001 and not v4000 because we want
-to highlight the **full compatibility** with Kaboom.js v3000.
+Kaboom.js was v3000. We are releasing v3001 and not v4000 because we want to
+highlight the **full compatibility** with Kaboom.js v3000.
 
 To install this new version, currently in alpha, you can use the following
 command:
 
 ```bash
-npm install kaboom@next
+npm install kaplay@next
 ```
 
 ## New features
@@ -26,15 +26,16 @@ npm install kaboom@next
 // bind your buttons
 kaplay({
     bindings: {
-        "jump": {
+        jump: {
             keyboard: ["space", "up"],
             gamepad: ["south"],
         },
     },
+  },
 });
 
 onButtonPress("jump", () => {
-    player.jump();
+  player.jump();
 });
 ```
 
@@ -65,18 +66,18 @@ control the draw order of objects. It was removed in v3000, but now it's back
 
 ```js
 // define the layers
-layers([
-    "bg",
+layers(
+    [
+        "bg",
+        "game",
+        "ui",
+        // the default layer
+    ],
     "game",
-    "ui",
-    // the default layer
-], "game");
+);
 
 // use the layer component
-add([
-    sprite("bg"),
-    layer("bg"),
-]);
+add([sprite("bg"), layer("bg")]);
 ```
 
 - added support for radius in individual corners for `rect()` component
@@ -89,15 +90,23 @@ add([
 ]);
 ```
 
-- added `getTreeRoot()` to get the game's root object, which is the parent of all other objects
+- added `getTreeRoot()` to get the game's root object, which is the parent of
+  all other objects
 - added `loadMusic()` to load streaming audio (doesn't block in loading screen)
 - added `chooseMultiple()` and `shuffle()` helpers for arrays
 - added `getSceneName()` to get the current scene name
+- added `camFlash()` to flash the screen
 - added `SpriteComp.getCurAnim()` to get the current animation data
+- added `Color.toArray()` to convert a color to an array
 - added `outline()`, `shader()`, and `area()` properties to `debug.inspect` (f1)
 - added `kaboomOpt.debugKey` for customizing the key used to toggle debug mode
 - added `GameObjRaw.tags` to get a game object's tags
-- added `GameObjRaw.sprite` property to get the name of the sprite
+- added `GameObjRaw<SpriteComp>.sprite` property to get the name of the sprite
+- added `patrol()` component to move along a list of waypoints
+- added `sentry()` component to notify when certain objects are in sight
+- added `particles()` component to emit and draw particles
+- added `NavMesh` class for pathfinding on a mesh
+- added `navigation()` component to calculate a list of waypoints on a graph
 - added global raycast function and raycast method to level
 - added support for textured polygons
 - added support for concave polygon drawing
@@ -108,10 +117,11 @@ add([
 - added quadratic bezier and Catmull-Rom evaluation
 - added evaluation of the first and second derivatives for all splines
 - added higher order easing functions linear, steps and cubic-bezier
-- added `Color.toArray()`
 
-### Deprecated
+## Deprecated
 
 - deprecated `kaboom()` in favor of `kaplay()` (you can still use `kaboom*`)
 - deprecated `SpriteComp.curAnim()` in favor of `SpriteComp.getCurAnim().name`
 - deprecated `fadeIn` component in favor of `OpacityComp.fadeIn()`
+- deprecated `Event`, `EventHandler` and `EventController` in favor of `KEvent`,
+  `KEventHandler` and `KEventController`
