@@ -2,6 +2,10 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import qwik from "@qwikdev/astro";
+import {
+    transformerNotationDiff,
+    transformerNotationWordHighlight,
+} from "@shikijs/transformers";
 import astroMetaTags from "astro-meta-tags";
 import robotsTxt from "astro-robots-txt";
 import { defineConfig } from "astro/config";
@@ -24,5 +28,13 @@ export default defineConfig({
     },
     image: {
         service: passthroughImageService(),
+    },
+    markdown: {
+        shikiConfig: {
+            transformers: [
+                transformerNotationDiff(),
+                transformerNotationWordHighlight(),
+            ],
+        },
     },
 });

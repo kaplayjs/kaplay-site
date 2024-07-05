@@ -1,6 +1,12 @@
 import { $lang } from "@/stores";
 
-import { component$, useComputed$, useSignal } from "@builder.io/qwik";
+import {
+    component$,
+    useComputed$,
+    useSignal,
+    useVisibleTask$,
+} from "@builder.io/qwik";
+import { isServer } from "@builder.io/qwik/build";
 import type { SidebarEntry, SidebarProps } from "./Sidebar.astro";
 import { SidebarFolder } from "./SidebarFolder";
 import { SidebarLink } from "./SidebarLink";
@@ -24,7 +30,18 @@ export const SidebarList = component$(
             );
         });
 
+        const searchInputRef = useSignal<HTMLInputElement>();
         const allOpen = sidebarMode === "guides";
+
+        useVisibleTask$(() => {
+            if (!searchInputRef.value) return;
+            const defaultValue = new URLSearchParams(location.search).get(
+                "search",
+            ) ?? "";
+
+            searchInputRef.value.defaultValue = defaultValue;
+            filter.value = defaultValue;
+        });
 
         return (
             <>
@@ -32,6 +49,7 @@ export const SidebarList = component$(
                     class="input input-primary w-full my-2"
                     placeholder="Search here"
                     bind:value={filter}
+                    ref={searchInputRef}
                 />
 
                 {filteredList.value.map(({ linkList, folder }) => {

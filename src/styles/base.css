@@ -39,6 +39,31 @@ body {
   @apply p-2 my-2 rounded-box bg-base-300 !important;
 }
 
+.line.diff.add {
+  @apply bg-green-400 bg-opacity-40
+}
+
+span.line.diff.add::before {
+  content: "+";
+  font-weight: bold;
+  position: absolute;
+}
+
+span.line.diff.remove {
+  @apply bg-red-400 bg-opacity-40
+}
+
+span.line.diff.remove::before {
+  content: "-";
+  font-weight: bold;
+  position: absolute;
+}
+
+.highlighted-word {
+  @apply bg-gray-300 bg-opacity-40
+
+}
+
 /** UTILS **/
 .text-fira {
   font-family: "Fira Code Variable", monospace;
