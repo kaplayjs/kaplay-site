@@ -6,7 +6,6 @@ import {
     useSignal,
     useVisibleTask$,
 } from "@builder.io/qwik";
-import { isServer } from "@builder.io/qwik/build";
 import type { SidebarEntry, SidebarProps } from "./Sidebar.astro";
 import { SidebarFolder } from "./SidebarFolder";
 import { SidebarLink } from "./SidebarLink";
