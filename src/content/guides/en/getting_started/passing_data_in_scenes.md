@@ -6,8 +6,8 @@ order: 5
 
 # Passing data between scenes
 
-In KAPLAY, you can pass and get data between scenes, imagine you have a game
-scene.
+In KAPLAY, you can pass and get data between scenes. Imagine you have a game
+scene:
 
 ```js
 scene("game", () => {
@@ -36,16 +36,16 @@ scene("gameover", () => {
 });
 ```
 
-Now we need to pass the score to the `gameover` scene, we can do this with the
+Now we need to pass the score to the `gameover` scene. We can do that with the
 following code:
 
 ```js
 go("gameover", score);
 ```
 
-With that we are passing the score to the `gameover` scene, now we need to get
-that score, for that you will use the callback parameters of the `scene()`
-function.
+Now that we've passed the score to the `gameover` scene, we need to access
+it. To do that, use the callback parameters of the `scene()`
+function:
 
 ```js
 // [!code word:(score)]
@@ -61,7 +61,7 @@ Now you can use the `score` variable in the `gameover` scene.
 
 ## Other ways
 
-You can also pass many arguments
+You can also pass multiple arguments:
 
 ```js
 go("gameover", score, time, player);
@@ -71,7 +71,7 @@ scene("gameover", (score, time, player) => {
 });
 ```
 
-Or pass an object
+Or pass an object:
 
 ```js
 go("gameover", {
