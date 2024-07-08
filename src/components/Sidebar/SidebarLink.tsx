@@ -9,7 +9,7 @@ import {
 } from "@builder.io/qwik";
 
 type SidebarLinkProps = {
-    link: string;
+    href: string;
     target?: string;
     lang?: Locale;
     noTranslate?: boolean;
@@ -23,11 +23,11 @@ export const SidebarLink = component$((props: SidebarLinkProps) => {
         <li class="sidebar-link list-none">
             <a
                 href={props.noTranslate
-                    ? props.link
-                    : getLangedRoute(lang, props.link)}
+                    ? props.href
+                    : getLangedRoute(lang, props.href)}
                 class="sidebar-link-a btn btn-sm w-full justify-start text-left text-lg aria-[current=page]:btn-primary aria-[current=false]:btn-ghost"
                 target={props.target}
-                data-link={props.link}
+                data-link={props.href}
                 aria-current="false"
             >
                 <Slot />

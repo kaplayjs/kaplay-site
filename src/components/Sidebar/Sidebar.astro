@@ -74,39 +74,47 @@ if (sidebarMode === "guides") {
                 </p>
             </div>
             <ul class="flex-col gap-2">
-                <SidebarLink link="/" lang={lang}>{
+                <SidebarLink href="/" lang={lang}>{
                     t(lang, "sidebar.home")
                 }</SidebarLink>
                 <SidebarLink
-                    link="https://kaboomjs.com/discord"
+                    href="https://kaboomjs.com/discord"
                     target="_blank"
-                    {lang}
+                    lang={lang}
                     noTranslate
                 >
                     Discord
                 </SidebarLink>
                 <SidebarLink
-                    link="https://github.com/marklovers/kaplay"
+                    href="https://github.com/marklovers/kaplay"
                     target="_blank"
-                    {lang}
+                    lang={lang}
                     noTranslate
                 >
                     GitHub
                 </SidebarLink>
                 <SidebarLink
-                    link="/changelog"
-                    {lang}
+                    href="/changelog"
+                    lang={lang}
                     noTranslate
                 >
                     What's new on v3001
                 </SidebarLink>
                 <SidebarLink
-                    link="https://play.kaplayjs.com"
+                    href="https://play.kaplayjs.com"
                     target="_blank"
-                    {lang}
+                    lang={lang}
                     noTranslate
                 >
                     {t(lang, "sidebar.playground")}
+                </SidebarLink>
+                <SidebarLink
+                    href="https://ko-fi.com/kaplay"
+                    target="_blank"
+                    lang={lang}
+                    noTranslate
+                >
+                    Donate to KAPLAY
                 </SidebarLink>
             </ul>
             <div class="divider"></div>

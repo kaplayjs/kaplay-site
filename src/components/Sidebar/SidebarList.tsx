@@ -66,7 +66,7 @@ export const SidebarList = component$(
                         >
                             {filteredList.map(({ title, link }) => (
                                 <SidebarLink
-                                    link={link}
+                                    href={link}
                                     lang={$lang.get()}
                                     noTranslate={sidebarMode === "reference"}
                                     key={link}
