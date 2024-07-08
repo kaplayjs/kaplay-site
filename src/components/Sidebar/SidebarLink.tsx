@@ -25,7 +25,7 @@ export const SidebarLink = component$((props: SidebarLinkProps) => {
                 href={props.noTranslate
                     ? props.href
                     : getLangedRoute(lang, props.href)}
-                class="sidebar-link-a btn btn-sm w-full justify-start text-left text-lg aria-[current=page]:btn-primary aria-[current=false]:btn-ghost"
+                class="sidebar-link-a btn btn-sm h-auto w-full justify-start text-left text-lg aria-[current=page]:btn-primary aria-[current=false]:btn-ghost"
                 target={props.target}
                 data-link={props.href}
                 aria-current="false"
