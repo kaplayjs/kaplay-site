@@ -14,7 +14,7 @@
     "build:publish": "npm run build && wrangler pages deploy dist",
     "lunaria:build": "lunaria build",
     "lunaria:preview": "lunaria preview",
-    "cf:deploy": "wrangler pages deploy dist",
+    "cf:deploy": "npm run build && wrangler pages deploy dist",
     "cf:preview": "wrangler pages dev dist",
     "f:dev": "astro dev",
     "f:build": "NODE_ENV=fastproduction astro build"
