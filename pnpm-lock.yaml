@@ -78,6 +78,9 @@ importers:
       dprint:
         specifier: ^0.45.1
         version: 0.45.1
+      dts-bundle-generator:
+        specifier: ^9.5.1
+        version: 9.5.1
       shiki:
         specifier: ^1.9.0
         version: 1.9.0
@@ -1516,6 +1519,11 @@ packages:
   dset@3.1.3:
     resolution: {integrity: sha512-20TuZZHCEZ2O71q9/+8BwKwZ0QtD9D8ObhrihJPr+vLLYlSuAU3/zL4cSlgbfeoGHTjCSJBa7NGcrF9/Bx/WJQ==}
     engines: {node: '>=4'}
+
+  dts-bundle-generator@9.5.1:
+    resolution: {integrity: sha512-DxpJOb2FNnEyOzMkG11sxO2dmxPjthoVWxfKqWYJ/bI/rT1rvTMktF5EKjAYrRZu6Z6t3NhOUZ0sZ5ZXevOfbA==}
+    engines: {node: '>=14.0.0'}
+    hasBin: true
 
   eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
@@ -4543,6 +4551,11 @@ snapshots:
       '@dprint/win32-x64': 0.45.1
 
   dset@3.1.3: {}
+
+  dts-bundle-generator@9.5.1:
+    dependencies:
+      typescript: 5.5.2
+      yargs: 17.7.2
 
   eastasianwidth@0.2.0: {}
 

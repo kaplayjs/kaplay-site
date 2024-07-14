@@ -5,10 +5,12 @@ description: KAPLAY Presskit for journalists and content creators
 
 ## About
 
-**KAPLAY** (_/ˈkæpleɪ/_) is a **JavaScript** library that helps you make games **fast** and **fun**! With an
-easy API and a focus on **games**, you can create games **quickly** without writing many lines of code.
+**KAPLAY** (_/ˈkæpleɪ/_) is a **JavaScript** library that helps you make games
+**fast** and **fun**! With an easy API and a focus on **games**, you can create
+games **quickly** without writing many lines of code.
 
-**KAPLAYGROUND** is the official playground of KAPLAY, where you can test our examples and learn how to use KAPLAY.
+**KAPLAYGROUND** is the official playground of KAPLAY, where you can test our
+examples and learn how to use KAPLAY.
 
 ## Features
 
@@ -16,8 +18,10 @@ easy API and a focus on **games**, you can create games **quickly** without writ
 - An ECS (Entity Component System) architecture.
 - A powerful event system.
 - Arcade physics, fast and simple.
-- A bunch of examples to get you started quickly [here](https://play.kaplayjs.com).
-- A large community of developers who creates plugins and share them with the community on our official Discord.
+- A bunch of examples to get you started quickly
+  [here](https://play.kaplayjs.com).
+- A large community of developers who creates plugins and share them with the
+  community on our official Discord.
 - Fully compatible with Kaboom.js 3000.
 
 ## The backstory
@@ -34,7 +38,8 @@ fully compatible with Kaboom.
 ## Logos, names and other assets
 
 The name is **KAPLAY**, a play on the word "kaboom" and the word "play", it's
-written in all caps, **KAPLAY**, not **KaPlay** or **Kaplay**. Anyway **kaplay** (lowercase) is also acceptable.
+written in all caps, **KAPLAY**, not **KaPlay** or **Kaplay**. Anyway **kaplay**
+(lowercase) is also acceptable.
 
 **KAPLAY logo (outlined, webp animation)**
 
@@ -44,8 +49,7 @@ written in all caps, **KAPLAY**, not **KaPlay** or **Kaplay**. Anyway **kaplay**
 
 ![KAPLAY LOGO animated](../assets/kaplay.webp)
 
-**KAPLAY logo (outlined, png)**
-![KAPLAY LOGO outlined](../assets/kaplay-o.png)
+**KAPLAY logo (outlined, png)** ![KAPLAY LOGO outlined](../assets/kaplay-o.png)
 
 **KAPLAY logo (png)**
 

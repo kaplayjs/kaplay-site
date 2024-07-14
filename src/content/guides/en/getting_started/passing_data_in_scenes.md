@@ -43,9 +43,8 @@ following code:
 go("gameover", score);
 ```
 
-Now that we've passed the score to the `gameover` scene, we need to access
-it. To do that, use the callback parameters of the `scene()`
-function:
+Now that we've passed the score to the `gameover` scene, we need to access it.
+To do that, use the callback parameters of the `scene()` function:
 
 ```js
 // [!code word:(score)]

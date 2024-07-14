@@ -11,6 +11,7 @@
     "astro": "astro",
     "doc": "node scripts/buildDoc.js",
     "markdoc": "node scripts/markdownDoc.js",
+    "fmt": "dprint fmt",
     "build:publish": "npm run build && wrangler pages deploy dist",
     "lunaria:build": "lunaria build",
     "lunaria:preview": "lunaria preview",
@@ -45,8 +46,10 @@
     "clsx": "^2.1.1",
     "daisyui": "^4.12.2",
     "dprint": "^0.45.1",
+    "dts-bundle-generator": "^9.5.1",
     "shiki": "^1.9.0",
     "tailwind-merge": "^2.3.0",
     "wrangler": "^3.58.0"
-  }
+  },
+  "packageManager": "pnpm@9.5.0+sha512.140036830124618d624a2187b50d04289d5a087f326c9edfc0ccd733d76c4f52c3a313d4fc148794a2a9d81553016004e6742e8cf850670268a7387fc220c903"
 }

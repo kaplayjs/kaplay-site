@@ -11,7 +11,8 @@ Now, we will see how to use it.
 
 ## Inspect Mode
 
-You can enable inpsect mode by pressing `F1` key. This will open the debug panel.
+You can enable inpsect mode by pressing `F1` key. This will open the debug
+panel.
 
 ![](assets/2024-06-03-21-42-06.png)
 
@@ -35,9 +36,14 @@ With <kbd class="kbd kbd-sm text-current">F2</kbd>, you can clear the log.
 
 ## Controlling time
 
-With the keys <kbd class="kbd kbd-sm text-current">F7</kbd>, <kbd class="kbd kbd-sm text-current">F8</kbd>, <kbd class="kbd kbd-sm text-current">F9</kbd> you can control the time of the game.
+With the keys <kbd class="kbd kbd-sm text-current">F7</kbd>,
+<kbd class="kbd kbd-sm text-current">F8</kbd>,
+<kbd class="kbd kbd-sm text-current">F9</kbd> you can control the time of the
+game.
 
-<kbd class="kbd kbd-sm text-current">F7</kbd> and <kbd class="kbd kbd-sm text-current">F9</kbd> will decrease and increase the time speed, respectively.
+<kbd class="kbd kbd-sm text-current">F7</kbd> and
+<kbd class="kbd kbd-sm text-current">F9</kbd> will decrease and increase the
+time speed, respectively.
 <kbd class="kbd kbd-sm text-current">F8</kbd> will pause the game.
 
 This is useful to test features in slow motion or to pause the game to inspect

@@ -12,8 +12,12 @@ In this guide you will learn how to write and use custom shaders in KAPLAY.
 
 ### Vertex shader
 
-A vertex shader can manipulate data on vertex level. Usually a vertex shader can change any of the vertex's properties, but for KAPLAY only the position can be altered. In most instances the mesh will be a four point quad, thus the shader is called 4 times, once for each point in the quad.
-A default vertex shader would look like this. The function is passed the position, uv coordinate and color of the vertex and needs to return the updated position.
+A vertex shader can manipulate data on vertex level. Usually a vertex shader can
+change any of the vertex's properties, but for KAPLAY only the position can be
+altered. In most instances the mesh will be a four point quad, thus the shader
+is called 4 times, once for each point in the quad. A default vertex shader
+would look like this. The function is passed the position, uv coordinate and
+color of the vertex and needs to return the updated position.
 
 ```js
 vec4 vert(vec2 pos, vec2 uv, vec4 color) {
@@ -21,13 +25,19 @@ vec4 vert(vec2 pos, vec2 uv, vec4 color) {
 }
 ```
 
-The default vertex shader returns the primitive's vertex unchanged.
-If a modified vertex is to be returned, it should be a 4 dimensional vector with x, y the position of the vertex, z=0 and w=1. Since there is no z-buffer, and the view is orthogonal, z has no effect. The w coordinate is 1 because we are returning a point, not a vector. Vectors can't be moved, therefore their w would be 0 and would not be influenced by the translation part of the matrix.
+The default vertex shader returns the primitive's vertex unchanged. If a
+modified vertex is to be returned, it should be a 4 dimensional vector with x, y
+the position of the vertex, z=0 and w=1. Since there is no z-buffer, and the
+view is orthogonal, z has no effect. The w coordinate is 1 because we are
+returning a point, not a vector. Vectors can't be moved, therefore their w would
+be 0 and would not be influenced by the translation part of the matrix.
 
 ### Fragment shader
 
-Once the positions of all vertices is determined, the primitive is rasterized. For each pixel drawn, the fragment shader is called. This shader can no longer change the position, but it can affect the color.
-A default fragment shader would look like this.
+Once the positions of all vertices is determined, the primitive is rasterized.
+For each pixel drawn, the fragment shader is called. This shader can no longer
+change the position, but it can affect the color. A default fragment shader
+would look like this.
 
 ```
 vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
@@ -35,9 +45,10 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
 }
 ```
 
-This default shader mixes the base color and texture colors together.
-If an altered color is to be returned, it should be a vec4 containing the r, g, b and a channels as floating point numbers between 0 and 1.
-For example, the following shader only uses the texture channel's alpha, while using the base color.
+This default shader mixes the base color and texture colors together. If an
+altered color is to be returned, it should be a vec4 containing the r, g, b and
+a channels as floating point numbers between 0 and 1. For example, the following
+shader only uses the texture channel's alpha, while using the base color.
 
 ```
 vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
@@ -45,7 +56,8 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
 }
 ```
 
-The following shader takes the texture color, grayscales it and then recolors it with the base color.
+The following shader takes the texture color, grayscales it and then recolors it
+with the base color.
 
 ```
 vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
@@ -64,7 +76,13 @@ There are two ways to load a shader:
 
 ## Passing data
 
-Without parameters, a shader would be static, or would have to be redefined each frame if some dynamism was expected. Therefore a shader can have parameters which can change every time the scene is rendered. These parameters are called uniforms. Every function passing a shader also has a parameter to pass uniforms to the shader. For example, the following sprite effect defines a function which returns an object with a uniform called u_time. This function is called each frame, and the parameters are sent to the shader before rendering.
+Without parameters, a shader would be static, or would have to be redefined each
+frame if some dynamism was expected. Therefore a shader can have parameters
+which can change every time the scene is rendered. These parameters are called
+uniforms. Every function passing a shader also has a parameter to pass uniforms
+to the shader. For example, the following sprite effect defines a function which
+returns an object with a uniform called u_time. This function is called each
+frame, and the parameters are sent to the shader before rendering.
 
 ```ts
 loadShader(
@@ -92,8 +110,12 @@ add([
 ]);
 ```
 
-Instead of a function, an object can be passed. This can be used in case the uniforms are not frame dependent. Note though that to replace uniforms set using an object, the function needs to be called once more (in case of usePostEffect) or the component readded (in case of the shader component).
-When using the direct draw API, like drawSprite or drawUVQuad, the shader and uniforms are passed through the render properties.
+Instead of a function, an object can be passed. This can be used in case the
+uniforms are not frame dependent. Note though that to replace uniforms set using
+an object, the function needs to be called once more (in case of usePostEffect)
+or the component readded (in case of the shader component). When using the
+direct draw API, like drawSprite or drawUVQuad, the shader and uniforms are
+passed through the render properties.
 
 ```ts
 drawSprite({
@@ -108,12 +130,17 @@ drawSprite({
 
 ## Multipass shaders
 
-Some shaders, like gaussian blur, need multiple passes in order to work. This can be done by making a framebuffer (makeCanvas), drawing inside this framebuffer (by using the drawon component or Canvas.draw), and using the famebuffer's texture (frameBuffer.tex) to draw a quad (uvquad component or drawUVQuad).
+Some shaders, like gaussian blur, need multiple passes in order to work. This
+can be done by making a framebuffer (makeCanvas), drawing inside this
+framebuffer (by using the drawon component or Canvas.draw), and using the
+famebuffer's texture (frameBuffer.tex) to draw a quad (uvquad component or
+drawUVQuad).
 
 ## Learning more about shaders
 
-GLSL has a variety of functions which makes it easier to express your ideas in code. So be sure to look these up.
-Here are some resources to get started on writing GLSL shaders.
+GLSL has a variety of functions which makes it easier to express your ideas in
+code. So be sure to look these up. Here are some resources to get started on
+writing GLSL shaders.
 
 - [https://thebookofshaders.com/]
 - [https://www.khronos.org/files/webgl/webgl-reference-card-1_0.pdf]

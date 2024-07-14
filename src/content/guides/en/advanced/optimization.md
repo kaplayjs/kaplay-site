@@ -10,9 +10,13 @@ Here's some tips on optimizing performance / maintainability for KAPLAY games
 
 ## Cleanup One-off Objects
 
-Sometimes there are some objects that gets created, leaves screen, and never seen again, like a bullet. These objects will keep being rendered / updated and be detrimental to performance if they get created a lot, it's better to remove them when they leave screen.
+Sometimes there are some objects that gets created, leaves screen, and never
+seen again, like a bullet. These objects will keep being rendered / updated and
+be detrimental to performance if they get created a lot, it's better to remove
+them when they leave screen.
 
-`offscreen()` is a component that helps you define behavior when objects go off-screen.
+`offscreen()` is a component that helps you define behavior when objects go
+off-screen.
 
 ```js
 k.add([
@@ -27,7 +31,10 @@ k.add([
 
 ## Hide Off-Screen Objects
 
-Sometimes you might be drawing a lot of objects that's not on screen (e.g. if you have a big map and your camera only sees a small area), this is very unnessecary, use `offscreen()` component to define object's behavior when they're not on screen.
+Sometimes you might be drawing a lot of objects that's not on screen (e.g. if
+you have a big map and your camera only sees a small area), this is very
+unnessecary, use `offscreen()` component to define object's behavior when
+they're not on screen.
 
 ```js
 // planting flowers all over the map
@@ -43,7 +50,8 @@ for (let i = 0; i < 1000; i++) {
 
 ## Use `await`
 
-KAPLAY use a lot of `Promise` and `Promise`-like in time / event related stuff, use `await` on those to make code look nicer
+KAPLAY use a lot of `Promise` and `Promise`-like in time / event related stuff,
+use `await` on those to make code look nicer
 
 ```js
 async function example() {
@@ -54,7 +62,9 @@ async function example() {
 
 ## Avoid Global Namespace
 
-By default KAPLAY uses a lot of common names like `pos`, `sprite` that occupies global namespace, it's often better to use `global: false` to not export KAPLAY functions to `window`
+By default KAPLAY uses a lot of common names like `pos`, `sprite` that occupies
+global namespace, it's often better to use `global: false` to not export KAPLAY
+functions to `window`
 
 ```js
 kaplay({
@@ -66,7 +76,10 @@ const pos = k.vec2(120, 200);
 
 ## Use Game Object local timers
 
-When programming timer / tween behavior for a specific game object, it's better to attach `timer()` component to the game object and use that instead of global timer functions. This way the timer is tied to the life cycle of the game object, when then game object pauses or gets destroyed, the timer will not run.
+When programming timer / tween behavior for a specific game object, it's better
+to attach `timer()` component to the game object and use that instead of global
+timer functions. This way the timer is tied to the life cycle of the game
+object, when then game object pauses or gets destroyed, the timer will not run.
 
 ```js
 // prefer
@@ -113,7 +126,8 @@ player.onStateEnter("idle", async () => {
 
 ## Use Game Object local input handlers
 
-Similar to above, it's often better to use local input handlers as opposed to global ones.
+Similar to above, it's often better to use local input handlers as opposed to
+global ones.
 
 ```js
 const gameScene = k.add([]);
@@ -141,5 +155,6 @@ gameScene.destory();
 
 Loading assets takes time, compress them when you can.
 
-- Compress `.ttf` or `.otf` to `.woff2` (with [google/woff2](https://github.com/google/woff2))
+- Compress `.ttf` or `.otf` to `.woff2` (with
+  [google/woff2](https://github.com/google/woff2))
 - Compress `.wav` files to `.ogg` or `.mp3`

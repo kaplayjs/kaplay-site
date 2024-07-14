@@ -6,7 +6,8 @@ order: 6
 
 # Migrating from Kaboom.js to KAPLAY
 
-KAPLAY is the fork of Kaboom.js, with the goal of continuing the development of the library.
+KAPLAY is the fork of Kaboom.js, with the goal of continuing the development of
+the library.
 
 This guide is in general, how to pass from Kaboom to KAPLAY.
 
@@ -44,5 +45,6 @@ To try out new features, you have to install the `@next` version of KAPLAY.
 Check the [Installation Guide](/guides/install) for more information about
 installing KAPLAY.
 
-Check the [Changelog](https://github.com/marklovers/kaplay/blob/master/CHANGELOG.md#v30010)
+Check the
+[Changelog](https://github.com/marklovers/kaplay/blob/master/CHANGELOG.md#v30010)
 for the new features and changes.

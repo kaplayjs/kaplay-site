@@ -6,9 +6,8 @@ order: 6
 
 # Plugins
 
-KAPLAY uses a flexible plugin system that helps you extend
-the engine's functionality with new methods,
-constants, or even new components.
+KAPLAY uses a flexible plugin system that helps you extend the engine's
+functionality with new methods, constants, or even new components.
 
 Let's take a look at how the default plugin `myplugin()` is implemented.
 
@@ -42,4 +41,5 @@ const k = kaplay();
 k.plug(myPlugin);
 ```
 
-You can explore plugins made by the community in our [Discord](https://discord.gg/kaboom-883781994583056384).
+You can explore plugins made by the community in our
+[Discord](https://discord.gg/kaboom-883781994583056384).

@@ -28,7 +28,8 @@ add([sprite("bean"), origin("center")]);
 add([sprite("bean"), anchor("center")]);
 ```
 
-- `obj.onHover()` in `area()` comp is renamed to `obj.onHoverUpdate()`, `obj.onHover()` now only runs once when obj is hovered
+- `obj.onHover()` in `area()` comp is renamed to `obj.onHoverUpdate()`,
+  `obj.onHover()` now only runs once when obj is hovered
 
 ```js
 const obj = add([pos(300, 200), sprite("bean"), area()]);
@@ -79,7 +80,8 @@ add([sprite("bean"), area(), body(), solid()]);
 add([sprite("bean"), area(), body({ isStatic: true })]);
 ```
 
-- gravity now needs to be manually enabled, `gravity()` is renamed to `setGravity()` and `getGravity()`
+- gravity now needs to be manually enabled, `gravity()` is renamed to
+  `setGravity()` and `getGravity()`
 
 ```js
 // before, gravity will be enabled by body() component
@@ -114,7 +116,8 @@ const obj = add([pos(100, 100), sprite("bean"), area(), body(), doubleJump()]);
 obj.doubleJump();
 ```
 
-- `body.onFall()` is renamed to `body.onFallOff()`, `body.onFall()` now runs when body is in the air and starts to fall
+- `body.onFall()` is renamed to `body.onFallOff()`, `body.onFall()` now runs
+  when body is in the air and starts to fall
 
 ```js
 gravity(1600);
@@ -136,7 +139,8 @@ obj.onFall(() => {
 });
 ```
 
-- removed `outview()` in favor of `offscreen()`, which is less accurate but much faster
+- removed `outview()` in favor of `offscreen()`, which is less accurate but much
+  faster
 
 ```js
 // before
@@ -197,7 +201,8 @@ scale(2); // scale is vec2(2, 2)
 obj.scale; // vec2(2, 2)
 ```
 
-- `loadFont()` now only loads `.ttf`, `.otf`, `.woff` etc fonts that browser support, use `loadBitmapFont()` to load bitmap fonts
+- `loadFont()` now only loads `.ttf`, `.otf`, `.woff` etc fonts that browser
+  support, use `loadBitmapFont()` to load bitmap fonts
 
 ```js
 // before
@@ -208,7 +213,8 @@ loadBitmapFont("unscii", "/examples/fonts/unscii_8x8.png", 8, 8);
 loadFont("apl386", "/examples/fonts/apl386.ttf");
 ```
 
-- removed builtin fonts `apl386`, `apl386o`, `sink` and `sinko`, using browser built-in `monospace` font as default font now
+- removed builtin fonts `apl386`, `apl386o`, `sink` and `sinko`, using browser
+  built-in `monospace` font as default font now
 
 ```js
 // v3000, manually load these fonts if you need them
@@ -247,7 +253,9 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
 );
 ```
 
-- `anchor` (previously `origin`) no longer controls text alignment (only controls the anchor of the whole text area), use `text({ align: "left" })` option for text alignment
+- `anchor` (previously `origin`) no longer controls text alignment (only
+  controls the anchor of the whole text area), use `text({ align: "left" })`
+  option for text alignment
 
 ```js
 // before
@@ -281,7 +289,8 @@ add([
 ]);
 ```
 
-- changed all event handlers to return an `EventController` object, instead of a function to cancel
+- changed all event handlers to return an `EventController` object, instead of a
+  function to cancel
 
 ```js
 // before
