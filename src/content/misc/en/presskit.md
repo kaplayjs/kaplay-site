@@ -10,8 +10,6 @@ easy API and a focus on **games**, you can create games **quickly** without writ
 
 **KAPLAYGROUND** is the official playground of KAPLAY, where you can test our examples and learn how to use KAPLAY.
 
-We are also working on **KAPLAY** **Editor**, a games editor for KAPLAY, where you can create games in your browser.
-
 ## Features
 
 - Creation of levels using ASCII maps.
@@ -57,7 +55,7 @@ written in all caps, **KAPLAY**, not **KaPlay** or **Kaplay**. Anyway **kaplay**
 
 <table>
   <tr class="flex flex-col text-center lg:flex-row">
-    <td class="w-20" style="background-color: #6bc96c; color: #000000;">#ffd700</td>
+    <td class="w-20" style="background-color: #6bc96c; color: #000000;">#6bc96c</td>
     <td class="w-20" style="background-color: #5ba675; color: #000000;">#5ba675</td>
     <td class="w-20" style="background-color: #1f102a; color: #ffffff;">#1f102a</td>
     <td class="w-20" style="background-color: #cc425e; color: #ffffff;">#cc425e</td>
