@@ -3,10 +3,12 @@ title: "State of KAPLAY #1"
 author: lajbel
 date: 07/15/2024
 description: Explore the latest advancements and community highlights in KAPLAY, the successor to Kaboom.js. Discover new features, contributors, and more!
-image: banners/markjam-5-winners.png
+image: banners/sok1.png
 ---
 
 # State of KAPLAY #1
+
+> lajbel, July 15, 2024
 
 Hey everyone! It's been a while since our last update. A lot has been happening
 in the world of KAPLAY/Kaboom.js, so let's dive into what's new.
@@ -39,6 +41,8 @@ thriving KAPLAY community. Special thanks go to:
   community.
 - **Shooza**, for be a contributor in the code.
 - **JSLegendDev**, for create content about KAPLAY.
+- **Gamedev.js**, for create a [post](https://gamedevjs.com/tools/kaplay/) about
+  KAPLAY.
 - And all the other **contributors** and **community members**.
 
 These individuals have been instrumental in transitioning from Kaboom.js to

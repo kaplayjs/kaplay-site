@@ -22,7 +22,7 @@ body {
   scroll-behavior: smooth;
   scrollbar-gutter: stable;
   scrollbar-color: currentColor var(--fallback-b3, oklch(var(--b3)/var(--tw-text-opacity)));
-  overflow-y: auto;
+
   scrollbar-width: thin;
 }
 
