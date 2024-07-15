@@ -39,7 +39,7 @@ thriving KAPLAY community. Special thanks go to:
   community.
 - **Haroon**, for be moderator of the Discord server and also be active in the
   community.
-- **Shooza**, for be a contributor in the code.
+- **Shoozza**, for be a contributor in the code.
 - **JSLegendDev**, for create content about KAPLAY.
 - **Gamedev.js**, for create a [post](https://gamedevjs.com/tools/kaplay/) about
   KAPLAY.
