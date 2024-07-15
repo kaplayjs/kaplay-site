@@ -129,7 +129,7 @@ There's games made with KAPLAY/Boom, tutorials, and more.
   Relaxing puzzle games, relased in Google Play. Made with Kaboom.js +
   Capacitor.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/m636OQnV-wY?si=d3TuX99_YZJAnWUS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/m636OQnV-wY?si=d3TuX99_YZJAnWUS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 - [What The Floosh Game](https://igorwastaken.itch.io/wtfl-game): A puzzle game
   about avoiding obstacles and collecting coins. Made with KAPLAY
@@ -139,12 +139,12 @@ There's games made with KAPLAY/Boom, tutorials, and more.
 - [JSLegendDev](https://www.youtube.com/@JSLegendDev) created a tutorial of
   KAPLAY + Tauri to do desktop games.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/mbljv1EkrRQ?si=pocHEU0JBpPE8kFQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe  src="https://www.youtube.com/embed/mbljv1EkrRQ?si=pocHEU0JBpPE8kFQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 - [AutMouse Labs](https://www.youtube.com/@AutMouseLabs) started a serie of live
   codig with KAPLAY, showing how to make a shooter game.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/rGV5Kd1zrcc?si=d2HaTWKtr61Qhv28" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/rGV5Kd1zrcc?si=d2HaTWKtr61Qhv28" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 - JSLegendDev made a post about
   [how to fix the horizontal movement in KAPLAY.](https://open.substack.com/pub/jslegenddev/p/how-to-fix-diagonal-movement-in-2d?utm_campaign=post&utm_medium=web)
@@ -157,7 +157,7 @@ There's games made with KAPLAY/Boom, tutorials, and more.
 
 - JSLegendDev explained in a video the change from Kaboom.js to KAPLAY
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/EBbcsu9OrgE?si=oLeArOXbx3huOEUH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/EBbcsu9OrgE?si=oLeArOXbx3huOEUH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Conclusion
 
