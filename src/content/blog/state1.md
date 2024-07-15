@@ -2,14 +2,14 @@
 title: "State of KAPLAY #1"
 author: lajbel
 date: 07/15/2024
-description: KAPLAY News, advances and more
+description: Explore the latest advancements and community highlights in KAPLAY, the successor to Kaboom.js. Discover new features, contributors, and more!
 image: banners/markjam-5-winners.png
 ---
 
 # State of KAPLAY #1
 
-Hey there! Was a while since the last blog. There was a lot of things happening.
-Let's see what we have here.
+Hey everyone! It's been a while since our last update. A lot has been happening
+in the world of KAPLAY/Kaboom.js, so let's dive into what's new.
 
 ## New Journey, from Kaboom.js to KAPLAY, Thanks Kaboom.js Community!
 
@@ -17,58 +17,62 @@ If you don't know, Kaboom.js was a game library for making games in the browser.
 It was deprecated and now we have KAPLAY, a fork of Kaboom.js with new features,
 fixes and community support.
 
-We are working in `v3001`, why not 4000? Because we want to add new features and
-fix bugs without breaking the API. The idea is have atleast a _99.99%_ of games
-made with Kaboom.js v3000 working in KAPLAY v3001.
+We are working in `v3001`, why not **4000**? Because we want to add new features
+and fix bugs without breaking the API. The idea is have atleast a _99.99%_ of
+games made with Kaboom.js **v3000** working in KAPLAY **v3001**.
 
-Thanks for all the original Kaboom.js community, that's now is the KAPLAY
-community, in special thanks to:
+We owe a huge debt of gratitude to the original Kaboom.js community, now the
+thriving KAPLAY community. Special thanks go to:
 
-- tga, original creator of Kaboom.js. Thanks for create this amazing library.
-- MF, for be a great contributor in Kaboom.js and also in KAPLAY, doing all the
-  engineer work.
-- niceEli, for be a great contributor in CI and also be active in the community.
-- AmySpark, who contributed to the code and also be active in the community.
-- neverUsedDC, for be a contributor in the code and also be active in the
+- **tga**, original creator of Kaboom.js. Thanks for create this amazing
+  library.
+- **MF**, for be a great contributor in Kaboom.js and also in KAPLAY, doing all
+  the engineer work.
+- **niceEli**, for be a great contributor in CI and also be active in the
   community.
-- SpcFork, for be a contributor in the code and also be active in the community.
-- Haroon, for be moderator of the Discord server and also be active in the
+- **AmySpark**, who contributed to the code and also be active in the community.
+- **neverUsedDC**, for be a contributor in the code and also be active in the
   community.
-- Shooza, for be a contributor in the code.
-- JSLegend, for create content about KAPLAY.
-- And all the other contributors and community members.
+- **SpcFork**, for be a contributor in the code and also be active in the
+  community.
+- **Haroon**, for be moderator of the Discord server and also be active in the
+  community.
+- **Shooza**, for be a contributor in the code.
+- **JSLegendDev**, for create content about KAPLAY.
+- And all the other **contributors** and **community members**.
 
-This people helped in the transition from Kaboom.js to KAPLAY, and also are
-helping in the development of the library.
+These individuals have been instrumental in transitioning from Kaboom.js to
+KAPLAY and continue to drive the library forward.
 
 ## New features
 
 From the creation of KAPLAY, to today, the alpha number 17, the team and
-contributors have been working hard to bring new features and improvements to
-the library.
+contributors have been working hard to bring **new features and improvements**
+to the library.
 
-- Input bindings, use the same event `onButtonPress` for mouse, keyboard and
+- **Input bindings**, use the same event `onButtonPress` for mouse, keyboard and
   gamepad.
-- Layers
-- Navigation Mesh, waypoints, patrols, sentries, and more in the pathfinding
-  system.
-- Particles system
+- **Layers**, backing from the void.
+- Navigation Mesh, waypoints, patrols, sentries, and more in the **pathfinding
+  system**.
+- **Particles system**, finally.
 - Utils for colors, arrays, etc such as `Color.toArray()`, `shuffle()`, etc.
 - Support of new shapes and draws as textured polygons.
-- Added support for gravity directions
+- Added support for **gravity directions** (invert gravity??)
 - and a lot more!
 
 Check all current changes in the [CHANGELOG](/changelog).
 
+In the code side, we had
+
+- [Big Refactor PR](https://github.com/marklovers/kaplay/pull/258) of more than
+  7000 line changes, that will make the codebase more organized and clean,
+  improving our DX.
+- [Strict TypeScript PR](https://github.com/marklovers/kaplay/pull/232), that
+  passed all the codebase to Strict TypeScript, to avoid bugs and have a better
+  development experience.
+
 Thanks to all our contributors, we are growing and improving the library.
-
-Also recently was merged a
-[Big Refactor PR](https://github.com/marklovers/kaplay/pull/258) of more than
-7000 line changes, that will make the codebase more organized and clean,
-improving our DX.
-
-In addition, we passed all the repo to Strict TypeScript, to have a better
-development experience and avoid bugs.
 
 ## New website and documentation
 
