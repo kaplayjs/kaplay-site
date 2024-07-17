@@ -1,16 +1,12 @@
 ---
-import hamburgerIcon from "@/assets/hamburger.webp";
 import kaplayOutlined from "@/assets/kaplay-o.webp";
-import Footer from "@/components/Footer/Footer.astro";
-import type { SidebarProps } from "@/components/Sidebar/Sidebar.astro";
-import Sidebar from "@/components/Sidebar/Sidebar.astro";
 import { $lang } from "@/stores";
 import type { Locale } from "@/util/i18n";
 import { ViewTransitions } from "astro:transitions";
 import "@fontsource-variable/fira-code";
 import "../styles/base.css";
 
-type MetaTagData = {
+export type MetaTagData = {
     title?: string;
     description?: string;
     image?: string;
@@ -21,10 +17,10 @@ type MetaTagData = {
 type Props = {
     meta?: MetaTagData;
     lang: Locale;
-} & SidebarProps;
+};
 
 const { url } = Astro;
-const { sidebarMode, meta, lang } = Astro.props;
+const { meta, lang } = Astro.props;
 $lang.set(lang);
 
 const image = meta?.image ?? kaplayOutlined.src;
@@ -63,30 +59,6 @@ const image = meta?.image ?? kaplayOutlined.src;
         <ViewTransitions />
     </head>
     <body>
-        <Sidebar sidebarMode={sidebarMode}>
-            <header class="min-h-16 w-full lg:hidden">
-                <nav class="lg:hidden flex bg-base-200 w-full h-16 fixed">
-                    <label
-                        for="sidebar"
-                        class="lg:hidden flex"
-                    >
-                        <figure>
-                            <img
-                                src={hamburgerIcon.src}
-                                width="64"
-                                height="64"
-                                alt="hamburger icon"
-                            />
-                        </figure>
-                    </label>
-                </nav>
-            </header>
-
-            <main class="w-full">
-                <slot />
-            </main>
-
-            <Footer />
-        </Sidebar>
+        <slot />
     </body>
 </html>

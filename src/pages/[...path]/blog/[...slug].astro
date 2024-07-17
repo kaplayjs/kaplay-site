@@ -1,6 +1,6 @@
 ---
 import Prose from "@/components/Content/Prose.astro";
-import Layout from "@/layouts/Layout.astro";
+import SidebarPage from "@/layouts/SidebarPage.astro";
 import { getStaticPathsByLocales } from "@/util/path";
 import { getCollection } from "astro:content";
 
@@ -21,7 +21,7 @@ const { entry, lang } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<Layout
+<SidebarPage
     lang={lang}
     meta={{
         title: "KAPLAY Blogs, " + entry.data.title,
@@ -32,4 +32,4 @@ const { Content } = await entry.render();
     <Prose>
         <Content />
     </Prose>
-</Layout>
+</SidebarPage>

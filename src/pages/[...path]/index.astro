@@ -1,8 +1,14 @@
 ---
-import Prose from "@/components/Content/Prose.astro";
-import Layout from "@/layouts/Layout.astro";
+import yourGameImage from "@/assets/yourgame.png";
+import Footer from "@/components/Footer/Footer.astro";
+import About from "@/components/Land/About.astro";
+import Navbar from "@/components/Land/Navbar.astro";
+import Page from "@/layouts/Page.astro";
 import { getStaticPathsByLocales } from "@/util/path";
+import { Image } from "astro:assets";
+import { Code } from "astro:components";
 import { getEntry } from "astro:content";
+import exampleCode from "../../util/code.js?raw";
 
 export function getStaticPaths() {
     return getStaticPathsByLocales();
@@ -13,9 +19,8 @@ const indexEntry = getEntry("misc", `${lang}`);
 const { Content } = await (await indexEntry).render();
 ---
 
-<Layout
+<Page
     {lang}
-    sidebarMode="guides"
     meta={{
         title: "KAPLAY, The JavaScript easy game library",
         description:
@@ -23,7 +28,30 @@ const { Content } = await (await indexEntry).render();
         keywords: "kaplay, kaboom, game, library, javascript, easy, simple",
     }}
 >
-    <Prose>
-        <Content />
-    </Prose>
-</Layout>
+    <Navbar />
+    <About />
+    <div class="min-h-screen">
+        <div class="w-full h-screen flex items-center justify-center gap-4">
+            <div class="max-w-xl">
+                <h2 class="text-2xl font-semibold"
+                >Do a basic platformer in less of 30 lines of code</h2>
+
+                <Code
+                    code={exampleCode}
+                    lang="javascript"
+                    class="text-sm"
+                />
+            </div>
+
+            <Image
+                class="h-max w-max max-w-3xl"
+                src={yourGameImage}
+                alt="Your game"
+                height={1400}
+                width={500}
+            />
+        </div>
+
+        <Footer />
+    </div>
+</Page>

@@ -1,6 +1,6 @@
 ---
 import Prose from "@/components/Content/Prose.astro";
-import Layout from "@/layouts/Layout.astro";
+import SidebarPage from "@/layouts/SidebarPage.astro";
 import { getStaticPathsByLocales } from "@/util/path";
 import { getEntry } from "astro:content";
 
@@ -14,7 +14,7 @@ if (!entry) return;
 const { Content } = await entry.render();
 ---
 
-<Layout
+<SidebarPage
     lang={lang}
     sidebarMode="guides"
     meta={{
@@ -27,4 +27,4 @@ const { Content } = await entry.render();
     <Prose>
         <Content />
     </Prose>
-</Layout>
+</SidebarPage>
