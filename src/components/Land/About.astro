@@ -1,15 +1,62 @@
-<div class="bg-base-200 min-h-screen">
-    <div class="w-full h-screen flex items-center justify-center">
+---
+import kaplayBanner from "@/assets/kaplay-banner.webp";
+import { Image } from "astro:assets";
+import AboutFeatured from "./AboutFeatured.astro";
+---
+
+<div class="min-h-screen p-4 pt-28 lg:pt-0" id="about">
+    <div
+        class="w-full h-screen flex flex-col-reverse lg:flex-row items-center justify-center gap-16"
+    >
         <div class="max-w-xl">
-            <h1 class="text-5xl font-bold"
-            >A <span class="text-primary">fun</span> game library for HTML5
-                Games</h1>
+            <h1 class="text-5xl font-bold">
+                A <span class="text-primary">fun</span> game library for HTML5
+                Games
+            </h1>
             <p class="py-6">
                 KAPLAY is a JavaScript game library that makes it easy to create
-                games. Is the successor of Kaboom.JS. With KAPLAY, you can
+                games. It's the successor of Kaboom.JS. With KAPLAY, you can
                 create games with a few lines of code.
             </p>
-            <button class="btn btn-primary">Get Started</button>
+
+            <div class="grid grid-cols-2 gap-4">
+                <AboutFeatured friend="apple">
+                    Friendly API. Easy to learn, easy to teach.
+                </AboutFeatured>
+
+                <AboutFeatured friend="bag">
+                    A bunch of examples to get started.
+                </AboutFeatured>
+
+                <AboutFeatured friend="bean">
+                    Large community, always ready to help.
+                </AboutFeatured>
+
+                <AboutFeatured friend="love">
+                    Open Source, free to use.
+                </AboutFeatured>
+            </div>
+
+            <div class="flex flex-row gap-2 mt-4 flex-wrap">
+                <a class="btn btn-primary" href="/doc/install">
+                    Explore the docs
+                </a>
+                <a class="btn btn-neutral" href="/doc/install">
+                    Join to our Discord
+                </a>
+                <a class="btn btn-neutral" href="https://play.kaplayjs.com">
+                    Try KAPLAYGROUND
+                </a>
+            </div>
+        </div>
+        <div>
+            <Image
+                class="w-full max-w-3xl"
+                src={kaplayBanner}
+                alt="KAPLAY Banner"
+                height={1400}
+                width={500}
+            />
         </div>
     </div>
 </div>

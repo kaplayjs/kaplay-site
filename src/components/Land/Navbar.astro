@@ -1,4 +1,5 @@
 ---
+import hamburgerIcon from "@/assets/hamburger.webp";
 import kaplayOutlined from "@/assets/kaplay-o.webp";
 import { Image } from "astro:assets";
 
@@ -6,18 +7,12 @@ const internalLinks = [
     {
         name: "About",
         url: "#about",
+        highlight: false,
     },
     {
         name: "Example",
         url: "#example",
-    },
-    {
-        name: "Team",
-        url: "#team",
-    },
-    {
-        name: "Community",
-        url: "#community",
+        highlight: false,
     },
 ];
 
@@ -25,6 +20,11 @@ const externalLinks = [
     {
         name: "Blog",
         url: "/blog",
+        highlight: false,
+    },
+    {
+        name: "Donate",
+        url: "https://opencollective.com/kaplay",
         highlight: false,
     },
     {
@@ -36,43 +36,67 @@ const externalLinks = [
 ---
 
 <!-- Navbar -->
-<nav class="navbar bg-base-300 fixed">
+<nav class="navbar bg-base-300 fixed z-50">
     <!-- Menu for mobile -->
     <div class="w-full flex justify-between md:hidden">
-        <!-- Logo -->
-        <a class="btn btn-ghost text-lg">
-            <img alt="Logo" src="/logo.svg" class="w-4" />
-            Game Name
+        <a class="btn btn-ghost" href="/">
+            <Image
+                class="h-full w-fit object-scale-down"
+                src={kaplayOutlined}
+                alt="KAPLAY, The JavaScript easy game library"
+            />
+            <span class="hidden">KAPLAY, a TypeScript Game Library</span>
         </a>
 
         <div class="dropdown dropdown-end">
-            <button class="btn btn-ghost">
-                <i class="fa-solid fa-bars text-lg"></i>
-            </button>
+            <div tabindex="0" role="button" class="btn btn-ghost m-1">
+                <img
+                    src={hamburgerIcon.src}
+                    width="42"
+                    height="42"
+                    alt="hamburger icon"
+                    class="px-0 py-0"
+                />
+            </div>
 
             <ul
                 tabindex="0"
                 class="dropdown-content menu z-[1] bg-base-200 p-6 rounded-box shadow w-56 gap-2"
             >
-                <li><a>About</a></li>
-                <li><a>Teams</a></li>
-                <li><a>News</a></li>
-                <li><a>Community</a></li>
-                <a class="btn btn-primary btn-sm">
-                    <i class="fa-brands fa-space-awesome"></i>
-                    Access
-                </a>
+                {
+                    [...internalLinks, ...externalLinks].map((link) => (
+                        <li>
+                            <a
+                                class:list={[
+                                    "btn btn-sm",
+                                    {
+                                        "btn-primary": link.highlight,
+                                        "btn-ghost": !link.highlight,
+                                    },
+                                ]}
+                                href={link.url}
+                            >
+                                {link.name}
+                            </a>
+                        </li>
+                    ))
+                }
             </ul>
         </div>
     </div>
 
     <!-- Menu for desktop -->
     <div class="w-full hidden md:grid grid-cols-5 gap-2">
-        <ul class="col-span-2 menu md:menu-horizontal justify-end hidden gap-2">
+        <ul class="col-span-2 md:flex justify-end hidden gap-4">
             {
                 internalLinks.map((link) => (
                     <li>
-                        <a class="font-semibold" href={link.url}>{link.name}</a>
+                        <a
+                            class="font-semibold btn btn-sm btn-ghost"
+                            href={link.url}
+                        >
+                            {link.name}
+                        </a>
                     </li>
                 ))
             }
@@ -89,19 +113,22 @@ const externalLinks = [
             </a>
         </div>
 
-        <ul
-            class="col-span-2 menu md:menu-horizontal justify-start gap-4 hidden"
-        >
+        <ul class="col-span-2 md:flex justify-start hidden gap-2">
             {
                 externalLinks.map((link) => (
                     <li>
                         <a
-                            class:list={["btn btn-sm", {
-                                "btn-primary": link.highlight,
-                                "btn-ghost": !link.highlight,
-                            }]}
+                            class:list={[
+                                "btn btn-sm",
+                                {
+                                    "btn-primary": link.highlight,
+                                    "btn-ghost": !link.highlight,
+                                },
+                            ]}
                             href={link.url}
-                        >{link.name}</a>
+                        >
+                            {link.name}
+                        </a>
                     </li>
                 ))
             }

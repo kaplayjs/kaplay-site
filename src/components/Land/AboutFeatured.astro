@@ -1,0 +1,18 @@
+---
+import { friendList, type KAFriend } from "../Util/kafriends";
+
+type Props = {
+    friend: KAFriend;
+};
+
+const { friend } = Astro.props;
+---
+
+<div
+    class="p-8 bg-base-200 rounded-box flex-1 flex flex-row gap-4 items-center"
+>
+    <div class="max-w-10 max-h-10">
+        <img src={friendList[friend].src.src} alt="KAFriend" />
+    </div>
+    <slot />
+</div>

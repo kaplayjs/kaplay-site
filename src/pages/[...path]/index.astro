@@ -1,57 +1,31 @@
 ---
-import yourGameImage from "@/assets/yourgame.png";
 import Footer from "@/components/Footer/Footer.astro";
 import About from "@/components/Land/About.astro";
+import Example from "@/components/Land/Example.astro";
 import Navbar from "@/components/Land/Navbar.astro";
 import Page from "@/layouts/Page.astro";
 import { getStaticPathsByLocales } from "@/util/path";
-import { Image } from "astro:assets";
-import { Code } from "astro:components";
-import { getEntry } from "astro:content";
-import exampleCode from "../../util/code.js?raw";
-
 export function getStaticPaths() {
     return getStaticPathsByLocales();
 }
 
 const { lang } = Astro.props;
-const indexEntry = getEntry("misc", `${lang}`);
-const { Content } = await (await indexEntry).render();
 ---
 
 <Page
     {lang}
     meta={{
-        title: "KAPLAY, The JavaScript easy game library",
+        title: "KAPLAY, HTML5 Games library for JavaScript and TypeScript",
         description:
-            "KAPLAY is a JavaScript game library that makes it easy to create games. Is the successor of KABOOM.JS.",
-        keywords: "kaplay, kaboom, game, library, javascript, easy, simple",
+            "KAPLAY is a JavaScript HTML5 game engine library that makes it easy to create games. Is the successor of KABOOM.JS.",
+        keywords:
+            "kaplay, kaboom.js, kaplay.js, game, library, javascript, easy, simple, html5, html5 games",
     }}
 >
-    <Navbar />
-    <About />
-    <div class="min-h-screen">
-        <div class="w-full h-screen flex items-center justify-center gap-4">
-            <div class="max-w-xl">
-                <h2 class="text-2xl font-semibold"
-                >Do a basic platformer in less of 30 lines of code</h2>
-
-                <Code
-                    code={exampleCode}
-                    lang="javascript"
-                    class="text-sm"
-                />
-            </div>
-
-            <Image
-                class="h-max w-max max-w-3xl"
-                src={yourGameImage}
-                alt="Your game"
-                height={1400}
-                width={500}
-            />
-        </div>
-
+    <div class="land | scroll-smooth flex flex-col gap-2">
+        <Navbar />
+        <About />
+        <Example />
         <Footer />
     </div>
 </Page>
