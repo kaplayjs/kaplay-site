@@ -7,15 +7,16 @@ order: 1
 import { Code } from "astro:components";
 import kaplayPackageJson from "@/../kaplay/package.json";
 export const version = kaplayPackageJson.version;
+export const file = version.startsWith("3001") ? "kaplay" : "kaboom";
 
 export const ecmaImport = `<script type="module">
     // import kaplay
-    import kaplay from "https://unpkg.com/kaplay@${version}/dist/kaboom.mjs";
+    import kaplay from "https://unpkg.com/kaplay@${version}/dist/${file}.mjs";
     // start kaplay
     kaplay();
 </script>
 `;
-export const jsImport = `<script src="https://unpkg.com/kaplay@${version}/dist/kaboom.js"></script>
+export const jsImport = `<script src="https://unpkg.com/kaplay@${version}/dist/${file}.js"></script>
 
 <script>
     kaplay();
