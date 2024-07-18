@@ -131,9 +131,9 @@ for (const statement of statements) {
 
     if (statement.name === undefined) continue;
 
-    if (statement.name === "KaboomCtx") {
+    if (statement.name === "KAPLAYCtx" || statement.name === "KaboomCtx") {
         if (statement.kind !== "InterfaceDeclaration") {
-            throw new Error("KaboomCtx must be an interface.");
+            throw new Error("KAPLAYCtx must be an interface.");
         }
 
         for (const name in statement.members) {

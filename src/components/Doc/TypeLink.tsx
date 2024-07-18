@@ -8,7 +8,8 @@ type Props = {
 
 export const TypeLink = component$(({ name }: Props) => {
     const docEntry = (doc as any).types[name]
-        ?? (doc as any).types.KaboomCtx[0].members[name] ?? null;
+        ?? (doc as any).types.KaboomCtx?.[0].members[name]
+        ?? (doc as any).types.KAPLAYCtx?.[0].members[name];
     const isStyled = Boolean(docEntry);
 
     const handleClick = $((e: PointerEvent) => {

@@ -5,6 +5,8 @@ import { t } from "@/util/i18n";
 import { getCollection } from "astro:content";
 import type { SidebarEntry } from "./Sidebar.astro";
 
+const allDoc = doc.types as any;
+
 export const getGuidesEntries = async () => {
     let renderList: SidebarEntry[] = [];
 
@@ -68,7 +70,9 @@ export const getBlogEntries = async () => {
 
 export const getDocEntries = async () => {
     const renderList: SidebarEntry[] = [];
-    const kaboomCtxMembers = Object.keys(doc.types.KaboomCtx[0].members);
+    const ctxMembers = Object.keys(
+        allDoc.KaboomCtx?.[0].members ?? allDoc.KAPLAYCtx?.[0].members,
+    );
     const groups = doc.groups as any;
     const groupsKeys = Object.keys(doc.groups) as string[];
 
@@ -76,11 +80,11 @@ export const getDocEntries = async () => {
         renderList.push({
             folder: groupName,
             linkList: groups[groupName].entries.map((item: any) => {
-                const isKaboomCtxMember = kaboomCtxMembers.includes(item);
+                const isCtxMember = ctxMembers.includes(item);
 
                 return {
                     title: item,
-                    link: isKaboomCtxMember
+                    link: isCtxMember
                         ? `/doc/ctx/${item}`
                         : `/doc/${item}`,
                 };
