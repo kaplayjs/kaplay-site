@@ -1,5 +1,5 @@
 import doc from "@/../doc.json";
-import { isKaboomCtxMember } from "@/util/doc";
+import { isCtxMember as isCtxMember } from "@/util/doc";
 import { $, component$, useOnDocument, useSignal } from "@builder.io/qwik";
 import { DocEntry } from "./DocEntry";
 
@@ -10,8 +10,9 @@ export const DocPreview = component$(() => {
         "onSetDocPreview",
         $((e: CustomEvent<number>) => {
             const allDoc = doc.types as any;
-            const kaboomDoc = allDoc.KaboomCtx[0].members as any;
-            const foundDoc = allDoc[e.detail] ?? kaboomDoc[e.detail] ?? [];
+            const ctxDoc = allDoc.KaboomCtx?.[0].members
+                ?? allDoc.KAPLAYCtx?.[0].members;
+            const foundDoc = allDoc[e.detail] ?? ctxDoc[e.detail] ?? [];
 
             docEntries.value = foundDoc;
         }),
@@ -24,7 +25,7 @@ export const DocPreview = component$(() => {
                     <a
                         id="open-in-new"
                         class="btn btn-ghost"
-                        href={(isKaboomCtxMember(docEntries.value[0]?.name)
+                        href={(isCtxMember(docEntries.value[0]?.name)
                             ? "/doc/ctx/"
                             : "/doc/") + docEntries.value[0]?.name}
                         target="_blank"

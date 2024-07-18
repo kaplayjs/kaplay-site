@@ -16,7 +16,7 @@ command:
 npm install kaplay@next
 ```
 
-## New features
+## Input
 
 - added input bindings, `onButtonPress`, `onButtonRelease`, `onButtonDown`, and
   it's corresponding boolean versions, `isButtonPressed`, `isButtonDown` and
@@ -31,11 +31,10 @@ kaplay({
             gamepad: ["south"],
         },
     },
-  },
 });
 
 onButtonPress("jump", () => {
-  player.jump();
+    player.jump();
 });
 ```
 
@@ -51,13 +50,23 @@ setButton("jump", {
 });
 ```
 
-- now you can use array in all input handlers
+- added `getLastInputDeviceType()` to get what was the last pressed device
+
+```js
+onButtonPress(() => {
+    console.log(getLastInputDeviceType()); // keyboard, mouse or gamepad
+});
+```
+
+- now you can use arrays in all input handlers
 
 ```js
 onKeyPress(["w", "up"], () => {
     player.jump();
 });
 ```
+
+## Components
 
 - readded `layers()` and the `layer()` component
 
@@ -92,6 +101,29 @@ add([
 
 - added `getTreeRoot()` to get the game's root object, which is the parent of
   all other objects
+
+```js
+// get the root object
+const root = getTreeRoot();
+root.add(); // same as add()
+root.get(); // same as get()
+```
+
+- setters/getters syntax in `scale()` and `sprite()` component
+
+```js
+const obj = add([
+    sprite("bean"),
+    scale(2),
+]);
+
+// set it with = syntax
+obj.scale = vec2(3, 4);
+obj.sprite = "bag";
+```
+
+## Misc
+
 - added `loadMusic()` to load streaming audio (doesn't block in loading screen)
 - added `chooseMultiple()` and `shuffle()` helpers for arrays
 - added `getSceneName()` to get the current scene name
@@ -107,6 +139,8 @@ add([
 - added `particles()` component to emit and draw particles
 - added `NavMesh` class for pathfinding on a mesh
 - added `navigation()` component to calculate a list of waypoints on a graph
+- added `animate()` component to animate the properties of an object using
+  keyframes
 - added global raycast function and raycast method to level
 - added support for textured polygons
 - added support for concave polygon drawing
@@ -117,6 +151,12 @@ add([
 - added quadratic bezier and Catmull-Rom evaluation
 - added evaluation of the first and second derivatives for all splines
 - added higher order easing functions linear, steps and cubic-bezier
+- added a text input component
+
+## Bug fixes
+
+- **(break)** much typescript definitions was fixed, if you use typescript now
+  maybe you see new errors that make your code strict
 
 ## Deprecated
 

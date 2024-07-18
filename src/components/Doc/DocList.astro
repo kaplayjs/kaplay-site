@@ -2,8 +2,9 @@
 import doc from "@/../doc.json";
 import { DocEntry } from "./DocEntry";
 
-const allDoc = doc.types;
-const kaboomCtxDoc = allDoc.KaboomCtx[0].members;
+const allDoc = doc.types as any;
+const ctxDoc = allDoc.KaboomCtx?.[0].members
+    ?? allDoc.KAPLAYCtx?.[0].members;
 const docGroups = doc.groups;
 const docEntries = Object.values(docGroups)
     .map((group) => group.entries)
@@ -13,11 +14,15 @@ const docEntries = Object.values(docGroups)
 {
     docEntries.map((entry) => {
     const referenceList = allDoc[entry as keyof typeof allDoc]
-        ?? kaboomCtxDoc[entry as keyof typeof kaboomCtxDoc];
+        ?? ctxDoc[entry as keyof typeof ctxDoc];
 
     return (
         <>
-            {referenceList?.map((reference) => <DocEntry data={reference} />)}
+            {
+                referenceList?.map((reference: any) => (
+                    <DocEntry data={reference} />
+                ))
+            }
 
             <div class="divider" />
         </>
