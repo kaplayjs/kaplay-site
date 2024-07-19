@@ -2,7 +2,7 @@
 import doc from "@/../doc.json";
 import { DocEntry } from "@/components/Doc/DocEntry";
 import { DocPreview } from "@/components/Doc/DocPreview";
-import Layout from "@/layouts/Layout.astro";
+import SidebarPage from "@/layouts/SidebarPage.astro";
 import { getStaticPathsByLocales } from "@/util/path";
 
 export async function getStaticPaths() {
@@ -28,7 +28,7 @@ export async function getStaticPaths() {
 const { type, lang } = Astro.props;
 ---
 
-<Layout
+<SidebarPage
     lang={lang}
     meta={{
         title: "KAPLAY Docs, " + type[0].name,
@@ -42,4 +42,4 @@ const { type, lang } = Astro.props;
     </div>
 
     <DocPreview />
-</Layout>
+</SidebarPage>

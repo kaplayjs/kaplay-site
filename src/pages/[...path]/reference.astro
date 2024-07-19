@@ -1,7 +1,7 @@
 ---
 import DocList from "@/components/Doc/DocList.astro";
 import { DocPreview } from "@/components/Doc/DocPreview";
-import Layout from "@/layouts/Layout.astro";
+import SidebarPage from "@/layouts/SidebarPage.astro";
 import { getStaticPathsByLocales } from "@/util/path";
 
 export function getStaticPaths() {
@@ -11,7 +11,7 @@ export function getStaticPaths() {
 const { lang } = Astro.props;
 ---
 
-<Layout
+<SidebarPage
     lang={lang}
     meta={{
         title: "KAPLAY, Reference Documentation",
@@ -26,4 +26,4 @@ const { lang } = Astro.props;
     </div>
 
     <DocPreview />
-</Layout>
+</SidebarPage>

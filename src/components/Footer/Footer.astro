@@ -1,79 +1,104 @@
 ---
 import kaplayOutlined from "@/assets/kaplay-o.webp";
 import Image from "astro/components/Image.astro";
+import FriendsBelow from "../Util/FriendsBelow.astro";
 import FooterLink from "./FooterLink.astro";
 import FooterNav from "./FooterNav.astro";
 ---
 
-<footer class="w-full p-10 bg-base-200 text-base-content text-base rounded">
-    <div
-        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
-    >
-        <FooterNav title="KAPLAY">
-            <FooterLink href="/guides/install"> Installing KAPLAY </FooterLink>
-            <FooterLink href="/guides/starting"> Basics of KAPLAY </FooterLink>
-            <FooterLink href="/#kaplay-vs-kaboomjs-whats-the-difference">
-                KAPLAY vs Kaboom.js
-            </FooterLink>
-        </FooterNav>
-        <FooterNav title="Resources">
-            <FooterLink href="https://play.kaplayjs.com" external>
-                Start playing around with KAPLAYGROUND
-            </FooterLink>
-            <FooterLink href="https://discord.com/invite/aQ6RuQm3TF" external>
-                Ask questions on Discord
-            </FooterLink>
+<FriendsBelow
+    friends={["bag", "bean", "bag", "bean", "bag", "bean"]}
+    offset={2}
+>
+    <footer class="w-full p-10 bg-base-200 text-base-content text-base rounded">
+        <div
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+        >
+            <FooterNav title="KAPLAY">
+                <FooterLink href="/guides/install">
+                    Installing KAPLAY
+                </FooterLink>
+                <FooterLink href="/guides/starting">
+                    Basics of KAPLAY
+                </FooterLink>
+                <FooterLink href="/#kaplay-vs-kaboomjs-whats-the-difference">
+                    KAPLAY vs Kaboom.js
+                </FooterLink>
+            </FooterNav>
+            <FooterNav title="Resources">
+                <FooterLink href="https://play.kaplayjs.com" external>
+                    Start playing around with KAPLAYGROUND
+                </FooterLink>
+                <FooterLink
+                    href="https://discord.com/invite/aQ6RuQm3TF"
+                    external
+                >
+                    Ask questions on Discord
+                </FooterLink>
 
-            <FooterLink href="/presskit">
-                Press Kit
-            </FooterLink>
-        </FooterNav>
-        <FooterNav title="PRESENCE">
-            <FooterLink href="https://github.com/marklovers/kaplay" external>
-                GitHub
-            </FooterLink>
-            <FooterLink href="https://discord.com/invite/aQ6RuQm3TF" external>
-                Discord
-            </FooterLink>
-            <FooterLink href="https://x.com/kaplayjs" external>
-                Twitter/X
-            </FooterLink>
-            <FooterLink
-                href="https://mastodon.gamedev.place/@kaplay"
-                external
-                rel="me"
-            >
-                Mastodon (gamedev.place)
-            </FooterLink>
-            <FooterLink href="https://www.reddit.com/r/KaplayJS/" external>
-                Reddit
-            </FooterLink>
-        </FooterNav>
-        <FooterNav title="SUPPORT">
-            <a href="https://opencollective.com/kaplay/donate" target="_blank">
-                <img src="https://opencollective.com/webpack/donate/button@2x.png?color=blue" width=300 />
-              </a>
-            <FooterLink href="https://cafecito.app/kaplay" external>
-                Cómprame un café (Donation for Argentina)
-            </FooterLink>
-        </FooterNav>
-    </div>
-
-    <div class="divider"></div>
-
-    <aside
-        class="flex flex-col sm:flex-row gap-6 justify-center sm:justify-between items-center"
-    >
-        <div class="flex items-center gap-4 justify-center">
-            <Image
-                src={kaplayOutlined}
-                alt="kaplay logo"
-                height={70}
-            />
-
-            <div>
-                <p class="text-2xl">KAPLAY Team</p>
-            </div>
+                <FooterLink href="/presskit">
+                    Press Kit
+                </FooterLink>
+            </FooterNav>
+            <FooterNav title="PRESENCE">
+                <FooterLink
+                    href="https://github.com/marklovers/kaplay"
+                    external
+                >
+                    GitHub
+                </FooterLink>
+                <FooterLink
+                    href="https://discord.com/invite/aQ6RuQm3TF"
+                    external
+                >
+                    Discord
+                </FooterLink>
+                <FooterLink href="https://x.com/kaplayjs" external>
+                    Twitter/X
+                </FooterLink>
+                <FooterLink
+                    href="https://mastodon.gamedev.place/@kaplay"
+                    external
+                    rel="me"
+                >
+                    Mastodon (gamedev.place)
+                </FooterLink>
+                <FooterLink href="https://www.reddit.com/r/KaplayJS/" external>
+                    Reddit
+                </FooterLink>
+            </FooterNav>
+            <FooterNav title="SUPPORT">
+                <a
+                    href="https://opencollective.com/kaplay/donate"
+                    target="_blank"
+                >
+                    <img
+                        src="https://opencollective.com/webpack/donate/button@2x.png?color=blue"
+                        width="300"
+                    />
+                </a>
+                <FooterLink href="https://cafecito.app/kaplay" external>
+                    Cómprame un café (Donation for Argentina)
+                </FooterLink>
+            </FooterNav>
         </div>
-    </aside>
-</footer>
+
+        <div class="divider"></div>
+
+        <aside
+            class="flex flex-col sm:flex-row gap-6 justify-center sm:justify-between items-center"
+        >
+            <div class="flex items-center gap-4 justify-center">
+                <Image
+                    src={kaplayOutlined}
+                    alt="kaplay logo"
+                    height={70}
+                />
+
+                <div>
+                    <p class="text-2xl">KAPLAY Team</p>
+                </div>
+            </div>
+        </aside>
+    </footer>
+</FriendsBelow>

@@ -1,12 +1,12 @@
 ---
 import Prose from "@/components/Content/Prose.astro";
-import Layout from "@/layouts/Layout.astro";
+import SidebarPage from "@/layouts/SidebarPage.astro";
 import { getLangedRoute, getPropsFromPath } from "@/util/path";
 
 const { t, lang } = getPropsFromPath(Astro.url.pathname);
 ---
 
-<Layout {lang}>
+<SidebarPage {lang}>
     <Prose>
         <h1>404</h1>
         <p class="min-h-screen">
@@ -16,4 +16,4 @@ const { t, lang } = getPropsFromPath(Astro.url.pathname);
             </a>.
         </p>
     </Prose>
-</Layout>
+</SidebarPage>

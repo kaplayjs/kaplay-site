@@ -1,29 +1,31 @@
 ---
-import Prose from "@/components/Content/Prose.astro";
-import Layout from "@/layouts/Layout.astro";
+import Footer from "@/components/Footer/Footer.astro";
+import About from "@/components/Land/About.astro";
+import Example from "@/components/Land/Example.astro";
+import Navbar from "@/components/Land/Navbar.astro";
+import Page from "@/layouts/Page.astro";
 import { getStaticPathsByLocales } from "@/util/path";
-import { getEntry } from "astro:content";
-
 export function getStaticPaths() {
     return getStaticPathsByLocales();
 }
 
 const { lang } = Astro.props;
-const indexEntry = getEntry("misc", `${lang}`);
-const { Content } = await (await indexEntry).render();
 ---
 
-<Layout
+<Page
     {lang}
-    sidebarMode="guides"
     meta={{
-        title: "KAPLAY, The JavaScript easy game library",
+        title: "KAPLAY, HTML5 Games library for JavaScript and TypeScript",
         description:
-            "KAPLAY is a JavaScript game library that makes it easy to create games. Is the successor of KABOOM.JS.",
-        keywords: "kaplay, kaboom, game, library, javascript, easy, simple",
+            "KAPLAY is a JavaScript HTML5 game engine library that makes it easy to create games. Is the successor of KABOOM.JS.",
+        keywords:
+            "kaplay, kaboom.js, kaplay.js, game, library, javascript, easy, simple, html5, html5 games",
     }}
 >
-    <Prose>
-        <Content />
-    </Prose>
-</Layout>
+    <div class="land | scroll-smooth flex flex-col gap-2">
+        <Navbar />
+        <About />
+        <Example />
+        <Footer />
+    </div>
+</Page>

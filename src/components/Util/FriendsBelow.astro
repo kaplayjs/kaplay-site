@@ -1,0 +1,39 @@
+---
+// this component put some kafriends below the component, like hidding behind the component
+import { friendList } from "./kafriends";
+
+type Props = {
+    friends?: (keyof typeof friendList)[];
+    offset?: number;
+};
+
+const { friends, offset = 0 } = Astro.props;
+
+const offsets = [
+    "top-2",
+    "top-4",
+    "top-6",
+    "top-8",
+    "top-10",
+].reverse();
+---
+
+<div class="friends-below | relative">
+    <div
+        class={`relative top-0 -z-10 flex flex-row justify-center w-full gap-4 ${
+            offsets[offset]
+        }`}
+    >
+        {
+            friends?.map((friend) => (
+                <div>
+                    <img src={friendList[friend].src.src} alt="KAFriend" />
+                </div>
+            ))
+        }
+    </div>
+
+    <div class="z-10">
+        <slot />
+    </div>
+</div>
