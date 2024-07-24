@@ -32,9 +32,11 @@ let renderList: SidebarEntry[] = [];
 
 if (sidebarMode === "guides") {
     renderList = await getGuidesEntries();
-} else if (sidebarMode === "reference") {
+}
+else if (sidebarMode === "reference") {
     renderList = await getDocEntries();
-} else if (sidebarMode === "blog") {
+}
+else if (sidebarMode === "blog") {
     renderList = await getBlogEntries();
 }
 ---
