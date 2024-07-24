@@ -17,7 +17,7 @@ You can define the bindings in the `bindings` object in `kaplay()`
 ```js
 // bind your buttons
 kaplay({
-    bindings: {
+    buttons: {
         jump: {
             keyboard: ["space", "up"],
             gamepad: ["south"],

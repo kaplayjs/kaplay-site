@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "postinstall": "cd kaplay && dts-bundle-generator -o dist/doc.d.ts dist/declaration/index.d.ts",
+    "install": "git submodule init && git submodule update && cd kaplay && pnpm i",
     "dev": "npm run doc && astro dev",
     "start": "npm run doc && astro dev",
     "build": "npm run doc && astro check && astro build && npm run lunaria:build",
