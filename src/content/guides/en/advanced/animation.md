@@ -86,7 +86,7 @@ obj.animate("pos",
 ```
 Now the first part takes one third of the time, 1 second, and the second part takes 2 thirds of the time, or 2 seconds. So the speed stays the same.
 Like tween we can use easing. Either on the entire animation, or each individual segment.
-We can also alter what happens when the last keyframe is reached. For example loop, or ping-pong the animation.
+We can also alter the animation direction. For example reverse or ping-pong the animation, as well as set the maximum amount of loops.
  ```js
 obj.animate("pos", 
   [vec2(50, 50), 
@@ -95,10 +95,11 @@ obj.animate("pos",
   { 
     duration: 3,
     timing:[0, 1/3, 1],
-    endBehavior: "ping-pong"
+    direction: "ping-pong",
+    loops: 4
   });
 ```
-Finally we can indicate how we want the values interpolated, linear or following a spline.
+We can indicate how we want the values interpolated, linear or following a spline. Or no interpolation ("none"), when we want to animate a sprite's frame for example
 ```js
 obj.animate("pos", 
   [vec2(50, 50), 
@@ -109,4 +110,13 @@ obj.animate("pos",
     timing:[0, 1/3, 1],
     interpolation:"spline"
   });
+```
+If we want to assign the same animation to different objects, we can choose the animation to be relative. This makes the animation mix the initial state with the animation state.
+```js
+const obj = add([
+    sprite("bean"),
+    pos(150, 0),
+    anchor("center"),
+    animate({ relative: true }),
+]);
 ```
