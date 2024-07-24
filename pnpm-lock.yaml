@@ -66,6 +66,9 @@ importers:
         specifier: ^5.5.2
         version: 5.5.2
     devDependencies:
+      '@kaplayjs/dprint-config':
+        specifier: ^1.0.0
+        version: 1.0.0
       '@shikijs/transformers':
         specifier: ^1.10.1
         version: 1.10.1
@@ -956,6 +959,9 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
+
+  '@kaplayjs/dprint-config@1.0.0':
+    resolution: {integrity: sha512-nvP56+acuJisDqIwfAXCsahSnHZNpqKCebBMgZBjouCwIvSqUCl0A3jnKjU7Z9slCwqdE96c7pBMu9k6ofiMXw==}
 
   '@kwsites/file-exists@1.1.1':
     resolution: {integrity: sha512-m9/5YGR18lIwxSFDwfE3oA7bWuq9kdau6ugN4H2rJeyhFQZcG9AgSHkQtSD15a8WvTgfz9aikZMrKPHvbpqFiw==}
@@ -3891,6 +3897,10 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
+
+  '@kaplayjs/dprint-config@1.0.0':
+    dependencies:
+      dprint: 0.47.2
 
   '@kwsites/file-exists@1.1.1':
     dependencies:
