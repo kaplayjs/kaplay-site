@@ -22,7 +22,8 @@ export const SidebarFolder = component$((props: SidebarFolderProps) => {
 
                     if (folderState === "open") {
                         folder?.setAttribute("folder-state", "closed");
-                    } else {
+                    }
+                    else {
                         folder?.setAttribute("folder-state", "open");
                     }
                 }}

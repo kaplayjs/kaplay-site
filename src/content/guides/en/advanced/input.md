@@ -12,7 +12,7 @@ the keys or buttons you want.
 
 ## Defining bindings
 
-You can define the bindings in the `bindings` object in `kaplay()`
+You can define the bindings in the `buttons` object in `kaplay()`
 
 ```js
 // bind your buttons

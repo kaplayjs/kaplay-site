@@ -26,7 +26,8 @@ export const getLangFromPath = (path: string) => {
 
     if (localesNames.includes(lang)) {
         return lang ?? DEFAULT_LANG;
-    } else {
+    }
+    else {
         return DEFAULT_LANG;
     }
 };
