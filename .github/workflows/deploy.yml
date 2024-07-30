@@ -5,6 +5,7 @@ on:
         description: "Choose an environment to deploy to: <dev|staging|prod>"
         required: true
         default: "dev"
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -16,4 +17,4 @@ jobs:
         with:
           packageManager: npm
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          command: deploy dist --env ${{ github.event.inputs.environment }} --project-name=kaplaydocs
+          command: pages deploy dist --env ${{ github.event.inputs.environment }} --project-name=kaplaydocs
