@@ -18,3 +18,4 @@ jobs:
           packageManager: npm
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           command: pages deploy dist --env ${{ github.event.inputs.environment }} --project-name=kaplaydocs
+          preCommands: npm run build
