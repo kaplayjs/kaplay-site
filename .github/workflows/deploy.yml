@@ -2,7 +2,7 @@ on:
   workflow_dispatch:
     inputs:
       environment:
-        description: "Chooase an environment to deploy to: <dev|staging|prod>"
+        description: "Choose an environment to deploy to: <dev|staging|prod>"
         required: true
         default: "dev"
 jobs:
@@ -16,3 +16,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           command: deploy --env ${{ github.event.inputs.environment }} dist --project-name=kaplaydocs
+          packageManager: pnpm
