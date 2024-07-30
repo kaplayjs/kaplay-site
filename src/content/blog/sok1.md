@@ -69,10 +69,10 @@ Check all current changes in the [CHANGELOG](/changelog).
 
 In the code side, we had
 
-- [Big Refactor PR](https://github.com/marklovers/kaplay/pull/258) of more than
+- [Big Refactor PR](https://github.com/kaplayjs/kaplay/pull/258) of more than
   7000 line changes, that will make the codebase more organized and clean,
   improving our DX.
-- [Strict TypeScript PR](https://github.com/marklovers/kaplay/pull/232), that
+- [Strict TypeScript PR](https://github.com/kaplayjs/kaplay/pull/232), that
   passed all the codebase to Strict TypeScript, to avoid bugs and have a better
   development experience.
 

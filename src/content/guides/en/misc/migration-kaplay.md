@@ -46,5 +46,5 @@ Check the [Installation Guide](/guides/install) for more information about
 installing KAPLAY.
 
 Check the
-[Changelog](https://github.com/marklovers/kaplay/blob/master/CHANGELOG.md#v30010)
+[Changelog](https://github.com/kaplayjs/kaplay/blob/master/CHANGELOG.md#v30010)
 for the new features and changes.
