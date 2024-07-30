@@ -14,6 +14,6 @@ jobs:
       - name: Deploy app
         uses: cloudflare/wrangler-action@v3
         with:
+          packageManager: npm
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           command: deploy --env ${{ github.event.inputs.environment }} dist --project-name=kaplaydocs
-          packageManager: pnpm
