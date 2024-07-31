@@ -12,6 +12,8 @@ jobs:
     name: Deploy
     steps:
       - uses: actions/checkout@v4
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
       - name: Deploy app
         uses: cloudflare/wrangler-action@v3
         with:
