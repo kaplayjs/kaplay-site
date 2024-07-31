@@ -20,4 +20,4 @@ jobs:
           packageManager: pnpm
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           command: pages deploy dist --env ${{ github.event.inputs.environment }} --project-name=kaplaydocs
-          preCommands: "pnpm i"
+          preCommands: "pnpm i && pnpm build"
