@@ -20,13 +20,8 @@
   ],
   "files": [
     {
-      "location": "src/content/guides/**/*.mdx",
-      "pattern": "src/content/guides/@lang/@path",
-      "type": "universal"
-    },
-    {
-      "location": "src/content/guides/**/*.md",
-      "pattern": "src/content/guides/@lang/@path",
+      "location": "guides/**/*.md",
+      "pattern": "guides/@lang/@path",
       "type": "universal"
     },
     {
