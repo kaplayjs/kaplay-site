@@ -25,7 +25,7 @@ loadSound("soundName", "/path/to/sound.mp3");
 
 You can play sounds using the [`play()`](https://kaplayjs.com/doc/play/)
 function. The `play()` function takes the name of the sound, and some options
-proper of [AudioPlayOpt](https://kaplayjs.com/doc/AudioPlayOpt/) object.
+proper of [AudioPlayOpt](https://kaplayjs.com/doc/AudioPlayOpt/) interface.
 
 ```js
 play("soundName", {
