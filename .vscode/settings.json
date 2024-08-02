@@ -8,5 +8,8 @@
   },
   "[astro]": {
     "editor.defaultFormatter": "dprint.dprint"
-  }
+  },
+  "cSpell.words": [
+    "KAPLAY"
+  ]
 }

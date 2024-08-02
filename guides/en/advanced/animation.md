@@ -98,7 +98,7 @@ obj.animate("pos", [vec2(50, 50), vec2(100, 50), vec2(100, 150)], {
 By default, the time is divided by all keyframes. Thus it takes 2 seconds
 between the first and second, as well as two seconds between the second and
 third keyframe. This means that the speed will be faster in the last part, since
-it is doing double the distance in the same timespan. We can change this by
+it is doing double the distance in the same time span. We can change this by
 giving it a timing parameter which gives a percentage value of where each
 keyframe is situated in time (the reason why it doesn't use timestamps directly
 is because it makes it easier to change the duration of the animation without
