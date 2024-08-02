@@ -1,4 +1,5 @@
 import { component$ } from "@builder.io/qwik";
+import { TypeGenerics } from "./TypeGenerics";
 import { TypeSig } from "./TypeSig";
 
 type Props = {
@@ -10,7 +11,11 @@ export const TypeReturn = component$(({ data }: Props) => {
 
     return (
         <>
-            : <TypeSig data={data?.type?.type ?? data?.type} />
+            :{" "}
+            <>
+                <TypeSig data={data?.type?.type ?? data?.type} />
+                <TypeGenerics data={data?.type?.type ?? data?.type} />
+            </>
         </>
     );
 });

@@ -111,6 +111,19 @@ export const TypeSig = component$(({ data, parentData }: Props) => {
             );
         case "TypeQuery":
             return <TypeLink name={data.exprName?.escapedText}></TypeLink>;
+        case "TupleType":
+            return (
+                <>
+                    [
+                    {data.elements?.map((type: any, i: number) => (
+                        <>
+                            <TypeSig data={type} />
+                            {i === data.elements.length - 1 ? "" : ", "}
+                        </>
+                    ))}
+                    ]
+                </>
+            );
         default:
             return (
                 <>

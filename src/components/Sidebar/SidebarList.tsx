@@ -49,6 +49,15 @@ export const SidebarList = component$(
                     placeholder="Search here"
                     bind:value={filter}
                     ref={searchInputRef}
+                    onKeyPress$={(e) => {
+                        if (e.key === "Enter") {
+                            const search = searchInputRef.value?.value;
+                            const url = new URL(location.href);
+                            history.pushState({}, "", url.toString());
+
+                            if (search) filter.value = search;
+                        }
+                    }}
                 />
 
                 {filteredList.value.map(({ linkList, folder }) => {
