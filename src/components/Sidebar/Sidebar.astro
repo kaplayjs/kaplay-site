@@ -9,6 +9,7 @@ import { getBlogEntries, getDocEntries, getGuidesEntries } from "./entries";
 import SidebarChangeLink from "./SidebarChangeLink.astro";
 import { SidebarLink } from "./SidebarLink";
 import { SidebarList } from "./SidebarList";
+import VersionSelector from "./VersionSelector.astro";
 
 type LinkListEntry = {
     title: string;
@@ -71,9 +72,7 @@ else if (sidebarMode === "blog") {
                 </a>
             </figure>
             <div class="px-4 pb-4">
-                <p class="badge badge-primary badge-lg">
-                    {kaplayPackageJson.version}
-                </p>
+                <VersionSelector />
             </div>
             <ul class="flex-col gap-2">
                 <SidebarLink href="/" lang={lang}>{
