@@ -3,7 +3,7 @@ export const englishLocales = {
         "home": "Home",
         "playground": "Playground",
         "guides": "Guides",
-        "refdoc": "Reference Docs",
+        "refdoc": "API Docs",
         "blog": "Blog",
     },
     "guides": {
