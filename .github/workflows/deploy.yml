@@ -30,7 +30,7 @@ jobs:
         run: |
           cd kaplay
           git fetch --all --prune
-          git checkout v3001
+          git checkout 3001.0.0-alpha.20
           cd ..
       - name: Deploy app
         uses: cloudflare/wrangler-action@v3
