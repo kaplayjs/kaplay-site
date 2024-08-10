@@ -48,7 +48,7 @@ export const SidebarList = component$(
                     class="input input-primary w-full my-2"
                     placeholder={sidebarMode === "reference"
                         ? "Search for API..."
-                        : "Search for Rguides..."}
+                        : "Search for Guides..."}
                     bind:value={filter}
                     ref={searchInputRef}
                     onKeyPress$={(e) => {

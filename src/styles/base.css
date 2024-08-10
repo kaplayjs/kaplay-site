@@ -1,3 +1,5 @@
+@import "./pagefind.css";
+
 body {
   min-height: 100dvh;
   font-family: "Fredoka", sans-serif;

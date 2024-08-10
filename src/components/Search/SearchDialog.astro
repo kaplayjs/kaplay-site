@@ -1,0 +1,19 @@
+<dialog id="search-modal" class="modal">
+    <div class="modal-box w-fit min-h-96 h-fit">
+        <div id="search"></div>
+    </div>
+    <form method="dialog" class="modal-backdrop">
+        <button>close</button>
+    </form>
+</dialog>
+
+<script is:inline>
+    document.addEventListener("astro:page-load", () => {
+        // @ts-ignore
+        new PagefindUI({
+            element: "#search",
+            showSubResults: true,
+            showImages: false,
+        });
+    });
+</script>

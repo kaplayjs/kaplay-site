@@ -1,0 +1,32 @@
+.pagefind-ui__search-input {
+  @apply input input-bordered w-full;
+}
+
+.pagefind-ui__form {
+  @apply form-control items-start gap-2 max-h-96;
+}
+
+.pagefind-ui__drawer {
+  @apply overflow-y-auto flex-1;
+}
+
+.pagefind-ui__results-area {
+  @apply py-2;
+}
+
+.pagefind-ui__results {
+  @apply form-control gap-2;
+}
+
+.pagefind-ui__result {
+  @apply bg-base-200 rounded-box p-2;
+}
+
+.pagefind-ui__result-title {
+  @apply text-lg font-bold text-primary underline;
+  text-decoration-style: dotted;
+}
+
+.pagefind-ui__result-nested .pagefind-ui__result-title {
+  @apply text-base font-normal text-primary;
+}

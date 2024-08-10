@@ -1,0 +1,40 @@
+on:
+  push:
+
+jobs:
+  deploy:
+    name: "Deploy lastest (v4000) Docs on Cloudflare Workers"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+      - name: Deploy app
+        uses: cloudflare/wrangler-action@v3
+        with:
+          packageManager: pnpm
+          apiToken: ${{ secrets.CLOUDFLARE_WORKERS_KEY }}
+          command: pages deploy dist --project-name=kaplay4000
+          preCommands: "pnpm i && pnpm build"
+
+  deploylegacy:
+    name: "Deploy legacy (v3001) Docs on Cloudflare Workers"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+      - name: Checkout submodule to v3001
+        run: |
+          cd kaplay
+          git checkout v3001
+          cd ..
+      - name: Deploy app
+        uses: cloudflare/wrangler-action@v3
+        with:
+          packageManager: pnpm
+          apiToken: ${{ secrets.CLOUDFLARE_WORKERS_KEY }}
+          command: pages deploy dist --project-name=kaplay3001
+          preCommands: "pnpm i && pnpm build"

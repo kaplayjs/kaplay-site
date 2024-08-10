@@ -1,5 +1,6 @@
 ---
 import kaplayOutlined from "@/assets/kaplay-o.webp";
+import SearchDialog from "@/components/Search/SearchDialog.astro";
 import { $lang } from "@/stores";
 import type { Locale } from "@/util/i18n";
 import { ViewTransitions } from "astro:transitions";
@@ -27,7 +28,7 @@ const image = meta?.image ?? kaplayOutlined.src;
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang={lang}>
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
@@ -37,6 +38,7 @@ const image = meta?.image ?? kaplayOutlined.src;
         <link rel="alternate" hreflang="x-default" href={url.href} />
         <link rel="alternate" hreflang="en" href={url.href} />
         <meta name="generator" content={Astro.generator} />
+        <script src="/pagefind/pagefind-ui.js" is:inline></script>
         <meta name="description" content={meta?.description} />
         <meta property="og:title" content={meta?.title} />
         <meta property="og:description" content={meta?.description} />
@@ -60,5 +62,6 @@ const image = meta?.image ?? kaplayOutlined.src;
     </head>
     <body>
         <slot />
+        <SearchDialog />
     </body>
 </html>

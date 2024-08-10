@@ -1,12 +1,10 @@
 ---
-import kaplayPackageJson from "@/../kaplay/package.json";
 import kaplayOutlined from "@/assets/kaplay-o.webp";
 import { $lang } from "@/stores";
 import { t } from "@/util/i18n";
 import { getLangedRoute } from "@/util/path";
 import Image from "astro/components/Image.astro";
 import { getBlogEntries, getDocEntries, getGuidesEntries } from "./entries";
-import SidebarChangeLink from "./SidebarChangeLink.astro";
 import { SidebarLink } from "./SidebarLink";
 import { SidebarList } from "./SidebarList";
 import VersionSelector from "./VersionSelector.astro";
@@ -71,11 +69,19 @@ else if (sidebarMode === "blog") {
                     />
                 </a>
             </figure>
+            <div class="divider"></div>
+            <button
+                class="btn border-primary w-full mb-4"
+                onclick="document.querySelector('#search-modal')?.showModal()"
+            >
+                Search in KAPLAY
+            </button>
             <div class="px-4 pb-4">
                 <VersionSelector />
             </div>
+            <div class="divider"></div>
             <ul class="flex-col gap-2">
-                <SidebarLink href="/" lang={lang}>{
+                <SidebarLink href="/" lang={lang} icon="home">{
                     t(lang, "sidebar.home")
                 }</SidebarLink>
                 <SidebarLink
@@ -83,6 +89,7 @@ else if (sidebarMode === "blog") {
                     target="_blank"
                     lang={lang}
                     noTranslate
+                    icon="discord"
                 >
                     Discord
                 </SidebarLink>
@@ -91,6 +98,7 @@ else if (sidebarMode === "blog") {
                     target="_blank"
                     lang={lang}
                     noTranslate
+                    icon="github"
                 >
                     GitHub
                 </SidebarLink>
@@ -98,6 +106,7 @@ else if (sidebarMode === "blog") {
                     href="/changelog"
                     lang={lang}
                     noTranslate
+                    icon="pog"
                 >
                     What's new on v4000
                 </SidebarLink>
@@ -106,6 +115,7 @@ else if (sidebarMode === "blog") {
                     target="_blank"
                     lang={lang}
                     noTranslate
+                    icon="controller"
                 >
                     {t(lang, "sidebar.playground")}
                 </SidebarLink>
@@ -114,21 +124,28 @@ else if (sidebarMode === "blog") {
                     target="_blank"
                     lang={lang}
                     noTranslate
+                    icon="donate"
                 >
                     Donate to KAPLAY
                 </SidebarLink>
             </ul>
             <div class="divider"></div>
             <ul class="flex-col gap-2">
-                <SidebarChangeLink link="/guides/install" {lang}>{
-                    t(lang, "sidebar.guides")
-                }</SidebarChangeLink>
-                <SidebarChangeLink link="/doc/kaplay" {lang}>{
-                    t(lang, "sidebar.refdoc")
-                }</SidebarChangeLink>
-                <SidebarChangeLink link="/blog" {lang}>{
+                <SidebarLink
+                    href="/guides/install"
+                    lang={lang}
+                    icon="guides"
+                    reloadAll
+                >{t(lang, "sidebar.guides")}</SidebarLink>
+                <SidebarLink
+                    href="/doc/kaplay"
+                    lang={lang}
+                    icon="api"
+                    reloadAll
+                >{t(lang, "sidebar.refdoc")}</SidebarLink>
+                <SidebarLink href="/blog" lang={lang} icon="blog" reloadAll>{
                     t(lang, "sidebar.blog")
-                }</SidebarChangeLink>
+                }</SidebarLink>
             </ul>
             <div class="divider"></div>
             <SidebarList
