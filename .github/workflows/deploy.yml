@@ -29,6 +29,7 @@ jobs:
       - name: Checkout submodule to v3001
         run: |
           cd kaplay
+          git fetch --all --prune
           git checkout v3001
           cd ..
       - name: Deploy app
