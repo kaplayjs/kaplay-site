@@ -1,9 +1,13 @@
 .pagefind-ui__search-input {
-  @apply input input-bordered w-full;
+  @apply input input-bordered w-full p-4;
 }
 
 .pagefind-ui__form {
   @apply form-control items-start gap-2 max-h-96;
+}
+
+.pagefind-ui__search-clear {
+  @apply btn btn-xs btn-neutral;
 }
 
 .pagefind-ui__drawer {
@@ -11,7 +15,11 @@
 }
 
 .pagefind-ui__results-area {
-  @apply py-2;
+  @apply py-2 space-y-4;
+}
+
+.pagefind-ui__message {
+  @apply text-sm font-semibold px-2;
 }
 
 .pagefind-ui__results {
@@ -29,4 +37,8 @@
 
 .pagefind-ui__result-nested .pagefind-ui__result-title {
   @apply text-base font-normal text-primary;
+}
+
+mark {
+  @apply bg-primary text-white;
 }
