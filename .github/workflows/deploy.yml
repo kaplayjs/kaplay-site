@@ -30,6 +30,7 @@ jobs:
         run: |
           cd kaplay
           git fetch origin 3001.0.0-alpha.21 
+          git branch 3001.0.0-alpha.21 FETCH_HEAD
           git checkout 3001.0.0-alpha.21
           cd ..
       - name: Deploy app
