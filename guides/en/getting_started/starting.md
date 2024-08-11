@@ -17,7 +17,7 @@ the actors and components are the script the actors follow.
 
 ## Initialization
 
-All KAPLAY games start with the `kaplay()` function. This function makes avaible
+All KAPLAY games start with the `kaplay()` function. This function makes available
 all methods and functions that you will use to create your game.
 
 ```js
