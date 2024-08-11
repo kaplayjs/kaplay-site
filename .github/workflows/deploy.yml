@@ -29,8 +29,8 @@ jobs:
       - name: Checkout submodule to v3001
         run: |
           cd kaplay
-          git fetch --all --prune
-          git checkout 3001.0.0-alpha.20
+          git fetch --all 
+          git checkout 3001.0.0-alpha.21
           cd ..
       - name: Deploy app
         uses: cloudflare/wrangler-action@v3
