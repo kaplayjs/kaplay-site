@@ -67,7 +67,7 @@ global namespace, it's often better to use `global: false` to not export KAPLAY
 functions to `window`
 
 ```js
-kaplay({
+const k = kaplay({
     global: false,
 });
 
