@@ -1,0 +1,30 @@
+---
+import { CrewList } from "@/components/Crew/CrewList";
+import Navbar from "@/components/Land/Navbar.astro";
+import Page from "@/layouts/Page.astro";
+import { getStaticPathsByLocales } from "@/util/path";
+
+export function getStaticPaths() {
+    return getStaticPathsByLocales();
+}
+
+const { lang } = Astro.props;
+---
+
+<Page
+    {lang}
+    meta={{
+        title: "KAPLAY Crew Wiki",
+        description:
+            "The wiki (assets manager) for KAPLAY, where you can browse, download and read about our official assets.",
+        keywords:
+            "kaplay, kaboom.js, kaplay.js, game, library, javascript, easy, simple, html5, html5 games",
+    }}
+>
+    <div class="land | scroll-smooth flex flex-col gap-2">
+        <Navbar />
+        <main class="max-h-screen h-screen flex justify-center items-center">
+            <CrewList />
+        </main>
+    </div>
+</Page>
