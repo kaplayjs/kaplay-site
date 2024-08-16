@@ -91,3 +91,11 @@ span.line.diff.remove::before {
 .text-fira {
   font-family: "Fira Code Variable", monospace;
 }
+
+.special-friends:hover > .friends {
+  @apply -translate-y-10 scale-100 transition-all duration-150;
+}
+
+.friends {
+  @apply scale-90 transition-all duration-150;
+}

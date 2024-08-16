@@ -1,8 +1,10 @@
 ---
-import { friendList, type KAFriend } from "../Util/kafriends";
+import { assets } from "@kaplayjs/crew";
+
+type Asset = keyof typeof assets;
 
 type Props = {
-    friend: KAFriend;
+    friend: Asset;
 };
 
 const { friend } = Astro.props;
@@ -12,7 +14,7 @@ const { friend } = Astro.props;
     class="p-4 bg-base-200 rounded-box flex-1 flex flex-row gap-4 items-center"
 >
     <div class="max-w-10 max-h-10">
-        <img src={friendList[friend].src.src} alt="KAFriend" />
+        <img src={assets[friend].outlined} alt="KAFriend" />
     </div>
     <slot />
 </div>
