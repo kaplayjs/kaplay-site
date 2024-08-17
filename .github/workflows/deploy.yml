@@ -25,7 +25,12 @@ jobs:
         with:
           submodules: true
           fetch-tags: true
-          ref: 3001.0.0-alpha.21
+      - name: Checkout submodule to v3001
+        run: |
+          cd kaplay
+          git fetch --tags 
+          git checkout 3001.0.0-alpha.21
+          cd ..
       - name: Setup PNPM
         uses: pnpm/action-setup@v4
       - name: Deploy app
