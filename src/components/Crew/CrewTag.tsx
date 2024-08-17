@@ -10,7 +10,7 @@ import { isServer } from "@builder.io/qwik/build";
 
 type CrewTagProps = {
     value: string | null;
-    filter: Signal<string | null>;
+    filter: Signal<string | undefined>;
 };
 
 export const CrewTag = component$<CrewTagProps>(({ filter, value }) => {
@@ -45,7 +45,7 @@ export const CrewTag = component$<CrewTagProps>(({ filter, value }) => {
                         filter.value = value!;
                     }
                     else if (filter.value === value) {
-                        filter.value = null;
+                        filter.value = undefined;
                     }
                 }}
                 ref={inputRef}

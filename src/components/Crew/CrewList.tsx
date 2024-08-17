@@ -1,9 +1,5 @@
 import {
-    $,
     component$,
-    type Signal,
-    useOnDocument,
-    useOnWindow,
     useSignal,
     useTask$,
     useVisibleTask$,
@@ -11,13 +7,19 @@ import {
 import { isServer } from "@builder.io/qwik/build";
 import { assets } from "@kaplayjs/crew";
 import { CrewListItem } from "./CrewListItem";
-import { CrewTag } from "./CrewTag";
+import { CrewSearch } from "./CrewSearch";
 
-export interface CrewListProps {
-}
+export const tags = [
+    "crew",
+    "objects",
+    "animals",
+    "food",
+    "tiles",
+    "icons",
+] as const;
 
-export const CrewList = component$<CrewListProps>((props) => {
-    const tagFilter = useSignal<string | null>(null);
+export const CrewList = component$((props) => {
+    const tagFilter = useSignal<string>();
     const nameFilter = useSignal<string>();
 
     const filterAssets = (asset: string | null) => {
@@ -50,55 +52,29 @@ export const CrewList = component$<CrewListProps>((props) => {
 
     useVisibleTask$(() => {
         const url = new URL(window.location.href);
-        const filter = url.searchParams.get("filter");
+        const filter = url.searchParams.get("filter") ?? "";
         tagFilter.value = filter;
     });
 
     return (
-        <div class="flex flex-col gap-4 | max-w-screen-md max-h-[764px] p-4 | overflow-y-auto bg-base-100 rounded-box h-screen w-screen">
-            <div class="crew-search | flex flex-col gap-2">
-                <input
-                    type="text"
-                    class="input input-bordered | w-full"
-                    placeholder="Search..."
-                    bind:value={nameFilter}
-                />
+        <div class="h-full w-full overflow-y-auto lg:flex lg:items-center lg:justify-center">
+            <div class="flex flex-col gap-4 | p-4 h-full w-full lg:max-w-[50%] lg:max-h-[60%] | overflow-y-auto bg-base-100 rounded-box">
+                <CrewSearch nameFilter={nameFilter} tagFilter={tagFilter} />
 
-                <fieldset class="flex gap-2">
-                    <CrewTag filter={tagFilter} value="crew">
-                        crew
-                    </CrewTag>
-                    <CrewTag filter={tagFilter} value="objects">
-                        objects
-                    </CrewTag>
-                    <CrewTag filter={tagFilter} value="animals">
-                        animals
-                    </CrewTag>
-                    <CrewTag filter={tagFilter} value="food">
-                        food
-                    </CrewTag>
-                    <CrewTag filter={tagFilter} value="tiles">
-                        tiles
-                    </CrewTag>
-                    <CrewTag filter={tagFilter} value="icons">
-                        icons
-                    </CrewTag>
-                </fieldset>
-            </div>
-
-            <div class="flex items-center justify-center flex-wrap | max-w-screen-md gap-2 overflow-y-auto">
-                {Object.keys(assets).filter(filterAssets).filter(
-                    filterAssetsByName,
-                ).map((crewItem, i) => (
-                    <a
-                        href={`/crew/${crewItem}?filter=${tagFilter.value}`}
-                        key={i}
-                    >
-                        <CrewListItem
-                            crewItem={crewItem as keyof typeof assets}
-                        />
-                    </a>
-                ))}
+                <div class="flex items-center justify-center flex-wrap gap-2 overflow-y-auto">
+                    {Object.keys(assets).filter(filterAssets).filter(
+                        filterAssetsByName,
+                    ).map((crewItem, i) => (
+                        <a
+                            href={`/crew/${crewItem}?filter=${tagFilter.value}`}
+                            key={i}
+                        >
+                            <CrewListItem
+                                crewItem={crewItem as keyof typeof assets}
+                            />
+                        </a>
+                    ))}
+                </div>
             </div>
         </div>
     );

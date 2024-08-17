@@ -21,10 +21,8 @@ const { lang } = Astro.props;
             "kaplay, kaboom.js, kaplay.js, game, library, javascript, easy, simple, html5, html5 games",
     }}
 >
-    <div class="land | scroll-smooth flex flex-col gap-2">
+    <main class="land | scroll-smooth flex flex-col max-h-screen h-screen">
         <Navbar />
-        <main class="max-h-screen h-screen flex justify-center items-center">
-            <CrewList />
-        </main>
-    </div>
+        <CrewList />
+    </main>
 </Page>
