@@ -3,15 +3,19 @@ import hamburgerIcon from "@/assets/hamburger.webp";
 import kaplayOutlined from "@/assets/kaplay-o.webp";
 import { Image } from "astro:assets";
 
+const urlPath = Astro.url.pathname;
+
+const linksPrefix = urlPath === "/" ? "" : "/";
+
 const internalLinks = [
     {
         name: "About",
-        url: "#about",
+        url: linksPrefix + "#about",
         highlight: false,
     },
     {
         name: "Example",
-        url: "#example",
+        url: linksPrefix + "#example",
         highlight: false,
     },
     {
