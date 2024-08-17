@@ -16,7 +16,7 @@ export const CrewItem = component$<CrewItemProps>((props) => {
 
     return (
         <div class="flex flex-col gap-2">
-            <div>
+            <div class="hidden lg:block">
                 <btn
                     class="btn btn-sm btn-primary"
                     onClick$={() => {
@@ -26,7 +26,7 @@ export const CrewItem = component$<CrewItemProps>((props) => {
                     Back
                 </btn>
             </div>
-            <div class="rounded-box bg-base-200 p-2 flex border text-xl">
+            <div class="bg-base-200 p-2 flex flex-col lg:flex-row lg:border lg:rounded-box text-xl">
                 <div class="flex flex-col flex-1 p-6 gap-2">
                     <div
                         class="tooltip flex border border-primary rounded-box justify-around"

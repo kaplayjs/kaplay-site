@@ -4,11 +4,8 @@ import Navbar from "@/components/Land/Navbar.astro";
 import Page from "@/layouts/Page.astro";
 import { getStaticPathsByLocales } from "@/util/path";
 import { assets } from "@kaplayjs/crew";
-import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
-    const entries = await getCollection("blog");
-
     return getStaticPathsByLocales().flatMap((locale) => {
         return Object.keys(assets).map((asset) => {
             return {
@@ -26,16 +23,13 @@ const { asset, lang } = Astro.props;
     {lang}
     meta={{
         title: `KAPLAY Crew Wiki - ${asset}`,
-        description:
-            "The wiki (assets manager) for KAPLAY, where you can browse, download and read about our official assets.",
+        description: assets[asset as keyof typeof assets].description,
         keywords:
             "kaplay, kaboom.js, kaplay.js, game, library, javascript, easy, simple, html5, html5 games",
     }}
 >
-    <div class="land | scroll-smooth flex flex-col gap-2">
+    <main class="land | scroll-smooth flex flex-col max-h-dvh h-dvh">
         <Navbar />
-        <main class="max-h-screen h-screen flex justify-center items-center">
-            <CrewItem crewItem={asset as keyof typeof assets} />
-        </main>
-    </div>
+        <CrewItem crewItem={asset as keyof typeof assets} />
+    </main>
 </Page>
