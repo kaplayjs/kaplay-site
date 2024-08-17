@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0",
   "scripts": {
-    "install": "git submodule init && cd kaplay && pnpm i && cd ..",
+    "install": "git submodule init && cd kaplay && pnpm i",
     "dev": "npm run doc && astro dev",
     "start": "npm run doc && astro dev",
     "build": "npm run doc && astro check && astro build && pnpm run pagefind:build && npm run lunaria:build",
