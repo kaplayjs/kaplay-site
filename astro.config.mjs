@@ -22,6 +22,9 @@ export default defineConfig({
         robotsTxt(),
         sitemap(),
     ],
+    experimental: {
+        contentLayer: true,
+    },
     srcDir: "src",
     server: {
         port: 3200,
