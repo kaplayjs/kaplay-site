@@ -66,7 +66,7 @@ export const CrewList = component$((props) => {
                         filterAssetsByName,
                     ).map((crewItem, i) => (
                         <a
-                            href={`/crew/${crewItem}?filter=${tagFilter.value}`}
+                            href={`/crew/${crewItem}`}
                             key={i}
                         >
                             <CrewListItem
