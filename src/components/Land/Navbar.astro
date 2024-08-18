@@ -52,6 +52,7 @@ const externalLinks = [
                 class="h-full w-fit object-scale-down"
                 src={kaplayOutlined}
                 alt="KAPLAY, The JavaScript easy game library"
+                loading={"eager"}
             />
             <span class="hidden">KAPLAY, a TypeScript Game Library</span>
         </a>
@@ -100,7 +101,7 @@ const externalLinks = [
                 internalLinks.map((link) => (
                     <li>
                         <a
-                            class="font-semibold btn btn-sm btn-ghost"
+                            class="font-semibold btn btn-ghost"
                             href={link.url}
                         >
                             {link.name}
@@ -111,11 +112,12 @@ const externalLinks = [
         </ul>
 
         <div class="flex justify-center">
-            <a class="btn btn-ghost text-lg" href="/">
+            <a class="btn btn-ghost btn-lg" href="/">
                 <Image
                     class="h-full w-fit object-scale-down"
                     src={kaplayOutlined}
                     alt="KAPLAY, The JavaScript easy game library"
+                    loading="eager"
                 />
                 <span class="hidden">KAPLAY, a TypeScript Game Library</span>
             </a>
@@ -127,7 +129,7 @@ const externalLinks = [
                     <li>
                         <a
                             class:list={[
-                                "btn btn-sm",
+                                "btn",
                                 {
                                     "btn-primary": link.highlight,
                                     "btn-ghost": !link.highlight,

@@ -1,6 +1,6 @@
 ---
 import kaplayOutlined from "@/assets/kaplay-o.webp";
-import Image from "astro/components/Image.astro";
+import { Image } from "astro:assets";
 import FriendsBelow from "../Util/FriendsBelow.astro";
 import FooterLink from "./FooterLink.astro";
 import FooterNav from "./FooterNav.astro";
@@ -69,9 +69,11 @@ import FooterNav from "./FooterNav.astro";
                     href="https://opencollective.com/kaplay/donate"
                     target="_blank"
                 >
-                    <img
+                    <Image
                         src="https://opencollective.com/webpack/donate/button@2x.png?color=blue"
                         width="300"
+                        alt="Donate in Open Collective"
+                        height={50}
                     />
                 </a>
                 <FooterLink href="https://cafecito.app/kaplay" external>
