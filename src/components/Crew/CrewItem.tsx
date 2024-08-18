@@ -15,7 +15,7 @@ export const CrewItem = component$<CrewItemProps>((props) => {
     const crewItem = assets[props.crewItem];
 
     return (
-        <div class="flex flex-col gap-2">
+        <div class="flex flex-col gap-2 h-full items-center justify-center">
             <div class="hidden lg:block">
                 <btn
                     class="btn btn-sm btn-primary"
@@ -26,7 +26,7 @@ export const CrewItem = component$<CrewItemProps>((props) => {
                     Back
                 </btn>
             </div>
-            <div class="bg-base-200 p-2 flex flex-col lg:flex-row lg:border lg:rounded-box text-xl">
+            <div class="h-full bg-base-200 p-2 flex flex-col lg:flex-row lg:border lg:rounded-box text-xl lg:max-h-[60%]">
                 <div class="flex flex-col flex-1 p-6 gap-2">
                     <div
                         class="tooltip flex border border-primary rounded-box justify-around"
