@@ -4,6 +4,7 @@ import Footer from "@/components/Footer/Footer.astro";
 import type { SidebarProps } from "@/components/Sidebar/Sidebar.astro";
 import Sidebar from "@/components/Sidebar/Sidebar.astro";
 import type { Locale } from "@/util/i18n";
+import { Image } from "astro:assets";
 import Page, { type MetaTagData } from "./Page.astro";
 
 type Props = {
@@ -11,33 +12,11 @@ type Props = {
     lang: Locale;
 } & SidebarProps;
 
-const { sidebarMode, meta, lang } = Astro.props;
+const { sidebarMode, meta, lang, headings } = Astro.props;
 ---
 
 <Page lang={lang} meta={meta}>
-    <Sidebar sidebarMode={sidebarMode}>
-        <header class="min-h-16 w-full lg:hidden">
-            <nav class="lg:hidden flex bg-base-200 w-full h-16 fixed">
-                <label
-                    for="sidebar"
-                    class="lg:hidden flex"
-                >
-                    <figure>
-                        <img
-                            src={hamburgerIcon.src}
-                            width="64"
-                            height="64"
-                            alt="hamburger icon"
-                        />
-                    </figure>
-                </label>
-            </nav>
-        </header>
-
-        <main class="w-full">
-            <slot />
-        </main>
-
-        <Footer />
+    <Sidebar sidebarMode={sidebarMode} headings={headings}>
+        <slot />
     </Sidebar>
 </Page>

@@ -31,7 +31,7 @@ export async function getStaticPaths() {
 }
 
 const { entry, lang } = Astro.props;
-const { Content } = await entry.render();
+const { Content, headings } = await entry.render();
 ---
 
 <SidebarPage
@@ -43,6 +43,7 @@ const { Content } = await entry.render();
         keywords: "kaplayjs, guides, documentation",
     }}
     sidebarMode="guides"
+    headings={headings}
 >
     <Prose>
         <Content />

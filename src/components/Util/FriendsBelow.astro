@@ -20,23 +20,25 @@ const offsets = [
 ---
 
 <div class="friends-below | relative z-10">
-    <a class="hoverable special-friends" href="/crew">
-        <div
-            class:list={[
-                `friends | relative top-0 -z-10 flex flex-row justify-center w-full gap-4 ${
-                    offsets[offset]
-                }`,
-            ]}
-        >
-            {
-                friends?.map((friend) => (
-                    <div class="select-none">
-                        <img src={assets[friend].sprite} alt="KAFriend" />
-                    </div>
-                ))
-            }
-        </div>
-    </a>
+    <div class="flex w-full items-center justify-center">
+        <a class="hoverable special-friends" href="/crew">
+            <div
+                class:list={[
+                    `friends | relative top-0 -z-10 flex flex-row justify-center w-full gap-4 ${
+                        offsets[offset]
+                    }`,
+                ]}
+            >
+                {
+                    friends?.map((friend) => (
+                        <div class="select-none">
+                            <img src={assets[friend].sprite} alt="KAFriend" />
+                        </div>
+                    ))
+                }
+            </div>
+        </a>
+    </div>
 
     <div>
         <slot />
