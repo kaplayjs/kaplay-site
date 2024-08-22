@@ -69,60 +69,68 @@ else if (sidebarMode === "blog") {
                     </figure>
                 </label>
 
-                <aside class="2xl:hidden">
-                    <select
-                        class="select select-sm"
-                        onchange="window.location.href = this.value"
-                    >
-                        {
-                            headings?.map((heading) => (
-                                <option
-                                    value={`#${heading.slug}`}
-                                    class={cn(
-                                        {
-                                            "text-xl font-semibold": heading.depth === 1,
-                                            "text-lg": heading.depth === 2,
-                                            "text-base": heading.depth >= 3,
-                                        },
-                                    )}
-                                >
-                                    {heading.text}
-                                </option>
-                            ))
-                        }
-                    </select>
-                </aside>
+                {
+                    headings && headings.length > 0 && (
+                        <aside class="2xl:hidden">
+                            <select
+                                class="select select-sm"
+                                onchange="window.location.href = this.value"
+                            >
+                                {
+                                    headings?.map((heading) => (
+                                        <option
+                                            value={`#${heading.slug}`}
+                                            class={cn(
+                                                {
+                                                    "text-xl font-semibold": heading.depth === 1,
+                                                    "text-lg": heading.depth === 2,
+                                                    "text-base": heading.depth >= 3,
+                                                },
+                                            )}
+                                        >
+                                            {heading.text}
+                                        </option>
+                                    ))
+                                }
+                            </select>
+                        </aside>
+                    )
+                }
             </nav>
         </header>
 
         <main class="w-full flex flex-col lg:flex-row">
-            <aside
-                class="hidden 2xl:flex fixed top-1/2 right-0 transform -translate-y-1/2 z-50 px-4 bg-base-300 rounded-l-box"
-            >
-                <ul
-                    class="min-h-96 max-h-96 overflow-auto max-w-60 w-64 flex flex-col p-4 gap-2"
-                >
-                    {
-                        headings?.map((heading) => (
-                            <li>
-                                <a
-                                    href={`#${heading.slug}`}
-                                    class={cn(
-                                        `link link-hover`,
-                                        {
-                                            "text-xl font-semibold": heading.depth === 1,
-                                            "text-lg": heading.depth === 2,
-                                            "text-base": heading.depth >= 3,
-                                        },
-                                    )}
-                                >
-                                    {heading.text}
-                                </a>
-                            </li>
-                        ))
-                    }
-                </ul>
-            </aside>
+            {
+                headings && headings.length > 0 && (
+                    <aside
+                        class="hidden 2xl:flex fixed top-1/2 right-0 transform -translate-y-1/2 z-50 px-4 bg-base-300 rounded-l-box"
+                    >
+                        <ul
+                            class="min-h-96 max-h-96 overflow-auto max-w-60 w-64 flex flex-col p-4 gap-2"
+                        >
+                            {
+                                headings?.map((heading) => (
+                                    <li>
+                                        <a
+                                            href={`#${heading.slug}`}
+                                            class={cn(
+                                                `link link-hover`,
+                                                {
+                                                    "text-xl font-semibold": heading.depth === 1,
+                                                    "text-lg": heading.depth === 2,
+                                                    "text-base": heading.depth >= 3,
+                                                },
+                                            )}
+                                        >
+                                            {heading.text}
+                                        </a>
+                                    </li>
+                                ))
+                            }
+                        </ul>
+                    </aside>
+                )
+            }
 
             <div>
                 <slot />
