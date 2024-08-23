@@ -16,6 +16,9 @@ export const tags = [
     "food",
     "tiles",
     "icons",
+    "books",
+    "brand",
+    "ui",
 ] as const;
 
 export const CrewList = component$((props) => {
