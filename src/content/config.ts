@@ -23,6 +23,14 @@ const guideCollection = defineCollection({
     }),
 });
 
+const booksCollection = defineCollection({
+    type: "content", // v2.5.0 and later
+    schema: z.object({
+        title: z.string(),
+        description: z.string(),
+    }),
+});
+
 const miscCollection = defineCollection({
     type: "content", // v2.5.0 and later
     schema: z.object({
@@ -34,5 +42,6 @@ const miscCollection = defineCollection({
 export const collections = {
     blog: blogCollection,
     guides: guideCollection,
+    books: booksCollection,
     misc: miscCollection,
 };
