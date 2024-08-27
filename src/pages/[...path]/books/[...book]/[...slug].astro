@@ -1,0 +1,42 @@
+---
+import Prose from "@/components/Content/Prose.astro";
+import SidebarPage from "@/layouts/SidebarPage.astro";
+import { getStaticPathsByLocales } from "@/util/path";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+    const entries = await getCollection("books");
+
+    return getStaticPathsByLocales().flatMap((locale) => {
+        return entries.map((entry) => {
+            console.log(entry.slug);
+
+            return {
+                params: {
+                    slug: entry.slug.split("/")[2],
+                    book: entry.slug.split("/")[1],
+                    ...locale.params,
+                },
+                props: { entry, ...locale.props },
+            };
+        });
+    });
+}
+
+const { entry, lang } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<SidebarPage
+    lang={lang}
+    meta={{
+        title: "KAPLAY Book, " + entry.data.title,
+        description: entry.data.description,
+        keywords: "kaplayjs, guides, documentation",
+    }}
+    sidebarMode="books"
+>
+    <Prose>
+        <Content />
+    </Prose>
+</SidebarPage>

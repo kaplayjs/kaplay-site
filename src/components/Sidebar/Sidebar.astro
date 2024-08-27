@@ -8,7 +8,12 @@ import { t } from "@/util/i18n";
 import { getLangedRoute } from "@/util/path";
 import type { MarkdownHeading } from "astro";
 import Image from "astro/components/Image.astro";
-import { getBlogEntries, getDocEntries, getGuidesEntries } from "./entries";
+import {
+    getBlogEntries,
+    getBookEntries,
+    getDocEntries,
+    getGuidesEntries,
+} from "./entries";
 import { SidebarLink } from "./SidebarLink";
 import { SidebarList } from "./SidebarList";
 import VersionSelector from "./VersionSelector.astro";
@@ -24,7 +29,7 @@ export type SidebarEntry = {
 };
 
 export type SidebarProps = {
-    sidebarMode?: "guides" | "reference" | "blog";
+    sidebarMode?: "guides" | "reference" | "blog" | "books";
     headings?: MarkdownHeading[];
 };
 
@@ -42,6 +47,9 @@ else if (sidebarMode === "reference") {
 }
 else if (sidebarMode === "blog") {
     renderList = await getBlogEntries();
+}
+else if (sidebarMode === "books") {
+    renderList = await getBookEntries();
 }
 ---
 

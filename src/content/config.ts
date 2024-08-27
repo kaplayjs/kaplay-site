@@ -28,6 +28,7 @@ const booksCollection = defineCollection({
     schema: z.object({
         title: z.string(),
         description: z.string(),
+        chapter: z.number(),
     }),
 });
 

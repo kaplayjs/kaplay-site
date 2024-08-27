@@ -10,6 +10,16 @@ As we said, components are the building blocks of game objects. They define the
 behavior of the object, like how it moves, how it looks, and how it interacts
 with other objects.
 
+This guide covers:
+
+- Component & Tags system
+- The
+  [`GameObjRaw.use()` method](https://kaplayjs.com/doc/GameObjRaw/#GameObjRaw-use)
+- The
+  [`GameObjRaw.c()` method](https://kaplayjs.com/doc/GameObjRaw/#GameObjRaw-c)
+- The
+  [`GameObjRaw.is()` method](https://kaplayjs.com/doc/GameObjRaw/#GameObjRaw-is)
+
 The components system of KAPLAY (the `C` of ECS) is powerful and flexible.
 
 ## Using Components
@@ -124,3 +134,8 @@ if (player.is("sprite")) {
     // do something
 }
 ```
+
+## Making your own components
+
+There's a guide about how to create your own components in KAPLAY. You can check
+it [here](https://kaplayjs.com/guides/custom_components/).

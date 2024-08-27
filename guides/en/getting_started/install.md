@@ -6,6 +6,15 @@ order: 1
 
 # Installation
 
+This guide covers
+
+- [create-kaplay](https://npmjs.com/package/create-kaplay) for create KAPLAY
+  projects easily
+- Using KAPLAY with a CDN
+- Using KAPLAY with Node.js
+- Loading assets
+- Running a static file server
+
 The most easy way to get started with KAPLAY is to use the
 [CLI tool](https://www.npmjs.com/package/create-kaplay), which will generate a
 project for you:

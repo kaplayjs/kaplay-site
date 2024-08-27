@@ -2,10 +2,21 @@ import doc from "@/../doc.json";
 import { $lang } from "@/stores";
 import type { LocaleSubKeys } from "@/util/i18n";
 import { t } from "@/util/i18n";
+import { assets } from "@kaplayjs/crew";
 import { getCollection } from "astro:content";
 import type { SidebarEntry } from "./Sidebar.astro";
 
 const allDoc = doc.types as any;
+
+const booksInfo: Record<string, {
+    title: string;
+    potrait: string;
+}> = {
+    "how_to_be_a_bean_wizard": {
+        title: "How to be a Bean Wizard",
+        potrait: assets.how_to_be_a_bean_wizard.outlined!,
+    },
+};
 
 export const getGuidesEntries = async () => {
     let renderList: SidebarEntry[] = [];
@@ -63,6 +74,43 @@ export const getBlogEntries = async () => {
                 link: `/blog/${entry.slug}`,
             })),
         },
+    ];
+
+    return renderList;
+};
+
+export const getBookEntries = async () => {
+    let renderList: SidebarEntry[] = [];
+
+    const lang = $lang.get();
+    const books = await getCollection("books");
+    const sortedBooks = books.sort((a, b) => (a.data.chapter - b.data.chapter));
+
+    const booksByCategory = sortedBooks.reduce((acc, book) => {
+        const [bookLang, folder] = book.slug.split("/");
+        const folderName = folder;
+
+        if (lang !== bookLang) return acc;
+
+        if (!acc[folderName]) {
+            acc[folderName] = [];
+        }
+
+        acc[folderName].push(book);
+
+        return acc;
+    }, {} as Record<string, any>);
+
+    renderList = [
+        ...Object.keys(booksByCategory).map((category) => ({
+            folder: booksInfo[category].title ?? category,
+            linkList: booksByCategory[category].map((book: any) => ({
+                title: book.data.title,
+                link: `/books/${book.slug.split("/")[1]}/${
+                    book.slug.split("/")[2]
+                }`,
+            })),
+        })),
     ];
 
     return renderList;

@@ -1,7 +1,7 @@
 ---
 title: Creating your first game
 description: Learn the basics of KAPLAY and make a simple game.
-order: 4
+order: 9
 ---
 
 # Creating your first game
