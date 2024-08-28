@@ -108,9 +108,11 @@ $$f(x) = f(a) + \frac{f'(a)}{1!}(x-a) + \frac{f''(a)}{2!}(x-a)^2 + \frac{f'''(a)
 
 To give an example, let's take f(x) = cos(x). We know that its derivatives are
 
-$$f'(x) = -sin(x) \\
-f''(x) = -cos(x) \\
-f'''(x) = sin(x)$$
+$$f'(x) = -sin(x)$$
+
+$$f''(x) = -cos(x)$$
+
+$$f'''(x) = sin(x)$$
 
 So our Taylor series for cosine is
 
@@ -137,70 +139,83 @@ how libraries implement them.
 In case you don't remember how to calculate the derivative of a function, here
 is a short guide. For a constant function, the derivative is 0.
 
-$$f(x) = c \\
-f'(x) = 0$$
+$$f(x) = c$$
+
+$$f'(x) = 0$$
 
 The derivative of a sum is the sum of the derivatives
 
-$$f(x) = a(x) + b(x) \\
-f'(x) = a'(x) + b'(x)$$
+$$f(x) = a(x) + b(x)$$
+
+$$f'(x) = a'(x) + b'(x)$$
 
 The derivative of a product is
 
-$$f(x) = a(x) + b(x) \\
-f'(x) = a'(x)b(x) + b'(x)a(x)$$
+$$f(x) = a(x) + b(x)$$
+
+$$f'(x) = a'(x)b(x) + b'(x)a(x)$$
 
 The derivative of nested function is
 
-$$f(x) = a(b(x)) \\ 
-f'(x) = a'(b(x)) * b'(x)$$
+$$f(x) = a(b(x))$$
+
+$$f'(x) = a'(b(x)) * b'(x)$$
 
 Out of the product rule, we can derive the rule for polynomials. This is the
 rule which you'll use most of the time, as anything from ballistics to general
 splines are polynomials
 
-$$f(x) = x^n \\
-f'(x) = n * x^{(n-1)}$$
+$$f(x) = x^n$$
+
+$$f'(x) = n * x^{(n-1)}$$
 
 Out of the nested function rule, we can derive the rule for
 
-$$f(x) = \frac{1}{a(x)} \\
-f'(x) = \frac{a'(x)}{a(x)^2}$$
+$$f(x) = \frac{1}{a(x)}$$
+
+$$f'(x) = \frac{a'(x)}{a(x)^2}$$
 
 From this we can get the quotient rule
 
-$$f(x) = \frac{a(x)}{b(x)} \\
-f'(x) = \frac{a'(x)b(x) + b'(x)a(x)}{b(x)^2}$$
+$$f(x) = \frac{a(x)}{b(x)}$$
+
+$$f'(x) = \frac{a'(x)b(x) + b'(x)a(x)}{b(x)^2}$$
 
 For the two most used trigonometric functions we have
 
-$$f(x) = cos(x) \\
-f'(x) = -sin(x)$$
+$$f(x) = cos(x)$$
+
+$$f'(x) = -sin(x)$$
 
 and
 
-$$f(x) = sin(x) \\
-f'(x) = cos(x)$$
+$$f(x) = sin(x)$$
+
+$$f'(x) = cos(x)$$
 
 For logarithmic functions
 
-$$f(x) = log_c(x) \\
-f'(x) = \frac{1}{x*ln(c)}$$
+$$f(x) = log_c(x)$$
+
+$$f'(x) = \frac{1}{x*ln(c)}$$
 
 and
 
-$$f(x) = ln(x) \\
-f'(x) = \frac{1}{x}$$
+$$f(x) = ln(x)$$
+
+$$f'(x) = \frac{1}{x}$$
 
 For exponential functions
 
-$$f(x) = e^{ax} \\
-f'(x) = ae^{ax}$$
+$$f(x) = e^{ax}$$
+
+$$f'(x) = ae^{ax}$$
 
 and
 
-$$f(x) = x^x \\
-f'(x) = x^x(1 + ln(x))$$
+$$f(x) = x^x$$
+
+$$f'(x) = x^x(1 + ln(x))$$
 
 ## Partial derivatives
 
@@ -230,8 +245,9 @@ rate of change.
 Do we use that in games? Yes we do. Every physics simulation uses it. When we
 use simple Euler integration, we have
 
-$$vel = vel + acc * dt \\
-pos = pos + vel * dt$$
+$$vel = vel + acc * dt$$
+
+$$pos = pos + vel * dt$$
 
 We integrate twice here, we calculate our new velocity from the rate of change
 of velocity, acceleration. Then we calculate our new position from the rate of
@@ -262,8 +278,9 @@ anti-derivative of a function. What you need to look out for though is
 constants. The derivative of a constant was zero, this means that there are many
 anti-derivatives possible for the same function. For example both
 
-$$x^2 \\
-x^2 + 5$$
+$$x^2$$
+
+$$x^2 + 5$$
 
 derive to $2x$, thus any function $x^2 + c$, with c a constant is an
 anti-derivative of $2x$.
