@@ -15,7 +15,7 @@ trying to calculate the derivative at the current position (Note that if you use
 physics with an integrator, you can just use the velocity. We are talking about
 the case where an analytical function is used instead).
 
-$$f'(x) = \frac{f(t + dt) - f(t)}{dt}$$
+$$f'(t) = \frac{f(t + dt) - f(t)}{dt}$$
 
 The problem is that calculating the direction this way will depend a lot on the
 elapsed time. If dt is too large, you might be off a by a lot, and if dt is too
