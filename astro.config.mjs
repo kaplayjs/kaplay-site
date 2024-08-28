@@ -10,7 +10,7 @@ import astroMetaTags from "astro-meta-tags";
 import robotsTxt from "astro-robots-txt";
 import { defineConfig } from "astro/config";
 import { defineConfig, passthroughImageService } from "astro/config";
-import rehypeMathjax from "rehype-katex";
+import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 
 // https://astro.build/config
@@ -45,7 +45,7 @@ export default defineConfig({
             remarkMath,
         ],
         rehypePlugins: [
-            rehypeMathjax,
+            rehypeKatex,
         ],
     },
 });
