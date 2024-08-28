@@ -4,6 +4,7 @@
     "**/node_modules",
     "**/*-lock.json",
     "**/dist",
-    "**/kaplay"
+    "**/kaplay",
+    "**/books/en/how_to_be_a_bean_wizard"
   ]
 }

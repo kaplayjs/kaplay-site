@@ -104,8 +104,7 @@ With derivatives, you can approximate the function around a given point. This
 approximation is a polynomial and is called a Taylor series. Given a function f,
 its Taylor series is
 
-$$f(x) = f(a) + \frac{f'(a)}{1!}(x-a) + \frac{f''(a)}{2!}(x-a)^2 +
-\frac{f'''(a)}{3!}(x-a)^3 + ...$$
+$$f(x) = f(a) + \frac{f'(a)}{1!}(x-a) + \frac{f''(a)}{2!}(x-a)^2 + \frac{f'''(a)}{3!}(x-a)^3 + ...$$
 
 To give an example, let's take f(x) = cos(x). We know that its derivatives are
 
@@ -113,18 +112,15 @@ $$f'(x) = -sin(x)$$ $$f''(x) = -cos(x)$$ $$f'''(x) = sin(x)$$
 
 So our Taylor series for cosine is
 
-$$cos(x) = cos(a) − \frac{sin(a)}{1!}(x-a) − \frac{cos(a)}{2!}(x-a)^2 +
-\frac{sin(a)}{3!}(x-a)^3 + ...$$
+$$cos(x) = cos(a) − \frac{sin(a)}{1!}(x-a) − \frac{cos(a)}{2!}(x-a)^2 + \frac{sin(a)}{3!}(x-a)^3 + ...$$
 
 For cos(x) around 0 (so a = 0) we get
 
-$$cos(x) = cos(0) − \frac{sin(0)}{1!}(x-a) − \frac{cos(0)}{2!}(x-a)^2 +
-\frac{sin(0)}{3!}(x-a)^3 + ...$$
+$$cos(x) = cos(0) − \frac{sin(0)}{1!}(x-a) − \frac{cos(0)}{2!}(x-a)^2 + \frac{sin(0)}{3!}(x-a)^3 + ...$$
 
 Since we know cos() = 1 and sin(0) = 0 we get
 
-$$cos(x) = 1 − \frac{0}{1!}(x-0) − \frac{1}{2!}(x-0)^2 + \frac{0}{3!}(x-0)^3 +
-\frac{1}{4!}(x-0)^4 + ...$$
+$$cos(x) = 1 − \frac{0}{1!}(x-0) − \frac{1}{2!}(x-0)^2 + \frac{0}{3!}(x-0)^3 + \frac{1}{4!}(x-0)^4 + ...$$
 
 Cleaning this up we get and approximation for cosine around 0
 

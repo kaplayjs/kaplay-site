@@ -9,8 +9,6 @@ export async function getStaticPaths() {
 
     return getStaticPathsByLocales().flatMap((locale) => {
         return entries.map((entry) => {
-            console.log(entry.slug);
-
             return {
                 params: {
                     slug: entry.slug.split("/")[2],
@@ -24,7 +22,7 @@ export async function getStaticPaths() {
 }
 
 const { entry, lang } = Astro.props;
-const { Content } = await entry.render();
+const { Content, headings } = await entry.render();
 ---
 
 <SidebarPage
@@ -35,6 +33,7 @@ const { Content } = await entry.render();
         keywords: "kaplayjs, guides, documentation",
     }}
     sidebarMode="books"
+    headings={headings}
 >
     <Prose>
         <Content />

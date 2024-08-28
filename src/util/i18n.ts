@@ -21,9 +21,7 @@ export type TranslationString =
     | TranslationStringsGuides
     | TranslationStringsMisc;
 
-export const locales = import.meta.env.NODE_ENV === "fastproduction"
-    ? ["en"]
-    : ["en", "es"] as const;
+export const locales = ["en"];
 export const DEFAULT_LANG = "en";
 
 export const localesMap = {
