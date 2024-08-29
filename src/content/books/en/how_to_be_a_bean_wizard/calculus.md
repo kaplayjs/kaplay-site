@@ -1,7 +1,7 @@
 ---
 title: Calculus
-description: Different aspect of calculus used in game development.
-chapter: 2
+description: Different aspects of calculus used in game development.
+chapter: 3
 ---
 
 # Derivatives and differentiation
@@ -126,18 +126,16 @@ Since we know cos() = 1 and sin(0) = 0 we get
 
 $$cos(x) = 1 − \frac{0}{1!}(x-0) − \frac{1}{2!}(x-0)^2 + \frac{0}{3!}(x-0)^3 + \frac{1}{4!}(x-0)^4 + ...$$
 
-Cleaning this up we get and approximation for cosine around 0
+Cleaning this up we get an approximation for cosine around 0
 
 $$cos(x) = 1 − \frac{x^2}{2!} + \frac{x^4}{4!} − ...$$
 
-This is how trigonometric, logarithmic and other functions can be converted into
-polynomials which can then be calculated using basic operators. This is how also
+This is how trigonometric, logarithmic and other functions can be converted into polynomials which can then be calculated using basic operators. This is how also
 how libraries implement them.
 
 ## Calculating derivatives
 
-In case you don't remember how to calculate the derivative of a function, here
-is a short guide. For a constant function, the derivative is 0.
+In case you don't remember how to calculate the derivative of a function, here is a short guide. For a constant function, the derivative is 0.
 
 $$f(x) = c$$
 
@@ -155,7 +153,7 @@ $$f(x) = a(x) + b(x)$$
 
 $$f'(x) = a'(x)b(x) + b'(x)a(x)$$
 
-The derivative of nested function is
+The derivative of a nested function is
 
 $$f(x) = a(b(x))$$
 
