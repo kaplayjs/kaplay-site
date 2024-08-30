@@ -34,6 +34,10 @@ Numbers to a negative power are the reciprocal of the same number to the positiv
 
 $$a^{-2} = \frac{1}{a^2}$$
 
+Fractional powers gives use operations like square root
+
+$$a^{\frac{1}{2}} = \sqrt{2}$$
+
 # Vectors
 
 Vectors take on many forms in games. We can find them for example as points, translations, forces or even rotations. A vector is something which can't be expressed using one number. For example a point in 2D needs 2 numbers, an x and an y value.
@@ -229,9 +233,9 @@ We get the formula for length
 
 $$length(u) = \sqrt{(u_x^2 + u_y^2)}$$
 
-## Vectors do not form an algebra
+## 2D Vectors do not form an algebra
 
-Since vectors do not have a multiplication operator which is left and right distributive, they do not form an algebra. The complex numbers do, as they do have a multiplication operator which is even both commutative and associative.
+Since 2D vectors do not have a product which is left and right distributive, they do not form an algebra. The complex numbers do, as they do have a product which is not only bilinear (left and right distributive) but even both commutative and associative. So the complex numbers form an algebra. 3D vectors have a cross product which is left and right distributive and they form an algebra. Their cross product is neither associative nor commutative though. If we look at quaternions, the equivalent of complex numbers used in 3D, their Hamilton product is bilinear and associative.
 
 # Polynomials
 
@@ -240,6 +244,8 @@ Polynomials are expressions containing a variable and using only operators +=*/ 
 $$2x + 4$$
 
 $$x^2 + 4x + 2$$
+
+Polynomials form an algebra, with polynomial multiplication.
 
 ## The line and linear interpolation
 
@@ -283,3 +289,130 @@ To add scale factors, you multiply them, just like you do with complex numbers. 
 So do all engines and editors interpolate scale wrong? Yes, yes they do. Just like the lack of a rotate function with a vector parameter, we are dealing with something which isn't well understood by most people. Some audio engineers know, but graphics people are still in the dark.
 
 # Matrices
+
+A matrix can be seen as a two dimensional vector (though more dimensions are possible). The size or shape of a matrix depends on what we are using it for. In 2D games, the place where you might encounter it most frequently is transformations. Now you might ask, "why use a matrix?", as you can already translate, rotate and scale vectors now. The reason is mostly composition and inverting transformations. It is easy to compose two translations, by just adding them. But what if you add a rotation? How do you store both the rotation and translation. And when you translate after the rotation, your next translation should work according to the new rotated coordinate system.
+
+To make all this easier, we use matrices. Though matrices are not the only way to do this, as we'll see later, there are other more compact constructs as well.
+
+To add transformations, we multiply their matrices. Just like complex numbers.
+
+# Matrix multiplication
+
+Multiplying a matrix A with a matrix B means taking the dot product of the row vectors of A with the column vectors of B.
+
+$$\begin{bmatrix}
+a & b & c\\
+d & e & f\\
+g & h & i\\
+\end{bmatrix} \times
+\begin{bmatrix}
+j & k & l\\
+m & n & o\\
+p & q & r\\
+\end{bmatrix} =
+\begin{bmatrix}
+a*j+b*m+c*p & a*k+b*n+c*q & a*l+b*o+c*r\\
+d*j+e*m+f*p & d*k+e*n+f*q & d*l+e*o+f*r\\
+g*j+h*m+i*p & g*k+h*n+i*q & g*l+h*o+i*r\\
+\end{bmatrix}
+$$
+
+Note that this multiplication is not commutative, thus
+
+$$A*B != B*A$$
+
+This is good because transformations are not commutative.
+
+## Identity matrix
+
+To start with transformation specific matrices, here is an identity matrix. This matrix is like the number 1. If you multiply by 1, nothing happens. It's the same with this matrix. Multiplying by it gives you just the original matrix.
+
+$$I = 
+\begin{bmatrix}
+1 & 0 & 0\\
+0 & 1 & 0\\
+0 & 0 & 1\\
+\end{bmatrix} 	
+$$
+
+$$A * I = A$$
+
+## Translation matrix
+
+Now, our vector is only 2 dimensional, so why a 3 dimensional matrix? It's to support translation. If we want to translate by a vector t, our translation matrix looks like
+
+$$T = 
+\begin{bmatrix}
+1 & 0 & t_x\\
+0 & 1 & t_y\\
+0 & 0 & 1\\
+\end{bmatrix} 	
+$$
+
+So let's multiply our vector v with that matrix to see what happens
+
+$$\begin{bmatrix}
+v_x & v_y & 1
+\end{bmatrix} \times 
+\begin{bmatrix}
+1 & 0 & t_x\\
+0 & 1 & t_y\\
+0 & 0 & 1\\
+\end{bmatrix} =
+\begin{bmatrix}
+v_x + t_x \\ v_y + t_y \\ 1
+\end{bmatrix}
+$$
+
+As you can see, we wrote our vector in the form of a row matrix, and we added a 1 to the end. Our result is a column matrix, also with a 1 at the end. As we can see, we successfully translated v by t, but what is that 1. The 1 at the end is actually a handy tool to distinguish points and normals. If our vector was a normal, it would have a 0 at the end. Let's see what would happen.
+
+$$\begin{bmatrix}
+n_x & n_y & 0
+\end{bmatrix} \times 
+\begin{bmatrix}
+1 & 0 & t_x\\
+0 & 1 & t_y\\
+0 & 0 & 1\\
+\end{bmatrix} =
+\begin{bmatrix}
+n_x \\ n_y \\ 0
+\end{bmatrix}
+$$
+
+Nothing seems to have happened. Which is exactly what we want. If we rotate a shape, normals will also rotate with the shape, but normals shouldn't translate if the shape is translated. This is because normals show the direction of the surface at the point where they are located, and the neither the surface , nor the normal's location relative to the surface changes under translation.
+
+## Rotation matrix
+
+So now that we have that established, let's rotate. We already saw how this matrix looks in the section about complex numbers.
+
+$$\begin{bmatrix}
+v_x & v_y & 1
+\end{bmatrix} \times 
+\begin{bmatrix}
+cos(\phi) & -sin(\phi) & 0\\
+sin(\phi) & cos(\phi) & 0\\
+0 & 0 & 1\\
+\end{bmatrix} =
+\begin{bmatrix}
+v_x * cos(\phi) - v_y * sin(\phi) \\ v_x * sin(\phi) + v_y * cos(\phi) \\ 1
+\end{bmatrix}
+$$
+
+## Scale matrix
+
+Scale is even easier. If we want to scale by s, we get
+
+$$\begin{bmatrix}
+v_x & v_y & 1
+\end{bmatrix} \times 
+\begin{bmatrix}
+s_x & 0 & 0\\
+0 & s_y & 0\\
+0 & 0 & 1\\
+\end{bmatrix} =
+\begin{bmatrix}
+v_x * s_x \\ v_y * s_y \\ 1
+\end{bmatrix}
+$$
+
+Note that if we only want to allow a uniform scale, we need to keep $s_x = s_y$.

@@ -38,7 +38,7 @@ This function will give us the velocity vector at each time t. If we take the
 angle of this vector, we can rotate our sprite in order to align it with the
 followed trajectory.
 
-## Limits
+## Local minimum, maximum and inflection points
 
 What if we want to know how high our projectile will go? Let's say we have an
 enemy in a cave system throwing stones. These stones follow the same kind of
