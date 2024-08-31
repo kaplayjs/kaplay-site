@@ -1,7 +1,8 @@
 ---
 title: Sounds
 description: How to play music, audios and sounds in KAPLAY, the HTML5 Game Engine.
-order: 6
+order: 4
+url: audio
 ---
 
 # Playing sounds in KAPLAY

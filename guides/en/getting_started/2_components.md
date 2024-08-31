@@ -1,7 +1,8 @@
 ---
 title: Components
 description: All about how components works in KAPLAY
-order: 3
+order: 2
+url: components
 ---
 
 # Components

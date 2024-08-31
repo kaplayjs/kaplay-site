@@ -20,7 +20,7 @@ export async function getStaticPaths() {
                     ...locale.props,
                 },
                 params: {
-                    slug: entry.slug.split("/")[2],
+                    slug: entry.data.url ?? entry.slug.split("/")[2],
                     ...locale.params,
                 },
             };

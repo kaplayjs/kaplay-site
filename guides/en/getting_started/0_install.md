@@ -1,7 +1,8 @@
 ---
 title: Installation
 description: Learn how to install KAPLAY.
-order: 1
+order: 0
+url: install
 ---
 
 # Installation

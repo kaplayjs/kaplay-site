@@ -1,7 +1,8 @@
 ---
 title: Basic Concepts
 description: Learn about the basics of KAPLAY.
-order: 2
+order: 1
+url: starting
 ---
 
 # Basic Concepts
@@ -17,8 +18,8 @@ the actors and components are the script the actors follow.
 
 ## Initialization
 
-All KAPLAY games start with the `kaplay()` function. This function makes available
-all methods and functions that you will use to create your game.
+All KAPLAY games start with the `kaplay()` function. This function makes
+available all methods and functions that you will use to create your game.
 
 ```js
 kaplay();

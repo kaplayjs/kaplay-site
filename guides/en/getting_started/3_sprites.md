@@ -1,7 +1,8 @@
 ---
 title: Sprites
 description: Learn how to load sprites and spritesheets in KAPLAY, also how to put them in the game.
-order: 4
+order: 3
+url: sprites
 ---
 
 # Sprites

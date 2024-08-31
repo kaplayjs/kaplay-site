@@ -15,6 +15,7 @@ const blogCollection = defineCollection({
 const guideCollection = defineCollection({
     type: "content", // v2.5.0 and later
     schema: z.object({
+        url: z.optional(z.string()),
         title: z.string(),
         description: z.string(),
         order: z.number(),

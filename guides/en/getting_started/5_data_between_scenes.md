@@ -2,6 +2,7 @@
 title: Data between scenes
 description: How to pass data between scenes in KAPLAY
 order: 5
+url: passing_data_in_scenes
 ---
 
 # Passing data between scenes
