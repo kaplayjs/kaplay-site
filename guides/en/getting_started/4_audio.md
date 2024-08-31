@@ -24,9 +24,9 @@ loadSound("soundName", "/path/to/sound.mp3");
 
 ## Playing sounds
 
-You can play sounds using the [`play()`](https://kaplayjs.com/doc/play/)
-function. The `play()` function takes the name of the sound, and some options
-proper of [AudioPlayOpt](https://kaplayjs.com/doc/AudioPlayOpt/) interface.
+You can play sounds using the [`play()`](. The `play()` function takes the name
+of the sound, and some options proper of [AudioPlayOpt](/doc/AudioPlayOpt/)
+interface.
 
 ```js
 play("soundName", {
@@ -38,8 +38,8 @@ play("soundName", {
 
 ## Stopping sounds
 
-All `play()` returns an [AudioPlay](https://kaplayjs.com/doc/AudioPlay/) object
-that you can use to stop the sound.
+All `play()` returns an [AudioPlay](/doc/AudioPlay/) object that you can use to
+stop the sound.
 
 ```js
 const sound = play("soundName");

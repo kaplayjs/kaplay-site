@@ -7,7 +7,7 @@ url: install
 
 # Installation
 
-This guide covers
+This guide covers:
 
 - [create-kaplay](https://npmjs.com/package/create-kaplay) for create KAPLAY
   projects easily

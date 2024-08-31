@@ -14,12 +14,9 @@ with other objects.
 This guide covers:
 
 - Component & Tags system
-- The
-  [`GameObjRaw.use()` method](https://kaplayjs.com/doc/GameObjRaw/#GameObjRaw-use)
-- The
-  [`GameObjRaw.c()` method](https://kaplayjs.com/doc/GameObjRaw/#GameObjRaw-c)
-- The
-  [`GameObjRaw.is()` method](https://kaplayjs.com/doc/GameObjRaw/#GameObjRaw-is)
+- The [`GameObjRaw.use()` method](/doc/GameObjRaw/#GameObjRaw-use)
+- The [`GameObjRaw.c()` method](/doc/GameObjRaw/#GameObjRaw-c)
+- The [`GameObjRaw.is()` method](/doc/GameObjRaw/#GameObjRaw-is)
 
 The components system of KAPLAY (the `C` of ECS) is powerful and flexible.
 
@@ -139,4 +136,4 @@ if (player.is("sprite")) {
 ## Making your own components
 
 There's a guide about how to create your own components in KAPLAY. You can check
-it [here](https://kaplayjs.com/guides/custom_components/).
+it [here](/guides/custom_components/).

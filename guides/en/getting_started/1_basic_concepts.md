@@ -40,7 +40,7 @@ In KAPLAY, you create objects with the `add()` function, which takes an array of
 kaplay(); // remember to initialize the game
 
 add([
-    // this is a component
+    // this is a component that draws a rectangle
     rect(32, 32),
 ]);
 ```
@@ -56,6 +56,9 @@ game objects. For example:
 - `pos(x, y)` sets the position of the object.
 - `rect(width, height)` draws a rectangle.
 - `color(r, g, b)` sets the color of the object.
+
+We will go in deep on components in the [**Components**](/guides/components)
+guide.
 
 ## Scenes
 

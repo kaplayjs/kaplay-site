@@ -11,9 +11,8 @@ The sprites are probably most of your visual aspects of your game.
 
 This guide covers:
 
-- [`loadSprite()`](https://kaplayjs.com/doc/loadSprite) for loading sprites and
-  spritesheets
-- [`sprite()`](https://kaplayjs.com/doc/sprite) for creating a sprite component
+- [`loadSprite()`](/doc/loadSprite) for loading sprites and spritesheets
+- [`sprite()`](/doc/sprite) for creating a sprite component
 - fliping sprites
 
 ## Loading Sprites
