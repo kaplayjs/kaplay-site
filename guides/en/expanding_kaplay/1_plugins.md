@@ -1,7 +1,8 @@
 ---
 title: Plugins
 description: Learn about create your own plugins for KAPLAY.
-order: 6
+order: 1
+url: plugins
 ---
 
 # Plugins

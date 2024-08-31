@@ -21,6 +21,7 @@ const booksInfo: Record<string, {
 const guidesCategoryOrder = [
     "getting_started",
     "advanced",
+    "expanding_kaplay",
     "misc",
 ];
 

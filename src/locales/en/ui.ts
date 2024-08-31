@@ -9,7 +9,8 @@ export const englishLocales = {
     "guides": {
         "getting_started": "Getting Started",
         "advanced": "Advanced",
-        "misc": "Misc",
+        "misc": "Miscalaneous",
+        "expanding_kaplay": "Expanding KAPLAY",
     },
     "misc": {
         "404_message": "You may back to the jungle, or you can go to the",

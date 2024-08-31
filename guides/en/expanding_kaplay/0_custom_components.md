@@ -1,7 +1,8 @@
 ---
 title: Custom Components
 description: Learn about create your own components for your game objects.
-order: 4
+order: 0
+url: custom_components
 ---
 
 # Custom Components
