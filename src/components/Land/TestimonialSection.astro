@@ -1,0 +1,24 @@
+---
+import testimonials from "../../data/testimonial.json";
+import { Testimonial } from "../Testimonial/Testimonial";
+import FriendsBelow from "../Util/FriendsBelow.astro";
+---
+
+<div
+    class="w-full min-h-screen flex flex-col items-center justify-center gap-6 p-4"
+    id="testimonials"
+>
+    <h2 class="text-3xl font-bold">Voices of KAPLAYERS</h2>
+    <div class="grid grid-cols-2 gap-4">
+        {
+            testimonials.testimonials.map((testimonial) => (
+                <FriendsBelow
+                    friends={[testimonial.friend as "mark"]}
+                    offset={3}
+                >
+                    <Testimonial testimonial={testimonial} />
+                </FriendsBelow>
+            ))
+        }
+    </div>
+</div>

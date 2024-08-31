@@ -1,0 +1,34 @@
+{
+  "testimonials": [
+    {
+      "name": "Amy",
+      "tagline": "Clickery Hexagon's developer",
+      "comment": "KAPLAY's development has allowed me of making Clickery an awesome game.",
+      "social_user": "amyspark-ng",
+      "social_type": "newgrounds",
+      "social_link": "https://amyspark-ng.newgrounds.com/",
+      "avatar": "https://media.discordapp.net/attachments/952385185377288232/1279498602804285513/image.png?ex=66d4a96e&is=66d357ee&hm=bf2c4fc97a652c9546cfc7fd477cdc4db5759dca3fb80ec785ede64c8d808b9d&=&format=webp&quality=lossless",
+      "friend": "mark",
+      "shape": "hexagon"
+    },
+    {
+      "name": "niceEli",
+      "tagline": "Developer",
+      "comment": "KAPLAY is one of the best libraries for typescript I’ve tried. It’s a very simple API yet very powerful.",
+      "social_user": "niceEli",
+      "social_type": "mastodon",
+      "social_link": "https://mastodon.gamedev.place/@niceEli",
+      "avatar": "https://cdn.discordapp.com/avatars/551809800149925924/74045c6257fc32d9fb29a68a5b5f7ee2.webp?size=128",
+      "friend": "kat",
+      "shape": "squircle"
+    },
+    {
+      "name": "Candy&Carmel",
+      "tagline": "Representative of Ghosts community",
+      "comment": "KAPLAY has amazing and easy to use features for any type of game. It's made making FIGHT fun and interesting.",
+      "avatar": "https://media.discordapp.net/attachments/1178169405402796173/1279551191692607590/ab67616d00001e0227047720beaa8d2b4c236380.jpg?ex=66d4da69&is=66d388e9&hm=82c531977f61e2817d176978725d1dee0d14cb9ba1491206a52a07864567689a&=&format=webp",
+      "friend": "ghosty",
+      "shape": "squircle"
+    }
+  ]
+}
