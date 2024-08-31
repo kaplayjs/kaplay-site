@@ -300,7 +300,8 @@ To add transformations, we multiply their matrices. Just like complex numbers.
 
 Multiplying a matrix A with a matrix B means taking the dot product of the row vectors of A with the column vectors of B.
 
-$$\begin{bmatrix}
+$$
+\begin{bmatrix}
 a & b & c\\
 d & e & f\\
 g & h & i\\
@@ -351,7 +352,8 @@ $$
 
 So let's multiply our vector v with that matrix to see what happens
 
-$$\begin{bmatrix}
+$$
+\begin{bmatrix}
 v_x & v_y & 1
 \end{bmatrix} \times 
 \begin{bmatrix}
@@ -366,7 +368,8 @@ $$
 
 As you can see, we wrote our vector in the form of a row matrix, and we added a 1 to the end. Our result is a column matrix, also with a 1 at the end. As we can see, we successfully translated v by t, but what is that 1. The 1 at the end is actually a handy tool to distinguish points and normals. If our vector was a normal, it would have a 0 at the end. Let's see what would happen.
 
-$$\begin{bmatrix}
+$$
+\begin{bmatrix}
 n_x & n_y & 0
 \end{bmatrix} \times 
 \begin{bmatrix}
@@ -385,7 +388,8 @@ Nothing seems to have happened. Which is exactly what we want. If we rotate a sh
 
 So now that we have that established, let's rotate. We already saw how this matrix looks in the section about complex numbers.
 
-$$\begin{bmatrix}
+$$
+\begin{bmatrix}
 v_x & v_y & 1
 \end{bmatrix} \times 
 \begin{bmatrix}
@@ -402,7 +406,8 @@ $$
 
 Scale is even easier. If we want to scale by s, we get
 
-$$\begin{bmatrix}
+$$
+\begin{bmatrix}
 v_x & v_y & 1
 \end{bmatrix} \times 
 \begin{bmatrix}
