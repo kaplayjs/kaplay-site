@@ -132,20 +132,28 @@ export const CrewItem = component$<CrewItemProps>((props) => {
                             </>
                         )}
                     </p>
-                    <a
+                    <btn
                         class="btn btn-primary btn-outline w-full"
-                        href={crewItem.sprite}
-                        target="_blank"
+                        onClick$={() => {
+                            const a = document.createElement("a");
+                            a.href = crewItem.sprite!;
+                            a.download = `${props.crewItem}.png`;
+                            a.click();
+                        }}
                     >
                         Download Sprite
-                    </a>
-                    <a
+                    </btn>
+                    <btn
                         class="btn btn-accent btn-outline w-full"
-                        href={crewItem.outlined}
-                        target="_blank"
+                        onClick$={() => {
+                            const a = document.createElement("a");
+                            a.href = crewItem.outlined!;
+                            a.download = `${props.crewItem}-o.png`;
+                            a.click();
+                        }}
                     >
                         Download Outlined ver.
-                    </a>
+                    </btn>
                 </div>
             </div>
         </div>
