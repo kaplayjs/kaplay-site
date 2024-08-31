@@ -48,3 +48,28 @@ time speed, respectively.
 
 This is useful to test features in slow motion or to pause the game to inspect
 the objects.
+
+## Changing the default key for activate the debug mode
+
+You can set the property
+[`KAPLAYOpt.debugKey`](https://kaplayjs.com/doc/KAPLAYOpt/#KAPLAYOpt-debugKey)
+to change the default key for activate the debug mode.
+
+```js
+kaplay({
+    debugKey: "r",
+});
+```
+
+## Disabling the debug mode
+
+If your game is ready to be published, you can disable the debug mode by setting
+the property
+[`KAPLAYOpt.debug`](https://kaplayjs.com/doc/KAPLAYOpt/#KAPLAYOpt-debug) to
+`false`.
+
+```js
+kaplay({
+    debug: false,
+});
+```
