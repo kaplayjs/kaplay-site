@@ -1,7 +1,8 @@
 ---
 title: Animation
 description: Learn how to animate in KAPLAY.
-order: 7
+order: 3
+url: animation
 ---
 
 # Basics
@@ -137,8 +138,13 @@ obj.animate("pos", [vec2(50, 50), vec2(100, 50), vec2(100, 150)], {
     interpolation: "spline",
 });
 ```
-We can make the object rotate according to its motion by setting the followMotion option to true. Beware that the object requires a rotate component for this to work.
-If we want to assign the same animation to different objects, we can choose the animation to be relative. This makes the animation mix the initial state with the animation state.
+
+We can make the object rotate according to its motion by setting the
+followMotion option to true. Beware that the object requires a rotate component
+for this to work. If we want to assign the same animation to different objects,
+we can choose the animation to be relative. This makes the animation mix the
+initial state with the animation state.
+
 ```js
 const obj = add([
     sprite("bean"),

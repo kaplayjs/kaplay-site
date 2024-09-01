@@ -1,7 +1,8 @@
 ---
 title: Optimization
 description: Tips on optimizing performance / maintainability for KAPLAY games.
-order: 5
+order: 2
+url: optimization
 ---
 
 # Optimization Tips

@@ -1,7 +1,8 @@
 ---
 title: Shaders
 description: Learn how to write and use custom shaders in KAPLAY.
-order: 6
+order: 7
+url: shaders
 ---
 
 # Shaders
