@@ -3,7 +3,7 @@
     {
       "name": "Amy",
       "tagline": "Clickery Hexagon's developer",
-      "comment": "KAPLAY's development has allowed me of making Clickery an awesome game.",
+      "comment": "The development of KAPLAY has allowed me to make Clickery an awesome game.",
       "social_user": "amyspark-ng",
       "social_type": "newgrounds",
       "social_link": "https://amyspark-ng.newgrounds.com/",
@@ -12,9 +12,20 @@
       "shape": "hexagon"
     },
     {
+      "name": "JSLegend",
+      "tagline": "JavaScript content creator",
+      "comment": "KAPLAY has a very intuitive and easy to use API that makes gamedev a breeze compared to other alternatives.",
+      "social_user": "jslegendev",
+      "social_type": "youtube",
+      "social_link": "https://youtube.com/@jslegenddev",
+      "avatar": "https://cdn.discordapp.com/avatars/1080565491535458324/e28a6ad81a5005cbb06ad2ba81c4aa84.webp",
+      "friend": "bean",
+      "shape": "squircle"
+    },
+    {
       "name": "niceEli",
       "tagline": "Developer",
-      "comment": "KAPLAY is one of the best libraries for typescript I’ve tried. It’s a very simple API yet very powerful.",
+      "comment": "KAPLAY is one of the best libraries for TypeScript I’ve tried. It’s a very simple API yet very powerful.",
       "social_user": "niceEli",
       "social_type": "mastodon",
       "social_link": "https://mastodon.gamedev.place/@niceEli",
