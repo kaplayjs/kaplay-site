@@ -27,7 +27,10 @@ export const Testimonial = component$<TestimonialProps>(({ testimonial }) => {
                         "mask-squircle": testimonial.shape === "squircle",
                     })}
                 >
-                    <img src={testimonial.avatar} />
+                    <img
+                        src={testimonial.avatar}
+                        alt={`${testimonial.name}'s avatar`}
+                    />
                 </div>
             </div>
             <div class="max-w-[40ch]">
