@@ -18,7 +18,7 @@ type TestimonialProps = {
 
 export const Testimonial = component$<TestimonialProps>(({ testimonial }) => {
     return (
-        <div class="rounded-box bg-base-300 p-4 flex gap-4 h-40">
+        <div class="rounded-box bg-base-300 p-4 flex gap-4 lg:h-40">
             <div class="avatar">
                 <div
                     class={cn("mask w-24", {
