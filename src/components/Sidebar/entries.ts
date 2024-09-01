@@ -1,4 +1,5 @@
 import doc from "@/../doc.json";
+import kaplayPackageJson from "@/../kaplay/package.json";
 import { $lang } from "@/stores";
 import type { LocaleSubKeys } from "@/util/i18n";
 import { t } from "@/util/i18n";
@@ -6,6 +7,7 @@ import { assets } from "@kaplayjs/crew";
 import { getCollection } from "astro:content";
 import type { SidebarEntry } from "./Sidebar.astro";
 
+const version = kaplayPackageJson.version.startsWith("4") ? "v4000" : "v3001";
 const allDoc = doc.types as any;
 
 const booksInfo: Record<string, {
@@ -34,6 +36,10 @@ export const getGuidesEntries = async () => {
         const bOrder = guidesCategoryOrder.indexOf(b.slug.split("/")[1]);
 
         return aOrder - bOrder;
+    }).filter((guide) => {
+        if (!guide.data.version) return true;
+
+        return guide.data.version === version;
     });
 
     const guidesByCategory = guides.reduce((acc, guide) => {

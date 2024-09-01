@@ -21,6 +21,7 @@ const guideCollection = defineCollection({
         order: z.number(),
         image: z.optional(z.string()),
         category: z.optional(z.string()),
+        version: z.optional(z.string()),
     }),
 });
 
