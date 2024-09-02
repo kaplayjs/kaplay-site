@@ -3,14 +3,15 @@ import Prose from "@/components/Content/Prose.astro";
 import SidebarPage from "@/layouts/SidebarPage.astro";
 import { DEFAULT_LANG } from "@/util/i18n";
 import { getStaticPathsByLocales } from "@/util/path";
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
     const entries = await getCollection("guides");
     const localePaths = getStaticPathsByLocales();
+
     const entriesByLocale = entries.flatMap((entry) => {
         return localePaths.flatMap((locale) => {
-            const entryLang = entry.slug.split("/")[0] || DEFAULT_LANG;
+            const entryLang = entry.id.split("/")[0] || DEFAULT_LANG;
 
             if (entryLang !== (locale.params.path ?? DEFAULT_LANG)) return;
 
@@ -20,7 +21,7 @@ export async function getStaticPaths() {
                     ...locale.props,
                 },
                 params: {
-                    slug: entry.data.url ?? entry.slug.split("/")[2],
+                    slug: entry.data.url ?? entry.id.split("/")[2],
                     ...locale.params,
                 },
             };
@@ -31,7 +32,7 @@ export async function getStaticPaths() {
 }
 
 const { entry, lang } = Astro.props;
-const { Content, headings } = await entry.render();
+const { Content, headings } = await render(entry);
 ---
 
 <SidebarPage

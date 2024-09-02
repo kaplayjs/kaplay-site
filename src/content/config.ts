@@ -1,3 +1,4 @@
+import { glob } from "astro/loaders";
 import { defineCollection, z } from "astro:content";
 
 const blogCollection = defineCollection({
@@ -9,11 +10,15 @@ const blogCollection = defineCollection({
         image: z.optional(z.string()),
         date: z.string(),
         hidde: z.optional(z.boolean()),
+        version: z.optional(z.string()),
     }),
 });
 
 const guideCollection = defineCollection({
-    type: "content", // v2.5.0 and later
+    loader: glob({
+        pattern: "**/*.md",
+        base: "./guides/",
+    }),
     schema: z.object({
         url: z.optional(z.string()),
         title: z.string(),
@@ -31,6 +36,7 @@ const booksCollection = defineCollection({
         title: z.string(),
         description: z.string(),
         chapter: z.number(),
+        version: z.optional(z.string()),
     }),
 });
 
@@ -39,6 +45,7 @@ const miscCollection = defineCollection({
     schema: z.object({
         title: z.string(),
         description: z.string(),
+        version: z.optional(z.string()),
     }),
 });
 

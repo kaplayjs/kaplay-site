@@ -28,12 +28,10 @@ const guidesCategoryOrder = [
 ];
 
 export const getGuidesEntries = async () => {
-    let renderList: SidebarEntry[] = [];
-
     const lang = $lang.get();
     const guides = (await getCollection("guides")).sort((a, b) => {
-        const aOrder = guidesCategoryOrder.indexOf(a.slug.split("/")[1]);
-        const bOrder = guidesCategoryOrder.indexOf(b.slug.split("/")[1]);
+        const aOrder = guidesCategoryOrder.indexOf(a.id.split("/")[1]);
+        const bOrder = guidesCategoryOrder.indexOf(b.id.split("/")[1]);
 
         return aOrder - bOrder;
     }).filter((guide) => {
@@ -43,7 +41,7 @@ export const getGuidesEntries = async () => {
     });
 
     const guidesByCategory = guides.reduce((acc, guide) => {
-        const [guideLang, folder] = guide.slug.split("/");
+        const [guideLang, folder] = guide.id.split("/");
         const folderName = t(
             lang,
             `guides.${folder as LocaleSubKeys["guides"]}`,
@@ -60,14 +58,14 @@ export const getGuidesEntries = async () => {
         return acc;
     }, {} as Record<string, typeof guides>);
 
-    renderList = [
+    const renderList = [
         ...Object.keys(guidesByCategory).map((category) => ({
             folder: category,
             linkList: guidesByCategory[category].sort((a, b) => {
                 return a.data.order - b.data.order;
             }).map((guide) => ({
                 title: guide.data.title,
-                link: `/guides/${guide.data.url ?? guide.slug.split("/")[2]}`,
+                link: `/guides/${guide.data.url ?? guide.id.split("/")[2]}`,
             })),
         })),
     ];
