@@ -1,6 +1,6 @@
 ---
-title: v4000 Changelog
-description: The new features and changes in KAPLAY v3001
+title: Changelog
+description: The new features and changes in KAPLAY
 ---
 
 # Changelog
@@ -16,8 +16,8 @@ KAPLAY easier. This version will be _99.9%_ compatible with Kaboom, without some
 of the most recent features such as **performance** improvements.
 
 - **v4000**: The new and next version of **KAPLAY**.
-- **v3001**: The version of **KAPLAY** compatible with **Kaboom**.
-- **v3000**: The last stable version of **Kaboom**.
+- **v3001**: The last version of **KAPLAY** compatible with **Kaboom**.
+- **v3000**: The last stable version of **Kaboom.js**.
 
 ## Input
 
@@ -31,6 +31,7 @@ of the most recent features such as **performance** improvements.
       buttons: {
           jump: {
               keyboard: ["space", "up"],
+              keyboardCode: "Space", // you can also use key codes
               gamepad: ["south"],
           },
       },
@@ -73,17 +74,40 @@ of the most recent features such as **performance** improvements.
   });
   ```
 
+- now gamepad events return what gamepad triggered the action (**v3001/4000**)
+
+  ```js
+  onGamepadButtonPress("south", (btn, gp) => {
+      console.log(gp.index); // gamepad number on navigator's gamepad list
+  });
+  ```
+
+- added a fake cursor API (**v4000**)
+
+  ```js
+  const myCursor = add([
+      fakeMouse(),
+      sprite("kat"),
+      pos(100, 100),
+  ]);
+
+  myCursor.press(); // trigger onClick events if the mouse is over
+  myCursor.release();
+  myCursor.move(vec2(100, 200)); // move as your wish
+  ```
+
 ## Physics
 
 - added effector components: `areaEffector()`, `buoyancyEffector()`,
   `pointEffector()`, `surfaceEffector()`. (**v3001/4000**)
-- added `constantForce()` component (**v3001/4000**)
-- (**v3001/4000**) added `patrol()` component to move along a list of waypoints
-- (**v3001/4000**) added `sentry()` component to notify when certain objects are
-  in sight
-- (**v3001/4000**) added `NavMesh` class for pathfinding on a mesh
-- (**v3001/4000**) added `navigation()` component to calculate a list of
-  waypoints on a graph
+- added `constantForce()` component. (**v3001/4000**)
+- added `patrol()` component to move along a list of waypoints. (**v3001/4000**)
+- added `sentry()` component to notify when certain objects are in sight.
+  (**v3001/4000**)
+- added `NavMesh` class for pathfinding on a mesh. (**v3001/4000**)
+- added `navigation()` component to calculate a list of waypoints on a graph.
+  (**v3001/4000**)
+- now collision checks are only done if there's area objects. (**v3001/4000**)
 
 ## Game Object
 
@@ -230,6 +254,7 @@ of the most recent features such as **performance** improvements.
 
 ## Audio
 
+- now you can pass an `AudioBuffer` to `loadSound()` (**v4000**)
 - added `loadMusic()` to load streaming audio (doesn't block in loading screen).
   (**v3001/4000**)
 
@@ -302,31 +327,48 @@ of the most recent features such as **performance** improvements.
 
 ## Helpers
 
-- (**v3001/4000**) added `getSceneName()` to get the current scene name
-- (**v3001/4000**) added `Color.toArray()` to convert a color to an array
-- (**v3001/4000**) added global raycast function and raycast method to level
-- (**v3001/4000**) added support for textured polygons
-- (**v3001/4000**) added support for concave polygon drawing
-- (**v3001/4000**) added support for arrays in uniforms
-- (**v3001/4000**) added support for texture larger than 2048x2048
-- (**v3001/4000**) added support for gravity direction
-- (**v3001/4000**) added line join (bevel, miter, round) and line caps (square,
-  round)
-- (**v3001/4000**) added quadratic bezier and Catmull-Rom evaluation
-- (**v3001/4000**) added evaluation of the first and second derivatives for all
-  splines
-- (**v3001/4000**) added higher order easing functions linear, steps and
-  cubic-bezier
+> All changes applies for both v3001 and v4000
 
-## Bug fixes
+- added `getSceneName()` to get the current scene name
+- added `Color.toArray()` to convert a color to an array
+- added global raycast function and raycast method to level
+- added support for textured polygons
+- added support for concave polygon drawing
+- added support for arrays in uniforms
+- added support for texture larger than 2048x2048
+- added support for gravity direction
+- added line join (bevel, miter, round) and line caps (square, round)
+- added quadratic bezier and Catmull-Rom evaluation
+- added evaluation of the first and second derivatives for all splines
+- added higher order easing functions linear, steps and cubic-bezier
 
-- **(break)** much typescript definitions was fixed, if you use typescript now
-  maybe you see new errors that make your code stricNt
+## TypeScript
+
+- now you can type `get()` with a type parameter and passsing component types.
+  (**v4000**)
+
+  ```ts
+  const player = get<BodyComp>("player");
+  ```
 
 ## Deprecations
+
+> All changes applies for both v3001 and v4000
 
 - deprecated `kaboom()` in favor of `kaplay()` (you can still use `kaboom*`)
 - deprecated `SpriteComp.curAnim()` in favor of `SpriteComp.getCurAnim().name`
 - deprecated `fadeIn` component in favor of `OpacityComp.fadeIn()`
 - deprecated `Event`, `EventHandler` and `EventController` in favor of `KEvent`,
   `KEventHandler` and `KEventController`
+
+## Bug fixes
+
+> All changes applies for both v3001 and v4000
+
+- **(break)** much typescript definitions was fixed, if you use typescript now
+  maybe you see new errors that make your code strict
+- fix error screen not showing with not Error object
+- fix error where debug screen was scaling bad the blue rectangles
+- fix error where error screen was not showing when the error was thrown in a
+  input event
+- fix error where fonts was cropped in the bottom
