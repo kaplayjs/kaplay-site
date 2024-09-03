@@ -99,3 +99,7 @@ span.line.diff.remove::before {
 .friends {
   @apply scale-90 transition-all duration-150;
 }
+
+.yt {
+  @apply w-full aspect-video;
+}
