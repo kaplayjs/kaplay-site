@@ -1,24 +1,14 @@
 import doc from "@/../doc.json";
 import kaplayPackageJson from "@/../kaplay/package.json";
+import { booksInfo } from "@/data/booksData";
 import { $lang } from "@/stores";
 import type { LocaleSubKeys } from "@/util/i18n";
 import { t } from "@/util/i18n";
-import { assets } from "@kaplayjs/crew";
 import { getCollection } from "astro:content";
 import type { SidebarEntry } from "./Sidebar.astro";
 
 const version = kaplayPackageJson.version.startsWith("4") ? "v4000" : "v3001";
 const allDoc = doc.types as any;
-
-const booksInfo: Record<string, {
-    title: string;
-    potrait: string;
-}> = {
-    "how_to_be_a_bean_wizard": {
-        title: "How to be a Bean Wizard",
-        potrait: assets.how_to_be_a_bean_wizard.outlined!,
-    },
-};
 
 const guidesCategoryOrder = [
     "getting_started",

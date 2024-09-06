@@ -1,5 +1,6 @@
 ---
 import Prose from "@/components/Content/Prose.astro";
+import { booksInfo } from "@/data/booksData";
 import SidebarPage from "@/layouts/SidebarPage.astro";
 import { getStaticPathsByLocales } from "@/util/path";
 
@@ -19,5 +20,21 @@ const { lang } = Astro.props;
 >
     <Prose>
         <h1>We do books too!</h1>
+
+        {
+            Object.values(booksInfo).map((book) => {
+            return (
+                <a href={book.url} class="decoration-transparent">
+                    <div
+                        class="bg-base-200 rounded-box p-4 flex flex-col items-center justify-center"
+                    >
+                        <img src={book.potrait} />
+                        <h2>{book.title}</h2>
+                        <p class="text-balance">{book.description}</p>
+                    </div>
+                </a>
+            );
+            })
+        }
     </Prose>
 </SidebarPage>
