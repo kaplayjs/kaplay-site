@@ -30,8 +30,8 @@ importers:
         specifier: ^5.0.18
         version: 5.0.18
       '@kaplayjs/crew':
-        specifier: ^1.4.2
-        version: 1.4.2(@types/node@20.14.8)(typescript@5.5.2)
+        specifier: ^1.4.3
+        version: 1.4.3(@types/node@20.14.8)(typescript@5.5.2)
       '@lunariajs/core':
         specifier: ^0.1.0
         version: 0.1.0
@@ -1018,8 +1018,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
 
-  '@kaplayjs/crew@1.4.2':
-    resolution: {integrity: sha512-f0LwP8M9hzZ561g3XzD/YlybdPTXEcWStQGAoktNKcuI0rMUu7d3DEqda5p6JfYeJeisScPz3V20zVhNZynbxw==}
+  '@kaplayjs/crew@1.4.3':
+    resolution: {integrity: sha512-aTyinRpxEsrgivkgfh0BRuSMgcgOHQNznGNMApaXCkqSbYZ+kzONw3q+/ophL6G51evm8shP2taIE6CKappcyw==}
     peerDependencies:
       typescript: ^5.0.0
 
@@ -4374,7 +4374,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
 
-  '@kaplayjs/crew@1.4.2(@types/node@20.14.8)(typescript@5.5.2)':
+  '@kaplayjs/crew@1.4.3(@types/node@20.14.8)(typescript@5.5.2)':
     dependencies:
       typescript: 5.5.2
       vite: 5.4.2(@types/node@20.14.8)

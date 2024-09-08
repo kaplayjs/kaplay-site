@@ -29,7 +29,7 @@
     "@astrojs/tailwind": "^5.1.0",
     "@builder.io/qwik": "1.7.2",
     "@fontsource-variable/fira-code": "^5.0.18",
-    "@kaplayjs/crew": "^1.4.2",
+    "@kaplayjs/crew": "^1.4.3",
     "@lunariajs/core": "^0.1.0",
     "@nanostores/preact": "^0.5.1",
     "@qwikdev/astro": "^0.6.3",
