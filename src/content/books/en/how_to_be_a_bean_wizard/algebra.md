@@ -296,7 +296,7 @@ To make all this easier, we use matrices. Though matrices are not the only way t
 
 To add transformations, we multiply their matrices. Just like complex numbers.
 
-# Matrix multiplication
+## Matrix multiplication
 
 Multiplying a matrix A with a matrix B means taking the dot product of the row vectors of A with the column vectors of B.
 
@@ -344,9 +344,9 @@ Now, our vector is only 2 dimensional, so why a 3 dimensional matrix? It's to su
 
 $$T = 
 \begin{bmatrix}
-1 & 0 & t_x\\
-0 & 1 & t_y\\
-0 & 0 & 1\\
+1 & 0 & 0\\
+0 & 1 & \\
+t_x & t_y & 1\\
 \end{bmatrix} 	
 $$
 
@@ -357,28 +357,28 @@ $$
 v_x & v_y & 1
 \end{bmatrix} \times 
 \begin{bmatrix}
-1 & 0 & t_x\\
-0 & 1 & t_y\\
-0 & 0 & 1\\
+1 & 0 & 0\\
+0 & 1 & 0\\
+t_x & t_y & 1\\
 \end{bmatrix} =
 \begin{bmatrix}
-v_x + t_x \\ v_y + t_y \\ 1
+v_x + t_x & v_y + t_y & 1
 \end{bmatrix}
 $$
 
-As you can see, we wrote our vector in the form of a row matrix, and we added a 1 to the end. Our result is a column matrix, also with a 1 at the end. As we can see, we successfully translated v by t, but what is that 1. The 1 at the end is actually a handy tool to distinguish points and normals. If our vector was a normal, it would have a 0 at the end. Let's see what would happen.
+As you can see, we wrote our vector in the form of a row matrix, and we added a 1 to the end. Our result is a row matrix, also with a 1 at the end. As we can see, we successfully translated v by t, but what is that 1. The 1 at the end is actually a handy tool to distinguish points and normals. If our vector was a normal, it would have a 0 at the end. Let's see what would happen.
 
 $$
 \begin{bmatrix}
 n_x & n_y & 0
 \end{bmatrix} \times 
 \begin{bmatrix}
-1 & 0 & t_x\\
-0 & 1 & t_y\\
-0 & 0 & 1\\
+1 & 0 & 0\\
+0 & 1 & 0\\
+t_x & t_y & 1\\
 \end{bmatrix} =
 \begin{bmatrix}
-n_x \\ n_y \\ 0
+n_x & n_y & 0
 \end{bmatrix}
 $$
 
@@ -393,12 +393,12 @@ $$
 v_x & v_y & 1
 \end{bmatrix} \times 
 \begin{bmatrix}
-cos(\phi) & -sin(\phi) & 0\\
-sin(\phi) & cos(\phi) & 0\\
+cos(\phi) & sin(\phi) & 0\\
+-sin(\phi) & cos(\phi) & 0\\
 0 & 0 & 1\\
 \end{bmatrix} =
 \begin{bmatrix}
-v_x * cos(\phi) - v_y * sin(\phi) \\ v_x * sin(\phi) + v_y * cos(\phi) \\ 1
+v_x * cos(\phi) - v_y * sin(\phi) & v_x * sin(\phi) + v_y * cos(\phi) & 1
 \end{bmatrix}
 $$
 
@@ -416,8 +416,133 @@ s_x & 0 & 0\\
 0 & 0 & 1\\
 \end{bmatrix} =
 \begin{bmatrix}
-v_x * s_x \\ v_y * s_y \\ 1
+v_x * s_x & v_y * s_y & 1
 \end{bmatrix}
 $$
 
-Note that if we only want to allow a uniform scale, we need to keep $s_x = s_y$.
+Note that if we only want to allow a uniform scale, we need to keep $s_x=s_y$.
+
+## Matrix transpose
+
+The transpose of a matrix is one where rows are switched to columns.
+
+$$
+\begin{bmatrix}
+a & b & c\\
+d & e & f\\
+g & h & i\\
+\end{bmatrix}^T =
+\begin{bmatrix}
+a & d & g\\
+b & e & h\\
+c & f & i\\
+\end{bmatrix}
+$$
+
+For a row vector that means that it becomes a column vector
+
+$$
+\begin{bmatrix}
+a & b & c
+\end{bmatrix}^T =
+\begin{bmatrix}
+a \\
+b \\
+c \\
+\end{bmatrix}
+$$
+
+The transpose of the transpose of a matrix results in the original matrix.
+
+## Pre and post-multiplication
+
+What we used for our transformation matrices is pre-multiplication, as the vector went in front of the matrix. 
+
+$$
+\begin{bmatrix}
+v_x & v_y & 1
+\end{bmatrix} \times 
+\begin{bmatrix}
+1 & 0 & 0\\
+0 & 1 & 0\\
+t_x & t_y & 1\\
+\end{bmatrix} =
+\begin{bmatrix}
+v_x + t_x & v_y + t_y & 1
+\end{bmatrix}
+$$
+
+Most math and graphics systems use post multiplication. The matrices are the same, but transposed. Vectors are column vectors in this case.
+
+$$
+\begin{bmatrix}
+1 & 0 & t_x\\
+0 & 1 & t_y\\
+0 & 0 & 1\\
+\end{bmatrix} \times 
+\begin{bmatrix}
+v_x \\ v_y \\ 1
+\end{bmatrix}
+ =
+\begin{bmatrix}
+v_x + t_x \\ v_y + t_y \\ 1
+\end{bmatrix}
+$$
+
+## Inverse Matrix
+
+When we have a scalar $x$, the scalar $x^{-1}=1/x$ can be defined so that $x*x^{-1}=1$, as long as $x\ne0$. Similarly, we can calculate the inverse matrix $A^{-1}$ from $A$ so that $A*A^{-1}=I$.
+
+The requirement for a matrix to be invertible is having a determinant which is not 0.
+
+### The determinant
+
+The determinant can be calculated in different ways, but what is it really? The determinant of $I$ is 1, so is the determinant of a translation or rotation matrix. Only a scale matrix or a transform containing a scale has a determinant different from 1. For a 2 by 2 matrix
+
+$$
+\begin{bmatrix}
+a & b \\ c & d
+\end{bmatrix}
+$$
+
+it is the surface area of a parallelogram made from (0, 0) (a , b) (c, d) and (a + c, b + d), thus the determinant is $ad - bc$. For a 3 by 3 matrix
+ 
+$$
+\begin{bmatrix}
+a & b & c \\ d & e & f \\ g & h & i
+\end{bmatrix}
+$$
+ 
+it is a volume equal to $aei+bfg+cdh-ceg-bdi-afh$.
+
+The determinant is used in various situations, but right now we'll use it to calculate the inverse matrix. It is logical that if we calculate the inverse of a matrix which scales, that we will need one which divides by that scale to negate it. This is why, if the matrix has a zero scale, we can't calculate the inverse, since we would divide by zero.
+
+Later we will learn about eigenvectors and eigenvalues which can give use the actual rotation and scale. But for now we'll continue calculating the inverse.
+
+### Calculating the inverse matrix
+
+The inverse of a 2 by 2 matrix A is
+
+$$
+\begin{bmatrix}
+a & b \\ c & d
+\end{bmatrix}^{-1}=
+\frac{1}{det(A)}\begin{bmatrix}
+d & -b \\ -c & a
+\end{bmatrix}
+$$
+
+The inverse of a 3 by 3 matrix A is
+
+$$
+\begin{bmatrix}
+a & b & c \\ d & e & f \\ g & h & i
+\end{bmatrix}^{-1}=
+\frac{1}{det(A)}\begin{bmatrix}
+ei-fh & -(bi-ch) & bf-ce \\
+-(di-fg) & (ai-cg) & -(af-cd) \\
+(dh-eg) & -(ah-bg) & (ae-bd)
+\end{bmatrix}
+$$
+
+Why do we need the inverse? If we have an object which is transformed in order to place it in the world somewhere in a certain orientation with a certain scale, we have a transform which transforms local points to a point in the world. If we can invert this transform, we can transform world points to local points. This is just one example, but there are really many places where this is useful. Like ellipses for example, these can be described as a matrix, which means we can find the transformation to transform an ellipse to a circle by inverting the matrix. This then helps us to simplify finding intersections with various shapes.
