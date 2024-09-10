@@ -269,11 +269,11 @@ These two formulas for y and x do look familiar don't they? this is because they
 # Vector dot and cross products
 
 $$
-dot(u, v) = u_x * v_x + u_y + v_y
+dot(u, v) = u_x * v_x + u_y * v_y
 $$
 
 $$
-cross(u, v) = u_x * v_y - u_y + v_x
+cross(u, v) = u_x * v_y - u_y * v_x
 $$
 
 If we have these functions, derived from complex division we can write the angle between two vectors as
