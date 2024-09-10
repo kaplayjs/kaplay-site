@@ -320,7 +320,9 @@ $$
 
 Note that this multiplication is not commutative, thus
 
-$$A*B != B*A$$
+$$
+A*B != B*A
+$$
 
 This is good because transformations are not commutative.
 
