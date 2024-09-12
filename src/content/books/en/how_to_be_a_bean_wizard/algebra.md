@@ -795,6 +795,6 @@ $$
 Since $\phi = atan2(sin(\phi), cos(\phi))$, we can get the rotation angle as
 
 $$
-\phi = atan2(-c, a) = atan2(d, b)
+\phi = atan2(-c, a) = atan2(b, d)
 $$
 
