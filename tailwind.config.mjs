@@ -11,7 +11,7 @@ export default {
             {
                 kaplay: {
                     ...require("daisyui/src/theming/themes")["dim"],
-                    primary: "#7fc963",
+                    primary: "#6BC96C",
                     "--animation-btn": 0,
                 },
                 kaplayLight: {
@@ -31,7 +31,7 @@ export default {
                     "neutral": "#2a2e37",
                     "neutral-focus": "#16181d",
                     "neutral-content": "#ffffff",
-                    "base-100": "#14141e",
+                    "base-100": "#4a3052",
                     "base-200": "#2c2c3e",
                     "base-300": "#20202e",
                     "base-content": "#ebecf0",

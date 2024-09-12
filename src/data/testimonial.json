@@ -7,7 +7,7 @@
       "social_user": "amyspark-ng",
       "social_type": "newgrounds",
       "social_link": "https://amyspark-ng.newgrounds.com/",
-      "avatar": "https://media.discordapp.net/attachments/952385185377288232/1279498602804285513/image.png?ex=66d4a96e&is=66d357ee&hm=bf2c4fc97a652c9546cfc7fd477cdc4db5759dca3fb80ec785ede64c8d808b9d&=&format=webp&quality=lossless",
+      "avatar": "/kaplayers/amy.png",
       "friend": "mark",
       "shape": "hexagon"
     },
@@ -18,9 +18,20 @@
       "social_user": "jslegendev",
       "social_type": "youtube",
       "social_link": "https://youtube.com/@jslegenddev",
-      "avatar": "https://cdn.discordapp.com/avatars/1080565491535458324/e28a6ad81a5005cbb06ad2ba81c4aa84.webp",
+      "avatar": "/kaplayers/jslegend.webp",
       "friend": "bean",
       "shape": "squircle"
+    },
+    {
+      "name": "Isaac Pante",
+      "tagline": "Game Designer, developper & College Teacher",
+      "comment": "KAPLAY is the best framework to teach programming and create fast and furious video games. We already won three awards with it, and counting!",
+      "avatar": "/kaplayers/isaac.jpg",
+      "friend": "dino",
+      "shape": "squircle",
+      "social_user": "ipante",
+      "social_type": "mastodon",
+      "social_link": "https://gist.github.com/ipante/b5a1599a07db9a1671fe7a9887e85d24"
     },
     {
       "name": "niceEli",
@@ -29,7 +40,7 @@
       "social_user": "niceEli",
       "social_type": "mastodon",
       "social_link": "https://mastodon.gamedev.place/@niceEli",
-      "avatar": "https://cdn.discordapp.com/avatars/551809800149925924/74045c6257fc32d9fb29a68a5b5f7ee2.webp?size=128",
+      "avatar": "/kaplayers/niceEli.webp",
       "friend": "kat",
       "shape": "squircle"
     },
@@ -37,7 +48,7 @@
       "name": "Candy&Carmel",
       "tagline": "Representative of Ghosts community",
       "comment": "KAPLAY has amazing and easy to use features for any type of game. It's made making FIGHT fun and interesting.",
-      "avatar": "https://media.discordapp.net/attachments/1178169405402796173/1279551191692607590/ab67616d00001e0227047720beaa8d2b4c236380.jpg?ex=66d4da69&is=66d388e9&hm=82c531977f61e2817d176978725d1dee0d14cb9ba1491206a52a07864567689a&=&format=webp",
+      "avatar": "/kaplayers/candy.jpg",
       "friend": "ghosty",
       "shape": "squircle"
     }

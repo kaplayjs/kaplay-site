@@ -6,9 +6,10 @@ type AssetName = keyof typeof assets;
 type Props = {
     friends?: AssetName[];
     offset?: number;
+    limited?: boolean;
 };
 
-const { friends, offset = 0 } = Astro.props;
+const { friends, offset = 0, limited } = Astro.props;
 
 const offsets = [
     "top-2",
@@ -24,7 +25,7 @@ const offsets = [
         <a class="hoverable special-friends" href="/crew">
             <div
                 class:list={[
-                    `friends | relative top-0 -z-10 flex flex-row justify-center w-full gap-4 ${
+                    `friends | relative -z-10 flex flex-row justify-center w-full gap-4 ${
                         offsets[offset]
                     }`,
                 ]}
@@ -32,7 +33,13 @@ const offsets = [
                 {
                     friends?.map((friend) => (
                         <div class="select-none">
-                            <img src={assets[friend].sprite} alt="KAFriend" />
+                            <img
+                                src={assets[friend].sprite}
+                                alt="KAFriend"
+                                class:list={[{
+                                    "h-14": limited,
+                                }]}
+                            />
                         </div>
                     ))
                 }

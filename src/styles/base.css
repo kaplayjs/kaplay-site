@@ -2,7 +2,7 @@
 
 body {
   min-height: 100dvh;
-  font-family: "Fredoka", sans-serif;
+  font-family: "Rubik Variable", sans-serif;
   cursor: url(/cursor_default.png), auto;
 }
 
@@ -102,4 +102,8 @@ span.line.diff.remove::before {
 
 .yt {
   @apply w-full aspect-video;
+}
+
+.grid-cols-dynamic {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }

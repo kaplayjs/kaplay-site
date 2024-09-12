@@ -29,9 +29,21 @@ importers:
       '@fontsource-variable/fira-code':
         specifier: ^5.0.18
         version: 5.0.18
+      '@fontsource-variable/fredoka':
+        specifier: ^5.0.15
+        version: 5.0.15
+      '@fontsource-variable/outfit':
+        specifier: ^5.0.15
+        version: 5.0.15
+      '@fontsource-variable/rubik':
+        specifier: ^5.0.24
+        version: 5.0.24
+      '@fontsource/ibm-plex-sans':
+        specifier: ^5.0.22
+        version: 5.0.22
       '@kaplayjs/crew':
-        specifier: ^1.4.3
-        version: 1.4.3(@types/node@20.14.8)(typescript@5.5.2)
+        specifier: ^1.5.3
+        version: 1.5.3(@types/node@20.14.8)(typescript@5.5.2)
       '@lunariajs/core':
         specifier: ^0.1.0
         version: 0.1.0
@@ -872,6 +884,18 @@ packages:
   '@fontsource-variable/fira-code@5.0.18':
     resolution: {integrity: sha512-Pmbnf4HukX4y928RY9g47hWyVECQglwV7HLv5taaDQwI3UBXyoLUnyRsjJxeviCPhdwJY5qyLT4GaCMlgC9oCQ==}
 
+  '@fontsource-variable/fredoka@5.0.15':
+    resolution: {integrity: sha512-zWbQYyxa8TPTN+7aF8qNXifwOH069UrKTQc4u7sJksBzrK1nJtjiI6ndgRsELVMiTiN2PjFROKS3J3COgDtPWg==}
+
+  '@fontsource-variable/outfit@5.0.15':
+    resolution: {integrity: sha512-DcORhvnkzfgbojW3kbVKr8Ysu1TkiogQ0nx0jG4j9TEEGhiFcMWl9h88NrBHNiYpLk2EqGvl5PaOApR96tzhtQ==}
+
+  '@fontsource-variable/rubik@5.0.24':
+    resolution: {integrity: sha512-V/3pPiI+qVA+LOmbMj+Mukee1ejjjDhUtZ382PfDFm4wr//K111OKV4aDmuX4SS7g6E0UGFqf8iirgFacMZEkw==}
+
+  '@fontsource/ibm-plex-sans@5.0.22':
+    resolution: {integrity: sha512-c/MxHekLpvTC23Ldw3rZWLPjnWzsAaz9EBY6Z2EbMsMzQ8vHFYaucDKbRTlrt87Ytqthns3ByAhnTkO3k7tR9g==}
+
   '@img/sharp-darwin-arm64@0.33.4':
     resolution: {integrity: sha512-p0suNqXufJs9t3RqLBO6vvrgr5OhgbWp76s5gTRvdmxmuv9E1rcaqGUsl3l4mKVmXPkTkTErXediAui4x+8PSA==}
     engines: {glibc: '>=2.26', node: ^18.17.0 || ^20.3.0 || >=21.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0', yarn: '>=3.2.0'}
@@ -1018,8 +1042,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
 
-  '@kaplayjs/crew@1.4.3':
-    resolution: {integrity: sha512-aTyinRpxEsrgivkgfh0BRuSMgcgOHQNznGNMApaXCkqSbYZ+kzONw3q+/ophL6G51evm8shP2taIE6CKappcyw==}
+  '@kaplayjs/crew@1.5.3':
+    resolution: {integrity: sha512-5gQKeY9XEH12r8dgLeG5xJt1AYcWRVTKowuOOtBUp/Ps96tYRVtG5ww8ZGC/pb6neAdUy99AartvYAfBIkuoNQ==}
     peerDependencies:
       typescript: ^5.0.0
 
@@ -4261,6 +4285,14 @@ snapshots:
 
   '@fontsource-variable/fira-code@5.0.18': {}
 
+  '@fontsource-variable/fredoka@5.0.15': {}
+
+  '@fontsource-variable/outfit@5.0.15': {}
+
+  '@fontsource-variable/rubik@5.0.24': {}
+
+  '@fontsource/ibm-plex-sans@5.0.22': {}
+
   '@img/sharp-darwin-arm64@0.33.4':
     optionalDependencies:
       '@img/sharp-libvips-darwin-arm64': 1.0.2
@@ -4374,7 +4406,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
 
-  '@kaplayjs/crew@1.4.3(@types/node@20.14.8)(typescript@5.5.2)':
+  '@kaplayjs/crew@1.5.3(@types/node@20.14.8)(typescript@5.5.2)':
     dependencies:
       typescript: 5.5.2
       vite: 5.4.2(@types/node@20.14.8)

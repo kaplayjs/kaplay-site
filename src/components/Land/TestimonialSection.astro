@@ -5,16 +5,21 @@ import FriendsBelow from "../Util/FriendsBelow.astro";
 ---
 
 <div
-    class="w-full min-h-screen flex flex-col items-center justify-center gap-6 p-4"
+    class="w-full min-h-screen flex flex-col items-center gap-6 p-4"
     id="testimonials"
 >
-    <h2 class="text-3xl font-bold">Voices of KAPLAYERS</h2>
+    <h2 class="text-5xl font-bold">Voices of KAPLAYERS</h2>
+    <p class="text-center">
+        What our users say about KAPLAY. We are proud to have such a great
+        community.
+    </p>
     <div class="flex flex-wrap gap-4 items-center justify-center">
         {
             testimonials.testimonials.map((testimonial) => (
                 <FriendsBelow
                     friends={[testimonial.friend as "mark"]}
                     offset={3}
+                    limited
                 >
                     <Testimonial testimonial={testimonial} />
                 </FriendsBelow>

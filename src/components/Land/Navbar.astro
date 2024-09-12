@@ -1,6 +1,7 @@
 ---
 import hamburgerIcon from "@/assets/hamburger.webp";
 import kaplayOutlined from "@/assets/kaplay-o.webp";
+import { assets } from "@kaplayjs/crew";
 import { Image } from "astro:assets";
 
 const urlPath = Astro.url.pathname;
@@ -9,18 +10,21 @@ const linksPrefix = urlPath === "/" ? "" : "/";
 
 const internalLinks = [
     {
-        name: "About",
-        url: linksPrefix + "#about",
+        name: "Home",
+        url: "/",
         highlight: false,
+        icon: assets.bean.outlined,
     },
     {
-        name: "Example",
-        url: linksPrefix + "#example",
+        name: "Assets",
+        url: "/crew",
         highlight: false,
+        icon: assets.bag.outlined,
     },
     {
         name: "Playground",
         url: "https://play.kaplayjs.com",
+        icon: assets.bobo.outlined,
     },
 ];
 
@@ -29,16 +33,19 @@ const externalLinks = [
         name: "Blog",
         url: "/blog",
         highlight: false,
+        icon: assets.paper.outlined,
     },
     {
         name: "Donate",
         url: "https://opencollective.com/kaplay",
         highlight: false,
+        icon: assets.money_bag.outlined,
     },
     {
         name: "Docs",
         url: "/guides/install",
         highlight: true,
+        icon: assets.api_book.outlined,
     },
 ];
 ---
@@ -86,6 +93,13 @@ const externalLinks = [
                                 href={link.url}
                             >
                                 {link.name}
+                                <img
+                                    src={link.icon}
+                                    width="24"
+                                    height="24"
+                                    alt={link.name}
+                                    class="px-0 py-0"
+                                />
                             </a>
                         </li>
                     ))
@@ -105,6 +119,13 @@ const externalLinks = [
                             href={link.url}
                         >
                             {link.name}
+                            <img
+                                src={link.icon}
+                                width="24"
+                                height="24"
+                                alt={link.name}
+                                class="px-0 py-0"
+                            />
                         </a>
                     </li>
                 ))
@@ -138,6 +159,13 @@ const externalLinks = [
                             href={link.url}
                         >
                             {link.name}
+                            <img
+                                src={link.icon}
+                                width="24"
+                                height="24"
+                                alt={link.name}
+                                class="px-0 py-0"
+                            />
                         </a>
                     </li>
                 ))

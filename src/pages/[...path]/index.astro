@@ -1,7 +1,7 @@
 ---
 import Footer from "@/components/Footer/Footer.astro";
 import About from "@/components/Land/About.astro";
-import Example from "@/components/Land/Example.astro";
+import { BlocksSection } from "@/components/Land/Blocks/BlocksSection.tsx";
 import Navbar from "@/components/Land/Navbar.astro";
 import TestimonialSection from "@/components/Land/TestimonialSection.astro";
 import Page from "@/layouts/Page.astro";
@@ -26,7 +26,7 @@ const { lang } = Astro.props;
     <div class="land | scroll-smooth flex flex-col gap-2">
         <Navbar />
         <About />
-        <Example />
+        <BlocksSection />
         <TestimonialSection />
         <Footer />
     </div>
