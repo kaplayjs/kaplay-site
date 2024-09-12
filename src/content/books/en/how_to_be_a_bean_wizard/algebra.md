@@ -399,7 +399,7 @@ So do all engines and editors interpolate scale wrong? Yes, yes they do. Just li
 
 # Matrices
 
-A matrix can be seen as a two dimensional vector (though more dimensions are possible). The size or shape of a matrix depends on what we are using it for. In 2D games, the place where you might encounter it most frequently is transformations. Now you might ask, "why use a matrix?", as you can already translate, rotate and scale vectors now. The reason is mostly composition and inverting transformations. It is easy to compose two translations, by just adding them. But what if you add a rotation? How do you store both the rotation and translation. And when you translate after the rotation, your next translation should work according to the new rotated coordinate system.
+A matrix can be seen as a vector of vectors (though more dimensions, thus deeper nesting, is possible). The size or shape of a matrix depends on what we are using it for. In 2D games, the place where you might encounter it most frequently is transformations. Now you might ask, "why use a matrix?", as you can already translate, rotate and scale vectors now. The reason is mostly composition and inverting transformations. It is easy to compose two translations, by just adding them. But what if you add a rotation? How do you store both the rotation and translation. And when you translate after the rotation, your next translation should work according to the new rotated coordinate system.
 
 To make all this easier, we use matrices. Though matrices are not the only way to do this, as we'll see later, there are other more compact constructs as well.
 
@@ -600,6 +600,78 @@ v_x + t_x \\ v_y + t_y \\ 1
 \end{bmatrix}
 $$
 
+## Combining transformations
+
+As said, the most common usage for matrices in a graphics API is combining transformations. They are combined using matrix multiplication. Since the multiplication is not commutative, the order matters. Most systems use a TRS transformation for nodes, translation, rotation and scale. 
+For a post-multiplication system, it will look like this. This makes sure the points are first scaled, then rotated, finally translated. If we would use the reverse matrix order, the translation direction would be influenced by the rotation and the translation distance by the scale.
+
+$$
+\begin{bmatrix}
+1 & 0 & t_x\\
+0 & 1 & t_y\\
+0 & 0 & 1\\
+\end{bmatrix} \times
+\begin{bmatrix}
+cos(\phi) & sin(\phi) & 0\\
+-sin(\phi) & cos(\phi) & 0\\
+0 & 0 & 1\\
+\end{bmatrix} \times 
+\begin{bmatrix}
+s_x & 0 & 0\\
+0 & s_y & 0\\
+0 & 0 & 1\\
+\end{bmatrix} \times 
+\begin{bmatrix}
+v_x \\ v_y \\ 1
+\end{bmatrix}
+$$
+
+If we would use the reverse matrix order, the translation direction would be influenced by the rotation and the translation distance by the scale.
+
+Let's test this with a translate and scale matrix. As we can see, the scale leaves the translation alone.
+
+$$
+\begin{bmatrix}
+1 & 0 & t_x\\
+0 & 1 & t_y\\
+0 & 0 & 1\\
+\end{bmatrix} \times
+\begin{bmatrix}
+s_x & 0 & 0\\
+0 & s_y & 0\\
+0 & 0 & 1\\
+\end{bmatrix} = 
+\begin{bmatrix}
+s_x & 0 & t_x\\
+0 & s_y & t_y\\
+0 & 0 & 1\\
+\end{bmatrix}
+$$
+
+Now let's switch them. We can see that the translation is affected by the scale, and the distance and possibly the direction we translate to has been modified.
+
+$$
+\begin{bmatrix}
+s_x & 0 & 0\\
+0 & s_y & 0\\
+0 & 0 & 1\\
+\end{bmatrix} \times
+\begin{bmatrix}
+1 & 0 & t_x\\
+0 & 1 & t_y\\
+0 & 0 & 1\\
+\end{bmatrix} = 
+\begin{bmatrix}
+s_x & 0 & s_xt_x\\
+0 & s_y & s_yt_y\\
+0 & 0 & 1\\
+\end{bmatrix}
+$$
+
+## Anchor
+
+We didn't incorporate the anchor yet. Currently the scale and rotation will happen from the local origin, after the translation. To rotate and scale from the anchor, we need to first translate the anchor to the origin, then perform the scale and rotation, and then translate back.
+
 ## Inverse Matrix
 
 When we have a scalar $x$, the scalar $x^{-1}=1/x$ can be defined so that $x*x^{-1}=1$, as long as $x\ne0$. Similarly, we can calculate the inverse matrix $A^{-1}$ from $A$ so that $A*A^{-1}=I$.
@@ -616,7 +688,15 @@ a & b \\ c & d
 \end{bmatrix}
 $$
 
-it is the surface area of a parallelogram made from (0, 0) (a , b) (c, d) and (a + c, b + d), thus the determinant is $ad - bc$. For a 3 by 3 matrix
+it is the surface area of a parallelogram made from (0, 0) (a , b) (c, d) and (a + c, b + d), thus the determinant is $ad - bc$. Note that if we write the vectors (a, b) and (c, d) as the previous matrix, their cross product is the determinant of this matrix.
+
+$$
+det(\begin{bmatrix}
+a & b \\ c & d
+\end{bmatrix}) = (a,b) \times (c,d)
+$$
+
+For a 3 by 3 matrix
  
 $$
 \begin{bmatrix}
@@ -624,14 +704,21 @@ a & b & c \\ d & e & f \\ g & h & i
 \end{bmatrix}
 $$
  
-it is a volume equal to $aei+bfg+cdh-ceg-bdi-afh$.
+it is a volume equal to $aei+bfg+cdh-ceg-bdi-afh$. This determinant can also be written as a triple product consisting of dot and cross products
+
+$$
+det(\begin{bmatrix}
+a & b & c \\ d & e & f \\ g & h & i
+\end{bmatrix}) = (a,b,c)\cdot((d,e,f)\times(g,h,i))
+$$
 
 The determinant is used in various situations, but right now we'll use it to calculate the inverse matrix. It is logical that if we calculate the inverse of a matrix which scales, that we will need one which divides by that scale to negate it. This is why, if the matrix has a zero scale, we can't calculate the inverse, since we would divide by zero.
 
-Later we will learn about eigenvectors and eigenvalues which can give use the actual rotation and scale. But for now we'll continue calculating the inverse.
+Later we will learn about decomposition as well as eigenvectors and eigenvalues which can give us the actual rotation and scale of the matrix. But for now we'll continue calculating the inverse.
 
 ### Calculating the inverse matrix
 
+There are various ways to calculate the inverse. We can use the adjunct matrix, use various decompositions, solve equations, etc. For now, we will just give the solutions for 2 by 2 and 3 by 3 matrices.
 The inverse of a 2 by 2 matrix A is
 
 $$
@@ -656,4 +743,58 @@ ei-fh & -(bi-ch) & bf-ce \\
 \end{bmatrix}
 $$
 
-Why do we need the inverse? If we have an object which is transformed in order to place it in the world somewhere in a certain orientation with a certain scale, we have a transform which transforms local points to a point in the world. If we can invert this transform, we can transform world points to local points. This is just one example, but there are really many places where this is useful. Like ellipses for example, these can be described as a matrix, which means we can find the transformation to transform an ellipse to a circle by inverting the matrix. This then helps us to simplify finding intersections with various shapes.
+Why do we need the inverse? If we have an object which is transformed in order to place it in the world somewhere in a certain orientation with a certain scale, we have a transform which transforms local points to a point in the world. If we can invert this transform, we can transform world points to local points. If we have a transform from local to screen, we can calculate the inverse in order to calculate the mouse position into a coordinate local to an object. This are just a few examples, but there are really many places where this is useful. Like ellipses for example, these can be described as a matrix, which means we can find the transformation to transform an ellipse to a unit circle by inverting the matrix. This then helps us to simplify finding intersections with various shapes.
+
+## Matrix decomposition
+
+Before we look at more formal methods, let's take a look at our transformation matrix. We generally have the following form
+
+$$
+\begin{bmatrix}
+a & b & t_x \\ c & d & t_y \\ 0 & 0 & 1
+\end{bmatrix}
+$$
+
+We don't need to care about the last row. In fact we don't even need to store it, as it is always the same. The translation is very easy to extract, as it is always in the last column. Rotation and scale need a bit of math since the remaining 2 by 2 matrix is a mix of
+
+$$
+\begin{bmatrix}
+cos(\phi) & sin(\phi)\\
+-sin(\phi) & cos(\phi)
+\end{bmatrix}
+$$
+
+and 
+
+$$
+\begin{bmatrix}
+s_x & 0\\
+0 & s_y
+\end{bmatrix}
+$$
+
+So
+
+$$
+\begin{bmatrix}
+cos(\phi) * s_x & sin(\phi) * s_y\\
+-sin(\phi) * s_x & cos(\phi) * s_y
+\end{bmatrix}
+$$
+
+Since we know that $\sqrt{cos(\phi)^2+sin(\phi)^2} = 1$, We can get the scale as 
+
+$$
+s_x = \sqrt{a^2+c^2}
+$$
+
+$$
+s_y = \sqrt{b^2+d^2}
+$$
+
+Since $\phi = atan2(sin(\phi), cos(\phi))$, we can get the rotation angle as
+
+$$
+\phi = atan2(-c, a) = atan2(d, b)
+$$
+
