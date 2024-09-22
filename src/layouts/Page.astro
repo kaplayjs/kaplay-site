@@ -1,5 +1,4 @@
 ---
-import kaplayOutlined from "@/assets/kaplay-o.webp";
 import SearchDialog from "@/components/Search/SearchDialog.astro";
 import { $lang } from "@/stores";
 import type { Locale } from "@/util/i18n";
@@ -28,7 +27,7 @@ const { url } = Astro;
 const { meta, lang } = Astro.props;
 $lang.set(lang);
 
-const image = meta?.image ?? kaplayOutlined.src;
+const image = meta?.image ?? "/kaplayjs.png";
 ---
 
 <!DOCTYPE html>
