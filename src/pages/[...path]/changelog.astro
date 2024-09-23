@@ -8,7 +8,7 @@ export function getStaticPaths() {
     return getStaticPathsByLocales();
 }
 
-const { t, lang } = Astro.props;
+const { lang } = Astro.props;
 const entry = await getEntry("misc", `en/changelog`);
 if (!entry) return;
 const { Content } = await entry.render();

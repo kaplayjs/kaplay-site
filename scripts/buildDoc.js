@@ -123,6 +123,14 @@ const groupsOrder = [
     "Misc",
 ];
 
+const sectionsSort = {
+    "Start": [
+        "kaplay",
+        "quit",
+        "KAPLAYOpt",
+    ],
+};
+
 for (const statement of statements) {
     if (!types[statement.name]) {
         types[statement.name] = [];
@@ -189,6 +197,22 @@ for (const statement of statements) {
         if (!sortedGroups[group]) {
             sortedGroups[group] = groups[group];
         }
+    }
+
+    for (const sectionOrder of Object.keys(sectionsSort)) {
+        const section = sortedGroups[sectionOrder];
+        if (!section) continue;
+
+        const sortedEntries = [];
+        for (const entry of sectionsSort[sectionOrder]) {
+            const index = section.entries.indexOf(entry);
+            if (index !== -1) {
+                sortedEntries.push(section.entries[index]);
+                section.entries.splice(index, 1);
+            }
+        }
+
+        section.entries = sortedEntries.concat(section.entries);
     }
 }
 

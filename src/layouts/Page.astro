@@ -41,7 +41,6 @@ const image = meta?.image ?? "/kaplayjs.png";
         <link rel="alternate" hreflang="x-default" href={url.href} />
         <link rel="alternate" hreflang="en" href={url.href} />
         <meta name="generator" content={Astro.generator} />
-        <script src="/pagefind/pagefind-ui.js" is:inline></script>
         <meta name="description" content={meta?.description} />
         <meta property="og:title" content={meta?.title} />
         <meta property="og:description" content={meta?.description} />
@@ -68,6 +67,7 @@ const image = meta?.image ?? "/kaplayjs.png";
         />
         <title>{meta?.title}</title>
         <ViewTransitions />
+        <script src="/pagefind/pagefind-ui.js" is:inline></script>
     </head>
     <body>
         <slot />

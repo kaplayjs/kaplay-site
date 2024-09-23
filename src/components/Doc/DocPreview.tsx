@@ -5,6 +5,7 @@ import { DocEntry } from "./DocEntry";
 
 export const DocPreview = component$(() => {
     const docEntries = useSignal<any[]>([]);
+    const docLoaded = useSignal(false);
 
     useOnDocument(
         "onSetDocPreview",
@@ -15,30 +16,41 @@ export const DocPreview = component$(() => {
             const foundDoc = allDoc[e.detail] ?? ctxDoc[e.detail] ?? [];
 
             docEntries.value = foundDoc;
+            docLoaded.value = true;
         }),
     );
 
     return (
         <dialog id="type-modal" class="modal">
-            <div class="modal-box absolute right-4 lg:h-96 overflow-y-auto w-fit">
-                <div class="flex justify-end gap-2">
-                    <a
-                        id="open-in-new"
-                        class="btn btn-ghost"
-                        href={(isCtxMember(docEntries.value[0]?.name)
-                            ? "/doc/ctx/"
-                            : "/doc/") + docEntries.value[0]?.name}
-                        target="_blank"
-                    >
-                        Open in new tab
-                    </a>
-                </div>
-                <div id="modal-type">
-                    <>
-                        {docEntries.value.map((refData: any, i) => (
-                            <DocEntry data={refData} key={i} />
-                        ))}
-                    </>
+            <div class="modal-box absolute right-4 lg:h-96 min-w-64 overflow-y-auto">
+                {docLoaded.value && (
+                    <div class="flex justify-end gap-2">
+                        <a
+                            id="open-in-new"
+                            class="btn btn-ghost"
+                            href={(isCtxMember(docEntries.value[0]?.name)
+                                ? "/doc/ctx/"
+                                : "/doc/") + docEntries.value[0]?.name}
+                            target="_blank"
+                        >
+                            Open in new tab
+                        </a>
+                    </div>
+                )}
+                <div id="modal-type" class="h-full">
+                    {docLoaded.value && (
+                        <>
+                            {docEntries.value.map((refData: any, i) => (
+                                <DocEntry data={refData} key={i} />
+                            ))}
+                        </>
+                    )}
+
+                    {!docLoaded.value && (
+                        <div class="flex items-center justify-center h-full">
+                            <span class="loading loading-dots loading-lg text-primary" />
+                        </div>
+                    )}
                 </div>
             </div>
             <form method="dialog" class="modal-backdrop">

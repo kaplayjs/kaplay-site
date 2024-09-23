@@ -34,7 +34,6 @@
     "@fontsource/ibm-plex-sans": "^5.0.22",
     "@kaplayjs/crew": "^1.6.1",
     "@lunariajs/core": "^0.1.0",
-    "@nanostores/preact": "^0.5.1",
     "@qwikdev/astro": "^0.6.3",
     "@types/node": "20",
     "astro": "^4.15.3",
@@ -53,7 +52,7 @@
     "typescript": "^5.5.2"
   },
   "devDependencies": {
-    "@kaplayjs/dprint-config": "^1.0.0",
+    "@kaplayjs/dprint-config": "^1.1.0",
     "@shikijs/transformers": "^1.10.1",
     "@tailwindcss/typography": "^0.5.13",
     "clsx": "^2.1.1",
