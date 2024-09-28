@@ -110,6 +110,10 @@ through HTTP. There're a lot of programs that helps you to do that.
   installed
 - `$ python -m SimpleHTTPServer` if you have [python2](https://www.python.org)
   installed
+- `$ ruby -run -ehttpd . -p8000` if you have [ruby](https://www.ruby-lang.org/en)
+  installed
+- `$ php -S localhost:8000` if you have [php](https://php.net)
+  installed
 - `$ serve` if you have [serve](https://github.com/vercel/serve) installed
 - `$ caddy file-server` if you have [caddy](https://caddyserver.com/) installed
 - `$ static-here` if you have
