@@ -13,12 +13,30 @@ with other objects.
 
 This guide covers:
 
-- Component & Tags system
+- Component & Tags system, what they are and how they work
 - The [`GameObjRaw.use()` method](/doc/GameObjRaw/#GameObjRaw-use)
 - The [`GameObjRaw.c()` method](/doc/GameObjRaw/#GameObjRaw-c)
 - The [`GameObjRaw.is()` method](/doc/GameObjRaw/#GameObjRaw-is)
 
 The components system of KAPLAY (the `C` of ECS) is powerful and flexible.
+
+## What is a Component?
+
+A component is a piece of code that defines a specific behavior of a game
+object. It can return a set of properties and methods that are attached to the
+game object.
+
+For example, the `pos()` component returns the `pos` property and the `move()`
+method.
+
+```js
+const player = add([
+    pos(80, 80),
+]);
+
+player.move(100, 0); // move the player 100 pixels to the right
+console.log(player.pos); // { x: 180, y: 80 }
+```
 
 ## Using Components
 

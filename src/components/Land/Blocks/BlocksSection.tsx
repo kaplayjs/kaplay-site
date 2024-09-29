@@ -4,21 +4,22 @@ import { BlockStack } from "./BlockStack";
 
 export const BlocksSection = component$(() => {
     return (
-        <div class="w-full min-h-screen flex flex-col lg:flex-row justify-center gap-6 p-4">
+        <div class="w-full min-h-screen flex flex-col lg:flex-row justify-center gap-6 p-4 overflow-hidden">
             <div class="w-full flex flex-col items-center gap-4">
                 <div class="max-w-xl w-full">
                     <h2 class="text-5xl font-semibold">
-                        An API based on <span class="text-primary">blocks</span>
+                        An enjoyable API based on{" "}
+                        <span class="text-primary">blocks</span>
                     </h2>
                     <p>
                         <span class="text-primary">KAPLAY</span>{" "}
-                        is enjoyable to use and easy to learn. That's why we've
-                        designed it to be based on{" "}
+                        is enjoyable and fun to use and easy to learn. That's
+                        why we've designed it to be based on{" "}
                         <strong>blocks and functions</strong>. Here are some of
                         the most common blocks you'll use.
                     </p>
                 </div>
-                <div class="lg:p-4 | flex flex-col justify-center gap-4 w-full">
+                <div class="lg:p-4 | flex flex-col gap-4 w-full">
                     <BlockStack>
                         <Block
                             title="Start game"
@@ -110,6 +111,16 @@ export const BlocksSection = component$(() => {
                         />
                     </BlockStack>
                 </div>
+
+                <p class="prose max-w-xl w-full text-lg text-balance text-center">
+                    No more long nested methods like
+                    <code class="mx-1">
+                        obj.position.transform.translate(10, 20)
+                    </code>{" "}
+                    Just <span class="text-primary">simple</span> and{" "}
+                    <span class="text-primary">fun</span>{" "}
+                    to use methods and functions.
+                </p>
             </div>
         </div>
     );
