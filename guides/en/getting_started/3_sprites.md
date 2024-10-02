@@ -11,8 +11,8 @@ The sprites are probably most of your visual aspects of your game.
 
 This guide covers:
 
-- [`loadSprite()`](/doc/loadSprite) for loading sprites and spritesheets
-- [`sprite()`](/doc/sprite) for creating a sprite component
+- [`loadSprite()`](/doc/ctx/loadSprite) for loading sprites and spritesheets
+- [`sprite()`](/doc/ctx/sprite) for creating a sprite component
 - fliping sprites
 
 ## Loading Sprites
