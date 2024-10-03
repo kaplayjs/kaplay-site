@@ -15,12 +15,12 @@ if (!entry) return;
 const entryData = entry.data;
 ---
 
-<article class="flex flex-col lg:flex-row bg-base-200 rounded-box">
-    <figure class="flex-none w-52 relative">
+<article class="flex flex-col md:flex-row bg-base-200 rounded-box">
+    <figure class="flex-none aspect-video md:w-[260px] relative rounded-box">
         <img
             src={"/" + entryData.image}
             alt="Placeholder"
-            class="absolute inset-0 w-full h-full object-cover rounded-l-box"
+            class="absolute inset-0 w-full h-full object-cover rounded-box"
         />
     </figure>
     <div class="flex-auto p-6">
@@ -30,16 +30,16 @@ const entryData = entry.data;
                     entryData.title
                 }</a>
             </h1>
-            <p class="text-xl font-semibold text-gray-500">
+            <p class="text-xl font-semibold text-primary">
                 {entryData.author}
             </p>
             <time class="flex-none text-base font-medium text-gray-500">
                 {
                     new Date(entryData.date).toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                    })
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+    })
                 }
             </time>
         </main>
