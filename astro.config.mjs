@@ -31,9 +31,6 @@ export default defineConfig({
     server: {
         port: 3200,
     },
-    image: {
-        service: passthroughImageService(),
-    },
     markdown: {
         shikiConfig: {
             transformers: [
