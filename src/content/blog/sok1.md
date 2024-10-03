@@ -1,7 +1,7 @@
 ---
 title: "State of KAPLAY #1"
 author: lajbel
-date: 07/15/2024
+date: 15/07/2024
 description: Explore the latest advancements and community highlights in KAPLAY, the successor to Kaboom.js. Discover new features, contributors, and more!
 image: banners/sok1.png
 ---
