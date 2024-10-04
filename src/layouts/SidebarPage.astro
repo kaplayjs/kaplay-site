@@ -16,6 +16,8 @@ const { sidebarMode, meta, lang, headings } = Astro.props;
 ---
 
 <Page lang={lang} meta={meta}>
+    <slot name="head" slot="head" />
+
     <Sidebar sidebarMode={sidebarMode} headings={headings}>
         <slot />
     </Sidebar>

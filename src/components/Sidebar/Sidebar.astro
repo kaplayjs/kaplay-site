@@ -7,7 +7,7 @@ import { cn } from "@/util/cn";
 import { t } from "@/util/i18n";
 import { getLangedRoute } from "@/util/path";
 import type { MarkdownHeading } from "astro";
-import Image from "astro/components/Image.astro";
+import { Image } from "astro:assets";
 import {
     getBlogEntries,
     getBookEntries,
@@ -161,11 +161,12 @@ else if (sidebarMode === "books") {
             <figure>
                 <a class="btn btn-ghost h-max" href={getLangedRoute(lang, "/")}>
                     <Image
-                        src={kaplayOutlined}
+                        src="/kaplay.webp"
                         alt="kaplay logo"
                         class="w-52 h-24 aspect-auto object-contain"
                         width={208}
                         height={100}
+                        loading={"eager"}
                     />
                 </a>
             </figure>
