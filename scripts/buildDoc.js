@@ -223,3 +223,11 @@ await fs.writeFile(
         groups: sortedGroups,
     }),
 );
+
+await fs.writeFile(
+    "public/doc.json",
+    JSON.stringify({
+        types,
+        groups: sortedGroups,
+    }),
+);

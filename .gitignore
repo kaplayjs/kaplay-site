@@ -6,6 +6,7 @@ dist/
 
 # dependencies
 node_modules/
+kaplay/
 
 # logs
 npm-debug.log*
@@ -23,8 +24,6 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
-doc.json
-
-kaplay/
+# integrationns
 .wrangler/
 public/pagefind
