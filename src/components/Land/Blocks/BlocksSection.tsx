@@ -20,7 +20,7 @@ export const BlocksSection = component$(() => {
                     </p>
                 </div>
                 <div class="lg:p-4 | flex flex-col gap-4 w-full">
-                    <BlockStack>
+                    <BlockStack hideOnMobile>
                         <Block
                             title="Start game"
                             code={`kaplay();`}
@@ -50,7 +50,7 @@ export const BlocksSection = component$(() => {
                             code={`debug.log("hi")`}
                         />
                     </BlockStack>
-                    <BlockStack>
+                    <BlockStack hideOnMobile>
                         <Block
                             title="Add obj with tag"
                             code={`add([\n  sprite("rex"), \n  pos(20, 40),\n  "dino",\n]);`}
