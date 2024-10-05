@@ -24,7 +24,7 @@
     "@astrojs/mdx": "^3.1.7",
     "@astrojs/sitemap": "^3.2.0",
     "@astrojs/tailwind": "^5.1.1",
-    "@builder.io/qwik": "1.7.2",
+    "@builder.io/qwik": "1.7.3",
     "@fontsource-variable/fira-code": "^5.1.0",
     "@fontsource-variable/fredoka": "^5.1.0",
     "@fontsource-variable/outfit": "^5.1.0",
