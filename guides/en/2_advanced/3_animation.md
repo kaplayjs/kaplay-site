@@ -1,7 +1,6 @@
 ---
 title: Animation
 description: Learn how to animate in KAPLAY.
-order: 3
 url: animation
 ---
 

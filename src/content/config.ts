@@ -19,15 +19,15 @@ const guideCollection = defineCollection({
         pattern: "**/*.md",
         base: "./guides/",
     }),
-    schema: z.object({
-        url: z.optional(z.string()),
-        title: z.string(),
-        description: z.string(),
-        order: z.number(),
-        image: z.optional(z.string()),
-        category: z.optional(z.string()),
-        version: z.optional(z.string()),
-    }),
+    schema: ({ image }) =>
+        z.object({
+            url: z.optional(z.string()),
+            title: z.string(),
+            description: z.string(),
+            image: z.optional(image()),
+            category: z.optional(z.string()),
+            version: z.optional(z.string()),
+        }),
 });
 
 const booksCollection = defineCollection({

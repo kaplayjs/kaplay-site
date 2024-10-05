@@ -1,7 +1,6 @@
 ---
 title: Pathfinding
 description: Learn how to help objects find their way around in KAPLAY.
-order: 5
 url: pathfinding
 ---
 

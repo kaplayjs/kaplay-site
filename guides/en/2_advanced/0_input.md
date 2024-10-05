@@ -1,7 +1,6 @@
 ---
 title: Input Bindings
 description: How to use the Input Bindings in KAPLAY, to use the same event for mouse, keyboard and gamepad.
-order: 0
 url: input
 ---
 

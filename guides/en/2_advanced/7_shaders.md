@@ -1,7 +1,6 @@
 ---
 title: Shaders
 description: Learn how to write and use custom shaders in KAPLAY.
-order: 7
 url: shaders
 ---
 
@@ -143,5 +142,5 @@ GLSL has a variety of functions which makes it easier to express your ideas in
 code. So be sure to look these up. Here are some resources to get started on
 writing GLSL shaders.
 
-- [https://thebookofshaders.com/]
-- [https://www.khronos.org/files/webgl/webgl-reference-card-1_0.pdf]
+- [The Book of Shaders](https://thebookofshaders.com/)
+- [WebGL reference card](https://www.khronos.org/files/webgl/webgl-reference-card-1_0.pdf)

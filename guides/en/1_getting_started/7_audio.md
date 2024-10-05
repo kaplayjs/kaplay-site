@@ -1,11 +1,10 @@
 ---
 title: Sounds
-description: How to play music, audios and sounds in KAPLAY, the HTML5 Game Engine.
-order: 4
+description: How to play music, audios and sounds in KAPLAY, the HTML5 Game Library for JavaScript and TypeScript.
 url: audio
 ---
 
-# Playing sounds in KAPLAY
+# Playing sounds
 
 In KAPLAY, you can easily add background music and sound effects to your game.
 You can play music, audios and sounds using the `play()` function.

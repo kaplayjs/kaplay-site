@@ -1,13 +1,38 @@
 ---
 title: Optimization
 description: Tips on optimizing performance / maintainability for KAPLAY games.
-order: 2
 url: optimization
 ---
 
 # Optimization Tips
 
 Here's some tips on optimizing performance / maintainability for KAPLAY games
+
+## Don't use game objects everywhere
+
+Game objects are great for managing game entities, but they have a cost. If you
+are only rendering a static image, or a simple shape, you can use `onDraw` with
+`drawSprite` or `drawRect` instead of creating a game object.
+
+```js
+// create a game object
+const player = k.add([
+    k.sprite("bean"),
+    k.pos(100, 200),
+]);
+
+// draw a sprite directly
+k.onDraw(() => {
+    k.drawSprite({
+        sprite: "bean",
+        pos: k.vec2(100, 200),
+    });
+});
+```
+
+The same applies for other tasks like saving state or handling input. Sometimes
+it's better to use global variables or functions instead of game objects for
+such tasks.
 
 ## Cleanup One-off Objects
 

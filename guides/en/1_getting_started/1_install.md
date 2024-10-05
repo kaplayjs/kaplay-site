@@ -1,7 +1,6 @@
 ---
 title: Installation
-description: Learn how to install KAPLAY.
-order: 0
+description: Learn how to install KAPLAY, the HTML5 Game Library for JavaScript and TypeScript.
 url: install
 ---
 

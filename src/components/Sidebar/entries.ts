@@ -10,50 +10,48 @@ import type { SidebarEntry } from "./Sidebar.astro";
 const version = kaplayPackageJson.version.startsWith("4") ? "v4000" : "v3001";
 const allDoc = doc.types as any;
 
-const guidesCategoryOrder = [
-    "getting_started",
-    "advanced",
-    "expanding_kaplay",
-    "misc",
-];
+const guidesData: Record<string, {
+    title: string;
+}> = {
+    "0_making_your_first_game": {
+        title: "Making Your First Game",
+    },
+    "1_getting_started": {
+        title: "Getting Started",
+    },
+    "2_advanced": {
+        title: "Advanced",
+    },
+    "3_expanding_kaplay": {
+        title: "Expanding KAPLAY",
+    },
+    "44_misc": {
+        title: "Misc",
+    },
+};
 
 export const getGuidesEntries = async () => {
     const lang = $lang.get();
-    const guides = (await getCollection("guides")).sort((a, b) => {
-        const aOrder = guidesCategoryOrder.indexOf(a.id.split("/")[1]);
-        const bOrder = guidesCategoryOrder.indexOf(b.id.split("/")[1]);
-
-        return aOrder - bOrder;
-    }).filter((guide) => {
-        if (!guide.data.version) return true;
-
-        return guide.data.version === version;
-    });
+    const guides = (await getCollection("guides")).filter((guide) => {
+        return (guide.data.version === undefined
+            || guide.data.version === version) && guide.id.startsWith(lang);
+    }).sort((a, b) => a.id.localeCompare(b.id));
 
     const guidesByCategory = guides.reduce((acc, guide) => {
-        const [guideLang, folder] = guide.id.split("/");
-        const folderName = t(
-            lang,
-            `guides.${folder as LocaleSubKeys["guides"]}`,
-        );
+        const [_, folder] = guide.id.split("/");
 
-        if (lang !== guideLang) return acc;
-
-        if (!acc[folderName]) {
-            acc[folderName] = [];
+        if (!acc[folder]) {
+            acc[folder] = [];
         }
 
-        acc[folderName].push(guide);
-
+        acc[folder].push(guide);
         return acc;
     }, {} as Record<string, typeof guides>);
 
     const renderList = [
         ...Object.keys(guidesByCategory).map((category) => ({
-            folder: category,
-            linkList: guidesByCategory[category].sort((a, b) => {
-                return a.data.order - b.data.order;
-            }).map((guide) => ({
+            folder: guidesData[category]?.title ?? category,
+            linkList: guidesByCategory[category].map((guide) => ({
                 title: guide.data.title,
                 link: `/guides/${guide.data.url ?? guide.id.split("/")[2]}`,
             })),

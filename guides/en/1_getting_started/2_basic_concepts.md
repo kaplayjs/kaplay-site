@@ -1,8 +1,8 @@
 ---
 title: Basic Concepts
-description: Learn about the basics of KAPLAY.
-order: 1
+description: Learn about the basics of KAPLAY, the HTML5 Game Engine for JavaScript and TypeScript.
 url: starting
+image: "./assets/theater.png"
 ---
 
 # Basic Concepts
@@ -14,7 +14,7 @@ is done with three main concepts: **Scenes**, **Game Objects**, and
 You can think of your game as a theater -- scenes are the acts, game objects are
 the actors and components are the script the actors follow.
 
-![alt text](assets/theater.png)
+![alt text](./assets/theater.png)
 
 ## Initialization
 

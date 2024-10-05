@@ -1,7 +1,6 @@
 ---
 title: Physics
 description: Learn how to use physics in KAPLAY.
-order: 6
 url: physics
 ---
 

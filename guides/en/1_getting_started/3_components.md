@@ -1,7 +1,6 @@
 ---
 title: Components
-description: All about how components works in KAPLAY
-order: 2
+description: Learn how to create and use components in KAPLAY, the HTML5 Game Engine for JavaScript and TypeScript.
 url: components
 ---
 

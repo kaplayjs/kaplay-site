@@ -40,7 +40,7 @@ const { Content, headings } = await render(entry);
     meta={{
         title: "KAPLAY Guides, " + entry.data.title,
         description: entry.data.description,
-        image: entry.data.image,
+        image: entry.data.image?.src,
         keywords: "kaplayjs, guides, documentation",
     }}
     sidebarMode="guides"

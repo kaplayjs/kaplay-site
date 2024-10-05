@@ -1,11 +1,10 @@
 ---
 title: Sprites
-description: Learn how to load sprites and spritesheets in KAPLAY, also how to put them in the game.
-order: 3
+description: Learn how to load and use sprites in KAPLAY, the HTML5 Game Library for JavaScript and TypeScript.
 url: sprites
 ---
 
-# Sprites
+# Rendering sprites
 
 The sprites are probably most of your visual aspects of your game.
 
