@@ -46,7 +46,7 @@ importers:
         version: 0.1.0
       '@qwikdev/astro':
         specifier: ^0.6.3
-        version: 0.6.3(@builder.io/qwik@1.7.2(@types/node@20.14.8))(astro@4.15.3(@types/node@20.14.8)(rollup@4.21.2)(typescript@5.5.2))(typescript@5.5.2)(vite@5.4.2(@types/node@20.14.8))
+        version: 0.6.3(@builder.io/qwik@1.7.2(@types/node@20.14.8))(astro@4.15.3(@types/node@20.14.8)(rollup@4.21.2)(typescript@5.5.2))(typescript@5.5.2)(vite@5.4.8(@types/node@20.14.8))
       '@types/node':
         specifier: '20'
         version: 20.14.8
@@ -2427,6 +2427,9 @@ packages:
   picocolors@1.0.1:
     resolution: {integrity: sha512-anP1Z8qwhkbmu7MFP5iTt+wQKXgwzf7zTyGlcdzabySa9vd0Xt392U0rVmz9poOaBj0uHJKyyo9/upk0HrEQew==}
 
+  picocolors@1.1.0:
+    resolution: {integrity: sha512-TQ92mBOW0l3LeMeyLV6mzy/kWr8lkd/hp3mTg7wYK7zJhuBStmGMBG0BdeDZS/dZx1IukaX6Bk11zcln25o1Aw==}
+
   picomatch@2.3.1:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
     engines: {node: '>=8.6'}
@@ -2501,8 +2504,8 @@ packages:
     resolution: {integrity: sha512-Wglpdk03BSfXkHoQa3b/oulrotAkwrlLDRSOb9D0bN86FdRyE9lppSp33aHNPgBa0JKCoB+drFLZkQoRRYae5A==}
     engines: {node: ^10 || ^12 || >=14}
 
-  postcss@8.4.41:
-    resolution: {integrity: sha512-TesUflQ0WKZqAvg52PWL6kHgLKP6xB6heTOdoYM0Wt2UHyxNa4K25EZZMgKns3BH1RLVbZCREPpLY0rhnNoHVQ==}
+  postcss@8.4.47:
+    resolution: {integrity: sha512-56rxCq7G/XfB4EkXq9Egn5GCqugWvDFjafDOThIdMBsI15iqPqR5r15TfSr1YPYeEI19YeaXMCbY6u88Y76GLQ==}
     engines: {node: ^10 || ^12 || >=14}
 
   preferred-pm@4.0.0:
@@ -2757,6 +2760,10 @@ packages:
 
   source-map-js@1.2.0:
     resolution: {integrity: sha512-itJW8lvSA0TXEphiRoawsCksnlf8SyvmFzIhltqAHluXd88pkCd+cXJVHTDwdCr0IzwptSm035IHQktUu1QUMg==}
+    engines: {node: '>=0.10.0'}
+
+  source-map-js@1.2.1:
+    resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
     engines: {node: '>=0.10.0'}
 
   source-map@0.6.1:
@@ -3029,39 +3036,8 @@ packages:
       vite:
         optional: true
 
-  vite@5.4.0:
-    resolution: {integrity: sha512-5xokfMX0PIiwCMCMb9ZJcMyh5wbBun0zUzKib+L65vAZ8GY9ePZMXxFrHbr/Kyll2+LSCY7xtERPpxkBDKngwg==}
-    engines: {node: ^18.0.0 || >=20.0.0}
-    hasBin: true
-    peerDependencies:
-      '@types/node': ^18.0.0 || >=20.0.0
-      less: '*'
-      lightningcss: ^1.21.0
-      sass: '*'
-      sass-embedded: '*'
-      stylus: '*'
-      sugarss: '*'
-      terser: ^5.4.0
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-      less:
-        optional: true
-      lightningcss:
-        optional: true
-      sass:
-        optional: true
-      sass-embedded:
-        optional: true
-      stylus:
-        optional: true
-      sugarss:
-        optional: true
-      terser:
-        optional: true
-
-  vite@5.4.2:
-    resolution: {integrity: sha512-dDrQTRHp5C1fTFzcSaMxjk6vdpKvT+2/mIdE07Gw2ykehT49O0z/VHS3zZ8iV/Gh8BJJKHWOe5RjaNrW5xf/GA==}
+  vite@5.4.8:
+    resolution: {integrity: sha512-FqrItQ4DT1NC4zCUqMB4c4AZORMKIa0m8/URVCZ77OZ/QSNeJ54bU1vrFADbDsuwfIPcgknRkmqakQcgnL4GiQ==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
     peerDependencies:
@@ -3653,7 +3629,7 @@ snapshots:
   '@builder.io/qwik@1.7.2(@types/node@20.14.8)':
     dependencies:
       csstype: 3.1.3
-      vite: 5.4.0(@types/node@20.14.8)
+      vite: 5.4.8(@types/node@20.14.8)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -4015,7 +3991,7 @@ snapshots:
   '@kaplayjs/crew@1.6.1(@types/node@20.14.8)(typescript@5.5.2)':
     dependencies:
       typescript: 5.5.2
-      vite: 5.4.2(@types/node@20.14.8)
+      vite: 5.4.8(@types/node@20.14.8)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -4118,14 +4094,14 @@ snapshots:
 
   '@polka/url@1.0.0-next.25': {}
 
-  '@qwikdev/astro@0.6.3(@builder.io/qwik@1.7.2(@types/node@20.14.8))(astro@4.15.3(@types/node@20.14.8)(rollup@4.21.2)(typescript@5.5.2))(typescript@5.5.2)(vite@5.4.2(@types/node@20.14.8))':
+  '@qwikdev/astro@0.6.3(@builder.io/qwik@1.7.2(@types/node@20.14.8))(astro@4.15.3(@types/node@20.14.8)(rollup@4.21.2)(typescript@5.5.2))(typescript@5.5.2)(vite@5.4.8(@types/node@20.14.8))':
     dependencies:
       '@builder.io/qwik': 1.7.2(@types/node@20.14.8)
       astro-integration-kit: 0.2.1(astro@4.15.3(@types/node@20.14.8)(rollup@4.21.2)(typescript@5.5.2))
       fs-extra: 11.2.0
       fs-move: 6.0.0
       typescript: 5.5.2
-      vite-tsconfig-paths: 4.3.2(typescript@5.5.2)(vite@5.4.2(@types/node@20.14.8))
+      vite-tsconfig-paths: 4.3.2(typescript@5.5.2)(vite@5.4.8(@types/node@20.14.8))
     transitivePeerDependencies:
       - astro
       - supports-color
@@ -4488,8 +4464,8 @@ snapshots:
       tsconfck: 3.1.3(typescript@5.5.2)
       unist-util-visit: 5.0.0
       vfile: 6.0.3
-      vite: 5.4.2(@types/node@20.14.8)
-      vitefu: 1.0.2(vite@5.4.2(@types/node@20.14.8))
+      vite: 5.4.8(@types/node@20.14.8)
+      vitefu: 1.0.2(vite@5.4.8(@types/node@20.14.8))
       which-pm: 3.0.0
       xxhash-wasm: 1.0.2
       yargs-parser: 21.1.1
@@ -6088,6 +6064,8 @@ snapshots:
 
   picocolors@1.0.1: {}
 
+  picocolors@1.1.0: {}
+
   picomatch@2.3.1: {}
 
   picomatch@4.0.2: {}
@@ -6146,11 +6124,11 @@ snapshots:
       picocolors: 1.0.1
       source-map-js: 1.2.0
 
-  postcss@8.4.41:
+  postcss@8.4.47:
     dependencies:
       nanoid: 3.3.7
-      picocolors: 1.0.1
-      source-map-js: 1.2.0
+      picocolors: 1.1.0
+      source-map-js: 1.2.1
 
   preferred-pm@4.0.0:
     dependencies:
@@ -6520,6 +6498,8 @@ snapshots:
 
   source-map-js@1.2.0: {}
 
+  source-map-js@1.2.1: {}
+
   source-map@0.6.1: {}
 
   source-map@0.7.4: {}
@@ -6811,38 +6791,29 @@ snapshots:
       '@types/unist': 3.0.2
       vfile-message: 4.0.2
 
-  vite-tsconfig-paths@4.3.2(typescript@5.5.2)(vite@5.4.2(@types/node@20.14.8)):
+  vite-tsconfig-paths@4.3.2(typescript@5.5.2)(vite@5.4.8(@types/node@20.14.8)):
     dependencies:
       debug: 4.3.6
       globrex: 0.1.2
       tsconfck: 3.1.1(typescript@5.5.2)
     optionalDependencies:
-      vite: 5.4.2(@types/node@20.14.8)
+      vite: 5.4.8(@types/node@20.14.8)
     transitivePeerDependencies:
       - supports-color
       - typescript
 
-  vite@5.4.0(@types/node@20.14.8):
+  vite@5.4.8(@types/node@20.14.8):
     dependencies:
       esbuild: 0.21.5
-      postcss: 8.4.41
+      postcss: 8.4.47
       rollup: 4.21.2
     optionalDependencies:
       '@types/node': 20.14.8
       fsevents: 2.3.3
 
-  vite@5.4.2(@types/node@20.14.8):
-    dependencies:
-      esbuild: 0.21.5
-      postcss: 8.4.41
-      rollup: 4.21.2
+  vitefu@1.0.2(vite@5.4.8(@types/node@20.14.8)):
     optionalDependencies:
-      '@types/node': 20.14.8
-      fsevents: 2.3.3
-
-  vitefu@1.0.2(vite@5.4.2(@types/node@20.14.8)):
-    optionalDependencies:
-      vite: 5.4.2(@types/node@20.14.8)
+      vite: 5.4.8(@types/node@20.14.8)
 
   volar-service-css@0.0.61(@volar/language-service@2.4.1):
     dependencies:
