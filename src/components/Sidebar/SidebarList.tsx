@@ -1,86 +1,66 @@
-import { $lang } from "@/stores";
-
-import {
-    component$,
-    useComputed$,
-    useSignal,
-    useVisibleTask$,
-} from "@builder.io/qwik";
+import { component$, useSignal, useTask$ } from "@builder.io/qwik";
 import type { SidebarEntry, SidebarProps } from "./Sidebar.astro";
 import { SidebarFolder } from "./SidebarFolder";
 import { SidebarLink } from "./SidebarLink";
 
-type SidebarListProps = {
+type Props = {
     sidebarEntries: SidebarEntry[];
 } & SidebarProps;
 
-export const SidebarList = component$(
-    ({ sidebarMode, sidebarEntries }: SidebarListProps) => {
-        let renderList = useSignal<SidebarEntry[]>(sidebarEntries ?? []);
-        let filter = useSignal("");
-        let filteredList = useComputed$(() => {
-            return renderList.value.filter(({ linkList }) =>
-                linkList.some(
-                    ({ title }) =>
-                        (title ?? "").toLowerCase().includes(
-                            filter.value.toLowerCase(),
-                        ),
-                )
+export const SidebarList = component$((props: Props) => {
+    let sidebarEntries = useSignal<SidebarEntry[]>(props.sidebarEntries ?? []);
+    let filter = useSignal("");
+
+    const searchInputRef = useSignal<HTMLInputElement>();
+
+    useTask$(({ track }) => {
+        track(filter);
+
+        if (filter.value === "") return;
+
+        const newSidebarEntries = props.sidebarEntries.map((entry) => {
+            const linkList = entry.linkList.filter((l) =>
+                (`${l.title ?? ""} ${l.description ?? ""}`).toLowerCase()
+                    .includes(filter.value.toLowerCase())
             );
+
+            return {
+                ...entry,
+                linkList,
+            };
         });
 
-        const searchInputRef = useSignal<HTMLInputElement>();
-        const allOpen = sidebarMode === "guides";
+        sidebarEntries.value = newSidebarEntries;
 
-        useVisibleTask$(() => {
-            if (!searchInputRef.value) return;
-            const defaultValue = new URLSearchParams(location.search).get(
-                "search",
-            ) ?? "";
+        console.log(
+            newSidebarEntries.map((e) => e.linkList.map((l) => l.title)).flat(),
+        );
+    });
 
-            searchInputRef.value.defaultValue = defaultValue;
-            filter.value = defaultValue;
-        });
+    return (
+        <>
+            <input
+                class="input input-primary w-full my-2"
+                placeholder={props.sidebarMode === "reference"
+                    ? "Search for API..."
+                    : "Search for Guides..."}
+                bind:value={filter}
+                ref={searchInputRef}
+            />
 
-        return (
-            <>
-                <input
-                    class="input input-primary w-full my-2"
-                    placeholder={sidebarMode === "reference"
-                        ? "Search for API..."
-                        : "Search for Guides..."}
-                    bind:value={filter}
-                    ref={searchInputRef}
-                    onKeyPress$={(e) => {
-                        if (e.key === "Enter") {
-                            const search = searchInputRef.value?.value;
-                            const url = new URL(location.href);
-                            history.pushState({}, "", url.toString());
-
-                            if (search) filter.value = search;
-                        }
-                    }}
-                />
-
-                {filteredList.value.map(({ linkList, folder }) => {
-                    const filteredList = linkList.filter((
-                        { title },
-                    ) => (title ?? "").toLowerCase().includes(
-                        filter.value.toLowerCase(),
-                    ));
-
+            {sidebarEntries.value.filter(({ linkList }) => linkList.length > 0)
+                .map(({ linkList, folder }, i) => {
                     return (
                         <SidebarFolder
                             title={folder}
                             id={folder}
-                            isOpen={filteredList.length > 0 || allOpen}
+                            isOpen={linkList.length > 0}
+                            key={folder + i}
                         >
-                            {filteredList.map(({ title, link }) => (
+                            {linkList.map(({ title, link }, i) => (
                                 <SidebarLink
                                     href={link}
-                                    lang={$lang.get()}
-                                    noTranslate={sidebarMode === "reference"}
-                                    key={link}
+                                    key={link + i}
                                 >
                                     {title}
                                 </SidebarLink>
@@ -88,7 +68,6 @@ export const SidebarList = component$(
                         </SidebarFolder>
                     );
                 })}
-            </>
-        );
-    },
-);
+        </>
+    );
+});

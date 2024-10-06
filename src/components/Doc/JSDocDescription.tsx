@@ -13,7 +13,7 @@ export const JSDocDescription = component$(({ data }: Props) => {
     if (!jsDoc) return null;
 
     return (
-        <p class="prose">
+        <p class="prose" data-pagefind-weight="4">
             {doc.map(async (e: any) => (
                 <>
                     {e.kind === "JSDocText" && <>{e.text}</>}

@@ -8,7 +8,7 @@ import { getStaticPathsByLocales } from "@/util/path";
 export async function getStaticPaths() {
     const allDoc: any = doc.types;
     const allDocKeys: string[] = Object.keys(doc.types).filter(
-        (k) => k !== "KAPLAYCtx" && k !== "KaboomCtx",
+        (k) => k !== "KAPLAYCtx" && k !== "KaboomCtx" && k !== "undefined",
     );
 
     return getStaticPathsByLocales().flatMap((locale) => {

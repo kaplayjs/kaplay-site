@@ -20,6 +20,7 @@ import VersionSelector from "./VersionSelector.astro";
 
 type LinkListEntry = {
     title: string;
+    description: string;
     link: string;
 };
 
@@ -182,14 +183,10 @@ else if (sidebarMode === "books") {
             </div>
             <div class="divider"></div>
             <ul class="flex-col gap-2">
-                <SidebarLink href="/" lang={lang} icon="home">{
-                    t(lang, "sidebar.home")
-                }</SidebarLink>
+                <SidebarLink href="/" icon="home">Home</SidebarLink>
                 <SidebarLink
                     href="https://kaboomjs.com/discord"
                     target="_blank"
-                    lang={lang}
-                    noTranslate
                     icon="discord"
                 >
                     Discord
@@ -197,16 +194,12 @@ else if (sidebarMode === "books") {
                 <SidebarLink
                     href="https://github.com/kaplayjs/kaplay"
                     target="_blank"
-                    lang={lang}
-                    noTranslate
                     icon="github"
                 >
                     GitHub
                 </SidebarLink>
                 <SidebarLink
                     href="/changelog"
-                    lang={lang}
-                    noTranslate
                     icon="pog"
                 >
                     What's new on v4000
@@ -214,17 +207,13 @@ else if (sidebarMode === "books") {
                 <SidebarLink
                     href="https://play.kaplayjs.com"
                     target="_blank"
-                    lang={lang}
-                    noTranslate
                     icon="controller"
                 >
-                    {t(lang, "sidebar.playground")}
+                    KA-PLAYGROUND
                 </SidebarLink>
                 <SidebarLink
                     href="https://opencollective.com/kaplay"
                     target="_blank"
-                    lang={lang}
-                    noTranslate
                     icon="donate"
                 >
                     Donate to KAPLAY
@@ -234,19 +223,21 @@ else if (sidebarMode === "books") {
             <ul class="flex-col gap-2">
                 <SidebarLink
                     href="/guides/install"
-                    lang={lang}
                     icon="guides"
                     reloadAll
-                >{t(lang, "sidebar.guides")}</SidebarLink>
+                >
+                    Guides
+                </SidebarLink>
                 <SidebarLink
                     href="/doc/kaplay"
-                    lang={lang}
                     icon="api"
                     reloadAll
-                >{t(lang, "sidebar.refdoc")}</SidebarLink>
-                <SidebarLink href="/blog" lang={lang} icon="blog" reloadAll>{
-                    t(lang, "sidebar.blog")
-                }</SidebarLink>
+                >
+                    API Docs
+                </SidebarLink>
+                <SidebarLink href="/blog" icon="blog" reloadAll>
+                    Blog
+                </SidebarLink>
             </ul>
             <div class="divider"></div>
             <SidebarList

@@ -54,6 +54,7 @@ export const getGuidesEntries = async () => {
             linkList: guidesByCategory[category].map((guide) => ({
                 title: guide.data.title,
                 link: `/guides/${guide.data.url ?? guide.id.split("/")[2]}`,
+                description: guide.data.description,
             })),
         })),
     ];
@@ -77,6 +78,7 @@ export const getBlogEntries = async () => {
             linkList: sortedEntries.map((entry: any) => ({
                 title: entry.data.title,
                 link: `/blog/${entry.slug}`,
+                description: "",
             })),
         },
     ];
@@ -114,11 +116,32 @@ export const getBookEntries = async () => {
                 link: `/books/${book.slug.split("/")[1]}/${
                     book.slug.split("/")[2]
                 }`,
+                description: "",
             })),
         })),
     ];
 
     return renderList;
+};
+
+const getDocEntryDescription = (item: string) => {
+    const docObjs = allDoc.KaboomCtx?.[0].members[item]
+        ?? allDoc.KAPLAYCtx?.[0].members[item] ?? allDoc[item];
+    const docObj = docObjs[0];
+    const docDesc = getDocDescription(docObj?.jsDoc?.doc);
+
+    return docDesc;
+};
+
+const getDocDescription = (item: unknown) => {
+    if (typeof item === "string") {
+        return item;
+    }
+    else if (Array.isArray(item)) {
+        return item.map((part: any) => part.text).join("");
+    }
+
+    return "";
 };
 
 export const getDocEntries = async () => {
@@ -140,6 +163,7 @@ export const getDocEntries = async () => {
                     link: isCtxMember
                         ? `/doc/ctx/${item}`
                         : `/doc/${item}`,
+                    description: `${getDocEntryDescription(item)}`,
                 };
             }),
         });
