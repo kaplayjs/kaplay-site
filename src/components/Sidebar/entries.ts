@@ -70,7 +70,8 @@ export const getBlogEntries = async () => {
     const sortedEntries = guides.sort((
         a,
         b,
-    ) => (new Date(a.data.date).getDate() - new Date(b.data.date).getDate()));
+    ) => (new Date(a.data.date).getTime() - new Date(b.data.date).getTime()))
+        .reverse();
 
     renderList = [
         {
