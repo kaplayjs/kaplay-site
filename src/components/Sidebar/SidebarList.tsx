@@ -16,7 +16,10 @@ export const SidebarList = component$((props: Props) => {
     useTask$(({ track }) => {
         track(filter);
 
-        if (filter.value === "") return;
+        if (filter.value === "") {
+            sidebarEntries.value = props.sidebarEntries;
+            return;
+        }
 
         const newSidebarEntries = props.sidebarEntries.map((entry) => {
             const linkList = entry.linkList.filter((l) =>
