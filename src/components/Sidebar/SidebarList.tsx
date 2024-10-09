@@ -34,10 +34,6 @@ export const SidebarList = component$((props: Props) => {
         });
 
         sidebarEntries.value = newSidebarEntries;
-
-        console.log(
-            newSidebarEntries.map((e) => e.linkList.map((l) => l.title)).flat(),
-        );
     });
 
     return (
