@@ -53,7 +53,7 @@ const player = add([
 
 ### Dynamic Components
 
-Usually, you want to assing a component in real time, for example, when the
+Usually, you want to assign a component in real time, for example, when the
 player picks up a power-up. You can use the `GameObjRaw.use()` method
 
 ```js
@@ -88,7 +88,7 @@ const player = add([
     pos(80, 80),
 ]);
 
-// -100 pixeles on every second with the left key pressed
+// -100 pixels on every second with the left key pressed
 onKeyDown("left", () => {
     // move() method is available because player has a pos() component
     player.move(-100, 0);
@@ -117,7 +117,7 @@ are tags too, for example, the `sprite()` component is a `sprite` tag.
 To create a tag, you only have to pass a string to the `add()` method.
 
 ```js
-const enemey = add([
+const enemy = add([
     sprite("bee"),
     "enemy",
 ]);

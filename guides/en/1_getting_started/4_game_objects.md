@@ -18,7 +18,7 @@ entities that move, interact, and make the game interesting. On this guide:
 
 ## Creating Game Objects
 
-The first way to create game obejcts is the `make()` function: It assembles a
+The first way to create game objects is the `make()` function: It assembles a
 game object from a list of components, but without attaching it to the scene.
 For that, we use the `add()` function.
 

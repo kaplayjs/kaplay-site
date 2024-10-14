@@ -35,7 +35,7 @@ you upload a web game
 ![image](/publishing/itchio-2.png)
 
 After that, the only thing left to do is to upload your zip with your game
-files, or if you have a single `ìndex.html` file (very tasteful) upload it!
+files, or if you have a single `index.html` file (very tasteful) upload it!
 
 [**Itch.io Documentation about HTML5 games**](https://itch.io/docs/creators/html5)
 
@@ -45,9 +45,9 @@ First, go to the up arrow and select Game
 
 ![image](/publishing/newgrounds-1.png)
 
-Now, as Itch.io, only upload a zip with your fabolous `index.html` game file.
+Now, as Itch.io, only upload a zip with your fabulous `index.html` game file.
 
 ### Tag your game
 
 You can tag your game in the different platforms with the tag `kaplayjs`.
-Probbably we will see it and even promote in our Twitter :D
+Probably we will see it and even promote in our Twitter :D

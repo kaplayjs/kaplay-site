@@ -12,7 +12,7 @@ This guide covers:
 
 - [`loadSprite()`](/doc/ctx/loadSprite) for loading sprites and spritesheets
 - [`sprite()`](/doc/ctx/sprite) for creating a sprite component
-- fliping sprites
+- flipping sprites
 
 ## Loading Sprites
 

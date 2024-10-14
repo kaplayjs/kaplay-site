@@ -59,7 +59,7 @@ k.add([
 
 Sometimes you might be drawing a lot of objects that's not on screen (e.g. if
 you have a big map and your camera only sees a small area), this is very
-unnessecary, use `offscreen()` component to define object's behavior when
+unnecessary, use `offscreen()` component to define object's behavior when
 they're not on screen.
 
 ```js
@@ -133,7 +133,7 @@ await player.tween(
 player.paused = true;
 
 // this will stop all the timer events
-player.destory();
+player.destroy();
 
 player.onStateEnter("attack", async () => {
     // ... state code
@@ -174,7 +174,7 @@ gameScene.onKeyPress("space", () => {
 gameScene.paused = true;
 
 // this will stop all the input events
-gameScene.destory();
+gameScene.destroy();
 ```
 
 ## Compress Assets

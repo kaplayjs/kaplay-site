@@ -16,7 +16,7 @@ There's some reasons why you should use KAPLAY:
 - 📏 **Flexibility**: KAPLAY is a **library**, not a framework or game engine.
   You can use KAPLAY with other libraries or frameworks, do you want to use
   _React_? _Vue_? No problem, you can use it with KAPLAY.
-- 🍳 **Pre-cooked**: KAPLAY comes with a lot of features pre-cooked. Premade
+- 🍳 **Pre-cooked**: KAPLAY comes with a lot of features pre-cooked. Pre-made
   arcade physics, input manager, tilemap levels, assets and more.
 - ❤️ **Open Source**: KAPLAY is **open source** and the KAPLAY Team is a
   **collective** of developers **non-profit**.
