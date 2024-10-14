@@ -11,7 +11,7 @@ You can play music, audios and sounds using the `play()` function.
 
 ## Loading sounds
 
-All audsoundio files must be loaded before they can be played. You can load
+All audio files must be loaded before they can be played. You can load
 audio files using the `loadSound()` function. Supported `mp3`, `ogg`, `wav`, and
 formats supported by the browser.
 

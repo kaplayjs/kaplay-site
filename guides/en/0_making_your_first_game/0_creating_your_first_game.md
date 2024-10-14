@@ -159,7 +159,7 @@ onKeyPress("space", () => {
 if currently landed on a platform. Now our game is slightly more physically
 correct.
 
-Bean loves challanges. Let's start adding in obstacles to jump over! Time to
+Bean loves challenges. Let's start adding in obstacles to jump over! Time to
 build a game object from components again.
 
 ```js
@@ -297,7 +297,7 @@ See? We're calling `spawnTree()` recursively / endlessly, with a random interval
 between 0.5 - 1.5 seconds each time.
 
 Before adding a score counter, let's actually complete the game loop first, by
-sending player to a gameover scene when they hit a tree. We can achieve this
+sending player to a game-over scene when they hit a tree. We can achieve this
 with KAPLAY's `scene()` system
 
 ```js

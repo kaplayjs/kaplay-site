@@ -41,7 +41,7 @@ const bean = level.spawn(
 
 The tile component is a component automatically added to objects spawned within
 the level if it is not present already. The tile component has properties which
-can set the passability of a tile, either global (isObstacle) or for each
+can set the possibility of a tile, either global (isObstacle) or for each
 direction separately (edges). The difficulty of moving over a tile can be set as
 well (cost), making agents avoid sand or swamps if solid soil, grass or rock is
 available.

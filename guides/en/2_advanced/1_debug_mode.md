@@ -11,7 +11,7 @@ Now, we will see how to use it.
 
 ## Inspect Mode
 
-You can enable inpsect mode by pressing `F1` key. This will open the debug
+You can enable inspect mode by pressing `F1` key. This will open the debug
 panel.
 
 ![](assets/2024-06-03-21-42-06.png)
@@ -25,7 +25,7 @@ You will see
 
 ## Logging
 
-You can use (with or without the inpsect mode) the `debug.log()` function to log
+You can use (with or without the inspect mode) the `debug.log()` function to log
 messages in the game screen.
 
 ```js
