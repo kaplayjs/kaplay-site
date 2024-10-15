@@ -176,8 +176,60 @@ add([
 ## PlatformEffector
 
 The platform effector makes it easier to implement one way platforms or walls.
-This effector is used with a static body, but it will only be solid depending on
-the direction the object is traveling from.
+This effector is commonly used with a static body, and it will only be solid
+depending on the direction the object is traveling from.
+
+```ts
+add([
+    pos(100, 100),
+    rect(100, 100),
+    area(),
+    body(),
+    platformEffector(),
+]);
+```
+
+The default is for the platform effector to allow all everything to collide with it
+*except* if the object collided on the bottom side of the platform -- this allows
+players to jump up "through" the platform, but not fall back down through it.
+
+If you want to allow the player to collide with the platform *only* from the top,
+so that they can walk past the platform freely, pass in the sides that you don't
+want collisions to occur on:
+
+```ts
+platformEffector({ ignoreSides: [UP, LEFT, RIGHT] })
+```
+
+You can also pass in a custom function to override the behavior and explicitly decide
+when to collide. For example, you can let the player choose whether they wnat to walk
+past items, or push them:
+
+```ts
+platformEffector({
+    shouldCollide(obj, normal) {
+        // Collide with the floor (and everything else)
+        if (obj !== player) return true;
+        // Let the player push this platform if they hold shift
+        if (isKeyDown("shift")) return true;
+        if (normal.eq(LEFT) || normal.eq(RIGHT)) return false;
+        return true;
+    }
+}),
+```
+
+Finally, you can add an object temporatily to a platform effector's `platformIgnore` set,
+and this will prevent the object from colliding even if it normally would:
+
+```ts
+// Fall through when down is pressed
+onKeyDown("down", () => {
+    const p = player.curPlatform();
+    if (p != null && p.is("platformEffector")) {
+        p.platformIgnore.add(player);
+    }
+});
+```
 
 # ConstantForce
 
