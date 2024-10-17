@@ -2,7 +2,6 @@
 title: Particles
 description: Learn how to create particles in KAPLAY.
 url: particles
-version: v4000
 ---
 
 # Introduction
