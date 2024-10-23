@@ -2,16 +2,17 @@
 import Prose from "@/components/Content/Prose.astro";
 import SidebarPage from "@/layouts/SidebarPage.astro";
 import { getStaticPathsByLocales } from "@/util/path";
-import { getEntry } from "astro:content";
+import { render } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
 
 export function getStaticPaths() {
     return getStaticPathsByLocales();
 }
 
 const { lang } = Astro.props;
-const entry = await getEntry("misc", `en/changelog`);
-if (!entry) return;
-const { Content } = await entry.render();
+const entry = await getEntry("repo", "kaplay/changelog");
+
+const { Content } = await render(entry);
 ---
 
 <SidebarPage

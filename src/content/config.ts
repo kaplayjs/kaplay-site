@@ -49,9 +49,18 @@ const miscCollection = defineCollection({
     }),
 });
 
+const repoCollection = defineCollection({
+    // only on kaplay/ folder not on kaplay/node_modules/ or any other folder
+    loader: glob({
+        pattern: "kaplay/**.md",
+        base: "./",
+    }),
+});
+
 export const collections = {
     blog: blogCollection,
     guides: guideCollection,
     books: booksCollection,
     misc: miscCollection,
+    repo: repoCollection,
 };
