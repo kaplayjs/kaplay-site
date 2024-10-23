@@ -93,3 +93,9 @@ written in all caps, **KAPLAY**, not **KaPlay** or **Kaplay**. Anyway **kaplay**
 ### KAPLAYGROUND
 
 ![](../assets/2024-06-10-15-56-25.png)
+
+## Contact
+
+You can contact us on our official Discord server,
+[here](https://discord.com/invite/aQ6RuQm3TF) or our email [here](mailto:
+support@kaplayjs.com).
