@@ -68,10 +68,10 @@ player.use(sprite("big-butterfly"));
 ```
 
 Use is a **use**ful method, but what if you want to remove a component? You can
-use the `GameObjRaw.unuse()` method.
+use the `GameObjRaw.unuse()` method, passing the component id (the name):
 
 ```js
-player.unuse(sprite());
+player.unuse("sprite");
 ```
 
 ## Getting Components
