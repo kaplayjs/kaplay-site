@@ -6,7 +6,7 @@ url: animation
 
 # Basics
 
-Every animation in Kaplay is basically a handler attached to onUpdate, changing
+Every animation in KAPLAY is basically a handler attached to onUpdate, changing
 values according to the elapsed time, dt(). So we could animate our position by
 doing the following
 

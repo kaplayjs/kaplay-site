@@ -119,12 +119,13 @@ To create a tag, you only have to pass a string to the `add()` method.
 ```js
 const enemy = add([
     sprite("bee"),
+    area(),
     "enemy",
 ]);
 ```
 
 There's many functions that uses tags, for example `onClick()` to detect clicks
-on game objects.
+on game objects with an `area()` component.
 
 ```js
 onClick("enemy", (enemy) => {

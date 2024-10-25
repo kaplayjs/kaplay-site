@@ -39,7 +39,7 @@ For each pixel drawn, the fragment shader is called. This shader can no longer
 change the position, but it can affect the color. A default fragment shader
 would look like this.
 
-```
+```js
 vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
   return def_frag();
 }
@@ -50,7 +50,7 @@ altered color is to be returned, it should be a vec4 containing the r, g, b and
 a channels as floating point numbers between 0 and 1. For example, the following
 shader only uses the texture channel's alpha, while using the base color.
 
-```
+```js
 vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
   return vec4(color.rgb, texture2D(tex, uv).a);
 }
@@ -59,7 +59,7 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
 The following shader takes the texture color, grayscales it and then recolors it
 with the base color.
 
-```
+```js
 vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
   vec4 tcolor = texture2D(tex, uv);
   float gray = dot(tcolor.rgb, vec3(0.299, 0.587, 0.114));
@@ -84,7 +84,7 @@ to the shader. For example, the following sprite effect defines a function which
 returns an object with a uniform called u_time. This function is called each
 frame, and the parameters are sent to the shader before rendering.
 
-```ts
+```js
 loadShader(
     "invert",
     null,
@@ -117,7 +117,7 @@ or the component readded (in case of the shader component). When using the
 direct draw API, like drawSprite or drawUVQuad, the shader and uniforms are
 passed through the render properties.
 
-```ts
+```js
 drawSprite({
     sprite: "bean",
     pos: vec2(100, 200),
