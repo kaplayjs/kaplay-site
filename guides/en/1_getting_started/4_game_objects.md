@@ -117,7 +117,7 @@ functions** that return a game object with `make()`. Is great for create game
 objects and manipulate them later, before attaching them to the scene.
 
 ```js
-function createBullet(spr: string) {
+function createBullet(spr) {
     const obj = make([
         pos(80, 80),
         color(0.5, 0.5, 1),
