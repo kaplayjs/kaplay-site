@@ -43,7 +43,7 @@ it directly in your HTML file, or import it with ECMAScript modules.
 ```html
 <script type="module">
     // import kaplay
-    import kaplay from "https://unpkg.com/kaplay@3001.0.0-alpha.20/dist/kaplay.mjs";
+    import kaplay from "https://unpkg.com/kaplay@3001/dist/kaplay.mjs";
     // start kaplay
     kaplay();
 </script>
@@ -52,7 +52,7 @@ it directly in your HTML file, or import it with ECMAScript modules.
 You can also just include it with a `<script>` tag.
 
 ```html
-<script src="https://unpkg.com/kaplay@3001.0.0-alpha.20/dist/kaplay.js"></script>
+<script src="https://unpkg.com/kaplay@3001/dist/kaplay.js"></script>
 
 <script>
     kaplay();
