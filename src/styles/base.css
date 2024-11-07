@@ -107,3 +107,7 @@ span.line.diff.remove::before {
 .grid-cols-dynamic {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
+
+span[data-is-type="true"] {
+  @apply decoration-current underline decoration-dashed;
+}

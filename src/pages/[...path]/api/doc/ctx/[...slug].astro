@@ -1,0 +1,29 @@
+---
+import doc from "@/../doc.json";
+import { DocEntry } from "@/components/Doc/DocEntry";
+import { getStaticPathsByLocales } from "@/util/path";
+
+export async function getStaticPaths() {
+    const allDoc = doc.types as any;
+    const kaboomDoc: any = allDoc.KaboomCtx?.[0].members
+        ?? allDoc.KAPLAYCtx?.[0].members;
+    const allKaboomDocKeys: string[] = Object.keys(kaboomDoc);
+
+    return getStaticPathsByLocales().flatMap((locale) => {
+        return allKaboomDocKeys.map((key) => {
+            return {
+                params: { slug: key, ...locale.params },
+                props: {
+                    type: kaboomDoc[key] as any[],
+                    name: key,
+                    ...locale.props,
+                },
+            };
+        });
+    });
+}
+
+const { type } = Astro.props;
+---
+
+{type?.map((refData) => <DocEntry data={refData} />)}

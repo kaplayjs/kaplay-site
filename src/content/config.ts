@@ -19,6 +19,7 @@ const guideCollection = defineCollection({
         pattern: "**/*.md",
         base: "./guides/",
     }),
+    type: "content_layer",
     schema: ({ image }) =>
         z.object({
             url: z.optional(z.string()),

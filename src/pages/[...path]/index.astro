@@ -4,6 +4,7 @@ import About from "@/components/Land/About.astro";
 import { BlocksSection } from "@/components/Land/Blocks/BlocksSection.tsx";
 import Navbar from "@/components/Land/Navbar.astro";
 import TestimonialSection from "@/components/Land/TestimonialSection.astro";
+import People from "@/components/Util/People.astro";
 import Page from "@/layouts/Page.astro";
 import { getStaticPathsByLocales } from "@/util/path";
 export function getStaticPaths() {
@@ -29,6 +30,7 @@ const { lang } = Astro.props;
         <About />
         <BlocksSection />
         <TestimonialSection />
+        <People />
         <Footer />
     </div>
 </Page>

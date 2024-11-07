@@ -7,8 +7,6 @@ import githubIcon from "@/../assets/gh_icon.png";
 import guidesIcon from "@/../assets/guides_icon.png";
 import homeIcon from "@/../assets/home_icon.png";
 import pogIcon from "@/../assets/pog_icon.png";
-import type { Locale } from "@/util/i18n";
-import { getLangedRoute } from "@/util/path";
 import { component$, Slot } from "@builder.io/qwik";
 
 type SidebarLinkProps = {

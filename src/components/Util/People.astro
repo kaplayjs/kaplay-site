@@ -1,0 +1,37 @@
+---
+/**
+ * @type {any}
+ */
+import peopleData from "../../data/contributors.json";
+const contributors = Object.values(peopleData);
+---
+
+<div class="flex flex-col items-center justify-center gap-4">
+    <h2 class="font-bold text-3xl">
+        People who contributed to KAPLAY.js
+    </h2>
+    <div
+        class="flex flex-row items-center justify-center flex-wrap gap-4 max-w-lg"
+    >
+        {
+            contributors.filter((_, i) => i < 20).map((person) => (
+                <div>
+                    <img
+                        class="rounded-full w-16 h-16"
+                        src={person.avatar_url}
+                        alt={person.login}
+                    />
+                </div>
+            ))
+        }
+        <div class="flex flex-col items-center justify-center">
+            <a
+                class="text-sm text-primary decoration-current decoration-dashed"
+                href="https://github.com/kaplayjs/kaplay/graphs/contributors"
+                target="_blank"
+            >
+                and {contributors.length - 20} more contributors
+            </a>
+        </div>
+    </div>
+</div>

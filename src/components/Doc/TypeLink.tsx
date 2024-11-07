@@ -1,4 +1,4 @@
-import doc from "@/../doc.json";
+import { doc } from "@/data/doc";
 import { cn } from "@/util/cn";
 import { $, component$ } from "@builder.io/qwik";
 
@@ -7,10 +7,13 @@ type Props = {
 };
 
 export const TypeLink = component$(({ name }: Props) => {
-    const docEntry = (doc as any).types[name]
-        ?? (doc as any).types.KaboomCtx?.[0].members[name]
-        ?? (doc as any).types.KAPLAYCtx?.[0].members[name];
-    const isStyled = Boolean(docEntry);
+    const ctxMember = doc.types.KaboomCtx?.[0].members[name]
+        ?? doc.types.KAPLAYCtx?.[0].members[name];
+    const typesMember = doc.types[name];
+
+    const isType = Boolean(typesMember) || Boolean(ctxMember);
+    const isCtxMember = Boolean(ctxMember);
+    const isTypesMember = Boolean(typesMember);
 
     const handleClick = $((e: PointerEvent) => {
         const target = e.target as HTMLElement;
@@ -32,11 +35,9 @@ export const TypeLink = component$(({ name }: Props) => {
 
     return (
         <span
-            class={cn("type-btn text-primary cursor-pointer", {
-                "decoration-current underline decoration-dashed": isStyled,
-            })}
-            data-link-type={name}
-            data-is-type={docEntry ? "true" : "false"}
+            class={"type-btn text-primary hoverable"}
+            data-link-type={`${isTypesMember ? "/" : "/ctx/"}${name}`}
+            data-is-type={String(isType)}
             onClick$={handleClick}
         >
             {name}
