@@ -1,0 +1,20 @@
+---
+import { assets } from "@kaplayjs/crew";
+
+type Props = {
+    crew: keyof typeof assets;
+    title: string;
+};
+
+const { crew = "burpman", title = "Level Up!" } = Astro.props;
+---
+
+<aside
+    class="not-prose p-2 border-b-2 border-primary rounded-t-box text-base bg-base-200 mt-4 mb-4"
+>
+    <div class="text-xl font-bold flex items-center gap-2">
+        <img src={assets[crew].outlined} class="h-8 my-2">
+        <p>{title}</p>
+    </div>
+    <slot />
+</aside>
