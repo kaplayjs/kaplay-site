@@ -1,27 +1,29 @@
 ---
-/**
- * @type {any}
- */
+import { Image } from "astro:assets";
 import peopleData from "../../data/contributors.json";
 const contributors = Object.values(peopleData);
 ---
 
-<div class="flex flex-col items-center justify-center gap-4">
+<section class="flex flex-col items-center justify-center gap-4 p-4">
     <h2 class="font-bold text-3xl">
         People who contributed to KAPLAY.js
     </h2>
     <div
-        class="flex flex-row items-center justify-center flex-wrap gap-4 max-w-lg"
+        class="flex flex-row items-center justify-center flex-wrap gap-6 max-w-lg"
     >
         {
             contributors.filter((_, i) => i < 20).map((person) => (
-                <div>
-                    <img
-                        class="rounded-full w-16 h-16"
-                        src={person.avatar_url}
-                        alt={person.login}
-                    />
-                </div>
+                <a href={`https://github.com/${person.login}`} target="_blank">
+                    <div>
+                        <Image
+                            class="rounded-full w-18 h-18"
+                            src={person.avatar_url}
+                            alt={person.login}
+                            width={72}
+                            height={72}
+                        />
+                    </div>
+                </a>
             ))
         }
         <div class="flex flex-col items-center justify-center">
@@ -34,4 +36,4 @@ const contributors = Object.values(peopleData);
             </a>
         </div>
     </div>
-</div>
+</section>

@@ -61,13 +61,14 @@ import AboutFeatured from "./AboutFeatured.astro";
             </div>
         </div>
         <div>
-            <img
-                class="w-full max-w-3xl aspect-video"
-                src={kaplayBanner.src}
+            <Image
+                src={kaplayBanner}
                 alt="KAPLAY Banner"
                 height={1400}
                 width={500}
                 loading={"eager"}
+                quality={100}
+                decoding={"sync"}
             />
         </div>
     </div>
