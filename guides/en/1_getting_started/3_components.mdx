@@ -181,11 +181,10 @@ const player = add([
 console.log(player.c("pos")); // all the state exclusive to the pos() component
 ```
 
-<Info crew="ghosty" title="Beware of closures (but there aren't many)">
+<Info crew="ghosty" title="Beware of hidden-state components (but there aren't many)">
 
-Note that if a component stores state in a function closure and doesn't expose it as a property or method,
-you still won't be able to access it this way. ¯\\\_(ツ)\_/¯
-(It's a limitation of Javascript, unfortunately. KAPLAY will never be able to get around this.)
+Note that some components hide their state and don't expose it as a property or method, and this method still won't be able to access it. ¯\\\_(ツ)\_/¯
+(It's a limitation of Javascript and the way the components are implemented, unfortunately. KAPLAY will never be able to get around this.)
 
 </Info>
 
