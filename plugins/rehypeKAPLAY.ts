@@ -3,7 +3,6 @@ import type { Element } from "hast";
 import { visit } from "unist-util-visit";
 
 export const rehypeKAPLAY: RehypePlugin = () => {
-    console.log("ffeasa");
     return (tree) => {
         visit(tree, (node) => {
             if (node.type != "element") {
