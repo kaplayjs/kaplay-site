@@ -3,6 +3,8 @@ title: Components & Tags
 description: Learn how to create and use components in KAPLAY, the HTML5 Game Engine for JavaScript and TypeScript.
 url: components
 ---
+import Info from "@/components/Content/Info.astro";
+
 
 # Components
 
@@ -124,20 +126,26 @@ player.use(sprite("big-butterfly"));
 player.use("big");
 ```
 
-<!-- *(Aside: the `.use()` method is actually how `add()` creates the object internally. It initializes an empty `GameObj` and then calls `.use()` on all of the components and tags passed in. Don't just take my word for it, [look at the code!](https://github.com/kaplayjs/kaplay/blob/b57385be0f33b89db79ced6a4967d219d240f523/src/game/make.ts#L624-L626))* 
+<Info crew="github" title="How `use()` is actually used">
 
-XXX: there's probably a better place for this note
+The `.use()` method is actually how `add()` creates the object internally. It initializes an empty `GameObj` and then calls `.use()` on all of the components and tags passed in. Don't just take my word for it, [look at the code!](https://github.com/kaplayjs/kaplay/blob/b57385be0f33b89db79ced6a4967d219d240f523/src/game/make.ts#L624-L626)
 
--->
+</Info>
 
 
 `use()` is a **use**ful method, but what if you want to remove a component or tag? You
-can use the `GameObjRaw.unuse()` method, passing the component id or tag name. <!-- Do note that you can't pass the component itself to `unuse()`, you have to pass the component *name*! -->
+can use the `GameObjRaw.unuse()` method, passing the component id or tag name. 
 
 ```js
 player.unuse("sprite"); // removes the sprite component
 player.unuse("big"); // removes the big tag
 ```
+
+<Info crew="gun" title="Important!">
+
+Do note that you can't pass the component itself to `unuse()`, you have to pass the component *name*!
+
+</Info>
 
 ## Getting Components
 
@@ -173,13 +181,13 @@ const player = add([
 console.log(player.c("pos")); // all the state exclusive to the pos() component
 ```
 
-<!-- Note that if a component stores state in a function closure and doesn't expose it as a property or method,
+<Info crew="ghosty" title="Beware of closures (but there aren't many)">
+
+Note that if a component stores state in a function closure and doesn't expose it as a property or method,
 you still won't be able to access it this way. ¯\\\_(ツ)\_/¯
 (It's a limitation of Javascript, unfortunately. KAPLAY will never be able to get around this.)
 
-XXX: where does this note belong?
-
--->
+</Info>
 
 ## Getting Tags
 
