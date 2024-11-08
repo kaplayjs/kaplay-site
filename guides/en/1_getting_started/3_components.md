@@ -72,8 +72,9 @@ const bobo = add([
 ]);
 ```
 
-There are many functions that look at tags. The simplest one is [`get()`](/doc/ctx/get), which
-just *get*s all the game objects with a certain tag:
+There are many functions that look at tags.
+
+The simplest one is [`get()`](/doc/ctx/get), which *get*s all the game objects with a certain tag:
 
 ```js
 const enemies = get("enemy"); // ghosty and bobo
