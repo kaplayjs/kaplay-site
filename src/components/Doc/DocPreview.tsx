@@ -4,23 +4,26 @@ export const DocPreview = component$(() => {
     useOnDocument(
         "onSetDocPreview",
         $(async (e: CustomEvent<number>) => {
+            const modalType = document.getElementById("modal-type");
+            if (!modalType) return;
+            const openInNew = document.getElementById("open-in-new");
+            if (!openInNew) return;
+            openInNew.setAttribute("href", "");
+
+            modalType.innerHTML = `<div class="loading loading-dots"></div>`;
+
             // get html of the page
             const page = await fetch(`/api/doc${e.detail}`);
+
             const html = await page.text();
             const parser = new DOMParser();
             const typeDom = parser.parseFromString(html, "text/html");
             const type = typeDom.querySelector("article");
             if (!type) return;
-            const modalType = document.getElementById("modal-type");
-            if (!modalType) return;
 
             modalType.innerHTML = "";
             modalType.appendChild(type);
-
-            const openInNew = document.getElementById("open-in-new");
-            if (openInNew) {
-                openInNew.setAttribute("href", `/doc${e.detail}`);
-            }
+            openInNew.setAttribute("href", `/doc${e.detail}`);
         }),
     );
 
@@ -31,7 +34,6 @@ export const DocPreview = component$(() => {
                     <a
                         id="open-in-new"
                         class="btn btn-ghost"
-                        href={`/api/doc/`}
                         target="_blank"
                     >
                         Open in new tab
