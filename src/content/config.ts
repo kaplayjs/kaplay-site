@@ -16,7 +16,7 @@ const blogCollection = defineCollection({
 
 const guideCollection = defineCollection({
     loader: glob({
-        pattern: "**/*.md",
+        pattern: "**/*.{md,mdx}",
         base: "./guides/",
     }),
     type: "content_layer",
