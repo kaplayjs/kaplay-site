@@ -9,7 +9,7 @@ type Props = {
 export const JSDocTag = component$(({ tag, items }: Props) => {
     const hiddenTags = ["group"];
     if (hiddenTags.includes(tag)) return;
-    const item = items.flat()[0].text ?? "";
+    const item = items.flat()[0]?.text ?? "";
 
     switch (tag) {
         case "example":

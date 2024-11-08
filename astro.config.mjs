@@ -9,7 +9,6 @@ import {
 import astroMetaTags from "astro-meta-tags";
 import robotsTxt from "astro-robots-txt";
 import { defineConfig } from "astro/config";
-import { defineConfig, passthroughImageService } from "astro/config";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 import { rehypeKAPLAY } from "./plugins/rehypeKAPLAY";
