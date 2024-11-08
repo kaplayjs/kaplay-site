@@ -19,6 +19,7 @@ export const tags = [
     "books",
     "brand",
     "ui",
+    "emojis",
 ] as const;
 
 export const CrewList = component$((props) => {
