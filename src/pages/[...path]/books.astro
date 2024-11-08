@@ -23,17 +23,15 @@ const { lang } = Astro.props;
 
         {
             Object.values(booksInfo).map((book) => {
-            return (
-                <a href={book.url} class="decoration-transparent">
-                    <div
-                        class="bg-base-200 rounded-box p-4 flex flex-col items-center justify-center"
-                    >
-                        <img src={book.potrait} />
-                        <h2>{book.title}</h2>
-                        <p class="text-balance">{book.description}</p>
-                    </div>
-                </a>
-            );
+                return (
+                    <a href={book.url} class="decoration-transparent">
+                        <div class="flex flex-col items-center justify-center rounded-box bg-base-200 p-4">
+                            <img src={book.potrait} />
+                            <h2>{book.title}</h2>
+                            <p class="text-balance">{book.description}</p>
+                        </div>
+                    </a>
+                );
             })
         }
     </Prose>

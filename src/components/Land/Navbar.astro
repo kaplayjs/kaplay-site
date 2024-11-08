@@ -49,9 +49,9 @@ const externalLinks = [
 ---
 
 <!-- Navbar -->
-<nav class="navbar bg-base-300 lg:fixed z-50">
+<nav class="navbar z-50 bg-base-300 lg:fixed">
     <!-- Menu for mobile -->
-    <div class="w-full flex justify-between md:hidden">
+    <div class="flex w-full justify-between md:hidden">
         <a class="btn btn-ghost" href="/">
             <Image
                 class="h-full w-fit object-scale-down"
@@ -75,7 +75,7 @@ const externalLinks = [
 
             <ul
                 tabindex="0"
-                class="dropdown-content menu z-[1] bg-base-200 p-6 rounded-box shadow w-56 gap-2"
+                class="menu dropdown-content z-[1] w-56 gap-2 rounded-box bg-base-200 p-6 shadow"
             >
                 {
                     [...internalLinks, ...externalLinks].map((link) => (
@@ -107,15 +107,12 @@ const externalLinks = [
     </div>
 
     <!-- Menu for desktop -->
-    <div class="w-full hidden md:grid grid-cols-5 gap-2">
-        <ul class="col-span-2 md:flex justify-end hidden gap-4">
+    <div class="hidden w-full grid-cols-5 gap-2 md:grid">
+        <ul class="col-span-2 hidden justify-end gap-4 md:flex">
             {
                 internalLinks.map((link) => (
                     <li>
-                        <a
-                            class="font-semibold btn btn-ghost"
-                            href={link.url}
-                        >
+                        <a class="btn btn-ghost font-semibold" href={link.url}>
                             {link.name}
                             <img
                                 src={link.icon}
@@ -142,7 +139,7 @@ const externalLinks = [
             </a>
         </div>
 
-        <ul class="col-span-2 md:flex justify-start hidden gap-2">
+        <ul class="col-span-2 hidden justify-start gap-2 md:flex">
             {
                 externalLinks.map((link) => (
                     <li>

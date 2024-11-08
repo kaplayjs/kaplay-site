@@ -23,8 +23,9 @@ export const SidebarList = component$((props: Props) => {
 
         const newSidebarEntries = props.sidebarEntries.map((entry) => {
             const linkList = entry.linkList.filter((l) =>
-                (`${l.title ?? ""} ${l.description ?? ""}`).toLowerCase()
-                    .includes(filter.value.toLowerCase())
+                `${l.title ?? ""} ${l.description ?? ""}`
+                    .toLowerCase()
+                    .includes(filter.value.toLowerCase()),
             );
 
             return {
@@ -39,15 +40,18 @@ export const SidebarList = component$((props: Props) => {
     return (
         <>
             <input
-                class="input input-primary w-full my-2"
-                placeholder={props.sidebarMode === "reference"
-                    ? "Search for API..."
-                    : "Search for Guides..."}
+                class="input input-primary my-2 w-full"
+                placeholder={
+                    props.sidebarMode === "reference"
+                        ? "Search for API..."
+                        : "Search for Guides..."
+                }
                 bind:value={filter}
                 ref={searchInputRef}
             />
 
-            {sidebarEntries.value.filter(({ linkList }) => linkList.length > 0)
+            {sidebarEntries.value
+                .filter(({ linkList }) => linkList.length > 0)
                 .map(({ linkList, folder }, i) => {
                     return (
                         <SidebarFolder
@@ -57,10 +61,7 @@ export const SidebarList = component$((props: Props) => {
                             key={folder + i}
                         >
                             {linkList.map(({ title, link }, i) => (
-                                <SidebarLink
-                                    href={link}
-                                    key={link + i}
-                                >
+                                <SidebarLink href={link} key={link + i}>
                                     {title}
                                 </SidebarLink>
                             ))}

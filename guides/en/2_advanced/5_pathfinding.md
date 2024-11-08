@@ -47,19 +47,13 @@ well (cost), making agents avoid sand or swamps if solid soil, grass or rock is
 available.
 
 ```js
-const level = addLevel(
-    createMazeLevelMap(15, 15, {}),
-    {
-        tileWidth: TILE_WIDTH,
-        tileHeight: TILE_HEIGHT,
-        tiles: {
-            "#": () => [
-                sprite("steel"),
-                tile({ isObstacle: true }),
-            ],
-        },
+const level = addLevel(createMazeLevelMap(15, 15, {}), {
+    tileWidth: TILE_WIDTH,
+    tileHeight: TILE_HEIGHT,
+    tiles: {
+        "#": () => [sprite("steel"), tile({ isObstacle: true })],
     },
-);
+});
 ```
 
 # Custom pathfinding
@@ -118,9 +112,7 @@ some of the functionality of agent.
 
 ```js
 // Use the patrol component with a speed of 100px per second
-add([
-    ...patrol({ speed: 100 }),
-]);
+add([...patrol({ speed: 100 })]);
 // Use the previously computed path
 enemy.waypoints = path;
 ```
@@ -133,10 +125,13 @@ made to make enemies act on visual cues like noticing the player.
 ```js
 // Use the sentry component to look for the player using line of sight
 add([
-    ...sentry({ includes: "player" }, {
-        lineOfSight: true,
-        raycastExclude: ["enemy"],
-    }),
+    ...sentry(
+        { includes: "player" },
+        {
+            lineOfSight: true,
+            raycastExclude: ["enemy"],
+        },
+    ),
 ]);
 ```
 

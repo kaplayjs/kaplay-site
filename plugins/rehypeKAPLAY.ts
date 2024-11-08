@@ -25,8 +25,9 @@ export const rehypeKAPLAY: RehypePlugin = () => {
 };
 
 const isAnchor = (element: Element) =>
-    element.tagName == "a" && element.properties
-    && "href" in element.properties;
+    element.tagName == "a" &&
+    element.properties &&
+    "href" in element.properties;
 
 const getUrl = (element: Element) => {
     if (!element.properties) {

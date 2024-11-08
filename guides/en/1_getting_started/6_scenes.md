@@ -9,9 +9,9 @@ url: scenes
 Scenes are the way to organize your game. They are like the chapters of a book,
 each scene is a different part of your game. On this guide:
 
-- [`scene()`](/doc/ctx/scene) function to create scenes
-- [`go()`](/doc/ctx/go) function to change the current scene
-- Passing data between scenes
+-   [`scene()`](/doc/ctx/scene) function to create scenes
+-   [`go()`](/doc/ctx/go) function to change the current scene
+-   Passing data between scenes
 
 ## Creating Scenes
 
@@ -43,10 +43,7 @@ We can handle the score in the `game` scene:
 
 ```js
 scene("game", (score) => {
-    add([
-        text(score),
-        pos(12, 12),
-    ]);
+    add([text(score), pos(12, 12)]);
 });
 ```
 
@@ -63,15 +60,9 @@ If you have many parameters to pass, you can use an object to pass them:
 
 ```js
 scene("game", ({ score, level }) => {
-    add([
-        text(`Score: ${score}`),
-        pos(12, 12),
-    ]);
+    add([text(`Score: ${score}`), pos(12, 12)]);
 
-    add([
-        text(`Level: ${level}`),
-        pos(12, 24),
-    ]);
+    add([text(`Level: ${level}`), pos(12, 24)]);
 });
 ```
 

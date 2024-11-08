@@ -42,18 +42,18 @@ to download them) and also as a wiki for our lore lovers.
 There's a bunch of new KAPLAY Features, if not specified, all features work for
 **v3001** and **v4000**
 
-- **New API** Fake cursor, to simulate behavior of a cursor in a game object
-- Color and Vec2 helpers helpers, `Color.toArray()`, `Vec2.toArray`,
-  `Vec2.fromArray`
-- Choice the button in `onClick("left")`
-- `lifespan()` now requires `opacity()` explicitly
-- Many bugs in components fixed like `stay()`
-- `fixedDt`, `fixedUpdate` and in general a rework on physics frame handling
-- Fixes some shapes and drawing functions like text, eclipses, etc
-- Mouse delta positon
-- Optimized collisions to only happen when needed
-- Now error screen can be thrown from an input event
-- Much much bug fixes, literally a lot I can't put all them
+-   **New API** Fake cursor, to simulate behavior of a cursor in a game object
+-   Color and Vec2 helpers helpers, `Color.toArray()`, `Vec2.toArray`,
+    `Vec2.fromArray`
+-   Choice the button in `onClick("left")`
+-   `lifespan()` now requires `opacity()` explicitly
+-   Many bugs in components fixed like `stay()`
+-   `fixedDt`, `fixedUpdate` and in general a rework on physics frame handling
+-   Fixes some shapes and drawing functions like text, eclipses, etc
+-   Mouse delta positon
+-   Optimized collisions to only happen when needed
+-   Now error screen can be thrown from an input event
+-   Much much bug fixes, literally a lot I can't put all them
 
 ## Community Highlights
 

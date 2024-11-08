@@ -13,30 +13,34 @@ export const CrewSearch = component$<CrewSearchProps>(
             <div class="crew-search | flex flex-col gap-2">
                 <input
                     type="text"
-                    class="input input-bordered | w-full | hidden lg:block"
+                    class="| | input input-bordered hidden w-full lg:block"
                     placeholder="Search..."
                     bind:value={nameFilter}
                 />
 
-                <div class="join | w-full">
+                <div class="| join w-full">
                     <div class="w-full">
                         <input
                             type="text"
-                            class="input input-bordered join-item | lg:hidden w-full"
+                            class="| input join-item input-bordered w-full lg:hidden"
                             placeholder="Search..."
                             bind:value={nameFilter}
                         />
                     </div>
                     <select
-                        class="select select-bordered join-item | lg:hidden"
+                        class="| join-item select select-bordered lg:hidden"
                         bind:value={tagFilter}
                     >
-                        <option selected value="">no filter</option>
-                        {tags.map((tag) => <option value={tag}>{tag}</option>)}
+                        <option selected value="">
+                            no filter
+                        </option>
+                        {tags.map((tag) => (
+                            <option value={tag}>{tag}</option>
+                        ))}
                     </select>
                 </div>
 
-                <fieldset class="flex-wrap gap-2 | hidden lg:flex">
+                <fieldset class="| hidden flex-wrap gap-2 lg:flex">
                     {tags.map((tag) => (
                         <CrewTag filter={tagFilter} value={tag}>
                             {tag}

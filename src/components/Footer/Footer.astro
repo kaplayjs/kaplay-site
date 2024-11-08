@@ -10,9 +10,9 @@ import FooterNav from "./FooterNav.astro";
     friends={["bag", "ghosty", "ghostiny", "kat", "burpman", "mark"]}
     offset={2}
 >
-    <footer class="w-full p-10 bg-base-200 text-base-content text-base rounded">
+    <footer class="w-full rounded bg-base-200 p-10 text-base text-base-content">
         <div
-            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+            class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
         >
             <FooterNav title="KAPLAY">
                 <FooterLink href="/guides/install">
@@ -35,18 +35,13 @@ import FooterNav from "./FooterNav.astro";
                 >
                     Ask questions on Discord
                 </FooterLink>
-                <FooterLink href="/presskit">
-                    Press Kit
-                </FooterLink>
+                <FooterLink href="/presskit"> Press Kit </FooterLink>
                 <FooterLink href="/books/how_to_be_a_bean_wizard/introduction">
                     Become a Bean Wizard now!
                 </FooterLink>
             </FooterNav>
             <FooterNav title="PRESENCE">
-                <FooterLink
-                    href="https://github.com/kaplayjs/kaplay"
-                    external
-                >
+                <FooterLink href="https://github.com/kaplayjs/kaplay" external>
                     GitHub
                 </FooterLink>
                 <FooterLink
@@ -55,16 +50,10 @@ import FooterNav from "./FooterNav.astro";
                 >
                     Discord
                 </FooterLink>
-                <FooterLink
-                    href="https://www.youtube.com/@kaplayjs"
-                    external
-                >
+                <FooterLink href="https://www.youtube.com/@kaplayjs" external>
                     YouTube
                 </FooterLink>
-                <FooterLink
-                    href="https://x.com/kaplayjs"
-                    external
-                >
+                <FooterLink href="https://x.com/kaplayjs" external>
                     Twitter/X
                 </FooterLink>
                 <FooterLink
@@ -74,16 +63,10 @@ import FooterNav from "./FooterNav.astro";
                 >
                     Mastodon
                 </FooterLink>
-                <FooterLink
-                    href="https://kaplay.itch.io/"
-                    external
-                >
+                <FooterLink href="https://kaplay.itch.io/" external>
                     Itch.io
                 </FooterLink>
-                <FooterLink
-                    href="https://www.reddit.com/r/KaplayJS/"
-                    external
-                >
+                <FooterLink href="https://www.reddit.com/r/KaplayJS/" external>
                     Reddit
                 </FooterLink>
             </FooterNav>
@@ -99,10 +82,7 @@ import FooterNav from "./FooterNav.astro";
                         height={50}
                     />
                 </a>
-                <a
-                    href="https://cafecito.app/kaplay"
-                    target="_blank"
-                >
+                <a href="https://cafecito.app/kaplay" target="_blank">
                     <Image
                         src="/cafecito.svg"
                         width="300"
@@ -116,14 +96,10 @@ import FooterNav from "./FooterNav.astro";
         <div class="divider"></div>
 
         <aside
-            class="flex flex-col sm:flex-row gap-6 justify-center sm:justify-between items-center"
+            class="flex flex-col items-center justify-center gap-6 sm:flex-row sm:justify-between"
         >
-            <div class="flex items-center gap-4 justify-center">
-                <Image
-                    src={kaplayOutlined}
-                    alt="kaplay logo"
-                    height={70}
-                />
+            <div class="flex items-center justify-center gap-4">
+                <Image src={kaplayOutlined} alt="kaplay logo" height={70} />
 
                 <div>
                     <p class="text-2xl">KAPLAY Team</p>

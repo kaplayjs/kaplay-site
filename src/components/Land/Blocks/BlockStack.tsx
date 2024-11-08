@@ -8,9 +8,9 @@ type Props = {
 export const BlockStack = component$<Props>(({ hideOnMobile }) => {
     return (
         <div
-            class={cn("hidden flex-col lg:flex-row gap-2 w-full", {
+            class={cn("hidden w-full flex-col gap-2 lg:flex-row", {
                 "lg:flex": hideOnMobile,
-                "flex": !hideOnMobile,
+                flex: !hideOnMobile,
             })}
         >
             <Slot />

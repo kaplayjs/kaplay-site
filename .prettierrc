@@ -1,0 +1,29 @@
+{
+    "printWidth": 80,
+    "tabWidth": 4,
+    "useTabs": false,
+    "htmlWhitespaceSensitivity": "strict",
+    "plugins": ["prettier-plugin-astro", "prettier-plugin-tailwindcss"],
+    "overrides": [
+        {
+            "files": "*.astro",
+            "options": {
+                "parser": "astro"
+            }
+        },
+        {
+            "files": "*.json",
+            "options": {
+                "tabWidth": 2,
+                "parser": "json"
+            }
+        },
+        {
+            "files": "*.{yml,yaml}",
+            "options": {
+                "tabWidth": 2,
+                "parser": "yaml"
+            }
+        }
+    ]
+}

@@ -1,44 +1,44 @@
 .pagefind-ui__search-input {
-  @apply input input-bordered w-full p-4;
+    @apply input input-bordered w-full p-4;
 }
 
 .pagefind-ui__form {
-  @apply form-control items-start gap-2 max-h-96;
+    @apply form-control max-h-96 items-start gap-2;
 }
 
 .pagefind-ui__search-clear {
-  @apply btn btn-xs btn-neutral;
+    @apply btn btn-neutral btn-xs;
 }
 
 .pagefind-ui__drawer {
-  @apply overflow-y-auto flex-1;
+    @apply flex-1 overflow-y-auto;
 }
 
 .pagefind-ui__results-area {
-  @apply py-2 space-y-4;
+    @apply space-y-4 py-2;
 }
 
 .pagefind-ui__message {
-  @apply text-sm font-semibold px-2;
+    @apply px-2 text-sm font-semibold;
 }
 
 .pagefind-ui__results {
-  @apply form-control gap-2;
+    @apply form-control gap-2;
 }
 
 .pagefind-ui__result {
-  @apply bg-base-200 rounded-box p-2;
+    @apply rounded-box bg-base-200 p-2;
 }
 
 .pagefind-ui__result-title {
-  @apply text-lg font-bold text-primary underline;
-  text-decoration-style: dotted;
+    @apply text-lg font-bold text-primary underline;
+    text-decoration-style: dotted;
 }
 
 .pagefind-ui__result-nested .pagefind-ui__result-title {
-  @apply text-base font-normal text-primary;
+    @apply text-base font-normal text-primary;
 }
 
 mark {
-  @apply bg-primary text-black;
+    @apply bg-primary text-black;
 }

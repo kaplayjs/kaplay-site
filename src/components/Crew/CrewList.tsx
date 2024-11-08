@@ -38,9 +38,9 @@ export const CrewList = component$((props) => {
             return true;
         }
 
-        return assets[asset as keyof typeof assets].name.toLowerCase().includes(
-            nameFilter.value.toLowerCase(),
-        );
+        return assets[asset as keyof typeof assets].name
+            .toLowerCase()
+            .includes(nameFilter.value.toLowerCase());
     };
 
     useTask$(({ track }) => {
@@ -61,22 +61,20 @@ export const CrewList = component$((props) => {
 
     return (
         <div class="h-full w-full overflow-y-auto lg:flex lg:items-center lg:justify-center">
-            <div class="flex flex-col gap-4 | p-4 h-full w-full lg:max-w-[50%] lg:max-h-[60%] | overflow-y-auto bg-base-100 rounded-box">
+            <div class="| | flex h-full w-full flex-col gap-4 overflow-y-auto rounded-box bg-base-100 p-4 lg:max-h-[60%] lg:max-w-[50%]">
                 <CrewSearch nameFilter={nameFilter} tagFilter={tagFilter} />
 
-                <div class="flex items-center justify-center flex-wrap gap-2 overflow-y-auto">
-                    {Object.keys(assets).filter(filterAssets).filter(
-                        filterAssetsByName,
-                    ).map((crewItem, i) => (
-                        <a
-                            href={`/crew/${crewItem}`}
-                            key={i}
-                        >
-                            <CrewListItem
-                                crewItem={crewItem as keyof typeof assets}
-                            />
-                        </a>
-                    ))}
+                <div class="flex flex-wrap items-center justify-center gap-2 overflow-y-auto">
+                    {Object.keys(assets)
+                        .filter(filterAssets)
+                        .filter(filterAssetsByName)
+                        .map((crewItem, i) => (
+                            <a href={`/crew/${crewItem}`} key={i}>
+                                <CrewListItem
+                                    crewItem={crewItem as keyof typeof assets}
+                                />
+                            </a>
+                        ))}
                 </div>
             </div>
         </div>

@@ -29,19 +29,14 @@ export const DocPreview = component$(() => {
 
     return (
         <dialog id="type-modal" class="modal">
-            <div class="modal-box absolute right-4 lg:h-96 min-w-64 overflow-y-auto">
+            <div class="modal-box absolute right-4 min-w-64 overflow-y-auto lg:h-96">
                 <div class="flex justify-end gap-2">
-                    <a
-                        id="open-in-new"
-                        class="btn btn-ghost"
-                        target="_blank"
-                    >
+                    <a id="open-in-new" class="btn btn-ghost" target="_blank">
                         Open in new tab
                     </a>
                 </div>
 
-                <div id="modal-type" class="h-full">
-                </div>
+                <div id="modal-type" class="h-full"></div>
             </div>
             <form method="dialog" class="modal-backdrop">
                 <button class="cursor-default">close</button>

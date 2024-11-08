@@ -42,32 +42,26 @@ let renderList: SidebarEntry[] = [];
 
 if (sidebarMode === "guides") {
     renderList = await getGuidesEntries();
-}
-else if (sidebarMode === "reference") {
+} else if (sidebarMode === "reference") {
     renderList = await getDocEntries();
-}
-else if (sidebarMode === "blog") {
+} else if (sidebarMode === "blog") {
     renderList = await getBlogEntries();
-}
-else if (sidebarMode === "books") {
+} else if (sidebarMode === "books") {
     renderList = await getBookEntries();
 }
 ---
 
-<script src="./paintLinks.ts" />
+<script src="./paintLinks.ts"></script>
 
-<div class="drawer lg:drawer-open h-full z-20">
+<div class="drawer z-20 h-full lg:drawer-open">
     <input id="sidebar" type="checkbox" class="drawer-toggle" />
 
     <div class="drawer-content w-full">
         <header class="min-h-16 w-full lg:hidden">
             <nav
-                class="lg:hidden flex bg-base-200 w-full h-16 px-4 fixed items-center justify-between"
+                class="fixed flex h-16 w-full items-center justify-between bg-base-200 px-4 lg:hidden"
             >
-                <label
-                    for="sidebar"
-                    class="lg:hidden flex"
-                >
+                <label for="sidebar" class="flex lg:hidden">
                     <figure>
                         <Image
                             src={hamburgerIcon}
@@ -85,22 +79,19 @@ else if (sidebarMode === "books") {
                                 class="select select-sm"
                                 onchange="window.location.href = this.value"
                             >
-                                {
-                                    headings?.map((heading) => (
-                                        <option
-                                            value={`#${heading.slug}`}
-                                            class={cn(
-                                                {
-                                                    "text-xl font-semibold": heading.depth === 1,
-                                                    "text-lg": heading.depth === 2,
-                                                    "text-base": heading.depth >= 3,
-                                                },
-                                            )}
-                                        >
-                                            {heading.text}
-                                        </option>
-                                    ))
-                                }
+                                {headings?.map((heading) => (
+                                    <option
+                                        value={`#${heading.slug}`}
+                                        class={cn({
+                                            "text-xl font-semibold":
+                                                heading.depth === 1,
+                                            "text-lg": heading.depth === 2,
+                                            "text-base": heading.depth >= 3,
+                                        })}
+                                    >
+                                        {heading.text}
+                                    </option>
+                                ))}
                             </select>
                         </aside>
                     )
@@ -108,34 +99,26 @@ else if (sidebarMode === "books") {
             </nav>
         </header>
 
-        <main class="w-full flex flex-col lg:flex-row">
+        <main class="flex w-full flex-col lg:flex-row">
             {
                 headings && headings.length > 0 && (
-                    <aside
-                        class="hidden 2xl:flex fixed top-1/2 right-0 transform -translate-y-1/2 z-50 px-4 bg-base-300 rounded-l-box"
-                    >
-                        <ul
-                            class="min-h-96 max-h-96 overflow-auto max-w-60 w-64 flex flex-col p-4 gap-2"
-                        >
-                            {
-                                headings?.map((heading) => (
-                                    <li>
-                                        <a
-                                            href={`#${heading.slug}`}
-                                            class={cn(
-                                                `link link-hover`,
-                                                {
-                                                    "text-xl font-semibold": heading.depth === 1,
-                                                    "text-lg": heading.depth === 2,
-                                                    "text-base": heading.depth >= 3,
-                                                },
-                                            )}
-                                        >
-                                            {heading.text}
-                                        </a>
-                                    </li>
-                                ))
-                            }
+                    <aside class="fixed right-0 top-1/2 z-50 hidden -translate-y-1/2 transform rounded-l-box bg-base-300 px-4 2xl:flex">
+                        <ul class="flex max-h-96 min-h-96 w-64 max-w-60 flex-col gap-2 overflow-auto p-4">
+                            {headings?.map((heading) => (
+                                <li>
+                                    <a
+                                        href={`#${heading.slug}`}
+                                        class={cn(`link-hover link`, {
+                                            "text-xl font-semibold":
+                                                heading.depth === 1,
+                                            "text-lg": heading.depth === 2,
+                                            "text-base": heading.depth >= 3,
+                                        })}
+                                    >
+                                        {heading.text}
+                                    </a>
+                                </li>
+                            ))}
                         </ul>
                     </aside>
                 )
@@ -149,14 +132,11 @@ else if (sidebarMode === "books") {
         <Footer />
     </div>
 
-    <div class="drawer-side h-dvh lg:bg-base-300 z-50">
-        <label
-            for="sidebar"
-            aria-label="close sidebar"
-            class="drawer-overlay"
+    <div class="drawer-side z-50 h-dvh lg:bg-base-300">
+        <label for="sidebar" aria-label="close sidebar" class="drawer-overlay"
         ></label>
         <div
-            class="p-4 w-72 min-h-full bg-base-300 text-base-content"
+            class="min-h-full w-72 bg-base-300 p-4 text-base-content"
             transition:persist
         >
             <figure>
@@ -164,7 +144,7 @@ else if (sidebarMode === "books") {
                     <Image
                         src="/kaplay.webp"
                         alt="kaplay logo"
-                        class="w-52 h-24 aspect-auto object-contain"
+                        class="aspect-auto h-24 w-52 object-contain"
                         width={208}
                         height={100}
                         loading={"eager"}
@@ -173,7 +153,7 @@ else if (sidebarMode === "books") {
             </figure>
             <div class="divider"></div>
             <button
-                class="btn border-primary w-full mb-4"
+                class="btn mb-4 w-full border-primary"
                 onclick="document.querySelector('#search-modal')?.showModal()"
             >
                 Search in KAPLAY
@@ -198,10 +178,7 @@ else if (sidebarMode === "books") {
                 >
                     GitHub
                 </SidebarLink>
-                <SidebarLink
-                    href="/changelog"
-                    icon="pog"
-                >
+                <SidebarLink href="/changelog" icon="pog">
                     Changelog
                 </SidebarLink>
                 <SidebarLink
@@ -221,18 +198,10 @@ else if (sidebarMode === "books") {
             </ul>
             <div class="divider"></div>
             <ul class="flex-col gap-2">
-                <SidebarLink
-                    href="/guides/install"
-                    icon="guides"
-                    reloadAll
-                >
+                <SidebarLink href="/guides/install" icon="guides" reloadAll>
                     Guides
                 </SidebarLink>
-                <SidebarLink
-                    href="/doc/kaplay"
-                    icon="api"
-                    reloadAll
-                >
+                <SidebarLink href="/doc/kaplay" icon="api" reloadAll>
                     API Docs
                 </SidebarLink>
                 <SidebarLink href="/blog" icon="blog" reloadAll>
@@ -248,5 +217,4 @@ else if (sidebarMode === "books") {
     </div>
 </div>
 
-<style>
-</style>
+<style></style>

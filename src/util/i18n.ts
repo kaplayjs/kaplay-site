@@ -4,7 +4,7 @@ import { spanishLocales } from "@/locales/es/ui";
 export type Locale = "en" | "es";
 export type LocaleMap = {
     [K in keyof typeof englishLocales]: {
-        [K2 in keyof typeof englishLocales[K]]: string;
+        [K2 in keyof (typeof englishLocales)[K]]: string;
     };
 };
 export type LocaleKeys = keyof LocaleMap;
@@ -43,8 +43,10 @@ export function t(locale: Locale, key: TranslationString) {
     const localeMap = localesMap[locale];
     const defaultLocaleMap = localesMap[locales[0] as Locale];
 
-    return localeMap?.[localKey]?.[localSubKey]
-        ?? defaultLocaleMap[localKey][localSubKey];
+    return (
+        localeMap?.[localKey]?.[localSubKey] ??
+        defaultLocaleMap[localKey][localSubKey]
+    );
 }
 
 export function localedT(locale: Locale) {

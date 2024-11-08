@@ -18,17 +18,13 @@ export const JSDocDescription = component$(({ data }: Props) => {
                 <>
                     {e.kind === "JSDocText" && <>{e.text}</>}
                     {e.kind === "JSDocLink" && (
-                        <TypeLink
-                            name={e.name}
-                        >
+                        <TypeLink name={e.name}>
                             <span
-                                dangerouslySetInnerHTML={await marked
-                                    .parseInline(
-                                        e.text,
-                                        {},
-                                    )}
-                            >
-                            </span>
+                                dangerouslySetInnerHTML={await marked.parseInline(
+                                    e.text,
+                                    {},
+                                )}
+                            ></span>
                         </TypeLink>
                     )}
                 </>

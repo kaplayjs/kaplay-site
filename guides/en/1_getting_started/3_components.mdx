@@ -1,10 +1,10 @@
 ---
-title: Components & Tags
+title: Components
 description: Learn how to create and use components in KAPLAY, the HTML5 Game Engine for JavaScript and TypeScript.
 url: components
 ---
-import Info from "@/components/Content/Info.astro";
 
+import Info from "@/components/Content/Info.astro";
 
 # Components
 
@@ -14,10 +14,10 @@ objects.
 
 This guide covers:
 
-- Component & Tags system, what they are and how they work
-- The [`GameObjRaw.use()` method](/doc/GameObjRaw/#GameObjRaw-use)
-- The [`GameObjRaw.c()` method](/doc/GameObjRaw/#GameObjRaw-c)
-- The [`GameObjRaw.is()` method](/doc/GameObjRaw/#GameObjRaw-is)
+-   Component & Tags system, what they are and how they work
+-   The [`GameObjRaw.use()` method](/doc/GameObjRaw/#GameObjRaw-use)
+-   The [`GameObjRaw.c()` method](/doc/GameObjRaw/#GameObjRaw-c)
+-   The [`GameObjRaw.is()` method](/doc/GameObjRaw/#GameObjRaw-is)
 
 The components system of KAPLAY (the `C` of ECS) is powerful and flexible.
 
@@ -31,9 +31,7 @@ For example, the [`pos()`](/doc/ctx/pos) component gives the object the `pos` pr
 and the `move()` method:
 
 ```js
-const player = add([
-    pos(80, 80),
-]);
+const player = add([pos(80, 80)]);
 
 player.move(100, 0); // move the player 100 pixels to the right, this is a method
 console.log(player.pos); // { x: 180, y: 80 }, this is a property
@@ -41,12 +39,12 @@ console.log(player.pos); // { x: 180, y: 80 }, this is a property
 
 There are a lot of useful components in KAPLAY like:
 
-- [`sprite()`](/doc/ctx/sprite) to make the object draw an image, and play animations
-- [`area()`](/doc/ctx/area) to make the object do collision detection, with methods like
-  [`onCollide()`](/doc/AreaComp#AreaComp-onCollide)
-- [`rect()`](/doc/ctx/rect) to make the object draw a simple rectangle shape
-- [`text()`](/doc/ctx/text) to make the object draw text
-- [`scale()`](/doc/ctx/scale) to make the game object bigger or smaller or to stretch it
+-   [`sprite()`](/doc/ctx/sprite) to make the object draw an image, and play animations
+-   [`area()`](/doc/ctx/area) to make the object do collision detection, with methods like
+    [`onCollide()`](/doc/AreaComp#AreaComp-onCollide)
+-   [`rect()`](/doc/ctx/rect) to make the object draw a simple rectangle shape
+-   [`text()`](/doc/ctx/text) to make the object draw text
+-   [`scale()`](/doc/ctx/scale) to make the game object bigger or smaller or to stretch it
 
 You can see all the components in the [API Reference](/doc/ctx/pos).
 
@@ -63,15 +61,9 @@ methods, which is how tags are implemented internally.
 For example, these objects could be tagged as an enemy:
 
 ```js
-const ghosty = add([
-    sprite("ghosty"),
-    "enemy",
-]);
+const ghosty = add([sprite("ghosty"), "enemy"]);
 
-const bobo = add([
-    sprite("bobo"),
-    "enemy",
-]);
+const bobo = add([sprite("bobo"), "enemy"]);
 ```
 
 There are many functions that look at tags.
@@ -93,10 +85,7 @@ and the `friend` tag:
 ```js
 loadSprite("butterfly", "sprites/butterfly.png");
 
-const player = add([
-    sprite("butterfly"),
-    "friend",
-]);
+const player = add([sprite("butterfly"), "friend"]);
 ```
 
 ## Dynamic Components and tags
@@ -132,9 +121,8 @@ The `.use()` method is actually how `add()` creates the object internally. It in
 
 </Info>
 
-
 `use()` is a **use**ful method, but what if you want to remove a component or tag? You
-can use the `GameObjRaw.unuse()` method, passing the component id or tag name. 
+can use the `GameObjRaw.unuse()` method, passing the component id or tag name.
 
 ```js
 player.unuse("sprite"); // removes the sprite component
@@ -143,7 +131,7 @@ player.unuse("big"); // removes the big tag
 
 <Info crew="gun" title="Important!">
 
-Do note that you can't pass the component itself to `unuse()`, you have to pass the component *name*!
+Do note that you can't pass the component itself to `unuse()`, you have to pass the component _name_!
 
 </Info>
 
@@ -156,10 +144,7 @@ For example, when you add a `pos()`, you can access the `pos` property of the
 game object, as well as the methods `move()` or `moveTo()`.
 
 ```js
-const player = add([
-    sprite("butterfly"),
-    pos(80, 80),
-]);
+const player = add([sprite("butterfly"), pos(80, 80)]);
 
 // -100 pixels on every second with the left key pressed
 onKeyDown("left", () => {
@@ -173,10 +158,7 @@ onKeyDown("left", () => {
 You can also access a specific component's state properties using the `c()` method.
 
 ```js
-const player = add([
-    pos(80, 80),
-    scale(2),
-]);
+const player = add([pos(80, 80), scale(2)]);
 
 console.log(player.c("pos")); // all the state exclusive to the pos() component
 ```

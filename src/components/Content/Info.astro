@@ -1,5 +1,6 @@
 ---
 import { assets } from "@kaplayjs/crew";
+import { marked } from "marked";
 
 type Props = {
     crew: keyof typeof assets;
@@ -10,11 +11,14 @@ const { crew = "burpman", title = "Level Up!" } = Astro.props;
 ---
 
 <aside
-    class="not-prose p-2 border-b-2 border-primary rounded-t-box text-base bg-base-200 mt-4 mb-4"
+    class="mb-4 mt-4 rounded-l-md rounded-r-box border-l-8 border-primary bg-base-200 px-4 py-2 text-base"
 >
-    <div class="text-xl font-bold flex items-center gap-2">
-        <img src={assets[crew].outlined} class="h-8 my-2">
-        <p>{title}</p>
+    <div class="not-prose flex items-center gap-2 text-xl font-bold">
+        <img src={assets[crew].outlined} class="my-2 h-8" />
+        <p set:html={marked.parse(title)} />
     </div>
-    <slot />
+
+    <div>
+        <slot class="prose" />
+    </div>
 </aside>

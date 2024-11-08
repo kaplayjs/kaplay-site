@@ -10,9 +10,9 @@ The sprites are probably most of your visual aspects of your game.
 
 This guide covers:
 
-- [`loadSprite()`](/doc/ctx/loadSprite) for loading sprites and spritesheets
-- [`sprite()`](/doc/ctx/sprite) for creating a sprite component
-- flipping sprites
+-   [`loadSprite()`](/doc/ctx/loadSprite) for loading sprites and spritesheets
+-   [`sprite()`](/doc/ctx/sprite) for creating a sprite component
+-   flipping sprites
 
 ## Loading Sprites
 
@@ -54,10 +54,7 @@ To use a sprite in a Game Object, you must use the `sprite()` component.
 kaplay();
 loadSprite("bean", "sprites/bean.png");
 
-const bean = k.add([
-    sprite("bean"),
-    pos(100, 100),
-]);
+const bean = k.add([sprite("bean"), pos(100, 100)]);
 ```
 
 And your bean will be here!
@@ -81,10 +78,7 @@ const bean = k.add([
 To play an animation, you can use the `SpriteComp.play()` method.
 
 ```js
-const player = k.add([
-    sprite("player"),
-    pos(100, 100),
-]);
+const player = k.add([sprite("player"), pos(100, 100)]);
 
 player.play("crack");
 ```

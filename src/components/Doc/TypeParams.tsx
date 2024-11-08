@@ -30,10 +30,7 @@ export const TypeParams = component$(({ data }: Props) => {
             {params.map((param: any, i: number) => (
                 <>
                     {param.name}
-                    {optionalMark(param)}:{" "}
-                    <TypeSig
-                        data={param.type}
-                    />
+                    {optionalMark(param)}: <TypeSig data={param.type} />
                     {i !== params.length - 1 && <>{", "}</>}
                 </>
             ))}

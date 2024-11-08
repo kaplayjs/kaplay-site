@@ -16,10 +16,7 @@ are only rendering a static image, or a simple shape, you can use `onDraw` with
 
 ```js
 // create a game object
-const player = k.add([
-    k.sprite("bean"),
-    k.pos(100, 200),
-]);
+const player = k.add([k.sprite("bean"), k.pos(100, 200)]);
 
 // draw a sprite directly
 k.onDraw(() => {
@@ -181,6 +178,6 @@ gameScene.destroy();
 
 Loading assets takes time, compress them when you can.
 
-- Compress `.ttf` or `.otf` to `.woff2` (with
-  [google/woff2](https://github.com/google/woff2))
-- Compress `.wav` files to `.ogg` or `.mp3`
+-   Compress `.ttf` or `.otf` to `.woff2` (with
+    [google/woff2](https://github.com/google/woff2))
+-   Compress `.wav` files to `.ogg` or `.mp3`

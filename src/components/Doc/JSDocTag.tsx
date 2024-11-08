@@ -22,7 +22,7 @@ export const JSDocTag = component$(({ tag, items }: Props) => {
         default:
             return (
                 <p class="prose gap-2">
-                    <code class="inline mr-1">{tag}</code>
+                    <code class="mr-1 inline">{tag}</code>
                     <span>{item}</span>
                 </p>
             );

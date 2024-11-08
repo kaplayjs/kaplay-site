@@ -6,7 +6,7 @@ order: 7
 
 # Migrating from v2000 to v3000
 
-- `obj._id` is renamed to `obj.id`
+-   `obj._id` is renamed to `obj.id`
 
 ```js
 const obj = add([pos(300, 200), sprite("bean"), area()]);
@@ -18,7 +18,7 @@ console.log(obj._id);
 console.log(obj.id);
 ```
 
-- `origin()` is renamed to `anchor()`
+-   `origin()` is renamed to `anchor()`
 
 ```js
 // before
@@ -28,8 +28,8 @@ add([sprite("bean"), origin("center")]);
 add([sprite("bean"), anchor("center")]);
 ```
 
-- `obj.onHover()` in `area()` comp is renamed to `obj.onHoverUpdate()`,
-  `obj.onHover()` now only runs once when obj is hovered
+-   `obj.onHover()` in `area()` comp is renamed to `obj.onHoverUpdate()`,
+    `obj.onHover()` now only runs once when obj is hovered
 
 ```js
 const obj = add([pos(300, 200), sprite("bean"), area()]);
@@ -58,7 +58,7 @@ obj.onHoverEnd(() => {
 });
 ```
 
-- `obj.pushOut()` is renamed to `obj.resolveCollision()`
+-   `obj.pushOut()` is renamed to `obj.resolveCollision()`
 
 ```js
 const player = add([sprite("bean"), pos(300, 200), area()]);
@@ -70,7 +70,7 @@ player.pushOut(rock);
 player.resolveCollision(rocker);
 ```
 
-- `solid()` comp becomes an option in `body({ isStatic: true })`
+-   `solid()` comp becomes an option in `body({ isStatic: true })`
 
 ```js
 // before
@@ -80,8 +80,8 @@ add([sprite("bean"), area(), body(), solid()]);
 add([sprite("bean"), area(), body({ isStatic: true })]);
 ```
 
-- gravity now needs to be manually enabled, `gravity()` is renamed to
-  `setGravity()` and `getGravity()`
+-   gravity now needs to be manually enabled, `gravity()` is renamed to
+    `setGravity()` and `getGravity()`
 
 ```js
 // before, gravity will be enabled by body() component
@@ -93,7 +93,7 @@ setGravity(1600);
 add([pos(100, 100), sprite("bean"), area(), body()]);
 ```
 
-- `body.weight` is renamed to `body.gravityScale`
+-   `body.weight` is renamed to `body.gravityScale`
 
 ```js
 // before
@@ -103,7 +103,7 @@ add([body({ weight: 2 })]);
 add([body({ gravityScale: 2 })]);
 ```
 
-- `body.doubleJump()` is removed in favor of new `doubleJump()` component
+-   `body.doubleJump()` is removed in favor of new `doubleJump()` component
 
 ```js
 const obj = add([pos(100, 100), sprite("bean"), area(), body()]);
@@ -116,8 +116,8 @@ const obj = add([pos(100, 100), sprite("bean"), area(), body(), doubleJump()]);
 obj.doubleJump();
 ```
 
-- `body.onFall()` is renamed to `body.onFallOff()`, `body.onFall()` now runs
-  when body is in the air and starts to fall
+-   `body.onFall()` is renamed to `body.onFallOff()`, `body.onFall()` now runs
+    when body is in the air and starts to fall
 
 ```js
 gravity(1600);
@@ -139,8 +139,8 @@ obj.onFall(() => {
 });
 ```
 
-- removed `outview()` in favor of `offscreen()`, which is less accurate but much
-  faster
+-   removed `outview()` in favor of `offscreen()`, which is less accurate but much
+    faster
 
 ```js
 // before
@@ -154,7 +154,7 @@ add([
 ]);
 ```
 
-- removed `cleanup()` in favor of `offscreen({ destroy: true })`
+-   removed `cleanup()` in favor of `offscreen({ destroy: true })`
 
 ```js
 // before
@@ -164,7 +164,7 @@ add([pos(player.pos), sprite("bullet"), cleanup()]);
 add([pos(player.pos), sprite("bullet"), offscreen({ destroy: true })]);
 ```
 
-- `sprite.flipX` and `sprite.flipY` becomes properties instead of functions
+-   `sprite.flipX` and `sprite.flipY` becomes properties instead of functions
 
 ```js
 const bean = add([sprite("bean")]);
@@ -176,7 +176,7 @@ bean.flipX(true);
 bean.flipX = true;
 ```
 
-- `sprite.onAnimStart()` and `sprite.onAnimEnd()` now triggers on any animation
+-   `sprite.onAnimStart()` and `sprite.onAnimEnd()` now triggers on any animation
 
 ```js
 const bean = add([sprite("bean")]);
@@ -194,15 +194,15 @@ bean.onAnimStart((anim) => {
 });
 ```
 
-- `obj.scale` now is always a `Vec2`
+-   `obj.scale` now is always a `Vec2`
 
 ```js
 scale(2); // scale is vec2(2, 2)
 obj.scale; // vec2(2, 2)
 ```
 
-- `loadFont()` now only loads `.ttf`, `.otf`, `.woff` etc fonts that browser
-  support, use `loadBitmapFont()` to load bitmap fonts
+-   `loadFont()` now only loads `.ttf`, `.otf`, `.woff` etc fonts that browser
+    support, use `loadBitmapFont()` to load bitmap fonts
 
 ```js
 // before
@@ -213,8 +213,8 @@ loadBitmapFont("unscii", "/examples/fonts/unscii_8x8.png", 8, 8);
 loadFont("apl386", "/examples/fonts/apl386.ttf");
 ```
 
-- removed builtin fonts `apl386`, `apl386o`, `sink` and `sinko`, using browser
-  built-in `monospace` font as default font now
+-   removed builtin fonts `apl386`, `apl386o`, `sink` and `sinko`, using browser
+    built-in `monospace` font as default font now
 
 ```js
 // v3000, manually load these fonts if you need them
@@ -227,7 +227,7 @@ loadFont("apl386", "/examples/fonts/apl386.ttf", {
 });
 ```
 
-- changed vertex format from `vec3` to `vec2` (only applied in shaders)
+-   changed vertex format from `vec3` to `vec2` (only applied in shaders)
 
 ```js
 // before
@@ -253,9 +253,9 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
 );
 ```
 
-- `anchor` (previously `origin`) no longer controls text alignment (only
-  controls the anchor of the whole text area), use `text({ align: "left" })`
-  option for text alignment
+-   `anchor` (previously `origin`) no longer controls text alignment (only
+    controls the anchor of the whole text area), use `text({ align: "left" })`
+    option for text alignment
 
 ```js
 // before
@@ -265,7 +265,7 @@ add([pos(center()), origin("center"), text("oh hi")]);
 add([pos(center()), anchor("center"), text("oh hi", { align: "center" })]);
 ```
 
-- changed text styling syntax to bbcode
+-   changed text styling syntax to bbcode
 
 ```js
 const textOpts = {
@@ -289,8 +289,8 @@ add([
 ]);
 ```
 
-- changed all event handlers to return an `EventController` object, instead of a
-  function to cancel
+-   changed all event handlers to return an `EventController` object, instead of a
+    function to cancel
 
 ```js
 // before
@@ -307,7 +307,7 @@ ev.paused = true;
 ev.cancel();
 ```
 
-- changed the interface for `addLevel()`
+-   changed the interface for `addLevel()`
 
 ```js
 // before

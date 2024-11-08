@@ -38,9 +38,7 @@ export default defineConfig({
                 transformerNotationWordHighlight(),
             ],
         },
-        remarkPlugins: [
-            remarkMath,
-        ],
+        remarkPlugins: [remarkMath],
         rehypePlugins: [
             [rehypeKatex, {}],
             [rehypeKAPLAY, {}],

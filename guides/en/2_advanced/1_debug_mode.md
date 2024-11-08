@@ -18,10 +18,10 @@ panel.
 
 You will see
 
-- The current FPS
-- Object areas (blue rectangle)
-- Object anchor points (red dot)
-- Object components properties
+-   The current FPS
+-   Object areas (blue rectangle)
+-   Object anchor points (red dot)
+-   Object components properties
 
 ## Logging
 

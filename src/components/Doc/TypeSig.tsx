@@ -72,21 +72,23 @@ export const TypeSig = component$(({ data, parentData }: Props) => {
         case "TypeLiteral":
             return (
                 <>
-                    {Object.entries(data.members)?.map((
-                        [, variants]: [string, any],
-                    ) => variants?.map((mem: any, i: number) => (
-                        <DocEntry
-                            data={mem}
-                            parent={`${parentData?.name}`}
-                            key={`${parentData?.name}-${i}`}
-                        />
-                    )))}
+                    {Object.entries(data.members)?.map(
+                        ([, variants]: [string, any]) =>
+                            variants?.map((mem: any, i: number) => (
+                                <DocEntry
+                                    data={mem}
+                                    parent={`${parentData?.name}`}
+                                    key={`${parentData?.name}-${i}`}
+                                />
+                            )),
+                    )}
                 </>
             );
         case "ArrayType":
             return (
                 <>
-                    <TypeSig data={data.elementType} />[]
+                    <TypeSig data={data.elementType} />
+                    []
                 </>
             );
 
@@ -104,9 +106,8 @@ export const TypeSig = component$(({ data, parentData }: Props) => {
         case "IndexedAccessType":
             return (
                 <>
-                    <TypeSig data={data.objectType} />[<TypeSig
-                        data={data.indexType}
-                    />]
+                    <TypeSig data={data.objectType} />[
+                    <TypeSig data={data.indexType} />]
                 </>
             );
         case "TypeQuery":
@@ -127,13 +128,11 @@ export const TypeSig = component$(({ data, parentData }: Props) => {
         default:
             return (
                 <>
-                    {keyword
-                        ? (
-                            <span class="text-warning">
-                                Bug parsing {keyword}
-                            </span>
-                        )
-                        : ""}
+                    {keyword ? (
+                        <span class="text-warning">Bug parsing {keyword}</span>
+                    ) : (
+                        ""
+                    )}
                 </>
             );
     }

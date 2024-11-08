@@ -53,9 +53,9 @@ the object, like how it moves, looks, and interacts with other objects.
 In KAPLAY, there are many built-in components that you can use to create your
 game objects. For example:
 
-- `pos(x, y)` sets the position of the object.
-- `rect(width, height)` draws a rectangle.
-- `color(r, g, b)` sets the color of the object.
+-   `pos(x, y)` sets the position of the object.
+-   `rect(width, height)` draws a rectangle.
+-   `color(r, g, b)` sets the color of the object.
 
 We will go in deep on components in the [**Components**](/guides/components)
 guide.

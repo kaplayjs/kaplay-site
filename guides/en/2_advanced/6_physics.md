@@ -15,9 +15,9 @@ shape, whether the object is actually solid or not. When using just area,
 without body, the object is not solid, but still reports overlapping with other
 areas. Area has three events for this:
 
-- onCollide which is fired when the collision starts.
-- onCollideUpdate which is fired during collision.
-- onCollideEnd which is fired when the collision ends.
+-   onCollide which is fired when the collision starts.
+-   onCollideUpdate which is fired during collision.
+-   onCollideEnd which is fired when the collision ends.
 
 By default, an area component creates a shape similar to the shape which is
 drawn. Thus a sprite receives an area which has the size and position of the
@@ -38,12 +38,7 @@ To make an object with a body not affected by gravity, like a platform, it can
 be made static using `isStatic: true`.
 
 ```ts
-add([
-    pos(80, 400),
-    rect(250, 20),
-    area(),
-    body({ isStatic: true }),
-]);
+add([pos(80, 400), rect(250, 20), area(), body({ isStatic: true })]);
 ```
 
 A body has a velocity `obj.vel` (px/s). This velocity can changed by using
@@ -54,7 +49,7 @@ effect does not depend on the mass (kg) of the object.
 obj.applyImpulse(vec2(100, 0));
 ```
 
-A force (kg*px/s^2) is applied for one physics frame, and its effect depends on
+A force (kg\*px/s^2) is applied for one physics frame, and its effect depends on
 the mass of the object. The higher the mass, the less the force changes the
 velocity.
 
@@ -180,25 +175,19 @@ This effector is commonly used with a static body, and it will only be solid
 depending on the direction the object is traveling from.
 
 ```ts
-add([
-    pos(100, 100),
-    rect(100, 100),
-    area(),
-    body(),
-    platformEffector(),
-]);
+add([pos(100, 100), rect(100, 100), area(), body(), platformEffector()]);
 ```
 
 The default is for the platform effector to allow all everything to collide with it
-*except* if the object collided on the bottom side of the platform -- this allows
+_except_ if the object collided on the bottom side of the platform -- this allows
 players to jump up "through" the platform, but not fall back down through it.
 
-If you want to allow the player to collide with the platform *only* from the top,
+If you want to allow the player to collide with the platform _only_ from the top,
 so that they can walk past the platform freely, pass in the sides that you don't
 want collisions to occur on:
 
 ```ts
-platformEffector({ ignoreSides: [UP, LEFT, RIGHT] })
+platformEffector({ ignoreSides: [UP, LEFT, RIGHT] });
 ```
 
 You can also pass in a custom function to override the behavior and explicitly decide

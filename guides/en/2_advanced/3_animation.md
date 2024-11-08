@@ -52,13 +52,9 @@ kaplay();
 
 loadSprite("bean", "sprites/bean.png");
 
-const obj = add([
-    pos(50, 50),
-    sprite("bean"),
-    timer(),
-]);
+const obj = add([pos(50, 50), sprite("bean"), timer()]);
 
-obj.tween(vec2(50, 50), vec2(100, 50), 5, value => obj.pos = value);
+obj.tween(vec2(50, 50), vec2(100, 50), 5, (value) => (obj.pos = value));
 ```
 
 # Animate
@@ -74,16 +70,9 @@ kaplay();
 
 loadSprite("bean", "sprites/bean.png");
 
-const obj = add([
-    pos(50, 50),
-    sprite("bean"),
-    animate(),
-]);
+const obj = add([pos(50, 50), sprite("bean"), animate()]);
 
-obj.animate("pos", [
-    vec2(50, 50),
-    vec2(100, 50),
-], { duration: 2 });
+obj.animate("pos", [vec2(50, 50), vec2(100, 50)], { duration: 2 });
 ```
 
 This animates the position from 50,50 to 150,100 during 2 seconds. As said

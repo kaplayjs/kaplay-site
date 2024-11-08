@@ -4,39 +4,30 @@ import { BlockStack } from "./BlockStack";
 
 export const BlocksSection = component$(() => {
     return (
-        <div class="w-full min-h-screen flex flex-col lg:flex-row justify-center gap-6 p-4 overflow-hidden">
-            <div class="w-full flex flex-col items-center gap-4">
-                <div class="max-w-xl w-full">
+        <div class="flex min-h-screen w-full flex-col justify-center gap-6 overflow-hidden p-4 lg:flex-row">
+            <div class="flex w-full flex-col items-center gap-4">
+                <div class="w-full max-w-xl">
                     <h2 class="text-5xl font-semibold">
                         An enjoyable API based on{" "}
                         <span class="text-primary">blocks</span>
                     </h2>
                     <p>
-                        <span class="text-primary">KAPLAY</span>{" "}
-                        is enjoyable and fun to use and easy to learn. That's
-                        why we've designed it to be based on{" "}
+                        <span class="text-primary">KAPLAY</span> is enjoyable
+                        and fun to use and easy to learn. That's why we've
+                        designed it to be based on{" "}
                         <strong>blocks and functions</strong>. Here are some of
                         the most common blocks you'll use.
                     </p>
                 </div>
-                <div class="lg:p-4 | flex flex-col gap-4 w-full">
+                <div class="| flex w-full flex-col gap-4 lg:p-4">
                     <BlockStack hideOnMobile>
-                        <Block
-                            title="Start game"
-                            code={`kaplay();`}
-                        />
-                        <Block
-                            title="Play a sound"
-                            code={`play("sound");`}
-                        />
+                        <Block title="Start game" code={`kaplay();`} />
+                        <Block title="Play a sound" code={`play("sound");`} />
                         <Block
                             title="Destroy an object"
                             code={`destroy(obj)`}
                         />
-                        <Block
-                            title="Get objs with tag"
-                            code={`get("dino")`}
-                        />
+                        <Block title="Get objs with tag" code={`get("dino")`} />
                         <Block
                             title="Jump"
                             code={`obj.jump() // body() needed`}
@@ -112,14 +103,14 @@ export const BlocksSection = component$(() => {
                     </BlockStack>
                 </div>
 
-                <p class="prose max-w-xl w-full text-lg text-balance text-center">
+                <p class="prose w-full max-w-xl text-balance text-center text-lg">
                     No more long nested methods like
                     <code class="mx-1">
                         obj.position.transform.translate(10, 20)
                     </code>{" "}
                     Just <span class="text-primary">simple</span> and{" "}
-                    <span class="text-primary">fun</span>{" "}
-                    to use methods and functions.
+                    <span class="text-primary">fun</span> to use methods and
+                    functions.
                 </p>
             </div>
         </div>

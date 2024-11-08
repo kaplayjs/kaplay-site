@@ -17,15 +17,15 @@ type SidebarLinkProps = {
 };
 
 const icons = {
-    "home": homeIcon,
-    "github": githubIcon,
-    "discord": discordIcon,
-    "pog": pogIcon,
-    "donate": donateIcon,
-    "controller": controllerIcon,
-    "blog": blogIcon,
-    "guides": guidesIcon,
-    "api": apiIcon,
+    home: homeIcon,
+    github: githubIcon,
+    discord: discordIcon,
+    pog: pogIcon,
+    donate: donateIcon,
+    controller: controllerIcon,
+    blog: blogIcon,
+    guides: guidesIcon,
+    api: apiIcon,
 };
 
 export const SidebarLink = component$((props: SidebarLinkProps) => {
@@ -33,7 +33,7 @@ export const SidebarLink = component$((props: SidebarLinkProps) => {
         <li class="sidebar-link list-none">
             <a
                 href={props.href}
-                class="sidebar-link-a btn btn-sm  w-full text-wrap h-auto justify-start text-left text-lg aria-[current=page]:btn-primary aria-[current=false]:btn-ghost"
+                class="sidebar-link-a btn btn-sm h-auto w-full justify-start text-wrap text-left text-lg aria-[current=false]:btn-ghost aria-[current=page]:btn-primary"
                 target={props.target}
                 data-link={props.href}
                 aria-current="false"
@@ -43,7 +43,7 @@ export const SidebarLink = component$((props: SidebarLinkProps) => {
                     <img
                         src={icons[props.icon].src}
                         alt="Home Icon"
-                        class="w-6 h-6"
+                        class="h-6 w-6"
                     />
                 )}
                 <Slot />

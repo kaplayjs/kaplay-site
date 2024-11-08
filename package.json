@@ -10,7 +10,6 @@
     "preview": "astro preview",
     "astro": "astro",
     "doc": "node scripts/buildDoc.js",
-    "markdoc": "node scripts/markdownDoc.js",
     "contributors": "node scripts/contributors.js",
     "fmt": "dprint fmt",
     "build:publish": "npm run build && wrangler pages deploy dist",
@@ -68,6 +67,9 @@
     "daisyui": "^4.12.12",
     "dts-bundle-generator": "^9.5.1",
     "pagefind": "^1.1.1",
+    "prettier": "^3.3.3",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-tailwindcss": "^0.6.8",
     "shiki": "^1.21.0",
     "tailwind-merge": "^2.5.3",
     "wrangler": "^3.80.0"

@@ -30,7 +30,7 @@ export const CrewTag = component$<CrewTagProps>(({ filter, value }) => {
 
     return (
         <label
-            class={cn("badge badge-primary select-none hoverable", {
+            class={cn("hoverable badge badge-primary select-none", {
                 "badge-outline": filter.value !== value,
             })}
         >
@@ -43,8 +43,7 @@ export const CrewTag = component$<CrewTagProps>(({ filter, value }) => {
                 onChange$={() => {
                     if (inputRef.value?.checked) {
                         filter.value = value!;
-                    }
-                    else if (filter.value === value) {
+                    } else if (filter.value === value) {
                         filter.value = undefined;
                     }
                 }}

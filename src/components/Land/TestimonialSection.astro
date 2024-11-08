@@ -5,7 +5,7 @@ import FriendsBelow from "../Util/FriendsBelow.astro";
 ---
 
 <div
-    class="w-full min-h-screen flex flex-col items-center gap-6 p-4"
+    class="flex min-h-screen w-full flex-col items-center gap-6 p-4"
     id="testimonials"
 >
     <h2 class="text-5xl font-bold">Voices of KAPLAYERS</h2>
@@ -13,7 +13,7 @@ import FriendsBelow from "../Util/FriendsBelow.astro";
         What our users say about KAPLAY. We are proud to have such a great
         community.
     </p>
-    <div class="flex flex-wrap gap-4 items-center justify-center">
+    <div class="flex flex-wrap items-center justify-center gap-4">
         {
             testimonials.testimonials.map((testimonial) => (
                 <FriendsBelow

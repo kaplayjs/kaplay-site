@@ -8,13 +8,10 @@ type BlockProps = {
 
 export const Block = component$<BlockProps>((props) => {
     return (
-        <section class="p-4 rounded-box flex-1 bg-base-300 overflow-auto">
+        <section class="flex-1 overflow-auto rounded-box bg-base-300 p-4">
             <h3 class="text-md font-semibold">{props.title}</h3>
 
-            <Code
-                content={props.code}
-                language="typescript"
-            />
+            <Code content={props.code} language="typescript" />
         </section>
     );
 });

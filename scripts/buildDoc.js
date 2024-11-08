@@ -16,8 +16,7 @@ function transform(o, f) {
         const v = f(k, o[k]);
         if (v != null) {
             o[k] = v;
-        }
-        else {
+        } else {
             delete o[k];
         }
         if (typeof o[k] === "object") {
@@ -124,11 +123,7 @@ const groupsOrder = [
 ];
 
 const sectionsSort = {
-    "Start": [
-        "kaplay",
-        "quit",
-        "KAPLAYOpt",
-    ],
+    Start: ["kaplay", "quit", "KAPLAYOpt"],
 };
 
 for (const statement of statements) {
@@ -157,15 +152,13 @@ for (const statement of statements) {
                         name: name,
                         entries: [mem[0].name],
                     };
-                }
-                else {
+                } else {
                     const section = groups[name];
                     section.entries.push(mem[0].name);
                 }
             }
         }
-    }
-    else {
+    } else {
         const tags = statement.jsDoc?.tags ?? {};
 
         if (tags["group"]) {
@@ -176,13 +169,11 @@ for (const statement of statements) {
                     name: name,
                     entries: [statement.name],
                 };
-            }
-            else {
+            } else {
                 const section = groups[name];
                 section.entries.push(statement.name);
             }
-        }
-        else {
+        } else {
             miscGroup.entries.push(statement.name);
         }
     }

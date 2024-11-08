@@ -5,26 +5,29 @@ const contributors = Object.values(peopleData);
 ---
 
 <section class="flex flex-col items-center justify-center gap-4 p-4">
-    <h2 class="font-bold text-3xl">
-        People who contributed to KAPLAY.js
-    </h2>
+    <h2 class="text-3xl font-bold"> People who contributed to KAPLAY.js </h2>
     <div
-        class="flex flex-row items-center justify-center flex-wrap gap-6 max-w-lg"
+        class="flex max-w-lg flex-row flex-wrap items-center justify-center gap-6"
     >
         {
-            contributors.filter((_, i) => i < 20).map((person) => (
-                <a href={`https://github.com/${person.login}`} target="_blank">
-                    <div>
-                        <Image
-                            class="rounded-full w-18 h-18"
-                            src={person.avatar_url}
-                            alt={person.login}
-                            width={72}
-                            height={72}
-                        />
-                    </div>
-                </a>
-            ))
+            contributors
+                .filter((_, i) => i < 20)
+                .map((person) => (
+                    <a
+                        href={`https://github.com/${person.login}`}
+                        target="_blank"
+                    >
+                        <div>
+                            <Image
+                                class="w-18 h-18 rounded-full"
+                                src={person.avatar_url}
+                                alt={person.login}
+                                width={72}
+                                height={72}
+                            />
+                        </div>
+                    </a>
+                ))
         }
         <div class="flex flex-col items-center justify-center">
             <a

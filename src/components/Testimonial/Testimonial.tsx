@@ -18,7 +18,7 @@ type TestimonialProps = {
 
 export const Testimonial = component$<TestimonialProps>(({ testimonial }) => {
     return (
-        <div class="rounded-box bg-base-300 p-4 flex gap-4 lg:h-40">
+        <div class="flex gap-4 rounded-box bg-base-300 p-4 lg:h-40">
             <div class="avatar">
                 <div
                     class={cn("mask w-24", {
@@ -34,7 +34,7 @@ export const Testimonial = component$<TestimonialProps>(({ testimonial }) => {
                 </div>
             </div>
             <div class="max-w-[40ch]">
-                <p class="font-semibold text-lg flex gap-2">
+                <p class="flex gap-2 text-lg font-semibold">
                     <span>{testimonial.name}</span>
 
                     {testimonial.social_user && (
@@ -44,9 +44,7 @@ export const Testimonial = component$<TestimonialProps>(({ testimonial }) => {
                     )}
                 </p>
                 <p class="text-gray-400">{testimonial.tagline}</p>
-                <blockquote>
-                    {testimonial.comment}
-                </blockquote>
+                <blockquote>{testimonial.comment}</blockquote>
             </div>
         </div>
     );

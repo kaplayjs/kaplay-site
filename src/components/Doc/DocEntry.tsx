@@ -17,27 +17,25 @@ export const optionalMark = (data: any) => {
 };
 
 export const Title = ({ parent }: Props) => {
-    return parent
-        ? (
-            <h2
-                class={cn({
-                    "text-xl": !parent,
-                    "text-lg": parent,
-                })}
-            >
-                <Slot />
-            </h2>
-        )
-        : (
-            <h1
-                class={cn({
-                    "text-xl": !parent,
-                    "text-lg": parent,
-                })}
-            >
-                <Slot />
-            </h1>
-        );
+    return parent ? (
+        <h2
+            class={cn({
+                "text-xl": !parent,
+                "text-lg": parent,
+            })}
+        >
+            <Slot />
+        </h2>
+    ) : (
+        <h1
+            class={cn({
+                "text-xl": !parent,
+                "text-lg": parent,
+            })}
+        >
+            <Slot />
+        </h1>
+    );
 };
 
 export const DocEntry = component$(({ data, parent }: Props) => {
@@ -46,7 +44,7 @@ export const DocEntry = component$(({ data, parent }: Props) => {
     return (
         <article
             id={`${parentText}${data.name}`}
-            class={cn("flex flex-col gal-1 text-fira", {
+            class={cn("gal-1 text-fira flex flex-col", {
                 "p-2": parent,
             })}
         >

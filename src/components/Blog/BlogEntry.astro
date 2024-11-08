@@ -15,20 +15,20 @@ if (!entry) return;
 const entryData = entry.data;
 ---
 
-<article class="flex flex-col md:flex-row bg-base-200 rounded-box">
-    <figure class="flex-none aspect-video md:w-[260px] relative rounded-box">
+<article class="flex flex-col rounded-box bg-base-200 md:flex-row">
+    <figure class="relative aspect-video flex-none rounded-box md:w-[260px]">
         <img
             src={"/" + entryData.image}
             alt="Placeholder"
-            class="absolute inset-0 w-full h-full object-cover rounded-box"
+            class="absolute inset-0 h-full w-full rounded-box object-cover"
         />
     </figure>
     <div class="flex-auto p-6">
         <main class="flex flex-col flex-wrap">
             <h1 class="text-xl font-semibold">
-                <a href={"/blog/" + entryName} class="hover:underline">{
-                    entryData.title
-                }</a>
+                <a href={"/blog/" + entryName} class="hover:underline"
+                    >{entryData.title}</a
+                >
             </h1>
             <p class="text-xl font-semibold text-primary">
                 {entryData.author}
@@ -36,10 +36,10 @@ const entryData = entry.data;
             <time class="flex-none text-base font-medium text-gray-500">
                 {
                     new Date(entryData.date).toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-    })
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                    })
                 }
             </time>
         </main>
