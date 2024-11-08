@@ -50,12 +50,13 @@ You can see all the components in the [API Reference](/doc/ctx/pos).
 
 ## What is a tag?
 
-A tag is a component that adds no methods and no properties. However, that doesn't mean it
-isn't useful! Tags can be used as names, labels or keywords that group game objects, such as
-enemies, friends, etc.
+Tags are names, labels or keywords that group game objects, such as enemies,
+friends, trees, etc. They are useful for classifying different types of objects,
+or adding transient states that make other objects respond differently.
 
 If you pass a string in the array to `add()`, KAPLAY will automatically
-convert it into an "anonymous component" with the name of the tag.
+convert it into a component with the name of the tag but no properties and no
+methods, which is how tags are implemented internally.
 
 For example, these objects could be tagged as an enemy:
 
