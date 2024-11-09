@@ -1,6 +1,8 @@
 ---
 title: Basic Concepts
-description: Learn about the basics of KAPLAY, the HTML5 Game Engine for JavaScript and TypeScript.
+description:
+    Learn about the basics of KAPLAY, the HTML5 Game Engine for JavaScript and
+    TypeScript.
 url: starting
 image: "./assets/theater.png"
 ---

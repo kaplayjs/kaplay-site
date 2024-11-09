@@ -11,7 +11,7 @@
     "astro": "astro",
     "doc": "node scripts/buildDoc.js",
     "contributors": "node scripts/contributors.js",
-    "fmt": "dprint fmt",
+    "fmt": "prettier -w .",
     "build:publish": "npm run build && wrangler pages deploy dist",
     "cf:deploy": "npm run build && wrangler pages deploy dist",
     "cf:preview": "wrangler pages dev dist",

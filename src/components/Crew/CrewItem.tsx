@@ -17,16 +17,16 @@ export const CrewItem = component$<CrewItemProps>((props) => {
     return (
         <div class="flex h-full flex-col items-center justify-center gap-2">
             <div class="hidden lg:block">
-                <btn
-                    class="btn btn-primary btn-sm"
-                    onClick$={() => {
-                        window.history.back();
-                    }}
-                >
+                <a class="btn btn-primary btn-sm" href="/crew">
                     Back
-                </btn>
+                </a>
             </div>
             <div class="flex h-full flex-col bg-base-200 p-2 text-xl lg:max-h-[60%] lg:flex-row lg:rounded-box lg:border">
+                <div class="lg:hidden">
+                    <a class="btn btn-primary btn-sm" href="/crew">
+                        Back
+                    </a>
+                </div>
                 <div class="flex flex-1 flex-col gap-2 p-6">
                     <div
                         class="tooltip flex justify-around rounded-box border border-primary"

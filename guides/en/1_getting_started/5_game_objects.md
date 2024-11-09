@@ -1,6 +1,8 @@
 ---
 title: Game Objects
-description: How to create and manipulate game objects in KAPLAY, the HTML5 Game Engine for JavaScript and TypeScript.
+description:
+    How to create and manipulate game objects in KAPLAY, the HTML5 Game Engine
+    for JavaScript and TypeScript.
 url: game_objects
 image: "./assets/tree.png"
 ---
@@ -10,8 +12,8 @@ image: "./assets/tree.png"
 Game objects are the lower unit of KAPLAY. They are the actors of your game, the
 entities that move, interact, and make the game interesting. On this guide:
 
--   [`add()`](/doc/ctx/add) and [`make()`](/doc/ctx/make) functions to create game
-    objects
+-   [`add()`](/doc/ctx/add) and [`make()`](/doc/ctx/make) functions to create
+    game objects
 -   [`GameObjRaw`](/doc/GameObjRaw) methods to manipulate game objects
 -   Child game objects and the root game object
 -   Object makers to create game objects with a specific set of components
@@ -69,8 +71,8 @@ common operations:
 -   [`get(tag)`](/doc/GameObjRaw#get) Get a game object by its tag
 -   [`GameObjRaw.destroy()`](/doc/GameObjRaw#destroy): Destroy the game object
     itself
--   [`GameObjRaw.get()`](/doc/GameObjRaw#get): Get a child game object by its tag,
-    or all using `obj.get("*")`
+-   [`GameObjRaw.get()`](/doc/GameObjRaw#get): Get a child game object by its
+    tag, or all using `obj.get("*")`
 -   [`GameObjRaw.children`](/doc/GameObjRaw#children): Get an array with all
     children game objects
 -   [`GameObjRaw.is()`](/doc/GameObjRaw#is): Check if a game object has a

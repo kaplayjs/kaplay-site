@@ -1,6 +1,8 @@
 ---
 title: Why KAPLAY?
-description: Learn why to use KAPLAY compared to other JavaScript game libraries like Phaser, Cocos2d, and others.
+description:
+    Learn why to use KAPLAY compared to other JavaScript game libraries like
+    Phaser, Cocos2d, and others.
 url: why
 ---
 

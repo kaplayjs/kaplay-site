@@ -139,8 +139,8 @@ obj.onFall(() => {
 });
 ```
 
--   removed `outview()` in favor of `offscreen()`, which is less accurate but much
-    faster
+-   removed `outview()` in favor of `offscreen()`, which is less accurate but
+    much faster
 
 ```js
 // before
@@ -176,7 +176,8 @@ bean.flipX(true);
 bean.flipX = true;
 ```
 
--   `sprite.onAnimStart()` and `sprite.onAnimEnd()` now triggers on any animation
+-   `sprite.onAnimStart()` and `sprite.onAnimEnd()` now triggers on any
+    animation
 
 ```js
 const bean = add([sprite("bean")]);
@@ -289,8 +290,8 @@ add([
 ]);
 ```
 
--   changed all event handlers to return an `EventController` object, instead of a
-    function to cancel
+-   changed all event handlers to return an `EventController` object, instead of
+    a function to cancel
 
 ```js
 // before

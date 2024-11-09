@@ -26,6 +26,7 @@ const { asset, lang } = Astro.props;
         description: assets[asset as keyof typeof assets].description,
         keywords:
             "kaplay, kaboom.js, kaplay.js, game, library, javascript, easy, simple, html5, html5 games",
+        image: assets[asset as keyof typeof assets].outlined,
     }}
 >
     <main class="land | flex h-dvh max-h-dvh flex-col scroll-smooth">

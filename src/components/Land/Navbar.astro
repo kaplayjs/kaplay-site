@@ -4,8 +4,6 @@ import kaplayOutlined from "@/assets/kaplay-o.webp";
 import { assets } from "@kaplayjs/crew";
 import { Image } from "astro:assets";
 
-const urlPath = Astro.url.pathname;
-
 const internalLinks = [
     {
         name: "Home",
@@ -17,7 +15,7 @@ const internalLinks = [
         name: "Assets",
         url: "/crew",
         highlight: false,
-        icon: assets.bag.outlined,
+        icon: assets.assetbrew.outlined,
     },
     {
         name: "Playground",

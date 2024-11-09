@@ -1,6 +1,8 @@
 ---
 title: Installation
-description: Learn how to install KAPLAY, the HTML5 Game Library for JavaScript and TypeScript.
+description:
+    Learn how to install KAPLAY, the HTML5 Game Library for JavaScript and
+    TypeScript.
 url: install
 ---
 
@@ -110,7 +112,8 @@ through HTTP. There're a lot of programs that helps you to do that.
 -   `$ python -m SimpleHTTPServer` if you have [python2](https://www.python.org)
     installed
 -   `$ serve` if you have [serve](https://github.com/vercel/serve) installed
--   `$ caddy file-server` if you have [caddy](https://caddyserver.com/) installed
+-   `$ caddy file-server` if you have [caddy](https://caddyserver.com/)
+    installed
 -   `$ static-here` if you have
     [static-here](https://github.com/amasad/static-here) installed
 

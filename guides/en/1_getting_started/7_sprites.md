@@ -1,6 +1,8 @@
 ---
 title: Sprites
-description: Learn how to load and use sprites in KAPLAY, the HTML5 Game Library for JavaScript and TypeScript.
+description:
+    Learn how to load and use sprites in KAPLAY, the HTML5 Game Library for
+    JavaScript and TypeScript.
 url: sprites
 ---
 

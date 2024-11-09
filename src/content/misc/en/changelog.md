@@ -21,9 +21,9 @@ of the most recent features such as **performance** improvements.
 
 ## Input
 
--   added input bindings, `onButtonPress`, `onButtonRelease`, `onButtonDown`, and
-    it's corresponding boolean versions, `isButtonPressed`, `isButtonDown` and
-    `isButtonReleased`. (**v3001/4000**)
+-   added input bindings, `onButtonPress`, `onButtonRelease`, `onButtonDown`,
+    and it's corresponding boolean versions, `isButtonPressed`, `isButtonDown`
+    and `isButtonReleased`. (**v3001/4000**)
 
     ```js
     kaplay({
@@ -97,7 +97,8 @@ of the most recent features such as **performance** improvements.
 -   added effector components: `areaEffector()`, `buoyancyEffector()`,
     `pointEffector()`, `surfaceEffector()`. (**v3001/4000**)
 -   added `constantForce()` component. (**v3001/4000**)
--   added `patrol()` component to move along a list of waypoints. (**v3001/4000**)
+-   added `patrol()` component to move along a list of waypoints.
+    (**v3001/4000**)
 -   added `sentry()` component to notify when certain objects are in sight.
     (**v3001/4000**)
 -   added `NavMesh` class for pathfinding on a mesh. (**v3001/4000**)
@@ -141,8 +142,8 @@ of the most recent features such as **performance** improvements.
 
 ## Rendering and Animation
 
--   added the `animate()` component to _animate_ the properties of an object using
-    keyframes. Check out
+-   added the `animate()` component to _animate_ the properties of an object
+    using keyframes. Check out
     [Animation Example](https://play.kaplayjs.com/?example=animation)
     (**v3001/4000**)
 
@@ -208,7 +209,8 @@ of the most recent features such as **performance** improvements.
     debug.log(obj.getAnim("walk")); // { from: 0, to: 3 }
     ```
 
--   added `SpriteComp.hasAnim()` to check if an animation exists (**v3001/4000**)
+-   added `SpriteComp.hasAnim()` to check if an animation exists
+    (**v3001/4000**)
 
     ```js
     const obj = add([sprite("bean", { anim: "walk" })]);
@@ -234,16 +236,16 @@ of the most recent features such as **performance** improvements.
     ]);
     ```
 
--   (**! break**) removed compatibilty to use two KAPLAY frames in the same page,
-    due to perfomance improvements
+-   (**! break**) removed compatibilty to use two KAPLAY frames in the same
+    page, due to perfomance improvements
 
 -   fix error screen not showing with not Error object
 
 ## Audio
 
 -   now you can pass an `AudioBuffer` to `loadSound()` (**v4000**)
--   added `loadMusic()` to load streaming audio (doesn't block in loading screen).
-    (**v3001/4000**)
+-   added `loadMusic()` to load streaming audio (doesn't block in loading
+    screen). (**v3001/4000**)
 
     ```js
     loadMusic("bgm", "bgm.mp3");
@@ -286,8 +288,8 @@ of the most recent features such as **performance** improvements.
 
 -   added `outline()`, `shader()`, and `area()` properties to `debug.inspect`
     (**v3001/4000**)
--   added `KAPLAYOpt.debugKey` for customizing the key used to toggle debug mode.
-    (**v3001/4000**)
+-   added `KAPLAYOpt.debugKey` for customizing the key used to toggle debug
+    mode. (**v3001/4000**)
 
     ```js
     kaplay({
@@ -346,8 +348,8 @@ of the most recent features such as **performance** improvements.
 -   deprecated `kaboom()` in favor of `kaplay()` (you can still use `kaboom*`)
 -   deprecated `SpriteComp.curAnim()` in favor of `SpriteComp.getCurAnim().name`
 -   deprecated `fadeIn` component in favor of `OpacityComp.fadeIn()`
--   deprecated `Event`, `EventHandler` and `EventController` in favor of `KEvent`,
-    `KEventHandler` and `KEventController`
+-   deprecated `Event`, `EventHandler` and `EventController` in favor of
+    `KEvent`, `KEventHandler` and `KEventController`
 
 ## Bug fixes
 

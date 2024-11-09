@@ -1,6 +1,8 @@
 ---
 title: Sounds
-description: How to play music, audios and sounds in KAPLAY, the HTML5 Game Library for JavaScript and TypeScript.
+description:
+    How to play music, audios and sounds in KAPLAY, the HTML5 Game Library for
+    JavaScript and TypeScript.
 url: audio
 ---
 
@@ -11,8 +13,8 @@ You can play music, audios and sounds using the `play()` function.
 
 ## Loading sounds
 
-All audio files must be loaded before they can be played. You can load
-audio files using the `loadSound()` function. Supported `mp3`, `ogg`, `wav`, and
+All audio files must be loaded before they can be played. You can load audio
+files using the `loadSound()` function. Supported `mp3`, `ogg`, `wav`, and
 formats supported by the browser.
 
 ```js

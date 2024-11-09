@@ -178,21 +178,22 @@ depending on the direction the object is traveling from.
 add([pos(100, 100), rect(100, 100), area(), body(), platformEffector()]);
 ```
 
-The default is for the platform effector to allow all everything to collide with it
-_except_ if the object collided on the bottom side of the platform -- this allows
-players to jump up "through" the platform, but not fall back down through it.
+The default is for the platform effector to allow all everything to collide with
+it _except_ if the object collided on the bottom side of the platform -- this
+allows players to jump up "through" the platform, but not fall back down through
+it.
 
-If you want to allow the player to collide with the platform _only_ from the top,
-so that they can walk past the platform freely, pass in the sides that you don't
-want collisions to occur on:
+If you want to allow the player to collide with the platform _only_ from the
+top, so that they can walk past the platform freely, pass in the sides that you
+don't want collisions to occur on:
 
 ```ts
 platformEffector({ ignoreSides: [UP, LEFT, RIGHT] });
 ```
 
-You can also pass in a custom function to override the behavior and explicitly decide
-when to collide. For example, you can let the player choose whether they wnat to walk
-past items, or push them:
+You can also pass in a custom function to override the behavior and explicitly
+decide when to collide. For example, you can let the player choose whether they
+wnat to walk past items, or push them:
 
 ```ts
 platformEffector({
@@ -207,8 +208,9 @@ platformEffector({
 }),
 ```
 
-Finally, you can add an object temporatily to a platform effector's `platformIgnore` set,
-and this will prevent the object from colliding even if it normally would:
+Finally, you can add an object temporatily to a platform effector's
+`platformIgnore` set, and this will prevent the object from colliding even if it
+normally would:
 
 ```ts
 // Fall through when down is pressed

@@ -3,6 +3,7 @@
     "tabWidth": 4,
     "useTabs": false,
     "htmlWhitespaceSensitivity": "strict",
+    "proseWrap": "always",
     "plugins": ["prettier-plugin-astro", "prettier-plugin-tailwindcss"],
     "overrides": [
         {

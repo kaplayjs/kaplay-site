@@ -2,7 +2,9 @@
 title: "State of KAPLAY #1"
 author: lajbel
 date: 07/15/2024
-description: Explore the latest advancements and community highlights in KAPLAY, the successor to Kaboom.js. Discover new features, contributors, and more!
+description:
+    Explore the latest advancements and community highlights in KAPLAY, the
+    successor to Kaboom.js. Discover new features, contributors, and more!
 image: banners/sok1.png
 ---
 
@@ -28,11 +30,12 @@ thriving KAPLAY community. Special thanks go to:
 
 -   **tga**, original creator of Kaboom.js. Thanks for create this amazing
     library.
--   **MF**, for be a great contributor in Kaboom.js and also in KAPLAY, doing all
-    the engineer work.
+-   **MF**, for be a great contributor in Kaboom.js and also in KAPLAY, doing
+    all the engineer work.
 -   **niceEli**, for be a great contributor in CI and also be active in the
     community.
--   **AmySpark**, who contributed to the code and also be active in the community.
+-   **AmySpark**, who contributed to the code and also be active in the
+    community.
 -   **neverUsedDC**, for be a contributor in the code and also be active in the
     community.
 -   **SpcFork**, for be a contributor in the code and also be active in the
@@ -41,8 +44,8 @@ thriving KAPLAY community. Special thanks go to:
     community.
 -   **Shoozza**, for be a contributor in the code.
 -   **JSLegendDev**, for create content about KAPLAY.
--   **Gamedev.js**, for create a [post](https://gamedevjs.com/tools/kaplay/) about
-    KAPLAY.
+-   **Gamedev.js**, for create a [post](https://gamedevjs.com/tools/kaplay/)
+    about KAPLAY.
 -   And all the other **contributors** and **community members**.
 
 These individuals have been instrumental in transitioning from Kaboom.js to
@@ -54,8 +57,8 @@ From the creation of KAPLAY, to today, the alpha number 17, the team and
 contributors have been working hard to bring **new features and improvements**
 to the library.
 
--   **Input bindings**, use the same event `onButtonPress` for mouse, keyboard and
-    gamepad.
+-   **Input bindings**, use the same event `onButtonPress` for mouse, keyboard
+    and gamepad.
 -   **Layers**, backing from the void.
 -   Navigation Mesh, waypoints, patrols, sentries, and more in the **pathfinding
     system**.
@@ -73,8 +76,8 @@ In the code side, we had
     7000 line changes, that will make the codebase more organized and clean,
     improving our DX.
 -   [Strict TypeScript PR](https://github.com/kaplayjs/kaplay/pull/232), that
-    passed all the codebase to Strict TypeScript, to avoid bugs and have a better
-    development experience.
+    passed all the codebase to Strict TypeScript, to avoid bugs and have a
+    better development experience.
 
 Thanks to all our contributors, we are growing and improving the library.
 
@@ -131,8 +134,8 @@ There's games made with KAPLAY/Boom, tutorials, and more.
 
 <iframe src="https://www.youtube.com/embed/m636OQnV-wY?si=d3TuX99_YZJAnWUS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
--   [What The Floosh Game](https://igorwastaken.itch.io/wtfl-game): A puzzle game
-    about avoiding obstacles and collecting coins. Made with KAPLAY
+-   [What The Floosh Game](https://igorwastaken.itch.io/wtfl-game): A puzzle
+    game about avoiding obstacles and collecting coins. Made with KAPLAY
 
 ### Tutorials
 
@@ -141,8 +144,8 @@ There's games made with KAPLAY/Boom, tutorials, and more.
 
 <iframe  src="https://www.youtube.com/embed/mbljv1EkrRQ?si=pocHEU0JBpPE8kFQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
--   [AutMouse Labs](https://www.youtube.com/@AutMouseLabs) started a serie of live
-    codig with KAPLAY, showing how to make a shooter game.
+-   [AutMouse Labs](https://www.youtube.com/@AutMouseLabs) started a serie of
+    live codig with KAPLAY, showing how to make a shooter game.
 
 <iframe src="https://www.youtube.com/embed/rGV5Kd1zrcc?si=d2HaTWKtr61Qhv28" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 

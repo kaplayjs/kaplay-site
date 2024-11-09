@@ -43,8 +43,8 @@ game.
 
 <kbd class="kbd kbd-sm text-current">F7</kbd> and
 <kbd class="kbd kbd-sm text-current">F9</kbd> will decrease and increase the
-time speed, respectively.
-<kbd class="kbd kbd-sm text-current">F8</kbd> will pause the game.
+time speed, respectively. <kbd class="kbd kbd-sm text-current">F8</kbd> will
+pause the game.
 
 This is useful to test features in slow motion or to pause the game to inspect
 the objects.

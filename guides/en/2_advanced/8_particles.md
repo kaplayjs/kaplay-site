@@ -6,16 +6,18 @@ url: particles
 
 # Introduction
 
-In this guide we will learn how to use the [`particles()` component](/doc/ctx/particles)
+In this guide we will learn how to use the
+[`particles()` component](/doc/ctx/particles)
 
-The particles component is a very efficient way of display tons of visual feedback,
-due to its optimized nature internally on KAPLAY.
+The particles component is a very efficient way of display tons of visual
+feedback, due to its optimized nature internally on KAPLAY.
 
 ## Creating a Particle Emitter
 
-There are two parts to particles in KAPLAY, the particle emitter and the particles themselves.
-Both the particles and the particle emitter have options for us to modify, and come with important
-features to affect how our particles will appear.
+There are two parts to particles in KAPLAY, the particle emitter and the
+particles themselves. Both the particles and the particle emitter have options
+for us to modify, and come with important features to affect how our particles
+will appear.
 
 ```js
 let particleEmitter = add([
@@ -34,16 +36,20 @@ let particleEmitter = add([
 ]);
 ```
 
-Above is what the general setup of a particle emitter should look like.. The first set of options is the
-`ParticlesOpt`, and the second set is the `EmitterOpt`. The `ParticlesOpt` is composed of options
-related to what the particle will be doing after it is emitted, while the `EmitterOpt` is composed
-of options related to where, when, and what direction each particle will be emitted.
+Above is what the general setup of a particle emitter should look like.. The
+first set of options is the `ParticlesOpt`, and the second set is the
+`EmitterOpt`. The `ParticlesOpt` is composed of options related to what the
+particle will be doing after it is emitted, while the `EmitterOpt` is composed
+of options related to where, when, and what direction each particle will be
+emitted.
 
 ## Particle Textures in a Particle Emitter
 
-Using a particle emitter requires us to use the texture and frames data of a sprite. There are multiple options
-for how to access this, but the easiest is using the built-in `getSprite().data` function to generate our particles.
-Below is an example on how to use textures for a particle emitter. _Don't forget to wait for your sprites to load!_
+Using a particle emitter requires us to use the texture and frames data of a
+sprite. There are multiple options for how to access this, but the easiest is
+using the built-in `getSprite().data` function to generate our particles. Below
+is an example on how to use textures for a particle emitter. _Don't forget to
+wait for your sprites to load!_
 
 ```js
 // load the sprite, and wait for the sprite to fully load before making the particle emitter
@@ -72,8 +78,8 @@ loadSprite("bean", "./sprites/bean.png").then((data) => {
 
 ## Using a Complete Particle Emitter
 
-To spawn particles from the emitter, we can just use `particleEmitter.emit(n)`, where n is
-the amount of particles we want to spawn.
+To spawn particles from the emitter, we can just use `particleEmitter.emit(n)`,
+where n is the amount of particles we want to spawn.
 
 ```js
 // Emit at runtime
