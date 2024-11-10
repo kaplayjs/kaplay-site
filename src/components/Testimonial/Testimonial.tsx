@@ -25,8 +25,7 @@ export const Testimonial = component$<TestimonialProps>(({ testimonial }) => {
                         "mask-hexagon-2": testimonial.shape === "hexagon",
                         "mask-circle": testimonial.shape === "circle",
                         "mask-squircle": testimonial.shape === "squircle",
-                    })}
-                >
+                    })}>
                     <img
                         src={testimonial.avatar}
                         alt={`${testimonial.name}'s avatar`}

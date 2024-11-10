@@ -7,16 +7,14 @@ const contributors = Object.values(peopleData);
 <section class="flex flex-col items-center justify-center gap-4 p-4">
     <h2 class="text-3xl font-bold"> People who contributed to KAPLAY.js </h2>
     <div
-        class="flex max-w-lg flex-row flex-wrap items-center justify-center gap-6"
-    >
+        class="flex max-w-lg flex-row flex-wrap items-center justify-center gap-6">
         {
             contributors
                 .filter((_, i) => i < 20)
                 .map((person) => (
                     <a
                         href={`https://github.com/${person.login}`}
-                        target="_blank"
-                    >
+                        target="_blank">
                         <div>
                             <Image
                                 class="w-18 h-18 rounded-full"
@@ -33,8 +31,7 @@ const contributors = Object.values(peopleData);
             <a
                 class="text-sm text-primary decoration-current decoration-dashed"
                 href="https://github.com/kaplayjs/kaplay/graphs/contributors"
-                target="_blank"
-            >
+                target="_blank">
                 and {contributors.length - 20} more contributors
             </a>
         </div>

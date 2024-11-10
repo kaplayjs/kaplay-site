@@ -58,8 +58,7 @@ export const SidebarList = component$((props: Props) => {
                             title={folder}
                             id={folder}
                             isOpen={linkList.length > 0}
-                            key={folder + i}
-                        >
+                            key={folder + i}>
                             {linkList.map(({ title, link }, i) => (
                                 <SidebarLink href={link} key={link + i}>
                                     {title}

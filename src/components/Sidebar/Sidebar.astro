@@ -59,8 +59,7 @@ if (sidebarMode === "guides") {
     <div class="drawer-content w-full">
         <header class="min-h-16 w-full lg:hidden">
             <nav
-                class="fixed flex h-16 w-full items-center justify-between bg-base-200 px-4 lg:hidden"
-            >
+                class="fixed flex h-16 w-full items-center justify-between bg-base-200 px-4 lg:hidden">
                 <label for="sidebar" class="flex lg:hidden">
                     <figure>
                         <Image
@@ -77,8 +76,7 @@ if (sidebarMode === "guides") {
                         <aside class="2xl:hidden">
                             <select
                                 class="select select-sm"
-                                onchange="window.location.href = this.value"
-                            >
+                                onchange="window.location.href = this.value">
                                 {headings?.map((heading) => (
                                     <option
                                         value={`#${heading.slug}`}
@@ -87,8 +85,7 @@ if (sidebarMode === "guides") {
                                                 heading.depth === 1,
                                             "text-lg": heading.depth === 2,
                                             "text-base": heading.depth >= 3,
-                                        })}
-                                    >
+                                        })}>
                                         {heading.text}
                                     </option>
                                 ))}
@@ -113,8 +110,7 @@ if (sidebarMode === "guides") {
                                                 heading.depth === 1,
                                             "text-lg": heading.depth === 2,
                                             "text-base": heading.depth >= 3,
-                                        })}
-                                    >
+                                        })}>
                                         {heading.text}
                                     </a>
                                 </li>
@@ -137,8 +133,7 @@ if (sidebarMode === "guides") {
         ></label>
         <div
             class="min-h-full w-72 bg-base-300 p-4 text-base-content"
-            transition:persist
-        >
+            transition:persist>
             <figure>
                 <a class="btn btn-ghost h-max" href={getLangedRoute(lang, "/")}>
                     <Image
@@ -154,8 +149,7 @@ if (sidebarMode === "guides") {
             <div class="divider"></div>
             <button
                 class="btn mb-4 w-full border-primary"
-                onclick="document.querySelector('#search-modal')?.showModal()"
-            >
+                onclick="document.querySelector('#search-modal')?.showModal()">
                 Search in KAPLAY
             </button>
             <div class="px-4 pb-4">
@@ -167,15 +161,13 @@ if (sidebarMode === "guides") {
                 <SidebarLink
                     href="https://kaboomjs.com/discord"
                     target="_blank"
-                    icon="discord"
-                >
+                    icon="discord">
                     Discord
                 </SidebarLink>
                 <SidebarLink
                     href="https://github.com/kaplayjs/kaplay"
                     target="_blank"
-                    icon="github"
-                >
+                    icon="github">
                     GitHub
                 </SidebarLink>
                 <SidebarLink href="/changelog" icon="pog">
@@ -184,15 +176,13 @@ if (sidebarMode === "guides") {
                 <SidebarLink
                     href="https://play.kaplayjs.com"
                     target="_blank"
-                    icon="controller"
-                >
+                    icon="controller">
                     KA-PLAYGROUND
                 </SidebarLink>
                 <SidebarLink
                     href="https://opencollective.com/kaplay"
                     target="_blank"
-                    icon="donate"
-                >
+                    icon="donate">
                     Donate to KAPLAY
                 </SidebarLink>
             </ul>

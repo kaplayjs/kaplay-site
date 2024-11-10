@@ -37,8 +37,7 @@ export const SidebarLink = component$((props: SidebarLinkProps) => {
                 target={props.target}
                 data-link={props.href}
                 aria-current="false"
-                data-astro-reload={props.reloadAll ? "all" : undefined}
-            >
+                data-astro-reload={props.reloadAll ? "all" : undefined}>
                 {props.icon && (
                     <img
                         src={icons[props.icon].src}

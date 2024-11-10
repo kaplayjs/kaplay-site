@@ -29,8 +29,7 @@ export const CrewSearch = component$<CrewSearchProps>(
                     </div>
                     <select
                         class="| join-item select select-bordered lg:hidden"
-                        bind:value={tagFilter}
-                    >
+                        bind:value={tagFilter}>
                         <option selected value="">
                             no filter
                         </option>

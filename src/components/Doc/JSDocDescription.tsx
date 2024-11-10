@@ -23,8 +23,7 @@ export const JSDocDescription = component$(({ data }: Props) => {
                                 dangerouslySetInnerHTML={await marked.parseInline(
                                     e.text,
                                     {},
-                                )}
-                            ></span>
+                                )}></span>
                         </TypeLink>
                     )}
                 </>

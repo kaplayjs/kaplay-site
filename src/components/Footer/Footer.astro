@@ -8,12 +8,10 @@ import FooterNav from "./FooterNav.astro";
 
 <FriendsBelow
     friends={["bag", "ghosty", "ghostiny", "kat", "burpman", "mark"]}
-    offset={2}
->
+    offset={2}>
     <footer class="w-full rounded bg-base-200 p-10 text-base text-base-content">
         <div
-            class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
-        >
+            class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             <FooterNav title="KAPLAY">
                 <FooterLink href="/guides/install">
                     Installing KAPLAY
@@ -31,8 +29,7 @@ import FooterNav from "./FooterNav.astro";
                 </FooterLink>
                 <FooterLink
                     href="https://discord.com/invite/aQ6RuQm3TF"
-                    external
-                >
+                    external>
                     Ask questions on Discord
                 </FooterLink>
                 <FooterLink href="/presskit"> Press Kit </FooterLink>
@@ -46,8 +43,7 @@ import FooterNav from "./FooterNav.astro";
                 </FooterLink>
                 <FooterLink
                     href="https://discord.com/invite/aQ6RuQm3TF"
-                    external
-                >
+                    external>
                     Discord
                 </FooterLink>
                 <FooterLink href="https://www.youtube.com/@kaplayjs" external>
@@ -59,8 +55,7 @@ import FooterNav from "./FooterNav.astro";
                 <FooterLink
                     href="https://mastodon.gamedev.place/@kaplay"
                     external
-                    rel="me"
-                >
+                    rel="me">
                     Mastodon
                 </FooterLink>
                 <FooterLink href="https://kaplay.itch.io/" external>
@@ -73,8 +68,7 @@ import FooterNav from "./FooterNav.astro";
             <FooterNav title="SUPPORT">
                 <a
                     href="https://opencollective.com/kaplay/donate"
-                    target="_blank"
-                >
+                    target="_blank">
                     <Image
                         src="https://opencollective.com/webpack/donate/button@2x.png?color=blue"
                         width="300"
@@ -96,8 +90,7 @@ import FooterNav from "./FooterNav.astro";
         <div class="divider"></div>
 
         <aside
-            class="flex flex-col items-center justify-center gap-6 sm:flex-row sm:justify-between"
-        >
+            class="flex flex-col items-center justify-center gap-6 sm:flex-row sm:justify-between">
             <div class="flex items-center justify-center gap-4">
                 <Image src={kaplayOutlined} alt="kaplay logo" height={70} />
 

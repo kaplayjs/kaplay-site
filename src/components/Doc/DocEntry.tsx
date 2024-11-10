@@ -22,8 +22,7 @@ export const Title = ({ parent }: Props) => {
             class={cn({
                 "text-xl": !parent,
                 "text-lg": parent,
-            })}
-        >
+            })}>
             <Slot />
         </h2>
     ) : (
@@ -31,8 +30,7 @@ export const Title = ({ parent }: Props) => {
             class={cn({
                 "text-xl": !parent,
                 "text-lg": parent,
-            })}
-        >
+            })}>
             <Slot />
         </h1>
     );
@@ -46,14 +44,12 @@ export const DocEntry = component$(({ data, parent }: Props) => {
             id={`${parentText}${data.name}`}
             class={cn("gal-1 text-fira flex flex-col", {
                 "p-2": parent,
-            })}
-        >
+            })}>
             <h1
                 class={cn({
                     "text-xl": !parent,
                     "text-lg": parent,
-                })}
-            >
+                })}>
                 <TypeName data={data} parent={parent} />
                 <TypeGenerics data={data} />
                 {optionalMark(data)}

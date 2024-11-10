@@ -11,8 +11,7 @@ export const BlockStack = component$<Props>(({ hideOnMobile }) => {
             class={cn("hidden w-full flex-col gap-2 lg:flex-row", {
                 "lg:flex": hideOnMobile,
                 flex: !hideOnMobile,
-            })}
-        >
+            })}>
             <Slot />
         </div>
     );

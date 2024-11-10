@@ -32,8 +32,7 @@ export const CrewTag = component$<CrewTagProps>(({ filter, value }) => {
         <label
             class={cn("hoverable badge badge-primary select-none", {
                 "badge-outline": filter.value !== value,
-            })}
-        >
+            })}>
             <Slot />
             <input
                 type="checkbox"

@@ -73,8 +73,7 @@ const externalLinks = [
 
             <ul
                 tabindex="0"
-                class="menu dropdown-content z-[1] w-56 gap-2 rounded-box bg-base-200 p-6 shadow"
-            >
+                class="menu dropdown-content z-[1] w-56 gap-2 rounded-box bg-base-200 p-6 shadow">
                 {
                     [...internalLinks, ...externalLinks].map((link) => (
                         <li>
@@ -86,8 +85,7 @@ const externalLinks = [
                                         "btn-ghost": !link.highlight,
                                     },
                                 ]}
-                                href={link.url}
-                            >
+                                href={link.url}>
                                 {link.name}
                                 <img
                                     src={link.icon}
@@ -149,8 +147,7 @@ const externalLinks = [
                                     "btn-ghost": !link.highlight,
                                 },
                             ]}
-                            href={link.url}
-                        >
+                            href={link.url}>
                             {link.name}
                             <img
                                 src={link.icon}

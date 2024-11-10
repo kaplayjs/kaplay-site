@@ -38,8 +38,7 @@ export const TypeLink = component$(({ name }: Props) => {
             class={"type-btn hoverable text-primary"}
             data-link-type={`${isTypesMember ? "/" : "/ctx/"}${name}`}
             data-is-type={String(isType)}
-            onClick$={handleClick}
-        >
+            onClick$={handleClick}>
             {name}
         </span>
     );

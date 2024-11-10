@@ -1,0 +1,23 @@
+---
+import { CrewList } from "@/components/Crew/CrewList";
+import Navbar from "@/components/Land/Navbar.astro";
+import Page from "@/layouts/Page.astro";
+import { getStaticPathsByLocales } from "@/util/path";
+
+export function getStaticPaths() {
+    return getStaticPathsByLocales();
+}
+
+const { lang } = Astro.props;
+---
+
+<Page
+    {lang}
+    meta={{
+        title: "KAPLAY.js Arcade, a lot of HTML5 and web games made with KAPLAY",
+        description:
+            "KAPLAY Arcade is a videogames website where you can play games and know about them",
+        keywords: "games, free games, HTML5 games",
+    }}>
+    <main> hello </main>
+</Page>

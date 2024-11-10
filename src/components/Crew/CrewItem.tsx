@@ -30,8 +30,7 @@ export const CrewItem = component$<CrewItemProps>((props) => {
                 <div class="flex flex-1 flex-col gap-2 p-6">
                     <div
                         class="tooltip flex justify-around rounded-box border border-primary"
-                        data-tip={crewItem.secret}
-                    >
+                        data-tip={crewItem.secret}>
                         <img
                             src={crewItem.outlined}
                             alt={crewItem.name}
@@ -136,8 +135,7 @@ export const CrewItem = component$<CrewItemProps>((props) => {
                             a.href = crewItem.sprite!;
                             a.download = `${props.crewItem}.png`;
                             a.click();
-                        }}
-                    >
+                        }}>
                         Download Sprite
                     </btn>
                     <btn
@@ -147,8 +145,7 @@ export const CrewItem = component$<CrewItemProps>((props) => {
                             a.href = crewItem.outlined!;
                             a.download = `${props.crewItem}-o.png`;
                             a.click();
-                        }}
-                    >
+                        }}>
                         Download Outlined ver.
                     </btn>
                 </div>
