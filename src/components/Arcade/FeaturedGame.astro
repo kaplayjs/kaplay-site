@@ -14,24 +14,27 @@ const game = gameList[id];
 
 <a href={`/arcade/${game.vanityUrl}`}>
     <article
-        class="featured-game | relative flex h-full max-w-xl transform flex-row rounded-box bg-base-200 transition-all delay-75 duration-200 ease-in-out hover:-rotate-3 hover:scale-110"
+        class="featured-game | relative flex h-[340px] max-w-xl transform flex-col rounded-box transition-all delay-75 duration-200 ease-in-out hover:-rotate-3 hover:scale-110"
         data-id={id}>
-        <div class="relative w-[40%]">
+        <div class="absolute top-0 -z-10 h-full w-full">
             <div
-                class={`game-image | w-full h-full bg-cover bg-center rounded-l-box absolute`}
+                class={`game-image | w-full h-full bg-cover bg-center rounded-box absolute`}
                 style={`background-image: url('/games/${id}/play.gif')`}>
             </div>
             <div
-                class={`game-cover | w-full h-full bg-cover bg-center rounded-l-box absolute`}
+                class={`game-cover | w-full h-full bg-cover bg-center rounded-box absolute`}
                 style={`background-image: url('/games/${id}/thumb.png')`}>
             </div>
         </div>
-        <main class="w-[60%] space-y-2 p-4">
+        <main class="bottom-0 mt-auto space-y-2 bg-base-200 bg-opacity-90 p-6">
             <div>
                 <h1 class="text-2xl font-bold">{game.name}</h1>
                 <p class="text-sm">{game.developer}</p>
             </div>
-            <p set:html={marked.parseInline(game.description)} />
+            <p
+                class="text-xl italic"
+                set:html={marked.parseInline(game.description)}
+            />
         </main>
         <div class="absolute -bottom-4 -right-4 rotate-12">
             <img
