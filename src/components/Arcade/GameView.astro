@@ -1,0 +1,31 @@
+---
+import gameList from "@/data/games.json";
+import "./FeaturedGame.css";
+import FriendsBelow, { type AssetName } from "../Util/FriendsBelow.astro";
+
+type Props = {
+    id: number;
+};
+
+const { id } = Astro.props;
+const game = gameList[id];
+const sticker = game.sticker as AssetName;
+---
+
+<article
+    class="game-view | relative flex h-full w-full transform flex-row rounded-box">
+    <div class="flex h-full w-full">
+        <div class="relative flex flex-1 items-center justify-center">
+            <FriendsBelow friends={[sticker, sticker, sticker]} offset={3}>
+                <iframe
+                    src={game.upload}
+                    width={game.canvasWidth}
+                    height={game.canvasHeight}
+                    frameborder={0}
+                    class="aboslute border-4 border-base-200 bg-base-200 outline-none">
+                </iframe>
+            </FriendsBelow>
+        </div>
+        <div class="w-full max-w-md rounded-l-box bg-base-200"> </div>
+    </div>
+</article>

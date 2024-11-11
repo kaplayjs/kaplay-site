@@ -1,5 +1,5 @@
 ---
-import { CrewList } from "@/components/Crew/CrewList";
+import FeaturedGame from "@/components/Arcade/FeaturedGame.astro";
 import Navbar from "@/components/Land/Navbar.astro";
 import Page from "@/layouts/Page.astro";
 import { getStaticPathsByLocales } from "@/util/path";
@@ -19,5 +19,13 @@ const { lang } = Astro.props;
             "KAPLAY Arcade is a videogames website where you can play games and know about them",
         keywords: "games, free games, HTML5 games",
     }}>
-    <main> hello </main>
+    <header>
+        <Navbar />
+    </header>
+    <main class="lg:pt-20">
+        <div class="flex max-h-64 items-center justify-center gap-20 p-20">
+            <FeaturedGame id={0} />
+            <FeaturedGame id={1} />
+        </div>
+    </main>
 </Page>

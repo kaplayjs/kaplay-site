@@ -1,0 +1,38 @@
+---
+import Prose from "@/components/Content/Prose.astro";
+import SidebarPage from "@/layouts/SidebarPage.astro";
+import { getStaticPathsByLocales } from "@/util/path";
+import gameList from "@/data/games.json";
+import Page from "@/layouts/Page.astro";
+import Navbar from "@/components/Land/Navbar.astro";
+import GameView from "@/components/Arcade/GameView.astro";
+
+export async function getStaticPaths() {
+    return getStaticPathsByLocales().flatMap((locale) => {
+        return gameList.map((game) => {
+            return {
+                params: { slug: game.vanityUrl, ...locale.params },
+                props: { game, ...locale.props },
+            };
+        });
+    });
+}
+
+const { game, lang } = Astro.props;
+---
+
+<Page
+    {lang}
+    meta={{
+        title: "KAPLAY.js Arcade, a lot of HTML5 and web games made with KAPLAY",
+        description:
+            "KAPLAY Arcade is a videogames website where you can play games and know about them",
+        keywords: "games, free games, HTML5 games",
+    }}>
+    <header>
+        <Navbar />
+    </header>
+    <main class="flex h-screen flex-col lg:pt-20">
+        <GameView id={game.id} />
+    </main>
+</Page>

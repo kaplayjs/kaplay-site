@@ -1,15 +1,15 @@
 {
   "testimonials": [
     {
-      "name": "Amy",
-      "tagline": "Clickery Hexagon's developer",
-      "comment": "The development of KAPLAY has allowed me to make Clickery an awesome game.",
-      "social_user": "amyspark-ng",
-      "social_type": "newgrounds",
-      "social_link": "https://amyspark-ng.newgrounds.com/",
-      "avatar": "/kaplayers/amy.png",
+      "name": "Endel",
+      "tagline": "Colyseus.io, Brawlball.io and Mazmorra.io creator",
+      "comment": "KAPLAY API is incredibly intuitive and easy to read. I love how it combines simplicity with power, it’s a truly innovative library that brings HTML5 games to life!",
+      "social_link": "https://x.com/endel",
+      "social_user": "endel",
+      "social_type": "twitter",
+      "avatar": "/kaplayers/endel.webp",
       "friend": "mark",
-      "shape": "hexagon"
+      "shape": "circle"
     },
     {
       "name": "JSLegend",
@@ -43,6 +43,17 @@
       "avatar": "/kaplayers/niceEli.webp",
       "friend": "kat",
       "shape": "squircle"
+    },
+    {
+      "name": "Amy",
+      "tagline": "Clickery Hexagon's developer",
+      "comment": "The development of KAPLAY has allowed me to make Clickery an awesome game.",
+      "social_user": "amyspark-ng",
+      "social_type": "newgrounds",
+      "social_link": "https://amyspark-ng.newgrounds.com/",
+      "avatar": "/kaplayers/amy.png",
+      "friend": "mark",
+      "shape": "hexagon"
     },
     {
       "name": "Candy&Carmel",

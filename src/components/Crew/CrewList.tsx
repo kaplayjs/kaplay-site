@@ -61,8 +61,8 @@ export const CrewList = component$((props) => {
     });
 
     return (
-        <div class="h-full w-full overflow-y-auto lg:flex lg:items-center lg:justify-center">
-            <div class="| | flex h-full w-full flex-col gap-4 overflow-y-auto rounded-box bg-base-100 p-4 lg:max-h-[60%] lg:max-w-[50%]">
+        <div class="h-full w-full overflow-y-auto lg:mt-20 lg:flex lg:justify-center">
+            <div class="flex h-full w-full flex-col gap-4 overflow-y-auto rounded-box bg-base-100 p-4 lg:max-h-[80%] lg:max-w-[50%]">
                 <CrewSearch nameFilter={nameFilter} tagFilter={tagFilter} />
 
                 <div class="flex flex-wrap items-center justify-center gap-2 overflow-y-auto">

@@ -1,15 +1,16 @@
 ---
 import { assets } from "@kaplayjs/crew";
 
-type AssetName = keyof typeof assets;
+export type AssetName = keyof typeof assets;
 
 type Props = {
     friends?: AssetName[];
     offset?: number;
     limited?: boolean;
+    class?: string;
 };
 
-const { friends, offset = 0, limited } = Astro.props;
+const { friends, offset = 0, limited, class: className } = Astro.props;
 
 const offsets = ["top-2", "top-4", "top-6", "top-8", "top-10"].reverse();
 ---

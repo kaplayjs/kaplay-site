@@ -1,0 +1,67 @@
+---
+import gameList from "@/data/games.json";
+import { marked } from "marked";
+import { assets } from "@kaplayjs/crew";
+import "./FeaturedGame.css";
+
+type Props = {
+    id: number;
+};
+
+const { id } = Astro.props;
+const game = gameList[id];
+---
+
+<a href={`/arcade/${game.vanityUrl}`}>
+    <article
+        class="featured-game | relative flex h-full max-w-xl transform flex-row rounded-box bg-base-200 transition-all delay-75 duration-200 ease-in-out hover:-rotate-3 hover:scale-110"
+        data-id={id}>
+        <div class="relative w-[40%]">
+            <div
+                class={`game-image | w-full h-full bg-cover bg-center rounded-l-box absolute`}
+                style={`background-image: url('/games/${id}/play.gif')`}>
+            </div>
+            <div
+                class={`game-cover | w-full h-full bg-cover bg-center rounded-l-box absolute`}
+                style={`background-image: url('/games/${id}/thumb.png')`}>
+            </div>
+        </div>
+        <main class="w-[60%] space-y-2 p-4">
+            <div>
+                <h1 class="text-2xl font-bold">{game.name}</h1>
+                <p class="text-sm">{game.developer}</p>
+            </div>
+            <p set:html={marked.parseInline(game.description)} />
+        </main>
+        <div class="absolute -bottom-4 -right-4 rotate-12">
+            <img
+                src={assets[game.sticker as keyof typeof assets]["outlined"]}
+                alt="GitHub"
+                class="w-10"
+            />
+        </div>
+    </article>
+</a>
+
+<!-- <script>
+    const featuredGames =
+        document.querySelectorAll<HTMLDivElement>(".featured-game");
+
+    featuredGames.forEach((game, index) => {
+        const gameId = game.dataset.id;
+        const gameImage = `/games/${gameId}/thumb.png`;
+        const gameGif = `/games/${gameId}/play.gif`;
+
+        console.log(gameId, gameGif);
+
+        game.addEventListener("mouseenter", () => {
+            setTimeout(() => {
+                game.style.setProperty("--showcase", `url(${gameGif})`);
+            }, 1000);
+        });
+
+        game.addEventListener("mouseleave", () => {
+            game.style.setProperty("--showcase", `url(${gameImage})`);
+        });
+    });
+</script> -->

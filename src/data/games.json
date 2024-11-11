@@ -1,0 +1,26 @@
+[
+  {
+    "id": 0,
+    "name": "Eggou",
+    "developer": "FJ Team",
+    "vanityUrl": "eggou",
+    "sticker": "egg",
+    "description": "After a robot chicken **attacks** a chicken coop, our hero will have to beat it. The game where chickens fly!",
+    "tags": ["open-source"],
+    "upload": "https://html-classic.itch.zone/html/8640582/index.html",
+    "canvasWidth": 680,
+    "canvasHeight": 500
+  },
+  {
+    "id": 1,
+    "name": "Clickery Hexagon",
+    "developer": "AmySpark",
+    "vanityUrl": "clickery",
+    "sticker": "pointer",
+    "description": "Clicker/Idle game where you click an hexagon to make virtual numbers go up until they can't anymore.",
+    "tags": ["open-source"],
+    "upload": "https://html-classic.itch.zone/html/8640582/index.html",
+    "canvasWidth": 680,
+    "canvasHeight": 500
+  }
+]

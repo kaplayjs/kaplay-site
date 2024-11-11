@@ -1,6 +1,7 @@
 ---
 import { CrewList } from "@/components/Crew/CrewList";
 import Navbar from "@/components/Land/Navbar.astro";
+import NavbarPage from "@/layouts/NavbarPage.astro";
 import Page from "@/layouts/Page.astro";
 import { getStaticPathsByLocales } from "@/util/path";
 
@@ -11,7 +12,7 @@ export function getStaticPaths() {
 const { lang } = Astro.props;
 ---
 
-<Page
+<NavbarPage
     {lang}
     meta={{
         title: "KAPLAY Crew Wiki",
@@ -20,8 +21,7 @@ const { lang } = Astro.props;
         keywords:
             "kaplay, kaboom.js, kaplay.js, game, library, javascript, easy, simple, html5, html5 games",
     }}>
-    <main class="land | flex h-dvh max-h-dvh flex-col scroll-smooth">
-        <Navbar />
+    <div class="flex h-dvh max-h-dvh flex-col scroll-smooth">
         <CrewList />
-    </main>
-</Page>
+    </div>
+</NavbarPage>
