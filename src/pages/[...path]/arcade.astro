@@ -1,7 +1,6 @@
 ---
 import FeaturedGame from "@/components/Arcade/FeaturedGame.astro";
-import Navbar from "@/components/Land/Navbar.astro";
-import Page from "@/layouts/Page.astro";
+import NavbarPage from "@/layouts/NavbarPage.astro";
 import { getStaticPathsByLocales } from "@/util/path";
 
 export function getStaticPaths() {
@@ -11,7 +10,7 @@ export function getStaticPaths() {
 const { lang } = Astro.props;
 ---
 
-<Page
+<NavbarPage
     {lang}
     meta={{
         title: "KAPLAY.js Arcade, a lot of HTML5 and web games made with KAPLAY",
@@ -21,10 +20,7 @@ const { lang } = Astro.props;
     }}>
     <meta name="robots" content="noindex, nofollow" slot="head" />
 
-    <header>
-        <Navbar />
-    </header>
-    <main class="lg:pt-20">
+    <main class="land h-full lg:pt-20">
         <div>
             <h1 class="text-center text-5xl font-bold">Featured games</h1>
 
@@ -34,4 +30,4 @@ const { lang } = Astro.props;
             </div>
         </div>
     </main>
-</Page>
+</NavbarPage>
