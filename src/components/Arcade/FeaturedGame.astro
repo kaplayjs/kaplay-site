@@ -33,7 +33,7 @@ const game = gameList[id];
             </div>
             <p
                 class="text-xl italic"
-                set:html={marked.parseInline(game.description)}
+                set:html={marked.parseInline(game.featuredDescription)}
             />
         </main>
         <div class="absolute -bottom-4 -right-4 rotate-12">
