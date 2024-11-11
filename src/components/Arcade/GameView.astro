@@ -12,9 +12,9 @@ const game = gameList[id];
 const sticker = game.sticker as AssetName;
 ---
 
-<article
-    class="game-view | relative mb-20 flex h-full w-full transform flex-row rounded-box">
-    <div class="flex h-full w-full">
+<article class="game-view | relative mb-20 h-full w-full transform rounded-box">
+    <div
+        class="flex-col:flex-row flex h-full w-full lg:items-start lg:justify-start">
         <div class="relative flex flex-1 items-center justify-center">
             <FriendsBelow friends={[sticker, sticker, sticker]} offset={3}>
                 <iframe

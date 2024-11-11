@@ -19,13 +19,19 @@ const { lang } = Astro.props;
             "KAPLAY Arcade is a videogames website where you can play games and know about them",
         keywords: "games, free games, HTML5 games",
     }}>
+    <meta name="robots" content="noindex, nofollow" slot="head" />
+
     <header>
         <Navbar />
     </header>
     <main class="lg:pt-20">
-        <div class="flex max-h-64 items-center justify-center gap-20 p-20">
-            <FeaturedGame id={0} />
-            <FeaturedGame id={1} />
+        <div>
+            <h1 class="text-center text-5xl font-bold">Featured games</h1>
+
+            <div class="flex flex-wrap items-center justify-center gap-20 p-20">
+                <FeaturedGame id={0} />
+                <FeaturedGame id={1} />
+            </div>
         </div>
     </main>
 </Page>

@@ -1,10 +1,6 @@
 ---
-import Prose from "@/components/Content/Prose.astro";
-import SidebarPage from "@/layouts/SidebarPage.astro";
 import { getStaticPathsByLocales } from "@/util/path";
 import gameList from "@/data/games.json";
-import Page from "@/layouts/Page.astro";
-import Navbar from "@/components/Land/Navbar.astro";
 import GameView from "@/components/Arcade/GameView.astro";
 import NavbarPage from "@/layouts/NavbarPage.astro";
 
@@ -30,7 +26,9 @@ const { game, lang } = Astro.props;
             "KAPLAY Arcade is a videogames website where you can play games and know about them",
         keywords: "games, free games, HTML5 games",
     }}>
-    <main class="flex flex-col lg:pt-20">
+    <meta name="robots" content="noindex, nofollow" slot="head" />
+
+    <main class="flex lg:flex-col lg:pt-20">
         <GameView id={game.id} />
     </main>
 </NavbarPage>
