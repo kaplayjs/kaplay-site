@@ -92,6 +92,10 @@ span.line.diff.remove::before {
     font-family: "Fira Code Variable", monospace;
 }
 
+.text-pangolin {
+    font-family: "Pangolin", cursive;
+}
+
 .special-friends:hover > .friends {
     @apply -translate-y-10 scale-100 transition-all duration-150;
 }

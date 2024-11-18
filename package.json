@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0",
   "scripts": {
-    "install": "git submodule init && cd kaplay && pnpm i",
+    "install": "git submodule init && git submodule update && cd kaplay && pnpm i",
     "dev": "npm run doc && astro dev",
     "start": "npm run doc && npm run contributors && astro dev",
     "build": "npm run doc && astro check && astro build && pnpm run pagefind:build",
@@ -32,6 +32,7 @@
     "@fontsource-variable/outfit": "^5.1.0",
     "@fontsource-variable/rubik": "^5.1.0",
     "@fontsource/ibm-plex-sans": "^5.1.0",
+    "@fontsource/pangolin": "^5.1.0",
     "@kaplayjs/crew": "^1.7.1",
     "@lunariajs/core": "^0.1.1",
     "@nanostores/persistent": "^0.10.2",
