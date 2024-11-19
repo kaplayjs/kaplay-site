@@ -93,7 +93,11 @@ span.line.diff.remove::before {
 }
 
 .text-pangolin {
-    font-family: "Pangolin", cursive;
+    font-family: "Pangolin", monospace;
+}
+
+.text-rubik {
+    font-family: "Rubik Variable", sans-serif;
 }
 
 .special-friends:hover > .friends {
