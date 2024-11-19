@@ -4,14 +4,14 @@ import { BlockStack } from "./BlockStack";
 
 export const BlocksSection = component$(() => {
     return (
-        <div class="flex min-h-screen w-full flex-col justify-center gap-6 overflow-hidden p-4 lg:flex-row">
+        <div class="text-pangolin flex min-h-screen w-full flex-col justify-center gap-6 overflow-hidden p-4 lg:flex-row">
             <div class="flex w-full flex-col items-center gap-4">
-                <div class="w-full max-w-xl">
+                <div class="w-full max-w-xl space-y-4">
                     <h2 class="text-5xl font-semibold">
                         An enjoyable API based on{" "}
                         <span class="text-primary">blocks</span>
                     </h2>
-                    <p>
+                    <p class="text-pangolin text-xl">
                         <span class="text-primary">KAPLAY</span> is enjoyable
                         and fun to use and easy to learn. That's why we've
                         designed it to be based on{" "}
@@ -103,7 +103,7 @@ export const BlocksSection = component$(() => {
                     </BlockStack>
                 </div>
 
-                <p class="prose w-full max-w-xl text-balance text-center text-lg">
+                <p class="prose w-full max-w-xl text-balance text-center text-xl">
                     No more long nested methods like
                     <code class="mx-1">
                         obj.position.transform.translate(10, 20)
