@@ -1,0 +1,35 @@
+---
+export type NavigationTags = {
+    url: string;
+    title: string;
+};
+type Props = {
+    previous: NavigationTags | null;
+    next: NavigationTags | null;
+};
+const { previous, next } = Astro.props;
+---
+<div class="mt-8 flex justify-between">
+    <div>
+        {previous && (
+            <a
+                href={previous.url}
+                class="hover:underline px-4 py-2"
+                aria-label="Previous guide">
+                <div class="text-sm">Previous</div>
+                <div class="font-bold">{previous.title}</div>
+            </a>
+        )}
+    </div>
+    <div>
+        {next && (
+            <a
+                href={next.url}
+                class="hover:underline px-4 py-2"
+                aria-label="Next guide">
+                <div class="text-sm">Next</div>
+                <div class="font-bold">{next.title} →</div>
+            </a>
+        )}
+    </div>
+</div>
