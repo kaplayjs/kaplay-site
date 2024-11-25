@@ -3,14 +3,14 @@ type Props = {
     onlyClassic?: boolean;
 };
 
-const { onlyClassic } = Astro.props;
+const { onlyClassic = false } = Astro.props;
 ---
 
 <div
-    class="bottom-0 right-0 z-50 flex items-center justify-center p-4 xl:fixed"
+    class="bottom-0 right-0 z-50 flex h-auto items-center justify-center p-4 xl:fixed"
     class:list={{
-        "h-44": onlyClassic,
-        "h-96": !onlyClassic,
+        "min-h-44": onlyClassic,
+        "min-h-[16rem]": !onlyClassic,
     }}>
     <script
         async
