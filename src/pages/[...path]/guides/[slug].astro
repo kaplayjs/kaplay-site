@@ -5,7 +5,7 @@ import SidebarPage from "@/layouts/SidebarPage.astro";
 import { DEFAULT_LANG } from "@/util/i18n";
 import { getStaticPathsByLocales } from "@/util/path";
 import { getCollection, render } from "astro:content";
-import type { RenderedContent,CollectionEntry } from "astro:content";
+import type { RenderedContent, CollectionEntry } from "astro:content";
 
 export async function getStaticPaths() {
     const entries = await getCollection("guides");
@@ -36,15 +36,21 @@ const previousAndNextPage = async (entry: CollectionEntry<"guides">) => {
     const entries = await getCollection("guides");
     const sortedEntries = entries.sort((a, b) => a.id.localeCompare(b.id));
     const currentIndex = sortedEntries.findIndex((e) => e.id === entry.id);
-    const previous = currentIndex === 0 ? null : sortedEntries[currentIndex - 1];
-    const next = currentIndex === sortedEntries.length - 1 ? null : sortedEntries[currentIndex + 1];
-    return { 
-        previous : previous ? { url: previous.data.url!, title: previous.data.title } : null, 
-        next : next ? { url: next.data.url!, title: next.data.title } : null 
+    const previous =
+        currentIndex === 0 ? null : sortedEntries[currentIndex - 1];
+    const next =
+        currentIndex === sortedEntries.length - 1
+            ? null
+            : sortedEntries[currentIndex + 1];
+    return {
+        previous: previous
+            ? { url: previous.data.url!, title: previous.data.title }
+            : null,
+        next: next ? { url: next.data.url!, title: next.data.title } : null,
     };
 };
 const { entry, lang } = Astro.props;
-const { previous,next } = await previousAndNextPage(entry);
+const { previous, next } = await previousAndNextPage(entry);
 const { Content, headings } = await render(entry);
 ---
 
