@@ -9,13 +9,12 @@ type Props = {
 };
 const { previous, next } = Astro.props;
 ---
-
 <div class="mt-8 flex justify-between">
     <div>
         {
             previous && (
                 <a
-                    href={previous.url}
+                    href={"/guides/"+previous.url}
                     class="px-4 py-2 hover:underline"
                     aria-label="Previous guide">
                     <div class="text-sm">Previous</div>
@@ -28,7 +27,7 @@ const { previous, next } = Astro.props;
         {
             next && (
                 <a
-                    href={next.url}
+                    href={"/guides/"+next.url}
                     class="px-4 py-2 hover:underline"
                     aria-label="Next guide">
                     <div class="text-sm">Next</div>
