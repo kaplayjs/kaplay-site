@@ -4,6 +4,7 @@ description:
     Learn how to publish your KAPLAY game in platforms like Itch.io or
     Newgrounds.com.
 order: 6
+url: publishing
 ---
 
 # Publishing a KAPLAY game
