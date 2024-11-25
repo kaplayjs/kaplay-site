@@ -1,0 +1,21 @@
+---
+type Props = {
+    onlyClassic?: boolean;
+};
+
+const { onlyClassic } = Astro.props;
+---
+
+<div
+    class="bottom-0 right-0 z-50 flex items-center justify-center p-4 xl:fixed"
+    class:list={{
+        "h-44": onlyClassic,
+        "h-96": !onlyClassic,
+    }}>
+    <script
+        async
+        type="text/javascript"
+        src={`//cdn.carbonads.com/carbon.js?serve=CW7DE53Y&placement=kaplayjscom&format=${onlyClassic ? "responsive" : "cover"}`}
+        id="_carbonads_js"
+        data-astro-rerun></script>
+</div>

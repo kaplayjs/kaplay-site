@@ -1,11 +1,9 @@
 ---
-import hamburgerIcon from "@/assets/hamburger.webp";
-import Footer from "@/components/Footer/Footer.astro";
 import type { SidebarProps } from "@/components/Sidebar/Sidebar.astro";
 import Sidebar from "@/components/Sidebar/Sidebar.astro";
 import type { Locale } from "@/util/i18n";
-import { Image } from "astro:assets";
 import Page, { type MetaTagData } from "./Page.astro";
+import CarbonAd from "@/components/Util/CarbonAd.astro";
 
 type Props = {
     meta?: MetaTagData;
@@ -20,5 +18,7 @@ const { sidebarMode, meta, lang, headings } = Astro.props;
 
     <Sidebar sidebarMode={sidebarMode} headings={headings}>
         <slot />
+
+        <CarbonAd slot="ad" />
     </Sidebar>
 </Page>
