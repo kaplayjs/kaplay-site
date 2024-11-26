@@ -19,6 +19,6 @@ const { sidebarMode, meta, lang, headings } = Astro.props;
     <Sidebar sidebarMode={sidebarMode} headings={headings}>
         <slot />
 
-        <CarbonAd slot="ad" />
+        <CarbonAd slot="ad" preferStart />
     </Sidebar>
 </Page>

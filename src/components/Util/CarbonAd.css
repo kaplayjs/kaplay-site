@@ -1,0 +1,25 @@
+#carbon-responsive .carbon-responsive-wrap {
+    --tw-text-opacity: 1;
+
+    --carbon-bg-primary: var(
+        --fallback-b3,
+        oklch(var(--b3) / var(--tw-text-opacity))
+    );
+    --carbon-bg-secondary: var(
+        --fallback-b2,
+        oklch(var(--b2) / var(--tw-text-opacity))
+    );
+    --carbon-text-color: var(
+        --fallback-bc,
+        oklch(var(--bc) / var(--tw-text-opacity))
+    );
+
+    @apply rounded-box border-none;
+}
+
+#carbon-responsive .carbon-poweredby {
+    --carbon-text-color: var(
+        --fallback-bc,
+        oklch(var(--bc) / var(--tw-text-opacity))
+    );
+}

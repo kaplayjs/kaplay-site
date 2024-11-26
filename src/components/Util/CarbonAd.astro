@@ -1,16 +1,20 @@
 ---
+import "./CarbonAd.css";
+
 type Props = {
     onlyClassic?: boolean;
+    preferStart?: boolean;
 };
 
-const { onlyClassic = false } = Astro.props;
+const { onlyClassic = false, preferStart = false } = Astro.props;
 ---
 
 <div
-    class="bottom-0 right-0 z-50 flex h-auto items-center justify-center p-4 xl:fixed"
+    class="bottom-0 right-0 z-50 flex h-auto items-center justify-center p-4 md:p-4 2xl:fixed 2xl:justify-start"
     class:list={{
         "min-h-44": onlyClassic,
         "min-h-[16rem]": !onlyClassic,
+        "md:justify-start": preferStart,
     }}>
     <script
         async

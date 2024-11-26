@@ -1,10 +1,7 @@
 ---
 import hamburgerIcon from "@/assets/hamburger.webp";
-import kaplayOutlined from "@/assets/kaplay-o.webp";
-import Footer from "@/components/Footer/Footer.astro";
 import { $lang } from "@/stores";
 import { cn } from "@/util/cn";
-import { t } from "@/util/i18n";
 import { getLangedRoute } from "@/util/path";
 import type { MarkdownHeading } from "astro";
 import { Image } from "astro:assets";
@@ -17,6 +14,7 @@ import {
 import { SidebarLink } from "./SidebarLink";
 import { SidebarList } from "./SidebarList";
 import VersionSelector from "./VersionSelector.astro";
+import Footer from "../Footer/Footer.astro";
 
 type LinkListEntry = {
     title: string;
@@ -53,14 +51,14 @@ if (sidebarMode === "guides") {
 
 <script src="./paintLinks.ts"></script>
 
-<div class="drawer z-20 h-full 2xl:drawer-open">
+<div class="drawer z-20 h-full md:drawer-open">
     <input id="sidebar" type="checkbox" class="drawer-toggle" />
 
     <div class="drawer-content w-full">
-        <header class="min-h-16 w-full 2xl:hidden">
+        <header class="z-30 flex min-h-16 w-full">
             <nav
-                class="fixed flex h-16 w-full items-center justify-between bg-base-200 px-4">
-                <label for="sidebar" class="flex">
+                class="fixed z-30 flex h-16 w-full items-center justify-between gap-4 bg-base-200 px-4 md:w-[calc(100%-18rem)]">
+                <label for="sidebar" class="flex md:hidden">
                     <figure>
                         <Image
                             src={hamburgerIcon}
@@ -75,16 +73,16 @@ if (sidebarMode === "guides") {
                     headings && headings.length > 0 && (
                         <aside>
                             <select
-                                class="select select-sm"
+                                class="select select-sm max-w-40"
                                 onchange="window.location.href = this.value">
                                 {headings?.map((heading) => (
                                     <option
                                         value={`#${heading.slug}`}
                                         class={cn({
-                                            "text-xl font-semibold":
+                                            "lg:text-xl lg:font-semibold":
                                                 heading.depth === 1,
-                                            "text-lg": heading.depth === 2,
-                                            "text-base": heading.depth >= 3,
+                                            "lg:text-lg": heading.depth === 2,
+                                            "lg:text-base": heading.depth >= 3,
                                         })}>
                                         {heading.text}
                                     </option>
@@ -93,33 +91,18 @@ if (sidebarMode === "guides") {
                         </aside>
                     )
                 }
+
+                <div class="hidden md:block">
+                    KAPLAY.js is open source (MIT) and free to use. <a
+                        href="https://opencolective.com/kaplay"
+                        target="_blank"
+                        class="link link-primary">Consider sponsor ❤</a
+                    >
+                </div>
             </nav>
         </header>
 
-        <main class="flex w-full flex-col 2xl:flex-row">
-            {
-                headings && headings.length > 0 && (
-                    <aside class="fixed right-0 top-1/2 z-50 hidden -translate-y-1/2 transform flex-col rounded-l-box bg-base-300 px-4 2xl:flex">
-                        <ul class="flex max-h-96 min-h-96 w-64 max-w-60 flex-col gap-2 overflow-auto p-4">
-                            {headings?.map((heading) => (
-                                <li>
-                                    <a
-                                        href={`#${heading.slug}`}
-                                        class={cn(`link-hover link`, {
-                                            "text-xl font-semibold":
-                                                heading.depth === 1,
-                                            "text-lg": heading.depth === 2,
-                                            "text-base": heading.depth >= 3,
-                                        })}>
-                                        {heading.text}
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
-                    </aside>
-                )
-            }
-
+        <main class="flex w-full flex-col md:flex-row">
             <div class="w-full">
                 <slot name="ad" />
 
@@ -130,7 +113,7 @@ if (sidebarMode === "guides") {
         <Footer />
     </div>
 
-    <div class="drawer-side z-50 h-dvh 2xl:bg-base-300">
+    <div class="drawer-side z-50 h-dvh md:bg-base-300">
         <label for="sidebar" aria-label="close sidebar" class="drawer-overlay"
         ></label>
         <div
