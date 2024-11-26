@@ -10,6 +10,11 @@ jobs:
         with:
           submodules: true
           fetch-tags: true
+      - name: Checkout submodule to v4000
+        run: |
+          cd kaplay
+          git fetch --tags 
+          git checkout 4000.0.0-alpha.13
       - name: Setup PNPM
         uses: pnpm/action-setup@v4
       - name: Deploy app

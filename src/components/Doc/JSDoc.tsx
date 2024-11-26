@@ -8,6 +8,18 @@ type Props = {
 
 export const JSDoc = component$(({ data }: Props) => {
     const jsDoc = data.jsDoc || {};
+    const tags = Object.entries<string[]>(jsDoc.tags || {}).map(
+        ([tag, items]) => ({
+            tag,
+            items,
+        }),
+    );
+    const fParams = data.parameters || [];
+    const paramTag = tags.find((tag) => tag.tag === "param");
+    const otherTags = tags.filter((tag) => tag.tag !== "param");
+
+    console.log(otherTags, paramTag);
+
     return (
         <>
             {typeof jsDoc.doc === "object" ? (
@@ -15,9 +27,18 @@ export const JSDoc = component$(({ data }: Props) => {
             ) : (
                 jsDoc.doc
             )}
-            {jsDoc.tags &&
-                Object.entries(jsDoc?.tags)?.map(([name, items]) => (
-                    <JSDocTag tag={name} items={items as string[]} />
+            {paramTag &&
+                paramTag.items.map((item, i) => (
+                    <JSDocTag
+                        tag="param"
+                        items={[item]}
+                        paramName={fParams[i]?.name}
+                    />
+                ))}
+
+            {otherTags &&
+                otherTags?.map(({ items, tag }) => (
+                    <JSDocTag tag={tag} items={items} />
                 ))}
         </>
     );
