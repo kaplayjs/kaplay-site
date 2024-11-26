@@ -4,6 +4,7 @@ import { Image } from "astro:assets";
 import FriendsBelow from "../Util/FriendsBelow.astro";
 import FooterLink from "./FooterLink.astro";
 import FooterNav from "./FooterNav.astro";
+import colyseus from "../../assets/sponsors/colyseus.png";
 ---
 
 <FriendsBelow
@@ -97,12 +98,23 @@ import FooterNav from "./FooterNav.astro";
 
         <aside
             class="flex flex-col items-center justify-center gap-6 sm:flex-row sm:justify-between">
-            <div class="flex items-center justify-center gap-4">
-                <Image src={kaplayOutlined} alt="kaplay logo" height={70} />
+            <div class="flex flex-wrap items-center justify-center gap-4">
+                <Image
+                    src={kaplayOutlined}
+                    alt="kaplay logo"
+                    height={80}
+                    quality={100}
+                    loading={"eager"}
+                />
 
-                <div>
-                    <p class="text-2xl">KAPLAY Team</p>
-                </div>
+                <a href="https://colyseus.io" target="_blank">
+                    <Image
+                        src={colyseus}
+                        alt="Colyseus"
+                        width={200}
+                        height={80}
+                    />
+                </a>
             </div>
         </aside>
     </footer>
