@@ -22,4 +22,27 @@ const { onlyClassic = false, preferStart = false } = Astro.props;
         src={`//cdn.carbonads.com/carbon.js?serve=CW7DE53Y&placement=kaplayjscom&format=${onlyClassic ? "responsive" : "cover"}`}
         id="_carbonads_js"
         data-astro-rerun></script>
+    <script async>
+        // @ts-ignore
+        window.observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                mutation.addedNodes.forEach((node) => {
+                    // @ts-ignore
+                    if (node.id === "carbonads") {
+                        const ads = document.querySelectorAll("#carbonads");
+                        console.log(ads);
+                        if (ads.length > 1) {
+                            ads[1].remove();
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+    <script data-astro-rerun>
+        window.observer.observe(document.body, {
+            childList: true,
+            subtree: true,
+        });
+    </script>
 </div>
