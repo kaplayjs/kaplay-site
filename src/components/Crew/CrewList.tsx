@@ -61,7 +61,7 @@ export const CrewList = component$((props) => {
     });
 
     return (
-        <div class="h-full w-full overflow-y-auto lg:mt-20 lg:flex lg:justify-center">
+        <div class="h-full min-h-dvh w-full overflow-y-auto md:mt-20 md:flex md:justify-center">
             <div class="flex h-full w-full flex-col gap-4 overflow-y-auto rounded-box bg-base-100 p-4 lg:max-h-[80%] lg:max-w-[50%]">
                 <CrewSearch nameFilter={nameFilter} tagFilter={tagFilter} />
 

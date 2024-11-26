@@ -10,10 +10,8 @@ const { onlyClassic = false, preferStart = false } = Astro.props;
 ---
 
 <div
-    class="bottom-0 right-0 z-50 flex h-auto items-center justify-center p-4 md:p-4 2xl:fixed 2xl:justify-start"
+    class="2xl:justify-star bottom-0 right-0 z-50 flex h-auto min-h-[12.5rem] items-center justify-center p-6 md:p-4 2xl:fixed"
     class:list={{
-        "min-h-44": onlyClassic,
-        "min-h-[16rem]": !onlyClassic,
         "md:justify-start": preferStart,
     }}>
     <script

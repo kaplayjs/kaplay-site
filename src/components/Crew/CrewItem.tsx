@@ -15,7 +15,7 @@ export const CrewItem = component$<CrewItemProps>((props) => {
     const crewItem = assets[props.crewItem];
 
     return (
-        <div class="flex h-full flex-col items-center justify-center gap-2">
+        <div class="flex h-full flex-col items-center justify-center gap-2 lg:pt-4">
             <div class="hidden lg:block">
                 <a class="btn btn-primary btn-sm" href="/crew">
                     Back
