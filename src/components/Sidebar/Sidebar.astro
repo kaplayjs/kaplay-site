@@ -71,24 +71,22 @@ if (sidebarMode === "guides") {
 
                 {
                     headings && headings.length > 0 && (
-                        <aside>
-                            <select
-                                class="select select-sm max-w-40"
-                                onchange="window.location.href = this.value">
-                                {headings?.map((heading) => (
-                                    <option
-                                        value={`#${heading.slug}`}
-                                        class={cn({
-                                            "lg:text-xl lg:font-semibold":
-                                                heading.depth === 1,
-                                            "lg:text-lg": heading.depth === 2,
-                                            "lg:text-base": heading.depth >= 3,
-                                        })}>
-                                        {heading.text}
-                                    </option>
-                                ))}
-                            </select>
-                        </aside>
+                        <select
+                            class="select select-sm max-w-40"
+                            onchange="window.location.href = this.value">
+                            {headings?.map((heading) => (
+                                <option
+                                    value={`#${heading.slug}`}
+                                    class={cn({
+                                        "lg:text-xl lg:font-semibold":
+                                            heading.depth === 1,
+                                        "lg:text-lg": heading.depth === 2,
+                                        "lg:text-base": heading.depth >= 3,
+                                    })}>
+                                    {heading.text}
+                                </option>
+                            ))}
+                        </select>
                     )
                 }
 
