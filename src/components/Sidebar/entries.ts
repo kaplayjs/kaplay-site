@@ -22,13 +22,16 @@ const guidesData: Record<
     "1_getting_started": {
         title: "Getting Started",
     },
-    "2_advanced": {
+    "2_concepts": {
+        title: "Concepts",
+    },
+    "3_advanced": {
         title: "Advanced",
     },
-    "3_expanding_kaplay": {
+    "4_expanding_kaplay": {
         title: "Expanding KAPLAY",
     },
-    "44_misc": {
+    "5_misc": {
         title: "Misc",
     },
 };

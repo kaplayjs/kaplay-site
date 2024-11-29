@@ -20,15 +20,14 @@ There's some reasons why you should use KAPLAY:
     _React_? _Vue_? No problem, you can use it with KAPLAY.
 -   🍳 **Pre-cooked**: KAPLAY comes with a lot of features pre-cooked. Pre-made
     arcade physics, input manager, tilemap levels, assets and more.
--   ❤️ **Open Source**: KAPLAY is **open source** and the KAPLAY Team is a
-    **collective** of developers **non-profit**.
+-   ❤️ **Open Source**: KAPLAY.js is **open source** and free forever.
 
 # FAQ
 
-## What's the difference between KAPLAY and Kaboom.js?
+## What's the difference between KAPLAY.js and Kaboom.js?
 
 On the old days, the KAPLAY Team was working as contributors on the Kaboom.js
-project. But one day, Replit abandoned the project and the KAPLAY Team decided
+project. But one day, the project was abandoned and the KAPLAY Team decided
 to fork the project and continue the development. KAPLAY has more than **600**
 commits after the fork and a lot of new features.
 

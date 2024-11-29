@@ -8,11 +8,11 @@ url: input
 
 # Input Bindings
 
-The input bindings is a feature that allows you to use the same event for mouse,
+Input bindings allows you to use the same event for mouse,
 keyboard and gamepad. Also you can set a generic name like `jump` and bind it to
 the keys or buttons you want.
 
-## Defining bindings
+## Creating input bindings
 
 You can define the bindings in the `buttons` object in `kaplay()`
 
@@ -62,4 +62,16 @@ setButton("jump", {
     keyboard: ["w"],
     // gamepad binding is not changed
 });
+```
+
+## Virtually trigger buttons
+
+Sometiems there's a need to trigger a button virtually, for example when you
+want to simulate a button press in mobile or in a cutscene.
+
+You can use `pressButton(btn)` and `releaseButton(btn)` to trigger the button:
+
+```js
+pressButton("jump"); // triggers onButtonPress and starts onButtonDown
+releaseButton("jump"); // triggers onButtonRelease and stops onButtonDown
 ```

@@ -1,5 +1,6 @@
 ---
 import hamburgerIcon from "@/assets/hamburger.webp";
+import searchIcon from "@/assets/search.png";
 import { $lang } from "@/stores";
 import { cn } from "@/util/cn";
 import { getLangedRoute } from "@/util/path";
@@ -131,9 +132,11 @@ if (sidebarMode === "guides") {
             </figure>
             <div class="divider"></div>
             <button
-                class="btn mb-4 w-full border-primary"
+                class="btn btn-neutral mb-4 w-full border-primary"
                 onclick="document.querySelector('#search-modal')?.showModal()">
-                Search in KAPLAY
+                <img src={searchIcon.src} alt="search icon" class="h-9 w-9" />
+                <span>SEARCH</span>
+                <kbd id="search-btn" class="kbd">CTRL + K</kbd>
             </button>
             <div class="px-4 pb-4">
                 <VersionSelector />
@@ -190,4 +193,21 @@ if (sidebarMode === "guides") {
     </div>
 </div>
 
-<style></style>
+<script>
+    const isMac = navigator.userAgent.includes("Mac");
+    const searchBtn = document.querySelector("#search-btn");
+
+    if (isMac && searchBtn) {
+        searchBtn.textContent = "⌘ + K";
+    }
+
+    window.addEventListener("keydown", (e) => {
+        if (e.ctrlKey && e.key === "k") {
+            e.preventDefault();
+
+            document
+                .querySelector<HTMLDialogElement>("#search-modal")
+                ?.showModal();
+        }
+    });
+</script>

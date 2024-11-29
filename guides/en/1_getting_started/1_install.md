@@ -116,6 +116,10 @@ through HTTP. There're a lot of programs that helps you to do that.
     installed
 -   `$ static-here` if you have
     [static-here](https://github.com/amasad/static-here) installed
+- `$ ruby -run -ehttpd . -p8000` if you have [ruby](https://www.ruby-lang.org/en)
+  installed
+- `$ php -S localhost:8000` if you have [php](https://php.net)
+  installed
 
 Let's say you have a folder structure like this:
 
