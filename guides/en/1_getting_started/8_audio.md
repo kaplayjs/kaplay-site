@@ -11,11 +11,17 @@ url: audio
 In KAPLAY, you can easily add background music and sound effects to your game.
 You can play music, audios and sounds using the `play()` function.
 
+This guide covers:
+- [`loadSound()`](/doc/ctx/loadSound) for loading sounds
+- [`play()`](/doc/ctx/play) for playing sounds
+- [`AudioPlayOpt`](/doc/AudioPlayOpt/) for set options to play a sound
+- [`loadMusic()`](/doc/ctx/loadMusic) for loading music
+- [`AudioPlay`](/doc/AudioPlay/) for modify the state of a sound
+
 ## Loading sounds
 
-All audio files must be loaded before they can be played. You can load audio
-files using the `loadSound()` function. Supported `mp3`, `ogg`, `wav`, and
-formats supported by the browser.
+For load audio files, you can use the `loadSound()` function. This function
+takes two parameters, the sound name and the sound path.
 
 ```js
 kaplay();
