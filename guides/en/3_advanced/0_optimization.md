@@ -71,18 +71,6 @@ for (let i = 0; i < 1000; i++) {
 }
 ```
 
-## Use `await`
-
-KAPLAY use a lot of `Promise` and `Promise`-like in time / event related stuff,
-use `await` on those to make code look nicer
-
-```js
-async function example() {
-    await k.wait(3);
-    await k.tween(0, 100, 1, (x) => (mark.pos.x = x));
-}
-```
-
 ## Avoid Global Namespace
 
 By default KAPLAY uses a lot of common names like `pos`, `sprite` that occupies
