@@ -37,7 +37,7 @@ jobs:
         run: |
           cd kaplay
           git fetch --tags 
-          git checkout 3001.0.2
+          git checkout 3001.0.5
       - name: Setup PNPM
         uses: pnpm/action-setup@v4
       - name: Deploy app
