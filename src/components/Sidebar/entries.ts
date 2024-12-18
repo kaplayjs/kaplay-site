@@ -177,11 +177,16 @@ export const getDocEntries = async () => {
         renderList.push({
             folder: groupName,
             linkList: groups[groupName].entries.map((item: any) => {
-                const isCtxMember = ctxMembers.includes(item);
+                const isGlobal = allDoc[item] != null;
+                let asCtxMember = ctxMembers.includes(item);
+
+                if(isGlobal) {
+                    asCtxMember = false;
+                }
 
                 return {
                     title: item,
-                    link: isCtxMember ? `/doc/ctx/${item}` : `/doc/${item}`,
+                    link: asCtxMember ? `/doc/ctx/${item}` : `/doc/${item}`,
                     description: `${getDocEntryDescription(item)}`,
                 };
             }),

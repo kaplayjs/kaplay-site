@@ -30,6 +30,10 @@ export const TypeSig = component$(({ data, parentData }: Props) => {
             return <Type>any</Type>;
         case "NullKeyword":
             return <Type>null</Type>;
+        case "UnknownKeyword":
+            return <Type>unknown</Type>;
+        case "ThisType":
+            return <Type>this</Type>;
         case "UndefinedKeyword":
             return <Type>undefined</Type>;
         case "VoidKeyword":
@@ -128,11 +132,7 @@ export const TypeSig = component$(({ data, parentData }: Props) => {
         default:
             return (
                 <>
-                    {keyword ? (
-                        <span class="text-warning">Bug parsing {keyword}</span>
-                    ) : (
-                        ""
-                    )}
+                    {keyword ? <span class="text-warning">{keyword}</span> : ""}
                 </>
             );
     }
