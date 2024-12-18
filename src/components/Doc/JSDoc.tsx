@@ -18,14 +18,12 @@ export const JSDoc = component$(({ data }: Props) => {
     const paramTag = tags.find((tag) => tag.tag === "param");
     const otherTags = tags.filter((tag) => tag.tag !== "param");
 
-    console.log(otherTags, paramTag);
-
     return (
         <>
             {typeof jsDoc.doc === "object" ? (
                 <JSDocDescription data={data} />
             ) : (
-                jsDoc.doc
+                <p class="pb-2">{jsDoc.doc}</p>
             )}
             {paramTag &&
                 paramTag.items.map((item, i) => (

@@ -18,11 +18,15 @@ export const TypeMembers = component$(({ data }: Props) => {
 
                 return membersData.map((memberData: any, i: number) => {
                     return (
-                        <DocEntry
-                            data={memberData}
-                            parent={`${parentName}`}
-                            key={`${parentName}-${member}-${i}`}
-                        />
+                        <>
+                            <DocEntry
+                                data={memberData}
+                                parent={`${parentName}`}
+                                key={`${parentName}-${member}-${i}`}
+                            />
+
+                            <div class="divider pl-4" />
+                        </>
                     );
                 });
             })}

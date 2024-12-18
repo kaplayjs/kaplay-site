@@ -10,7 +10,7 @@ const { onlyClassic = false, preferStart = false } = Astro.props;
 ---
 
 <div
-    class="2xl:justify-star 2sm:min-h-[12.5rem] bottom-0 right-0 z-50 flex h-auto min-h-[18rem] items-center justify-center p-6 md:p-4 2xl:fixed"
+    class="2xl:justify-star bottom-0 right-0 z-50 flex h-auto min-h-[18rem] items-center justify-center p-6 2sm:min-h-[12.5rem] md:p-4 2xl:fixed"
     class:list={{
         "md:justify-start": preferStart,
     }}>
@@ -28,7 +28,6 @@ const { onlyClassic = false, preferStart = false } = Astro.props;
                     // @ts-ignore
                     if (node.id === "carbonads") {
                         const ads = document.querySelectorAll("#carbonads");
-                        console.log(ads);
                         if (ads.length > 1) {
                             ads[1].remove();
                         }

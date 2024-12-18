@@ -43,7 +43,7 @@ export const DocEntry = component$(({ data, parent }: Props) => {
         <article
             id={`${parentText}${data.name}`}
             class={cn("gal-1 text-fira flex flex-col", {
-                "p-2": parent,
+                "py-2 pl-4": parent,
             })}>
             <h1
                 class={cn({
