@@ -28,6 +28,15 @@ export const JSDocTag = component$(({ tag, items, paramName }: Props) => {
                     <span>{item}</span>
                 </p>
             );
+        case "experimental":
+            return (
+                <p class="prose gap-2">
+                    <code class="mr-1 inline bg-warning text-warning-content">
+                        {tag}
+                    </code>
+                    <span>{item}</span>
+                </p>
+            );
         default:
             return (
                 <p class="prose gap-2">
