@@ -1,7 +1,7 @@
 ---
 import gameList from "@/data/games.json";
-import { marked } from "marked";
 import { assets } from "@kaplayjs/crew";
+import { marked } from "marked";
 import "./FeaturedGame.css";
 
 type Props = {
@@ -15,15 +15,18 @@ const game = gameList[id];
 <a href={`/arcade/${game.vanityUrl}`}>
     <article
         class="featured-game | relative flex h-[340px] max-w-xl transform flex-col rounded-box transition-all delay-75 duration-200 ease-in-out hover:-rotate-3 hover:scale-110"
-        data-id={id}>
+        data-id={id}
+    >
         <div class="absolute top-0 -z-10 h-full w-full">
             <div
                 class={`game-image | w-full h-full bg-cover bg-center rounded-box absolute`}
-                style={`background-image: url('/games/${id}/play.gif')`}>
+                style={`background-image: url('/games/${id}/play.gif')`}
+            >
             </div>
             <div
                 class={`game-cover | w-full h-full bg-cover bg-center rounded-box absolute`}
-                style={`background-image: url('/games/${id}/thumb.png')`}>
+                style={`background-image: url('/games/${id}/thumb.png')`}
+            >
             </div>
         </div>
         <main class="bottom-0 mt-auto space-y-2 bg-base-200 bg-opacity-90 p-6">

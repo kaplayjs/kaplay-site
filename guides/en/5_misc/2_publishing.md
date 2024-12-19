@@ -15,10 +15,10 @@ When we finish our game, the most important time it's here... Publish it!
 
 We should prepare our game to pubish in the different platforms.
 
--   use relative paths like `sprites/bean.png` or `./sprites/bean.png`
--   create a zip with your game, with all assets, code files and a `index.html`
-    as the entry point
--   use a custom `canvas` is a good idea too
+- use relative paths like `sprites/bean.png` or `./sprites/bean.png`
+- create a zip with your game, with all assets, code files and a `index.html` as
+  the entry point
+- use a custom `canvas` is a good idea too
 
 ```js
 kaplay({

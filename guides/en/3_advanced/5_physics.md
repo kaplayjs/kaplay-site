@@ -15,9 +15,9 @@ shape, whether the object is actually solid or not. When using just area,
 without body, the object is not solid, but still reports overlapping with other
 areas. Area has three events for this:
 
--   onCollide which is fired when the collision starts.
--   onCollideUpdate which is fired during collision.
--   onCollideEnd which is fired when the collision ends.
+- onCollide which is fired when the collision starts.
+- onCollideUpdate which is fired during collision.
+- onCollideEnd which is fired when the collision ends.
 
 By default, an area component creates a shape similar to the shape which is
 drawn. Thus a sprite receives an area which has the size and position of the

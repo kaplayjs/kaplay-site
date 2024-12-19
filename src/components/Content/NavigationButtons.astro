@@ -14,9 +14,10 @@ const { previous, next } = Astro.props;
         {
             previous && (
                 <a
-                    href={"/guides/"+previous.url}
+                    href={"/guides/" + previous.url}
                     class="px-4 py-2 hover:underline"
-                    aria-label="Previous guide">
+                    aria-label="Previous guide"
+                >
                     <div class="text-sm">Previous</div>
                     <div class="font-bold">{previous.title}</div>
                 </a>
@@ -27,9 +28,10 @@ const { previous, next } = Astro.props;
         {
             next && (
                 <a
-                    href={"/guides/"+next.url}
+                    href={"/guides/" + next.url}
                     class="px-4 py-2 hover:underline"
-                    aria-label="Next guide">
+                    aria-label="Next guide"
+                >
                     <div class="text-sm">Next</div>
                     <div class="font-bold">{next.title}</div>
                 </a>

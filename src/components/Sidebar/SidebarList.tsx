@@ -25,7 +25,7 @@ export const SidebarList = component$((props: Props) => {
             const linkList = entry.linkList.filter((l) =>
                 `${l.title ?? ""} ${l.description ?? ""}`
                     .toLowerCase()
-                    .includes(filter.value.toLowerCase()),
+                    .includes(filter.value.toLowerCase())
             );
 
             return {
@@ -41,11 +41,9 @@ export const SidebarList = component$((props: Props) => {
         <>
             <input
                 class="input input-primary my-2 w-full"
-                placeholder={
-                    props.sidebarMode === "reference"
-                        ? "Search for API..."
-                        : "Search for Guides..."
-                }
+                placeholder={props.sidebarMode === "reference"
+                    ? "Search for API..."
+                    : "Search for Guides..."}
                 bind:value={filter}
                 ref={searchInputRef}
             />
@@ -58,7 +56,8 @@ export const SidebarList = component$((props: Props) => {
                             title={folder}
                             id={folder}
                             isOpen={linkList.length > 0}
-                            key={folder + i}>
+                            key={folder + i}
+                        >
                             {linkList.map(({ title, link }, i) => (
                                 <SidebarLink href={link} key={link + i}>
                                     {title}

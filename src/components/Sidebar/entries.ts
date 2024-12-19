@@ -41,9 +41,9 @@ export const getGuidesEntries = async () => {
     const guides = (await getCollection("guides"))
         .filter((guide) => {
             return (
-                (guide.data.version === undefined ||
-                    guide.data.version === version) &&
-                guide.id.startsWith(lang)
+                (guide.data.version === undefined
+                    || guide.data.version === version)
+                && guide.id.startsWith(lang)
             );
         })
         .sort((a, b) => a.id.localeCompare(b.id));
@@ -84,8 +84,8 @@ export const getBlogEntries = async () => {
     const sortedEntries = guides
         .sort(
             (a, b) =>
-                new Date(a.data.date).getTime() -
-                new Date(b.data.date).getTime(),
+                new Date(a.data.date).getTime()
+                - new Date(b.data.date).getTime(),
         )
         .reverse();
 
@@ -145,10 +145,9 @@ export const getBookEntries = async () => {
 };
 
 const getDocEntryDescription = (item: string) => {
-    const docObjs =
-        allDoc.KaboomCtx?.[0].members[item] ??
-        allDoc.KAPLAYCtx?.[0].members[item] ??
-        allDoc[item];
+    const docObjs = allDoc.KaboomCtx?.[0].members[item]
+        ?? allDoc.KAPLAYCtx?.[0].members[item]
+        ?? allDoc[item];
     const docObj = docObjs[0];
     const docDesc = getDocDescription(docObj?.jsDoc?.doc);
 
@@ -158,7 +157,8 @@ const getDocEntryDescription = (item: string) => {
 const getDocDescription = (item: unknown) => {
     if (typeof item === "string") {
         return item;
-    } else if (Array.isArray(item)) {
+    }
+    else if (Array.isArray(item)) {
         return item.map((part: any) => part.text).join("");
     }
 
@@ -180,7 +180,7 @@ export const getDocEntries = async () => {
                 const isGlobal = allDoc[item] != null;
                 let asCtxMember = ctxMembers.includes(item);
 
-                if(isGlobal) {
+                if (isGlobal) {
                     asCtxMember = false;
                 }
 

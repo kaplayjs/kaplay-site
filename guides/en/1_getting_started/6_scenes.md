@@ -13,10 +13,10 @@ each scene is a different part of your game.
 
 This guide covers:
 
--   [`scene()`](/doc/ctx/scene) function to create scenes
--   [`go()`](/doc/ctx/go) function to change the current scene
--   Passing data between scenes
--   [Why can I use KAPLAY outside scenes?](#why-can-i-use-kaplay-outside-scenes)
+- [`scene()`](/doc/ctx/scene) function to create scenes
+- [`go()`](/doc/ctx/go) function to change the current scene
+- Passing data between scenes
+- [Why can I use KAPLAY outside scenes?](#why-can-i-use-kaplay-outside-scenes)
 
 ## Creating Scenes
 
@@ -81,10 +81,10 @@ go("game", { score: 100, level: 1 });
 
 You can use KAPLAY outside scenes, this have some advantages and disadvantages.
 
--   **Advantage**: You can create simple games/examples without worrying about
-    scenes.
--   **Disadvantage**: If you add scenes later, your code outside scenes can't be
-    run again. You can't do a `go()` without scenes.
+- **Advantage**: You can create simple games/examples without worrying about
+  scenes.
+- **Disadvantage**: If you add scenes later, your code outside scenes can't be
+  run again. You can't do a `go()` without scenes.
 
 ```js
 k.add([sprite("mark")]);

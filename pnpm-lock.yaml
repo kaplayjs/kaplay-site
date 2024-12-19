@@ -74,9 +74,6 @@ importers:
       astro-robots-txt:
         specifier: ^1.0.0
         version: 1.0.0
-      dprint:
-        specifier: ^0.47.2
-        version: 0.47.2
       github-contributors:
         specifier: ^0.4.1
         version: 0.4.1
@@ -141,6 +138,9 @@ importers:
       daisyui:
         specifier: ^4.12.12
         version: 4.12.12(postcss@8.4.47)
+      dprint:
+        specifier: ^0.47.2
+        version: 0.47.2
       dts-bundle-generator:
         specifier: ^9.5.1
         version: 9.5.1

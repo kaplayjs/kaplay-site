@@ -44,8 +44,8 @@ export function t(locale: Locale, key: TranslationString) {
     const defaultLocaleMap = localesMap[locales[0] as Locale];
 
     return (
-        localeMap?.[localKey]?.[localSubKey] ??
-        defaultLocaleMap[localKey][localSubKey]
+        localeMap?.[localKey]?.[localSubKey]
+            ?? defaultLocaleMap[localKey][localSubKey]
     );
 }
 

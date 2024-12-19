@@ -35,7 +35,8 @@ const { type, lang } = Astro.props;
         description: type[0].name,
         keywords: "kaplayjs, guides, documentation",
     }}
-    sidebarMode="reference">
+    sidebarMode="reference"
+>
     <div class="min-h-dvh max-w-[50rem] p-4">
         {type?.map((refData) => <DocEntry data={refData} />)}
     </div>

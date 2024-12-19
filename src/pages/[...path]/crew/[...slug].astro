@@ -1,10 +1,10 @@
 ---
 import { CrewItem } from "@/components/Crew/CrewItem";
 import Navbar from "@/components/Land/Navbar.astro";
+import CarbonAd from "@/components/Util/CarbonAd.astro";
 import Page from "@/layouts/Page.astro";
 import { getStaticPathsByLocales } from "@/util/path";
 import { assets } from "@kaplayjs/crew";
-import CarbonAd from "@/components/Util/CarbonAd.astro";
 
 export async function getStaticPaths() {
     return getStaticPathsByLocales().flatMap((locale) => {
@@ -28,7 +28,8 @@ const { asset, lang } = Astro.props;
         keywords:
             "kaplay, kaboom.js, kaplay.js, game, library, javascript, easy, simple, html5, html5 games",
         image: assets[asset as keyof typeof assets].outlined,
-    }}>
+    }}
+>
     <main class="land flex flex-col scroll-smooth">
         <Navbar />
         <CrewItem crewItem={asset as keyof typeof assets} />

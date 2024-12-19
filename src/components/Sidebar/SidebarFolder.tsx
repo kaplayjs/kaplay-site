@@ -11,7 +11,8 @@ export const SidebarFolder = component$((props: SidebarFolderProps) => {
         <div
             class="folder | flex flex-col"
             id={props.id}
-            folder-state={props.isOpen ? "open" : "closed"}>
+            folder-state={props.isOpen ? "open" : "closed"}
+        >
             <p
                 class="folder-title | btn btn-ghost btn-sm w-full justify-start text-left text-lg"
                 onCLick$={(e) => {
@@ -21,10 +22,12 @@ export const SidebarFolder = component$((props: SidebarFolderProps) => {
 
                     if (folderState === "open") {
                         folder?.setAttribute("folder-state", "closed");
-                    } else {
+                    }
+                    else {
                         folder?.setAttribute("folder-state", "open");
                     }
-                }}>
+                }}
+            >
                 {props.title}
             </p>
             <ul class="folder-content | mx-4 flex-col gap-2 border-l-2 border-current">

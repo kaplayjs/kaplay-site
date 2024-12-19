@@ -20,13 +20,11 @@ export const JSDoc = component$(({ data }: Props) => {
 
     return (
         <>
-            {typeof jsDoc.doc === "object" ? (
-                <JSDocDescription data={data} />
-            ) : (
-                <p class="pb-2">{jsDoc.doc}</p>
-            )}
-            {paramTag &&
-                paramTag.items.map((item, i) => (
+            {typeof jsDoc.doc === "object"
+                ? <JSDocDescription data={data} />
+                : <p class="pb-2">{jsDoc.doc}</p>}
+            {paramTag
+                && paramTag.items.map((item, i) => (
                     <JSDocTag
                         tag="param"
                         items={[item]}
@@ -34,8 +32,8 @@ export const JSDoc = component$(({ data }: Props) => {
                     />
                 ))}
 
-            {otherTags &&
-                otherTags?.map(({ items, tag }) => (
+            {otherTags
+                && otherTags?.map(({ items, tag }) => (
                     <JSDocTag tag={tag} items={items} />
                 ))}
         </>

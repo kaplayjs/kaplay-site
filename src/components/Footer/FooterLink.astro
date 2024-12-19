@@ -12,6 +12,7 @@ const { href, external, rel } = Astro.props;
     class="link-hover link"
     {href}
     target={external ? "_blank" : "_parent"}
-    rel={rel}>
+    rel={rel}
+>
     <slot />
 </a>

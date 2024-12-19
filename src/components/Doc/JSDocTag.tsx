@@ -24,7 +24,7 @@ export const JSDocTag = component$(({ tag, items, paramName }: Props) => {
             return (
                 <p class="prose gap-2">
                     <code class="mr-1 inline">{tag}</code>
-                    <span>{paramName ?? "unknown"} </span>
+                    <span>{paramName ?? "unknown"}</span>
                     <span>{item}</span>
                 </p>
             );

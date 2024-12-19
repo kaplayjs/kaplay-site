@@ -12,9 +12,9 @@ export const BlocksSection = component$(() => {
                         <span class="text-primary">blocks</span>
                     </h2>
                     <p class="text-pangolin text-xl">
-                        <span class="text-primary">KAPLAY</span> is enjoyable
-                        and fun to use and easy to learn. That's why we've
-                        designed it to be based on{" "}
+                        <span class="text-primary">KAPLAY</span>{" "}
+                        is enjoyable and fun to use and easy to learn. That's
+                        why we've designed it to be based on{" "}
                         <strong>blocks and functions</strong>. Here are some of
                         the most common blocks you'll use.
                     </p>
@@ -109,8 +109,8 @@ export const BlocksSection = component$(() => {
                         obj.position.transform.translate(10, 20)
                     </code>{" "}
                     Just <span class="text-primary">simple</span> and{" "}
-                    <span class="text-primary">fun</span> to use methods and
-                    functions.
+                    <span class="text-primary">fun</span>{" "}
+                    to use methods and functions.
                 </p>
             </div>
         </div>

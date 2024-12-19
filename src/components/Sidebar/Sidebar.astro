@@ -6,6 +6,7 @@ import { cn } from "@/util/cn";
 import { getLangedRoute } from "@/util/path";
 import type { MarkdownHeading } from "astro";
 import { Image } from "astro:assets";
+import Footer from "../Footer/Footer.astro";
 import {
     getBlogEntries,
     getBookEntries,
@@ -15,7 +16,6 @@ import {
 import { SidebarLink } from "./SidebarLink";
 import { SidebarList } from "./SidebarList";
 import VersionSelector from "./VersionSelector.astro";
-import Footer from "../Footer/Footer.astro";
 
 type LinkListEntry = {
     title: string;
@@ -41,11 +41,14 @@ let renderList: SidebarEntry[] = [];
 
 if (sidebarMode === "guides") {
     renderList = await getGuidesEntries();
-} else if (sidebarMode === "reference") {
+}
+else if (sidebarMode === "reference") {
     renderList = await getDocEntries();
-} else if (sidebarMode === "blog") {
+}
+else if (sidebarMode === "blog") {
     renderList = await getBlogEntries();
-} else if (sidebarMode === "books") {
+}
+else if (sidebarMode === "books") {
     renderList = await getBookEntries();
 }
 ---
@@ -58,7 +61,8 @@ if (sidebarMode === "guides") {
     <div class="drawer-content w-full">
         <header class="z-30 flex min-h-16 w-full">
             <nav
-                class="fixed z-30 flex h-16 w-full items-center justify-between gap-4 bg-base-200 px-4 md:w-[calc(100%-18rem)]">
+                class="fixed z-30 flex h-16 w-full items-center justify-between gap-4 bg-base-200 px-4 md:w-[calc(100%-18rem)]"
+            >
                 <label for="sidebar" class="flex md:hidden">
                     <figure>
                         <Image
@@ -74,19 +78,22 @@ if (sidebarMode === "guides") {
                     headings && headings.length > 0 && (
                         <select
                             class="select select-sm max-w-40"
-                            onchange="window.location.href = this.value">
-                            {headings?.map((heading) => (
-                                <option
-                                    value={`#${heading.slug}`}
-                                    class={cn({
-                                        "lg:text-xl lg:font-semibold":
-                                            heading.depth === 1,
-                                        "lg:text-lg": heading.depth === 2,
-                                        "lg:text-base": heading.depth >= 3,
-                                    })}>
-                                    {heading.text}
-                                </option>
-                            ))}
+                            onchange="window.location.href = this.value"
+                        >
+                            {
+                                headings?.map((heading) => (
+                                    <option
+                                        value={`#${heading.slug}`}
+                                        class={cn({
+                                            "lg:text-xl lg:font-semibold": heading.depth === 1,
+                                            "lg:text-lg": heading.depth === 2,
+                                            "lg:text-base": heading.depth >= 3,
+                                        })}
+                                    >
+                                        {heading.text}
+                                    </option>
+                                ))
+                            }
                         </select>
                     )
                 }
@@ -95,8 +102,8 @@ if (sidebarMode === "guides") {
                     KAPLAY.js is open source (MIT) and free to use. <a
                         href="https://opencollective.com/kaplay"
                         target="_blank"
-                        class="link link-primary">Consider sponsoring ❤</a
-                    >
+                        class="link link-primary"
+                    >Consider sponsoring ❤</a>
                 </div>
             </nav>
         </header>
@@ -113,11 +120,15 @@ if (sidebarMode === "guides") {
     </div>
 
     <div class="drawer-side z-50 h-dvh md:bg-base-300">
-        <label for="sidebar" aria-label="close sidebar" class="drawer-overlay"
+        <label
+            for="sidebar"
+            aria-label="close sidebar"
+            class="drawer-overlay"
         ></label>
         <div
             class="min-h-full w-72 bg-base-300 p-4 text-base-content"
-            transition:persist>
+            transition:persist
+        >
             <figure>
                 <a class="btn btn-ghost h-max" href={getLangedRoute(lang, "/")}>
                     <Image
@@ -133,7 +144,8 @@ if (sidebarMode === "guides") {
             <div class="divider"></div>
             <button
                 class="btn btn-neutral mb-4 w-full border-primary"
-                onclick="document.querySelector('#search-modal')?.showModal()">
+                onclick="document.querySelector('#search-modal')?.showModal()"
+            >
                 <img src={searchIcon.src} alt="search icon" class="h-9 w-9" />
                 <span>SEARCH</span>
                 <kbd id="search-btn" class="kbd">CTRL + K</kbd>
@@ -147,13 +159,15 @@ if (sidebarMode === "guides") {
                 <SidebarLink
                     href="https://kaboomjs.com/discord"
                     target="_blank"
-                    icon="discord">
+                    icon="discord"
+                >
                     Discord
                 </SidebarLink>
                 <SidebarLink
                     href="https://github.com/kaplayjs/kaplay"
                     target="_blank"
-                    icon="github">
+                    icon="github"
+                >
                     GitHub
                 </SidebarLink>
                 <SidebarLink href="/changelog" icon="pog">
@@ -162,13 +176,15 @@ if (sidebarMode === "guides") {
                 <SidebarLink
                     href="https://play.kaplayjs.com"
                     target="_blank"
-                    icon="controller">
+                    icon="controller"
+                >
                     KA-PLAYGROUND
                 </SidebarLink>
                 <SidebarLink
                     href="https://opencollective.com/kaplay"
                     target="_blank"
-                    icon="donate">
+                    icon="donate"
+                >
                     Donate to KAPLAY
                 </SidebarLink>
             </ul>

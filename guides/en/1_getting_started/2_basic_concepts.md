@@ -9,11 +9,10 @@ image: "./assets/theater.png"
 
 # Basic Concepts
 
-KAPLAY is a game library that makes it easy to create games in JavaScript. This
-is done with three main concepts: **Scenes**, **Game Objects**, and
-**Components**.
+To get started with KAPLAY, you must know 4 main concepts: **Scenes**, **Game
+Objects**, **Components** and **Events**
 
-You can think of your game as a theater -- scenes are the acts, game objects are
+You can think of your game as a theater: scenes are the acts, game objects are
 the actors and components are the script the actors follow.
 
 ![alt text](./assets/theater.png)
@@ -30,18 +29,16 @@ kaplay();
 ## Game Objects
 
 The **game object** is the basic unit of KAPLAY. The player, a butterfly, a
-tree, or even a piece of text are all game objects.
+tree, or even a piece of text are all game objects. they are our actors, they
+move, interact, and make the game interesting.
 
-Going back to our theater metaphor, the game objects are our actors -- things
-that move, interact, and make the game interesting.
-
-In KAPLAY, you create objects with the `add()` function, which takes an array of
+You can create objects with the `add()` function, which takes an array of
 **components** that define the object's behavior (your actor's "script").
 
 ```js
 kaplay(); // remember to initialize the game
 
-add([
+const obj = add([
     // this is a component that draws a rectangle
     rect(32, 32),
 ]);
@@ -55,9 +52,9 @@ the object, like how it moves, looks, and interacts with other objects.
 In KAPLAY, there are many built-in components that you can use to create your
 game objects. For example:
 
--   `pos(x, y)` sets the position of the object.
--   `rect(width, height)` draws a rectangle.
--   `color(r, g, b)` sets the color of the object.
+- `pos(x, y)` sets the position of the object.
+- `rect(width, height)` draws a rectangle.
+- `color(r, g, b)` sets the color of the object.
 
 We will go in deep on components in the [**Components**](/guides/components)
 guide.
@@ -73,9 +70,26 @@ In KAPLAY, you create scenes with the `scene()` function:
 kaplay(); // remember to initialize the game
 
 scene("game", () => {
-    add([
+    const rect = add([
         // a component
         rect(32, 32),
     ]);
 });
 ```
+
+## Events
+
+Events are specific moments of your game execution that you can handle and
+execute code when that happens.
+
+```js
+onUpdate(() => {
+    // this code is executed every frame (normally 60 times per second)
+});
+
+onKeyPress("space", () => {
+    // this code is executed only when the space key is pressed
+});
+```
+
+We go in deep with events on the [**Events guide**](/guides/events) guide.

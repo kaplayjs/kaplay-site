@@ -77,23 +77,23 @@ player.onCollide("enemy", () => {
 If you ever need to do something related to managing the certain behaviour of
 objects, you can work with any of these events!
 
--   [`onAdd()`](/doc/ctx/onAdd) For running something on an object with a
-    certain tag being added.
--   [`onDestroy()`](/doc/ctx/onDestroy) For running something on an object with
-    a certain tag being destroyed.
--   [`onUpdate()`](/doc/ctx/onUpdate) For running something infinitely.
--   [`onDraw()`](/doc/ctx/onDraw) For custom drawing of elements.
+- [`onAdd()`](/doc/ctx/onAdd) For running something on an object with a certain
+  tag being added.
+- [`onDestroy()`](/doc/ctx/onDestroy) For running something on an object with a
+  certain tag being destroyed.
+- [`onUpdate()`](/doc/ctx/onUpdate) For running something infinitely.
+- [`onDraw()`](/doc/ctx/onDraw) For custom drawing of elements.
 
 Or if you need to detect keyboard/mouse input from the player, you can work with
 any of these events!
 
--   [`onMousePress()`](/doc/ctx/onMousePress) For more options when detecting
-    mouse input.
--   [`onKeyPress()`](/doc/ctx/onKeyPress) For detecting keyboard input on a
-    single key.
--   [`onCharInput()`](/doc/ctx/onCharInput) For detecting keyboard input of any
-    key.
--   [`onScroll()`](/doc/ctx/onScroll) For detecting mouse wheel scrolling input.
+- [`onMousePress()`](/doc/ctx/onMousePress) For more options when detecting
+  mouse input.
+- [`onKeyPress()`](/doc/ctx/onKeyPress) For detecting keyboard input on a single
+  key.
+- [`onCharInput()`](/doc/ctx/onCharInput) For detecting keyboard input of any
+  key.
+- [`onScroll()`](/doc/ctx/onScroll) For detecting mouse wheel scrolling input.
 
 Some of them even have their [`onUpdate()`](/doc/ctx/onUpdate) equivalents! Such
 as [`onKeyPress()`](/doc/ctx/onKeyPress) being able to be used on an onUpdate
@@ -131,7 +131,8 @@ player.trigger("hungry", 5); // triggers hungry and passes 5 as a 'hungriness' v
 player.on("hungry", (hungriness) => {
     if (hungriness < 10) {
         debug.log("I'll eat later");
-    } else {
+    }
+    else {
         debug.log("I must eat now!");
     }
 });

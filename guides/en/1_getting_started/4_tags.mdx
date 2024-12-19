@@ -1,0 +1,82 @@
+---
+title: Tags
+description: Learn how to add, remove and query for tags in KAPLAY.js
+url: tags
+---
+
+import Info from "@/components/Content/Info.astro";
+
+# Tags
+
+Tags are names, labels or keywords that group game objects, such as enemies,
+friends, trees, etc. They are useful for classifying different types of objects.
+
+## Using tags
+
+Tags can be added on the `add([])` function array as a string.
+
+```js
+const ghost = add([
+    sprite("ghosty"),
+    "enemy",
+]);
+```
+
+This make ghosty to have a tag enemy, and there's much operations you can do
+with it.
+
+## Tags operations
+
+### How to add a tag
+
+```js
+// Add a tag on creation
+const ghosty = add([
+    sprite("ghosty"),
+    "enemy";
+]);
+
+// Add 1 tag or many tags!
+ghosty.tag("friend"); // now is a friend :D
+ghosty.tag(["friend", "invisible"]); // invisible forever
+```
+
+### How to remove a tag
+
+```js
+ghosty.untag("friend"); // D:
+```
+
+### How to know if a tag exists in a game object
+
+```js
+ghosty.is("enemy"); // true if tag is there, otherwise false
+```
+
+### How to get a list of all tags
+
+```js
+ghosty.tags; // readonly array with all tags.
+// result: ["enemy"]
+```
+
+<Info crew="gun" title="Important!">
+Don't try to push or modify this array. Is only for read purposes. If you want to add or remove a tag, use `.tag()` and `.untag()` instead.
+</Info>
+
+## Using tags in events and methods
+
+A big quantity of methods and functions works using tags.
+
+```js
+obj.get("enemy"); // returns an array with all enemy game objects
+```
+
+## Special tag: *
+
+All game objects have the `*` tag by default. This can be useful for example to
+get all game objects
+
+```js
+get("*"); // list of all game objects
+```

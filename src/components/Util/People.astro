@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
-import peopleData from "../../data/contributors.json";
 import colyseus from "../../assets/sponsors/colyseus.png";
+import peopleData from "../../data/contributors.json";
 const contributors = Object.values(peopleData);
 ---
 
@@ -17,31 +17,34 @@ const contributors = Object.values(peopleData);
         People who contributed to KAPLAY.js 🎉
     </h2>
     <div
-        class="flex max-w-lg flex-row flex-wrap items-center justify-center gap-6">
+        class="flex max-w-lg flex-row flex-wrap items-center justify-center gap-6"
+    >
         {
             contributors
-                .filter((_, i) => i < 20)
-                .map((person) => (
-                    <a
-                        href={`https://github.com/${person.login}`}
-                        target="_blank">
-                        <div>
-                            <Image
-                                class="w-18 h-18 rounded-full"
-                                src={person.avatar_url}
-                                alt={person.login}
-                                width={72}
-                                height={72}
-                            />
-                        </div>
-                    </a>
-                ))
+        .filter((_, i) => i < 20)
+        .map((person) => (
+                <a
+                    href={`https://github.com/${person.login}`}
+                    target="_blank"
+                >
+                    <div>
+                        <Image
+                            class="w-18 h-18 rounded-full"
+                            src={person.avatar_url}
+                            alt={person.login}
+                            width={72}
+                            height={72}
+                        />
+                    </div>
+                </a>
+            ))
         }
         <div class="flex flex-col items-center justify-center">
             <a
                 class="text-sm text-primary decoration-current decoration-dashed"
                 href="https://github.com/kaplayjs/kaplay/graphs/contributors"
-                target="_blank">
+                target="_blank"
+            >
                 and {contributors.length - 20} more contributors
             </a>
         </div>

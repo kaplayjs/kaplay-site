@@ -18,10 +18,10 @@ panel.
 
 You will see
 
--   The current FPS
--   Object areas (blue rectangle)
--   Object anchor points (red dot)
--   Object components properties
+- The current FPS
+- Object areas (blue rectangle)
+- Object anchor points (red dot)
+- Object components properties
 
 ## Logging
 
@@ -38,13 +38,11 @@ With <kbd class="kbd kbd-sm">F2</kbd>, you can clear the log.
 
 With the keys <kbd>F7</kbd>,
 <kbd>F8</kbd>,
-<kbd>F9</kbd> you can control the time of the
-game.
+<kbd>F9</kbd> you can control the time of the game.
 
 <kbd>F7</kbd> and
-<kbd>F9</kbd> will decrease and increase the
-time speed, respectively. <kbd>F8</kbd> will
-pause the game.
+<kbd>F9</kbd> will decrease and increase the time speed, respectively.
+<kbd>F8</kbd> will pause the game.
 
 This is useful to test features in slow motion or to pause the game to inspect
 the objects.

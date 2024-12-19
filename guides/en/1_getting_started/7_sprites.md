@@ -12,9 +12,9 @@ The sprites are probably most of your visual aspects of your game.
 
 This guide covers:
 
--   [`loadSprite()`](/doc/ctx/loadSprite) for loading sprites and spritesheets
--   [`sprite()`](/doc/ctx/sprite) for creating a sprite component
--   flipping sprites
+- [`loadSprite()`](/doc/ctx/loadSprite) for loading sprites and spritesheets
+- [`sprite()`](/doc/ctx/sprite) for creating a sprite component
+- flipping sprites
 
 ## Loading Sprites
 

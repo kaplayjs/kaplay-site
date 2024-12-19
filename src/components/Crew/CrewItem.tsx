@@ -30,7 +30,8 @@ export const CrewItem = component$<CrewItemProps>((props) => {
                 <div class="flex flex-1 flex-col gap-2 p-6">
                     <div
                         class="tooltip flex justify-around rounded-box border border-primary"
-                        data-tip={crewItem.secret}>
+                        data-tip={crewItem.secret}
+                    >
                         <img
                             src={crewItem.outlined}
                             alt={crewItem.name}
@@ -71,7 +72,8 @@ export const CrewItem = component$<CrewItemProps>((props) => {
                                             alt="Weight icon"
                                             class="h-5 w-5"
                                         />
-                                        <span class="font-bold">Weight:</span>{" "}
+                                        <span class="font-bold">Weight:</span>
+                                        {" "}
                                         {crewItem.crewmeta?.weight}kg
                                     </li>
                                     <li class="flex items-center gap-2">
@@ -80,7 +82,8 @@ export const CrewItem = component$<CrewItemProps>((props) => {
                                             alt="Height icon"
                                             class="h-5 w-5"
                                         />
-                                        <span class="font-bold">Height:</span>{" "}
+                                        <span class="font-bold">Height:</span>
+                                        {" "}
                                         {crewItem.crewmeta?.height}m
                                     </li>
                                     <li class="flex items-center gap-2">
@@ -89,7 +92,8 @@ export const CrewItem = component$<CrewItemProps>((props) => {
                                             alt="Species icon"
                                             class="h-5 w-5"
                                         />
-                                        <span class="font-bold">Species:</span>{" "}
+                                        <span class="font-bold">Species:</span>
+                                        {" "}
                                         {crewItem.crewmeta?.species}
                                     </li>
                                 </ul>
@@ -100,29 +104,28 @@ export const CrewItem = component$<CrewItemProps>((props) => {
                 <div class="divider divider-horizontal m-0"></div>
                 <div class="flex flex-1 flex-col gap-4 p-6">
                     <p class="max-w-[40ch] text-balance">
-                        {crewItem.description}
-                        {"  "}
-                        {crewItem.crewmeta && (
+                        {crewItem.description}{"  "}{crewItem.crewmeta && (
                             <>
                                 <span>
                                     {crewItem.name} hobbies includes{" "}
                                     {crewItem.crewmeta.hobbies
                                         .slice(0, -1)
                                         .join(", ")}{" "}
-                                    {crewItem.crewmeta.hobbies.length > 1 &&
-                                        "and"}{" "}
+                                    {crewItem.crewmeta.hobbies.length > 1
+                                        && "and"}{" "}
                                     {crewItem.crewmeta.hobbies.slice(-1)}.
                                 </span>
                                 <br />
                                 <br />
                                 <span>
-                                    {genderWord[crewItem.crewmeta.gender][2]}{" "}
+                                    {genderWord[crewItem.crewmeta.gender][2]}
+                                    {" "}
                                     favorite food is{" "}
                                     {crewItem.crewmeta.favoriteFood}, and{" "}
                                     {genderWord[
                                         crewItem.crewmeta.gender
-                                    ][0].toLowerCase()}
-                                    {"  "}loves the color{" "}
+                                    ][0].toLowerCase()}{"  "}loves the color
+                                    {" "}
                                     {crewItem.crewmeta.favoriteColor}.
                                 </span>
                             </>
@@ -135,7 +138,8 @@ export const CrewItem = component$<CrewItemProps>((props) => {
                             a.href = crewItem.sprite!;
                             a.download = `${props.crewItem}.png`;
                             a.click();
-                        }}>
+                        }}
+                    >
                         Download Sprite
                     </btn>
                     <btn
@@ -145,7 +149,8 @@ export const CrewItem = component$<CrewItemProps>((props) => {
                             a.href = crewItem.outlined!;
                             a.download = `${props.crewItem}-o.png`;
                             a.click();
-                        }}>
+                        }}
+                    >
                         Download Outlined ver.
                     </btn>
                 </div>

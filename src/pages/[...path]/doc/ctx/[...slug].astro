@@ -7,8 +7,8 @@ import { getStaticPathsByLocales } from "@/util/path";
 
 export async function getStaticPaths() {
     const allDoc = doc.types as any;
-    const kaboomDoc: any =
-        allDoc.KaboomCtx?.[0].members ?? allDoc.KAPLAYCtx?.[0].members;
+    const kaboomDoc: any = allDoc.KaboomCtx?.[0].members
+        ?? allDoc.KAPLAYCtx?.[0].members;
     const allKaboomDocKeys: string[] = Object.keys(kaboomDoc);
 
     return getStaticPathsByLocales().flatMap((locale) => {
@@ -35,7 +35,8 @@ const { type, lang } = Astro.props;
         description: type[0].jsDoc?.doc ?? "KAPLAY Doc about " + type[0].name,
         keywords: "kaplayjs, guides, documentation",
     }}
-    sidebarMode="reference">
+    sidebarMode="reference"
+>
     <div class="min-h-dvh w-full max-w-[50rem] p-4">
         {type?.map((refData) => <DocEntry data={refData} />)}
     </div>

@@ -10,12 +10,12 @@ url: install
 
 This guide covers:
 
--   [create-kaplay](https://npmjs.com/package/create-kaplay) for create KAPLAY
-    projects easily
--   Using KAPLAY with a CDN
--   Using KAPLAY with Node.js
--   Loading assets
--   Running a static file server
+- [create-kaplay](https://npmjs.com/package/create-kaplay) for create KAPLAY
+  projects easily
+- Using KAPLAY with a CDN
+- Using KAPLAY with Node.js
+- Loading assets
+- Running a static file server
 
 The most easy way to get started with KAPLAY is to use the
 [CLI tool](https://www.npmjs.com/package/create-kaplay), which will generate a
@@ -74,10 +74,10 @@ $ npm install kaplay
 You'll need to use a bundler to use Kaboom with NPM. There's a lot of options
 like:
 
--   `esbuild`,
--   `webpack`,
--   `parcel`,
--   `vitejs`,
+- `esbuild`,
+- `webpack`,
+- `parcel`,
+- `vitejs`,
 
 This is a short example of how to use Kaboom with
 ["esbuild"](https://esbuild.github.io/).
@@ -107,19 +107,17 @@ system, that is because browser won't allow loading local files with JavaScript.
 To get around that you'll need to use a static file that serves the files
 through HTTP. There're a lot of programs that helps you to do that.
 
--   `$ python3 -m http.server` if you have [python3](https://www.python.org)
-    installed
--   `$ python -m SimpleHTTPServer` if you have [python2](https://www.python.org)
-    installed
--   `$ serve` if you have [serve](https://github.com/vercel/serve) installed
--   `$ caddy file-server` if you have [caddy](https://caddyserver.com/)
-    installed
--   `$ static-here` if you have
-    [static-here](https://github.com/amasad/static-here) installed
-- `$ ruby -run -ehttpd . -p8000` if you have [ruby](https://www.ruby-lang.org/en)
+- `$ python3 -m http.server` if you have [python3](https://www.python.org)
   installed
-- `$ php -S localhost:8000` if you have [php](https://php.net)
+- `$ python -m SimpleHTTPServer` if you have [python2](https://www.python.org)
   installed
+- `$ serve` if you have [serve](https://github.com/vercel/serve) installed
+- `$ caddy file-server` if you have [caddy](https://caddyserver.com/) installed
+- `$ static-here` if you have
+  [static-here](https://github.com/amasad/static-here) installed
+- `$ ruby -run -ehttpd . -p8000` if you have
+  [ruby](https://www.ruby-lang.org/en) installed
+- `$ php -S localhost:8000` if you have [php](https://php.net) installed
 
 Let's say you have a folder structure like this:
 

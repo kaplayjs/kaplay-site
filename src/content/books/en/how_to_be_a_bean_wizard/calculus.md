@@ -168,12 +168,14 @@ $$
 cos(x) = 1 − \frac{x^2}{2!} + \frac{x^4}{4!} − ...
 $$
 
-This is how trigonometric, logarithmic and other functions can be converted into polynomials which can then be calculated using basic operators. This is how also
+This is how trigonometric, logarithmic and other functions can be converted into
+polynomials which can then be calculated using basic operators. This is how also
 how libraries implement them.
 
 ## Calculating derivatives
 
-In case you don't remember how to calculate the derivative of a function, here is a short guide. For a constant function, the derivative is 0.
+In case you don't remember how to calculate the derivative of a function, here
+is a short guide. For a constant function, the derivative is 0.
 
 $$
 f(x) = c

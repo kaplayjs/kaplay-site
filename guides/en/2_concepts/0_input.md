@@ -8,9 +8,9 @@ url: input
 
 # Input Bindings
 
-Input bindings allows you to use the same event for mouse,
-keyboard and gamepad. Also you can set a generic name like `jump` and bind it to
-the keys or buttons you want.
+Input bindings allows you to use the same event for mouse, keyboard and gamepad.
+Also you can set a generic name like `jump` and bind it to the keys or buttons
+you want.
 
 ## Creating input bindings
 

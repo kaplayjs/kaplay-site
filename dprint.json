@@ -1,0 +1,9 @@
+{
+  "extends": "node_modules/@kaplayjs/dprint-config/dprint.json",
+  "markdown": {
+    "associations": [
+      "**/*.md",
+      "**/*.mdx"
+    ]
+  }
+}
