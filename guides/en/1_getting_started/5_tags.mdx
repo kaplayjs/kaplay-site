@@ -80,3 +80,27 @@ get all game objects
 ```js
 get("*"); // list of all game objects
 ```
+
+## Components as tags
+
+In v3001, KAPLAY by default will take component id's as tags:
+
+```js
+// this means if your object have a sprite() component, it also have a "sprite" tag
+const tga = add([
+    sprite("tga"),
+]);
+
+tga.is("sprite"); // true
+```
+
+In next versions this is disabled by default, but if you want to enable it or
+disable it in v3001 version, you can use the `tagsAsComponents` option:
+
+```js
+kaplay({
+    tagsAsComponents: false,
+});
+
+tga.is("sprite"); // false
+```

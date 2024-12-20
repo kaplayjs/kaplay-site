@@ -11,13 +11,6 @@ url: scenes
 Scenes are the way to organize your game. They are like the chapters of a book,
 each scene is a different part of your game.
 
-This guide covers:
-
-- [`scene()`](/doc/ctx/scene) function to create scenes
-- [`go()`](/doc/ctx/go) function to change the current scene
-- Passing data between scenes
-- [Why can I use KAPLAY outside scenes?](#why-can-i-use-kaplay-outside-scenes)
-
 ## Creating Scenes
 
 To create a scene, we use the `scene()` function. This function receives a name

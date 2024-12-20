@@ -1,0 +1,275 @@
+---
+title: Events
+description:
+    Learn how to manage events in KAPLAY, the HTML5 Game Engine for JavaScript
+    and TypeScript.
+url: events
+---
+
+import Info from "@/components/Content/Info.astro";
+
+# Events
+
+An **Event** is something that _happens_ in the game, for example, the player
+pressing a key, clicking the mouse or an enemy being hurt.
+
+An **Event Handler** is a method that listens for events and run code when they
+happen. These functions are named as `on{EventName}`.
+
+```js
+// onKeyPress() will run every time user press any key
+onKeyPress((key) => {
+    // Some events send you args related to them, in this case the key pressed
+    debug.log(key); // will log the key pressed
+});
+```
+
+**Event Handlers** also return an **Event Controller**. It works for cancel the
+event or pause it:
+
+```js
+const pressEvent = onKeyPress((key) => {
+    debug.log(key);
+});
+
+pressEvent.cancel(); // stop running the handler
+```
+
+There's many type of events that runs in different contexts:
+
+### App events
+
+**App events** run without neccesity of being attached to a game object. They
+are related to things like the game screen, input, etc.
+
+```js
+// Only runs when user press "a"
+onKeyPress("a", () => {
+    debug.log("aaa");
+});
+
+// Only runs when assets finish loading
+onLoad(() => {});
+```
+
+<Info crew="bobo" title="App events are also in objects">
+There's some events like `onKeyPress()` which also have a `obj.onKeyPress()` version. They are still App events but they got removed when the object is destroyed. See the [App Events list](/#app-events-list) below
+</Info>
+
+### Root events
+
+**Root events** run during the lifecycle of the **Root Game Object**, or the
+same, forever.
+
+```js
+// onUpdate() event runs every frame.
+onUpdate(() => {
+    // Bean moves 10px to the right every frame
+    bean.moveBy(10, 0);
+});
+
+// onDraw() event runs after update and must be used with drawXXXX functions.
+onDraw(() => {
+    // The sprite is drawn here to prevent it from disappearing after 1 frame.
+    drawSprite("bean");
+});
+```
+
+You can also associate these event handlers with **Tags**, this means you can
+run an event handler code _4 times_ if there's _4 objects_ with that tag. The
+**first argument** is always **the game object** is running for.
+
+```js
+// imagine there's 4 objects with tag "friend"
+
+// onUpdate("friend") will be executed 4 times per frame (or the same, 1 time per object)
+onUpdate("friend", (o) => {
+    // o will take 4 different values
+    debug.log(o.id);
+});
+```
+
+### Game Object events
+
+**Game Object events** are like Root events, but they operate on individual
+**Game Objects**. These events run during specific points in the object's
+lifecycle, such as when it's added, updated, or removed.
+
+```js
+const obj = add([]);
+
+// Runs when the object is added
+obj.onAdd(() => {});
+// Runs when the object is destroyed
+obj.onDestroy(() => {});
+
+// They run while obj exists
+obj.onUpdate(() => {});
+obj.onDraw(() => {});
+```
+
+Both Object and Root events operate with [Object Events List](#object-events)
+
+## Game Object events given by components
+
+There are events and events handlers that comes from some components. They
+become events of the object after add the comp:
+
+```js
+const kat = add([
+    // health(initialHp) comp gives to the object a health system
+    health(4),
+]);
+
+// Given by health(), runs when we hurt the obj
+kat.onHurt(() => {
+    debug.log("you're a monster!");
+});
+
+// Run when user clicks
+onMousePress(() => {
+    kat.hurt(1); // we remove 1 hp, ouch
+});
+```
+
+## Generic handler
+
+`on()` is a way to create handlers without they being premade. In fact, all
+events handler are an `on()`.
+
+You can use **global** `on()`, it works for use **Game Object events** with
+certain tags. The first argument is always the object. It is useful when there's
+no a handler for tags, for example in the component events:
+
+```js
+// obj.onHurt() but for many objects
+on("hurt", "friend", (o) => {
+    debug.log(o.id);
+});
+
+on("update", "friend", (o) => {
+    debug.log(o.id + "exists");
+});
+```
+
+There's also the object version, `obj.on()`. Useful for listen to an event only
+in that obj:
+
+```js
+kat.on("hurt", () => {
+});
+```
+
+## Custom events
+
+Sometimes you will need create a custom event. For this, we use the `on()` and
+`trigger()` functions.
+
+```js
+// Eat event for all objects with candy tag
+on("eat", "candy", () => {
+    debug.log("NOOOOO CANDY :(");
+});
+
+onKeyPress("space", () => {
+    trigger("eat");
+});
+```
+
+## Events operations
+
+### How to listen for an event
+
+```js
+// a global event
+onUpdate(() => {});
+// an object event
+obj.onUpdate(() => {});
+// a custom event
+obj.on("hi", () => {});
+```
+
+### How to trigger an event
+
+```js
+// will execute obj.on("hi", () => {})
+obj.trigger("hi"); // :>
+```
+
+## List of events
+
+- 🏷️ = Require tags for working
+
+### Object Events List
+
+| Event                    | Comp                               | Description                                   | Global Handler                                    | Object Handler                                                                     |
+| ------------------------ | ---------------------------------- | --------------------------------------------- | ------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `update`                 | None                               | Runs every frame                              | [`onUpdate()`](/doc/ctx/onUpdate)                 | [`obj.onUpdate()`](/doc/GameObjRaw/#GameObjRaw-onUpdate)                           |
+| `draw`                   | None                               | Runs every frame after update                 | [`onDraw()`](/doc/ctx/onDraw])                    | [`obj.onDraw()`](/doc/GameObjRaw/#GameObjRaw-onDraw)                               |
+| `add`                    | None                               | Runs when an object is added as child         | [`onAdd()`](/doc/ctx/onAdd)                       | [`obj.onAdd()`](/doc/GameObjRaw/#GameObjRaw-onAdd)                                 |
+| `destroy`                | None                               | Runs when an object is destroyed              | [`onDestroy()`](/doc/ctx/onDestroy)               | [`obj.onDestroy()`](/doc/GameObjRaw/#GameObjRaw-onDestroy)                         |
+| `use`                    | None                               | Runs when a component is added                | [`onUse()`](/doc/ctx/onUse)                       | [`obj.onUse(comp)`](/doc/GameObjRaw/#GameObjRaw-onUse)                             |
+| `unuse`                  | None                               | Runs when a component is unused               | [`onUnuse()`](/doc/ctx/onUnusue)                  | [`obj.onUnuse(comp)`](/doc/GameObjRaw/#GameObjRaw-onUnuse)                         |
+| `tag`                    | None                               | Runs when a tag is added                      | [`onTag()`](/doc/ctx/onTag)                       | [`obj.onTag(tag)`](/doc/GameObjRaw/#GameObjRaw-onTag)                              |
+| `untag`                  | None                               | Runs when a tag is removed                    | [`onUntag()`](/doc/ctx/onUntag)                   | [`obj.onUntag(tag)`](/doc/GameObjRaw/#GameObjRaw-onUntag)                          |
+| `collide`                | [`area()`](/doc/ctx/area)          | Runs when object collides with another object | [`onCollide()`](/doc/ctx/onCollide) 🏷️             | [`obj.onCollide(other, col)`](/doc/AreaComp/#AreaComp-onCollide)                   |
+| `collideUpdate`          | [`area()`](/doc/ctx/area)          | Runs every frame when objects are colliding   | [`onCollideUpdate()`](/doc/ctx/onCollideUpdate) 🏷️ | [`obj.onCollideUpdate()`](/doc/AreaComp/#AreaComp-onCollideUpdate)                 |
+| `collideEnd`             | [`area()`](/doc/ctx/area)          | Runs when object stops colliding              | [`onCollideEnd()`](/doc/ctx/onCollideEnd) 🏷️       | [`obj.onCollideEnd()`](/doc/AreaComp/#AreaComp-onCollideEnd)                       |
+| `hurt`                   | [`health()`](doc/ctx/health)       | Runs when object is hurt                      | Using `on()`                                      | [`obj.onHurt(damage)`](/doc/HealthComp/#HealthComp-onHurt)                         |
+| `heal`                   | [`health()`](doc/ctx/health)       | Runs when object is healed                    | Using `on()`                                      | [`obj.onHeal(amount)`](/doc/HealthComp/#HealthComp-onHeal)                         |
+| `death`                  | [`health()`](doc/ctx/health)       | Runs when object dies                         | Using `on()`                                      | [`obj.onDeath()`](/doc/HealthComp/#HealthComp-onDeath)                             |
+| `beforePhysicsResolve`   | [`body()`](doc/ctx/body)           | Runs before physics resolves                  | Using `on()`                                      | [`obj.onBeforePhysics(col)`](/doc/BodyComp/#BodyComp-onBeforePhysicsResolve)       |
+| `physicsResolve`         | [`body()`](doc/ctx/body)           | Runs after physics resolves                   | Using `on()`                                      | [`obj.onPhysics(col)`](/doc/BodyComp/#BodyComp-onPhysicsResolve)                   |
+| `ground`                 | [`body()`](doc/ctx/body)           | Runs when object is on the ground             | Using `on()`                                      | [`obj.onGround()`](/doc/BodyComp/#Body-onGround)                                   |
+| `fall`                   | [`body()`](doc/ctx/body)           | Runs when object starts falling               | Using `on()`                                      | [`obj.onFall()`](/doc/Body/#BodyComp-onFall)                                       |
+| `fallOff`                | [`body()`](doc/ctx/body)           | Runs when object stops falling                | Using `on()`                                      | [`obj.onFallOff()`](/doc/BodyComp/#BodyComp-onFallOff)                             |
+| `headbutt`               | [`body()`](doc/ctx/body)           | Runs when object headbutts                    | Using `on()`                                      | [`obj.onHeadbutt()`](/doc/BodyComp/#BodyComp-onHeadbutt)                           |
+| `land`                   | [`body()`](doc/ctx/body)           | Runs when object lands                        | Using `on()`                                      | [`obj.onLand()`](/doc/BodyComp/#BodyComp-onLand)                                   |
+| `headbutted`             | [`body()`](doc/ctx/body)           | Runs when object is headbutted                | Using `on()`                                      | [`obj.onHeadbutted()`](/doc/BodyComp/#BodyComp-onHeadbutted)                       |
+| `doubleJump`             | [`doubleJump`](doc/ctx/doubleJump) | Runs when object double jumps                 | Using `on()`                                      | [`obj.onDoubleJump()`](/doc/DoubleJumpComp/#DoubleJumpComp-onDoubleJump)           |
+| `exitView`               | [`offscreen()`](doc/ctx/offscreen) | Runs when object goes out of view             | Using `on()`                                      | [`obj.onExitView()`](/doc/OffscreenComp/#OffScreenComp-onExitView)                 |
+| `enterView`              | [`offscreen()`](doc/ctx/offscreen) | Runs when object enters view                  | Using `on()`                                      | [`obj.onEnterView()`](/doc/OffscreenComp/#OffScreenComp-onEnterView)               |
+| `animStart`              | [`sprite()`](doc/ctx/sprite)       | Runs when animation starts                    | Using `on()`                                      | [`obj.onAnimStart(anim)`](/doc/SpriteComp/#SpriteComp-onAnimStart)                 |
+| `animEnd`                | [`sprite()`](doc/ctx/sprite)       | Runs when animation ends                      | Using `on()`                                      | [`obj.onAnimEnd(anim)`](/doc/SpriteComp/#SpriteComp-onAnimEnd)                     |
+| `navigationNext`         | [`agent()`](doc/ctx/agent)         | Runs when navigation moves to the next point  | Using `on()`                                      | [`obj.onNavigationNext()`](/doc/AgentComp/#AgentComp-onNavigationNext)             |
+| `navigationEnded`        | [`agent()`](doc/ctx/agent)         | Runs when navigation ends                     | Using `on()`                                      | [`obj.onNavigationEnded()`](/doc/AgentComp/#AgentComp-onNavigationEnded)           |
+| `navigationStarted`      | [`agent()`](doc/ctx/agent)         | Runs when navigation starts                   | Using `on()`                                      | [`obj.onNavigationStarted()`](/doc/AgentComp/#AgentComp-onNavigationStarted)       |
+| `targetReached`          | [`agent()`](doc/ctx/agent)         | Runs when navigation target is reached        | Using `on()`                                      | [`obj.onTargetReached()`](/doc/AgentComp/#AgentComp-onTargetReached)               |
+| `patrolFinished`         | [`patrol()`](doc/ctx/agent)        | Runs when patrol finishes                     | Using `on()`                                      | [`obj.onPatrolFinished()`](/doc/PatrolComp/#PatrolComp-onPatrolFinished)           |
+| `objectSpotted`          | [`sentry()`](doc/ctx/sentry)       | Runs when object spots another                | Using `on()`                                      | [`obj.onObjectSpotted()`](/doc/SentryComp/#SentryComp-onObjectSpotted)             |
+| `animateChannelFinished` | [`animate()`](doc/ctx/animate)     | Runs when animation channel finishes          | Using `on()`                                      | [`obj.onAnimateChannel()`](/doc/AnimateComp/#AnimateComp-onAnimateChannelFinished) |
+| `animateFinished`        | [`animate`](doc/ctx/animate)       | Runs when animation finishes                  | Using `on()`                                      | [`obj.onAnimateFinished()`](/doc/AnimateComp/#AnimateComp-onAnimateFinished)       |
+| `spatialMapChanged`      | [`level()`](doc/ctx/level)         | Runs when spatial map changes                 | Using `on()`                                      | [`obj.onSpatialMapChanged()`](/doc/LevelComp/#LevelComp-onSpatialMapChanged)       |
+| `navigationMapInvalid`   | [`level()`](doc/ctx/level)         | Runs when navigation map becomes invalid      | Using `on()`                                      | [`obj.onNavMapInvalid()`](/doc/LevelComp/#LevelComp-onNavigationMapInvalid)        |
+| `avigationMapChanged`    | [`level()`](doc/ctx/level)         | Runs when navigation map changes              | Using `on()`                                      | [`obj.onNavMapChanged()`](/doc/LevelComp/#LevelComp-onNavigationMapChanged)        |
+
+### App Events List
+
+| Event                  | Description                             | Global Handler                                                | Object Handler                                                                       |
+| ---------------------- | --------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| `mouseMove`            | Runs when mouse moves                   | [`onMouseMove()`](/doc/ctx/onMouseMove)                       | [`obj.onMouseMove()`](/doc/GameObjRaw/#GameObjRaw-onMouseMove)                       |
+| `mouseDown`            | Runs when mouse is clicked              | [`onMouseDown()`](/doc/ctx/onMouseDown)                       | [`obj.onMouseDown()`](/doc/GameObjRaw/#GameObjRaw-onMouseDown)                       |
+| `mousePress`           | Runs when mouse button is pressed       | [`onMousePress()`](/doc/ctx/onMousePress)                     | [`obj.onMousePress()`](/doc/GameObjRaw/#GameObjRaw-onMousePress)                     |
+| `mouseRelease`         | Runs when mouse button is released      | [`onMouseRelease()`](/doc/ctx/onMouseRelease)                 | [`obj.onMouseRelease()`](/doc/GameObjRaw/#GameObjRaw-onMouseRelease)                 |
+| `charInput`            | Runs when a character input is detected | [`onCharInput()`](/doc/ctx/onCharInput)                       | [`obj.onCharInput()`](/doc/GameObjRaw/#GameObjRaw-onCharInput)                       |
+| `keyPress`             | Runs when a key is pressed              | [`onKeyPress()`](/doc/ctx/onKeyPress)                         | [`obj.onKeyPress()`](/doc/GameObjRaw/#GameObjRaw-onKeyPress)                         |
+| `keyDown`              | Runs when a key is held down            | [`onKeyDown()`](/doc/ctx/onKeyDown)                           | [`obj.onKeyDown()`](/doc/GameObjRaw/#GameObjRaw-onKeyDown)                           |
+| `keyPressRepeat`       | Runs when a key is repeatedly pressed   | [`onKeyPressRepeat()`](/doc/ctx/onKeyPressRepeat)             | [`obj.onKeyPressRepeat()`](/doc/GameObjRaw/#GameObjRaw-onKeyPressRepeat)             |
+| `keyRelease`           | Runs when a key is released             | [`onKeyRelease()`](/doc/ctx/onKeyRelease)                     | [`obj.onKeyRelease()`](/doc/GameObjRaw/#GameObjRaw-onKeyRelease)                     |
+| `touchStart`           | Runs when a touch starts                | [`onTouchStart()`](/doc/ctx/onTouchStart)                     | [`obj.onTouchStart()`](/doc/GameObjRaw/#GameObjRaw-onTouchStart)                     |
+| `touchMove`            | Runs when a touch moves                 | [`onTouchMove()`](/doc/ctx/onTouchMove)                       | [`obj.onTouchMove()`](/doc/GameObjRaw/#GameObjRaw-onTouchMove)                       |
+| `touchEnd`             | Runs when a touch ends                  | [`onTouchEnd()`](/doc/ctx/onTouchEnd)                         | [`obj.onTouchEnd()`](/doc/GameObjRaw/#GameObjRaw-onTouchEnd)                         |
+| `gamepadButtonDown`    | Runs when a gamepad button is pressed   | [`onGamepadButtonDown()`](/doc/ctx/onGamepadButtonDown)       | [`obj.onGamepadButtonDown()`](/doc/GameObjRaw/#GameObjRaw-onGamepadButtonDown)       |
+| `gamepadButtonPress`   | Runs when a gamepad button is held down | [`onGamepadButtonPress()`](/doc/ctx/onGamepadButtonPress)     | [`obj.onGamepadButtonPress()`](/doc/GameObjRaw/#GameObjRaw-onGamepadButtonPress)     |
+| `gamepadButtonRelease` | Runs when a gamepad button is released  | [`onGamepadButtonRelease()`](/doc/ctx/onGamepadButtonRelease) | [`obj.onGamepadButtonRelease()`](/doc/GameObjRaw/#GameObjRaw-onGamepadButtonRelease) |
+| `gamepadStick`         | Runs when a gamepad stick moves         | [`onGamepadStick()`](/doc/ctx/onGamepadStick)                 | [`obj.onGamepadStick()`](/doc/GameObjRaw/#GameObjRaw-onGamepadStick)                 |
+| `gamepadConnect`       | Runs when a gamepad connects            | [`onGamepadConnect()`](/doc/ctx/onGamepadConnect)             | [`obj.onGamepadConnect()`](/doc/GameObjRaw/#GameObjRaw-onGamepadConnect)             |
+| `gamepadDisconnect`    | Runs when a gamepad disconnects         | [`onGamepadDisconnect()`](/doc/ctx/onGamepadDisconnect)       | [`obj.onGamepadDisconnect()`](/doc/GameObjRaw/#GameObjRaw-onGamepadDisconnect)       |
+| `buttonDown`           | Runs when a button is pressed           | [`onButtonDown()`](/doc/ctx/onButtonDown)                     | [`obj.onButtonDown()`](/doc/GameObjRaw/#GameObjRaw-onButtonDown)                     |
+| `buttonPress`          | Runs when a button is held down         | [`onButtonPress()`](/doc/ctx/onButtonPress)                   | [`obj.onButtonPress()`](/doc/GameObjRaw/#GameObjRaw-onButtonPress)                   |
+| `buttonRelease`        | Runs when a button is released          | [`onButtonRelease()`](/doc/ctx/onButtonRelease)               | [`obj.onButtonRelease()`](/doc/GameObjRaw/#GameObjRaw-onButtonRelease)               |
+| `scroll`               | Runs when a scroll event occurs         | [`onScroll()`](/doc/ctx/onScroll)                             | [`obj.onScroll()`](/doc/GameObjRaw/#GameObjRaw-onScroll)                             |
+| `hide`                 | Runs when an object is hidden           | [`onHide()`](/doc/ctx/onHide)                                 | No ❌                                                                                |
+| `show`                 | Runs when an object becomes visible     | [`onShow()`](/doc/ctx/onShow)                                 | No ❌                                                                                |
+| `resize`               | Runs when a resize event occurs         | [`onResize()`](/doc/ctx/onResize)                             | No ❌                                                                                |
+| `input`                | Runs when the input is processed        | No ❌                                                         | No ❌                                                                                |

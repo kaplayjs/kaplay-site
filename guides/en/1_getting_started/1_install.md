@@ -8,15 +8,6 @@ url: install
 
 # Installation
 
-This guide covers:
-
-- [create-kaplay](https://npmjs.com/package/create-kaplay) for create KAPLAY
-  projects easily
-- Using KAPLAY with a CDN
-- Using KAPLAY with Node.js
-- Loading assets
-- Running a static file server
-
 The most easy way to get started with KAPLAY is to use the
 [CLI tool](https://www.npmjs.com/package/create-kaplay), which will generate a
 project for you:
@@ -27,7 +18,7 @@ $ cd mygame
 $ npm run dev
 ```
 
-This will create your game in the `mygame` directory, and start a development
+This will create your game in the `mygame` folder, and start a development
 server for you to preview your game. If you edit `src/main.js` and refresh the
 page, you will see your changes.
 

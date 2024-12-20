@@ -8,12 +8,6 @@ version: v4000
 
 # Fake mouse
 
-This guide covers:
-
-- Creating a fake cursor that trigger hover and click events
-- [`fakeMouse()` component](/doc/ctx/fakeMouse)
-- Moving the fake cursor
-
 Sometimes you want your game using a fake mouse in game-pad devices (i.e:
 Ultimate Chicken Horse), you want to use a Game Object as a cursor. There's a
 special component for it, `fakeMouse`.

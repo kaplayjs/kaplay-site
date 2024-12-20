@@ -11,14 +11,6 @@ url: audio
 In KAPLAY, you can easily add background music and sound effects to your game.
 You can play music, audios and sounds using the `play()` function.
 
-This guide covers:
-
-- [`loadSound()`](/doc/ctx/loadSound) for loading sounds
-- [`play()`](/doc/ctx/play) for playing sounds
-- [`AudioPlayOpt`](/doc/AudioPlayOpt/) for set options to play a sound
-- [`loadMusic()`](/doc/ctx/loadMusic) for loading music
-- [`AudioPlay`](/doc/AudioPlay/) for modify the state of a sound
-
 ## Loading sounds
 
 For load audio files, you can use the `loadSound()` function. This function

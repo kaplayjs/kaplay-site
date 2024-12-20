@@ -18,7 +18,7 @@ As KAPLAY is a fork of Kaboom, you can update the package in your project to
 `kaplay` and everything should work as before.
 
 ```sh
-npm install kaplay
+npm install kaplay@3001
 ```
 
 ```js

@@ -10,24 +10,26 @@ import Info from "@/components/Content/Info.astro";
 
 # Components
 
-Components are the building blocks of game objects. They define the behavior of
-the object, like how it moves, how it looks, and how it interacts with other
-objects.
-
-## What is a Component?
-
 A component is a piece of code that defines a specific behavior of a game
-object.
+object. It returns a set of **properties** and **methods** that are attached to
+the game object.
 
-It returns a set of **properties** and **methods** that are attached to the game
-object.
+## Using a component
+
+For use components we have to attach them in the `add()` function.
 
 ```js
-// pos() component gives the object the .pos prop, and .move() method
-const player = add([pos(80, 80)]);
+const player = add([
+    // rect(width, height) comp draws a rectangle in the obj
+    rect(40, 60),
+    // pos(x, y) comp sets the obj position
+    pos(10, 10),
+]);
 
-player.move(100, 0); // move the player 100 pixels to the right, this is a method
-console.log(player.pos); // { x: 180, y: 80 }, this is a property
+// method given by pos() comp
+player.move(100, 0); // moves the player 100px to the right
+// property given by rect() comp
+debug.log(player.height); // will log 60
 ```
 
 There are a lot of useful components in KAPLAY like:
@@ -36,7 +38,6 @@ There are a lot of useful components in KAPLAY like:
   animations
 - [`area()`](/doc/ctx/area) to make the object do collision detection, with
   methods like [`onCollide()`](/doc/AreaComp#AreaComp-onCollide)
-- [`rect()`](/doc/ctx/rect) to make the object draw a simple rectangle shape
 - [`text()`](/doc/ctx/text) to make the object draw text
 - [`scale()`](/doc/ctx/scale) to make the game object bigger or smaller or to
   stretch it
@@ -44,6 +45,9 @@ There are a lot of useful components in KAPLAY like:
 You can see all the components in the [API Reference](/doc/ctx/pos).
 
 ## Components operations
+
+All components have an _id_, this is the **name** of the component, `sprite()`'s
+id is `"sprite"`. This is used in many operations.
 
 ### How to add components
 
@@ -63,14 +67,14 @@ bean.use(color("#ff00ff")); // green bean <:
 ### How to remove components
 
 ```js
-// We pass the component name for remove it.
+// We pass the component id for remove it.
 bean.unuse("sprite"); // bye bean
 ```
 
 ### How to know if a game object have a component
 
 ```js
-// We pass the component name:
+// We pass the component id:
 bean.has("sprite"); // false - true if comp is there, otherwise false
 ```
 

@@ -15,14 +15,20 @@ the entities that move, interact, and make the game interesting.
 ## Creating Game Objects
 
 We create game objects with the `add()` function. It creates the object and
-attach it to the scene.
+attach it to the scene. It receives **components** and **tags**.
 
 ```js
-const player = add([
-    rect(32, 32),
-    pos(80, 80),
+const dinosaur = add([
+    // while components gives different behaviours to the game obj
+    rect(32, 32), // draw a rect
+    pos(80, 80), // set a position
+    // tags classify the game object
+    "dangerous",
+    "big",
 ]);
 ```
+
+We will see in deep components and tags in their respective guides.
 
 ## Parents, childs and root
 
