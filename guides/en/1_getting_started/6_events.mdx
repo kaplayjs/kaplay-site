@@ -163,16 +163,16 @@ kat.on("hurt", () => {
 ## Custom events
 
 Sometimes you will need create a custom event. For this, we use the `on()` and
-`trigger()` functions.
+`obj.trigger()` functions.
 
 ```js
-// Eat event for all objects with candy tag
-on("eat", "candy", () => {
-    debug.log("NOOOOO CANDY :(");
+// Eat event for all objects with cake tag
+on("eat", "cake", () => {
+    debug.log("The cake is a lie!");
 });
 
-onKeyPress("space", () => {
-    trigger("eat");
+onKeyPress(() => {
+    obj.trigger("cake");
 });
 ```
 
