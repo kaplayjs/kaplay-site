@@ -13,7 +13,7 @@ jobs:
       - name: Get Latest Tag
         uses: WyriHaximus/github-action-get-previous-tag@v1.4.0
         with:
-          prefix: "4000"
+          prefix: 4000
       - name: Checkout submodule to v4000
         run: |
           cd kaplay
@@ -40,7 +40,7 @@ jobs:
       - name: Get Latest Tag
         uses: WyriHaximus/github-action-get-previous-tag@v1.4.0
         with:
-          prefix: "3000"
+          prefix: 3000
       - name: Checkout submodule to v3001
         run: |
           cd kaplay
