@@ -10,11 +10,15 @@ jobs:
         with:
           submodules: true
           fetch-tags: true
+      - name: Get Latest Tag
+        uses: WyriHaximus/github-action-get-previous-tag@v1.4.0
+        with:
+          prefix: "4000"
       - name: Checkout submodule to v4000
         run: |
           cd kaplay
           git fetch --tags 
-          git checkout 4000.0.0-alpha.13
+          git checkout ${{ steps.previoustag.outputs.tag }}
       - name: Setup PNPM
         uses: pnpm/action-setup@v4
       - name: Deploy app
@@ -33,11 +37,15 @@ jobs:
         with:
           submodules: true
           fetch-tags: true
+      - name: Get Latest Tag
+        uses: WyriHaximus/github-action-get-previous-tag@v1.4.0
+        with:
+          prefix: "3000"
       - name: Checkout submodule to v3001
         run: |
           cd kaplay
           git fetch --tags 
-          git checkout 3001.0.5
+          git checkout ${{ steps.previoustag.outputs.tag }}
       - name: Setup PNPM
         uses: pnpm/action-setup@v4
       - name: Deploy app
