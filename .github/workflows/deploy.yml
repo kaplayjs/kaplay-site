@@ -24,7 +24,7 @@ jobs:
         with:
           packageManager: pnpm
           apiToken: ${{ secrets.CLOUDFLARE_WORKERS_KEY }}
-          command: pages deploy dist --project-name=kaplay4000z
+          command: pages deploy dist --project-name=kaplay4000
           preCommands: "pnpm i && pnpm build"
 
   deploylegacy:
