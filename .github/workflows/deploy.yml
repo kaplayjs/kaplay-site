@@ -16,6 +16,16 @@ jobs:
         with:
             filter: v[4000]\..
             base: "kaplayjs/kaplay"
+      - name: Find Tag
+        id: tagger
+        uses: digital-ai/query-tag-action@v2
+        with:
+          include: 'v4000*'
+      - name: Checkout submodule to v4000
+        run: |
+          cd kaplay
+          git fetch --tags 
+          git checkout ${{steps.tagger.outputs.tag}}'
       - name: Setup PNPM
         uses: pnpm/action-setup@v4
       - name: Deploy app
