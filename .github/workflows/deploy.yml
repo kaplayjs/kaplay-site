@@ -21,6 +21,9 @@ jobs:
         uses: digital-ai/query-tag-action@v2
         with:
           include: 'v4000*'
+          commit-ish: 'HEAD'
+          exact-match: 'true'
+            
       - name: Checkout submodule to v4000
         run: |
           cd kaplay
