@@ -10,25 +10,13 @@ jobs:
         with:
           submodules: true
           fetch-tags: true
-      - name: Checkout new tags to branches
-        id: checkout-tags
-        uses: chachako/checkout-tags@v1
-        with:
-            filter: v[4000]\..
-            base: "kaplayjs/kaplay"
-      - name: Find Tag
-        id: tagger
-        uses: digital-ai/query-tag-action@v2
-        with:
-          include: 'v4000*'
-          commit-ish: 'HEAD'
-          exact-match: 'true'
-            
       - name: Checkout submodule to v4000
         run: |
           cd kaplay
-          git fetch --tags 
-          git checkout ${{steps.tagger.outputs.tag}}'
+          git fetch --tags
+          TAG=$(git tag --list '4000*' --sort=-v:refname | head -n 1)
+          echo $TAG
+          git checkout $TAG
       - name: Setup PNPM
         uses: pnpm/action-setup@v4
       - name: Deploy app
