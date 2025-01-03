@@ -42,8 +42,10 @@ jobs:
       - name: Checkout submodule to v3001
         run: |
           cd kaplay
-          git fetch --tags 
-          git checkout ${{ steps.previoustag.outputs.tag }}
+          git fetch --tags
+          TAG=$(git tag --list '3000*' --sort=-v:refname | head -n 1)
+          echo $TAG
+          git checkout $TAG
       - name: Setup PNPM
         uses: pnpm/action-setup@v4
       - name: Deploy app
