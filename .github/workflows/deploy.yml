@@ -39,7 +39,7 @@ jobs:
         run: |
           cd kaplay
           git fetch --tags
-          TAG2=$(git tag --list '3001*' --sort=-v:refname creatordate | head -n 1)
+          TAG2=$(git tag --list '3001.0*' --sort=-v:refname creatordate | head -n 1)
           echo $TAG2
           git checkout $TAG2
       - name: Setup PNPM
