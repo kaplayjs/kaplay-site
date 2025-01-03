@@ -10,21 +10,12 @@ jobs:
         with:
           submodules: true
           fetch-tags: true
-      - name: Get latest tag
-        uses: rexdefuror/get-latest-tag@v1.0.1
+      - name: Checkout new tags to branches
+        id: checkout-tags
+        uses: chachako/checkout-tags@v1
         with:
-              token: ${{ secrets.GITHUB_TOKEN }}
-              owner: ${{ github.repository_owner }}
-              repo: "kaplayjs/kaplay"
-              prefix: 4000 # optional
-              suffix: '' # optional
-              regex: '' # optional
-              releaseOnly: true # optional
-      - name: Checkout submodule to v4000
-        run: |
-          cd kaplay
-          git fetch --tags 
-          git checkout ${{ env.LATEST_TAG }}
+            filter: v[4000]\..
+            base: "kaplayjs/kaplay"
       - name: Setup PNPM
         uses: pnpm/action-setup@v4
       - name: Deploy app
@@ -32,7 +23,7 @@ jobs:
         with:
           packageManager: pnpm
           apiToken: ${{ secrets.CLOUDFLARE_WORKERS_KEY }}
-          command: pages deploy dist --project-name=kaplay4000
+          command: pages deploy dist --project-name=kaplay4000z
           preCommands: "pnpm i && pnpm build"
 
   deploylegacy:
