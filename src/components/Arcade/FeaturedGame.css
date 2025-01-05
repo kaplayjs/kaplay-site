@@ -1,3 +1,28 @@
+.game {
+    height: 220px;
+
+    & .title {
+        @apply text-lg inline;
+    }
+
+    & .description {
+        @apply inline;
+    }
+}
+
+
+.game[data-featured="true"]  {
+    height: 340px;
+
+    & .title {
+        @apply text-2xl;   
+    }
+
+    & .description {
+        @apply block;
+    }
+}
+
 .featured-game:hover .game-cover {
     opacity: 0; /* This comes from step 3 */
     -webkit-transition: opacity 500ms ease-in-out;
