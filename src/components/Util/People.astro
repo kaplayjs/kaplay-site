@@ -1,15 +1,35 @@
 ---
 import { Image } from "astro:assets";
 import colyseus from "../../assets/sponsors/colyseus.png";
+import rdconsultance from "../../assets/sponsors/rdconsultance.png";
 import peopleData from "../../data/contributors.json";
 const contributors = Object.values(peopleData);
 ---
 
 <section class="flex flex-col items-center justify-center gap-4 p-4">
     <h2 class="text-pangolin text-3xl font-bold"> Our great sponsors ❤ </h2>
-    <div class="mb-14">
+    <div class="mb-14 flex flex-wrap">
         <a href="https://colyseus.io" target="_blank">
-            <Image src={colyseus} alt="Colyseus" width={500} height={200} />
+            <Image
+                src={colyseus}
+                alt="Colyseus"
+                width={500}
+                height={200}
+                class={"h-28 object-scale-down"}
+            />
+        </a>
+
+        <a
+            href="https://www.linkedin.com/in/robin-denis-62a23a82"
+            target="_blank"
+        >
+            <Image
+                src={rdconsultance}
+                alt="RD Consultance"
+                width={500}
+                height={200}
+                class={"h-28 object-scale-down"}
+            />
         </a>
     </div>
 
