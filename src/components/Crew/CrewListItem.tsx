@@ -9,7 +9,7 @@ export const CrewListItem = component$<CrewListItemProps>((props) => {
     const crewItem = assets[props.crewItem];
 
     return (
-        <div class="flex w-32 flex-col items-center justify-center rounded-box bg-base-200 p-4">
+        <div class="flex w-32 flex-col items-center justify-center rounded-box bg-base-100 p-4">
             <div>
                 <img
                     src={crewItem.outlined}

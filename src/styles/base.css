@@ -55,18 +55,15 @@ a:hover {
     --tw-text-opacity: 1;
     scroll-behavior: smooth;
     scrollbar-gutter: stable;
-    scrollbar-color: currentColor
+    scrollbar-color:
+        color-mix(in oklch, currentColor 35%, transparent)
         var(--fallback-b3, oklch(var(--b3) / var(--tw-text-opacity)));
     scrollbar-width: thin;
 }
 
 .land {
-    background-color: #242933;
+    @apply bg-base-200;
     scroll-behavior: smooth;
-    scrollbar-gutter: stable;
-    scrollbar-color: currentColor
-        var(--fallback-b3, oklch(var(--b3) / var(--tw-text-opacity)));
-    scrollbar-width: thin;
 }
 
 .kaplay-logo {
@@ -191,4 +188,12 @@ span[data-is-type="true"] {
 @keyframes kaplayGradient {
     0% { background-position: 0% 0%; }
     100% { background-position: 100% 0%; }
+}
+
+.scrollbar-thin {
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color:
+        color-mix(in oklch, currentColor 35%, transparent)
+        transparent;
 }
