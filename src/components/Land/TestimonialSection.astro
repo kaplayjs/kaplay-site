@@ -1,29 +1,65 @@
 ---
-import testimonials from "../../data/testimonial.json";
-import { Testimonial } from "../Testimonial/Testimonial";
-import FriendsBelow from "../Util/FriendsBelow.astro";
+import { testimonials } from "../../data/testimonial.json";
+import Testimonial from "../Testimonial/Testimonial.astro";
+import { assets } from "@kaplayjs/crew";
 ---
 
 <div
-    class="text-pangolin flex w-full flex-col items-center gap-6 p-4"
+    class="relative flex w-full flex-col gap-9 sm:gap-12 pt-16 lg:pt-28 bg-gradient-to-b from-base-100 to-[#323844] border-y border-white/[3%] z-10"
     id="testimonials"
 >
-    <h2 class="text-5xl font-bold">Voices of KAPLAYERS</h2>
-    <p class="text-center text-xl">
-        What our users say about KAPLAY. We are proud to have such a great
-        community.
-    </p>
-    <div class="flex flex-wrap items-center justify-center gap-4">
-        {
-            testimonials.testimonials.map((testimonial) => (
-                <FriendsBelow
-                    friends={[testimonial.friend as "mark"]}
-                    offset={3}
-                    limited
-                >
-                    <Testimonial testimonial={testimonial} />
-                </FriendsBelow>
-            ))
-        }
+    <div class="absolute top-0 left-0 w-full h-96 xl:h-full overflow-hidden pointer-events-none -z-[1]" aria-hidden="true">
+        <div class="absolute w-[600%] h-[600%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-image-kattern -rotate-45 opacity-60 animate-[moveKattern_6s_linear_infinite]"></div>
+    </div>
+
+    <div class="relative flex flex-col items-center gap-2 md:gap-4 mx-auto w-full max-w-2xl text-center">
+        <h2 class="px-4 sm:px-0 text-4xl sm:text-5xl font-bold text-white">
+            <span class="inline-flex items-end gap-[0.25em]">
+                <span class="font-hand text-[108%] text-[#ffb879]">Voices</span>
+                <img class="shrink-0 w-10 sm:w-14" src={assets.burpman.outlined} aria-hidden="true">
+            </span>
+            of
+            <span class="font-hand text-[108%]">
+                <span class="text-primary">KAPLAY</span><span class="text-[#6bc96c]">ers</span>
+            </span>
+        </h2>
+
+        <p class="px-8 sm:px-0 text-center text-lg md:leading-[1.6] sm:text-xl">
+            Don't just take our word for it, see what our users say about
+            <strong>KAPLAY</strong>! We're&nbsp;proud to have such a great
+            community.<br>
+            <a
+                href="https://discord.com/invite/aQ6RuQm3TF"
+                target="_blank"
+                class="inline-flex gap-1 align-bottom font-semibold text-indigo-300"
+            >
+                <img class="self-center shrink-0 w-5 sm:w-6 h-auto" src={assets.discord.outlined} aria-hidden="true">
+                Join our Discord
+            </a>
+            to be a part of it!
+        </p>
+    </div>
+
+    <div class="flex">
+        <div class="flex-1 min-w-2 bg-gradient-to-b from-base-300/50 to-base-200 rounded-r-xl" aria-hidden="true"></div>
+
+        <div class="bg-base-50 max-w-6xl px-px rounded-t-xl">
+            <div class="flex flex-wrap w-full gap-px">
+                {
+                    testimonials.map((testimonial) => (
+                        <Testimonial testimonial={testimonial} class="grow basis-96" />
+                    ))
+                }
+            </div>
+        </div>
+
+        <div class="flex-1 min-w-2 bg-gradient-to-b from-base-300/50 to-base-200 rounded-l-xl" aria-hidden="true"></div>
     </div>
 </div>
+
+<style>
+    @keyframes moveKattern {
+        0% { background-position-x: 0; }
+        100% { background-position-x: 168px; }
+    }
+</style>

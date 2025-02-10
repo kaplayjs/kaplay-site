@@ -12,6 +12,14 @@ export default {
                 sans: ['"Outfit Variable"', ...defaultTheme.fontFamily.sans],
                 hand: ['"Darumadrop One"', ...defaultTheme.fontFamily.sans]
             },
+            dropShadow: {
+                '2': [
+                    "-2px 0 0 currentColor",
+                    "2px 0 0 currentColor",
+                    "0 -2px 0 currentColor",
+                    "0 2px 0 currentColor",
+                ]
+            },
         },
     },
     plugins: [require("daisyui"), require("@tailwindcss/typography")],
