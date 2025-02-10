@@ -41,6 +41,9 @@ importers:
       '@fontsource-variable/rubik':
         specifier: ^5.1.0
         version: 5.1.0
+      '@fontsource/darumadrop-one':
+        specifier: ^5.1.1
+        version: 5.1.1
       '@fontsource/ibm-plex-sans':
         specifier: ^5.1.0
         version: 5.1.0
@@ -774,6 +777,9 @@ packages:
 
   '@fontsource-variable/rubik@5.1.0':
     resolution: {integrity: sha512-gmh3xts3ARd0ktWW/VX+MVxhJr6TxHVeGLsQEaQXDVxvuNjn5WRucfKfXK3EVN2BcgRxUe1Fctv/v9zgEd0DUg==}
+
+  '@fontsource/darumadrop-one@5.1.1':
+    resolution: {integrity: sha512-9K22pwGlOzdu0yvI6QekWiIuC39sfvNCX1s4KAYfnUwH9wIrvwgDvrLVLcxlq2WN54FuuTsL5x98GwErklkfoA==}
 
   '@fontsource/ibm-plex-sans@5.1.0':
     resolution: {integrity: sha512-v2aFHGh33ogG+At6dVNUCX6vWlNAhQ6STWj5WrBKPxVWX1SsAnHNq8sXQBa7WHEt29Irmozuk7GTp6GzFlpwdQ==}
@@ -4286,6 +4292,8 @@ snapshots:
   '@fontsource-variable/outfit@5.1.0': {}
 
   '@fontsource-variable/rubik@5.1.0': {}
+
+  '@fontsource/darumadrop-one@5.1.1': {}
 
   '@fontsource/ibm-plex-sans@5.1.0': {}
 
