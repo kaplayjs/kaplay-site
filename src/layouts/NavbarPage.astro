@@ -24,12 +24,12 @@ const { meta, lang, class: className, pageClass } = Astro.props;
             <Navbar />
         </header>
 
-        <main class:list={["flex flex-1 flex-col gap-20", className]}>
+        <main class:list={["flex flex-1 flex-col gap-14 sm:gap-16", className]}>
             <slot />
         </main>
 
         <footer>
-            <Footer />
+            <Footer class="bg-base-300" />
         </footer>
     </div>
 </Page>
