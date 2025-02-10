@@ -18,7 +18,7 @@ const {  src: bannerSpritesUrl } = await getImage({src: kaplayBannerSprites, for
 const {  src: patternWaveUrl } = await getImage({src: patternWave, format: 'png'})
 ---
 
-<div class="relative flex-1 flex -mt-4 p-px pt-[calc(1rem+1px)] bg-base-50 z-20" id="about">
+<div class="relative flex-1 flex -mt-4 p-px pt-[calc(1rem+1px)] bg-base-50 z-20 2xl:[.bottom-0+&]:-mt-20" id="about">
     <div class="flex-1 bg-[#2a303c] bg-image-pattern [background-position:right_6px_top_-6px] rounded-r-xl" aria-hidden="true"></div>
 
     <div class="flex flex-col md:grid min-[900px]:grid-cols-2 gap-px h-full w-full max-w-6xl mx-auto">
@@ -93,6 +93,7 @@ const {  src: patternWaveUrl } = await getImage({src: patternWave, format: 'png'
                     <a
                         class="inline-flex font-semibold text-lg text-white justify-center bg-indigo-400/10 rounded-xl px-5 py-3 border-2 border-indigo-100/5 shadow-[0_0.25em_0_0_#1b1f26] hover:scale-105 transition-all"
                         href="https://discord.com/invite/aQ6RuQm3TF"
+                        target="_blank"
                     >
                         Join our Discord
                     </a>
