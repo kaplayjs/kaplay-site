@@ -11,10 +11,11 @@ const { friend } = Astro.props;
 ---
 
 <div
-    class="flex flex-1 flex-row items-center gap-4 rounded-box bg-base-200 p-4"
+    class="flex flex-1 flex-col gap-4 rounded-xl bg-base-300 px-9 sm:px-16 md:px-9 py-8"
 >
-    <div class="max-h-10 max-w-10">
+    <div class="items-center h-10 max-w-10 flex">
         <img src={assets[friend].outlined} alt="KAFriend" />
     </div>
+
     <slot />
 </div>

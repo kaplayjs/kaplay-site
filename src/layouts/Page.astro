@@ -22,17 +22,18 @@ export type MetaTagData = {
 type Props = {
     meta?: MetaTagData;
     lang: Locale;
+    class?: string;
 };
 
 const { url } = Astro;
-const { meta, lang } = Astro.props;
+const { meta, lang, class: className } = Astro.props;
 $lang.set(lang);
 
 const image = meta?.image ?? "/kaplayjs.png";
 ---
 
 <!DOCTYPE html>
-<html lang={lang}>
+<html lang={lang} class={className}>
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />

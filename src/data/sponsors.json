@@ -1,0 +1,15 @@
+[
+  {
+    "name": "Colyseus",
+    "url": "https://colyseus.io",
+    "image": "colyseus.png",
+    "bgTint": "gray"
+  },
+  {
+    "name": "RD Consultance",
+    "url": "https://www.linkedin.com/in/robin-denis-62a23a82",
+    "image": "rdconsultance.png",
+    "bgTint": "slate",
+    "lighten": true
+  }
+]

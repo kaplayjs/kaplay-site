@@ -1,8 +1,6 @@
 ---
 import hamburgerIcon from "@/assets/hamburger.webp";
-import kaplayOutlined from "@/assets/kaplay-o.webp";
 import { assets } from "@kaplayjs/crew";
-import { Image } from "astro:assets";
 
 const internalLinks = [
     {
@@ -47,16 +45,15 @@ const externalLinks = [
 ---
 
 <!-- Navbar -->
-<nav class="navbar z-50 bg-base-300">
+<nav class="navbar relative bg-base-300 rounded-b-xl z-50">
     <!-- Menu for mobile -->
     <div class="flex w-full justify-between md:hidden">
         <a class="btn btn-ghost" href="/">
-            <Image
-                class="h-full w-fit object-scale-down"
-                src={kaplayOutlined}
-                alt="KAPLAY, The JavaScript easy game library"
-                loading={"eager"}
-            />
+            <div
+                class="kaplay-logo bg-gradient-kaplay-animated"
+                role="img"
+                aria-label="KAPLAY, The easy JavaScript game library"
+            ></div>
             <span class="hidden">KAPLAY, a TypeScript Game Library</span>
         </a>
 
@@ -73,7 +70,7 @@ const externalLinks = [
 
             <ul
                 tabindex="0"
-                class="menu dropdown-content z-[1] w-56 gap-2 rounded-box bg-base-200 p-6 shadow"
+                class="menu dropdown-content z-[1] w-56 gap-2 rounded-box bg-base-200 p-6 shadow border border-base-100"
             >
                 {
                     [...internalLinks, ...externalLinks].map((link) => (
@@ -111,7 +108,6 @@ const externalLinks = [
                 internalLinks.map((link) => (
                     <li>
                         <a class="btn btn-ghost font-semibold" href={link.url}>
-                            {link.name}
                             <img
                                 src={link.icon}
                                 width="24"
@@ -119,6 +115,7 @@ const externalLinks = [
                                 alt={link.name}
                                 class="px-0 py-0"
                             />
+                            {link.name}
                         </a>
                     </li>
                 ))
@@ -127,12 +124,11 @@ const externalLinks = [
 
         <div class="flex justify-center">
             <a class="btn btn-ghost btn-lg" href="/">
-                <Image
-                    class="h-full w-fit object-scale-down"
-                    src={kaplayOutlined}
-                    alt="KAPLAY, The JavaScript easy game library"
-                    loading="eager"
-                />
+                <div
+                    class="kaplay-logo bg-gradient-kaplay-animated"
+                    role="img"
+                    aria-label="KAPLAY, The easy JavaScript game library"
+                ></div>
                 <span class="hidden">KAPLAY, a TypeScript Game Library</span>
             </a>
         </div>

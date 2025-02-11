@@ -1,0 +1,78 @@
+---
+type Props = {
+    messages?: string[]
+}
+
+const defaultMessages = [
+    'And also..',
+
+    `We got the funkiest
+    <a
+        href="/crew"
+        target="_blank"
+        class="text-white decoration-2 underline decoration-white/20 underline-offset-2 hover:text-primary transition-colors"
+    >lore</a>
+    in the <span class="text-white">KAWorld</span>!`,
+
+    'Wow!',
+]
+
+const { messages = defaultMessages } = Astro.props
+---
+
+<div class="messages flex flex-col sm:flex-row justify-center items-center gap-2 w-full max-w-6xl mx-auto mb-4 px-3 is-paused">
+    {
+        messages.map((message, i) => (
+            <p
+                class:list={[
+                    "px-4 py-2 rounded-3xl shadow-2xl opacity-0",
+                    i == messages.length - 1
+                        ? "bg-[#8db7ff] text-black rounded-br-md origin-bottom-right"
+                        : "bg-white/10 rounded-bl-md origin-bottom-left",
+                ]}
+                style={`animation-delay: ${0.65 * i + (i == messages.length - 1 ? 0.3 : 0)}s`}
+                set:html={message.trim().replace(/\s+/g, ' ')}
+            ></p>
+        ))
+    }
+</div>
+
+<script>
+    document.querySelectorAll('.messages.is-paused').forEach(el => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return
+
+                el.classList.remove('is-paused')
+                observer.disconnect()
+            })
+        }, {
+            rootMargin: '-30% 0% -30% 0%',
+            threshold: 0,
+        })
+
+        observer.observe(el)
+    })
+</script>
+
+<style>
+    .messages > * {
+        animation: messageIn 0.4s forwards cubic-bezier(0.33, 1, 0.68, 1);
+    }
+
+    .is-paused > * {
+        animation-play-state: paused;
+    }
+
+    @keyframes messageIn {
+        0% {
+            transform: scale(0);
+            opacity: 0;
+        }
+
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+</style>

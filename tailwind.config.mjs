@@ -1,3 +1,5 @@
+import defaultTheme from 'tailwindcss/defaultTheme';
+
 /** @type {import('tailwindcss').Config} */
 export default {
     content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
@@ -5,6 +7,18 @@ export default {
         extend: {
             screens: {
                 "2sm": "380px",
+            },
+            fontFamily: {
+                sans: ['"Outfit Variable"', ...defaultTheme.fontFamily.sans],
+                hand: ['"Darumadrop One"', ...defaultTheme.fontFamily.sans]
+            },
+            dropShadow: {
+                '2': [
+                    "-2px 0 0 currentColor",
+                    "2px 0 0 currentColor",
+                    "0 -2px 0 currentColor",
+                    "0 2px 0 currentColor",
+                ]
             },
         },
     },
@@ -15,7 +29,7 @@ export default {
             {
                 kaplay: {
                     ...require("daisyui/src/theming/themes")["dim"],
-                    primary: "#6BC96C",
+                    primary: "#abdd64",
                     "--animation-btn": 0,
                 },
                 kaplayLight: {

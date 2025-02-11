@@ -30,7 +30,7 @@ export const SidebarFolder = component$((props: SidebarFolderProps) => {
             >
                 {props.title}
             </p>
-            <ul class="folder-content | mx-4 flex-col gap-2 border-l-2 border-current">
+            <ul class="folder-content | mx-4 pl-0.5 flex-col gap-2 border-l border-base-content/30">
                 <Slot />
             </ul>
         </div>

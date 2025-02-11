@@ -15,12 +15,12 @@ const { friends, offset = 0, limited, class: className } = Astro.props;
 const offsets = ["top-2", "top-4", "top-6", "top-8", "top-10"].reverse();
 ---
 
-<div class="friends-below | relative z-10">
+<div class:list={["friends-below relative z-10", className]}>
     <div class="flex w-full items-center justify-center">
         <a class="hoverable special-friends" href="/crew">
             <div
                 class:list={[
-                    `friends | relative -z-10 flex w-full flex-row justify-center gap-4 ${
+                    `friends relative -z-10 flex w-full flex-row justify-center gap-4 ${
                         offsets[offset]
                     }`,
                 ]}
@@ -29,7 +29,7 @@ const offsets = ["top-2", "top-4", "top-6", "top-8", "top-10"].reverse();
                     friends?.map((friend) => (
                         <div class="select-none">
                             <img
-                                src={assets[friend].sprite}
+                                src={assets[friend].outlined}
                                 alt="KAFriend"
                                 class:list={[
                                     {
@@ -44,7 +44,5 @@ const offsets = ["top-2", "top-4", "top-6", "top-8", "top-10"].reverse();
         </a>
     </div>
 
-    <div>
-        <slot />
-    </div>
+    <slot />
 </div>

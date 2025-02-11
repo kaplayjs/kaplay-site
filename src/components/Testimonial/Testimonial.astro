@@ -1,0 +1,63 @@
+---
+import { cn } from "@/util/cn";
+import FriendsBelow from "../Util/FriendsBelow.astro";
+
+type Props = {
+    testimonial: {
+        name: string;
+        tagline: string;
+        comment: string;
+        social_user?: string;
+        social_type?: string;
+        social_link?: string;
+        avatar: string;
+        friend: string;
+        shape: string;
+    };
+    class?: string;
+};
+
+const { testimonial, class: className } = Astro.props;
+---
+
+<div class={cn("flex flex-col flex-1 items-center rounded-xl bg-base-300 px-8 py-10 lg:px-12 lg:py-14", className)}>
+    <div class="flex flex-1 items-start gap-8 max-w-lg">
+        <FriendsBelow
+            class="sticky top-4 -mt-10 shrink"
+            friends={[testimonial.friend as "mark"]}
+            offset={3}
+            limited
+        >
+            <div class="avatar mt-[2px] drop-shadow-2 text-white">
+                <a
+                    class={cn("mask w-16 2sm:w-20 sm:w-24 bg-white text-gray-700", {
+                        "mask-hexagon-2": testimonial.shape === "hexagon",
+                        "mask-circle": testimonial.shape === "circle",
+                        "mask-squircle": testimonial.shape === "squircle",
+                    })}
+                    href={testimonial.social_link}
+                    target="_blank" rel="noopener"
+                >
+                    <img
+                        src={testimonial.avatar}
+                        alt={`${testimonial.name}'s avatar`}
+                    />
+                </a>
+            </div>
+        </FriendsBelow>
+
+        <div class="mt-2 max-w-[40ch]">
+            <p class="flex items-end flex-wrap gap-x-2 text-xl">
+                <span class="font-hand text-[108%] text-white">{testimonial.name}</span>
+
+                {testimonial.social_user && (
+                    <a class="-mb-px font-semibold text-[#6bc96c]" href={testimonial.social_link} target="_blank" rel="noopener">
+                        @{testimonial.social_user}
+                    </a>
+                )}
+            </p>
+            <p class="text-gray-400">{testimonial.tagline}</p>
+            <blockquote class="mt-2.5 [text-wrap:pretty]">{testimonial.comment}</blockquote>
+        </div>
+    </div>
+</div>

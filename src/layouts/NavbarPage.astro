@@ -10,25 +10,26 @@ type Props = {
     meta?: MetaTagData;
     lang: Locale;
     class?: string;
+    pageClass?: string;
 } & SidebarProps;
 
-const { meta, lang, class: className } = Astro.props;
+const { meta, lang, class: className, pageClass } = Astro.props;
 ---
 
-<Page lang={lang} meta={meta}>
+<Page lang={lang} meta={meta} class={pageClass}>
     <slot name="head" slot="head" />
 
-    <div class="land | flex flex-col">
+    <div class="flex flex-col">
         <header>
             <Navbar />
         </header>
 
-        <main class:list={["flex flex-1 flex-col gap-20", className]}>
+        <main class:list={["flex flex-1 flex-col gap-14 sm:gap-16", className]}>
             <slot />
         </main>
 
         <footer>
-            <Footer />
+            <Footer class="bg-base-300" />
         </footer>
     </div>
 </Page>

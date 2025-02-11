@@ -1,9 +1,10 @@
 ---
 import About from "@/components/Land/About.astro";
-import { BlocksSection } from "@/components/Land/Blocks/BlocksSection.tsx";
+import BlocksSection from "@/components/Land/Blocks/BlocksSection.astro";
 import TestimonialSection from "@/components/Land/TestimonialSection.astro";
 import CarbonAd from "@/components/Util/CarbonAd.astro";
 import People from "@/components/Util/People.astro";
+import Messages from "@/components/Util/Messages.astro";
 import NavbarPage from "@/layouts/NavbarPage.astro";
 import { getStaticPathsByLocales } from "@/util/path";
 export function getStaticPaths() {
@@ -23,10 +24,12 @@ const { lang } = Astro.props;
         keywords:
             "kaplay, kaboom.js, kaplay.js, game, library, javascript, easy, simple, html5, html5 games",
     }}
+    pageClass="land"
 >
     <About />
     <CarbonAd onlyClassic />
     <BlocksSection />
     <TestimonialSection />
     <People />
+    <Messages />
 </NavbarPage>
