@@ -1,5 +1,5 @@
 ---
-import kaplayBanner from "@/assets/kaplay-banner-logo.png";
+import kaplayBanner from "@/assets/kaplay-banner-logo.gif";
 import kaplayBannerSprites from "@/assets/kaplay-banner-spritesheet.png";
 import patternWave from "@/assets/pattern-wave.png";
 import { Image, getImage } from "astro:assets";
@@ -38,7 +38,7 @@ const {  src: patternWaveUrl } = await getImage({src: patternWave, format: 'png'
                     loading={"eager"}
                     quality={100}
                     decoding={"sync"}
-                    format="png"
+                    format="gif"
                     class="pixelated"
                 />
 
