@@ -194,6 +194,7 @@ const blocks = [
 </div>
 
 <script>
+            // @ts-ignore
     import kaplay from "https://unpkg.com/kaplay@4000.0.0-alpha.14/dist/kaplay.mjs"
 
     const canvas = document.getElementById('blocks-example-canvas')
@@ -645,13 +646,17 @@ const blocks = [
 
     const parallaxItems = [...document.querySelectorAll('[data-parallax]')].map(el => ({
         el,
+        // @ts-ignore
         dir: parseInt(el.dataset.parallax),
+                // @ts-ignore
         speed: parseFloat(el.dataset.parallaxSpeed ?? 1),
+                // @ts-ignore
         max: el.dataset.parallaxMax ?? `-400%`,
     }))
 
     const setParralaxItems = () => {
         parallaxItems.forEach(({ el, dir, speed, max }) => {
+                    // @ts-ignore
             el.style.setProperty('--tw-translate-y', `max(${window.scrollY * 0.05 * speed * dir}px, ${max})`)
         })
     }

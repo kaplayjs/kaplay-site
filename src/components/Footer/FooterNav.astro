@@ -1,5 +1,5 @@
 ---
-import { assets } from '@kaplayjs/crew';
+import { assets } from "@kaplayjs/crew";
 
 type Props = {
     title: string;
@@ -9,26 +9,36 @@ type Props = {
 };
 
 const { title, icon, columns = 1, class: className } = Astro.props;
-const columnsClass = ['columns-1', 'columns-2 [column-width:10ch]'][columns - 1]
+const columnsClass =
+    ["columns-1", "columns-2 [column-width:10ch]"][columns - 1];
 ---
 
 <nav class:list={["flex flex-col gap-3", className]}>
-    <h3 class="flex items-center text-base font-semibold uppercase text-white tracking-widest">
+    <h3
+        class="flex items-center text-base font-semibold uppercase text-white tracking-widest"
+    >
         {title}
 
         {
-            icon && <img
-                class="icon h-6 object-scale-down"
-                src={assets[icon].outlined}
-                loading={"eager"}
-                aria-hidden="true"
-                width="40"
-                height="24"
-            />
+            icon && (
+                <img
+                    class="icon h-6 object-scale-down"
+                    src={assets[icon as keyof typeof assets].outlined}
+                    loading={"eager"}
+                    aria-hidden="true"
+                    width="40"
+                    height="24"
+                />
+            )
         }
     </h3>
 
-    <div class:list={["[&>*]:py-0.5 [column-gap:1.5rem] [&>a]:block [&>a:hover]:text-primary [&>a]:transition-colors break-words", columnsClass]}>
+    <div
+        class:list={[
+            "[&>*]:py-0.5 [column-gap:1.5rem] [&>a]:block [&>a:hover]:text-primary [&>a]:transition-colors break-words",
+            columnsClass,
+        ]}
+    >
         <slot />
     </div>
 </nav>
