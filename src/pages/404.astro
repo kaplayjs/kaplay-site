@@ -11,7 +11,7 @@ const { t, lang } = getPropsFromPath(Astro.url.pathname);
         <h1>404</h1>
         <p class="min-h-screen">
             {t("misc.404_message")}
-            <a href={getLangedRoute(lang, "/")}>
+            <a href={getLangedRoute(lang, "/")} data-astro-reload>
                 {t("misc.404_link")}
             </a>.
         </p>
