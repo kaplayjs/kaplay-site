@@ -8,6 +8,7 @@ const internalLinks = [
         url: "/",
         highlight: false,
         icon: assets.bean.outlined,
+        reload: true,
     },
     {
         name: "Assets",
@@ -48,7 +49,7 @@ const externalLinks = [
 <nav class="navbar relative bg-base-300 rounded-b-xl z-50">
     <!-- Menu for mobile -->
     <div class="flex w-full justify-between md:hidden">
-        <a class="btn btn-ghost" href="/">
+        <a class="btn btn-ghost" href="/" data-astro-reload>
             <div
                 class="kaplay-logo bg-gradient-kaplay-animated"
                 role="img"
@@ -107,7 +108,7 @@ const externalLinks = [
             {
                 internalLinks.map((link) => (
                     <li>
-                        <a class="btn btn-ghost font-semibold" href={link.url}>
+                        <a class="btn btn-ghost font-semibold" href={link.url} data-astro-reload={link?.reload}>
                             <img
                                 src={link.icon}
                                 width="24"
@@ -123,7 +124,7 @@ const externalLinks = [
         </ul>
 
         <div class="flex justify-center">
-            <a class="btn btn-ghost btn-lg" href="/">
+            <a class="btn btn-ghost btn-lg" href="/" data-astro-reload>
                 <div
                     class="kaplay-logo bg-gradient-kaplay-animated"
                     role="img"

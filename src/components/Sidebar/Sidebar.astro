@@ -130,7 +130,7 @@ else if (sidebarMode === "books") {
             transition:persist
         >
             <figure>
-                <a class="btn btn-ghost h-max w-full p-2" href={getLangedRoute(lang, "/")}>
+                <a class="btn btn-ghost h-max w-full p-2" href={getLangedRoute(lang, "/")} data-astro-reload>
                     <Image
                         src="/kaplay.gif"
                         alt="kaplay logo"
@@ -155,7 +155,7 @@ else if (sidebarMode === "books") {
             </div>
             <div class="divider"></div>
             <ul class="flex-col gap-2">
-                <SidebarLink href="/" icon="home">Home</SidebarLink>
+                <SidebarLink href="/" icon="home" reloadAll>Home</SidebarLink>
                 <SidebarLink
                     href="https://kaboomjs.com/discord"
                     target="_blank"
