@@ -30,7 +30,7 @@ const { url } = Astro;
 const { meta, lang, class: className } = Astro.props;
 $lang.set(lang);
 
-const image = meta?.image ?? "/kaplayjs.png";
+const image = new URL(meta?.image ?? "/kaplayjs.png", Astro.url);
 ---
 
 <!DOCTYPE html>
@@ -47,7 +47,7 @@ const image = meta?.image ?? "/kaplayjs.png";
         <meta name="description" content={meta?.description} />
         <meta property="og:title" content={meta?.title} />
         <meta property="og:description" content={meta?.description} />
-        <meta property="og:image" content={meta?.image} />
+        <meta property="og:image" content={image} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://kaplayjs.com" />
         <meta name="twitter:card" content="summary_large_image" />
