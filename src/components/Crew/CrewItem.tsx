@@ -15,21 +15,21 @@ export const CrewItem = component$<CrewItemProps>((props) => {
     const crewItem = assets[props.crewItem];
 
     return (
-        <div class="flex h-full flex-col items-center justify-center gap-2 lg:pt-4">
-            <div class="hidden lg:block">
+        <div class="flex h-full flex-col items-center justify-center">
+            <div class="hidden lg:flex items-center md:min-h-20 py-2">
                 <a class="btn btn-primary btn-sm" href="/crew">
                     Back
                 </a>
             </div>
-            <div class="flex h-full flex-col bg-base-200 p-2 text-xl lg:max-h-[60%] lg:flex-row lg:rounded-box lg:border">
-                <div class="lg:hidden">
+            <div class="flex h-full flex-col gap-y-3 bg-base-200 p-6 lg:p-2 text-xl lg:max-h-[60%] lg:flex-row rounded-box lg:rounded-box border border-base-content/15">
+                <div class="lg:hidden mb-4">
                     <a class="btn btn-primary btn-sm" href="/crew">
                         Back
                     </a>
                 </div>
-                <div class="flex flex-1 flex-col gap-2 p-6">
+                <div class="flex flex-1 flex-col gap-3 lg:p-6">
                     <div
-                        class="tooltip flex justify-around rounded-box border border-primary"
+                        class="tooltip flex justify-around rounded-xl border border-primary"
                         data-tip={crewItem.secret}
                     >
                         <img
@@ -45,9 +45,9 @@ export const CrewItem = component$<CrewItemProps>((props) => {
                     </div>
 
                     <div>
-                        <h2 class="text-2xl font-bold">
+                        <h2 class="text-2xl font-bold text-white">
                             {crewItem.name}
-                            <span class="badge badge-outline mx-2">
+                            <span class="badge badge-outline mx-2 text-base-content">
                                 {crewItem.type}
                             </span>
                         </h2>
@@ -55,8 +55,7 @@ export const CrewItem = component$<CrewItemProps>((props) => {
 
                         {crewItem.crewmeta && (
                             <>
-                                <br />
-                                <ul>
+                                <ul class="mt-5 lg:mt-7">
                                     <li class="flex items-center gap-2">
                                         <img
                                             src={assets.cake.outlined}
@@ -102,8 +101,8 @@ export const CrewItem = component$<CrewItemProps>((props) => {
                     </div>
                 </div>
                 <div class="divider divider-horizontal m-0"></div>
-                <div class="flex flex-1 flex-col gap-4 p-6">
-                    <p class="max-w-[40ch] text-balance">
+                <div class="flex flex-1 flex-col gap-4 lg:p-6">
+                    <p class="max-w-[40ch] text-balance mb-6">
                         {crewItem.description}{"  "}{crewItem.crewmeta && (
                             <>
                                 <span>
@@ -132,7 +131,7 @@ export const CrewItem = component$<CrewItemProps>((props) => {
                         )}
                     </p>
                     <btn
-                        class="btn btn-outline btn-primary w-full"
+                        class="btn btn-outline btn-primary w-full mt-auto"
                         onClick$={() => {
                             const a = document.createElement("a");
                             a.href = crewItem.sprite!;
