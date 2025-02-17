@@ -24,7 +24,7 @@ a:hover {
     cursor: url(/cursor_pointer.png), auto;
 }
 
-.btn.btn-primary:not([class*="link"]) {
+.btn.btn-primary:not(.btn-outline):not([class*="link"]) {
     --btn-color: 83.73% 0.1597 128.1516;
     --bc: 0% 0 0;
     --btn-border: 94.17999999999999% 0.1202 101.7595;
@@ -32,7 +32,7 @@ a:hover {
     border-color: oklch(var(--btn-border));
 }
 
-.btn.btn-primary:not([class*="link"]):hover {
+.btn.btn-primary:not(.btn-outline):not([class*="link"]):hover {
     background-color: oklch(75.58% 0.1573 144.0304);
     border-color: oklch(var(--btn-color));
 }

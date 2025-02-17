@@ -29,8 +29,9 @@ const { asset, lang } = Astro.props;
             "kaplay, kaboom.js, kaplay.js, game, library, javascript, easy, simple, html5, html5 games",
         image: assets[asset as keyof typeof assets].outlined,
     }}
+    class="bg-image-pattern"
 >
-    <main class="land flex flex-col scroll-smooth">
+    <main class="flex flex-col scroll-smooth">
         <Navbar />
         <CrewItem crewItem={asset as keyof typeof assets} />
     </main>
