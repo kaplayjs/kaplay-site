@@ -114,7 +114,7 @@ The upcoming v3001.1 update introduces some highly anticipated features:
 - `.tag` **and** `.untag`: Simplified methods to add or remove tags.
 
 - **Collision-Free Tags and Components**: With
-  `kaplay({ componentsAsTags: true })`, you can now cleanly separate tags and
+  `kaplay({ tagsAsComponents: false })`, you can now cleanly separate tags and
   components.
 
   - `.tag`, `.untag`, `.is`: For managing tags.
