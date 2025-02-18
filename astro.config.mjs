@@ -32,7 +32,8 @@ export default defineConfig({
         port: 3200,
     },
     redirects: {
-        "/docs": "/guides/install"
+        "/docs": "/guides/install",
+        "/doc": "/docs"
     },
     markdown: {
         shikiConfig: {

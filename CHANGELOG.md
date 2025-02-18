@@ -10,7 +10,7 @@ and this project adheres to
 
 ### Added
 
-- Now /docs redirect to installation guide
+- Now /docs and /doc redirect to installation guide
 - A badge in sidebar's Discord entry showing the quanitity of members
 
 ### Changed
