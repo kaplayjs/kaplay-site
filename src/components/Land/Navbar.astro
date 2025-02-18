@@ -4,20 +4,20 @@ import { assets } from "@kaplayjs/crew";
 
 const internalLinks = [
     {
-        name: "HOME",
+        name: "Home",
         url: "/",
         highlight: false,
         icon: assets.bean.outlined,
         reload: true,
     },
     {
-        name: "ASSETS",
+        name: "Assets",
         url: "/crew",
         highlight: false,
         icon: assets.assetbrew.outlined,
     },
     {
-        name: "PLAYGROUND",
+        name: "Playground",
         url: "https://play.kaplayjs.com",
         icon: assets.bobo.outlined,
     },
@@ -25,19 +25,19 @@ const internalLinks = [
 
 const externalLinks = [
     {
-        name: "BlOG",
+        name: "Blog",
         url: "/blog",
         highlight: false,
         icon: assets.paper.outlined,
     },
     {
-        name: "DONATE",
+        name: "Donate",
         url: "https://opencollective.com/kaplay",
         highlight: false,
         icon: assets.money_bag.outlined,
     },
     {
-        name: "DOCS",
+        name: "Docs",
         url: "/guides/install",
         highlight: true,
         icon: assets.api_book.outlined,
@@ -75,10 +75,14 @@ const externalLinks = [
             >
                 {
                     [...internalLinks, ...externalLinks].map((link) => (
-                        <li>
+                        <li
+                            class:list={{
+                                "mx-4 first:ml-0 last:mr-0": link.highlight,
+                            }}
+                        >
                             <a
                                 class:list={[
-                                    "btn btn-sm",
+                                    "btn btn-sm uppercase",
                                     {
                                         "btn-primary": link.highlight,
                                         "btn-ghost": !link.highlight,
@@ -104,12 +108,12 @@ const externalLinks = [
 
     <!-- Menu for desktop -->
     <div class="hidden w-full grid-cols-5 gap-2 md:grid">
-        <ul class="col-span-2 hidden justify-end gap-4 md:flex">
+        <ul class="col-span-2 hidden justify-end gap-2 md:flex">
             {
                 internalLinks.map((link) => (
                     <li>
                         <a
-                            class="btn btn-ghost font-semibold"
+                            class="btn btn-ghost font-semibold uppercase"
                             href={link.url}
                             data-astro-reload={link?.reload}
                         >
@@ -141,10 +145,14 @@ const externalLinks = [
         <ul class="col-span-2 hidden justify-start gap-2 md:flex">
             {
                 externalLinks.map((link) => (
-                    <li>
+                    <li
+                        class:list={{
+                            "mx-4 first:ml-0 last:mr-0": link.highlight,
+                        }}
+                    >
                         <a
                             class:list={[
-                                "btn",
+                                "btn uppercase",
                                 {
                                     "btn-primary": link.highlight,
                                     "btn-ghost": !link.highlight,
