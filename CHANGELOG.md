@@ -16,3 +16,7 @@ and this project adheres to
 ### Changed
 
 - Now nav titles are UPPERCASE
+
+### Fixed
+
+- Content no longer gets cut off by the navbar when navigating within the docs
