@@ -13,7 +13,7 @@ type Props = {
 const { sidebarMode, meta, lang, headings } = Astro.props;
 ---
 
-<Page lang={lang} meta={meta}>
+<Page lang={lang} meta={meta} class="scroll-pt-24">
     <slot name="head" slot="head" />
 
     <Sidebar sidebarMode={sidebarMode} headings={headings}>
