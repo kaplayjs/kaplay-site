@@ -22,7 +22,9 @@ There's some reasons why you should use KAPLAY:
   arcade physics, input manager, tilemap levels, assets and more.
 - ❤️ **Open Source**: KAPLAY.js is **open source** and free forever.
 
-# FAQ
+## FAQ
+
+---
 
 ## What's the difference between KAPLAY.js and Kaboom.js?
 
