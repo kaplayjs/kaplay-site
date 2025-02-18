@@ -130,7 +130,11 @@ else if (sidebarMode === "books") {
             transition:persist
         >
             <figure>
-                <a class="btn btn-ghost h-max w-full p-2" href={getLangedRoute(lang, "/")} data-astro-reload>
+                <a
+                    class="btn btn-ghost h-max w-full p-2"
+                    href={getLangedRoute(lang, "/")}
+                    data-astro-reload
+                >
                     <Image
                         src="/kaplay.gif"
                         alt="kaplay logo"
@@ -161,7 +165,7 @@ else if (sidebarMode === "books") {
                     target="_blank"
                     icon="discord"
                 >
-                    Discord
+                    Discord <div class="badge badge-primary">+2000!</div>
                 </SidebarLink>
                 <SidebarLink
                     href="https://github.com/kaplayjs/kaplay"
@@ -178,7 +182,7 @@ else if (sidebarMode === "books") {
                     target="_blank"
                     icon="controller"
                 >
-                    KA-PLAYGROUND
+                    KAPLAYGround
                 </SidebarLink>
                 <SidebarLink
                     href="https://opencollective.com/kaplay"

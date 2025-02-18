@@ -4,20 +4,20 @@ import { assets } from "@kaplayjs/crew";
 
 const internalLinks = [
     {
-        name: "Home",
+        name: "HOME",
         url: "/",
         highlight: false,
         icon: assets.bean.outlined,
         reload: true,
     },
     {
-        name: "Assets",
+        name: "ASSETS",
         url: "/crew",
         highlight: false,
         icon: assets.assetbrew.outlined,
     },
     {
-        name: "Playground",
+        name: "PLAYGROUND",
         url: "https://play.kaplayjs.com",
         icon: assets.bobo.outlined,
     },
@@ -25,19 +25,19 @@ const internalLinks = [
 
 const externalLinks = [
     {
-        name: "Blog",
+        name: "BlOG",
         url: "/blog",
         highlight: false,
         icon: assets.paper.outlined,
     },
     {
-        name: "Donate",
+        name: "DONATE",
         url: "https://opencollective.com/kaplay",
         highlight: false,
         icon: assets.money_bag.outlined,
     },
     {
-        name: "Docs",
+        name: "DOCS",
         url: "/guides/install",
         highlight: true,
         icon: assets.api_book.outlined,
@@ -108,7 +108,11 @@ const externalLinks = [
             {
                 internalLinks.map((link) => (
                     <li>
-                        <a class="btn btn-ghost font-semibold" href={link.url} data-astro-reload={link?.reload}>
+                        <a
+                            class="btn btn-ghost font-semibold"
+                            href={link.url}
+                            data-astro-reload={link?.reload}
+                        >
                             <img
                                 src={link.icon}
                                 width="24"

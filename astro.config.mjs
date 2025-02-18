@@ -31,6 +31,9 @@ export default defineConfig({
     server: {
         port: 3200,
     },
+    redirects: {
+        "/docs": "/guides/install"
+    },
     markdown: {
         shikiConfig: {
             transformers: [
