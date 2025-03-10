@@ -1,8 +1,21 @@
-import { component$ } from "@builder.io/qwik";
-import { assets } from "@kaplayjs/crew";
+import { cn } from "@/util/cn.ts";
+import {
+    component$,
+    useComputed$,
+    useSignal,
+    useTask$,
+} from "@builder.io/qwik";
+import { isServer } from "@builder.io/qwik/build";
+import { assets, crewAssets, fontAssets } from "@kaplayjs/crew";
+import type {
+    CrewAsset,
+    FontCrewAsset,
+} from "node_modules/@kaplayjs/crew/dist/plugin";
+import { Code } from "../Util/Code.tsx";
 
 export interface CrewItemProps {
     crewItem: keyof typeof assets;
+    isModal?: boolean;
 }
 
 const genderWord = [
@@ -12,43 +25,115 @@ const genderWord = [
 ];
 
 export const CrewItem = component$<CrewItemProps>((props) => {
+    const isModal = props.isModal ?? false;
+    const isFromCrew = crewAssets[props.crewItem as unknown as CrewAsset];
+    const isFromFont = fontAssets[props.crewItem as unknown as FontCrewAsset];
+    const versionSelected = useSignal<"original" | "outlined">("original");
     const crewItem = assets[props.crewItem];
 
     return (
-        <div class="flex h-full flex-col items-center justify-center">
-            <div class="hidden lg:flex items-center md:min-h-20 py-2">
-                <a class="btn btn-primary btn-sm" href="/crew">
-                    Back
-                </a>
-            </div>
-            <div class="flex h-full flex-col gap-y-3 bg-base-200 p-6 lg:p-2 text-xl lg:max-h-[60%] lg:flex-row rounded-box lg:rounded-box border border-base-content/15">
-                <div class="lg:hidden mb-4">
-                    <a class="btn btn-primary btn-sm" href="/crew">
-                        Back
+        <div
+            class={cn({
+                "h-full min-h-dvh w-full overflow-y-auto lg:mt-10 md:flex md:justify-center":
+                    !isModal,
+            })}
+        >
+            <div
+                class={cn(
+                    "flex h-full w-full gap-4 overflow-y-auto rounded-box bg-base-200 p-4 border border-base-content/15",
+                    {
+                        "lg:max-h-[80%] lg:max-w-[50%]": !isModal,
+                    },
+                )}
+            >
+                <div
+                    class="mb-4"
+                    onClick$={() => {
+                        const dialog = document.querySelector<
+                            HTMLDialogElement
+                        >("#crew-modal");
+
+                        dialog?.close();
+                    }}
+                >
+                    <a
+                        class="absolute top-2 right-2 p-2 bg-base-content/15 rounded-xl hover:bg-base-content/30 transition-colors focus:outline-none focus:ring-2 focus:ring-current"
+                        href="/crew"
+                    >
+                        <svg
+                            width="14"
+                            height="14"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <path d="M18 6 6 18" />
+                            <path d="m6 6 12 12" />
+                        </svg>
                     </a>
                 </div>
                 <div class="flex flex-1 flex-col gap-3 lg:p-6">
                     <div
-                        class="tooltip flex justify-around rounded-xl border border-primary"
+                        class="tooltip flex gap-1 p-1 border border-base-content/15 rounded-xl"
                         data-tip={crewItem.secret}
                     >
-                        <img
-                            src={crewItem.outlined}
-                            alt={crewItem.name}
-                            class="w-32 object-scale-down p-4"
-                        />
-                        <img
-                            src={crewItem.sprite}
-                            alt={crewItem.name}
-                            class="w-32 object-scale-down p-4"
-                        />
+                        <button
+                            class={cn(
+                                "flex-1 flex flex-col items-center pb-2 rounded-lg border-2 hover:bg-base-100 transition-colors focus:outline-none focus:border-current",
+                                {
+                                    "bg-base-100 border-primary":
+                                        versionSelected.value == "original",
+                                    " bg-base-300 border-base-300":
+                                        versionSelected.value != "original",
+                                },
+                            )}
+                            onClick$={() => {
+                                versionSelected.value = "original";
+                            }}
+                        >
+                            <span class="relative top-2 text-xs tracking-wide font-semibold">
+                                Original
+                            </span>
+                            <img
+                                src={crewItem.sprite}
+                                alt={crewItem.name}
+                                class="w-32 object-scale-down"
+                            />
+                        </button>
+
+                        <button
+                            class={cn(
+                                "flex-1 flex flex-col items-center pb-2 rounded-lg border-2 hover:bg-base-100 transition-colors focus:outline-none focus:border-current",
+                                {
+                                    "bg-base-100 border-primary":
+                                        versionSelected.value == "outlined",
+                                    " bg-base-300 border-base-300":
+                                        versionSelected.value != "outlined",
+                                },
+                            )}
+                            onClick$={() => {
+                                versionSelected.value = "outlined";
+                            }}
+                        >
+                            <span class="relative top-2 text-xs tracking-wide font-semibold">
+                                Outlined
+                            </span>
+                            <img
+                                src={crewItem.outlined}
+                                alt={crewItem.name}
+                                class="w-32 object-scale-down"
+                            />
+                        </button>
                     </div>
 
                     <div>
                         <h2 class="text-2xl font-bold text-white">
                             {crewItem.name}
                             <span class="badge badge-outline mx-2 text-base-content">
-                                {crewItem.type}
+                                {crewItem.category}
                             </span>
                         </h2>
                         <p class="text-lg">by {crewItem.author}</p>
@@ -73,7 +158,8 @@ export const CrewItem = component$<CrewItemProps>((props) => {
                                         />
                                         <span class="font-bold">Weight:</span>
                                         {" "}
-                                        {crewItem.crewmeta?.weight}kg
+                                        {crewItem.crewmeta
+                                            ?.weight}kg
                                     </li>
                                     <li class="flex items-center gap-2">
                                         <img
@@ -117,9 +203,9 @@ export const CrewItem = component$<CrewItemProps>((props) => {
                                 <br />
                                 <br />
                                 <span>
-                                    {genderWord[crewItem.crewmeta.gender][2]}
-                                    {" "}
-                                    favorite food is{" "}
+                                    {genderWord[crewItem.crewmeta.gender][
+                                        2
+                                    ]} favorite food is{" "}
                                     {crewItem.crewmeta.favoriteFood}, and{" "}
                                     {genderWord[
                                         crewItem.crewmeta.gender
@@ -130,28 +216,58 @@ export const CrewItem = component$<CrewItemProps>((props) => {
                             </>
                         )}
                     </p>
-                    <btn
-                        class="btn btn-outline btn-primary w-full mt-auto"
-                        onClick$={() => {
-                            const a = document.createElement("a");
-                            a.href = crewItem.sprite!;
-                            a.download = `${props.crewItem}.png`;
-                            a.click();
-                        }}
-                    >
-                        Download Sprite
-                    </btn>
-                    <btn
-                        class="btn btn-outline btn-accent w-full"
-                        onClick$={() => {
-                            const a = document.createElement("a");
-                            a.href = crewItem.outlined!;
-                            a.download = `${props.crewItem}-o.png`;
-                            a.click();
-                        }}
-                    >
-                        Download Outlined ver.
-                    </btn>
+
+                    <div class="mt-auto">
+                        {isFromCrew && (
+                            <>
+                                {versionSelected.value == "original"
+                                    ? (
+                                        <Code
+                                            content={`loadCrew("${props.crewItem}");`}
+                                            language="javascript"
+                                            copyBtn
+                                        />
+                                    )
+                                    : (
+                                        <Code
+                                            content={`loadCrew("${props.crewItem}-o");`}
+                                            language="javascript"
+                                            copyBtn
+                                        />
+                                    )}
+                            </>
+                        )}
+
+                        {isFromFont && (
+                            <>
+                                <Code
+                                    content={`loadCrewFont("${props.crewItem}");`}
+                                    language="javascript"
+                                    copyBtn
+                                />
+                            </>
+                        )}
+
+                        <btn
+                            class="btn btn-outline btn-primary w-full"
+                            onClick$={() => {
+                                const a = document.createElement("a");
+                                a.href = versionSelected.value == "original"
+                                    ? crewItem.sprite
+                                    : crewItem.outlined!;
+
+                                const extra =
+                                    versionSelected.value == "original"
+                                        ? ""
+                                        : "-o";
+
+                                a.download = `${props.crewItem}${extra}.png`;
+                                a.click();
+                            }}
+                        >
+                            Download Sprite
+                        </btn>
+                    </div>
                 </div>
             </div>
         </div>
