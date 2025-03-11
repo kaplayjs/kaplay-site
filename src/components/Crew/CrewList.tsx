@@ -32,16 +32,16 @@ type Tag = typeof tags[number] | "all";
 const messages: Record<Tag, string> = {
     "all": "Welcome to KAWorld, the KAPLAYER's home :D",
     "crew": "The protagonists of your next adventure",
-    "objects": "Yokai, Yokai, Yokai...",
-    "animals": "OMG",
-    "food": "Yummy",
+    "objects": "",
+    "animals": "Yokai, Yokai, Yokai...",
+    "food": "YUMMY",
     "tiles": "Make Super Bean Maker a reality.",
-    "icons": ".-O",
-    "books": "Explore more books in:",
-    "brand": "KAPLAY",
-    "ui": "Oh",
+    "icons": "Used on this web :D",
+    "books": "Explore more books in: https://kaplayjs.com/books",
+    "brand": "KAPLAY brand related logos, assets",
+    "ui": "*Click*",
     "emojis": "More in Discord!",
-    "fonts": "",
+    "fonts": "Sad font coming soon...",
 };
 
 export const CrewList = component$((props) => {
@@ -137,7 +137,7 @@ export const CrewList = component$((props) => {
 
             <dialog id="crew-modal" class="modal">
                 <div class="modal-box w-max p-0 m-0 max-w-max">
-                    <CrewItem crewItem={curCrewItem.value ?? "bean"} isModal />
+                    <CrewItem crewItem={curCrewItem.value} isModal />
                 </div>
                 <form method="dialog" class="modal-backdrop">
                     <button>close</button>

@@ -14,7 +14,7 @@ import type {
 import { Code } from "../Util/Code.tsx";
 
 export interface CrewItemProps {
-    crewItem: keyof typeof assets;
+    crewItem?: keyof typeof assets;
     isModal?: boolean;
 }
 
@@ -29,7 +29,13 @@ export const CrewItem = component$<CrewItemProps>((props) => {
     const isFromCrew = crewAssets[props.crewItem as unknown as CrewAsset];
     const isFromFont = fontAssets[props.crewItem as unknown as FontCrewAsset];
     const versionSelected = useSignal<"original" | "outlined">("original");
-    const crewItem = assets[props.crewItem];
+    const crewItemP = props.crewItem;
+
+    if (!crewItemP) {
+        return <div>loading...</div>;
+    }
+
+    const crewItem = assets[crewItemP];
 
     return (
         <div
@@ -100,7 +106,7 @@ export const CrewItem = component$<CrewItemProps>((props) => {
                             <img
                                 src={crewItem.sprite}
                                 alt={crewItem.name}
-                                class="w-32 object-scale-down"
+                                class="w-32 object-scale-down py-4"
                             />
                         </button>
 
@@ -124,7 +130,7 @@ export const CrewItem = component$<CrewItemProps>((props) => {
                             <img
                                 src={crewItem.outlined}
                                 alt={crewItem.name}
-                                class="w-32 object-scale-down"
+                                class="w-32 object-scale-down py-4"
                             />
                         </button>
                     </div>
@@ -185,6 +191,18 @@ export const CrewItem = component$<CrewItemProps>((props) => {
                             </>
                         )}
                     </div>
+
+                    {props.isModal && (
+                        <div class="mt-4">
+                            <ul>
+                                <li>
+                                    <a href={`/crew/${props.crewItem}`}>
+                                        Open in new page
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    )}
                 </div>
                 <div class="divider divider-horizontal m-0"></div>
                 <div class="flex flex-1 flex-col gap-4 lg:p-6">
