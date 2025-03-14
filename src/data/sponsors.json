@@ -6,6 +6,12 @@
     "bgTint": "gray"
   },
   {
+    "name": "Gamedev.js",
+    "url": "https://gamedevjs.com/jam/2025/",
+    "image": "gamedevjs.png",
+    "bgTint": "zinc"
+  },
+  {
     "name": "RD Consultance",
     "url": "https://www.linkedin.com/in/robin-denis-62a23a82",
     "image": "rdconsultance.png",

@@ -1,13 +1,15 @@
 ---
 import kaplayLogo from "/public/kaplay-logo-sm-og.png";
 import { Image } from "astro:assets";
+import sponsorsData from "../../data/sponsors.json";
 import FriendsBelow from "../Util/FriendsBelow.astro";
 import FooterLink from "./FooterLink.astro";
 import FooterNav from "./FooterNav.astro";
-import sponsorsData from "../../data/sponsors.json";
 
 const sponsors = Object.values(sponsorsData);
-const sponsorImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/sponsors/*.{jpeg,jpg,png,gif}');
+const sponsorImages = import.meta.glob<{ default: ImageMetadata }>(
+    "/src/assets/sponsors/*.{jpeg,jpg,png,gif}",
+);
 
 type Props = {
     class?: string;
@@ -20,7 +22,12 @@ const { class: className } = Astro.props;
     friends={["bag", "ghosty", "ghostiny", "kat", "burpman", "mark"]}
     offset={2}
 >
-    <footer class:list={["w-full rounded bg-base-200 p-8 pt-16 text-base text-base-content rounded-t-xl", className]}>
+    <footer
+        class:list={[
+            "w-full rounded bg-base-200 p-8 pt-16 text-base text-base-content rounded-t-xl",
+            className,
+        ]}
+    >
         <div
             class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 md:grid-cols-3 lg:[grid-template-columns:1.5fr_2fr_2fr_1.5fr] max-w-[1545px] mx-auto"
         >
@@ -52,7 +59,12 @@ const { class: className } = Astro.props;
                 </FooterLink>
             </FooterNav>
 
-            <FooterNav title="PRESENCE" icon="burpman" columns={2} class="[&_.icon]:ml-1.5">
+            <FooterNav
+                title="PRESENCE"
+                icon="burpman"
+                columns={2}
+                class="[&_.icon]:ml-1.5"
+            >
                 <FooterLink href="https://github.com/kaplayjs/kaplay" external>
                     GitHub
                 </FooterLink>
@@ -93,8 +105,12 @@ const { class: className } = Astro.props;
                 </FooterLink>
             </FooterNav>
 
-            <FooterNav title="SUPPORT" icon="money_bag" class="md:col-span-full lg:col-span-1">
-                <div class="flex gap-2 items-center  flex-wrap justify-start">
+            <FooterNav
+                title="SUPPORT"
+                icon="money_bag"
+                class="md:col-span-full lg:col-span-1"
+            >
+                <div class="flex gap-2 items-center flex-wrap justify-start">
                     <a
                         href="https://opencollective.com/kaplay/donate"
                         target="_blank"
@@ -107,7 +123,11 @@ const { class: className } = Astro.props;
                         />
                     </a>
 
-                    <a href="https://cafecito.app/kaplay" target="_blank" class="bg-white rounded-3xl py-1 pl-1 pr-2">
+                    <a
+                        href="https://cafecito.app/kaplay"
+                        target="_blank"
+                        class="bg-white rounded-3xl py-1 pl-1 pr-2"
+                    >
                         <Image
                             src="/cafecito.svg"
                             width="160"
@@ -124,7 +144,9 @@ const { class: className } = Astro.props;
         <aside
             class="flex flex-col items-center justify-center gap-6 sm:flex-row sm:justify-between max-w-[1545px] mx-auto"
         >
-            <div class="flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
+            <div
+                class="flex flex-wrap items-center justify-center gap-x-10 gap-y-4"
+            >
                 <Image
                     src={kaplayLogo}
                     alt="KAPLAY logo"
@@ -135,16 +157,24 @@ const { class: className } = Astro.props;
                     class="pixelated"
                 />
 
-                <div class="inline-flex items-center justify-evenly flex-wrap gap-0 sm:gap-4">
+                <div
+                    class="inline-flex items-center justify-evenly flex-wrap gap-0 sm:gap-4"
+                >
                     {
                         sponsors.map((sponsor) => (
-                            <a href={sponsor.url} target="_blank" class="grow-0 shrink basis-1/2 sm:basis-auto">
+                            <a
+                                href={sponsor.url}
+                                target="_blank"
+                                class="grow-0 shrink basis-1/2 sm:basis-auto"
+                            >
                                 <Image
                                     src={sponsorImages[`/src/assets/sponsors/${sponsor.image}`]()}
                                     alt={sponsor.name}
                                     width={200}
                                     height={80}
-                                    class:list={[{ "mix-blend-screen": sponsor?.lighten ?? false }]}
+                                    class:list={["h-24 object-scale-down", {
+                                        "mix-blend-screen": sponsor?.lighten ?? false,
+                                    }]}
                                 />
                             </a>
                         ))
