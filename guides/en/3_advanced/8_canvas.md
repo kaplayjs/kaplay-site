@@ -55,9 +55,13 @@ add([sprite("bean"), drawon(canvas)]);
 
 # Drawing a canvas
 
-Drawing a canvas is a bit more involved than drawing a picture (so maybe we should make a helper function for this). The easiest way to draw a canvas is by drawing an uvquad.
+You can draw a canvas by using drawCanvas, or by drawing an uvquad.
 
 ```ts
+drawCanvas({
+  canvas: canvas,
+});
+
 drawUVQuad({
   width: canvas.width,
   height: canvas.height,
@@ -65,7 +69,7 @@ drawUVQuad({
 });
 ```
 
-Or by adding an object with an uvquad component. Though since you can't pass a texture easily, this won't work for now.
+You can also add an object with an uvquad component. Though since you can't pass a texture easily, this won't work for now.
 
 ```ts
 add([
