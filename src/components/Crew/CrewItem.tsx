@@ -62,10 +62,7 @@ export const CrewItem = component$<CrewItemProps>((props) => {
                         dialog?.close();
                     }}
                 >
-                    <a
-                        class="absolute top-2 right-2 p-2 bg-base-content/15 rounded-xl hover:bg-base-content/30 transition-colors focus:outline-none focus:ring-2 focus:ring-current"
-                        href="/crew"
-                    >
+                    <btn class="absolute top-2 right-2 p-2 bg-base-content/15 rounded-xl hover:bg-base-content/30 transition-colors focus:outline-none focus:ring-2 focus:ring-current">
                         <svg
                             width="14"
                             height="14"
@@ -79,7 +76,7 @@ export const CrewItem = component$<CrewItemProps>((props) => {
                             <path d="M18 6 6 18" />
                             <path d="m6 6 12 12" />
                         </svg>
-                    </a>
+                    </btn>
                 </div>
                 <div class="flex flex-1 flex-col gap-3 lg:p-6">
                     <div
@@ -92,7 +89,7 @@ export const CrewItem = component$<CrewItemProps>((props) => {
                                 {
                                     "bg-base-100 border-primary":
                                         versionSelected.value == "original",
-                                    " bg-base-300 border-base-300":
+                                    "bg-base-300 border-base-300":
                                         versionSelected.value != "original",
                                 },
                             )}
@@ -116,7 +113,7 @@ export const CrewItem = component$<CrewItemProps>((props) => {
                                 {
                                     "bg-base-100 border-primary":
                                         versionSelected.value == "outlined",
-                                    " bg-base-300 border-base-300":
+                                    "bg-base-300 border-base-300":
                                         versionSelected.value != "outlined",
                                 },
                             )}
