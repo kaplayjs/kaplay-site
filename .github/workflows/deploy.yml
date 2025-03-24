@@ -35,6 +35,8 @@ jobs:
         with:
           submodules: true
           fetch-tags: true
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
       - name: Build kaplayjs
         run: |
           cd kaplay
@@ -49,8 +51,7 @@ jobs:
           TAG2=$(git tag --list '3001.0*' --sort=-v:refname creatordate | head -n 1)
           echo $TAG2
           git checkout $TAG2
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v4
+
       - name: Deploy app
         uses: cloudflare/wrangler-action@v3
         with:
