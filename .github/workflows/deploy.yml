@@ -2,6 +2,23 @@ on:
   push:
 
 jobs:
+  addToPublic:
+    name: "Add dist/kaplayjs to public"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+          fetch-tags: true
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+      - name: Build kaplayjs
+        run: |
+          cd kaplay
+          pnpm run build
+          cd dist
+          cp kaplay.js ../../public/lib/kaplay.master.js
+
   deploy:
     name: "Deploy v4000 Docs on Cloudflare Workers"
     runs-on: ubuntu-latest
