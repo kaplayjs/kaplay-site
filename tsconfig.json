@@ -3,11 +3,18 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": [
+        "src/*"
+      ]
     },
     "jsx": "react-jsx",
     "jsxImportSource": "@builder.io/qwik",
     "resolveJsonModule": true
   },
-  "exclude": ["kaplay", "scripts", "dist"]
+  "exclude": [
+    "kaplay",
+    "scripts",
+    "dist",
+    "public"
+  ]
 }
