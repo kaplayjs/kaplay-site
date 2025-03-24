@@ -15,6 +15,7 @@ jobs:
       - name: Build kaplayjs
         run: |
           cd kaplay
+          pnpm i
           pnpm run build
           cd dist
           cp kaplay.js ../../public/lib/kaplay.master.js
