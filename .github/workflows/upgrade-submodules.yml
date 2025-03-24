@@ -1,3 +1,5 @@
+# This Action is dispatched by kaplayjs/kaplay on master push
+
 name: "Sync Submodules"
 
 on:
@@ -14,14 +16,11 @@ jobs:
         shell: bash
 
     steps:
-      # Checkout the repository to the GitHub Actions runner
       - name: Checkout
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           submodules: true
-
-      # Update references
       - name: Git Submodule Update
         run: |
           git pull --recurse-submodules
