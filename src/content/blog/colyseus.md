@@ -25,5 +25,5 @@ making a game using KAPLAY and Colyseus.
 ![Colyseus Guide Image](assets/colyguide.png)
 
 There is not much I can add to explain the epicness of this guide, just look at
-it. Thanks to Misanthrope for making this amazing blog and Endel from Colyseus
+it. Thanks to Misanthrope for making this amazing guide and Endel from Colyseus
 for collab with us all this time.
