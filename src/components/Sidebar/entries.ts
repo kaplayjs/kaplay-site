@@ -34,6 +34,9 @@ const guidesData: Record<
     "5_misc": {
         title: "Misc",
     },
+    "6_integrations": {
+        title: "Integrations",
+    },
 };
 
 export const getGuidesEntries = async () => {
