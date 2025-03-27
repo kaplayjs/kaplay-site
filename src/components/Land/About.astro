@@ -2,34 +2,54 @@
 import kaplayBanner from "@/assets/kaplay-banner-logo.gif";
 import kaplayBannerSprites from "@/assets/kaplay-banner-spritesheet.png";
 import patternWave from "@/assets/pattern-wave.png";
-import { Image, getImage } from "astro:assets";
+import { getImage, Image } from "astro:assets";
 import AboutFeatured from "./AboutFeatured.astro";
 
 const bannerSprites = {
-  bolt: { width: 38, height: 49, x: 92, y: 60 },
-  coin: { width: 38, height: 44, x: 284, y: 58 },
-  pointer: { width: 32, height: 37, x: 0, y: 175 },
-  heart: { width: 47, height: 42, x: 192, y: 187 },
-  ghostiny: { width: 41, height: 47, x: 397, y: 146 },
-}
-const bannerSpritesCount = Object.keys(bannerSprites).length
-const spriteMaxWidth = Math.max(...Object.values(bannerSprites).map(v => v.width))
-const {  src: bannerSpritesUrl } = await getImage({src: kaplayBannerSprites, format: 'png'})
-const {  src: patternWaveUrl } = await getImage({src: patternWave, format: 'png'})
+    bolt: { width: 38, height: 49, x: 92, y: 60 },
+    coin: { width: 38, height: 44, x: 284, y: 58 },
+    pointer: { width: 32, height: 37, x: 0, y: 175 },
+    heart: { width: 47, height: 42, x: 192, y: 187 },
+    ghostiny: { width: 41, height: 47, x: 397, y: 146 },
+};
+const bannerSpritesCount = Object.keys(bannerSprites).length;
+const spriteMaxWidth = Math.max(
+    ...Object.values(bannerSprites).map(v => v.width),
+);
+const { src: bannerSpritesUrl } = await getImage({
+    src: kaplayBannerSprites,
+    format: "png",
+});
+const { src: patternWaveUrl } = await getImage({
+    src: patternWave,
+    format: "png",
+});
 ---
 
-<div class="relative flex-1 flex -mt-4 p-px pt-[calc(1rem+1px)] bg-base-50 z-20 2xl:[.bottom-0+&]:-mt-20" id="about">
-    <div class="flex-1 bg-[#2a303c] bg-image-pattern [background-position:right_6px_top_-6px] rounded-r-xl" aria-hidden="true"></div>
+<div
+    class="relative flex-1 flex -mt-4 p-px pt-[calc(1rem+1px)] bg-base-50 z-20 2xl:[.bottom-0+&]:-mt-20"
+    id="about"
+>
+    <div
+        class="flex-1 bg-[#2a303c] bg-image-pattern [background-position:right_6px_top_-6px] rounded-r-xl"
+        aria-hidden="true"
+    ></div>
 
-    <div class="flex flex-col md:grid min-[900px]:grid-cols-2 gap-px h-full w-full max-w-6xl mx-auto">
-        <div class="relative col-span-2 min-[900px]:col-span-1 row-start-1 min-[900px]:col-start-2 flex items-center justify-center px-8 lg:px-10 py-6 lg:py-12 bg-base-300 rounded-xl overflow-hidden">
+    <div
+        class="flex flex-col md:grid min-[900px]:grid-cols-2 gap-px h-full w-full max-w-6xl mx-auto"
+    >
+        <div
+            class="relative col-span-2 min-[900px]:col-span-1 row-start-1 min-[900px]:col-start-2 flex items-center justify-center px-8 lg:px-10 py-6 lg:py-12 bg-base-300 rounded-xl overflow-hidden"
+        >
             <div
                 class="absolute bottom-0 right-0 w-[200%] h-[256px] -translate-y-1/2 -rotate-45 origin-top-right pixelated animate-[waveMove_6s_linear_infinite]"
                 style={`background-image: url('${patternWaveUrl}')`}
                 aria-hidden="true"
             ></div>
 
-            <div class="relative max-w-xs min-[900px]:max-w-[438px] animate-[levitating_6s_infinite_alternate]">
+            <div
+                class="relative max-w-xs min-[900px]:max-w-[438px] animate-[levitating_6s_infinite_alternate]"
+            >
                 <Image
                     src={kaplayBanner}
                     alt="KAPLAY Banner"
@@ -42,43 +62,68 @@ const {  src: patternWaveUrl } = await getImage({src: patternWave, format: 'png'
                     class="pixelated"
                 />
 
-                {Object.values(bannerSprites).map(({width, x, y}, i) => (
-                <div
-                    class="absolute pixelated animate-[spriting_3s_infinite_alternate]"
-                    aria-hidden="true"
-                    style={`
+                {
+                    Object.values(bannerSprites).map(({ width, x, y }, i) => (
+                        <div
+                            class="absolute pixelated animate-[spriting_3s_infinite_alternate]"
+                            aria-hidden="true"
+                            style={`
                         top: ${(y / kaplayBanner.height) * 100}%;
                         left: ${(x / kaplayBanner.width) * 100}%;
                         width: ${(width / kaplayBanner.width) * 100}%;
                         height: ${(49 / kaplayBanner.height) * 100}%;
-                        background: url('${bannerSpritesUrl}') ${(spriteMaxWidth * i) / (spriteMaxWidth * bannerSpritesCount - width) * 100}% 0% / auto 100% no-repeat;
-                        ${i % 2 == 0 && 'animation-delay: 0.5s'}
-                    `.split('\n').map(s => s.trim()).join('')}
-                ></div>
-                ))}
+                        background: url('${bannerSpritesUrl}') ${
+                                (spriteMaxWidth * i) / (spriteMaxWidth * bannerSpritesCount - width)
+                                * 100
+                            }% 0% / auto 100% no-repeat;
+                        ${i % 2 == 0 && "animation-delay: 0.5s"}
+                    `.split("\n").map(s => s.trim()).join("")}
+                        ></div>
+                    ))
+                }
             </div>
         </div>
 
-        <div class="min-[900px]:row-start-1 row-span-2 flex flex-col lg:items-center justify-center bg-base-300 rounded-xl p-9 py-10 sm:p-16">
+        <div
+            class="min-[900px]:row-start-1 row-span-2 flex flex-col lg:items-center justify-center bg-base-300 rounded-xl p-9 py-10 sm:p-16"
+        >
             <div class="flex-1 flex flex-col max-w-xl justify-evenly">
-                <h1 class="text-white text-4xl sm:text-5xl font-bold md:leading-[3.2rem]">
-                    The <span class="font-hand text-primary">fun</span> and open source game
+                <h1
+                    class="text-white text-4xl sm:text-5xl font-bold md:leading-[3.2rem]"
+                >
+                    The <span class="font-hand text-primary">fun</span> and open
+                    source game
                     <span class="font-hand text-[#fcef8d]">library</span> for
-                    <span class="font-hand text-[#ffb879]">HTML5 <span class="text-[#bf7adf]">Games</span></span>
+                    <span class="font-hand text-[#ffb879]">HTML5 <span
+                            class="text-[#bf7adf]"
+                        >Games</span></span>
                 </h1>
+
+                <div class="bg-base-200 w-full flex flex-row p-4 rounded-xl items-center gap-4 mt-4">
+                    <img class="w-8" src="/glady.png"></img>
+                    <p>
+                        Enter to the <strong class="text-[#aa7aee]">Colyseus</strong> with our new guide about <a class="link link-hover link-primary" href="guides/how-to-make-a-multiplayer-game-with-colyseus-and-kaplay">Making a multiplayer game with Colyseus</a>!
+                    </p>
+                </div>
 
                 <p class="py-6 text-xl md:leading-[1.65]">
                     <strong class="text-white">KAPLAY</strong>
                     <span class="italic">(/ˈkæpleɪ/)</span> is a
-                    <span class="text-white">JavaScript</span> and <span class="text-white">TypeScript</span>
-                    game library that makes it <span class="text-white">easy</span> to
-                    create games for the web. It's <span class="text-white">free</span>, open-source and fun.
+                    <span class="text-white">JavaScript</span> and <span
+                        class="text-white"
+                    >TypeScript</span>
+                    game library that makes it <span class="text-white"
+                    >easy</span> to create games for the web. It's <span
+                        class="text-white"
+                    >free</span>, open-source and fun.
                 </p>
 
-                <div class="mt-2 md:mt-4 flex flex-row flex-wrap gap-x-4 gap-y-5">
+                <div
+                    class="mt-2 md:mt-4 flex flex-row flex-wrap gap-x-4 gap-y-5"
+                >
                     <a
                         class="inline-flex font-semibold text-lg text-black justify-center bg-primary rounded-xl px-5 py-3 border-2 border-[#fcef8d] shadow-[0_0.25em_0_0_#5ba675] hover:scale-105 transition-all"
-                        href="/guides/install"
+                        href="/guides/"
                     >
                         Explore Docs
                     </a>
@@ -101,7 +146,9 @@ const {  src: patternWaveUrl } = await getImage({src: patternWave, format: 'png'
             </div>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-1 min-[900px]:grid-cols-2 gap-px md:max-w-64 min-[900px]:max-w-full">
+        <div
+            class="grid grid-cols-2 md:grid-cols-1 min-[900px]:grid-cols-2 gap-px md:max-w-64 min-[900px]:max-w-full"
+        >
             <AboutFeatured friend="apple">
                 Friendly API. Easy to learn, easy to teach.
             </AboutFeatured>
@@ -120,26 +167,49 @@ const {  src: patternWaveUrl } = await getImage({src: patternWave, format: 'png'
         </div>
     </div>
 
-    <div class="flex-1 bg-[#2a303c] bg-image-pattern [background-position:left_-5px_top_-6px] rounded-l-xl" aria-hidden="true"></div>
+    <div
+        class="flex-1 bg-[#2a303c] bg-image-pattern [background-position:left_-5px_top_-6px] rounded-l-xl"
+        aria-hidden="true"
+    ></div>
 </div>
 
 <style>
-  @keyframes levitating {
-    0% { transform: translateY(0); }
-    20% { transform: translateY(0); }
-    50% { transform: translateY(-5%); }
-    80% { transform: translateY(0); }
-    100% { transform: translateY(0); }
-  }
+    @keyframes levitating {
+        0% {
+            transform: translateY(0);
+        }
+        20% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-5%);
+        }
+        80% {
+            transform: translateY(0);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
 
-  @keyframes spriting {
-    0% { transform: scale(1) translateY(0); }
-    50% { transform: scale(1) translateY(-10%); }
-    100% { transform: scale(0.88) translateY(8%); }
-  }
+    @keyframes spriting {
+        0% {
+            transform: scale(1) translateY(0);
+        }
+        50% {
+            transform: scale(1) translateY(-10%);
+        }
+        100% {
+            transform: scale(0.88) translateY(8%);
+        }
+    }
 
-  @keyframes waveMove {
-    0% { background-position-x: 0%; }
-    100% { background-position-x: -195px; }
-  }
+    @keyframes waveMove {
+        0% {
+            background-position-x: 0%;
+        }
+        100% {
+            background-position-x: -195px;
+        }
+    }
 </style>

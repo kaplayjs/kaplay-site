@@ -31,6 +31,23 @@ const guideCollection = defineCollection({
         }),
 });
 
+const contentCollection = defineCollection({
+    loader: glob({
+        pattern: "**/*.{md,mdx}",
+        base: "./content/",
+    }),
+    type: "content_layer",
+    schema: ({ image }) =>
+        z.object({
+            url: z.optional(z.string()),
+            title: z.string(),
+            description: z.string(),
+            image: z.optional(image()),
+            category: z.optional(z.string()),
+            version: z.optional(z.string()),
+        }),
+});
+
 const booksCollection = defineCollection({
     type: "content", // v2.5.0 and later
     schema: z.object({
@@ -64,4 +81,5 @@ export const collections = {
     books: booksCollection,
     misc: miscCollection,
     repo: repoCollection,
+    content: contentCollection,
 };
