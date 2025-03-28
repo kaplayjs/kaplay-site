@@ -27,3 +27,6 @@ making a game using KAPLAY and Colyseus.
 There is not much I can add to explain the epicness of this guide, just look at
 it. Thanks to Misanthrope for making this amazing guide and Endel from Colyseus
 for collab with us all this time.
+
+Read NOW:
+[How to make a multiplayer game with Colyseus and KAPLAY](https://kaplayjs.com/guides/how-to-make-a-multiplayer-game-with-colyseus-and-kaplay)
