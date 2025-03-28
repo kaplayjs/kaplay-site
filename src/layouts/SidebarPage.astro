@@ -7,13 +7,13 @@ import Page, { type MetaTagData } from "./Page.astro";
 
 type Props = {
     meta?: MetaTagData;
-    lang: Locale;
+    lang?: Locale;
 } & SidebarProps;
 
-const { sidebarMode, meta, lang, headings } = Astro.props;
+const { sidebarMode, meta, headings } = Astro.props;
 ---
 
-<Page lang={lang} meta={meta} class="scroll-pt-24">
+<Page meta={meta} class="scroll-pt-24">
     <slot name="head" slot="head" />
 
     <Sidebar sidebarMode={sidebarMode} headings={headings}>

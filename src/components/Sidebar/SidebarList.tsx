@@ -48,6 +48,14 @@ export const SidebarList = component$((props: Props) => {
                 ref={searchInputRef}
             />
 
+            {props.sidebarMode == "guides" && (
+                <>
+                    <SidebarLink href={"/guides"}>
+                        Getting Started
+                    </SidebarLink>
+                </>
+            )}
+
             {sidebarEntries.value
                 .filter(({ linkList }) => linkList.length > 0)
                 .map(({ linkList, folder }, i) => {

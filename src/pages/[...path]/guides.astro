@@ -1,0 +1,101 @@
+---
+import Info from "@/components/Content/Info.astro";
+import Prose from "@/components/Content/Prose.astro";
+import FriendsBelow from "@/components/Util/FriendsBelow.astro";
+import SidebarPage from "@/layouts/SidebarPage.astro";
+import { getStaticPathsByLocales } from "@/util/path.ts";
+import { assets } from "@kaplayjs/crew";
+
+export function getStaticPaths() {
+    return getStaticPathsByLocales();
+}
+---
+
+<SidebarPage
+    meta={{
+        title: "KAPLAY Guides",
+        description: "hi",
+        keywords: "kaplayjs, guides, documentation",
+    }}
+    sidebarMode="guides"
+>
+    <Prose>
+        <h1>Welcome to KAPLAY Docs</h1>
+        <p>
+            In the KAPLAY Docs you will found guides, resources and all what you
+            need for start using KAPLAY!
+        </p>
+    </Prose>
+
+    <div class="max-w-[50rem]">
+        <div class="grid grid-cols-2 bg-base-50 rounded-xl gap-px p-px">
+            <div
+                class="flex flex-1 flex-col rounded-xl bg-base-300 p-4 w-full gap-2"
+            >
+                <h2 class="text-xl font-black">Getting Started</h2>
+                Get started with KAPLAY
+
+                <ul class="list-disc list-inside">
+                    <li class="link link-primary link-hover">
+                        <a href="/guides/install">Installing</a>
+                    </li>
+                    <li class="link link-primary link-hover">
+                        <a href="/guides/starting">Basic Concepts</a>
+                    </li>
+                    <li class="link link-primary link-hover">
+                        <a href="/guides/game_objects">Game Objects</a>
+                    </li>
+                    <li class="link link-primary link-hover">
+                        <a href="/guides/components">Components</a>
+                    </li>
+                </ul>
+            </div>
+            <div
+                class="flex flex-1 flex-col rounded-xl bg-base-300 p-4 w-full gap-2"
+            >
+                <h2 class="text-xl font-black">Create your first game</h2>
+                You can start learning KAPLAY.js basics creating a Chrome
+                Dino-like game
+
+                <a
+                    class="link link-hover link-primary"
+                    href="/guides/creating_your_first_game"
+                >Read "Creating your first game"</a>
+            </div>
+        </div>
+
+        <Info crew="bean" title="Psst!">
+            Creating games is an adventure, but it's not a single player! Join
+            our
+            <a
+                class="link-hover link-primary"
+                href="https://discord.com/invite/aQ6RuQm3TF"
+            >Discord Server</a>, where you can share your progress or ask for
+            help if you run into any problems.
+        </Info>
+
+        <div class="grid bg-base-50 rounded-xl gap-px p-px">
+            <div
+                class="flex flex-1 flex-col rounded-xl bg-base-300 p-4 w-full gap-2"
+            >
+                <h2 class="text-xl font-black flex items-center gap-2"><span
+                        class="badge bg-[#7E39E0]"
+                    >NEW</span>Multiplayer Integration</h2>
+
+                <p>
+                    Integrate your KAPLAY games with a flexible and fun
+                    multiplayer framework, Colyseus. In our new <a
+                        class="link text-[#aa7aee]"
+                        href="guides/how-to-make-a-multiplayer-game-with-colyseus-and-kaplay"
+                    >Multiplayer Guide</a> you will learn how to from start to
+                    deploying!
+                </p>
+            </div>
+        </div>
+
+        <Prose>
+            Remember that KAPLAY is a new born open source project. This
+            documentation is constantly evolving and advancing :D
+        </Prose>
+    </div>
+</SidebarPage>
