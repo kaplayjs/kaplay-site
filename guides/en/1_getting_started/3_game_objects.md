@@ -119,7 +119,7 @@ object:
 
 ```js
 function addBullet() {
-    return addBullet([
+    return add([
         rect(6, 18),
         pos(80, 80),
         color(0.5, 0.5, 1),
