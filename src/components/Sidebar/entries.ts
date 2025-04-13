@@ -49,7 +49,18 @@ export const getGuidesEntries = async () => {
                 && guide.id.startsWith(lang)
             );
         })
-        .sort((a, b) => a.id.localeCompare(b.id));
+        .sort((a, b) => {
+            const aGuide = a.id.split("/")[2];
+            const bGuide = b.id.split("/")[2];
+            const aNum = parseInt(aGuide.match(/(\d+)_/)?.[1] ?? "0");
+            const bNum = parseInt(bGuide.match(/(\d+)_/)?.[1] ?? "0");
+
+            if (isNaN(aNum) || isNaN(bNum)) {
+                return 0;
+            }
+
+            return aNum - bNum;
+        });
 
     const guidesByCategory = guides.reduce(
         (acc, guide) => {
