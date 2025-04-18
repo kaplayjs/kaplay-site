@@ -801,8 +801,13 @@ const blocks = [
                         k.timer(),
                     ]);
 
-                    b.tween(b.scale, k.vec2(1.5), 0.33, (v: any) =>
-                        b.scale = v, k.easings.easeOutQuad);
+                    b.tween(
+                        b.scale,
+                        k.vec2(1.5),
+                        0.33,
+                        (v: any) => b.scale = v,
+                        k.easings.easeOutQuad,
+                    );
                     b.applyImpulse(
                         k.vec2(k.randi(-500, 500), k.randi(-800, 500)),
                     );
@@ -940,7 +945,7 @@ const blocks = [
             speed: parseFloat(el.dataset.parallaxSpeed ?? 1),
             // @ts-ignore
             max: el.dataset.parallaxMax ?? `-400%`,
-        })
+        }),
     );
 
     const setParralaxItems = () => {

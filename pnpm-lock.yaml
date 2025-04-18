@@ -51,8 +51,8 @@ importers:
         specifier: ^5.1.0
         version: 5.1.0
       '@kaplayjs/crew':
-        specifier: link:../crew
-        version: link:../crew
+        specifier: 2.0.0-beta.5
+        version: 2.0.0-beta.5(@types/node@20.16.10)(typescript@5.6.2)
       '@lunariajs/core':
         specifier: ^0.1.1
         version: 0.1.1
@@ -924,6 +924,11 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
+
+  '@kaplayjs/crew@2.0.0-beta.5':
+    resolution: {integrity: sha512-OHlSv5sYAZCxjRPeu5L0X03cLHiHv7Svc9EWEzS5F6s164ollc7psZ70bUan3ofI0yC+aisekZUwYjliNv+JfA==}
+    peerDependencies:
+      typescript: ^5.0.0
 
   '@kaplayjs/dprint-config@1.1.0':
     resolution: {integrity: sha512-yMcScoE/3cDrVyX+T5I5T2qIMq5pnzdbmTNSTonT3/toOUBQwHqfEsqLjj7+4MkHf16HgNrN8nu+bkZ8VZ36kQ==}
@@ -4419,6 +4424,20 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
+
+  '@kaplayjs/crew@2.0.0-beta.5(@types/node@20.16.10)(typescript@5.6.2)':
+    dependencies:
+      typescript: 5.6.2
+      vite: 5.4.10(@types/node@20.16.10)
+    transitivePeerDependencies:
+      - '@types/node'
+      - less
+      - lightningcss
+      - sass
+      - sass-embedded
+      - stylus
+      - sugarss
+      - terser
 
   '@kaplayjs/dprint-config@1.1.0':
     dependencies:
