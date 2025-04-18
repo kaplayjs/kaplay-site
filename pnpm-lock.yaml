@@ -51,8 +51,8 @@ importers:
         specifier: ^5.1.0
         version: 5.1.0
       '@kaplayjs/crew':
-        specifier: ^1.7.1
-        version: 1.7.1(@types/node@20.16.10)(typescript@5.6.2)
+        specifier: 2.0.0-beta.5
+        version: 2.0.0-beta.5(@types/node@20.16.10)(typescript@5.6.2)
       '@lunariajs/core':
         specifier: ^0.1.1
         version: 0.1.1
@@ -162,6 +162,9 @@ importers:
       shiki:
         specifier: ^1.21.0
         version: 1.21.0
+      shiki-transformer-copy-button:
+        specifier: ^0.0.3
+        version: 0.0.3
       tailwind-merge:
         specifier: ^2.5.3
         version: 2.5.3
@@ -922,8 +925,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
 
-  '@kaplayjs/crew@1.7.1':
-    resolution: {integrity: sha512-sofP0zMgNRBYUe2GGJrgpProBx5j5xfEB7OS/nVO2VpjpS7MuIP4NGo2aYdeaGePUr0UnaEX60aCGADrOU8zpQ==}
+  '@kaplayjs/crew@2.0.0-beta.5':
+    resolution: {integrity: sha512-OHlSv5sYAZCxjRPeu5L0X03cLHiHv7Svc9EWEzS5F6s164ollc7psZ70bUan3ofI0yC+aisekZUwYjliNv+JfA==}
     peerDependencies:
       typescript: ^5.0.0
 
@@ -1946,6 +1949,9 @@ packages:
   hastscript@8.0.0:
     resolution: {integrity: sha512-dMOtzCEd3ABUeSIISmrETiKuyydk1w0pa+gE/uormcTpSYuaNJPbX1NU3JLyscSLjwAQM8bWMhhIlnCqnRvDTw==}
 
+  hastscript@9.0.1:
+    resolution: {integrity: sha512-g7df9rMFX/SPi34tyGCyUBREQoKkapwdY/T04Qn9TDWfHhAYt4/I0gMVirzK5wEzeUqIjEB+LXC/ypb7Aqno5w==}
+
   html-element-attributes@2.3.0:
     resolution: {integrity: sha512-RJv2v3BBaYSc0ODHwT0sqWI+2lFs6DATBvCRnW20BDmULxoAWvfT6r28uL8LcW1a9/eqUl+1DccUOJzw00qVXQ==}
 
@@ -2832,6 +2838,9 @@ packages:
   property-information@6.5.0:
     resolution: {integrity: sha512-PgTgs/BlvHxOu8QuEN7wi5A0OmXaBcHpmCSTehcs6Uuu9IkDIEo13Hy7n898RHfrQ49vKCoGeWZSaAK01nwVig==}
 
+  property-information@7.0.0:
+    resolution: {integrity: sha512-7D/qOz/+Y4X/rzSB6jKxKUsQnphO046ei8qxG59mtM3RG3DHgTK81HrxrmoDVINJb8NKT5ZsRbwHvQ6B68Iyhg==}
+
   psl@1.9.0:
     resolution: {integrity: sha512-E/ZsdU4HLs/68gYzgGTkMicWTLPdAftJLfJFlLUAAKZGkStNU72sZjT66SnMDVOfOWY/YAoiD7Jxa9iHvngcag==}
 
@@ -3066,6 +3075,9 @@ packages:
   shebang-regex@3.0.0:
     resolution: {integrity: sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==}
     engines: {node: '>=8'}
+
+  shiki-transformer-copy-button@0.0.3:
+    resolution: {integrity: sha512-MPwtpYEWWhLFVBaEY/IeI34tBNuynu2n/khHEysTa1ijodLauS7fg38FTBthML3WxpE/Z5kRdZeitRQx7FJgdA==}
 
   shiki@1.21.0:
     resolution: {integrity: sha512-apCH5BoWTrmHDPGgg3RF8+HAAbEL/CdbYr8rMw7eIrdhCkZHdVGat5mMNlRtd1erNG01VPMIKHNQ0Pj2HMAiog==}
@@ -4413,7 +4425,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  '@kaplayjs/crew@1.7.1(@types/node@20.16.10)(typescript@5.6.2)':
+  '@kaplayjs/crew@2.0.0-beta.5(@types/node@20.16.10)(typescript@5.6.2)':
     dependencies:
       typescript: 5.6.2
       vite: 5.4.10(@types/node@20.16.10)
@@ -5697,6 +5709,14 @@ snapshots:
       property-information: 6.5.0
       space-separated-tokens: 2.0.2
 
+  hastscript@9.0.1:
+    dependencies:
+      '@types/hast': 3.0.4
+      comma-separated-tokens: 2.0.3
+      hast-util-parse-selector: 4.0.0
+      property-information: 7.0.0
+      space-separated-tokens: 2.0.2
+
   html-element-attributes@2.3.0: {}
 
   html-encoding-sniffer@4.0.0:
@@ -6794,6 +6814,8 @@ snapshots:
 
   property-information@6.5.0: {}
 
+  property-information@7.0.0: {}
+
   psl@1.9.0: {}
 
   punycode@2.3.1: {}
@@ -7159,6 +7181,10 @@ snapshots:
       shebang-regex: 3.0.0
 
   shebang-regex@3.0.0: {}
+
+  shiki-transformer-copy-button@0.0.3:
+    dependencies:
+      hastscript: 9.0.1
 
   shiki@1.21.0:
     dependencies:

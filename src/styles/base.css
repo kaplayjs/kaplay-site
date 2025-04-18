@@ -197,3 +197,45 @@ span[data-is-type="true"] {
         color-mix(in oklch, currentColor 35%, transparent)
         transparent;
 }
+
+pre:has(code) {
+    position: relative;
+  }
+  
+  pre button.copy {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    height: 28px;
+    width: 28px;
+    padding: 0;
+    display: flex;
+  
+    & span {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+  
+    & .ready {
+      background-image: url(/copy.png);
+    }
+  
+    & .success {
+      display: none;
+      background-image: url(/copied.png); 
+    }
+  
+    &.copied {
+      & .success {
+        display: block;
+      }
+  
+      & .ready {
+        display: none;
+      }
+    }
+  }
+  

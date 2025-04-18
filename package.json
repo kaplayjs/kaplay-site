@@ -34,7 +34,7 @@
     "@fontsource/darumadrop-one": "^5.1.1",
     "@fontsource/ibm-plex-sans": "^5.1.0",
     "@fontsource/pangolin": "^5.1.0",
-    "@kaplayjs/crew": "^1.7.1",
+    "@kaplayjs/crew": "2.0.0-beta.5",
     "@lunariajs/core": "^0.1.1",
     "@nanostores/persistent": "^0.10.2",
     "@qwikdev/astro": "^0.6.3",
@@ -73,6 +73,7 @@
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.6.8",
     "shiki": "^1.21.0",
+    "shiki-transformer-copy-button": "^0.0.3",
     "tailwind-merge": "^2.5.3",
     "wrangler": "^3.80.0"
   },
