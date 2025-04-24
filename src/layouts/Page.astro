@@ -25,12 +25,13 @@ type Props = {
 
 const { url } = Astro;
 const { meta, class: className } = Astro.props;
+const l = Astro.currentLocale;
 
 const image = new URL(meta?.image ?? "/kaplayjs.png", Astro.url);
 ---
 
 <!DOCTYPE html>
-<html lang="en" class={className}>
+<html lang={l} class={className}>
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
