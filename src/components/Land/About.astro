@@ -63,20 +63,35 @@ const { src: patternWaveUrl } = await getImage({
                 />
 
                 {
-                    Object.values(bannerSprites).map(({ width, x, y }, i) => (
+                    Object.values(bannerSprites).map((
+                        { width, x, y },
+                        i,
+                    ) => (
                         <div
                             class="absolute pixelated animate-[spriting_3s_infinite_alternate]"
                             aria-hidden="true"
                             style={`
-                        top: ${(y / kaplayBanner.height) * 100}%;
-                        left: ${(x / kaplayBanner.width) * 100}%;
-                        width: ${(width / kaplayBanner.width) * 100}%;
-                        height: ${(49 / kaplayBanner.height) * 100}%;
+                        top: ${
+                                (y / kaplayBanner.height) * 100
+                            }%;
+                        left: ${
+                                (x / kaplayBanner.width) * 100
+                            }%;
+                        width: ${
+                                (width / kaplayBanner.width) * 100
+                            }%;
+                        height: ${
+                                (49 / kaplayBanner.height) * 100
+                            }%;
                         background: url('${bannerSpritesUrl}') ${
-                                (spriteMaxWidth * i) / (spriteMaxWidth * bannerSpritesCount - width)
+                                (spriteMaxWidth * i)
+                                / (spriteMaxWidth * bannerSpritesCount
+                                    - width)
                                 * 100
                             }% 0% / auto 100% no-repeat;
-                        ${i % 2 == 0 && "animation-delay: 0.5s"}
+                        ${
+                                i % 2 == 0 && "animation-delay: 0.5s"
+                            }
                     `.split("\n").map(s => s.trim()).join("")}
                         ></div>
                     ))
@@ -94,12 +109,10 @@ const { src: patternWaveUrl } = await getImage({
                     <slot name="title" />
                 </h1>
 
-                <div class="bg-base-200 w-full flex flex-row p-4 rounded-xl items-center gap-4 mt-4">
-                    <img class="w-8" src="/glady.png"></img>
-                    <p>
-                        Warriors! Level up the fun with our brand new  <a class="link link-hover text-[#aa7aee]" href="guides/how-to-make-a-multiplayer-game-with-colyseus-and-kaplay">
-                            Colyseus multiplayer guide!</a> 
-                    </p>
+                <div
+                    class="bg-base-200 w-full flex flex-row p-4 rounded-xl items-center gap-4 mt-4"
+                >
+                    <slot name="promotion" />
                 </div>
 
                 <p class="py-6 text-xl md:leading-[1.65]">

@@ -30,7 +30,7 @@ export const firstLinksRow = {
             reload: true,
         },
         {
-            name: "La Pandilla",
+            name: "Pandilla",
             url: "/crew",
             highlight: false,
             icon: assets.assetbrew.outlined,
@@ -78,7 +78,7 @@ export const secondLinksRow = {
             icon: assets.money_bag.outlined,
         },
         {
-            name: "Docs",
+            name: "Docs (EN)",
             url: "/guides/",
             highlight: true,
             icon: assets.api_book.outlined,

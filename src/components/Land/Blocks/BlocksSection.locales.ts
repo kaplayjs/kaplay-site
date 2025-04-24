@@ -37,7 +37,7 @@ export const blocks = {
         {
             title: "Añade <span class=\"text-[#8db7ff]\">un objeto</span>",
             code:
-                `const <span class="text-emerald-400">bean</span> = <span class="text-violet-400">add</span>([\n  <span class="text-violet-400">sprite</span>("bean"),\n  <span class="text-violet-400">pos</span>(<span class="text-violet-400">center</span>()), \n  <span class="text-violet-400">health</span>(<span class="text-blue-400">5</span>),\n  <span class="text-violet-400">body</span>(), <span class="opacity-40">// adds physics</span>\n  <span class="text-violet-400">area</span>(), <span class="opacity-40">// adds collisions</span> \n]);`,
+                `const <span class="text-emerald-400">bean</span> = <span class="text-violet-400">add</span>([\n  <span class="text-violet-400">sprite</span>("bean"),\n  <span class="text-violet-400">pos</span>(<span class="text-violet-400">center</span>()), \n  <span class="text-violet-400">health</span>(<span class="text-blue-400">5</span>),\n  <span class="text-violet-400">body</span>(), <span class="opacity-40">// añade física</span>\n  <span class="text-violet-400">area</span>(), <span class="opacity-40">// añade colisiones</span> \n]);`,
         },
         {
             title:
@@ -49,7 +49,7 @@ export const blocks = {
             title:
                 "Añade tus propios <span class=\"text-violet-400\">componentes</span>",
             code:
-                `<span class="opacity-40">// returns an object</span> \nconst <span class="text-emerald-400">spillTheBeans</span> = (<span class="text-orange-300">count</span>) => ({\n  id: <span class="text-red-400">"chaos"</span>, \n  <span class="text-violet-400">add</span>() { <span class="opacity-40">/* code */</span> }, \n}); \n\n<span class="text-violet-400">add</span>([\n  <span class="text-emerald-400">spillTheBeans</span>(<span class="text-blue-300">30</span>), <span class="opacity-40">// adds chaos :O</span> \n]);`,
+                `<span class="opacity-40">// retorna un objeto</span> \nconst <span class="text-emerald-400">spillTheBeans</span> = (<span class="text-orange-300">count</span>) => ({\n  id: <span class="text-red-400">"chaos"</span>, \n  <span class="text-violet-400">add</span>() { <span class="opacity-40">/* code */</span> }, \n}); \n\n<span class="text-violet-400">add</span>([\n  <span class="text-emerald-400">spillTheBeans</span>(<span class="text-blue-300">30</span>), <span class="opacity-40">// añade caos :O</span> \n]);`,
         },
         {
             title: "<span class=\"text-[#fcef8d]\">Di</span> adiós",
