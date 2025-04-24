@@ -1,48 +1,9 @@
 ---
 import hamburgerIcon from "@/assets/hamburger.webp";
-import { assets } from "@kaplayjs/crew";
+import type { Locale } from "@/util/i18n.ts";
+import { firstLinksRow, secondLinksRow } from "./Navbar.locales.ts";
 
-const internalLinks = [
-    {
-        name: "Home",
-        url: "/",
-        highlight: false,
-        icon: assets.bean.outlined,
-        reload: true,
-    },
-    {
-        name: "Assets",
-        url: "/crew",
-        highlight: false,
-        icon: assets.assetbrew.outlined,
-    },
-    {
-        name: "Playground",
-        url: "https://play.kaplayjs.com",
-        icon: assets.bobo.outlined,
-    },
-];
-
-const externalLinks = [
-    {
-        name: "Blog",
-        url: "/blog",
-        highlight: false,
-        icon: assets.paper.outlined,
-    },
-    {
-        name: "Donate",
-        url: "https://opencollective.com/kaplay",
-        highlight: false,
-        icon: assets.money_bag.outlined,
-    },
-    {
-        name: "Docs",
-        url: "/guides/",
-        highlight: true,
-        icon: assets.api_book.outlined,
-    },
-];
+const l = Astro.currentLocale as Locale;
 ---
 
 <!-- Navbar -->
@@ -74,18 +35,25 @@ const externalLinks = [
                 class="menu dropdown-content z-[1] w-56 gap-2 rounded-box bg-base-200 p-6 shadow border border-base-100"
             >
                 {
-                    [...internalLinks, ...externalLinks].map((link) => (
+                    [
+                        ...firstLinksRow[l],
+                        ...secondLinksRow[l],
+                    ].map(
+                        (link) => (
                         <li
                             class:list={{
-                                "mx-4 first:ml-0 last:mr-0": link.highlight,
+                                "mx-4 first:ml-0 last:mr-0":
+                                    link.highlight,
                             }}
                         >
                             <a
                                 class:list={[
                                     "btn btn-sm uppercase",
                                     {
-                                        "btn-primary": link.highlight,
-                                        "btn-ghost": !link.highlight,
+                                        "btn-primary":
+                                            link.highlight,
+                                        "btn-ghost": !link
+                                            .highlight,
                                     },
                                 ]}
                                 href={link.url}
@@ -100,7 +68,8 @@ const externalLinks = [
                                 />
                             </a>
                         </li>
-                    ))
+                    ),
+                    )
                 }
             </ul>
         </div>
@@ -110,7 +79,7 @@ const externalLinks = [
     <div class="hidden w-full grid-cols-5 gap-2 md:grid">
         <ul class="col-span-2 hidden justify-end gap-2 md:flex">
             {
-                internalLinks.map((link) => (
+                firstLinksRow[l].map((link) => (
                     <li>
                         <a
                             class="btn btn-ghost font-semibold uppercase"
@@ -144,7 +113,7 @@ const externalLinks = [
 
         <ul class="col-span-2 hidden justify-start gap-2 md:flex">
             {
-                externalLinks.map((link) => (
+                secondLinksRow[l].map((link) => (
                     <li
                         class:list={{
                             "mx-4 first:ml-0 last:mr-0": link.highlight,

@@ -1,37 +1,12 @@
 ---
 import dinoClaw from "@/assets/dino-claw@2x.png";
 import dinoHead from "@/assets/dino-head@2x.png";
+import type { Locale } from "@/util/i18n.ts";
 import { assets } from "@kaplayjs/crew";
+import { blocks } from "./BlocksSection.locales";
 
-const blocks = [
-    {
-        title: "<span class=\"text-[#6bc96c]\">Start</span> game",
-        code:
-            `<span class="text-violet-400">kaplay</span>({ \n  background: <span class="inline-flex items-center gap-1 align-bottom text-[darkSalmon]"><span class="bg-current size-3 rounded-[0.25rem]"></span>"darkSalmon"</span>,\n  debug: <span class="text-blue-400">true</span>,\n  burp: <span class="text-blue-400">true</span>,\n  <span class="opacity-40">// and more uselful opts, like burp is</span> \n});\n\ndebug.<span class="text-violet-400">log</span>("Press (B) button to burp!");`,
-    },
-    {
-        title: "Add an <span class=\"text-[#8db7ff]\">object</span>",
-        code:
-            `const <span class="text-emerald-400">bean</span> = <span class="text-violet-400">add</span>([\n  <span class="text-violet-400">sprite</span>("bean"),\n  <span class="text-violet-400">pos</span>(<span class="text-violet-400">center</span>()), \n  <span class="text-violet-400">health</span>(<span class="text-blue-400">5</span>),\n  <span class="text-violet-400">body</span>(), <span class="opacity-40">// adds physics</span>\n  <span class="text-violet-400">area</span>(), <span class="opacity-40">// adds collisions</span> \n]);`,
-    },
-    {
-        title:
-            "<s>Kill</s> <span class=\"text-[#cc425e]\">destroy</span> an object",
-        code:
-            `<span class="text-violet-400">setGravity</span>(<span class="text-blue-400">1000</span>); \n<span class="text-emerald-400">bean</span>.<span class="text-violet-400">jump</span>(); \n\n<span class="text-emerald-400">bean</span>.<span class="text-violet-400">onCollide</span>("spikes", () => {\n  <span class="text-emerald-400">bean</span>.<span class="text-violet-400">hurt</span>(<span class="text-blue-400">5</span>);\n  <span class="text-emerald-400">bean</span>.<span class="text-red-400">destroy</span>();\n  <span class="text-violet-400">shake</span>(<span class="text-blue-400">5</span>);\n  <span class="text-violet-400">flash</span>(<span class="inline-flex items-center gap-1 align-bottom text-[#cc425e]"><span class="bg-current size-3 rounded-[0.25rem]"></span>"#cc425e"</span>, <span class="text-blue-400">0.2</span>);\n});`,
-    },
-    {
-        title:
-            "Add custom <span class=\"text-violet-400\">components</span>",
-        code:
-            `<span class="opacity-40">// returns an object</span> \nconst <span class="text-emerald-400">spillTheBeans</span> = (<span class="text-orange-300">count</span>) => ({\n  id: <span class="text-red-400">"chaos"</span>, \n  <span class="text-violet-400">add</span>() { <span class="opacity-40">/* code */</span> }, \n}); \n\n<span class="text-violet-400">add</span>([\n  <span class="text-emerald-400">spillTheBeans</span>(<span class="text-blue-300">30</span>), <span class="opacity-40">// adds chaos :O</span> \n]);`,
-    },
-    {
-        title: "<span class=\"text-[#fcef8d]\">Say</span> goodbye",
-        code:
-            `const <span class="text-[#fcef8d]">bubble</span> = <span class="text-violet-400">add</span>([\n    <span class="text-violet-400">anchor</span>("center"),\n    <span class="text-violet-400">pos</span>(<span class="text-violet-400">center</span>()),\n    <span class="text-violet-400">rect</span>(<span class="text-blue-400">400</span>, <span class="text-blue-400">100</span>, { radius: <span class="text-blue-400">8</span> }),\n    <span class="text-violet-400">outline</span>(<span class="text-blue-400">4</span>, <span class="text-blue-400">BLACK</span>),\n]);\n\n<span class="text-[#fcef8d]">bubble</span>.<span class="text-violet-400">add</span>([\n    <span class="text-violet-400">anchor</span>("center"),\n    <span class="text-violet-400">text</span>(<span class="text-white">"ohhi, I mean.. oh bye!"</span>, {\n        size: <span class="text-blue-400">26</span>,\n    }),\n    <span class="text-violet-400">color</span>(<span class="text-blue-400">BLACK</span>),\n]);`,
-    },
-];
+const l = Astro.currentLocale as Locale;
+const landBlocks = blocks[l];
 ---
 
 <div class="flex w-full flex-col gap-6" id="blocks">
@@ -42,31 +17,11 @@ const blocks = [
             class="relative w-full max-w-lg sm:max-w-2xl space-y-4 md:space-y-6 text-center z-20"
         >
             <h2 class="px-4 sm:px-0 text-4xl sm:text-5xl font-bold text-white">
-                An enjoyable <span class="font-hand text-[#ee8fcb] text-[106%]"
-                >API</span>
-                based
-                <span class="inline-flex items-baseline gap-[0.25em]">
-                    on
-                    <img
-                        class="shrink-0 w-8 sm:w-10 -rotate-6"
-                        src={assets.steel.outlined}
-                        aria-hidden="true"
-                    >
-                    <span class="font-hand text-primary text-[106%]"
-                    >blocks</span>
-                </span>
+                <slot name="title" />
             </h2>
 
             <div class="px-4 sm:px-0">
-                <p class="text-lg sm:text-xl md:leading-[1.6]">
-                    <span class="font-bold">KAPLAY</span> is a lot of
-                    <span class="font-hand text-[106%]">fun</span> to use and
-                    easy to learn. It was uniquely designed with
-                    <strong class="font-medium text-white"
-                    >blocks and functions</strong>
-                    to make it intuitive and engaging. Just take a look at the
-                    examples below and experience it for yourself!
-                </p>
+                <slot name="description" />
             </div>
         </div>
 
@@ -122,7 +77,10 @@ const blocks = [
                 class="row-start-1 col-start-1 mt-[calc(49vh-0.5rem/2)] md:mt-0 md:ml-auto md:-mr-px md:-mb-px md:w-[calc(50%+2px)] rounded-xl p-px gap-px"
             >
                 <div class="rounded-xl bg-[#3a3f48]">{
-                    blocks.map(({ title, code }, i) => (
+                    landBlocks.map((
+                        { title, code },
+                        i,
+                    ) => (
                         <div
                             id={`block-example-${i + 1}`}
                             class="flex flex-col group first:h-[calc((51vh-0.5rem)-3rem-1px)] last:h-[calc((51vh-0.5rem)+1px)] h-[calc((51vh-0.5rem)-3rem-1px)] md:first:h-[calc(60vh-3rem-1px)] md:last:h-[calc(60vh-49px)] md:h-[calc(60vh-3rem-1px)] md:px-px bg-base-200 shadow-[0_0_0_1px_#3a3f48] md:shadow-[inset_0_0_0_1px_#3a3f48] rounded-xl [clip-path:inset(-2px_round_1rem)]"
@@ -152,8 +110,7 @@ const blocks = [
                                     class="sticky [.group:not(:last-child)_&]:top-[calc(49vh+4.5rem)] group-last:top-[4.5rem] md:[.group:not(:last-child)_&]:top-[calc(20vh+4.5rem)] md:group-last:top-[4.5rem] min-h-0 max-h-full overflow-y-auto overflow-x-hidden"
                                 >
                                     <code><pre class="whitespace-pre-wrap"
-                                        ><Fragment set:html={code}></Fragment></pre
-                                        ></code>
+                                        ><Fragment set:html={code}></Fragment></pre></code>
                                 </div>
                             </div>
                         </div>
@@ -237,23 +194,11 @@ const blocks = [
                     class="md:flex-1 flex flex-col gap-4 max-md:max-w-lg px-6 sm:px-12 xl:px-[100px] pt-12 pb-9 md:py-20 xl:pt-[90px]"
                 >
                     <h2 class="font-semibold text-2xl md:text-3xl">
-                        Plus many more
-                        <span class="font-hand text-[#8db7ff] text-[106%]"
-                        >simple</span> and
-                        <span class="font-hand text-primary text-[106%]"
-                        >fun</span> to use
-                        <span class="text-white">methods</span> and
-                        <span class="text-white">functions</span>
+                        <slot name="blocks-title" />
                     </h2>
 
                     <p class="text-lg md:text-xl opacity-80">
-                        No more long nested methods&nbsp;like<br>
-                        <code
-                            class="font-medium text-base bg-white/10 px-2 py-0.5 rounded-lg box-decoration-clone"
-                        >
-                            obj&ZeroWidthSpace;.position&ZeroWidthSpace;.transform&ZeroWidthSpace;.translate(10,
-                            20)
-                        </code>
+                        <slot name="blocks-description" />
                     </p>
                 </div>
 
@@ -265,33 +210,19 @@ const blocks = [
                     >
                         <img
                             class="absolute bottom-full left-full rotate-6 -translate-x-4 translate-y-4 scale-75 sm:scale-100 pointer-events-none"
-                            src={assets.lightening.outlined}
+                            src={assets.lightening
+                            .outlined}
                             aria-hidden="true"
                         >
 
                         <img
                             class="absolute top-full right-full -rotate-12 translate-x-4 -translate-y-4 scale-75 sm:scale-90 pointer-events-none"
-                            src={assets.assetbrew.outlined}
+                            src={assets.assetbrew
+                            .outlined}
                             aria-hidden="true"
                         >
 
-                        <a
-                            href="/guides/install/"
-                            target="_blank"
-                            rel="noreferrer noopener"
-                            class="inline-flex font-medium text-lg text-black justify-center bg-primary rounded-lg px-4 py-2 border border-[#fcef8d] shadow-[0_0.25em_0_0_#5ba675] hover:scale-105 transition-all"
-                        >
-                            Get started (Docs)
-                        </a>
-
-                        <a
-                            href="https://play.kaplayjs.com/"
-                            target="_blank"
-                            rel="noreferrer noopener"
-                            class="inline-flex font-medium text-lg text-white justify-center bg-green-100/10 rounded-lg px-4 py-2 border border-green-100/10 shadow-[0_0.25em_0_0_rgba(255,255,255,0.05)] hover:scale-105 hover:bg-[#a32858] hover:border-[#cc425e] hover:shadow-[0_0.25em_0_0_#751756] transition-all"
-                        >
-                            Explore more Examples
-                        </a>
+                        <slot name="buttons" />
                     </div>
                 </div>
             </div>
@@ -402,10 +333,14 @@ const blocks = [
     // #region Scenes
 
     scene("block-example-1", async () => {
-        if (k.volume() == 0) canvas?.classList.remove("pointer-events-none");
+        if (k.volume() == 0) {
+            canvas?.classList.remove("pointer-events-none");
+        }
 
         k.onSceneLeave(() => {
-            if (k.volume() == 0) canvas?.classList.add("pointer-events-none");
+            if (k.volume() == 0) {
+                canvas?.classList.add("pointer-events-none");
+            }
         });
 
         const bgLerp = setBackground("#e9967a");
@@ -458,11 +393,18 @@ const blocks = [
         const text = bubble.add([
             k.anchor("center"),
             k.pos(0),
-            k.text(`${k.isTouchscreen() ? "Tap" : "Click"} to enable sound!`, {
-                size: 24,
-                width: bubble.width - 60,
-                align: "center",
-            }),
+            k.text(
+                `${
+                    k.isTouchscreen()
+                        ? "Tap"
+                        : "Click"
+                } to enable sound!`,
+                {
+                    size: 24,
+                    width: bubble.width - 60,
+                    align: "center",
+                },
+            ),
             k.color(k.BLACK),
         ]);
 
@@ -740,7 +682,10 @@ const blocks = [
 
         const bg = spillObj.add([
             k.pos(0),
-            k.rect(Math.max(k.width(), 1000), Math.max(k.height(), 1000)),
+            k.rect(
+                Math.max(k.width(), 1000),
+                Math.max(k.height(), 1000),
+            ),
             k.color("#e9967a"),
             k.opacity(k.getBackground() ? 0 : 1),
             k.stay(),
@@ -752,9 +697,8 @@ const blocks = [
             bg.use(k.animate());
             bg.animate(
                 "color",
-                ["#e9967a", "#ee8fcb", "#8db7ff", "#873e84", "#e9967a"].map(c =>
-                    k.rgb(c)
-                ),
+                ["#e9967a", "#ee8fcb", "#8db7ff", "#873e84", "#e9967a"]
+                    .map(c => k.rgb(c)),
                 {
                     duration: 8,
                 },
@@ -872,7 +816,8 @@ const blocks = [
         if (currentScene == scene) return;
 
         if (
-            spillObj && !["block-example-4", "block-example-5"].includes(scene)
+            spillObj
+            && !["block-example-4", "block-example-5"].includes(scene)
         ) destroySpill();
 
         k.go(currentScene = scene);
@@ -936,7 +881,9 @@ const blocks = [
         k.burp();
     });
 
-    const parallaxItems = [...document.querySelectorAll("[data-parallax]")].map(
+    const parallaxItems = [
+        ...document.querySelectorAll("[data-parallax]"),
+    ].map(
         el => ({
             el,
             // @ts-ignore

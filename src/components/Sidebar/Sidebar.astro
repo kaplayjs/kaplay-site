@@ -1,9 +1,7 @@
 ---
 import hamburgerIcon from "@/assets/hamburger.webp";
 import searchIcon from "@/assets/search.png";
-import { $lang } from "@/stores";
 import { cn } from "@/util/cn";
-import { getLangedRoute } from "@/util/path";
 import type { MarkdownHeading } from "astro";
 import { Image } from "astro:assets";
 import Footer from "../Footer/Footer.astro";
@@ -37,7 +35,6 @@ export type SidebarProps = {
 
 type Props = SidebarProps;
 
-const lang = $lang.get();
 const { sidebarMode, headings } = Astro.props;
 let renderList: SidebarEntry[] = [];
 
@@ -135,7 +132,7 @@ else if (sidebarMode === "books") {
             <figure>
                 <a
                     class="btn btn-ghost h-max w-full p-2"
-                    href={getLangedRoute(lang, "/")}
+                    href={"/"}
                     data-astro-reload
                 >
                     <Image

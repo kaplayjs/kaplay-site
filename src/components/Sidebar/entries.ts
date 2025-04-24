@@ -2,7 +2,6 @@ import doc from "@/../doc.json";
 import guidesData from "@/../guides/data.json";
 import kaplayPackageJson from "@/../kaplay/package.json";
 import { booksInfo } from "@/data/booksData";
-import { $lang } from "@/stores";
 import {
     getCollection,
     type InferEntrySchema,
@@ -45,7 +44,6 @@ export const getGuidesEntries = async () => {
 export const getBlogEntries = async () => {
     let renderList: SidebarEntry[] = [];
 
-    const lang = $lang.get();
     const guides = await getCollection("blog");
     const sortedEntries = guides
         .sort(
@@ -72,16 +70,13 @@ export const getBlogEntries = async () => {
 export const getBookEntries = async () => {
     let renderList: SidebarEntry[] = [];
 
-    const lang = $lang.get();
     const books = await getCollection("books");
     const sortedBooks = books.sort((a, b) => a.data.chapter - b.data.chapter);
 
     const booksByCategory = sortedBooks.reduce(
         (acc, book) => {
-            const [bookLang, folder] = book.slug.split("/");
+            const [_, folder] = book.slug.split("/");
             const folderName = folder;
-
-            if (lang !== bookLang) return acc;
 
             if (!acc[folderName]) {
                 acc[folderName] = [];

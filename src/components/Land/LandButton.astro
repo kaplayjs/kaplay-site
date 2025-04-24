@@ -1,0 +1,32 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"a"> {
+    kind?:
+        | "yellowish"
+        | "greenish"
+        | "blueish"
+        | "mini-redish"
+        | "mini-yellowish";
+}
+
+const { kind = "yellowish", ...props } = Astro.props as Props;
+---
+
+<a
+    class:list={{
+        "inline-flex font-semibold text-lg text-black justify-center bg-primary rounded-xl px-5 py-3 border-2 border-[#fcef8d] shadow-[0_0.25em_0_0_#5ba675] hover:scale-105 transition-all":
+            kind === "yellowish",
+        "inline-flex font-semibold text-lg text-white justify-center bg-green-300/20 rounded-xl px-5 py-3 border-2 border-green-100/5 shadow-[0_0.25em_0_0_#1b1f26] hover:scale-105 transition-all":
+            kind === "greenish",
+        "inline-flex font-semibold text-lg text-white justify-center bg-indigo-400/10 rounded-xl px-5 py-3 border-2 border-indigo-100/5 shadow-[0_0.25em_0_0_#1b1f26] hover:scale-105 transition-all":
+            kind === "blueish",
+        "inline-flex font-medium text-lg text-white justify-center bg-green-100/10 rounded-lg px-4 py-2 border border-green-100/10 shadow-[0_0.25em_0_0_rgba(255,255,255,0.05)] hover:scale-105 hover:bg-[#a32858] hover:border-[#cc425e] hover:shadow-[0_0.25em_0_0_#751756] transition-all":
+            kind === "mini-redish",
+        "inline-flex font-medium text-lg text-black justify-center bg-primary rounded-lg px-4 py-2 border border-[#fcef8d] shadow-[0_0.25em_0_0_#5ba675] hover:scale-105 transition-all":
+            kind === "mini-yellowish",
+    }}
+    {...props}
+>
+    <slot />
+</a>
