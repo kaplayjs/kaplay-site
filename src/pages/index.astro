@@ -136,7 +136,106 @@ import { assets } from "@kaplayjs/crew";
             </LandButton>
         </Fragment>
     </BlocksSection>
-    <TestimonialSection />
-    <People />
+    <TestimonialSection>
+        <Fragment slot="title">
+            <span class="inline-flex items-end gap-[0.25em]">
+                <span class="font-hand text-[108%] text-[#ffb879]">Voices</span>
+                <img
+                    class="shrink-0 w-10 sm:w-14"
+                    src={assets.burpman.outlined}
+                    aria-hidden="true"
+                >
+            </span>
+            of
+            <span class="font-hand text-[108%]">
+                <span class="text-primary">KAPLAY</span><span
+                    class="text-[#6bc96c]"
+                >ers</span>
+            </span>
+        </Fragment>
+        <Fragment slot="description">
+            Don't just take our word for it, see what our users say about
+            <strong>KAPLAY</strong>! We're&nbsp;proud to have such a great
+            community.<br>
+            <a
+                href="https://discord.com/invite/aQ6RuQm3TF"
+                target="_blank"
+                class="inline-flex gap-1 align-bottom font-semibold text-indigo-300"
+            >
+                <img
+                    class="self-center shrink-0 w-5 sm:w-6 h-auto"
+                    src={assets.discord.outlined}
+                    aria-hidden="true"
+                />
+                Join our Discord
+            </a>
+            to be a part of it!
+        </Fragment>
+    </TestimonialSection>
+    <People>
+        <Fragment slot="sponsors-title">
+            Our <span class="text-white">great</span>
+            <span
+                class="inline-flex items-baseline gap-1 font-hand text-[#ee8fcb] text-[108%]"
+            >
+                <img
+                    class="relative top-0.5 shrink-0 w-6 sm:w-8"
+                    src={assets.heart.outlined}
+                    aria-hidden="true"
+                />
+                <span>Sponsors</span>
+            </span>
+        </Fragment>
+        <Fragment slot="contributors-title">
+            <span class="text-white">People</span> who
+            <span
+                class="inline-flex items-baseline gap-1 font-hand text-primary text-[106%]"
+            >
+                <img
+                    class="relative top-0.5 shrink-0 w-6 md:w-8"
+                    src={assets.plus
+                    .outlined}
+                    aria-hidden="true"
+                />
+                contributed
+            </span>
+            to&nbsp;<span class="text-white">KAPLAY</span>.js
+        </Fragment>
+        <Fragment slot="contributors-description">
+            KAPLAY is the result of a great community effort. You can support
+            us, too, by contributing or&nbsp;donating.
+        </Fragment>
+        <Fragment slot="contributors-buttons">
+            <LandButton
+                kind="mini-yellowish"
+                href="https://opencollective.com/kaplay/donate"
+                target="_blank"
+                rel="noreferrer noopener"
+            >
+                <img
+                    class="shrink-0 w-6 h-6 object-contain"
+                    src={assets.money_bag.outlined}
+                    aria-hidden="true"
+                />
+                Consider Donating
+            </LandButton>
+            <LandButton
+                kind="githubish"
+                href="https://github.com/kaplayjs/kaplay"
+                target="_blank"
+                rel="noreferrer noopener"
+            >
+                <img
+                    class="shrink-0 w-6 h-5 object-contain"
+                    src={assets.github.outlined}
+                    aria-hidden="true"
+                />
+                Contribute on GitHub
+            </LandButton>
+        </Fragment>
+        <Fragment slot="more-contributors">
+            more contributors
+        </Fragment>
+    </People>
     <Messages />
 </NavbarPage>

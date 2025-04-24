@@ -7,7 +7,8 @@ interface Props extends HTMLAttributes<"a"> {
         | "greenish"
         | "blueish"
         | "mini-redish"
-        | "mini-yellowish";
+        | "mini-yellowish"
+        | "githubish";
 }
 
 const { kind = "yellowish", ...props } = Astro.props as Props;
@@ -23,8 +24,10 @@ const { kind = "yellowish", ...props } = Astro.props as Props;
             kind === "blueish",
         "inline-flex font-medium text-lg text-white justify-center bg-green-100/10 rounded-lg px-4 py-2 border border-green-100/10 shadow-[0_0.25em_0_0_rgba(255,255,255,0.05)] hover:scale-105 hover:bg-[#a32858] hover:border-[#cc425e] hover:shadow-[0_0.25em_0_0_#751756] transition-all":
             kind === "mini-redish",
-        "inline-flex font-medium text-lg text-black justify-center bg-primary rounded-lg px-4 py-2 border border-[#fcef8d] shadow-[0_0.25em_0_0_#5ba675] hover:scale-105 transition-all":
+        "inline-flex gap-2 font-medium text-lg text-black justify-center bg-primary rounded-lg px-4 py-2 border border-[#fcef8d] shadow-[0_0.25em_0_0_#5ba675] hover:scale-105 transition-all":
             kind === "mini-yellowish",
+        "inline-flex gap-2 font-medium text-lg text-white items-center justify-center bg-[#4e585d]/70 rounded-lg px-4 pl-3 py-2 border border-green-100/10 shadow-[0_0.25em_0_0_rgba(255,255,255,0.1)] hover:scale-105 hover:bg-[#4a3052] hover:border-[#7b5480] hover:shadow-[0_0.25em_0_0_#1f102a] transition-all":
+            kind === "githubish",
     }}
     {...props}
 >

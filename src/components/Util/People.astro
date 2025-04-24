@@ -1,31 +1,33 @@
 ---
-import type { ImageMetadata } from 'astro';
+import { assets } from "@kaplayjs/crew";
+import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
-import { assets } from '@kaplayjs/crew'
-import sponsorsData from "../../data/sponsors.json";
 import peopleData from "../../data/contributors.json";
+import sponsorsData from "../../data/sponsors.json";
 
 const sponsors = Object.values(sponsorsData);
-const sponsorImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/sponsors/*.{jpeg,jpg,png,gif}');
+const sponsorImages = import.meta.glob<{ default: ImageMetadata }>(
+    "/src/assets/sponsors/*.{jpeg,jpg,png,gif}",
+);
 const sponsorBg: { [char: string]: string } = {
-    gray: 'bg-gray-950/50',
-    slate: 'bg-slate-950/50',
-    zinc: 'bg-zinc-950/50',
-    white: 'bg-slate-100',
-    default: 'bg-base-300',
-}
+    gray: "bg-gray-950/50",
+    slate: "bg-slate-950/50",
+    zinc: "bg-zinc-950/50",
+    white: "bg-slate-100",
+    default: "bg-base-300",
+};
 
 const contributors = Object.values(peopleData);
 ---
 
-<section class="flex flex-col items-center justify-center px-2 sm:px-4 py-2 md:py-4 lg:py-10 sm:mb-4">
-    <div class="flex flex-col items-center justify-center gap-8 w-full max-w-6xl">
+<section
+    class="flex flex-col items-center justify-center px-2 sm:px-4 py-2 md:py-4 lg:py-10 sm:mb-4"
+>
+    <div
+        class="flex flex-col items-center justify-center gap-8 w-full max-w-6xl"
+    >
         <h2 class="text-2xl sm:text-3xl font-bold">
-            Our <span class="text-white">great</span>
-            <span class="inline-flex items-baseline gap-1 font-hand text-[#ee8fcb] text-[108%]">
-                <img class="relative top-0.5 shrink-0 w-6 sm:w-8" src={assets.heart.outlined} aria-hidden="true">
-                <span>Sponsors</span>
-            </span>
+            <slot name="sponsors-title" />
         </h2>
 
         <div class="flex flex-wrap gap-px p-px w-full bg-base-50 rounded-xl">
@@ -40,13 +42,17 @@ const contributors = Object.values(peopleData);
                         ]}
                     >
                         <Image
-                            src={sponsorImages[`/src/assets/sponsors/${sponsor.image}`]()}
+                            src={sponsorImages
+                            [`/src/assets/sponsors/${sponsor.image}`]()}
                             alt={sponsor.name}
                             width={500}
                             height={200}
                             class:list={[
                                 "w-96 h-28 object-scale-down mx-auto",
-                                { "mix-blend-screen": sponsor?.lighten ?? false },
+                                {
+                                    "mix-blend-screen":
+                                        sponsor?.lighten ?? false,
+                                },
                             ]}
                         />
                     </a>
@@ -54,43 +60,27 @@ const contributors = Object.values(peopleData);
             }
         </div>
 
-        <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-px bg-white/10 p-px rounded-xl">
-            <div class="flex flex-col justify-center xl:justify-start bg-base-200/90 bg-image-pattern rounded-[inherit]">
-                <div class="flex flex-col gap-4 px-6 sm:px-12 xl:px-[100px] py-12 md:py-20 xl:pt-[90px] text-center md:text-left">
+        <div
+            class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-px bg-white/10 p-px rounded-xl"
+        >
+            <div
+                class="flex flex-col justify-center xl:justify-start bg-base-200/90 bg-image-pattern rounded-[inherit]"
+            >
+                <div
+                    class="flex flex-col gap-4 px-6 sm:px-12 xl:px-[100px] py-12 md:py-20 xl:pt-[90px] text-center md:text-left"
+                >
                     <h2 class="text-2xl md:text-3xl font-bold">
-                        <span class="text-white">People</span> who
-                        <span class="inline-flex items-baseline gap-1 font-hand text-primary text-[106%]">
-                            <img class="relative top-0.5 shrink-0 w-6 md:w-8" src={assets.plus.outlined} aria-hidden="true">
-                            contributed
-                        </span>
-                        to&nbsp;<span class="text-white">KAPLAY</span>.js
+                        <slot name="contributors-title" />
                     </h2>
 
                     <p class="text-lg md:text-xl">
-                        KAPLAY is the result of a great community effort.
-                        You can support us, too, by contributing or&nbsp;donating.
+                        <slot name="contributors-description" />
                     </p>
 
-                    <div class="mt-4 flex flex-wrap md:flex-col gap-4 items-center justify-center md:items-start">
-                        <a
-                            href="https://opencollective.com/kaplay/donate"
-                            target="_blank"
-                            rel="noreferrer noopener"
-                            class="inline-flex gap-2 font-medium text-lg text-black items-center justify-center bg-primary rounded-lg px-4 pl-3 py-2 border border-[#fcef8d] shadow-[0_0.25em_0_0_#5ba675] hover:scale-105 transition-all"
-                        >
-                            <img class="shrink-0 w-6 h-6 object-contain" src={assets.money_bag.outlined} aria-hidden="true">
-                            Consider Donating
-                        </a>
-
-                        <a
-                            href="https://github.com/kaplayjs/kaplay"
-                            target="_blank"
-                            rel="noreferrer noopener"
-                            class="inline-flex gap-2 font-medium text-lg text-white items-center justify-center bg-[#4e585d]/70 rounded-lg px-4 pl-3 py-2 border border-green-100/10 shadow-[0_0.25em_0_0_rgba(255,255,255,0.1)] hover:scale-105 hover:bg-[#4a3052] hover:border-[#7b5480] hover:shadow-[0_0.25em_0_0_#1f102a] transition-all"
-                        >
-                            <img class="shrink-0 w-6 h-5 object-contain" src={assets.github.outlined} aria-hidden="true">
-                            Contribute on GitHub
-                        </a>
+                    <div
+                        class="mt-4 flex flex-wrap md:flex-col gap-4 items-center justify-center md:items-start"
+                    >
+                        <slot name="contributors-buttons" />
                     </div>
                 </div>
             </div>
@@ -100,8 +90,8 @@ const contributors = Object.values(peopleData);
             >
                 {
                     contributors
-                    .filter((_, i) => i < 20)
-                    .map((person, i) => (
+                        .filter((_, i) => i < 20)
+                        .map((person, i) => (
                         <a
                             href={`https://github.com/${person.login}`}
                             target="_blank"
@@ -112,7 +102,10 @@ const contributors = Object.values(peopleData);
                                 alt={person.login}
                                 width={72}
                                 height={72}
-                                style={`animation-delay: ${(2 + Math.random() * 2) * ~~(i % 2)}s`}
+                                style={`animation-delay: ${
+                                    (2 + Math.random() * 2)
+                                    * ~~(i % 2)
+                                }s`}
                             />
                         </a>
                     ))
@@ -123,7 +116,8 @@ const contributors = Object.values(peopleData);
                         href="https://github.com/kaplayjs/kaplay/graphs/contributors"
                         target="_blank"
                     >
-                        and {contributors.length - 20} more contributors
+                        +{contributors.length - 20}
+                        <slot name="more-contributors" />
                     </a>
                 </div>
             </div>
