@@ -15,7 +15,7 @@ export const defaultMessages = {
     es: [
         "Y también..",
 
-        `¡Tenemos la lore más funky
+        `¡Tenemos el lore más funky
         <a
             href="/crew"
             target="_blank"
