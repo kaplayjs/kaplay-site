@@ -91,12 +91,7 @@ const { src: patternWaveUrl } = await getImage({
                 <h1
                     class="text-white text-4xl sm:text-5xl font-bold md:leading-[3.2rem]"
                 >
-                    The <span class="font-hand text-primary">fun</span> and open
-                    source game
-                    <span class="font-hand text-[#fcef8d]">library</span> for
-                    <span class="font-hand text-[#ffb879]">HTML5 <span
-                            class="text-[#bf7adf]"
-                        >Games</span></span>
+                    <slot name="title" />
                 </h1>
 
                 <div class="bg-base-200 w-full flex flex-row p-4 rounded-xl items-center gap-4 mt-4">
@@ -108,15 +103,7 @@ const { src: patternWaveUrl } = await getImage({
                 </div>
 
                 <p class="py-6 text-xl md:leading-[1.65]">
-                    <strong class="text-white">KAPLAY</strong>
-                    <span class="italic">(/ˈkæpleɪ/)</span> is a
-                    <span class="text-white">JavaScript</span> and <span
-                        class="text-white"
-                    >TypeScript</span>
-                    game library that makes it <span class="text-white"
-                    >easy</span> to create games for the web. It's <span
-                        class="text-white"
-                    >free</span>, open-source and fun.
+                    <slot name="description" />
                 </p>
 
                 <div

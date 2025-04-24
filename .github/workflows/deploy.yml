@@ -39,13 +39,13 @@ jobs:
         with:
           submodules: true
           fetch-tags: true
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: 'pnpm'
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v4
       - name: Build kaplayjs
         run: |
           cd kaplay
