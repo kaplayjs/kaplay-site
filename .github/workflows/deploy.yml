@@ -14,6 +14,13 @@ jobs:
         with:
           submodules: true
           fetch-tags: true
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
       - name: Checkout submodule to v4000
         run: |
           cd kaplay
@@ -21,8 +28,6 @@ jobs:
           TAG=$(git tag --list '4000*' --sort=-v:refname creatordate | head -n 1)
           echo $TAG
           git checkout $TAG
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v4
       - name: Deploy app
         uses: cloudflare/wrangler-action@v3
         with:
