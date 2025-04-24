@@ -11,6 +11,8 @@
     "jsxImportSource": "@builder.io/qwik",
     "resolveJsonModule": true,
     "noImplicitAny": false,
+    "target": "ESNext",
+    "module": "ESNext",
   },
   "include": [
     ".astro/types.d.ts",
