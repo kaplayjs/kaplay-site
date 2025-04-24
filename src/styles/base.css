@@ -53,7 +53,6 @@ a:hover {
 
 .drawer-side {
     --tw-text-opacity: 1;
-    scroll-behavior: smooth;
     scrollbar-gutter: stable;
     scrollbar-color:
         color-mix(in oklch, currentColor 35%, transparent)

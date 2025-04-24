@@ -2,8 +2,6 @@
 
 const setUrl = () => {
     const pathname = new URL(location.href).pathname.replace(/\/$/, "");
-    const sidebar = document.querySelector<HTMLElement>(".drawer-side");
-    const links = document.querySelectorAll<HTMLElement>(".sidebar-link-a");
 
     links.forEach((link) => {
         const href = link.dataset.link?.replace(/\/$/, "");

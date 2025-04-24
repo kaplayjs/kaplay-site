@@ -1,27 +1,22 @@
 ---
 import { CrewItem } from "@/components/Crew/CrewItem";
 import Navbar from "@/components/Land/Navbar.astro";
-import CarbonAd from "@/components/Util/CarbonAd.astro";
 import Page from "@/layouts/Page.astro";
-import { getStaticPathsByLocales } from "@/util/path";
 import { assets } from "@kaplayjs/crew";
 
 export async function getStaticPaths() {
-    return getStaticPathsByLocales().flatMap((locale) => {
-        return Object.keys(assets).map((asset) => {
-            return {
-                params: { slug: asset, ...locale.params },
-                props: { asset, ...locale.props },
-            };
-        });
+    return Object.keys(assets).map((asset) => {
+        return {
+            params: { slug: asset },
+            props: { asset },
+        };
     });
 }
 
-const { asset, lang } = Astro.props;
+const { asset } = Astro.props;
 ---
 
 <Page
-    {lang}
     meta={{
         title: `KAPLAY Crew Wiki - ${asset}`,
         description: assets[asset as keyof typeof assets].description,

@@ -1,12 +1,14 @@
 ---
 import "./CarbonAd.css";
 
-type Props = {
+interface Props {
     onlyClassic?: boolean;
     preferStart?: boolean;
-};
+    isHome?: boolean;
+}
 
-const { onlyClassic = false, preferStart = false } = Astro.props;
+const { onlyClassic = false, preferStart = false, isHome = false } =
+    Astro.props;
 ---
 
 <div

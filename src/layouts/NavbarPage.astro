@@ -2,21 +2,18 @@
 import Footer from "@/components/Footer/Footer.astro";
 import Navbar from "@/components/Land/Navbar.astro";
 import type { SidebarProps } from "@/components/Sidebar/Sidebar.astro";
-import CarbonAd from "@/components/Util/CarbonAd.astro";
-import type { Locale } from "@/util/i18n";
 import Page, { type MetaTagData } from "./Page.astro";
 
 type Props = {
     meta?: MetaTagData;
-    lang: Locale;
     class?: string;
     pageClass?: string;
 } & SidebarProps;
 
-const { meta, lang, class: className, pageClass } = Astro.props;
+const { meta, class: className, pageClass } = Astro.props;
 ---
 
-<Page lang={lang} meta={meta} class={pageClass}>
+<Page meta={meta} class={pageClass}>
     <slot name="head" slot="head" />
 
     <div class="flex flex-col">

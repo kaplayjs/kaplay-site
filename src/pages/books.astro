@@ -2,17 +2,9 @@
 import Prose from "@/components/Content/Prose.astro";
 import { booksInfo } from "@/data/booksData";
 import SidebarPage from "@/layouts/SidebarPage.astro";
-import { getStaticPathsByLocales } from "@/util/path";
-
-export function getStaticPaths() {
-    return getStaticPathsByLocales();
-}
-
-const { lang } = Astro.props;
 ---
 
 <SidebarPage
-    lang={lang}
     meta={{
         description: "The books of the KAPLAY Team.",
     }}

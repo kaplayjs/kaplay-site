@@ -1,14 +1,7 @@
 ---
 import Info from "@/components/Content/Info.astro";
 import Prose from "@/components/Content/Prose.astro";
-import FriendsBelow from "@/components/Util/FriendsBelow.astro";
 import SidebarPage from "@/layouts/SidebarPage.astro";
-import { getStaticPathsByLocales } from "@/util/path.ts";
-import { assets } from "@kaplayjs/crew";
-
-export function getStaticPaths() {
-    return getStaticPathsByLocales();
-}
 ---
 
 <SidebarPage

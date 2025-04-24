@@ -2,12 +2,10 @@
 import type { SidebarProps } from "@/components/Sidebar/Sidebar.astro";
 import Sidebar from "@/components/Sidebar/Sidebar.astro";
 import CarbonAd from "@/components/Util/CarbonAd.astro";
-import type { Locale } from "@/util/i18n";
 import Page, { type MetaTagData } from "./Page.astro";
 
 type Props = {
     meta?: MetaTagData;
-    lang?: Locale;
 } & SidebarProps;
 
 const { sidebarMode, meta, headings } = Astro.props;

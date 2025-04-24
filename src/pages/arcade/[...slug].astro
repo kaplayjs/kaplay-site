@@ -2,24 +2,20 @@
 import GameView from "@/components/Arcade/GameView.astro";
 import gameList from "@/data/games.json";
 import NavbarPage from "@/layouts/NavbarPage.astro";
-import { getStaticPathsByLocales } from "@/util/path";
 
 export async function getStaticPaths() {
-    return getStaticPathsByLocales().flatMap((locale) => {
-        return gameList.map((game) => {
-            return {
-                params: { slug: game.vanityUrl, ...locale.params },
-                props: { game, ...locale.props },
-            };
-        });
+    return gameList.map((game) => {
+        return {
+            params: { slug: game.vanityUrl },
+            props: { game },
+        };
     });
 }
 
-const { game, lang } = Astro.props;
+const { game } = Astro.props;
 ---
 
 <NavbarPage
-    {lang}
     meta={{
         title:
             "KAPLAY.js Arcade, a lot of HTML5 and web games made with KAPLAY",

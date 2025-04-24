@@ -48,7 +48,7 @@ With that in mind, we’re bringing a **new visual identity** to KAPLAY’s Dino
 that aligns with our mission—to make game development more **accessible, fun,
 and powerful** for developers of all skill levels.
 
-![Dino taking code](assets/dinotakingcode.png)
+![Dino taking code](./assets/dinotakingcode.png)
 
 ### **What’s Changing?**
 
@@ -90,7 +90,7 @@ A huge thanks to everyone who participated–you’re the heart of this communit
 Until next KAJAM, keep creating. We can’t wait to see what brings to life the
 next KAJAM!
 
-![KAJAM RESULTS](assets/kajamresults.png)
+![KAJAM RESULTS](./assets/kajamresults.png)
 
 ## KAPLAY x Colyseus
 
@@ -100,7 +100,7 @@ this collaboration, we’re working on a comprehensive **KAPLAY + Colyseus guide
 to help you integrate multiplayer features seamlessly into your KAPLAY
 projects. 
 
-![](assets/colyfriends.png)
+![](./assets/colyfriends.png)
 
 You can start looking around [the template](https://github.com/colyseus/kaplay)
 that **Colyseus** made.
@@ -189,7 +189,7 @@ learn all you need for creating a classic Duck-Hunt like game, perfect for
 beginners! You can check the course in
 [JSLegend's Patreon](https://www.patreon.com/collection/1310455?view=expanded)
 
-![](assets/duck-hunter-thumbnail.png)
+![](./assets/duck-hunter-thumbnail.png)
 
 ## Thank You, KAPLAY Community!
 

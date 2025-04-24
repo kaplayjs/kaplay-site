@@ -28,7 +28,7 @@ When you have a spritesheet, you probably have animations. For these cases, the
 best option for you is to use the `loadSprite()`'s third argument, where you can
 set options related to animations.
 
-![assets eggs](assets/eggs.png)
+![assets eggs](./assets/eggs.png)
 
 ```js
 loadSprite("player", "sprites/player.png", {

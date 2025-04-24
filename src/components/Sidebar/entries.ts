@@ -3,7 +3,11 @@ import guidesData from "@/../guides/data.json";
 import kaplayPackageJson from "@/../kaplay/package.json";
 import { booksInfo } from "@/data/booksData";
 import { $lang } from "@/stores";
-import { getCollection } from "astro:content";
+import {
+    getCollection,
+    type InferEntrySchema,
+    type RenderedContent,
+} from "astro:content";
 import type { LinkListEntry, SidebarEntry } from "./Sidebar.astro";
 
 type Category = keyof typeof guidesData.categories;
@@ -15,24 +19,9 @@ export const getGuidesEntries = async () => {
     const guides = await getCollection("guides");
     const categories = Object.keys(guidesData.categories);
 
-    const sortedGuides: LinkListEntry[] = guides.sort((a, b) => {
-        const aSlug = a.id.split("/");
-        const aCategory = aSlug[1];
-        const aTitle = a.data.url ?? aSlug[2];
-        const aSort = a.data.order ?? "zzz";
-        const aLocal = `${aCategory}-${aSort}-${aTitle}`;
-
-        const bSlug = b.id.split("/");
-        const bCategory = bSlug[1];
-        const bTitle = b.data.url ?? bSlug[2];
-        const bSort = b.data.order ?? "zzz";
-        const bLocal = `${bCategory}-${bSort}-${bTitle}`;
-
-        return aLocal.localeCompare(bLocal, undefined, {
-            numeric: true,
-            sensitivity: "base",
-        });
-    }).map((guide) => ({
+    const sortedGuides: LinkListEntry[] = guides.sort(sortGuides).map((
+        guide,
+    ) => ({
         description: guide.data.description,
         title: guide.data.title,
         link: `/guides/${guide.data.url ?? guide.id.split("/")[2]}`,
@@ -172,3 +161,33 @@ export const getDocEntries = async () => {
 
     return renderList;
 };
+
+// #region Sorter functions
+type GuideEntry = {
+    id: string;
+    body?: string;
+    collection: "guides";
+    data: InferEntrySchema<"guides">;
+    rendered?: RenderedContent;
+    filePath?: string;
+};
+
+export function sortGuides(a: GuideEntry, b: GuideEntry) {
+    const aSlug = a.id.split("/");
+    const aCategory = aSlug[1];
+    const aTitle = a.data.url ?? aSlug[2];
+    const aSort = a.data.order ?? "zzz";
+    const aLocal = `${aCategory}-${aSort}-${aTitle}`;
+
+    const bSlug = b.id.split("/");
+    const bCategory = bSlug[1];
+    const bTitle = b.data.url ?? bSlug[2];
+    const bSort = b.data.order ?? "zzz";
+    const bLocal = `${bCategory}-${bSort}-${bTitle}`;
+
+    return aLocal.localeCompare(bLocal, undefined, {
+        numeric: true,
+        sensitivity: "base",
+    });
+}
+// #endregion

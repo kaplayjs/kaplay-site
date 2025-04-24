@@ -1,28 +1,22 @@
 ---
 import Prose from "@/components/Content/Prose.astro";
 import SidebarPage from "@/layouts/SidebarPage.astro";
-import { getStaticPathsByLocales } from "@/util/path";
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
     const entries = await getCollection("blog");
 
-    return getStaticPathsByLocales().flatMap((locale) => {
-        return entries.map((entry) => {
-            return {
-                params: { slug: entry.slug, ...locale.params },
-                props: { entry, ...locale.props },
-            };
-        });
-    });
+    return entries.map((entry) => ({
+        params: { slug: entry.slug },
+        props: { entry },
+    }));
 }
 
-const { entry, lang } = Astro.props;
+const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 
 <SidebarPage
-    lang={lang}
     meta={{
         title: "KAPLAY Blogs, " + entry.data.title,
         description: entry.data.description,

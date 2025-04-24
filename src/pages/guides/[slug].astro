@@ -1,40 +1,31 @@
 ---
 import NavigationButtons from "@/components/Content/NavigationButtons.astro";
 import Prose from "@/components/Content/Prose.astro";
+import { sortGuides } from "@/components/Sidebar/entries.ts";
 import SidebarPage from "@/layouts/SidebarPage.astro";
-import { DEFAULT_LANG } from "@/util/i18n";
-import { getStaticPathsByLocales } from "@/util/path";
 import { getCollection, render } from "astro:content";
-import type { CollectionEntry, RenderedContent } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 
 export async function getStaticPaths() {
     const entries = await getCollection("guides");
-    const localePaths = getStaticPathsByLocales();
 
     const entriesByLocale = entries.flatMap((entry) => {
-        return localePaths.flatMap((locale) => {
-            const entryLang = entry.id.split("/")[0] || DEFAULT_LANG;
-
-            if (entryLang !== (locale.params.path ?? DEFAULT_LANG)) return;
-
-            return {
-                props: {
-                    entry,
-                    ...locale.props,
-                },
-                params: {
-                    slug: entry.data.url ?? entry.id.split("/")[2],
-                    ...locale.params,
-                },
-            };
-        });
+        return {
+            props: {
+                entry,
+            },
+            params: {
+                slug: entry.data.url ?? entry.id.split("/")[2],
+            },
+        };
     });
 
     return entriesByLocale.filter(Boolean);
 }
+
 const previousAndNextPage = async (entry: CollectionEntry<"guides">) => {
     const entries = await getCollection("guides");
-    const sortedEntries = entries.sort((a, b) => a.id.localeCompare(b.id));
+    const sortedEntries = entries.sort(sortGuides);
     const currentIndex = sortedEntries.findIndex((e) => e.id === entry.id);
     const previous = currentIndex === 0
         ? null
@@ -49,13 +40,13 @@ const previousAndNextPage = async (entry: CollectionEntry<"guides">) => {
         next: next ? { url: next.data.url!, title: next.data.title } : null,
     };
 };
-const { entry, lang } = Astro.props;
+
+const { entry } = Astro.props;
 const { previous, next } = await previousAndNextPage(entry);
 const { Content, headings } = await render(entry);
 ---
 
 <SidebarPage
-    lang={lang}
     meta={{
         title: "KAPLAY Guides, " + entry.data.title,
         description: entry.data.description,

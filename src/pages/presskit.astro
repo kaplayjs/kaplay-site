@@ -1,21 +1,14 @@
 ---
 import Prose from "@/components/Content/Prose.astro";
 import SidebarPage from "@/layouts/SidebarPage.astro";
-import { getStaticPathsByLocales } from "@/util/path";
 import { getEntry } from "astro:content";
 
-export function getStaticPaths() {
-    return getStaticPathsByLocales();
-}
-
-const { lang } = Astro.props;
 const entry = await getEntry("misc", `en/presskit`);
 if (!entry) return;
 const { Content } = await entry.render();
 ---
 
 <SidebarPage
-    lang={lang}
     sidebarMode="guides"
     meta={{
         title: "KAPLAY, Presskit",

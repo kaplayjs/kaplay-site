@@ -37,7 +37,7 @@ We released the KAPLAY Crew, which our portal of assets, characters and all
 related to the KAWord (KAPLAY World). It works as an assets browser (if you want
 to download them) and also as a wiki for our lore lovers.
 
-![alt text](assets/crew.png)
+![alt text](./assets/crew.png)
 
 ## KAPLAY New features
 

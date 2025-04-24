@@ -1,3 +1,16 @@
+.pagefind-ui {
+    /* Pagefind UI styles (ignore) */
+    --pagefind-ui-scale: inherit;
+    --pagefind-ui-primary: inherit;
+    --pagefind-ui-text: inherit;
+    --pagefind-ui-border: inherit;
+    --pagefind-ui-border-width: inherit;
+    --pagefind-ui-border-radius: inherit;
+    --pagefind-ui-font: inherit;
+    --pagefind-ui-background: inherit;
+  }
+
+
 .pagefind-ui__search-input {
     @apply input input-bordered w-full p-4;
 }

@@ -22,7 +22,7 @@ That's why one of our community members (_our designer undercover agent_),
 **Misanthrope** (imaginarny @GitHub) made this AWESOME and COMPLETE guide about
 making a game using KAPLAY and Colyseus.
 
-![Colyseus Guide Image](assets/colyguide.png)
+![Colyseus Guide Image](./assets/colyguide.png)
 
 There is not much I can add to explain the epicness of this guide, just look at
 it. Thanks to Misanthrope for making this amazing guide and Endel from Colyseus

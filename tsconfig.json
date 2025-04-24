@@ -9,8 +9,13 @@
     },
     "jsx": "react-jsx",
     "jsxImportSource": "@builder.io/qwik",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "noImplicitAny": false,
   },
+  "include": [
+    ".astro/types.d.ts",
+    "**/*"
+  ],
   "exclude": [
     "kaplay",
     "scripts",

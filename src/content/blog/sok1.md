@@ -94,7 +94,7 @@ content faster.
 We added the asset brew, a UI to get all KAPLAY Friends imported in your
 [KAPLAYGROUND](https://play.kaplayjs.com) project.
 
-![KAPLAYGROUND PREVIEW](assets/image.png)
+![KAPLAYGROUND PREVIEW](./assets/image.png)
 
 (Secret: Hovering the asset will show you a description about it, know more
 about the KAPLAY Lore)

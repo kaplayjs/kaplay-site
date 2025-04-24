@@ -1,8 +1,6 @@
 ---
 import SearchDialog from "@/components/Search/SearchDialog.astro";
-import { $lang } from "@/stores";
-import type { Locale } from "@/util/i18n";
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 import "@fontsource-variable/fira-code";
 import "@fontsource-variable/fredoka";
 import "@fontsource/ibm-plex-sans";
@@ -22,7 +20,6 @@ export type MetaTagData = {
 
 type Props = {
     meta?: MetaTagData;
-    lang?: Locale;
     class?: string;
 };
 
@@ -63,9 +60,9 @@ const image = new URL(meta?.image ?? "/kaplayjs.png", Astro.url);
         />
 
         <title>{meta?.title}</title>
-        <ViewTransitions />
         <script src="/pagefind/pagefind-ui.js" is:inline></script>
         <slot name="head" />
+        <ClientRouter />
     </head>
     <body>
         <slot />

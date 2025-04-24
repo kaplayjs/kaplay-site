@@ -6,16 +6,9 @@ import CarbonAd from "@/components/Util/CarbonAd.astro";
 import Messages from "@/components/Util/Messages.astro";
 import People from "@/components/Util/People.astro";
 import NavbarPage from "@/layouts/NavbarPage.astro";
-import { getStaticPathsByLocales } from "@/util/path";
-export function getStaticPaths() {
-    return getStaticPathsByLocales();
-}
-
-const { lang } = Astro.props;
 ---
 
 <NavbarPage
-    {lang}
     meta={{
         title:
             "KAPLAY.js, HTML5 Game library for JavaScript and TypeScript. Free & Open Source.",
@@ -27,7 +20,6 @@ const { lang } = Astro.props;
     pageClass="land"
 >
     <About />
-    <CarbonAd onlyClassic />
     <BlocksSection />
     <TestimonialSection />
     <People />

@@ -3,7 +3,6 @@ import doc from "@/../doc.json";
 import { DocEntry } from "@/components/Doc/DocEntry";
 import { DocPreview } from "@/components/Doc/DocPreview";
 import SidebarPage from "@/layouts/SidebarPage.astro";
-import { getStaticPathsByLocales } from "@/util/path";
 
 export async function getStaticPaths() {
     const allDoc = doc.types as any;
@@ -11,25 +10,19 @@ export async function getStaticPaths() {
         ?? allDoc.KAPLAYCtx?.[0].members;
     const allKaboomDocKeys: string[] = Object.keys(kaboomDoc);
 
-    return getStaticPathsByLocales().flatMap((locale) => {
-        return allKaboomDocKeys.map((key) => {
-            return {
-                params: { slug: key, ...locale.params },
-                props: {
-                    type: kaboomDoc[key] as any[],
-                    name: key,
-                    ...locale.props,
-                },
-            };
-        });
-    });
+    return allKaboomDocKeys.map((key) => ({
+        params: { slug: key },
+        props: {
+            type: kaboomDoc[key],
+            name: key,
+        },
+    }));
 }
 
-const { type, lang } = Astro.props;
+const { type } = Astro.props;
 ---
 
 <SidebarPage
-    lang={lang}
     meta={{
         title: "KAPLAY Docs, " + type[0].name,
         description: type[0].jsDoc?.doc ?? "KAPLAY Doc about " + type[0].name,

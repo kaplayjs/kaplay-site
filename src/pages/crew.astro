@@ -1,17 +1,9 @@
 ---
 import { CrewList } from "@/components/Crew/CrewList";
 import NavbarPage from "@/layouts/NavbarPage.astro";
-import { getStaticPathsByLocales } from "@/util/path";
-
-export function getStaticPaths() {
-    return getStaticPathsByLocales();
-}
-
-const { lang } = Astro.props;
 ---
 
 <NavbarPage
-    {lang}
     meta={{
         title: "KAPLAY Crew Wiki",
         description:

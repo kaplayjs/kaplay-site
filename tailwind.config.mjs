@@ -1,4 +1,4 @@
-import defaultTheme from 'tailwindcss/defaultTheme';
+import defaultTheme from "tailwindcss/defaultTheme";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -7,18 +7,20 @@ export default {
         extend: {
             screens: {
                 "2sm": "380px",
+                "2xl": "1536px",
+                "3xl": "1920px",
             },
             fontFamily: {
-                sans: ['"Outfit Variable"', ...defaultTheme.fontFamily.sans],
-                hand: ['"Darumadrop One"', ...defaultTheme.fontFamily.sans]
+                sans: ["\"Outfit Variable\"", ...defaultTheme.fontFamily.sans],
+                hand: ["\"Darumadrop One\"", ...defaultTheme.fontFamily.sans],
             },
             dropShadow: {
-                '2': [
+                "2": [
                     "-2px 0 0 currentColor",
                     "2px 0 0 currentColor",
                     "0 -2px 0 currentColor",
                     "0 2px 0 currentColor",
-                ]
+                ],
             },
         },
     },

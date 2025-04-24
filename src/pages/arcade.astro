@@ -2,17 +2,9 @@
 import Game from "@/components/Arcade/Game.astro";
 import gameList from "@/data/games.json";
 import NavbarPage from "@/layouts/NavbarPage.astro";
-import { getStaticPathsByLocales } from "@/util/path";
-
-export function getStaticPaths() {
-    return getStaticPathsByLocales();
-}
-
-const { lang } = Astro.props;
 ---
 
 <NavbarPage
-    {lang}
     meta={{
         title:
             "KAPLAY.js Arcade, a lot of HTML5 and web games made with KAPLAY",

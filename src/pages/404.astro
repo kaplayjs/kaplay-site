@@ -2,17 +2,15 @@
 import Prose from "@/components/Content/Prose.astro";
 import SidebarPage from "@/layouts/SidebarPage.astro";
 import { getLangedRoute, getPropsFromPath } from "@/util/path";
-
-const { t, lang } = getPropsFromPath(Astro.url.pathname);
 ---
 
-<SidebarPage {lang}>
+<SidebarPage>
     <Prose>
         <h1>404</h1>
         <p class="min-h-screen">
-            {t("misc.404_message")}
-            <a href={getLangedRoute(lang, "/")} data-astro-reload>
-                {t("misc.404_link")}
+            Whoops! Looks like you have found a page that doesn't exist.
+            <a href="/" data-astro-reload>
+                <span class="text-primary"> Go back to the homepage</span>
             </a>.
         </p>
     </Prose>

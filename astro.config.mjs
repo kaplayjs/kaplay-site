@@ -7,6 +7,7 @@ import {
     transformerNotationWordHighlight,
 } from "@shikijs/transformers";
 import astroMetaTags from "astro-meta-tags";
+import pagefind from "astro-pagefind";
 import robotsTxt from "astro-robots-txt";
 import { defineConfig } from "astro/config";
 import rehypeKatex from "rehype-katex";
@@ -23,11 +24,20 @@ export default defineConfig({
         astroMetaTags(),
         robotsTxt(),
         sitemap(),
+        pagefind(),
     ],
+    output: "static",
     contentLayer: true,
     srcDir: "src",
     server: {
         port: 3200,
+    },
+    i18n: {
+        locales: ["es", "en"],
+        defaultLocale: "en",
+        routing: {
+            prefixDefaultLocale: false,
+        },
     },
     redirects: {
         "/docs": "/guides/install",
