@@ -18,10 +18,11 @@ import { SidebarList } from "./SidebarList";
 import VersionSelector from "./VersionSelector.astro";
 import { assets } from "@kaplayjs/crew";
 
-type LinkListEntry = {
+export type LinkListEntry = {
     title: string;
     description: string;
     link: string;
+    folder?: string;
 };
 
 export type SidebarEntry = {
@@ -176,7 +177,7 @@ else if (sidebarMode === "books") {
                 >
                     GitHub
                 </SidebarLink>
-                <SidebarLink href="/changelog" icon="pog">
+                <SidebarLink href="https://github.com/kaplayjs/kaplay/blob/master/CHANGELOG.md" icon="pog">
                     Changelog
                 </SidebarLink>
                 <SidebarLink

@@ -28,23 +28,7 @@ const guideCollection = defineCollection({
             image: z.optional(image()),
             category: z.optional(z.string()),
             version: z.optional(z.string()),
-        }),
-});
-
-const contentCollection = defineCollection({
-    loader: glob({
-        pattern: "**/*.{md,mdx}",
-        base: "./content/",
-    }),
-    type: "content_layer",
-    schema: ({ image }) =>
-        z.object({
-            url: z.optional(z.string()),
-            title: z.string(),
-            description: z.string(),
-            image: z.optional(image()),
-            category: z.optional(z.string()),
-            version: z.optional(z.string()),
+            order: z.optional(z.string()),
         }),
 });
 
@@ -67,19 +51,9 @@ const miscCollection = defineCollection({
     }),
 });
 
-const repoCollection = defineCollection({
-    // only on kaplay/ folder not on kaplay/node_modules/ or any other folder
-    loader: glob({
-        pattern: "kaplay/**.md",
-        base: "./",
-    }),
-});
-
 export const collections = {
     blog: blogCollection,
     guides: guideCollection,
     books: booksCollection,
     misc: miscCollection,
-    repo: repoCollection,
-    content: contentCollection,
 };

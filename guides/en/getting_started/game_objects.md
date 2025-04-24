@@ -5,6 +5,7 @@ description:
     for JavaScript and TypeScript.
 url: game_objects
 image: "./assets/tree.png"
+order: "basics-2"
 ---
 
 # Game Objects
@@ -112,21 +113,61 @@ bag.get("favorite"); // [superMiniBag] - all children with tag favorite
 You can see the full list of operations in the [`GameObjRaw`](/doc/GameObjRaw)
 documentation.
 
-## Creating game object dynamically
+## The `make()` function
 
-One way for create a game object is create a function that returns that game
-object:
+`make()` is used for creating a game object without adding it to the scene.
 
 ```js
-function addBullet() {
-    return add([
+// Same syntax as add()
+const bean = make([
+    sprite("bean"),
+    rotate(0),
+]);
+
+// No bean appears, but we can modify it
+bean.angle = 270;
+
+// Now make bean appears!
+add(bean); // ohhi
+```
+
+## Creating game object dynamically
+
+One way for create a game object is create a function that returns a list of
+components:
+
+```js
+function createBullet() {
+    return [
         rect(6, 18),
         pos(80, 80),
         color(0.5, 0.5, 1),
-    ]);
+    ];
 }
 
-onKeyPress("space", () => {
-    addBullet();
-});
+const bullet1 = add(createBullet());
+```
+
+Another option is return an object with `make()`, and then add it.
+
+```js
+function createBullet(spr) {
+    const obj = make([
+        pos(80, 80),
+        color(0.5, 0.5, 1),
+    ]);
+
+    // we use a sprite if passed, if not a rect
+    if (spr) {
+        obj.use(sprite(spr));
+    }
+    else {
+        obj.use(rect(6, 18));
+    }
+
+    return obj; // IMPORTANT: return the object reference
+}
+
+const bullet2 = add(createBullet("bullet")); // sprite
+const bullet3 = add(createBullet()); // a rect
 ```

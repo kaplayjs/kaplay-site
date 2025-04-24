@@ -24,16 +24,16 @@ export default defineConfig({
         robotsTxt(),
         sitemap(),
     ],
-    experimental: {
-        contentLayer: true,
-    },
+    contentLayer: true,
     srcDir: "src",
     server: {
         port: 3200,
     },
     redirects: {
         "/docs": "/guides/install",
-        "/doc": "/docs"
+        "/doc": "/docs",
+        "/changelog/":
+            "https://github.com/kaplayjs/kaplay/blob/master/CHANGELOG.md",
     },
     markdown: {
         shikiConfig: {

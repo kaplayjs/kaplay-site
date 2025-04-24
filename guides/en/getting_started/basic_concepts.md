@@ -5,6 +5,7 @@ description:
     TypeScript.
 url: starting
 image: "./assets/theater.png"
+order: "basics-1"
 ---
 
 # Basic Concepts

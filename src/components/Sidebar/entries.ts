@@ -1,91 +1,54 @@
 import doc from "@/../doc.json";
+import guidesData from "@/../guides/data.json";
 import kaplayPackageJson from "@/../kaplay/package.json";
 import { booksInfo } from "@/data/booksData";
 import { $lang } from "@/stores";
-import type { LocaleSubKeys } from "@/util/i18n";
-import { t } from "@/util/i18n";
 import { getCollection } from "astro:content";
-import type { SidebarEntry } from "./Sidebar.astro";
+import type { LinkListEntry, SidebarEntry } from "./Sidebar.astro";
+
+type Category = keyof typeof guidesData.categories;
 
 const version = kaplayPackageJson.version.startsWith("4") ? "v4000" : "v3001";
 const allDoc = doc.types as any;
 
-const guidesData: Record<
-    string,
-    {
-        title: string;
-    }
-> = {
-    "0_making_your_first_game": {
-        title: "Making Your First Game",
-    },
-    "1_getting_started": {
-        title: "Getting Started",
-    },
-    "2_concepts": {
-        title: "Concepts",
-    },
-    "3_advanced": {
-        title: "Advanced",
-    },
-    "4_expanding_kaplay": {
-        title: "Expanding KAPLAY",
-    },
-    "5_misc": {
-        title: "Misc",
-    },
-    "6_integrations": {
-        title: "Integrations",
-    },
-};
-
 export const getGuidesEntries = async () => {
-    const lang = $lang.get();
-    const guides = (await getCollection("guides"))
-        .filter((guide) => {
-            return (
-                (guide.data.version === undefined
-                    || guide.data.version === version)
-                && guide.id.startsWith(lang)
-            );
-        })
-        .sort((a, b) => {
-            const aGuide = a.id.split("/")[2];
-            const bGuide = b.id.split("/")[2];
-            const aNum = parseInt(aGuide.match(/(\d+)_/)?.[1] ?? "0");
-            const bNum = parseInt(bGuide.match(/(\d+)_/)?.[1] ?? "0");
+    const guides = await getCollection("guides");
+    const categories = Object.keys(guidesData.categories);
 
-            if (isNaN(aNum) || isNaN(bNum)) {
-                return 0;
-            }
+    const sortedGuides: LinkListEntry[] = guides.sort((a, b) => {
+        const aSlug = a.id.split("/");
+        const aCategory = aSlug[1];
+        const aTitle = a.data.url ?? aSlug[2];
+        const aSort = a.data.order ?? "zzz";
+        const aLocal = `${aCategory}-${aSort}-${aTitle}`;
 
-            return aNum - bNum;
+        const bSlug = b.id.split("/");
+        const bCategory = bSlug[1];
+        const bTitle = b.data.url ?? bSlug[2];
+        const bSort = b.data.order ?? "zzz";
+        const bLocal = `${bCategory}-${bSort}-${bTitle}`;
+
+        return aLocal.localeCompare(bLocal, undefined, {
+            numeric: true,
+            sensitivity: "base",
         });
+    }).map((guide) => ({
+        description: guide.data.description,
+        title: guide.data.title,
+        link: `/guides/${guide.data.url ?? guide.id.split("/")[2]}`,
+        folder: guide.id.split("/")[1],
+    }));
 
-    const guidesByCategory = guides.reduce(
-        (acc, guide) => {
-            const [_, folder] = guide.id.split("/");
+    const guidesByCategory = Object.groupBy(sortedGuides, (guide) => {
+        return guide.folder ?? "no-folder";
+    });
 
-            if (!acc[folder]) {
-                acc[folder] = [];
-            }
-
-            acc[folder].push(guide);
-            return acc;
-        },
-        {} as Record<string, typeof guides>,
-    );
-
-    const renderList = [
-        ...Object.keys(guidesByCategory).map((category) => ({
-            folder: guidesData[category]?.title ?? category,
-            linkList: guidesByCategory[category].map((guide) => ({
-                title: guide.data.title,
-                link: `/guides/${guide.data.url ?? guide.id.split("/")[2]}`,
-                description: guide.data.description,
-            })),
-        })),
-    ];
+    const renderList: SidebarEntry[] = categories.map((category) => {
+        return {
+            folder: guidesData.categories[<Category> category].displayName,
+            linkList: guidesByCategory[category] ?? [],
+        };
+    });
 
     return renderList;
 };

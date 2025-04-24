@@ -4,6 +4,7 @@ description:
     Learn how to load and use sprites in KAPLAY, the HTML5 Game Library for
     JavaScript and TypeScript.
 url: sprites
+order: "basics-7"
 ---
 
 # Rendering sprites

@@ -4,6 +4,7 @@ description:
     Learn how to organize your game in scenes in KAPLAY, the HTML5 Game Engine
     for JavaScript and TypeScript.
 url: scenes
+order: "basics-6"
 ---
 
 # Scenes

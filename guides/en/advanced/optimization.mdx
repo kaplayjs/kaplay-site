@@ -2,6 +2,7 @@
 title: Optimization
 description: Tips on optimizing performance / maintainability for KAPLAY games.
 url: optimization
+order: "advanced-0"
 ---
 
 import Info from "@/components/Content/Info.astro";
@@ -37,13 +38,13 @@ k.onDraw(() => {
 If you're creating and destroying objects in an absurd rate, you should find
 another solution.
 
--   Particles: `particle()` component instead of creating and destroying objects
-    for each particle.
--   Rendering: `onDraw` for rendering static images or shapes.
--   Text: `text()` or `drawText()` transform instead of creating a game object
-    for each letter/word.
--   Data: `const gameData = {}` for storing game state instead of creating a
-    game object the state.
+- Particles: `particle()` component instead of creating and destroying objects
+  for each particle.
+- Rendering: `onDraw` for rendering static images or shapes.
+- Text: `text()` or `drawText()` transform instead of creating a game object for
+  each letter/word.
+- Data: `const gameData = {}` for storing game state instead of creating a game
+  object the state.
 
 ## Cleanup One-off Objects
 
@@ -102,18 +103,18 @@ const pos = k.vec2(120, 200);
 <Info
     crew="bobo"
     title="Browsers replace the global namespace whenever they feel like it.">
-    Another reason for avoid global namespace is that browsers can patch global
-    namespace with their own functions, which can cause conflicts with KAPLAY
-    functions. That happened with `navigate` component in the past.
+Another reason for avoid global namespace is that browsers can patch global
+namespace with their own functions, which can cause conflicts with KAPLAY
+functions. That happened with `navigate` component in the past.
 </Info>
 
 ## Compress Assets
 
 Loading assets takes time, compress them when you can.
 
--   Compress `.ttf` or `.otf` to `.woff2` (with
-    [google/woff2](https://github.com/google/woff2))
--   Compress `.wav` files to `.ogg` or `.mp3`
+- Compress `.ttf` or `.otf` to `.woff2` (with
+  [google/woff2](https://github.com/google/woff2))
+- Compress `.wav` files to `.ogg` or `.mp3`
 
 ## Use Game Object local timers
 

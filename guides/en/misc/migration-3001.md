@@ -1,8 +1,8 @@
 ---
-title: Migrating to KAPLAY
+title: Migrating from Kaboom.js to KAPLAY
 description: Migrate your codebase from Kaboom v3000 to KAPLAY v3001.
-order: 6
 url: migration-kaplay
+order: "misc-1"
 ---
 
 # Migrating from Kaboom.js to KAPLAY
