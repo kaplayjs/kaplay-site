@@ -44,6 +44,7 @@ export default defineConfig({
         "/doc": "/docs",
         "/changelog/":
             "https://github.com/kaplayjs/kaplay/blob/master/CHANGELOG.md",
+        "/lib/kaplay.master.js": "https://cdn.kaplayjs.com/kaplay.master.js",
     },
     markdown: {
         shikiConfig: {

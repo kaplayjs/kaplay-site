@@ -1,18 +1,28 @@
+import type { Locale } from "@/util/i18n.ts";
 import { assets } from "@kaplayjs/crew";
 
-export const firstLinksRow = {
+interface NavbarLink {
+    name: string;
+    url: string;
+    icon: string;
+    target?: string;
+    reload?: boolean;
+    highlight?: "support" | "docs" | false;
+}
+
+type NavbarLinksRow = Record<Locale, NavbarLink[]>;
+
+export const firstLinksRow: NavbarLinksRow = {
     "en": [
         {
             name: "Home",
             url: "/",
-            highlight: false,
             icon: assets.bean.outlined,
             reload: true,
         },
         {
             name: "Assets",
             url: "/crew",
-            highlight: false,
             icon: assets.assetbrew.outlined,
         },
         {
@@ -25,14 +35,12 @@ export const firstLinksRow = {
         {
             name: "Inicio",
             url: "/",
-            highlight: false,
             icon: assets.bean.outlined,
             reload: true,
         },
         {
             name: "Pandilla",
             url: "/crew",
-            highlight: false,
             icon: assets.assetbrew.outlined,
         },
         {
@@ -43,24 +51,24 @@ export const firstLinksRow = {
     ],
 };
 
-export const secondLinksRow = {
+export const secondLinksRow: NavbarLinksRow = {
     "en": [
         {
             name: "Blog",
             url: "/blog",
-            highlight: false,
             icon: assets.paper.outlined,
         },
         {
-            name: "Donate",
+            name: "Support",
             url: "https://opencollective.com/kaplay",
-            highlight: false,
-            icon: assets.money_bag.outlined,
+            highlight: "support",
+            icon: assets.heart.outlined,
+            target: "_blank",
         },
         {
             name: "Docs",
             url: "/guides/",
-            highlight: true,
+            highlight: "docs",
             icon: assets.api_book.outlined,
         },
     ],
@@ -75,12 +83,13 @@ export const secondLinksRow = {
             name: "Donar",
             url: "https://opencollective.com/kaplay",
             highlight: false,
-            icon: assets.money_bag.outlined,
+            icon: assets.heart.outlined,
+            target: "_blank",
         },
         {
             name: "Docs (EN)",
             url: "/guides/",
-            highlight: true,
+            highlight: "docs",
             icon: assets.api_book.outlined,
         },
     ],

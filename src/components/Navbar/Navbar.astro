@@ -51,7 +51,8 @@ const l = Astro.currentLocale as Locale;
                                     "btn btn-sm uppercase",
                                     {
                                         "btn-primary":
-                                            link.highlight,
+                                            link.highlight
+                                                == "docs",
                                         "btn-ghost": !link
                                             .highlight,
                                     },
@@ -123,11 +124,15 @@ const l = Astro.currentLocale as Locale;
                             class:list={[
                                 "btn uppercase",
                                 {
-                                    "btn-primary": link.highlight,
+                                    "btn-primary":
+                                        link.highlight == "docs",
+                                    "inline-flex gap-2 text-white items-center justify-center bg-[#4e585d]/70 border border-green-100/10 shadow-[0_0.25em_0_0_rgba(255,255,255,0.1)] hover:scale-105 hover:bg-[#ee8fcb] hover:border-[#d46eb3] hover:shadow-[0_0.25em_0_0_#873e84] hover:text-black transition-all":
+                                        link.highlight == "support",
                                     "btn-ghost": !link.highlight,
                                 },
                             ]}
                             href={link.url}
+                            target={link.target ?? "_self"}
                         >
                             {link.name}
                             <img
