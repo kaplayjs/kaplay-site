@@ -51,13 +51,6 @@ jobs:
         with:
           node-version: 22
           cache: 'pnpm'
-      - name: Build kaplayjs
-        run: |
-          cd kaplay
-          pnpm i
-          pnpm run build
-          cd dist
-          cp kaplay.js ../../public/lib/kaplay.master.js
       - name: Checkout submodule to v3001
         run: |
           cd kaplay
