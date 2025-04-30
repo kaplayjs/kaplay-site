@@ -1,0 +1,11 @@
+---
+import type { DeclarationReflection } from "typedoc";
+
+interface Props {
+    doc: DeclarationReflection;
+}
+
+const { doc } = Astro.props;
+---
+
+<span class="font-medium"><a>{doc.name}</a></span>

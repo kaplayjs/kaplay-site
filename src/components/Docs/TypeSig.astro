@@ -1,0 +1,25 @@
+---
+import { type SomeType } from "typedoc";
+import IntrinsicSignature from "./Signatures/IntrinsicSignature.astro";
+
+interface Props {
+    type?: SomeType;
+}
+
+const { type } = Astro.props;
+
+if (!type) return;
+---
+
+<span>
+    {type.type === "intrinsic" && <IntrinsicSignature type={type} />}
+    {
+        type.type === "reflection" && (
+            <span class="text-primary">
+                {type.declaration} {console.log(type.declaration.signatures[0])}
+            </span>
+        )
+    }
+
+    {type.type}
+</span>

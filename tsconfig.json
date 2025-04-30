@@ -9,7 +9,7 @@
     },
     "jsx": "react-jsx",
     "jsxImportSource": "@builder.io/qwik",
-    "resolveJsonModule": true,
+    "resolveJsonModule": false,
     "noImplicitAny": false,
     "target": "ESNext",
     "module": "ESNext",

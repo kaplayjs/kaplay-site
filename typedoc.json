@@ -1,0 +1,7 @@
+{
+    "json": "./docs/typedoc.json",
+    "entryPoints": [
+        "kaplay/dist/doc.d.ts",
+    ],
+    "tsconfig": "./tsconfig.docs.json",
+}

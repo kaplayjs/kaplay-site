@@ -1,0 +1,27 @@
+---
+import { ReferenceReflection } from "typedoc";
+import docJson from "./typedoc.json?raw";
+import TypeName from "./TypeName.astro";
+import TypeSig from "./TypeSig.astro";
+const doc = JSON.parse(docJson) as ReferenceReflection;
+
+interface Props {
+    docName: string;
+}
+
+const { docName } = Astro.props;
+
+let renderDoc = doc.children?.find((child) => child.name === docName);
+if (!renderDoc) return;
+
+if (renderDoc.id === 5041) return;
+if (renderDoc?.name === "default") {
+    renderDoc.name = "kaplay";
+}
+---
+
+<article class={"gal-1 text-fira flex flex-col"}>
+    <h1 class="text-xl">
+        <TypeName doc={renderDoc} />:<TypeSig type={renderDoc.type} />
+    </h1>
+</article>

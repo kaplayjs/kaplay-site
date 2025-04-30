@@ -124,7 +124,7 @@ importers:
         version: 5.0.0
     devDependencies:
       '@kaplayjs/dprint-config':
-        specifier: ^1.1.0
+        specifier: ^1.2.0
         version: 1.2.0
       '@shikijs/transformers':
         specifier: ^1.21.0
@@ -142,8 +142,8 @@ importers:
         specifier: ^4.12.12
         version: 4.12.24(postcss@8.5.3)
       dprint:
-        specifier: ^0.47.2
-        version: 0.47.6
+        specifier: ^0.49.1
+        version: 0.49.1
       dts-bundle-generator:
         specifier: ^9.5.1
         version: 9.5.1
@@ -168,6 +168,9 @@ importers:
       tailwind-merge:
         specifier: ^2.5.3
         version: 2.6.0
+      typedoc:
+        specifier: ^0.28.3
+        version: 0.28.3(typescript@5.8.3)
       wrangler:
         specifier: ^3.80.0
         version: 3.114.7(@cloudflare/workers-types@4.20250424.0)
@@ -396,19 +399,9 @@ packages:
     resolution: {integrity: sha512-UJnjoFsmxfKUdNYdWgOB0mWUypuLvAfQPH1+pyvRJs6euowbFkFC6P13w1l8mJyi3vxYMxc9kld5jZEGRQs6bw==}
     engines: {node: '>=18'}
 
-  '@dprint/darwin-arm64@0.47.6':
-    resolution: {integrity: sha512-DrtKVOH7Ue6QYsqsUfUwBlTkSZNF2j35xqyI6KimUT1ulgUPocLG53JC/Aej9KuSCPmt4M3J40xxPKRgIM4jPA==}
-    cpu: [arm64]
-    os: [darwin]
-
   '@dprint/darwin-arm64@0.49.1':
     resolution: {integrity: sha512-ib6KcJWo/M5RJWXOQKhP664FG1hAvG7nrbkh+j8n+oXdzmbyDdXTP+zW+aM3/sIQUkGaZky1xy1j2VeScMEEHQ==}
     cpu: [arm64]
-    os: [darwin]
-
-  '@dprint/darwin-x64@0.47.6':
-    resolution: {integrity: sha512-p16a4lMbAo4RngbNTAmtREnIRI/cOcZFy5wHPIzbCDnnHI+4UyHiAypTrpF8U8EYx1tw3hgih2MyAuupa9Gfag==}
-    cpu: [x64]
     os: [darwin]
 
   '@dprint/darwin-x64@0.49.1':
@@ -416,18 +409,8 @@ packages:
     cpu: [x64]
     os: [darwin]
 
-  '@dprint/linux-arm64-glibc@0.47.6':
-    resolution: {integrity: sha512-WHphnk0oXpNzwJ9cjbddOL+hEZkXTvHxcA2pM1h1kWCBa5m+4qh0fg8YCktckMfHx1qdQuZYWRoT4l7yQbzWYA==}
-    cpu: [arm64]
-    os: [linux]
-
   '@dprint/linux-arm64-glibc@0.49.1':
     resolution: {integrity: sha512-ZeIh6qMPWLBBifDtU0XadpK36b4WoaTqCOt0rWKfoTjq1RAt78EgqETWp43Dbr6et/HvTgYdoWF0ZNEu2FJFFA==}
-    cpu: [arm64]
-    os: [linux]
-
-  '@dprint/linux-arm64-musl@0.47.6':
-    resolution: {integrity: sha512-/2cSPudajg8J0U69ldNZkJx5QiKZNh+ohNVM9leWZ8v6GXN6sJDHX3T6hzS3ohIb03YOCiLOrJZDy9j3+fSgdQ==}
     cpu: [arm64]
     os: [linux]
 
@@ -436,28 +419,13 @@ packages:
     cpu: [arm64]
     os: [linux]
 
-  '@dprint/linux-riscv64-glibc@0.47.6':
-    resolution: {integrity: sha512-RMHJ3Zuzpls426upHlAveVwlGMi8oBLzhiCauyC/yWQl3CkGTAYdyhEpGnux0+RxacysfIL2bd8ourx4K0Sx3w==}
-    cpu: [riscv64]
-    os: [linux]
-
   '@dprint/linux-riscv64-glibc@0.49.1':
     resolution: {integrity: sha512-RHBqrnvGO+xW4Oh0QuToBqWtkXMcfjqa1TqbBFF03yopFzZA2oRKX83PhjTWgd/IglaOns0BgmaLJy/JBSxOfQ==}
     cpu: [riscv64]
     os: [linux]
 
-  '@dprint/linux-x64-glibc@0.47.6':
-    resolution: {integrity: sha512-4zbVsx/a8lHkRyAjfW0PNlN5IMwOJfFapgXNYJowWNO7X3j3m1jYJWovjmdZls+d6pDeOHoanMWtq95wd7zTeQ==}
-    cpu: [x64]
-    os: [linux]
-
   '@dprint/linux-x64-glibc@0.49.1':
     resolution: {integrity: sha512-MjFE894mIQXOKBencuakKyzAI4KcDe/p0Y9lRp9YSw/FneR4QWH9VBH90h8fRxcIlWMArjFFJJAtsBnn5qgxeg==}
-    cpu: [x64]
-    os: [linux]
-
-  '@dprint/linux-x64-musl@0.47.6':
-    resolution: {integrity: sha512-0C13t4OVzomgQjvUyD5IrRyjLDhGuOtqMo00uJlwn3QHucfgOBqkjyQ5fq7T6+grBse0m14/EWblvSbYkZpyDw==}
     cpu: [x64]
     os: [linux]
 
@@ -466,19 +434,9 @@ packages:
     cpu: [x64]
     os: [linux]
 
-  '@dprint/win32-arm64@0.47.6':
-    resolution: {integrity: sha512-UOkeFMBdGIuGNwfkrJdVM9eNiRMdbZRRGVy0Cdo2AXn/FCDVqZ74KJkvYVcoUE27GCytHi4Sp1s4at7659WCOw==}
-    cpu: [arm64]
-    os: [win32]
-
   '@dprint/win32-arm64@0.49.1':
     resolution: {integrity: sha512-gQa4s82lMcXjfdxjWBQun6IJlXdPZZaIj2/2cqXWVEOYPKxAZ/JvGzt2pPG+i73h9KHjNLIV8M9ckqEH3oHufg==}
     cpu: [arm64]
-    os: [win32]
-
-  '@dprint/win32-x64@0.47.6':
-    resolution: {integrity: sha512-i9xwXR8V8Jk/wU1gsYKx15eb0ypBRbRZFkHsnHfC0ZBimcfEOibGnGcfv+UCUcumXtnV46TnBqaJW7H70J1J+A==}
-    cpu: [x64]
     os: [win32]
 
   '@dprint/win32-x64@0.49.1':
@@ -1114,6 +1072,9 @@ packages:
 
   '@fontsource/pangolin@5.2.5':
     resolution: {integrity: sha512-5f6+QAF2Hj8wpzwaIdxTmyoffbWXoRyRUAZFJMrEjqCRh9ZKC/5SYH4anBtKh0+P9qJrM4aG2xA3AiAPr3QAnw==}
+
+  '@gerrit0/mini-shiki@3.3.0':
+    resolution: {integrity: sha512-frvArO0+s5Viq68uSod5SieLPVM2cLpXoQ1e07lURwgADXpL/MOypM7jPz9otks0g2DIe2YedDAeVrDyYJZRxA==}
 
   '@img/sharp-darwin-arm64@0.33.5':
     resolution: {integrity: sha512-UT4p+iz/2H4twwAoLCqfA9UH5pI6DggwKEGuaPy7nCVQ8ZsiY5PIcrRvD1DzuY3qYL07NtIQcWnBSY/heikIFQ==}
@@ -1970,10 +1931,6 @@ packages:
   dlv@1.1.3:
     resolution: {integrity: sha512-+HlytyjlPKnIG8XuRG8WvmBP8xs8P71y+SKKS6ZXWoEgLuePxtDoUEiH7WkdePWrQ5JBpE6aoVqfZfJUQkjXwA==}
 
-  dprint@0.47.6:
-    resolution: {integrity: sha512-vCQC+IMHVZbISA5pxEj+yshQbozmQoVFA4lzcLlqJ8rzIAH8U+1DKvesN/2Uv3Bqz6rMW6W4WY7pYJQljmiZ8w==}
-    hasBin: true
-
   dprint@0.49.1:
     resolution: {integrity: sha512-pO9XH79SyXybj2Vhc9ITZMEI8cJkdlQQRoD8oEfPH6Jjpp/7WX5kIgECVd3DBOjjAdCSiW6R47v3gJBx/qZVkw==}
     hasBin: true
@@ -2011,6 +1968,10 @@ packages:
 
   emoji-regex@9.2.2:
     resolution: {integrity: sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg==}
+
+  entities@4.5.0:
+    resolution: {integrity: sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==}
+    engines: {node: '>=0.12'}
 
   entities@6.0.0:
     resolution: {integrity: sha512-aKstq2TDOndCn4diEyp9Uq/Flu2i1GlLkc6XIDQSDMuaFE3OPW5OphLCyQ5SpSJZTb4reN+kTcYru5yIfXoRPw==}
@@ -2523,6 +2484,9 @@ packages:
   lines-and-columns@1.2.4:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
 
+  linkify-it@5.0.0:
+    resolution: {integrity: sha512-5aHCbzQRADcdP+ATqnDuhhJ/MRIqDkZX5pyjFHRRysS8vZ5AbqGEoFIb6pYHPZ+L/OC2Lc+xT8uHVVR5CAK/wQ==}
+
   list-item@1.1.1:
     resolution: {integrity: sha512-S3D0WZ4J6hyM8o5SNKWaMYB1ALSacPZ2nHGEuCjmHZ+dc03gFeNZoNDcqfcnO4vDhTZmNrqrpYZCdXsRh22bzw==}
     engines: {node: '>=0.10.0'}
@@ -2553,6 +2517,9 @@ packages:
   lru-cache@10.4.3:
     resolution: {integrity: sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==}
 
+  lunr@2.3.9:
+    resolution: {integrity: sha512-zTU3DaZaF3Rt9rhN3uBMGQD3dD2/vFQqnvZCDv4dl5iOzq2IZQqTxu90r4E5J+nP70J3ilqVCrbho2eWaeW8Ow==}
+
   magic-string@0.25.9:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
 
@@ -2565,6 +2532,10 @@ packages:
   markdown-extensions@2.0.0:
     resolution: {integrity: sha512-o5vL7aDWatOTX8LzaS1WMoaoxIiLRQJuIKKe2wAw6IeULDHaqbiqiggmx+pKvZDb1Sj+pE46Sn1T7lCqfFtg1Q==}
     engines: {node: '>=16'}
+
+  markdown-it@14.1.0:
+    resolution: {integrity: sha512-a54IwgWPaeBCAAsv13YgmALOF1elABB08FxO9i+r4VFk5Vl4pKokRPeX8u5TCgSsPi6ec1otfLjdOpVcgbpshg==}
+    hasBin: true
 
   markdown-table@3.0.4:
     resolution: {integrity: sha512-wiYz4+JrLyb/DqW2hkFJxP7Vd7JuTDm77fvbM8VfEQdmSMqcImWeeRbHwZjBjIFki/VaMK2BhFi7oUUZeM5bqw==}
@@ -2650,6 +2621,9 @@ packages:
 
   mdn-data@2.12.2:
     resolution: {integrity: sha512-IEn+pegP1aManZuckezWCO+XZQDplx1366JoVhTpMpBB1sPey/SbveZQUosKiKiGYjg1wH4pMlNgXbCiYgihQA==}
+
+  mdurl@2.0.0:
+    resolution: {integrity: sha512-Lf+9+2r+Tdp5wXDXC4PcIBjTDtq4UKjCPMQhKIuzpJNW0b96kVqSwW0bT7FhRSfmAiFYgP+SCRvdrDozfh0U5w==}
 
   merge2@1.4.1:
     resolution: {integrity: sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==}
@@ -3127,6 +3101,10 @@ packages:
   psl@1.15.0:
     resolution: {integrity: sha512-JZd3gMVBAVQkSs6HdNZo9Sdo0LNcQeMNP3CozBJb3JYC/QUYZTnKxP+f8oWRX4rHP5EurWxqAHTSwUCjlNKa1w==}
 
+  punycode.js@2.3.1:
+    resolution: {integrity: sha512-uxFIHU0YlHYhDQtV4R9J6a52SLx28BCjT+4ieh7IGbgwVJWO+km431c4yRlREUAsAmt/uMjQUyQHNEPf0M39CA==}
+    engines: {node: '>=6'}
+
   punycode@2.3.1:
     resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==}
     engines: {node: '>=6'}
@@ -3548,6 +3526,13 @@ packages:
     resolution: {integrity: sha512-ABHZ2/tS2JkvH1PEjxFDTUWC8dB5OsIGZP4IFLhR293GqT5Y5qB1WwL2kMPYhQW9DVgVD8Hd7I8gjwPIf5GFkw==}
     engines: {node: '>=16'}
 
+  typedoc@0.28.3:
+    resolution: {integrity: sha512-5svOCTfXvVSh6zbZKSQluZhR8yN2tKpTeHZxlmWpE6N5vc3R8k/jhg9nnD6n5tN9/ObuQTojkONrOxFdUFUG9w==}
+    engines: {node: '>= 18', pnpm: '>= 10'}
+    hasBin: true
+    peerDependencies:
+      typescript: 5.0.x || 5.1.x || 5.2.x || 5.3.x || 5.4.x || 5.5.x || 5.6.x || 5.7.x || 5.8.x
+
   typesafe-path@0.2.2:
     resolution: {integrity: sha512-OJabfkAg1WLZSqJAJ0Z6Sdt3utnbzr/jh+NAHoyWHJe8CMSy79Gm085094M9nvTPy22KzTVn5Zq5mbapCI/hPA==}
 
@@ -3558,6 +3543,9 @@ packages:
     resolution: {integrity: sha512-p1diW6TqL9L07nNxvRMM7hMMw4c5XOo/1ibL4aAIGmSAt9slTE1Xgw5KWuof2uTOvCg9BY7ZRi+GaF+7sfgPeQ==}
     engines: {node: '>=14.17'}
     hasBin: true
+
+  uc.micro@2.1.0:
+    resolution: {integrity: sha512-ARDJmphmdvUk6Glw7y9DQ2bFkKBHwQHLi2lsaH6PPmz/Ka9sFOBsBluozhDltWmnv9u/cF6Rt87znRTPV+yp/A==}
 
   ufo@1.6.1:
     resolution: {integrity: sha512-9a4/uxlTWJ4+a5i0ooc1rU7C7YOw3wT+UGqdeNNHWnOF9qcMBgLRS+4IYUqbczewFx4mLEig6gawh7X6mFlEkA==}
@@ -4364,55 +4352,28 @@ snapshots:
 
   '@csstools/css-tokenizer@3.0.3': {}
 
-  '@dprint/darwin-arm64@0.47.6':
-    optional: true
-
   '@dprint/darwin-arm64@0.49.1':
-    optional: true
-
-  '@dprint/darwin-x64@0.47.6':
     optional: true
 
   '@dprint/darwin-x64@0.49.1':
     optional: true
 
-  '@dprint/linux-arm64-glibc@0.47.6':
-    optional: true
-
   '@dprint/linux-arm64-glibc@0.49.1':
-    optional: true
-
-  '@dprint/linux-arm64-musl@0.47.6':
     optional: true
 
   '@dprint/linux-arm64-musl@0.49.1':
     optional: true
 
-  '@dprint/linux-riscv64-glibc@0.47.6':
-    optional: true
-
   '@dprint/linux-riscv64-glibc@0.49.1':
-    optional: true
-
-  '@dprint/linux-x64-glibc@0.47.6':
     optional: true
 
   '@dprint/linux-x64-glibc@0.49.1':
     optional: true
 
-  '@dprint/linux-x64-musl@0.47.6':
-    optional: true
-
   '@dprint/linux-x64-musl@0.49.1':
     optional: true
 
-  '@dprint/win32-arm64@0.47.6':
-    optional: true
-
   '@dprint/win32-arm64@0.49.1':
-    optional: true
-
-  '@dprint/win32-x64@0.47.6':
     optional: true
 
   '@dprint/win32-x64@0.49.1':
@@ -4756,6 +4717,14 @@ snapshots:
   '@fontsource/ibm-plex-sans@5.2.5': {}
 
   '@fontsource/pangolin@5.2.5': {}
+
+  '@gerrit0/mini-shiki@3.3.0':
+    dependencies:
+      '@shikijs/engine-oniguruma': 3.3.0
+      '@shikijs/langs': 3.3.0
+      '@shikijs/themes': 3.3.0
+      '@shikijs/types': 3.3.0
+      '@shikijs/vscode-textmate': 10.0.2
 
   '@img/sharp-darwin-arm64@0.33.5':
     optionalDependencies:
@@ -5687,18 +5656,6 @@ snapshots:
 
   dlv@1.1.3: {}
 
-  dprint@0.47.6:
-    optionalDependencies:
-      '@dprint/darwin-arm64': 0.47.6
-      '@dprint/darwin-x64': 0.47.6
-      '@dprint/linux-arm64-glibc': 0.47.6
-      '@dprint/linux-arm64-musl': 0.47.6
-      '@dprint/linux-riscv64-glibc': 0.47.6
-      '@dprint/linux-x64-glibc': 0.47.6
-      '@dprint/linux-x64-musl': 0.47.6
-      '@dprint/win32-arm64': 0.47.6
-      '@dprint/win32-x64': 0.47.6
-
   dprint@0.49.1:
     optionalDependencies:
       '@dprint/darwin-arm64': 0.49.1
@@ -5740,6 +5697,8 @@ snapshots:
   emoji-regex@8.0.0: {}
 
   emoji-regex@9.2.2: {}
+
+  entities@4.5.0: {}
 
   entities@6.0.0: {}
 
@@ -6447,6 +6406,10 @@ snapshots:
 
   lines-and-columns@1.2.4: {}
 
+  linkify-it@5.0.0:
+    dependencies:
+      uc.micro: 2.1.0
+
   list-item@1.1.1:
     dependencies:
       expand-range: 1.8.2
@@ -6472,6 +6435,8 @@ snapshots:
 
   lru-cache@10.4.3: {}
 
+  lunr@2.3.9: {}
+
   magic-string@0.25.9:
     dependencies:
       sourcemap-codec: 1.4.8
@@ -6487,6 +6452,15 @@ snapshots:
       source-map-js: 1.2.1
 
   markdown-extensions@2.0.0: {}
+
+  markdown-it@14.1.0:
+    dependencies:
+      argparse: 2.0.1
+      entities: 4.5.0
+      linkify-it: 5.0.0
+      mdurl: 2.0.0
+      punycode.js: 2.3.1
+      uc.micro: 2.1.0
 
   markdown-table@3.0.4: {}
 
@@ -6696,6 +6670,8 @@ snapshots:
   mdn-data@2.0.30: {}
 
   mdn-data@2.12.2: {}
+
+  mdurl@2.0.0: {}
 
   merge2@1.4.1: {}
 
@@ -7277,6 +7253,8 @@ snapshots:
   psl@1.15.0:
     dependencies:
       punycode: 2.3.1
+
+  punycode.js@2.3.1: {}
 
   punycode@2.3.1: {}
 
@@ -7875,6 +7853,15 @@ snapshots:
 
   type-fest@4.40.0: {}
 
+  typedoc@0.28.3(typescript@5.8.3):
+    dependencies:
+      '@gerrit0/mini-shiki': 3.3.0
+      lunr: 2.3.9
+      markdown-it: 14.1.0
+      minimatch: 9.0.5
+      typescript: 5.8.3
+      yaml: 2.7.1
+
   typesafe-path@0.2.2: {}
 
   typescript-auto-import-cache@0.3.5:
@@ -7882,6 +7869,8 @@ snapshots:
       semver: 7.7.1
 
   typescript@5.8.3: {}
+
+  uc.micro@2.1.0: {}
 
   ufo@1.6.1: {}
 

@@ -1,0 +1,14 @@
+---
+import type { IntrinsicType } from "typedoc";
+import Type from "./Type.astro";
+
+interface Props {
+    type: IntrinsicType;
+}
+
+const { type } = Astro.props;
+---
+
+<Type>
+    {type.name}
+</Type>
