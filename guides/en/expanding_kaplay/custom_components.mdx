@@ -36,11 +36,13 @@ contain all the exposed states, methods, and event hooks of the component.
 In this case, the `lifespan()` component returns:
 
 - `id`: unique identification of the comp, used in require, `.unuse()`, etc.
-- `update()`: an event hook that'll run every frame and only exists while the
-  component is attached to a Game Object.
+- `update()`: an event hook that'll run every frame while the component is
+  attached to a Game Object.
 
 Also, all `this` inside the component functions refer to the **Game Object**
 it's attached to.
+
+## Special Fields
 
 Here's a list of all special fields you can use in your component:
 
@@ -103,8 +105,7 @@ method: () => {},
 
 All KAPLAY built-in components are implemented this way. You can check the
 source code
-[here](https://github.com/kaplayjs/kaplay/tree/master/src/ecs/components)
-
+[here](https://github.com/kaplayjs/kaplay/tree/master/src/ecs/components). Also
 Check out the [component demo](https://play.kaplayjs.com/?example=component).
 
 ## TypeScript
