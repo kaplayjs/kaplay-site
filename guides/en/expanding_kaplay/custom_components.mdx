@@ -4,6 +4,8 @@ description: How to create your own components in KAPLAY
 url: custom_components
 ---
 
+import Info from "@/components/Content/Info.astro";
+
 # Custom Components
 
 KAPLAY uses a flexible component system that helps you compose game objects
@@ -83,6 +85,21 @@ const obj = add([
     myComp(123), // <- here
 ]);
 ```
+
+<Info crew="beant" title="Don't use arrow functions/lambdas">
+
+Arrow functions/lambdas are not allowed in component methods. This is because
+the `this` context will be lost.
+
+```js
+// Correct
+method() {},
+method: function () {},
+// Incorrect, this keyword will be undefined
+method: () => {},
+```
+
+</Info>
 
 All KAPLAY built-in components are implemented this way. You can check the
 source code
