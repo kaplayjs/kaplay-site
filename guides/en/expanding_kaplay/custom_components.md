@@ -6,17 +6,20 @@ url: custom_components
 
 # Custom Components
 
-KAPLAY uses a flexible component system that helps you compose game logic.
+KAPLAY uses a flexible component system that helps you compose game objects
+logic.
 
-Let's take a look at how the default component `lifespan()` is implemented.
+Let's take a look at how the default component `lifespan()` is implemented:
 
 ```js
 function lifespan(time) {
     let timer = 0;
+
     return {
         id: "lifespan",
         update() {
             timer -= dt();
+
             if (timer <= 0) {
                 destroy(this);
             }
@@ -25,41 +28,47 @@ function lifespan(time) {
 }
 ```
 
-Components are just plain functions that returns an object. The return object
-will contain all the exposed states, methods, and event hooks of the component.
-In this case, the `lifespan()` component returns an `id`, which is a string
-which serves as an unique identification of the comp. There's also an
-`update()`, which is an event hook that'll run every frame. All `this` inside
-the component functions refer to the game obj it's attached to.
+Components are just functions that returns an object. The return object will
+contain all the exposed states, methods, and event hooks of the component.
 
-All special fields:
+In this case, the `lifespan()` component returns:
+
+- `id`: unique identification of the comp, used in require, `.unuse()`, etc.
+- `update()`: an event hook that'll run every frame and only exists while the
+  component is attached to a Game Object.
+
+Also, all `this` inside the component functions refer to the **Game Object**
+it's attached to.
+
+Here's a list of all special fields you can use in your component:
 
 ```js
-function mycomp() {
-    // use closed local variable for internal data
+function myComp() {
+    // Use closed local variable for internal data
     let data = 123;
+
     return {
         id: "mycomp",
-        // if this comp requires other comps to work
+        // If this comp requires other comps to work, we use comp ids
         require: ["area", "pos"],
-        // runs when the obj is added to scene
+        // Runs when the obj is added to scene
         add() {
             debug.log("Hi! This should only be fire once.");
         },
-        // runs every frame
+        // Runs every frame
         update() {
-            // we're using a method from "pos" comp here, so we declare require "pos" above
+            // We're using a method from "pos" comp here, so we declare require "pos" above
             this.move(200, 0);
         },
-        // runs every frame, after update
+        // Runs every frame, after update
         draw() {
             drawLine(this.pos, mousePos());
         },
-        // runs when obj is destroyed
+        // Runs when obj is destroyed
         destroy() {
-            debug.log("Oh bye");
+            debug.log("Oh bye :<");
         },
-        // what to display in inspect mode
+        // What to display in debug inspect mode
         inspect() {
             return "some state that deserves to be shown in inspect mode";
         },
@@ -67,8 +76,71 @@ function mycomp() {
 }
 ```
 
-Most KAPLAY built-in components are built using public interfaces, feel free to
-check them out. Also check out the "drag", "platformer", "doublejump" demos with
-their own custom components.
+All KAPLAY built-in components are implemented this way. You can check the
+source code
+[here](https://github.com/kaplayjs/kaplay/tree/master/src/ecs/components)
 
 Check out the [component demo](https://play.kaplayjs.com/?example=component).
+
+## TypeScript
+
+If you're using TypeScript, we recommend creating an specific type for your
+component:
+
+```ts
+// You can import types from kaplay package
+import type { Comp } from "kaplay";
+
+interface MyCustomComp extends Comp {
+    // you just need to declare new stuff here
+    myCustomProp: number;
+    myCustomMethod: (arg: string) => void;
+}
+
+function myCustomComp(): MyCustomComp {
+    return {
+        id: "myCustomComp",
+        myCustomProp: 123,
+        myCustomMethod(arg) {
+            console.log(arg);
+        },
+    };
+}
+```
+
+When you want to use `this` inside any component method, but TypeScript doesn't
+know what type it is, you can type `this` to `GameObj<MyCustomComp>`:
+
+```ts
+function myCustomComp(): MyCustomComp {
+    return {
+        id: "myCustomComp",
+        myCustomMethod(this: GameObj<MyCustomComp> arg) {
+            this.myCustomProp; // typed from MyCustomComp
+            this.tags // typed from GameObjRaw
+        },
+    };
+}
+```
+
+Even better if you got a component that requires other components, you can use
+`GameObj<YourComp | OtherComp>` to type `this`.
+
+```ts
+function specie(specie: string): SpecieComp {
+    return {
+        id: "specie",
+        require: ["color"],
+
+        specie: specie,
+        evolve(this: GameObj<SpecieComp>, specie: string) {
+            this.specie = specie;
+            this.tag(specie);
+        },
+        evil(this: GameObj<SpecieComp | ColorComp>) {
+            // this.color is typed
+            this.color = Color.RED;
+        },
+    };
+}
+```
