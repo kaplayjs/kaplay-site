@@ -1,6 +1,6 @@
 ---
 title: Custom Components
-description: Learn about create your own components for your game objects.
+description: How to create your own components in KAPLAY
 url: custom_components
 ---
 
@@ -43,9 +43,9 @@ it's attached to.
 Here's a list of all special fields you can use in your component:
 
 ```js
-function myComp() {
+function myComp(dataNumber: number) {
     // Use closed local variable for internal data
-    let data = 123;
+    let data = dataNumber;
 
     return {
         id: "mycomp",
@@ -53,7 +53,7 @@ function myComp() {
         require: ["area", "pos"],
         // Runs when the obj is added to scene
         add() {
-            debug.log("Hi! This should only be fire once.");
+            debug.log("Hi! This should only be fire once.", data);
         },
         // Runs every frame
         update() {
@@ -74,6 +74,14 @@ function myComp() {
         },
     };
 }
+
+// Usage
+const obj = add([
+    sprite("bean"),
+    pos(0, 0),
+    area(),
+    myComp(123), // <- here
+]);
 ```
 
 All KAPLAY built-in components are implemented this way. You can check the
@@ -115,9 +123,9 @@ know what type it is, you can type `this` to `GameObj<MyCustomComp>`:
 function myCustomComp(): MyCustomComp {
     return {
         id: "myCustomComp",
-        myCustomMethod(this: GameObj<MyCustomComp> arg) {
+        myCustomMethod(this: GameObj<MyCustomComp>) {
             this.myCustomProp; // typed from MyCustomComp
-            this.tags // typed from GameObjRaw
+            this.tags; // typed from GameObjRaw
         },
     };
 }
