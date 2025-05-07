@@ -141,7 +141,11 @@ function specie(specie: string): SpecieComp {
         require: ["color"],
 
         specie: specie,
+        add() {
+            this.tag(this.specie); // add specie tag
+        }
         evolve(this: GameObj<SpecieComp>, specie: string) {
+            this.untag(this.specie); // remove original specie tag
             this.specie = specie;
             this.tag(specie);
         },
