@@ -28,15 +28,17 @@ jobs:
           TAG=$(git tag --list '4000*' --sort=-v:refname creatordate | head -n 1)
           echo $TAG
           git checkout $TAG
+      - name: Install dependencies
+        run: pnpm i
+      - name: Build website
+        run: pnpm build
       - name: Deploy app
         uses: cloudflare/wrangler-action@v3
         with:
-          packageManager: pnpm
           apiToken: ${{ secrets.CLOUDFLARE_WORKERS_KEY }}
           command: pages deploy dist --project-name=kaplay4000
-          preCommands: "pnpm i && pnpm build"
 
-  deploylegacy:
+  deploy3001:
     name: "Deploy v3001 Docs on Cloudflare Workers"
     runs-on: ubuntu-latest
     steps:
@@ -57,11 +59,12 @@ jobs:
           TAG2=$(git tag --list '3001.0*' --sort=-v:refname creatordate | head -n 1)
           echo $TAG2
           git checkout $TAG2
-
+      - name: Install dependencies
+        run: pnpm i
+      - name: Build website
+        run: pnpm build
       - name: Deploy app
         uses: cloudflare/wrangler-action@v3
         with:
-          packageManager: pnpm
           apiToken: ${{ secrets.CLOUDFLARE_WORKERS_KEY }}
           command: pages deploy dist --project-name=kaplay3001
-          preCommands: "pnpm i && pnpm build"
