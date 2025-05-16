@@ -32,6 +32,16 @@ export default defineConfig({
                 websitePackageJson.version,
             ),
         },
+        plugins: [
+            {
+                buildStart() {
+                    console.log(
+                        "Building KAPLAY website for ",
+                        kaplayPackageJson.version,
+                    );
+                },
+            },
+        ],
     },
     integrations: [
         qwik(),
