@@ -161,26 +161,37 @@ const { class: className } = Astro.props;
                     class="inline-flex items-center justify-evenly flex-wrap gap-0 sm:gap-4"
                 >
                     {
-                        sponsors.map((sponsor) => (
+                        sponsors.map((
+                            sponsor,
+                        ) => (
                             <a
                                 href={sponsor.url}
                                 target="_blank"
                                 class="grow-0 shrink basis-1/2 sm:basis-auto"
                             >
                                 <Image
-                                    src={sponsorImages[`/src/assets/sponsors/${sponsor.image}`]()}
+                                    src={sponsorImages
+                                    [`/src/assets/sponsors/${sponsor.image}`]()}
                                     alt={sponsor.name}
                                     width={200}
                                     height={80}
-                                    class:list={["h-24 object-scale-down", {
-                                        "mix-blend-screen": sponsor?.lighten ?? false,
-                                    }]}
+                                    class:list={[
+                                        "h-24 object-scale-down",
+                                        {
+                                            "mix-blend-screen":
+                                                sponsor
+                                                    ?.lighten
+                                                    ?? false,
+                                        },
+                                    ]}
                                 />
                             </a>
                         ))
                     }
                 </div>
             </div>
+
+            KAPLAY Website, {__SITE_VERSION__}
         </aside>
     </footer>
 </FriendsBelow>

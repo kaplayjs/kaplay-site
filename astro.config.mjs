@@ -12,11 +12,27 @@ import robotsTxt from "astro-robots-txt";
 import { defineConfig } from "astro/config";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
+import kaplayPackageJson from "./kaplay/package.json";
+import websitePackageJson from "./package.json";
 import { rehypeKAPLAY } from "./plugins/rehypeKAPLAY";
 
 // https://astro.build/config
 export default defineConfig({
     site: "https://kaplayjs.com",
+    vite: {
+        define: {
+            __KAPLAY_VERSION__: JSON.stringify(kaplayPackageJson.version),
+            __KAPLAY_MAJORMINOR__: JSON.stringify(
+                kaplayPackageJson.version.replace(/(\d+\.\d+).*/, "$1"),
+            ),
+            __KAPLAY_MAJOR__: JSON.stringify(
+                kaplayPackageJson.version.replace(/(\d+).*/, "$1"),
+            ),
+            __SITE_VERSION__: JSON.stringify(
+                websitePackageJson.version,
+            ),
+        },
+    },
     integrations: [
         qwik(),
         mdx(),

@@ -1,6 +1,5 @@
 import doc from "@/../doc.json";
 import guidesData from "@/../guides/data.json";
-import kaplayPackageJson from "@/../kaplay/package.json";
 import { booksInfo } from "@/data/booksData";
 import {
     getCollection,
@@ -11,11 +10,11 @@ import type { LinkListEntry, SidebarEntry } from "./Sidebar.astro";
 
 type Category = keyof typeof guidesData.categories;
 
-const version = kaplayPackageJson.version.startsWith("4") ? "v4000" : "v3001";
+const version = __KAPLAY_MAJOR__;
 const allDoc = doc.types as any;
 
 export const getGuidesEntries = async () => {
-    const guides = await getCollection("guides");
+    const guides = (await getCollection("guides")).filter(filterByVersion);
     const categories = Object.keys(guidesData.categories);
 
     const sortedGuides: LinkListEntry[] = guides.sort(sortGuides).map((
@@ -157,7 +156,7 @@ export const getDocEntries = async () => {
     return renderList;
 };
 
-// #region Sorter functions
+// #region Sorter & Filter functions
 type GuideEntry = {
     id: string;
     body?: string;
@@ -184,5 +183,15 @@ export function sortGuides(a: GuideEntry, b: GuideEntry) {
         numeric: true,
         sensitivity: "base",
     });
+}
+
+function filterByVersion(entry: {
+    data: InferEntrySchema<"guides">;
+}): boolean {
+    const entryVersion = entry.data.version;
+
+    if (!entryVersion) return true;
+
+    return entryVersion == version;
 }
 // #endregion

@@ -3,7 +3,7 @@ title: Fake Mouse
 description:
     Learn how to make a fake mouse with support to gamepad and keyboard.
 url: fake_mouse
-version: v4000
+version: "4000"
 ---
 
 # Fake mouse

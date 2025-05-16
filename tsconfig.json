@@ -13,6 +13,9 @@
     "noImplicitAny": false,
     "target": "ESNext",
     "module": "ESNext",
+    "types": [
+      "./src/.env.d.ts",
+    ]
   },
   "include": [
     ".astro/types.d.ts",

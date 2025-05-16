@@ -1,17 +1,24 @@
 ---
-import kaplayPackageJson from "@/../kaplay/package.json";
+const version = __KAPLAY_VERSION__;
+const selectedByDefault = version.startsWith("4") ? "v4000" : "v3001";
 
-const selectedByDefault = kaplayPackageJson.version.startsWith("4")
-    ? "v4000"
-    : "v3001";
+const versionNames = {
+    v4000: selectedByDefault == "v4000" ? version : "v4000",
+    v3001: selectedByDefault == "v3001" ? version : "v3001",
+};
 ---
 
-<select id="versionSelect" class="select select-bordered w-full">
-    <option value="v4000" selected={selectedByDefault === "v4000"}
-    >v4000 alpha</option>
-    <option value="v3001" selected={selectedByDefault === "v3001"}
-    >v3001</option>
-    <option value="kaboom">v3000 (kaboom.js)</option>
+<select
+    id="versionSelect"
+    class="select select-bordered w-full"
+    data-always-select={selectedByDefault}
+>
+    <option value="v4000" selected={selectedByDefault === "v4000"}>
+        {versionNames.v4000}
+    </option>
+    <option value="v3001" selected={selectedByDefault === "v3001"}>
+        {versionNames.v3001}
+    </option>
 </select>
 
 <script>
@@ -23,19 +30,14 @@ const selectedByDefault = kaplayPackageJson.version.startsWith("4")
 
     const versionSelect = document.querySelector<HTMLSelectElement>(
         "#versionSelect",
-    );
+    )!;
 
-    if (versionSelect) {
-        versionSelect.addEventListener("change", (e) => {
-            const version = versionSelect.value;
+    const selectedByDefault = versionSelect.dataset.alwaysSelect;
 
-            if (version === "kaboom") {
-                // new tab
-                window.open(links[version]);
-            }
-            else {
-                window.location.href = links[version];
-            }
-        });
-    }
+    versionSelect.addEventListener("change", (e) => {
+        const version = versionSelect.value;
+        window.open(links[version]);
+
+        versionSelect.value = selectedByDefault!;
+    });
 </script>
