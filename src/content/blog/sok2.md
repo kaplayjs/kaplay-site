@@ -5,7 +5,7 @@ date: 09/2/2024
 description:
     Explore the latest advancements and community highlights in KAPLAY, the
     successor to Kaboom.js. Discover new features, contributors, and more!
-image: banners/sok1.png
+image: banners/sok2.png
 ---
 
 # State of KAPLAY #2
