@@ -13,8 +13,8 @@ order: "basics-1"
 To get started with KAPLAY, you must know 4 main concepts: **Scenes**, **Game
 Objects**, **Components** and **Events**
 
-You can think of your game as a theater: scenes are the acts, game objects are
-the actors and components are the script the actors follow.
+You can think of your game as a _theater_: scenes are the acts, game objects are
+the actors and components are the script the actors follow:
 
 ![alt text](./assets/theater.png)
 
@@ -26,6 +26,21 @@ available all methods and functions that you will use to create your game.
 ```js
 kaplay();
 ```
+
+You can also pass an object with options:
+
+```js
+kaplay({
+    width: 640,
+    height: 480,
+    background: "#00ff00",
+    scale: 2,
+    canvas: document.getElementById("canvas"),
+    // other options...
+});
+```
+
+You can find all options in the [**KAPLAYOpt**](/doc/KAPLAYOpt) type definition.
 
 ## Game Objects
 
