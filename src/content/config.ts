@@ -9,7 +9,7 @@ const blogCollection = defineCollection({
         author: z.string(),
         image: z.optional(z.string()),
         date: z.string(),
-        hidde: z.optional(z.boolean()),
+        hidden: z.optional(z.boolean()),
         version: z.optional(z.string()),
     }),
 });
@@ -29,6 +29,7 @@ const guideCollection = defineCollection({
             category: z.optional(z.string()),
             version: z.optional(z.string()),
             order: z.optional(z.string()),
+            hidden: z.optional(z.boolean()),
         }),
 });
 

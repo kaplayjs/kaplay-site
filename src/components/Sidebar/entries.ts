@@ -14,7 +14,7 @@ const version = __KAPLAY_MAJOR__;
 const allDoc = doc.types as any;
 
 export const getGuidesEntries = async () => {
-    const guides = (await getCollection("guides")).filter(filterByVersion);
+    const guides = (await getCollection("guides")).filter(filterGuides);
     const categories = Object.keys(guidesData.categories);
 
     const sortedGuides: LinkListEntry[] = guides.sort(sortGuides).map((
@@ -194,4 +194,16 @@ function filterByVersion(entry: {
 
     return entryVersion == version;
 }
+
+const filterByHidden = (entry: {
+    data: InferEntrySchema<"guides">;
+}): boolean => {
+    return !entry.data.hidden;
+};
+
+const filterGuides = (entry: {
+    data: InferEntrySchema<"guides">;
+}): boolean => {
+    return filterByVersion(entry) && filterByHidden(entry);
+};
 // #endregion
