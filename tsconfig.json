@@ -8,13 +8,13 @@
       ]
     },
     "jsx": "react-jsx",
-    "jsxImportSource": "@builder.io/qwik",
+    "jsxImportSource": "preact",
     "resolveJsonModule": true,
     "noImplicitAny": false,
     "target": "ESNext",
     "module": "ESNext",
     "types": [
-      "./src/.env.d.ts",
+      "./src/.env.d.ts"
     ]
   },
   "include": [

@@ -1,51 +1,30 @@
-import {
-    component$,
-    useComputed$,
-    useSignal,
-    useTask$,
-} from "@builder.io/qwik";
-import { codeToHtml } from "shiki";
-// @ts-ignore
-import { addCopyButton } from "shiki-transformer-copy-button";
+import { highlight } from "@/util/highlight";
+import { useEffect, useState } from "preact/hooks";
 
 type Props = { content: string; language: string; copyBtn?: boolean };
 
-async function highlight(
-    content: string,
-    language: string,
-    useCopyButton?: boolean,
-) {
-    const file = await codeToHtml(content, {
-        theme: "github-dark",
-        lang: language,
-        transformers: useCopyButton
-            ? [
-                addCopyButton({
-                    toggle: 200,
-                }),
-            ]
-            : [],
-    });
+export const Code = (props: Props) => {
+    const [highlighted, setHighlighted] = useState<string>("");
 
-    return file;
-}
-
-export const Code = component$((props: Props) => {
-    const highlightedContent = useComputed$(async () => {
+    useEffect(() => {
         if (!props.content) return;
 
-        const content = await highlight(
+        highlight(
             props.content,
             props.language,
             props.copyBtn,
-        );
-
-        return content;
-    });
+        ).then((html) => {
+            setHighlighted(html);
+        });
+    }, [props]);
 
     return (
-        <>
-            <pre dangerouslySetInnerHTML={highlightedContent.value} />
-        </>
+        props.content && (
+            <div dangerouslySetInnerHTML={{ __html: highlighted }}>
+                <pre class="shiki github-dark bg-base-200 text-base-content/50">
+                    <code>{props.content}</code>
+                </pre>
+            </div>
+        )
     );
-});
+};
