@@ -13,7 +13,7 @@ export const highlight = async (
         transformers: useCopyButton
             ? [
                 addCopyButton({
-                    toggle: 200,
+                    toggle: 400,
                 }),
             ]
             : [],

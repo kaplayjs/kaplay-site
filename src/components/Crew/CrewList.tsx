@@ -18,9 +18,9 @@ export const tags = [
     "fonts",
 ] as const;
 
-type Tag = typeof tags[number] | "all";
+type Tag = typeof tags[number];
 
-const messages: Record<Tag, string> = {
+const messages: Record<Tag | "all", string> = {
     "all": "Welcome to KAWorld, the KAPLAYER's home :D",
     "crew": "The protagonists of your next adventure",
     "objects": "",
@@ -45,8 +45,10 @@ export const CrewList = () => {
     const dialogRef = useRef<HTMLDialogElement>(null);
 
     const filterAssets = (asset: string | null) => {
-        if (!tagFilter) return true;
-        return assets[asset as keyof typeof assets].category === tagFilter;
+        if (!tagFilter || tagFilter == "all") return true;
+        return assets[asset as keyof typeof assets].tags.includes(
+            tagFilter as Tag,
+        );
     };
 
     const filterAssetsByName = (asset: string | null) => {
@@ -60,17 +62,9 @@ export const CrewList = () => {
         setMessage(messages[(tagFilter as Tag) ?? "all"]);
     }, [tagFilter]);
 
-    /* useEffect(() => {
-        const scrolled = localStorage.getItem("scrolled");
-        if (!scrolled) return;
-
-        const list = document.getElementById("crew-list");
-        if (list) list.scrollTop = parseInt(scrolled, 10);
-    }, []); */
-
     return (
         <div class="h-full min-h-dvh w-full overflow-y-auto lg:mt-10 md:flex md:justify-center">
-            <div class="flex h-full w-full flex-col gap-4 overflow-y-auto rounded-box bg-base-200 p-4 lg:max-h-[80%] lg:max-w-[50%] border border-base-content/15">
+            <div class="flex h-full w-full flex-col gap-4 overflow-y-auto rounded-box bg-base-200 p-4 lg:max-h-[80%] lg:max-w-5xl border border-base-content/15">
                 <div class="flex justify-center flex-col">
                     <h1 class="font-hand text-3xl text-center">
                         <span class="text-primary">KAPLAY</span> Crew
@@ -96,11 +90,6 @@ export const CrewList = () => {
                 <div
                     id="crew-list"
                     class="flex flex-col overflow-y-auto scrollbar-thin"
-                    /* onScroll={(e) => {
-                        const scroll =
-                            (e.currentTarget as HTMLElement).scrollTop;
-                        localStorage.setItem("scrolled", scroll.toString());
-                    }} */
                 >
                     <div class="flex justify-center p-4">
                         <p>{message}</p>
@@ -130,8 +119,31 @@ export const CrewList = () => {
                 </div>
             </div>
 
-            <dialog ref={dialogRef} class="modal" id="crew-modal">
-                <div class="modal-box w-max p-0 m-0 max-w-max">
+            <dialog ref={dialogRef} class="modal p-2" id="crew-modal">
+                <div
+                    class="modal-box flex p-0 m-0 w-full max-w-[calc(64rem-4rem)] max-h-full"
+                    tabIndex={0}
+                >
+                    <button
+                        class="absolute top-2 right-2 p-2 bg-base-50 rounded-xl z-10 hover:bg-base-content/30 transition-colors focus:outline-none focus:ring-2 focus:ring-current"
+                        type="button"
+                        onClick={() => dialogRef.current?.close()}
+                    >
+                        <svg
+                            width="14"
+                            height="14"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <path d="M18 6 6 18" />
+                            <path d="m6 6 12 12" />
+                        </svg>
+                    </button>
+
                     <CrewItem crewItem={curCrewItem ?? undefined} isModal />
                 </div>
                 <form method="dialog" class="modal-backdrop">

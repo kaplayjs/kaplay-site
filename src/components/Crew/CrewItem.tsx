@@ -27,54 +27,23 @@ export const CrewItem = (props: CrewItemProps) => {
 
     return (
         <div
-            class={cn({
-                "h-full min-h-dvh w-full overflow-y-auto lg:mt-10 md:flex md:justify-center":
-                    !isModal,
-            })}
+            class={cn(
+                "flex-1 rounded-box bg-base-200 p-4 sm:p-8 border border-base-content/15",
+                {
+                    "flex lg:flex-none h-full lg:my-10 lg:mx-auto max-w-5xl":
+                        !isModal,
+                    "overflow-y-auto": isModal,
+                },
+            )}
         >
             <div
                 class={cn(
-                    "flex h-full w-full gap-4 overflow-y-auto rounded-box bg-base-200 p-4 border border-base-content/15",
-                    {
-                        "lg:max-h-[80%] lg:max-w-[50%]": !isModal,
-                    },
+                    "flex flex-col sm:flex-row w-full gap-4",
                 )}
             >
-                {isModal && (
+                <div class="flex flex-1 flex-col gap-3.5 lg:p-6">
                     <div
-                        class="mb-4"
-                        style={{ position: "absolute", top: 0, right: 0 }}
-                    >
-                        <button
-                            class="absolute top-2 right-2 p-2 bg-base-content/15 rounded-xl hover:bg-base-content/30 transition-colors focus:outline-none focus:ring-2 focus:ring-current"
-                            type="button"
-                            onClick={() => {
-                                const dialog = document.querySelector<
-                                    HTMLDialogElement
-                                >("#crew-modal");
-                                dialog?.close();
-                            }}
-                        >
-                            <svg
-                                width="14"
-                                height="14"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                            >
-                                <path d="M18 6 6 18" />
-                                <path d="m6 6 12 12" />
-                            </svg>
-                        </button>
-                    </div>
-                )}
-
-                <div class="flex flex-1 flex-col gap-3 lg:p-6">
-                    <div
-                        class="tooltip flex gap-1 p-1 border border-base-content/15 rounded-xl"
+                        class="tooltip tooltip-bottom sm:tooltip-top flex gap-1 p-1 border border-base-content/15 rounded-xl max-sm:before:top-auto max-sm:before:-bottom-2.5 max-sm:after:hidden"
                         data-tip={crewItem.secret}
                     >
                         <button
@@ -125,23 +94,24 @@ export const CrewItem = (props: CrewItemProps) => {
                     </div>
 
                     <div>
-                        <h2 class="text-2xl font-bold text-white">
+                        <h2 class="flex items-center gap-2 text-2xl font-bold text-white">
                             {crewItem.name}
-                            <span class="badge badge-outline mx-2 text-base-content">
-                                {crewItem.category}
+                            <span class="badge badge-outline text-base-content mt-1 px-1.5 h-auto bg-base-content/10 border-base-content/15">
+                                {crewItem.pack}
                             </span>
                         </h2>
-                        <p class="text-lg">by {crewItem.author}</p>
+                        <p class="text-md">by {crewItem.author}</p>
 
                         {crewItem.crewmeta && (
-                            <ul class="mt-5 lg:mt-7">
+                            <ul class="mt-5 lg:mt-7 space-y-1">
                                 <li class="flex items-center gap-2">
                                     <img
                                         src={assets.cake.outlined}
                                         alt="Age icon"
                                         class="h-5 w-5"
                                     />
-                                    <span class="font-bold">Age:</span>{" "}
+                                    <span class="font-bold min-w-14">Age</span>
+                                    {" "}
                                     {crewItem.crewmeta.age}
                                 </li>
                                 <li class="flex items-center gap-2">
@@ -150,7 +120,9 @@ export const CrewItem = (props: CrewItemProps) => {
                                         alt="Weight icon"
                                         class="h-5 w-5"
                                     />
-                                    <span class="font-bold">Weight:</span>{" "}
+                                    <span class="font-bold min-w-14">
+                                        Weight
+                                    </span>{" "}
                                     {crewItem.crewmeta?.weight}kg
                                 </li>
                                 <li class="flex items-center gap-2">
@@ -159,7 +131,9 @@ export const CrewItem = (props: CrewItemProps) => {
                                         alt="Height icon"
                                         class="h-5 w-5"
                                     />
-                                    <span class="font-bold">Height:</span>{" "}
+                                    <span class="font-bold min-w-14">
+                                        Height
+                                    </span>{" "}
                                     {crewItem.crewmeta?.height}m
                                 </li>
                                 <li class="flex items-center gap-2">
@@ -168,7 +142,9 @@ export const CrewItem = (props: CrewItemProps) => {
                                         alt="Species icon"
                                         class="h-5 w-5"
                                     />
-                                    <span class="font-bold">Species:</span>{" "}
+                                    <span class="font-bold min-w-14">
+                                        Species
+                                    </span>{" "}
                                     {crewItem.crewmeta?.species}
                                 </li>
                             </ul>
@@ -176,72 +152,136 @@ export const CrewItem = (props: CrewItemProps) => {
                     </div>
 
                     {isModal && (
-                        <div class="mt-4">
-                            <ul>
-                                <li>
-                                    <a href={`/crew/${props.crewItem}`}>
-                                        Open in new page
-                                    </a>
-                                </li>
-                            </ul>
+                        <div class="mt-auto pt-4">
+                            <a
+                                class="inline-flex gap-2 items-center font-medium text-sm px-0.5 hover:text-primary transition-colors"
+                                href={`/crew/${props.crewItem}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <svg
+                                    class="shrink-0"
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+                                    <path d="M15 3h6v6" />
+                                    <path d="M10 14 21 3" />
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                </svg>
+
+                                Open in new page
+                            </a>
                         </div>
                     )}
                 </div>
-                <div class="divider divider-horizontal m-0"></div>
-                <div class="flex flex-1 flex-col gap-4 lg:p-6">
-                    <p class="max-w-[40ch] text-balance mb-6">
-                        {crewItem.description} {crewItem.crewmeta && (
-                            <>
-                                <span>
-                                    {crewItem.name} hobbies includes{" "}
-                                    {crewItem.crewmeta.hobbies
-                                        .slice(0, -1)
-                                        .join(", ")}{" "}
-                                    {crewItem.crewmeta.hobbies.length > 1
-                                        && "and"}{" "}
-                                    {crewItem.crewmeta.hobbies.slice(-1)}.
-                                </span>
-                                <br />
-                                <br />
-                                <span>
-                                    {genderWord[crewItem.crewmeta.gender][
-                                        2
-                                    ]} favorite food is{" "}
-                                    {crewItem.crewmeta.favoriteFood}, and{" "}
-                                    {genderWord[crewItem.crewmeta.gender][0]
-                                        .toLowerCase()} loves the color{" "}
-                                    {crewItem.crewmeta.favoriteColor}.
-                                </span>
-                            </>
-                        )}
-                    </p>
 
-                    <div class="mt-auto">
-                        {crewItem.code && crewItem.code[versionSelected] && (
-                            <div
-                                dangerouslySetInnerHTML={{
-                                    __html: crewItem.code[versionSelected],
+                <div class="max-sm:hidden flex-none divider divider-horizontal before:w-px after:w-px m-0">
+                </div>
+                <div class="sm:hidden flex-none divider divider-vertical before:h-px after:h-px m-0">
+                </div>
+
+                <div class="flex flex-1 flex-col min-h-max gap-8 lg:p-6">
+                    <div class="space-y-2">
+                        <h3 class="font-bold">
+                            About {crewItem.name}
+                        </h3>
+                        <p class="max-w-[40ch] text-balance mb-6">
+                            {crewItem.description} {crewItem.crewmeta && (
+                                <>
+                                    <span>
+                                        {crewItem.name} hobbies include{" "}
+                                        {crewItem.crewmeta.hobbies
+                                            .slice(0, -1)
+                                            .join(", ")}{" "}
+                                        {crewItem.crewmeta.hobbies.length > 1
+                                            && "and"}{" "}
+                                        {crewItem.crewmeta.hobbies.slice(-1)}.
+                                    </span>
+                                    <br />
+                                    <br />
+                                    <span>
+                                        {genderWord[crewItem.crewmeta.gender][
+                                            2
+                                        ]} favorite food is{" "}
+                                        {crewItem.crewmeta.favoriteFood}, and
+                                        {" "}
+                                        {genderWord[crewItem.crewmeta.gender][0]
+                                            .toLowerCase()} loves the color{" "}
+                                        {crewItem.crewmeta.favoriteColor}.
+                                    </span>
+                                </>
+                            )}
+                        </p>
+                    </div>
+
+                    <div class="flex flex-col grow">
+                        <div class="sticky bottom-2 lg:bottom-6 mt-auto space-y-2">
+                            {crewItem.imports.importInCrew
+                                && crewItem.imports
+                                    .importInCrew[versionSelected]
+                                && (
+                                    <div class="mb-2.5">
+                                        <h3 class="text-xs font-semibold tracking-wider">
+                                            Crew Import
+                                        </h3>
+
+                                        <div
+                                            class="text-sm m-0 -mx-0.5 p-0 [--rounded-box:0.75rem] [&>.shiki]:!pr-10 [&>.shiki]:whitespace-normal"
+                                            dangerouslySetInnerHTML={{
+                                                __html: crewItem.imports
+                                                    .importInCrew[
+                                                        versionSelected
+                                                    ],
+                                            }}
+                                        />
+                                    </div>
+                                )}
+
+                            {crewItem.imports.importInPG
+                                && crewItem.imports.importInPG[versionSelected]
+                                && (
+                                    <div class="mb-2.5">
+                                        <h3 class="text-xs font-semibold tracking-wider">
+                                            KAPLAYGROUND Import
+                                        </h3>
+
+                                        <div
+                                            class="text-sm m-0 -mx-0.5 p-0 [--rounded-box:0.75rem] [&>.shiki]:!pr-10 [&>.shiki]:whitespace-normal"
+                                            dangerouslySetInnerHTML={{
+                                                __html: crewItem.imports
+                                                    .importInPG[
+                                                        versionSelected
+                                                    ],
+                                            }}
+                                        />
+                                    </div>
+                                )}
+
+                            <button
+                                class="btn btn-outline btn-primary w-full"
+                                type="button"
+                                onClick={() => {
+                                    const a = document.createElement("a");
+                                    a.href = versionSelected == "original"
+                                        ? crewItem.sprite
+                                        : crewItem.outlined!;
+                                    const extra = versionSelected == "original"
+                                        ? ""
+                                        : "-o";
+                                    a.download =
+                                        `${props.crewItem}${extra}.png`;
+                                    a.click();
                                 }}
-                            />
-                        )}
-
-                        <button
-                            class="btn btn-outline btn-primary w-full"
-                            type="button"
-                            onClick={() => {
-                                const a = document.createElement("a");
-                                a.href = versionSelected == "original"
-                                    ? crewItem.sprite
-                                    : crewItem.outlined!;
-                                const extra = versionSelected == "original"
-                                    ? ""
-                                    : "-o";
-                                a.download = `${props.crewItem}${extra}.png`;
-                                a.click();
-                            }}
-                        >
-                            Download Sprite
-                        </button>
+                            >
+                                Download Sprite
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

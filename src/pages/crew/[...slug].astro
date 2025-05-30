@@ -26,7 +26,7 @@ const { asset } = Astro.props;
     }}
     class="bg-image-pattern"
 >
-    <main class="flex flex-col scroll-smooth">
+    <main class="flex flex-col min-h-[100svh] scroll-smooth">
         <Navbar />
         <CrewItem client:load crewItem={asset as keyof typeof assets} />
     </main>
