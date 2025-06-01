@@ -1,11 +1,11 @@
 ---
 import doc from "@/../doc.json";
-import { DocEntry } from "@/components/Doc/DocEntry";
+import DocEntry from "@/components/Doc/DocEntry.astro";
 
 export async function getStaticPaths() {
     const allDoc = doc.types as any;
-    const kaboomDoc: any = allDoc.KaboomCtx?.[0].members
-        ?? allDoc.KAPLAYCtx?.[0].members;
+    const kaboomDoc: any =
+        allDoc.KaboomCtx?.[0].members ?? allDoc.KAPLAYCtx?.[0].members;
     const allKaboomDocKeys: string[] = Object.keys(kaboomDoc);
 
     return allKaboomDocKeys.map((key) => {

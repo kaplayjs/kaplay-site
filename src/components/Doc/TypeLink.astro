@@ -1,0 +1,26 @@
+---
+import { doc } from "@/data/doc";
+
+interface Props {
+    name: string;
+}
+
+const { name } = Astro.props;
+
+const ctxMember =
+    doc.types.KaboomCtx?.[0].members[name] ??
+    doc.types.KAPLAYCtx?.[0].members[name];
+const typesMember = doc.types[name];
+
+const isType = Boolean(typesMember) || Boolean(ctxMember);
+const isTypesMember = Boolean(typesMember);
+---
+
+<span
+    class:list={{
+        "type-btn hoverable": isType,
+    }}
+    data-type-link={isType}
+    data-link-type={`${isTypesMember ? "/" : "/ctx/"}${name}`}
+    data-is-type={String(isType)}>{name}</span
+>

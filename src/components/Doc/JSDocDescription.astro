@@ -1,0 +1,30 @@
+---
+import { marked } from "marked";
+import TypeLink from "./TypeLink.astro";
+
+const { data } = Astro.props;
+const jsDoc = data?.jsDoc;
+const doc = jsDoc?.doc ?? [];
+---
+
+{
+    jsDoc ? (
+        <p class="prose" data-pagefind-weight="5">
+            {
+                doc.map((e) => (
+                    <>
+                        {e.kind === "JSDocText" && e.text}
+                        {
+                            e.kind === "JSDocLink" && (
+                                <TypeLink name={e.name}><span
+                                        set:html={marked.parseInline(e.text, {})}
+                                    ></span>
+                                </TypeLink>
+                            )
+                        }
+                    </>
+                ))
+            }
+        </p>
+    ) : null
+}

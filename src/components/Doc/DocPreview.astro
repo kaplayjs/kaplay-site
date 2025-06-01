@@ -1,0 +1,97 @@
+<dialog id="type-modal" class="modal">
+    <div class="modal-box absolute right-4 min-w-64 overflow-y-auto lg:h-96">
+        <div class="flex justify-end">
+            <div
+                class="inline-flex gap-2 items-center font-medium text-sm px-0.5 mb-4"
+            >
+                <a id="open-in-new" class="btn btn-ghost" target="_blank">
+                    <svg
+                        class="shrink-0"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <path d="M15 3h6v6"></path>
+                        <path d="M10 14 21 3"></path>
+                        <path
+                            d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                        ></path>
+                    </svg>
+                    <span>Open in new tab</span>
+                </a>
+            </div>
+        </div>
+        <div id="modal-type" class="h-full"></div>
+    </div>
+    <form method="dialog" class="modal-backdrop">
+        <button class="cursor-default">close</button>
+    </form>
+</dialog>
+
+<script>
+    document.addEventListener("astro:page-load", () => {
+        document.addEventListener("onSetDocPreview", async (e) => {
+            const modal = document.getElementById("type-modal");
+            const event = e as CustomEvent<string>;
+
+            if (modal) {
+                const modalType = document.getElementById("modal-type");
+                if (!modalType) return;
+                const openInNew = document.getElementById("open-in-new");
+                if (!openInNew) return;
+                openInNew.setAttribute("href", "");
+
+                modalType.innerHTML = `<div class="loading loading-dots"></div>`;
+
+                // get html of the page
+                const page = await fetch(`/api/doc${event.detail}`);
+                const html = await page.text();
+                const parser = new DOMParser();
+                const typeDom = parser.parseFromString(html, "text/html");
+                const type = typeDom.querySelector("article");
+                if (!type) return;
+
+                modalType.innerHTML = "";
+                modalType.appendChild(type);
+                openInNew.setAttribute("href", `/doc${event.detail}`);
+                registerButtons();
+            }
+        });
+
+        // check if click is in a button with data-type-link
+        const registerButtons = () => {
+            const linkButtons =
+                document.querySelectorAll<HTMLSpanElement>("[data-type-link]");
+
+            linkButtons.forEach((button) => {
+                if (button.dataset.checking === "true") return;
+                button.dataset.checking = "true";
+
+                button.addEventListener("click", () => {
+                    const linkType = button.dataset.linkType;
+                    const typeModal =
+                        document.querySelector<HTMLDialogElement>(
+                            "#type-modal",
+                        );
+
+                    if (linkType && typeModal) {
+                        document.dispatchEvent(
+                            new CustomEvent("onSetDocPreview", {
+                                detail: linkType,
+                            }),
+                        );
+
+                        typeModal.showModal();
+                    }
+                });
+            });
+        };
+
+        registerButtons();
+    });
+</script>
