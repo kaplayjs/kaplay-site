@@ -2,9 +2,9 @@ import { cn } from "@/util/cn";
 import { useRef } from "preact/hooks";
 
 type CrewTagProps = {
-    value: string | null;
-    filter: string | undefined;
-    setFilter: (val: string | undefined) => void;
+    value: string;
+    filter: string[];
+    setFilter: (val: string[]) => void;
     children?: preact.ComponentChildren;
 };
 
@@ -15,17 +15,17 @@ export const CrewTag = (
 
     const handleChange = () => {
         if (inputRef.current?.checked) {
-            setFilter(value!);
+            setFilter([...filter, value]);
         }
-        else if (filter == value) {
-            setFilter(undefined);
+        else if (value && filter?.includes(value)) {
+            setFilter(filter.filter(tag => tag !== value));
         }
     };
 
     return (
         <label
             class={cn("hoverable badge badge-primary select-none", {
-                "badge-outline": filter != value,
+                "badge-outline": !filter?.includes(value),
             })}
         >
             {children}
@@ -33,7 +33,7 @@ export const CrewTag = (
                 type="checkbox"
                 name="tags"
                 class="hidden"
-                checked={filter == value}
+                checked={filter?.includes(value)}
                 onChange={handleChange}
                 ref={inputRef}
             />

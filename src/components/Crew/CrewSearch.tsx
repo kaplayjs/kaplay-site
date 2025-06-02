@@ -4,8 +4,8 @@ import { CrewTag } from "./CrewTag";
 interface CrewSearchProps {
     nameFilter: string;
     setNameFilter: (val: string) => void;
-    tagFilter: string | undefined;
-    setTagFilter: (val: string | undefined) => void;
+    tagFilter: string[];
+    setTagFilter: (val: string[]) => void;
 }
 
 export const CrewSearch = ({
@@ -36,24 +36,9 @@ export const CrewSearch = ({
                             setNameFilter((e.target as HTMLInputElement).value)}
                     />
                 </div>
-                <select
-                    class="join-item select select-bordered lg:hidden"
-                    value={tagFilter ?? ""}
-                    onChange={e => {
-                        const val = (e.target as HTMLSelectElement).value;
-                        setTagFilter(val === "" ? undefined : val);
-                    }}
-                >
-                    <option value="">no filter</option>
-                    {tags.map(tag => (
-                        <option value={tag} key={tag}>
-                            {tag}
-                        </option>
-                    ))}
-                </select>
             </div>
 
-            <fieldset class="hidden flex-wrap gap-2 lg:flex justify-center">
+            <fieldset class="flex flex-wrap gap-2 justify-center">
                 {tags.map(tag => (
                     <CrewTag
                         key={tag}
@@ -64,6 +49,16 @@ export const CrewSearch = ({
                         {tag}
                     </CrewTag>
                 ))}
+
+                {tagFilter.length > 0 && (
+                    <button
+                        type="button"
+                        class="badge badge-secondary badge-outline"
+                        onClick={() => setTagFilter([])}
+                    >
+                        Clear Tags
+                    </button>
+                )}
             </fieldset>
         </div>
     );

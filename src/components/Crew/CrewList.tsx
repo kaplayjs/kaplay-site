@@ -23,7 +23,7 @@ type Tag = typeof tags[number];
 const messages: Record<Tag | "all", string> = {
     "all": "Welcome to KAWorld, the KAPLAYER's home :D",
     "crew": "The protagonists of your next adventure",
-    "objects": "",
+    "objects": "Objects of power",
     "animals": "Yokai, Yokai, Yokai...",
     "food": "YUMMY",
     "tiles": "Make Super Bean Maker a reality.",
@@ -36,7 +36,7 @@ const messages: Record<Tag | "all", string> = {
 };
 
 export const CrewList = () => {
-    const [tagFilter, setTagFilter] = useState<string | undefined>(undefined);
+    const [tagFilter, setTagFilter] = useState<string[]>([]);
     const [nameFilter, setNameFilter] = useState<string>("");
     const [message, setMessage] = useState<string>(messages.all);
     const [curCrewItem, setCurCrewItem] = useState<keyof typeof assets | null>(
@@ -45,9 +45,9 @@ export const CrewList = () => {
     const dialogRef = useRef<HTMLDialogElement>(null);
 
     const filterAssets = (asset: string | null) => {
-        if (!tagFilter || tagFilter == "all") return true;
-        return assets[asset as keyof typeof assets].tags.includes(
-            tagFilter as Tag,
+        if (tagFilter.length == 0) return true;
+        return (tagFilter as Tag[]).some(
+            tag => assets[asset as keyof typeof assets].tags.includes(tag),
         );
     };
 
@@ -59,7 +59,9 @@ export const CrewList = () => {
     };
 
     useEffect(() => {
-        setMessage(messages[(tagFilter as Tag) ?? "all"]);
+        setMessage(
+            messages[tagFilter.length == 1 ? (tagFilter[0] as Tag) : "all"],
+        );
     }, [tagFilter]);
 
     return (
