@@ -1,0 +1,45 @@
+---
+import type { SidebarEntry, SidebarProps } from "./Sidebar.astro";
+import SidebarFolder from "./SidebarFolder.astro";
+import SidebarLink from "./SidebarLink.astro";
+
+interface Props extends SidebarProps {
+    sidebarEntries: SidebarEntry[];
+}
+
+const { sidebarEntries, sidebarMode } = Astro.props as Props;
+---
+
+<Fragment>
+    <input
+        id="sidebar-search"
+        class="input input-primary my-2 w-full"
+        placeholder={sidebarMode == "reference"
+            ? "Search for API..."
+            : "Search for Guides..."}
+    />
+
+    {
+        sidebarMode == "guides" && (
+            <>
+                <SidebarLink href={"/guides"}>Getting Started</SidebarLink>
+            </>
+        )
+    }
+
+    {
+        sidebarEntries.map(({ linkList, folder }, i) => {
+            return (
+                <SidebarFolder
+                    title={folder}
+                    id={folder}
+                    isOpen={linkList.length > 0}
+                >
+                    {linkList.map(({ title, link }, i) => (
+                        <SidebarLink href={link}>{title}</SidebarLink>
+                    ))}
+                </SidebarFolder>
+            );
+        })
+    }
+</Fragment>

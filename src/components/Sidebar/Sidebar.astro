@@ -5,16 +5,13 @@ import { cn } from "@/util/cn";
 import type { MarkdownHeading } from "astro";
 import { Image } from "astro:assets";
 import Footer from "../Footer/Footer.astro";
-import {
-    getBlogEntries,
-    getBookEntries,
-    getDocEntries,
-    getGuidesEntries,
-} from "./entries";
-import { SidebarLink } from "./SidebarLink";
-import { SidebarList } from "./SidebarList";
+import { getBlogEntries, getBookEntries, getDocEntries, getGuidesEntries } from "./entries";
+import SidebarLink from "./SidebarLink.astro";
+import SidebarList from "./SidebarList.astro";
 import VersionSelector from "./VersionSelector.astro";
 import { assets } from "@kaplayjs/crew";
+import SidebarEntries from "./SidebarEntries.astro";
+import SidebarContentNav from "./SidebarContentNav.astro";
 
 export type LinkListEntry = {
     title: string;
@@ -40,14 +37,11 @@ let renderList: SidebarEntry[] = [];
 
 if (sidebarMode === "guides") {
     renderList = await getGuidesEntries();
-}
-else if (sidebarMode === "reference") {
+} else if (sidebarMode === "reference") {
     renderList = await getDocEntries();
-}
-else if (sidebarMode === "blog") {
+} else if (sidebarMode === "blog") {
     renderList = await getBlogEntries();
-}
-else if (sidebarMode === "books") {
+} else if (sidebarMode === "books") {
     renderList = await getBookEntries();
 }
 ---
@@ -57,53 +51,7 @@ else if (sidebarMode === "books") {
 
     <div class="drawer-content w-full">
         <header class="z-30 flex min-h-16 w-full">
-            <nav
-                class="fixed z-30 flex h-16 w-full items-center justify-between gap-4 bg-base-200 px-4 lg:pl-8 md:w-[calc(100%-18rem)] rounded-b-xl"
-            >
-                <label for="sidebar" class="flex md:hidden">
-                    <figure>
-                        <Image
-                            src={hamburgerIcon}
-                            width="64"
-                            height="64"
-                            alt="hamburger icon"
-                        />
-                    </figure>
-                </label>
-
-                {
-                    headings && headings.length > 0 && (
-                        <select
-                            class="select select-sm max-w-40"
-                            onchange="window.location.href = this.value"
-                        >
-                            {
-                                headings?.map((heading) => (
-                                    <option
-                                        value={`#${heading.slug}`}
-                                        class={cn({
-                                            "lg:text-xl lg:font-semibold": heading.depth === 1,
-                                            "lg:text-lg": heading.depth === 2,
-                                            "lg:text-base": heading.depth >= 3,
-                                        })}
-                                    >
-                                        {heading.text}
-                                    </option>
-                                ))
-                            }
-                        </select>
-                    )
-                }
-
-                <div class="hidden md:block  p-2">
-                    <img class="h-4 inline-block mr-1" src={assets.heart.outlined}></img> KAPLAY is free and open source, <strong>forever</strong>.
-                    Help keep it alive, <a
-                        href="https://opencollective.com/kaplay/contribute/bean-rex-77456/checkout?interval=month&amount=10&contributeAs=me"
-                        target="_blank"
-                        class="link link-primary"
-                    >donate $5</a>
-                </div>
-            </nav>
+            <SidebarContentNav headings={headings} />
         </header>
 
         <main class="flex w-full flex-col md:flex-row md:pt-3 md:pl-4">
@@ -117,102 +65,7 @@ else if (sidebarMode === "books") {
         <Footer />
     </div>
 
-    <div class="drawer-side z-50 h-dvh md:bg-base-300" transition:persist>
-        <label
-            for="sidebar"
-            aria-label="close sidebar"
-            class="drawer-overlay"
-        ></label>
-        <div
-            class="min-h-full w-72 bg-base-300 p-4 text-base-content"
-            
-        >
-            <figure>
-                <a
-                    class="btn btn-ghost h-max w-full p-2"
-                    href={"/"}
-                    data-astro-reload
-                >
-                    <Image
-                        src="/kaplay.gif"
-                        alt="kaplay logo"
-                        class="aspect-auto h-24 w-52 object-contain"
-                        width={208}
-                        height={100}
-                        loading={"eager"}
-                    />
-                </a>
-            </figure>
-            <div class="divider"></div>
-            <button
-                class="btn btn-neutral mb-4 w-full border-primary"
-                onclick="document.querySelector('#search-modal')?.showModal()"
-            >
-                <img src={searchIcon.src} alt="search icon" class="h-9 w-9" />
-                <span>SEARCH</span>
-                <kbd id="search-btn" class="kbd">CTRL + K</kbd>
-            </button>
-            <div class="px-4 pb-4">
-                <VersionSelector />
-            </div>
-            <div class="divider"></div>
-            <ul class="flex-col gap-2">
-                <SidebarLink href="/" icon="home" reloadAll>Home</SidebarLink>
-                <SidebarLink
-                    href="https://kaboomjs.com/discord"
-                    target="_blank"
-                    icon="discord"
-                >
-                    Discord <div class="badge badge-primary">+2000!</div>
-                </SidebarLink>
-                <SidebarLink
-                    href="https://github.com/kaplayjs/kaplay"
-                    target="_blank"
-                    icon="github"
-                >
-                    GitHub
-                </SidebarLink>
-                <SidebarLink href="https://github.com/kaplayjs/kaplay/blob/master/CHANGELOG.md" icon="pog">
-                    Changelog
-                </SidebarLink>
-                <SidebarLink
-                    href="https://play.kaplayjs.com"
-                    target="_blank"
-                    icon="play"
-                >
-                    KAPLAYGROUND
-                </SidebarLink>
-                <SidebarLink
-                    href="https://opencollective.com/kaplay"
-                    target="_blank"
-                    icon="money_bag"
-                >
-                    Donate to KAPLAY
-                </SidebarLink>
-            </ul>
-            <div class="divider"></div>
-            <ul class="flex-col gap-2">
-                <SidebarLink
-                    href="/guides/install"
-                    icon="marks_legend"
-                    reloadAll
-                >
-                    Guides
-                </SidebarLink>
-                <SidebarLink href="/doc/kaplay" icon="api_book" reloadAll>
-                    API Docs
-                </SidebarLink>
-                <SidebarLink href="/blog" icon="paper" reloadAll>
-                    Blog
-                </SidebarLink>
-            </ul>
-            <div class="divider"></div>
-            <SidebarList
-                sidebarMode={sidebarMode}
-                sidebarEntries={renderList}
-            />
-        </div>
-    </div>
+    <SidebarEntries sidebarMode={sidebarMode} />
 </div>
 
 <script>
@@ -227,9 +80,7 @@ else if (sidebarMode === "books") {
         if (e.ctrlKey && e.key === "k") {
             e.preventDefault();
 
-            document
-                .querySelector<HTMLDialogElement>("#search-modal")
-                ?.showModal();
+            document.querySelector<HTMLDialogElement>("#search-modal")?.showModal();
         }
     });
 </script>
