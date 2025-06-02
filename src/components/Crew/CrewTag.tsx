@@ -24,16 +24,20 @@ export const CrewTag = (
 
     return (
         <label
-            class={cn("hoverable badge badge-primary select-none", {
-                "badge-outline": !filter?.includes(value),
-            })}
+            class={cn(
+                "relative btn btn-xs btn-outline font-medium capitalize bg-base-content/10 border-base-content/10 rounded-full focus-visible:-outline-offset-2 focus-visible:z-10",
+                {
+                    "bg-primary text-neutral focus-visible:ring-[3px] ring-inset ring-neutral":
+                        filter.includes(value),
+                },
+            )}
         >
             {children}
             <input
                 type="checkbox"
                 name="tags"
                 class="hidden"
-                checked={filter?.includes(value)}
+                checked={filter.includes(value)}
                 onChange={handleChange}
                 ref={inputRef}
             />
