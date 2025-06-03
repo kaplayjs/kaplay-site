@@ -143,10 +143,6 @@ span.line.diff.remove::before {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
-span[data-is-type="true"] {
-    @apply underline decoration-current decoration-dashed;
-}
-
 .pixelated {
     -ms-interpolation-mode: nearest-neighbor;
     image-rendering: pixelated;
