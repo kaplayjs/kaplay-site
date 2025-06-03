@@ -1,0 +1,47 @@
+---
+import JSDoc from "./JSDoc.astro";
+import TypeGenerics from "./TypeGenerics.astro";
+import TypeMembers from "./TypeMembers.astro";
+import TypeName from "./TypeName.astro";
+import TypeParams from "./TypeParams.astro";
+import TypeReturn from "./TypeReturn.astro";
+
+export interface Props {
+    data?: any;
+    parent?: string;
+}
+
+const { data, parent } = Astro.props;
+
+const optionalMark = (data: any) => {
+    return data?.questionToken ? "?" : "";
+};
+
+const parentText = parent ? `${parent}-` : "";
+const Title = parent ? "h2" : "h1";
+---
+
+<article
+    id={`${parentText}${data?.name ?? ""}`}
+    class:list={[
+        "gal-1 text-fira flex flex-col",
+        {
+            "py-2 pl-4": parent,
+        },
+    ]}
+>
+    <Title
+        class:list={[
+            {
+                "text-xl": !parent,
+                "text-lg": parent,
+            },
+        ]}
+        ><TypeName data={data} parent={parent} /><TypeGenerics data={data} />{
+            optionalMark(data)
+        }<TypeParams data={data} /><TypeReturn data={data} /></Title
+    >
+
+    <JSDoc data={data} />
+    <TypeMembers data={data} />
+</article>

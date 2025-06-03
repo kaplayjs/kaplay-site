@@ -1,0 +1,72 @@
+---
+import type { SidebarEntry, SidebarProps } from "./Sidebar.astro";
+import SidebarFolder from "./SidebarFolder.astro";
+import SidebarLink from "./SidebarLink.astro";
+
+interface Props extends SidebarProps {
+    sidebarEntries: SidebarEntry[];
+}
+
+const { sidebarEntries, sidebarMode } = Astro.props as Props;
+---
+
+<div data-sidebar-entries>
+    <input
+        id="sidebar-search"
+        class="input input-primary my-2 w-full"
+        placeholder={sidebarMode == "reference" ? "Search for API..." : "Search for Guides..."}
+    />
+
+    {
+        sidebarMode == "guides" && (
+            <>
+                <SidebarLink href={"/guides"}>Getting Started</SidebarLink>
+            </>
+        )
+    }
+
+    {
+        sidebarEntries.map(({ linkList, folder }, i) => {
+            return (
+                <SidebarFolder title={folder} id={folder} isOpen={linkList.length > 0}>
+                    {linkList.map(({ title, link }, i) => (
+                        <SidebarLink href={link} data-sidebar-entry data-title={title} data-url={link}>
+                            {title}
+                        </SidebarLink>
+                    ))}
+                </SidebarFolder>
+            );
+        })
+    }
+</div>
+
+<script>
+    const searchInput = document.querySelector<HTMLInputElement>("#sidebar-search");
+
+    searchInput?.addEventListener("input", (e) => {
+        const query = searchInput.value.toLowerCase().trim();
+        const links = document.querySelectorAll("[data-sidebar-entry]");
+        const folders = document.querySelectorAll("[data-sidebar-folder]");
+
+        links.forEach((link) => {
+            const title = link.getAttribute("data-title")?.toLowerCase() || "";
+            const url = link.getAttribute("data-url")?.toLowerCase() || "";
+
+            if (title.includes(query) || url.includes(query)) {
+                link.classList.remove("hidden");
+            } else {
+                link.classList.add("hidden");
+            }
+        });
+
+        folders.forEach((folder) => {
+            const linksInFolder = folder.querySelectorAll("[data-sidebar-entry]:not(.hidden)");
+
+            if (linksInFolder.length > 0) {
+                folder.classList.remove("hidden");
+            } else {
+                folder.classList.add("hidden");
+            }
+        });
+    });
+</script>

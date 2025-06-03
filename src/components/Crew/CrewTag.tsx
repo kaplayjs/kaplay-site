@@ -1,55 +1,42 @@
 import { cn } from "@/util/cn";
-import {
-    component$,
-    type Signal,
-    Slot,
-    useSignal,
-    useTask$,
-} from "@builder.io/qwik";
-import { isServer } from "@builder.io/qwik/build";
+import { useRef } from "preact/hooks";
 
 type CrewTagProps = {
     value: string | null;
-    filter: Signal<string | undefined>;
+    filter: string | undefined;
+    setFilter: (val: string | undefined) => void;
+    children?: preact.ComponentChildren;
 };
 
-export const CrewTag = component$<CrewTagProps>(({ filter, value }) => {
-    const inputRef = useSignal<HTMLInputElement>();
+export const CrewTag = (
+    { value, filter, setFilter, children }: CrewTagProps,
+) => {
+    const inputRef = useRef<HTMLInputElement>(null);
 
-    useTask$(({ track }) => {
-        track(filter);
-
-        if (isServer) return;
-
-        if (value !== filter.value) {
-            if (inputRef.value) {
-                inputRef.value.checked = false;
-            }
+    const handleChange = () => {
+        if (inputRef.current?.checked) {
+            setFilter(value!);
         }
-    });
+        else if (filter == value) {
+            setFilter(undefined);
+        }
+    };
 
     return (
         <label
             class={cn("hoverable badge badge-primary select-none", {
-                "badge-outline": filter.value !== value,
+                "badge-outline": filter != value,
             })}
         >
-            <Slot />
+            {children}
             <input
                 type="checkbox"
                 name="tags"
                 class="hidden"
-                checked={filter.value === value}
-                onChange$={() => {
-                    if (inputRef.value?.checked) {
-                        filter.value = value!;
-                    }
-                    else if (filter.value === value) {
-                        filter.value = undefined;
-                    }
-                }}
+                checked={filter == value}
+                onChange={handleChange}
                 ref={inputRef}
             />
         </label>
     );
-});
+};

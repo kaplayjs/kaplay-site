@@ -2,7 +2,7 @@
 import { CrewItem } from "@/components/Crew/CrewItem";
 import Navbar from "@/components/Navbar/Navbar.astro";
 import Page from "@/layouts/Page.astro";
-import { assets } from "@kaplayjs/crew";
+import { assets } from "@/data/crew";
 
 export async function getStaticPaths() {
     return Object.keys(assets).map((asset) => {
@@ -28,6 +28,6 @@ const { asset } = Astro.props;
 >
     <main class="flex flex-col scroll-smooth">
         <Navbar />
-        <CrewItem crewItem={asset as keyof typeof assets} />
+        <CrewItem client:load crewItem={asset as keyof typeof assets} />
     </main>
 </Page>

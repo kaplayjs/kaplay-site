@@ -1,0 +1,31 @@
+---
+import DocEntry from "./DocEntry.astro";
+
+export interface Props {
+    data?: any;
+}
+
+const { data } = Astro.props;
+const members = data?.members;
+const parentName = data?.name;
+
+if (!members) {
+    return null;
+}
+---
+
+{
+    Object.keys(members).map((member) =>
+        members[member].map((
+            memberData: any,
+        ) => (
+        <>
+            <DocEntry
+                data={memberData}
+                parent={parentName}
+            />
+            <div class="divider pl-4"></div>
+        </>
+    ))
+    )
+}

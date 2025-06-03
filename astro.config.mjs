@@ -1,7 +1,7 @@
 import mdx from "@astrojs/mdx";
+import preact from "@astrojs/preact";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
-import qwik from "@qwikdev/astro";
 import {
     transformerNotationDiff,
     transformerNotationWordHighlight,
@@ -44,13 +44,13 @@ export default defineConfig({
         ],
     },
     integrations: [
-        qwik(),
         mdx(),
         tailwind(),
         astroMetaTags(),
         robotsTxt(),
         sitemap(),
         pagefind(),
+        preact(),
     ],
     output: "static",
     contentLayer: true,

@@ -1,0 +1,14 @@
+{
+    "tabWidth": 4,
+    "htmlWhitespaceSensitivity": "strict",
+    "printWidth": 160,
+    "plugins": ["prettier-plugin-astro"],
+    "overrides": [
+        {
+            "files": "*.astro",
+            "options": {
+                "parser": "astro"
+            }
+        }
+    ]
+}

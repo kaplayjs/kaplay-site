@@ -1,11 +1,10 @@
-import { component$, useSignal } from "@builder.io/qwik";
-import { assets } from "@kaplayjs/crew";
+import { assets } from "@/data/crew";
 
-export interface CrewListItemProps {
+interface CrewListItemProps {
     crewItem: keyof typeof assets;
 }
 
-export const CrewListItem = component$<CrewListItemProps>((props) => {
+export const CrewListItem = (props: CrewListItemProps) => {
     const crewItem = assets[props.crewItem];
 
     return (
@@ -25,4 +24,4 @@ export const CrewListItem = component$<CrewListItemProps>((props) => {
             </div>
         </div>
     );
-});
+};
