@@ -87,7 +87,6 @@ if (sidebarMode === "guides") {
 
 <script>
     const setUrl = () => {
-        console.log("painting links");
         const pathname = new URL(location.href).pathname.replace(/\/$/, "");
         const links = document.querySelectorAll<HTMLElement>(".sidebar-link-a");
 

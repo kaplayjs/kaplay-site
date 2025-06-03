@@ -8,7 +8,7 @@ interface Props {
     icon?: keyof typeof assets;
 }
 
-const { href, target, reloadAll, icon } = Astro.props;
+const { href, target, reloadAll, icon, ...props } = Astro.props;
 ---
 
 <li class="sidebar-link list-none">
@@ -19,16 +19,9 @@ const { href, target, reloadAll, icon } = Astro.props;
         data-link={href}
         aria-current="false"
         data-astro-reload={reloadAll ? "all" : undefined}
+        {...props}
     >
-        {
-            icon && assets?.[icon]?.outlined && (
-                <img
-                    src={assets[icon].outlined}
-                    alt="Sidebar Icon"
-                    class="h-6 w-6"
-                />
-            )
-        }
+        {icon && assets?.[icon]?.outlined && <img src={assets[icon].outlined} alt="Sidebar Icon" class="h-6 w-6" />}
 
         <slot />
     </a>
