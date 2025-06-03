@@ -25,6 +25,8 @@ export const CrewItem = (props: CrewItemProps) => {
 
     const crewItem = assets[props.crewItem];
 
+    if (!crewItem.outlined) setVersionSelected("original");
+
     return (
         <div
             class={cn(
@@ -51,7 +53,10 @@ export const CrewItem = (props: CrewItemProps) => {
                                 "flex-1 flex flex-col items-center pb-2 rounded-lg border-2 hover:bg-base-100 transition-colors focus:outline-none focus-visible:border-current",
                                 {
                                     "bg-base-100 border-primary":
-                                        versionSelected == "original",
+                                        versionSelected == "original"
+                                        && crewItem.outlined,
+                                    "bg-base-100 border-base-300": !crewItem
+                                        .outlined,
                                     "bg-base-300 border-base-300":
                                         versionSelected != "original",
                                 },
@@ -59,9 +64,11 @@ export const CrewItem = (props: CrewItemProps) => {
                             type="button"
                             onClick={() => setVersionSelected("original")}
                         >
-                            <span class="relative top-2 text-xs tracking-wide font-semibold">
-                                Original
-                            </span>
+                            {crewItem.outlined && (
+                                <span class="relative top-2 text-xs tracking-wide font-semibold">
+                                    Original
+                                </span>
+                            )}
                             <img
                                 src={crewItem.sprite}
                                 alt={crewItem.name}
@@ -69,28 +76,30 @@ export const CrewItem = (props: CrewItemProps) => {
                             />
                         </button>
 
-                        <button
-                            class={cn(
-                                "flex-1 flex flex-col items-center pb-2 rounded-lg border-2 hover:bg-base-100 transition-colors focus:outline-none focus-visible:border-current",
-                                {
-                                    "bg-base-100 border-primary":
-                                        versionSelected == "outlined",
-                                    "bg-base-300 border-base-300":
-                                        versionSelected != "outlined",
-                                },
-                            )}
-                            type="button"
-                            onClick={() => setVersionSelected("outlined")}
-                        >
-                            <span class="relative top-2 text-xs tracking-wide font-semibold">
-                                Outlined
-                            </span>
-                            <img
-                                src={crewItem.outlined}
-                                alt={crewItem.name}
-                                class="w-32 object-scale-down py-4"
-                            />
-                        </button>
+                        {crewItem.outlined && (
+                            <button
+                                class={cn(
+                                    "flex-1 flex flex-col items-center pb-2 rounded-lg border-2 hover:bg-base-100 transition-colors focus:outline-none focus-visible:border-current",
+                                    {
+                                        "bg-base-100 border-primary":
+                                            versionSelected == "outlined",
+                                        "bg-base-300 border-base-300":
+                                            versionSelected != "outlined",
+                                    },
+                                )}
+                                type="button"
+                                onClick={() => setVersionSelected("outlined")}
+                            >
+                                <span class="relative top-2 text-xs tracking-wide font-semibold">
+                                    Outlined
+                                </span>
+                                <img
+                                    src={crewItem.outlined}
+                                    alt={crewItem.name}
+                                    class="w-32 object-scale-down py-4"
+                                />
+                            </button>
+                        )}
                     </div>
 
                     <div>
