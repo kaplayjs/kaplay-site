@@ -46,7 +46,7 @@ export const CrewItem = (props: CrewItemProps) => {
                 <div class="flex sm:flex-1 flex-col gap-3.5 lg:p-6">
                     <div
                         class="tooltip tooltip-bottom sm:tooltip-top flex gap-1 p-1 border border-base-content/15 rounded-xl max-sm:before:top-auto max-sm:before:-bottom-2.5 max-sm:after:hidden"
-                        data-tip={crewItem.secret}
+                        data-tip={crewItem.secret || undefined}
                     >
                         <button
                             class={cn(
