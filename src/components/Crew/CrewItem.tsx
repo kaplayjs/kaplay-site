@@ -32,7 +32,7 @@ export const CrewItem = (props: CrewItemProps) => {
             class={cn(
                 "flex-1 rounded-box bg-base-200 p-4 sm:p-8 border border-base-content/15",
                 {
-                    "flex lg:flex-none h-full lg:my-10 lg:mx-auto max-w-5xl":
+                    "flex lg:flex-none w-full h-full lg:my-10 lg:mx-auto max-w-5xl":
                         !isModal,
                     "overflow-y-auto": isModal,
                 },
@@ -112,7 +112,7 @@ export const CrewItem = (props: CrewItemProps) => {
                         <p class="text-md">by {crewItem.author}</p>
 
                         {crewItem.crewmeta && (
-                            <ul class="mt-5 lg:mt-7 space-y-1">
+                            <ul class="columns-[10rem] gap-2 mt-5 lg:mt-7 space-y-1">
                                 <li class="flex items-center gap-2">
                                     <img
                                         src={assets.cake.outlined}
@@ -163,7 +163,7 @@ export const CrewItem = (props: CrewItemProps) => {
                     {isModal && (
                         <div class="mt-auto pt-4">
                             <a
-                                class="inline-flex gap-2 items-center font-medium text-sm px-0.5 hover:text-primary transition-colors"
+                                class="inline-flex gap-2 items-center font-medium text-sm px-0.5 hover:text-primary transition-colors rounded-lg focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-base-content"
                                 href={`/crew/${props.crewItem}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
@@ -229,8 +229,16 @@ export const CrewItem = (props: CrewItemProps) => {
                         </p>
                     </div>
 
-                    <div class="sticky top-80 bottom-4 flex flex-col grow max-sm:mt-3 z-10">
-                        <div class="sticky bottom-2 lg:bottom-6 mt-auto space-y-2 max-sm:bg-base-100 rounded-lg p-4 -m-4 max-sm:border-t border-base-content/10 max-sm:shadow-[0_0_50px_0_rgba(0,0,0,0.2)]">
+                    <div
+                        class={cn(
+                            "sticky top-80 flex flex-col grow max-sm:mt-3 z-10",
+                            {
+                                "bottom-0": isModal,
+                                "bottom-4": !isModal,
+                            },
+                        )}
+                    >
+                        <div class="sm:sticky bottom-2 lg:bottom-6 mt-auto space-y-2 max-sm:bg-base-100 rounded-lg max-sm:p-4 max-sm:-m-4 max-sm:border-t border-base-content/10 max-sm:shadow-[0_0_50px_0_rgba(0,0,0,0.2)]">
                             {crewItem.imports.importInCrew
                                 && crewItem.imports
                                     .importInCrew[versionSelected]

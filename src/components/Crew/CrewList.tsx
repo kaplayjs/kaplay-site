@@ -91,7 +91,7 @@ export const CrewList = () => {
 
                 <div
                     id="crew-list"
-                    class="flex flex-col overflow-y-auto scrollbar-thin"
+                    class="flex flex-col overflow-y-auto scrollbar-thin focus:outline-none focus-visible:ring-2 focus-visible:ring-base-content/10 rounded-xl"
                 >
                     <div class="flex justify-center p-4">
                         <p>{message}</p>
@@ -102,10 +102,12 @@ export const CrewList = () => {
                             .filter(filterAssets)
                             .filter(filterAssetsByName)
                             .map((crewItem, i) => (
-                                <button
+                                <a
+                                    class="max-[459px]:grow max-[459px]:basis-1/3 focus:outline-none focus-visible:ring-2 focus-visible:ring-base-content rounded-xl"
                                     key={i}
-                                    type="button"
-                                    onClick={() => {
+                                    href={`/crew/${crewItem}`}
+                                    onClick={(e) => {
+                                        e.preventDefault();
                                         setCurCrewItem(
                                             crewItem as keyof typeof assets,
                                         );
@@ -115,15 +117,19 @@ export const CrewList = () => {
                                     <CrewListItem
                                         crewItem={crewItem as keyof typeof assets}
                                     />
-                                </button>
+                                </a>
                             ))}
                     </div>
                 </div>
             </div>
 
-            <dialog ref={dialogRef} class="modal p-2" id="crew-modal">
+            <dialog
+                ref={dialogRef}
+                class="modal p-2 backdrop:opacity-0 bg-[#0a0c10]/60"
+                id="crew-modal"
+            >
                 <div
-                    class="modal-box flex p-0 m-0 w-full max-w-[calc(64rem-4rem)] max-h-full"
+                    class="modal-box flex p-0 m-0 w-full max-w-[calc(64rem-4rem)] max-h-full focus:outline-none"
                     tabIndex={0}
                 >
                     <button

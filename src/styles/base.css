@@ -204,6 +204,9 @@ span[data-is-type="true"] {
 
 pre:has(code) {
     position: relative;
+
+    @apply focus:outline-none focus-visible:ring-2
+        focus-visible:ring-base-content/10;
 }
 
 pre button.copy {
@@ -215,7 +218,9 @@ pre button.copy {
     padding: 0;
     display: flex;
     opacity: 0.65;
-    @apply transition-all;
+    @apply transition-[opacity,transform] rounded-lg focus:outline-none
+        focus-visible:outline-2 focus-visible:outline-offset-4
+        focus-visible:outline-base-content focus-visible:opacity-100;
 
     [class~="text-sm"] & {
         top: 0.25rem;
