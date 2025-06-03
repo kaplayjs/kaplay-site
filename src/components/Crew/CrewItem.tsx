@@ -41,7 +41,7 @@ export const CrewItem = (props: CrewItemProps) => {
                     "flex flex-col sm:flex-row w-full gap-4",
                 )}
             >
-                <div class="flex flex-1 flex-col gap-3.5 lg:p-6">
+                <div class="flex sm:flex-1 flex-col gap-3.5 lg:p-6">
                     <div
                         class="tooltip tooltip-bottom sm:tooltip-top flex gap-1 p-1 border border-base-content/15 rounded-xl max-sm:before:top-auto max-sm:before:-bottom-2.5 max-sm:after:hidden"
                         data-tip={crewItem.secret}
@@ -186,7 +186,7 @@ export const CrewItem = (props: CrewItemProps) => {
                 <div class="sm:hidden flex-none divider divider-vertical before:h-px after:h-px m-0">
                 </div>
 
-                <div class="flex flex-1 flex-col min-h-max gap-8 lg:p-6">
+                <div class="contents sm:flex sm:flex-1 flex-col min-h-max gap-8 lg:p-6">
                     <div class="space-y-2">
                         <h3 class="font-bold">
                             About {crewItem.name}
@@ -220,8 +220,8 @@ export const CrewItem = (props: CrewItemProps) => {
                         </p>
                     </div>
 
-                    <div class="flex flex-col grow">
-                        <div class="sticky bottom-2 lg:bottom-6 mt-auto space-y-2">
+                    <div class="sticky top-80 bottom-4 flex flex-col grow max-sm:mt-3 z-10">
+                        <div class="sticky bottom-2 lg:bottom-6 mt-auto space-y-2 max-sm:bg-base-100 rounded-lg p-4 -m-4 max-sm:border-t border-base-content/10 max-sm:shadow-[0_0_50px_0_rgba(0,0,0,0.2)]">
                             {crewItem.imports.importInCrew
                                 && crewItem.imports
                                     .importInCrew[versionSelected]
@@ -264,7 +264,7 @@ export const CrewItem = (props: CrewItemProps) => {
                                 )}
 
                             <button
-                                class="btn btn-outline btn-primary w-full"
+                                class="btn btn-outline btn-primary w-full border-2"
                                 type="button"
                                 onClick={() => {
                                     const a = document.createElement("a");

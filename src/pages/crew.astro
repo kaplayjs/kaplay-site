@@ -13,7 +13,9 @@ import NavbarPage from "@/layouts/NavbarPage.astro";
     }}
     pageClass="bg-image-pattern"
 >
-    <div class="flex h-dvh flex-col scroll-smooth">
+    <div
+        class="flex flex-col h-[calc(100svh-4.5rem)] md:h-[calc(100svh-5rem)] scroll-smooth"
+    >
         <CrewList client:load />
     </div>
 </NavbarPage>

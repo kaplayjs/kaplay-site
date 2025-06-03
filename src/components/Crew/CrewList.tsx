@@ -65,8 +65,8 @@ export const CrewList = () => {
     }, [tagFilter]);
 
     return (
-        <div class="h-full min-h-dvh w-full overflow-y-auto lg:mt-10 md:flex md:justify-center">
-            <div class="flex h-full w-full flex-col gap-4 overflow-y-auto rounded-box bg-base-200 p-4 lg:max-h-[80%] lg:max-w-5xl border border-base-content/15">
+        <div class="h-full w-full overflow-y-auto lg:py-10 md:flex md:justify-center">
+            <div class="flex h-full w-full flex-col gap-4 overflow-y-auto rounded-box bg-base-200 p-4 lg:p-8 lg:max-w-5xl border border-base-content/15">
                 <div class="flex justify-center flex-col">
                     <h1 class="font-hand text-3xl text-center">
                         <span class="text-primary">KAPLAY</span> Crew
