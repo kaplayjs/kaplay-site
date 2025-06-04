@@ -145,7 +145,17 @@ export async function GET({ params, request }) {
         });
     };
 
+    // Allow all origins
+    const headers = new Headers();
+    headers.set("Access-Control-Allow-Origin", "*");
+    headers.set("Content-Type", "application/json");
+
     return new Response(
         JSON.stringify(await getTypes()),
+        {
+            headers: headers,
+            status: 200,
+            statusText: "ohhi!",
+        },
     );
 }
