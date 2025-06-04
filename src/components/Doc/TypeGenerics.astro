@@ -1,0 +1,18 @@
+---
+import TypeSig from "./TypeSig.astro";
+
+const { data } = Astro.props;
+const typeParams = data?.typeArguments || data?.typeParameters;
+if (!typeParams || typeParams.length === 0) {
+    return null;
+}
+---
+
+<span
+    >{"<"}{
+        typeParams.map((p, i) =>
+            // prettier-ignore
+            <Fragment><TypeSig data={p} />{i === typeParams.length - 1 ? "" : ", "}</Fragment>,
+        )
+    }{">"}</span
+>

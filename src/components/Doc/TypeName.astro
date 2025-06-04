@@ -1,0 +1,13 @@
+---
+interface Props {
+    data?: any;
+    parent?: string;
+}
+
+const { data, parent } = Astro.props;
+const parentText = parent ? `${parent}-` : "";
+---
+
+<span class="font-medium"><a href={`#${parentText}${data?.name}`}>{
+        data?.name
+    }</a></span>

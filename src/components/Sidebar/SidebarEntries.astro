@@ -1,0 +1,66 @@
+---
+import { Image } from "astro:assets";
+import VersionSelector from "./VersionSelector.astro";
+import SidebarLink from "./SidebarLink.astro";
+import searchIcon from "@/assets/search.png";
+import SidebarList from "./SidebarList.astro";
+import type { SidebarEntry, SidebarProps } from "./Sidebar.astro";
+import { getBlogEntries, getBookEntries, getDocEntries, getGuidesEntries } from "./entries.ts";
+
+type Props = SidebarProps;
+
+const { sidebarMode } = Astro.props;
+
+let renderList: SidebarEntry[] = [];
+
+if (sidebarMode === "guides") {
+    renderList = await getGuidesEntries();
+} else if (sidebarMode === "reference") {
+    renderList = await getDocEntries();
+} else if (sidebarMode === "blog") {
+    renderList = await getBlogEntries();
+} else if (sidebarMode === "books") {
+    renderList = await getBookEntries();
+}
+---
+
+<div class="drawer-side z-50 h-dvh md:bg-base-300" transition:persist>
+    <label for="sidebar" aria-label="close sidebar" class="drawer-overlay"></label>
+    <div class="min-h-full w-72 bg-base-300 p-4 text-base-content">
+        <figure>
+            <a class="btn btn-ghost h-max w-full p-2" href={"/"} data-astro-reload>
+                <Image src="/kaplay.gif" alt="kaplay logo" class="aspect-auto h-24 w-52 object-contain" width={208} height={100} loading={"eager"} />
+            </a>
+        </figure>
+        <div class="divider"></div>
+        <button class="btn btn-neutral mb-4 w-full border-primary" onclick="document.querySelector('#search-modal')?.showModal()">
+            <img src={searchIcon.src} alt="search icon" class="h-9 w-9" />
+            <span>SEARCH</span>
+            <kbd id="search-btn" class="kbd">CTRL + K</kbd>
+        </button>
+        <div class="px-4 pb-4">
+            <VersionSelector />
+        </div>
+        <div class="divider"></div>
+        <ul class="flex-col gap-2">
+            <SidebarLink href="/" icon="home" reloadAll>Home</SidebarLink>
+            <SidebarLink href="https://kaboomjs.com/discord" target="_blank" icon="discord">
+                Discord <div class="badge badge-primary">+2000!</div>
+            </SidebarLink>
+            <SidebarLink href="https://github.com/kaplayjs/kaplay" target="_blank" icon="github"> GitHub </SidebarLink>
+            <SidebarLink href="https://github.com/kaplayjs/kaplay/blob/master/CHANGELOG.md" icon="pog"> Changelog </SidebarLink>
+            <SidebarLink href="https://play.kaplayjs.com" target="_blank" icon="play"> KAPLAYGROUND </SidebarLink>
+            <SidebarLink href="https://opencollective.com/kaplay" target="_blank" icon="money_bag"> Donate to KAPLAY </SidebarLink>
+        </ul>
+        <div class="divider"></div>
+        <ul class="flex-col gap-2">
+            <SidebarLink href="/guides/install" icon="marks_legend" reloadAll> Guides </SidebarLink>
+            <SidebarLink href="/doc/kaplay" icon="api_book" reloadAll> API Docs </SidebarLink>
+            <SidebarLink href="/blog" icon="paper" reloadAll> Blog </SidebarLink>
+        </ul>
+
+        <div class="divider"></div>
+
+        <SidebarList sidebarMode={sidebarMode} sidebarEntries={renderList} />
+    </div>
+</div>
