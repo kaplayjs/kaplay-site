@@ -1,3 +1,4 @@
+import { countByOrigin, originOptions } from "@/data/crew";
 import { cn } from "@/util/cn";
 import { useEffect, useRef, useState } from "preact/hooks";
 import { tags } from "./CrewList";
@@ -8,6 +9,8 @@ interface CrewSearchProps {
     setNameFilter: (val: string) => void;
     tagFilter: string[];
     setTagFilter: (val: string[]) => void;
+    originFilter: originOptions;
+    setOriginFilter: (val: originOptions) => void;
 }
 
 export const CrewSearch = ({
@@ -15,12 +18,16 @@ export const CrewSearch = ({
     setNameFilter,
     tagFilter,
     setTagFilter,
+    originFilter,
+    setOriginFilter,
 }: CrewSearchProps) => {
     let isLoaded = false;
 
     const tagsRef = useRef<HTMLDivElement>(null);
     const [tagsExpanded, setTagsExpanded] = useState(false);
     const [tagsExpandable, setTagsExpandable] = useState(false);
+
+    const originOptionsCount: Record<originOptions, number> | {} = {};
 
     const toggleTags = () => {
         if (!tagsExpandable) return;
@@ -36,8 +43,7 @@ export const CrewSearch = ({
                 if (target.scrollHeight > 25) {
                     setTagsExpandable(true);
                     if (!isLoaded) setTagsExpanded(false);
-                }
-                else {
+                } else {
                     setTagsExpandable(false);
                     if (!isLoaded) setTagsExpanded(true);
                 }
@@ -50,26 +56,43 @@ export const CrewSearch = ({
     }, []);
 
     return (
-        <div class="crew-search | flex flex-col gap-2">
-            <input
-                type="text"
-                class="input input-bordered hidden w-full lg:block"
-                placeholder="Search..."
-                value={nameFilter}
-                onInput={e =>
-                    setNameFilter((e.target as HTMLInputElement).value)}
-            />
-
+        <div class="crew-search flex flex-col gap-2">
             <div class="join w-full">
-                <div class="w-full">
-                    <input
-                        type="text"
-                        class="input join-item input-bordered w-full lg:hidden"
-                        placeholder="Search..."
-                        value={nameFilter}
-                        onInput={e =>
-                            setNameFilter((e.target as HTMLInputElement).value)}
-                    />
+                <input
+                    type="text"
+                    class="join-item input input-bordered w-full focus:z-10"
+                    placeholder="Search..."
+                    value={nameFilter}
+                    onInput={e =>
+                        setNameFilter((e.target as HTMLInputElement).value)}
+                />
+
+                <div class="tooltip grid" data-tip="Filter by Origin">
+                    <select
+                        class="peer col-start-1 row-start-1 select select-bordered font-sans text-xs sm:text-sm pr-11 sm:pr-10 opacity-0"
+                        value={originFilter}
+                        onChange={e => {
+                            const val = (e.target as HTMLSelectElement).value;
+                            setOriginFilter(val as originOptions);
+                        }}
+                    >
+                        {originOptions.map(origin => (
+                            <option value={origin} key={origin}>
+                                {origin}{" "}
+                                ({originOptionsCount[origin] = countByOrigin(
+                                    origin as originOptions,
+                                )})
+                            </option>
+                        ))}
+                    </select>
+
+                    <div className="join-item col-start-1 row-start-1 select select-bordered text-xs sm:text-sm pr-8 gap-1 items-center pointer-events-none peer-focus:outline peer-focus:outline-2 peer-focus:outline-offset-2 peer-focus:outline-base-content/20">
+                        {originFilter}
+
+                        <span className="badge badge-xs font-medium ml-auto py-1 px-1 min-w-5 h-auto bg-base-content/15 border-0">
+                            {originOptionsCount[originFilter]}
+                        </span>
+                    </div>
                 </div>
             </div>
 

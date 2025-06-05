@@ -1,4 +1,4 @@
-import { assets } from "@/data/crew";
+import { assets, originOptions } from "@/data/crew";
 import { useEffect, useRef, useState } from "preact/hooks";
 import { CrewItem } from "./CrewItem";
 import { CrewListItem } from "./CrewListItem";
@@ -38,13 +38,19 @@ const messages: Record<Tag | "all", string> = {
 export const CrewList = () => {
     const [tagFilter, setTagFilter] = useState<string[]>([]);
     const [nameFilter, setNameFilter] = useState<string>("");
+    const [originFilter, setOriginFilter] = useState<originOptions>("All");
     const [message, setMessage] = useState<string>(messages.all);
     const [curCrewItem, setCurCrewItem] = useState<keyof typeof assets | null>(
         null,
     );
     const dialogRef = useRef<HTMLDialogElement>(null);
 
-    const filterAssets = (asset: string | null) => {
+    const filterAssetsByOrigin = (asset: string | null) => {
+        if (originFilter == "All") return true;
+        return assets[asset as keyof typeof assets].origin == originFilter;
+    };
+
+    const filterAssetsByTag = (asset: string | null) => {
         if (tagFilter.length == 0) return true;
         return (tagFilter as Tag[]).some(
             tag => assets[asset as keyof typeof assets].tags.includes(tag),
@@ -87,6 +93,8 @@ export const CrewList = () => {
                     setNameFilter={setNameFilter}
                     tagFilter={tagFilter}
                     setTagFilter={setTagFilter}
+                    originFilter={originFilter}
+                    setOriginFilter={setOriginFilter}
                 />
 
                 <div
@@ -99,7 +107,8 @@ export const CrewList = () => {
 
                     <div class="flex flex-wrap items-center justify-center gap-2">
                         {Object.keys(assets)
-                            .filter(filterAssets)
+                            .filter(filterAssetsByOrigin)
+                            .filter(filterAssetsByTag)
                             .filter(filterAssetsByName)
                             .map((crewItem, i) => (
                                 <a

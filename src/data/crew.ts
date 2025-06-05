@@ -1,5 +1,5 @@
 import { highlight } from "@/util/highlight";
-import { assets } from "@kaplayjs/crew";
+import { assets, type CrewItemBase } from "@kaplayjs/crew";
 
 type Asset = (typeof assets)[keyof typeof assets];
 
@@ -35,6 +35,18 @@ for (const [key, value] of Object.entries(assets).sort()) {
         ),
     };
 }
+
+export type originOptions = "All" | CrewItemBase["origin"];
+export const originOptions = [
+    "All",
+    ...(new Set(
+        Object.values(crew).map(asset => asset.origin || "All"),
+    ).values()),
+];
+export const countByOrigin = (origin: originOptions) =>
+    origin === "All" ? Object.keys(crew).length : Object.values(crew).filter(
+        asset => asset.origin === origin,
+    ).length;
 
 export { crew as assets };
 export default crew;

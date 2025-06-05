@@ -3,7 +3,7 @@
 body {
     min-height: 100dvh;
     font-family: "Outfit Variable", sans-serif;
-    cursor: url(/cursor_default.png), auto;
+    cursor: url(/cursor_default.png) 8 6, auto;
 }
 
 h1,
@@ -12,17 +12,13 @@ h1,
     @apply text-white;
 }
 
-button:hover,
-.btn:hover {
-    cursor: url(/cursor_pointer.png), auto;
-}
-
-a:hover {
-    cursor: url(/cursor_pointer.png), auto;
-}
-
-.hoverable:hover {
-    cursor: url(/cursor_pointer.png), auto;
+a:hover,
+button:not([disabled]):hover,
+.btn:not(.disabled):hover,
+select:not([disabled]),
+select:not([disabled]):hover,
+.hoverable:not(.disabled):hover {
+    cursor: url(/cursor_pointer.png) 8 4, auto;
 }
 
 .btn.btn-primary:not(.btn-outline):not([class*="link"]) {
