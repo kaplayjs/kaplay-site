@@ -29,6 +29,7 @@ type JSDocTag = {
 
 type DocEntryData = {
     name: string;
+    queryName: string;
     title: string;
     children: DocEntryData[];
     description?: string;
@@ -116,6 +117,7 @@ export async function GET({ params, request }) {
 
         const data: DocEntryData = {
             name: name,
+            queryName: slug,
             title: title,
             children: children.toArray(),
         };
