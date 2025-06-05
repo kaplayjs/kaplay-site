@@ -245,7 +245,34 @@ export const CrewItem = (props: CrewItemProps) => {
                                 && (
                                     <div class="mb-2.5">
                                         <h3 class="text-xs font-semibold tracking-wider">
-                                            Crew Import
+                                            <a
+                                                href="https://github.com/kaplayjs/crew"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                class="inline-flex gap-1 items-center hover:text-primary transition-colors tooltip before:font-normal before:text-left before:tracking-normal before:-left-2 before:translate-x-0 before:py-1.5 after:left-auto after:right-1 after:translate-x-0"
+                                                data-tip="First, npm install @kaplayjs/crew and import {&nbsp;crew&nbsp;} into KAPLAY plugins"
+                                            >
+                                                Crew Plugin Import
+
+                                                <svg
+                                                    width="12"
+                                                    height="12"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    stroke-width="2"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                >
+                                                    <circle
+                                                        cx="12"
+                                                        cy="12"
+                                                        r="10"
+                                                    />
+                                                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                                                    <path d="M12 17h.01" />
+                                                </svg>
+                                            </a>
                                         </h3>
 
                                         <div
@@ -265,7 +292,15 @@ export const CrewItem = (props: CrewItemProps) => {
                                 && (
                                     <div class="mb-2.5">
                                         <h3 class="text-xs font-semibold tracking-wider">
-                                            KAPLAYGROUND Import
+                                            <a
+                                                href="https://play.kaplayjs.com"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                class="hover:text-primary transition-colors"
+                                            >
+                                                KAPLAYGROUND
+                                            </a>{" "}
+                                            Import
                                         </h3>
 
                                         <div
