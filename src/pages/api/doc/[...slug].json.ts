@@ -29,6 +29,7 @@ type JSDocTag = {
 
 type DocEntryData = {
     name: string;
+    title: string;
     children: DocEntryData[];
     description?: string;
     example?: string[];
@@ -54,7 +55,7 @@ export async function GET({ params, request }) {
 
         const mainEntry = $("[data-doc-entry]");
         const titleEl = mainEntry.find("[data-doc-entry-title]").first();
-        const name = titleEl.text() || "No Title";
+        const title = titleEl.text() || "No Title";
 
         const children = mainEntry.find("[data-doc-entry-children]").map(
             (_, elem) => {
@@ -113,7 +114,8 @@ export async function GET({ params, request }) {
         });
 
         const data: DocEntryData = {
-            name: name,
+            name: slug,
+            title: title,
             children: children.toArray(),
         };
 
