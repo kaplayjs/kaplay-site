@@ -54,6 +54,7 @@ export async function GET({ params, request }) {
         const $ = cheerio.load(html);
 
         const mainEntry = $("[data-doc-entry]");
+        const name = mainEntry.attr("data-doc-entry-name") || "";
         const titleEl = mainEntry.find("[data-doc-entry-title]").first();
         const title = titleEl.text() || "No Title";
 
@@ -114,7 +115,7 @@ export async function GET({ params, request }) {
         });
 
         const data: DocEntryData = {
-            name: slug,
+            name: name,
             title: title,
             children: children.toArray(),
         };

@@ -30,6 +30,7 @@ const props = parent ? extraProps : {};
 <article
     id={`${parentText}${data?.name ?? ""}`}
     data-doc-entry
+    data-doc-entry-name={data?.name ?? ""}
     class:list={[
         "gal-1 text-fira flex flex-col",
         {
