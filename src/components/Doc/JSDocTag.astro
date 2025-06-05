@@ -9,16 +9,14 @@ export interface Props {
 
 const { tag, items, paramName } = Astro.props;
 
-const hiddenTags = ["group"];
-
 const getItem = (items: any[]) => {
     return items.flat?.()[0]?.text ?? items[0] ?? "";
 };
 ---
 
 {
-    !hiddenTags.includes(tag) && (
-        <>
+    (
+        <Fragment>
             {tag === "example" ? (
                 <Code code={items.join("").replace(/^```js\s+|```$/g, "")} lang="js" data-jsdoc-example />
             ) : tag === "param" ? (
@@ -37,13 +35,13 @@ const getItem = (items: any[]) => {
                     <span data-jsdoc-value>{getItem(items)}</span>
                 </p>
             ) : (
-                <p class="prose gap-2" data-jsdoc-tag>
+                <p class="prose gap-2 inline-flex items-center" data-jsdoc-tag>
                     <code data-jsdoc-name class="mr-1 inline">
                         {tag}
                     </code>
                     <span data-jsdoc-value>{getItem(items)}</span>
                 </p>
             )}
-        </>
+        </Fragment>
     )
 }

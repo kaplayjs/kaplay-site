@@ -9,22 +9,17 @@ const doc = jsDoc?.doc ?? [];
 
 {
     jsDoc ? (
-        <p class="prose" data-pagefind-weight="5">
-            {
-                doc.map((e) => (
-                    <>
-                        {e.kind === "JSDocText" && e.text}
-                        {
-                            e.kind === "JSDocLink" && (
-                                <TypeLink name={e.name}><span
-                                        set:html={marked.parseInline(e.text, {})}
-                                    ></span>
-                                </TypeLink>
-                            )
-                        }
-                    </>
-                ))
-            }
+        <p class="prose" data-pagefind-weight="5" data-jsdoc-description>
+            {doc.map((e) => (
+                <>
+                    {e.kind === "JSDocText" && e.text}
+                    {e.kind === "JSDocLink" && (
+                        <TypeLink name={e.name}>
+                            <span set:html={marked.parseInline(e.text, {})} />
+                        </TypeLink>
+                    )}
+                </>
+            ))}
         </p>
     ) : null
 }

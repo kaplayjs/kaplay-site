@@ -30,6 +30,7 @@ type JSDocTag = {
 type DocEntryData = {
     name: string;
     children: DocEntryData[];
+    description?: string;
     example?: string[];
     tags?: JSDocTag[];
 };
@@ -78,6 +79,9 @@ export async function GET({ params, request }) {
             exampleLines.push(codeText);
         });
 
+        let description = mainEntry.find("[data-jsdoc-description]").first()
+            .text().trim();
+
         let tags: { name: string; value: string }[] = [];
 
         mainEntry.find("[data-jsdoc-tag]").each((_, tagElem) => {
@@ -113,6 +117,9 @@ export async function GET({ params, request }) {
             children: children.toArray(),
         };
 
+        if (description) {
+            data.description = description;
+        }
         if (exampleLines.length > 0) {
             data.example = exampleLines;
         }
