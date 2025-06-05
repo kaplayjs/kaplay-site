@@ -48,5 +48,17 @@ export const countByOrigin = (origin: originOptions) =>
         asset => asset.origin === origin,
     ).length;
 
+export type typeOptions = "All" | CrewItemBase["type"];
+export const typeOptions = [
+    "All",
+    ...(new Set(
+        Object.values(crew).map(asset => asset.type || "All"),
+    ).values()),
+];
+export const countByType = (type: typeOptions) =>
+    type === "All" ? Object.keys(crew).length : Object.values(crew).filter(
+        asset => asset.type === type,
+    ).length;
+
 export { crew as assets };
 export default crew;

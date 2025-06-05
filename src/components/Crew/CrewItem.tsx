@@ -32,7 +32,7 @@ export const CrewItem = (props: CrewItemProps) => {
             class={cn(
                 "flex-1 rounded-box bg-base-200 p-4 sm:p-8 border border-base-content/15",
                 {
-                    "flex lg:flex-none w-full h-full lg:my-10 lg:mx-auto max-w-5xl":
+                    "flex lg:flex-none w-full h-full lg:my-2.5 2xl:my-10 lg:mx-auto max-w-5xl":
                         !isModal,
                     "overflow-y-auto": isModal,
                 },
