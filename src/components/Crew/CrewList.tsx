@@ -8,6 +8,7 @@ import { CrewTabs } from "./CrewTabs";
 type Tag = typeof tags[number];
 
 export const CrewList = () => {
+    const [minimized, setMinimized] = useState<boolean>(false);
     const [originFilter, setOriginFilter] = useState<originOptions>("All");
     const [tagFilter, setTagFilter] = useState<string[]>([]);
     const [nameFilter, setNameFilter] = useState<string>("");
@@ -59,8 +60,37 @@ export const CrewList = () => {
 
     return (
         <div class="h-full w-full lg:py-2.5 2xl:py-10 md:flex md:justify-center">
-            <div class="flex h-full w-full flex-col rounded-box bg-base-300 lg:max-w-5xl border border-base-content/15 overflow-clip">
-                <div class="flex flex-col gap-4 p-4 lg:px-8 lg:pt-5 lg:pb-6 rounded-t-[inherit]">
+            <div
+                class="group relative flex h-full w-full flex-col rounded-box bg-base-300 lg:max-w-5xl border border-base-content/15 overflow-clip"
+                data-minimized={minimized || undefined}
+            >
+                <button
+                    class="btn absolute top-2 right-2 p-[0.5625rem] min-h-0 h-auto bg-base-50 border-0 hover:!border-bg-base-content/30 rounded-xl z-10 hover:bg-base-content/30 transition-colors"
+                    type="button"
+                    onClick={() => {
+                        setMinimized(!minimized);
+                    }}
+                    aria-label="Toggle filters"
+                >
+                    <svg
+                        class="group-data-[minimized]:rotate-180"
+                        width="14"
+                        height="14"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                    >
+                        <rect width="18" height="18" x="3" y="3" rx="2" />
+                        <path d="M3 9h18" />
+                        <path d="m9 16 3-3 3 3" />
+                    </svg>
+                </button>
+
+                <div class="flex flex-col gap-4 p-4 lg:px-8 lg:pt-5 lg:pb-6 rounded-t-[inherit] group-data-[minimized]:hidden">
                     <div class="flex justify-center flex-col">
                         <h1 class="font-hand text-3xl text-center">
                             <span class="text-primary">KAPLAY</span> Crew
@@ -95,11 +125,12 @@ export const CrewList = () => {
                             tabsRef.current?.scrollTop ?? 0;
                         setTypeFilter(type);
                     }}
+                    data-maximized={!minimized || undefined}
                 />
 
                 <div
                     id="crew-list"
-                    class="flex flex-col flex-1 px-4 lg:px-8 py-4 lg:py-4 bg-base-100/60 border-t-4 border-transparent overflow-y-auto !scroll-auto scrollbar-thin focus:outline-none focus-visible:ring-2 focus-visible:ring-base-content/10 rounded-b-xl"
+                    class="flex flex-col flex-1 px-4 lg:px-8 py-4 lg:py-4 bg-base-100/60 border-t-4 border-transparent overflow-y-auto !scroll-auto scrollbar-thin focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-base-content/10 rounded-b-xl group-data-[minimized]:rounded-tr-lg"
                     ref={tabsRef}
                 >
                     <div class="flex flex-wrap items-center justify-center gap-2">
@@ -135,7 +166,7 @@ export const CrewList = () => {
                     tabIndex={0}
                 >
                     <button
-                        class="absolute top-2 right-2 p-2 bg-base-50 rounded-xl z-10 hover:bg-base-content/30 transition-colors focus:outline-none focus:ring-2 focus:ring-current"
+                        class="btn absolute top-2 right-2 p-2 min-h-0 h-auto bg-base-50 border-0 rounded-xl z-10 hover:bg-base-content/30 transition-colors"
                         type="button"
                         onClick={() => dialogRef.current?.close()}
                     >

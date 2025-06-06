@@ -62,7 +62,7 @@ export const CrewSearch = ({
             <div class="join w-full">
                 <input
                     type="text"
-                    class="join-item input input-bordered w-full focus:z-10"
+                    class="join-item input input-bordered w-full focus:z-[1]"
                     placeholder="Search..."
                     value={nameFilter}
                     onInput={e =>

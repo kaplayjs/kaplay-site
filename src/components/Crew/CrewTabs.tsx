@@ -15,9 +15,14 @@ interface CrewTabProps {
     onChange: (type: typeOptions) => void;
 }
 
-export const CrewTabs = ({ active, activeCount, onChange }: CrewTabProps) => {
+export const CrewTabs = (
+    { active, activeCount, onChange, ...props }: CrewTabProps,
+) => {
     return (
-        <div class="tabs tabs-lifted tabs-lg -mx-px w-auto bg-base-300 overflow-x-auto">
+        <div
+            class="tabs tabs-lifted tabs-lg group -mx-px group-data-[minimized]:pr-12 w-auto bg-base-300 overflow-x-auto"
+            {...props}
+        >
             {typeOptions.map((type) => (
                 <label
                     class="tab has-[:checked]:tab-active has-[:checked]:[--tab-bg:oklch(var(--b1)/60%)] px-6 text-sm hover:bg-base-200 transition-[background-color] has-[:checked]:last:before:!w-full last:before:-left-[var(--tab-radius)]"
@@ -52,6 +57,10 @@ export const CrewTabs = ({ active, activeCount, onChange }: CrewTabProps) => {
                     </span>
                 </label>
             ))}
+
+            {!props?.["data-maximized"] && (
+                <span class="maximize-placeholder hidden"></span>
+            )}
         </div>
     );
 };
