@@ -1,5 +1,5 @@
 import { highlight } from "@/util/highlight";
-import { assets, type CrewItemBase } from "@kaplayjs/crew";
+import { assets, type CrewItemBase, type Tag } from "@kaplayjs/crew";
 
 type Asset = (typeof assets)[keyof typeof assets];
 
@@ -59,6 +59,27 @@ export const countByType = (type: typeOptions) =>
     type === "All" ? Object.keys(crew).length : Object.values(crew).filter(
         asset => asset.type === type,
     ).length;
+
+export const tags: Tag[] = [
+    ...(new Set(
+        Object.values(crew).map(asset => asset.tags).flat(),
+    ).values()),
+].sort();
+
+export const tagsMessages = {
+    "all": "Welcome to KAWorld, the KAPLAYER's home :D",
+    "crew": "The protagonists of your next adventure",
+    "objects": "Objects of power",
+    "animals": "Yokai, Yokai, Yokai...",
+    "food": "YUMMY",
+    "tiles": "Make Super Bean Maker a reality.",
+    "icons": "Used on this web :D",
+    "books": "Explore more books at: kaplayjs.com/books",
+    "brand": "KAPLAY brand related logos, assets",
+    "ui": "*Click*",
+    "emojis": "More in Discord!",
+    "fonts": "Sad font coming soon...",
+} satisfies Record<typeof tags[number] | "all", string>;
 
 export { crew as assets };
 export default crew;

@@ -1,7 +1,6 @@
-import { countByOrigin, originOptions } from "@/data/crew";
+import { countByOrigin, originOptions, tags, tagsMessages } from "@/data/crew";
 import { cn } from "@/util/cn";
 import { useEffect, useRef, useState } from "preact/hooks";
-import { tags } from "./CrewList";
 import { CrewTag } from "./CrewTag";
 
 interface CrewSearchProps {
@@ -26,6 +25,9 @@ export const CrewSearch = ({
     const tagsRef = useRef<HTMLDivElement>(null);
     const [tagsExpanded, setTagsExpanded] = useState(false);
     const [tagsExpandable, setTagsExpandable] = useState(false);
+    const [message, setMessage] = useState<string>("");
+    const tooltipLeft = useRef(0);
+    const tooltipX = useRef(0);
 
     const originOptionsCount: Record<originOptions, number> | {} = {};
 
@@ -96,7 +98,20 @@ export const CrewSearch = ({
                 </div>
             </div>
 
-            <div class="flex justify-between gap-1">
+            <div
+                class={cn(
+                    "tooltip flex justify-between gap-1",
+                    "before:flex before:items-center before:left-[var(--tooltip-left)] before:ml-1 before:translate-x-[var(--tooltip-x)] before:top-auto before:bottom-full before:mb-3 before:px-3 before:min-h-10 before:max-w-[calc(100vw-6rem)]",
+                    "after:left-[var(--tooltip-left)] after:translate-x-4 after:top-auto after:bottom-full after:-translate-y-[0.35rem]",
+                    "before:transition-opacity after:transition-opacity",
+                    "[&:not(:has(label:hover))]:before:opacity-0 [&:not(:has(label:hover))]:after:opacity-0",
+                )}
+                style={{
+                    "--tooltip-left": tooltipLeft.current + "px",
+                    "--tooltip-x": tooltipX.current + "%",
+                }}
+                data-tip={message || undefined}
+            >
                 <div
                     ref={tagsRef}
                     class={cn("rounded-xl overflow-hidden", {
@@ -110,6 +125,21 @@ export const CrewSearch = ({
                                 filter={tagFilter}
                                 value={tag}
                                 setFilter={setTagFilter}
+                                onHover={(e) => {
+                                    setMessage(tagsMessages[tag] || "");
+                                    const { offsetLeft } = e.currentTarget;
+                                    const parentWidth =
+                                        tagsRef.current?.parentElement
+                                            ?.clientWidth ?? 0;
+                                    const threshold = parentWidth * 0.5;
+                                    tooltipLeft.current = offsetLeft;
+                                    tooltipX.current = offsetLeft > threshold
+                                        ? -35
+                                            - ((offsetLeft - threshold)
+                                                    / (parentWidth - threshold))
+                                                * 50
+                                        : 0;
+                                }}
                             >
                                 {tag}
                             </CrewTag>

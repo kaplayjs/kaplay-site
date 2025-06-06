@@ -1,47 +1,17 @@
-import { assets, originOptions, typeOptions } from "@/data/crew";
+import { assets, originOptions, tags, typeOptions } from "@/data/crew";
 import { useEffect, useRef, useState } from "preact/hooks";
 import { CrewItem } from "./CrewItem";
 import { CrewListItem } from "./CrewListItem";
 import { CrewSearch } from "./CrewSearch";
 import { CrewTabs } from "./CrewTabs";
 
-export const tags = [
-    "crew",
-    "objects",
-    "animals",
-    "food",
-    "tiles",
-    "icons",
-    "books",
-    "brand",
-    "ui",
-    "emojis",
-    "fonts",
-] as const;
-
 type Tag = typeof tags[number];
-
-const messages: Record<Tag | "all", string> = {
-    "all": "Welcome to KAWorld, the KAPLAYER's home :D",
-    "crew": "The protagonists of your next adventure",
-    "objects": "Objects of power",
-    "animals": "Yokai, Yokai, Yokai...",
-    "food": "YUMMY",
-    "tiles": "Make Super Bean Maker a reality.",
-    "icons": "Used on this web :D",
-    "books": "Explore more books in: https://kaplayjs.com/books",
-    "brand": "KAPLAY brand related logos, assets",
-    "ui": "*Click*",
-    "emojis": "More in Discord!",
-    "fonts": "Sad font coming soon...",
-};
 
 export const CrewList = () => {
     const [originFilter, setOriginFilter] = useState<originOptions>("All");
     const [tagFilter, setTagFilter] = useState<string[]>([]);
     const [nameFilter, setNameFilter] = useState<string>("");
     const [typeFilter, setTypeFilter] = useState<typeOptions>("All");
-    const [message, setMessage] = useState<string>(messages.all);
     const [curCrewItem, setCurCrewItem] = useState<keyof typeof assets | null>(
         null,
     );
@@ -86,12 +56,6 @@ export const CrewList = () => {
         const scrollTop = tabsScrollTop.current[typeFilter] ?? 0;
         tabsRef.current.scrollTop = scrollTop;
     }, [typeFilter]);
-
-    useEffect(() => {
-        setMessage(
-            messages[tagFilter.length == 1 ? (tagFilter[0] as Tag) : "all"],
-        );
-    }, [tagFilter]);
 
     return (
         <div class="h-full w-full lg:py-2.5 2xl:py-10 md:flex md:justify-center">
@@ -138,10 +102,6 @@ export const CrewList = () => {
                     class="flex flex-col flex-1 px-4 lg:px-8 py-4 lg:py-4 bg-base-100/60 border-t-4 border-transparent overflow-y-auto !scroll-auto scrollbar-thin focus:outline-none focus-visible:ring-2 focus-visible:ring-base-content/10 rounded-b-xl"
                     ref={tabsRef}
                 >
-                    <div class="flex justify-center -mt-1 p-4 pt-0">
-                        <p>{message}</p>
-                    </div>
-
                     <div class="flex flex-wrap items-center justify-center gap-2">
                         {crewItems.map((crewItem, i) => (
                             <a

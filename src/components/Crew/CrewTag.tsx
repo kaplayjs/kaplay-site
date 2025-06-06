@@ -6,18 +6,18 @@ type CrewTagProps = {
     filter: string[];
     setFilter: (val: string[]) => void;
     children?: preact.ComponentChildren;
+    onHover: (e: preact.JSX.TargetedMouseEvent<HTMLLabelElement>) => void;
 };
 
 export const CrewTag = (
-    { value, filter, setFilter, children }: CrewTagProps,
+    { value, filter, setFilter, children, onHover, ...props }: CrewTagProps,
 ) => {
     const inputRef = useRef<HTMLInputElement>(null);
 
     const handleChange = () => {
         if (inputRef.current?.checked) {
             setFilter([...filter, value]);
-        }
-        else if (value && filter?.includes(value)) {
+        } else if (value && filter?.includes(value)) {
             setFilter(filter.filter(tag => tag !== value));
         }
     };
@@ -31,6 +31,8 @@ export const CrewTag = (
                         filter.includes(value),
                 },
             )}
+            onMouseOver={onHover}
+            {...props}
         >
             {children}
             <input
