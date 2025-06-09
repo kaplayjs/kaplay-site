@@ -1,7 +1,7 @@
 import { countByOrigin, originOptions, tags, tagsMessages } from "@/data/crew";
 import { cn } from "@/util/cn";
 import { useEffect, useRef, useState } from "preact/hooks";
-import { CrewTag } from "./CrewTag";
+import { CrewTags } from "./CrewTags";
 
 interface CrewSearchProps {
     nameFilter: string;
@@ -34,6 +34,22 @@ export const CrewSearch = ({
     const toggleTags = () => {
         if (!tagsExpandable) return;
         setTagsExpanded(!tagsExpanded);
+    };
+
+    const updateMessage = (
+        tag: string,
+        e:
+            | preact.JSX.TargetedMouseEvent<HTMLButtonElement>
+            | preact.JSX.TargetedFocusEvent<HTMLButtonElement>,
+    ) => {
+        setMessage(tagsMessages[tag] || "");
+        const { offsetLeft } = e.currentTarget;
+        const parentWidth = tagsRef.current?.parentElement?.clientWidth ?? 0;
+        const threshold = parentWidth * 0.5;
+        tooltipLeft.current = offsetLeft;
+        tooltipX.current = offsetLeft > threshold
+            ? -35 - ((offsetLeft - threshold) / (parentWidth - threshold)) * 50
+            : 0;
     };
 
     useEffect(() => {
@@ -104,7 +120,7 @@ export const CrewSearch = ({
                     "before:flex before:items-center before:left-[var(--tooltip-left)] before:ml-1 before:translate-x-[var(--tooltip-x)] before:top-auto before:bottom-full before:mb-3 before:px-3 before:min-h-10 before:max-w-[calc(100vw-6rem)]",
                     "after:left-[var(--tooltip-left)] after:translate-x-4 after:top-auto after:bottom-full after:-translate-y-[0.35rem]",
                     "before:transition-opacity after:transition-opacity",
-                    "[&:not(:has(label:hover))]:before:opacity-0 [&:not(:has(label:hover))]:after:opacity-0",
+                    "[&:not(:has(.tag:hover,.tag:focus))]:before:opacity-0 [&:not(:has(.tag:hover,.tag:focus))]:after:opacity-0",
                 )}
                 style={{
                     "--tooltip-left": tooltipLeft.current + "px",
@@ -118,33 +134,13 @@ export const CrewSearch = ({
                         "max-h-6": !tagsExpanded,
                     })}
                 >
-                    <fieldset class="flex flex-wrap gap-1">
-                        {tags.map(tag => (
-                            <CrewTag
-                                key={tag}
-                                filter={tagFilter}
-                                value={tag}
-                                setFilter={setTagFilter}
-                                onHover={(e) => {
-                                    setMessage(tagsMessages[tag] || "");
-                                    const { offsetLeft } = e.currentTarget;
-                                    const parentWidth =
-                                        tagsRef.current?.parentElement
-                                            ?.clientWidth ?? 0;
-                                    const threshold = parentWidth * 0.5;
-                                    tooltipLeft.current = offsetLeft;
-                                    tooltipX.current = offsetLeft > threshold
-                                        ? -35
-                                            - ((offsetLeft - threshold)
-                                                    / (parentWidth - threshold))
-                                                * 50
-                                        : 0;
-                                }}
-                            >
-                                {tag}
-                            </CrewTag>
-                        ))}
-                    </fieldset>
+                    <CrewTags
+                        tags={tags}
+                        filter={tagFilter}
+                        setFilter={setTagFilter}
+                        onTagHover={updateMessage}
+                        onTagFocus={updateMessage}
+                    />
                 </div>
 
                 <div className="flex gap-1 shrink-0">

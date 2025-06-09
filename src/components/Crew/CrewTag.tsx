@@ -6,43 +6,61 @@ type CrewTagProps = {
     filter: string[];
     setFilter: (val: string[]) => void;
     children?: preact.ComponentChildren;
-    onHover: (e: preact.JSX.TargetedMouseEvent<HTMLLabelElement>) => void;
+    onHover: (
+        tag: string,
+        e: preact.JSX.TargetedMouseEvent<HTMLButtonElement>,
+    ) => void;
+    onKeyDown: (e: preact.JSX.TargetedKeyboardEvent<HTMLButtonElement>) => void;
+    onFocus: (
+        tag: string,
+        e: preact.JSX.TargetedFocusEvent<HTMLButtonElement>,
+    ) => void;
+    tabindex: 0 | -1;
 };
 
 export const CrewTag = (
-    { value, filter, setFilter, children, onHover, ...props }: CrewTagProps,
+    {
+        value,
+        filter,
+        setFilter,
+        children,
+        onHover,
+        onKeyDown,
+        onFocus,
+        tabindex,
+        ...props
+    }: CrewTagProps,
 ) => {
-    const inputRef = useRef<HTMLInputElement>(null);
+    const inputRef = useRef<HTMLButtonElement>(null);
 
     const handleChange = () => {
-        if (inputRef.current?.checked) {
-            setFilter([...filter, value]);
-        } else if (value && filter?.includes(value)) {
+        if (filter.includes(value)) {
             setFilter(filter.filter(tag => tag !== value));
+        } else {
+            setFilter([...filter, value]);
         }
     };
 
     return (
-        <label
+        <button
+            ref={inputRef}
             class={cn(
-                "relative btn btn-xs btn-outline font-medium capitalize bg-base-content/10 border-base-content/10 rounded-full focus-visible:-outline-offset-2 focus-visible:z-10",
+                "relative tag btn btn-xs btn-outline font-medium capitalize bg-base-content/10 border-base-content/10 rounded-full focus-visible:-outline-offset-2 focus-visible:z-10",
                 {
                     "bg-primary text-neutral focus-visible:ring-[3px] ring-inset ring-neutral":
                         filter.includes(value),
                 },
             )}
-            onMouseOver={onHover}
+            type="button"
+            tabIndex={tabindex}
+            onClick={handleChange}
+            onMouseOver={e => onHover(value, e)}
+            onKeyDown={onKeyDown}
+            onFocus={e => onFocus(value, e)}
+            aria-pressed={filter.includes(value)}
             {...props}
         >
             {children}
-            <input
-                type="checkbox"
-                name="tags"
-                class="hidden"
-                checked={filter.includes(value)}
-                onChange={handleChange}
-                ref={inputRef}
-            />
-        </label>
+        </button>
     );
 };
