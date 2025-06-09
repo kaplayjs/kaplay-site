@@ -18,9 +18,6 @@ export const CrewList = () => {
     );
     const dialogRef = useRef<HTMLDialogElement>(null);
 
-    const tabsRef = useRef<HTMLDivElement>(null);
-    const tabsScrollTop = useRef<Record<typeOptions, number> | {}>({});
-
     const filterAssetsByOrigin = (asset: string | null) => {
         if (originFilter == "All") return true;
         return assets[asset as keyof typeof assets].origin == originFilter;
@@ -45,11 +42,24 @@ export const CrewList = () => {
             .includes(nameFilter.toLowerCase());
     };
 
-    const crewItems = Object.keys(assets)
+    const allTabFiltered = Object.keys(assets)
         .filter(filterAssetsByOrigin)
-        .filter(filterAssetsByType)
         .filter(filterAssetsByTag)
         .filter(filterAssetsByName);
+
+    const crewItems = allTabFiltered
+        .filter(filterAssetsByType);
+
+    const tabsRef = useRef<HTMLDivElement>(null);
+    const tabsScrollTop = useRef<Record<typeOptions, number> | {}>({});
+    const tabTriggers = Object.fromEntries(typeOptions.map(type => [
+        type,
+        type == "All"
+            ? allTabFiltered.length
+            : allTabFiltered.filter(asset =>
+                assets[asset as keyof typeof assets].type == type
+            ).length,
+    ])) as Record<typeOptions, number>;
 
     useEffect(() => {
         if (!tabsRef.current) return;
@@ -118,8 +128,8 @@ export const CrewList = () => {
                 </div>
 
                 <CrewTabs
+                    tabs={tabTriggers}
                     active={typeFilter}
-                    activeCount={crewItems.length}
                     onChange={type => {
                         tabsScrollTop.current[typeFilter] =
                             tabsRef.current?.scrollTop ?? 0;
