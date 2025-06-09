@@ -31,7 +31,7 @@ export const CrewTabs = (
                         name="type"
                         key={type}
                         aria-label={type}
-                        class="hidden"
+                        class="appearance-none absolute inset-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-base-content/40 rounded-t-[inherit] pointer-events-none"
                         checked={type == active}
                         onChange={() => onChange(type as typeOptions)}
                     />
