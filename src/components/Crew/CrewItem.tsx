@@ -7,6 +7,41 @@ export interface CrewItemProps {
     isModal?: boolean;
 }
 
+type FactData = {
+    icon: string;
+    tooltip?: string;
+    tooltipCheck?: (value: string|number) => boolean;
+    suffix?: string;
+};
+
+const factsData: Record<
+    keyof (typeof assets)[keyof typeof assets]["crewmeta"],
+    FactData
+> = {
+    birthday: {
+        icon: assets.egg_crack.outlined,
+        tooltip: "Day/Month",
+        tooltipCheck: (value: string) => value.includes("/"),
+    },
+    age: {
+        icon: assets.cake.outlined,
+    },
+    height: {
+        icon: assets.rule.outlined,
+        suffix: "m",
+    },
+    weight: {
+        icon: assets.weight.outlined,
+        suffix: "kg",
+    },
+    species: {
+        icon: assets.stranger.outlined,
+    },
+    origin: {
+        icon: assets.portal.outlined,
+    },
+};
+
 const genderWord = [
     ["He", "Him", "His"],
     ["She", "Her", "Her"],
@@ -24,6 +59,12 @@ export const CrewItem = (props: CrewItemProps) => {
     }
 
     const crewItem = assets[props.crewItem];
+
+    const facts = crewItem.crewmeta
+        ? Object.fromEntries([
+            ...Object.keys(factsData).filter(k => k in crewItem.crewmeta!),
+        ].map(k => [k, crewItem.crewmeta![k]]))
+        : undefined;
 
     if (!crewItem.outlined) setVersionSelected("original");
 
@@ -111,51 +152,86 @@ export const CrewItem = (props: CrewItemProps) => {
                         </h2>
                         <p class="text-md">by {crewItem.author}</p>
 
-                        {crewItem.crewmeta && (
-                            <ul class="columns-[10rem] gap-2 mt-5 lg:mt-7 space-y-1">
-                                <li class="flex items-center gap-2">
-                                    <img
-                                        src={assets.cake.outlined}
-                                        alt="Age icon"
-                                        class="h-5 w-5"
-                                    />
-                                    <span class="font-bold min-w-14">Age</span>
-                                    {" "}
-                                    {crewItem.crewmeta.age}
-                                </li>
-                                <li class="flex items-center gap-2">
-                                    <img
-                                        src={assets.weight.outlined}
-                                        alt="Weight icon"
-                                        class="h-5 w-5"
-                                    />
-                                    <span class="font-bold min-w-14">
-                                        Weight
-                                    </span>{" "}
-                                    {crewItem.crewmeta?.weight}kg
-                                </li>
-                                <li class="flex items-center gap-2">
-                                    <img
-                                        src={assets.rule.outlined}
-                                        alt="Height icon"
-                                        class="h-5 w-5"
-                                    />
-                                    <span class="font-bold min-w-14">
-                                        Height
-                                    </span>{" "}
-                                    {crewItem.crewmeta?.height}m
-                                </li>
-                                <li class="flex items-center gap-2">
-                                    <img
-                                        src={assets.stranger.outlined}
-                                        alt="Species icon"
-                                        class="h-5 w-5"
-                                    />
-                                    <span class="font-bold min-w-14">
-                                        Species
-                                    </span>{" "}
-                                    {crewItem.crewmeta?.species}
-                                </li>
+                        {(facts || crewItem.appearances) && (
+                            <ul class="flex flex-wrap gap-x-4 gap-y-2 mt-5 lg:mt-7">
+                                {facts
+                                    && Object.entries(facts).map((
+                                        [key, value],
+                                    ) => (
+                                        <li
+                                            class="tooltip flex gap-2 items-start grow basis-[calc(50%-1rem)] min-w-fit text-left data-[tip]:underline decoration-dotted decoration-base-content/25 underline-offset-4"
+                                            data-tip={(factsData?.[key]?.tooltip
+                                                        && (factsData?.[key]
+                                                            ?.tooltipCheck(
+                                                                value,
+                                                            ) ?? true))
+                                                    && factsData[key].tooltip
+                                                || undefined}
+                                        >
+                                            <span class="flex gap-2 items-center">
+                                                <img
+                                                    src={factsData?.[key]?.icon
+                                                        ?? assets.question_mark
+                                                            .outlined}
+                                                    class="h-5 w-5 object-contain"
+                                                    aria-hidden="true"
+                                                />
+                                                <span class="font-bold min-w-16">
+                                                    {key.charAt(0)
+                                                        .toUpperCase()}
+                                                    {key.substring(1)}
+                                                </span>
+                                            </span>
+                                            {value}
+                                            {factsData?.[key]?.suffix}
+                                        </li>
+                                    ))}
+
+                                {crewItem.appearances && (
+                                    <li class="tooltip flex flex-wrap gap-2 items-start grow basis-[calc(50%-1rem)] min-w-fit">
+                                        <span
+                                            class="tooltip flex gap-2 items-center text-left before:max-w-48 data-[tip]:underline decoration-dotted decoration-base-content/25 underline-offset-4"
+                                            data-tip="Green is Canon / Officially Acknowledged™"
+                                        >
+                                            <img
+                                                src={assets.door.outlined}
+                                                class="h-5 w-5 object-contain"
+                                                aria-hidden="true"
+                                            />
+                                            <span class="font-bold min-w-16">
+                                                Appearances
+                                            </span>
+                                        </span>
+
+                                        <span>
+                                            {crewItem.appearances.map((
+                                                item,
+                                                i,
+                                            ) => [
+                                                i > 0 && ", ",
+                                                <a
+                                                    class={cn(
+                                                        "tooltip before:z-50 before:max-w-60 after:z-50 underline decoration-dotted decoration-base-content/25 underline-offset-4 hover:decoration-solid hover:decoration-current transition-all",
+                                                        {
+                                                            "link-primary":
+                                                                item.canon,
+                                                        },
+                                                        {
+                                                            "link-secondary":
+                                                                !item.canon,
+                                                        },
+                                                    )}
+                                                    href={item.link}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    data-tip={item.description}
+                                                >
+                                                    {item.name}
+                                                </a>,
+                                            ])}
+                                        </span>
+                                    </li>
+                                )}
                             </ul>
                         )}
                     </div>
