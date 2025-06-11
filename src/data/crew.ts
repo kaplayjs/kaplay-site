@@ -1,5 +1,10 @@
 import { highlight } from "@/util/highlight";
-import { assets, type CrewItemBase, type Tag } from "@kaplayjs/crew";
+import {
+    assets,
+    type CrewAssetPack,
+    type CrewItemBase,
+    type Tag,
+} from "@kaplayjs/crew";
 
 type Asset = (typeof assets)[keyof typeof assets];
 
@@ -66,8 +71,23 @@ export const tags: Tag[] = [
     ).values()),
 ].sort();
 
+type crewPacksOrdered = CrewAssetPack | "Other";
+const crewPacksOrdered: crewPacksOrdered[] = [
+    "KAWorld",
+    "Icons",
+    "Emojis",
+    "Brand",
+];
+export const crewPacks: crewPacksOrdered[] = [
+    ...crewPacksOrdered,
+    ...(Object.values(crew).map(asset => asset.pack).filter((
+        pack: crewPacksOrdered,
+    ) => !crewPacksOrdered.includes(pack) && pack != "Other")),
+    "Other",
+];
+
 export const tagsMessages = {
-    "all": "Welcome to KAWorld, the KAPLAYER's home :D",
+    "kaworld": "Welcome to KAWorld, the KAPLAYER's home :D",
     "crew": "The protagonists of your next adventure",
     "objects": "Objects of power",
     "animals": "Yokai, Yokai, Yokai...",
@@ -79,7 +99,7 @@ export const tagsMessages = {
     "ui": "*Click*",
     "emojis": "More in Discord!",
     "fonts": "Sad font coming soon...",
-} satisfies Record<typeof tags[number] | "all", string>;
+} satisfies Record<typeof tags[number] | "kaworld", string>;
 
 export { crew as assets };
 export default crew;

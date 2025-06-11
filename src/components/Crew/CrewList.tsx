@@ -1,4 +1,12 @@
-import { assets, originOptions, tags, typeOptions } from "@/data/crew";
+import {
+    assets,
+    crewPacks,
+    originOptions,
+    tags,
+    tagsMessages,
+    typeOptions,
+} from "@/data/crew";
+import { cn } from "@/util/cn";
 import { useEffect, useRef, useState } from "preact/hooks";
 import { CrewItem } from "./CrewItem";
 import { CrewListItem } from "./CrewListItem";
@@ -15,6 +23,9 @@ export const CrewList = () => {
     const [typeFilter, setTypeFilter] = useState<typeOptions>("All");
     const [curCrewItem, setCurCrewItem] = useState<keyof typeof assets | null>(
         null,
+    );
+    const [openCollapses, setOpenCollapses] = useState<Record<string, boolean>>(
+        Object.fromEntries(crewPacks.map(pack => [pack, true])),
     );
     const dialogRef = useRef<HTMLDialogElement>(null);
 
@@ -50,6 +61,17 @@ export const CrewList = () => {
     const crewItems = allTabFiltered
         .filter(filterAssetsByType);
 
+    const crewItemsPacked = crewPacks.reduce(
+        (obj: Record<string, typeof crewItems>, pack) => {
+            const items = crewItems.filter(item =>
+                (assets[item].pack || "Other") == pack
+            );
+            if (items.length > 0) obj[pack] = items;
+            return obj;
+        },
+        {} as Record<string, typeof crewItems>,
+    );
+
     const tabsRef = useRef<HTMLDivElement>(null);
     const tabsScrollTop = useRef<Record<typeOptions, number> | {}>({});
     const tabTriggers = Object.fromEntries(typeOptions.map(type => [
@@ -60,6 +82,13 @@ export const CrewList = () => {
                 assets[asset as keyof typeof assets].type == type
             ).length,
     ])) as Record<typeOptions, number>;
+
+    const handleCollapseToggle = (pack: string) => {
+        setOpenCollapses(prev => ({
+            ...prev,
+            [pack]: !prev[pack],
+        }));
+    };
 
     useEffect(() => {
         if (!tabsRef.current) return;
@@ -106,7 +135,7 @@ export const CrewList = () => {
                             <span class="text-primary">KAPLAY</span> Crew
                         </h1>
                         <p class="text-lg text-center">
-                            <span class="font-hand uppercase">
+                            <span class="font-hand text-slate-200 uppercase">
                                 Royalty free
                             </span>{" "}
                             assets, for using in{"  "}
@@ -140,27 +169,77 @@ export const CrewList = () => {
 
                 <div
                     id="crew-list"
-                    class="flex flex-col flex-1 px-4 lg:px-8 py-4 lg:py-4 bg-base-100/60 border-t-4 border-transparent overflow-y-auto !scroll-auto scrollbar-thin focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-base-content/10 rounded-b-xl group-data-[minimized]:rounded-tr-lg"
+                    class="flex flex-col flex-1 px-4 lg:px-8 pb-4 lg:pb-8 bg-base-100/60 border-t-4 border-transparent overflow-y-auto !scroll-auto scrollbar-thin focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-base-content/10 rounded-b-xl group-data-[minimized]:rounded-tr-lg"
                     ref={tabsRef}
                 >
-                    <div class="flex flex-wrap items-center justify-center gap-2">
-                        {crewItems.map((crewItem, i) => (
-                            <a
-                                class="max-[459px]:grow max-[459px]:basis-1/3 focus:outline-none focus-visible:ring-2 focus-visible:ring-base-content rounded-xl"
+                    <div class="-mt-1.5">
+                        {Object.entries(crewItemsPacked).map((
+                            [pack, crewItems],
+                            i,
+                        ) => (
+                            <div
                                 key={i}
-                                href={`/crew/${crewItem}`}
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    setCurCrewItem(
-                                        crewItem as keyof typeof assets,
-                                    );
-                                    dialogRef.current?.showModal();
-                                }}
+                                class={cn(
+                                    "collapse collapse-arrow px-1 first:pt-0.5 rounded-none has-[:focus]:rounded-lg group-collapse",
+                                )}
                             >
-                                <CrewListItem
-                                    crewItem={crewItem as keyof typeof assets}
+                                <input
+                                    class="peer min-h-12"
+                                    type="checkbox"
+                                    checked={openCollapses[pack] ?? true} // default open if not set
+                                    onChange={() => handleCollapseToggle(pack)}
                                 />
-                            </a>
+
+                                <div
+                                    class={cn(
+                                        "collapse-title flex items-center gap-1.5 font-medium pl-0 pr-6 py-3.5 min-h-12 border-t border-base-content/10 group-[-collapse:first-child]:border-t-0 after:!top-7 after:!right-2 peer-hover:text-white transition-colors",
+                                        {
+                                            "text-base-content/50":
+                                                pack == "Other",
+                                        },
+                                    )}
+                                >
+                                    <span class="badge badge-xs font-bold text-[inherit] text-[0.625rem] py-1 px-1 min-w-5 h-auto bg-base-content/15 border-0">
+                                        {crewItems.length}
+                                    </span>
+
+                                    <div class="flex flex-wrap items-baseline gap-x-2">
+                                        <h3 class="capitalize">{pack}</h3>
+
+                                        {tagsMessages?.[pack.toLowerCase()] && (
+                                            <p className="self-baseline font-normal text-xs tracking-wide text-base-content/80">
+                                                {tagsMessages[
+                                                    pack.toLowerCase()
+                                                ]}
+                                            </p>
+                                        )}
+                                    </div>
+                                </div>
+
+                                <div class="collapse-content -mx-0.5 !p-0 -mt-4 peer-checked:!pt-5 group-[-collapse:not(:last-child)]:peer-checked:!pb-5">
+                                    <div class="flex flex-wrap items-center justify-center gap-2">
+                                        {crewItems.map((crewItem, i) => (
+                                            <a
+                                                class="max-[459px]:grow max-[459px]:basis-1/3 focus:outline-none focus-visible:ring-2 focus-visible:ring-base-content rounded-xl"
+                                                key={i}
+                                                href={`/crew/${crewItem}`}
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    setCurCrewItem(
+                                                        crewItem as keyof typeof assets,
+                                                    );
+                                                    dialogRef.current
+                                                        ?.showModal();
+                                                }}
+                                            >
+                                                <CrewListItem
+                                                    crewItem={crewItem as keyof typeof assets}
+                                                />
+                                            </a>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
                         ))}
                     </div>
                 </div>

@@ -18,7 +18,8 @@ button:not([disabled]):hover,
 select:not([disabled]),
 select:not([disabled]):hover,
 label:hover,
-.hoverable:not(.disabled):hover {
+.hoverable:not(.disabled):hover,
+.collapse:not(.collapse-open):not(.collapse-close) > input[type="checkbox"] {
     cursor: url(/cursor_pointer.png) 8 4, auto;
 }
 
@@ -258,5 +259,16 @@ pre button.copy {
         & .ready {
             opacity: 0;
         }
+    }
+}
+
+/* daisyUI */
+
+.collapse {
+    grid-template-rows: max-content 0fr;
+
+    &:is([open], :focus:not(.collapse-close)),
+    &:not(.collapse-close):has(> input:is([type="checkbox"], [type="radio"]):checked) {
+        grid-template-rows: max-content 1fr;
     }
 }
