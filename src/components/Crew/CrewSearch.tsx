@@ -120,7 +120,7 @@ export const CrewSearch = ({
                     "before:flex before:items-center before:left-[var(--tooltip-left)] before:ml-1 before:translate-x-[var(--tooltip-x)] before:top-auto before:bottom-full before:mb-3 before:px-3 before:min-h-10 before:max-w-[calc(100vw-6rem)]",
                     "after:left-[var(--tooltip-left)] after:translate-x-4 after:top-auto after:bottom-full after:-translate-y-[0.35rem]",
                     "before:transition-opacity after:transition-opacity",
-                    "[&:not(:has(.tag:hover,.tag:focus))]:before:opacity-0 [&:not(:has(.tag:hover,.tag:focus))]:after:opacity-0",
+                    "[&:not(:has(.tag:hover,.tag:focus-visible))]:before:opacity-0 [&:not(:has(.tag:hover,.tag:focus-visible))]:after:opacity-0",
                 )}
                 style={{
                     "--tooltip-left": tooltipLeft.current + "px",
