@@ -10,7 +10,7 @@ export interface CrewItemProps {
 type FactData = {
     icon: string;
     tooltip?: string;
-    tooltipCheck?: (value: string|number) => boolean;
+    tooltipCheck?: (value: string | number) => boolean;
     suffix?: string;
 };
 
@@ -277,7 +277,10 @@ export const CrewItem = (props: CrewItemProps) => {
                             About {crewItem.name}
                         </h3>
                         <p class="max-w-[40ch] text-balance mb-6">
-                            {crewItem.description} {crewItem.crewmeta && (
+                            {crewItem.description.trim().replace(
+                                /([^.?!])$/,
+                                "$1.",
+                            )} {crewItem.crewmeta && (
                                 <>
                                     <span>
                                         {crewItem.name} hobbies include{" "}
