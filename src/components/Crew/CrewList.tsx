@@ -172,10 +172,10 @@ export const CrewList = () => {
 
                 <div
                     id="crew-list"
-                    class="flex flex-col flex-1 px-4 lg:px-8 pb-4 lg:pb-8 bg-base-100/60 border-t-4 border-transparent overflow-y-auto !scroll-auto scrollbar-thin focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-base-content/10 rounded-b-xl group-data-[minimized]:rounded-tr-lg"
+                    class="flex flex-col flex-1 bg-base-100/60 overflow-y-auto !scroll-auto scrollbar-thin focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-base-content/10 rounded-b-xl group-data-[minimized]:rounded-tr-lg"
                     ref={tabsRef}
                 >
-                    <div class="-mt-1.5">
+                    <div class="px-4 lg:px-8 pb-4 lg:pb-8">
                         {Object.entries(crewItemsPacked).map((
                             [pack, crewItems],
                             i,
@@ -183,13 +183,13 @@ export const CrewList = () => {
                             <div
                                 key={i}
                                 class={cn(
-                                    "collapse collapse-arrow px-1 first:pt-0.5 rounded-none has-[:focus]:rounded-lg group-collapse",
+                                    "collapse collapse-arrow px-1 rounded-none has-[:focus]:rounded-lg !-outline-offset-2 group-collapse",
                                 )}
                             >
                                 <input
                                     class="peer min-h-12"
                                     type="checkbox"
-                                    checked={openCollapses[pack] ?? true} // default open if not set
+                                    checked={openCollapses[pack] ?? true}
                                     onChange={() => handleCollapseToggle(pack)}
                                 />
 
