@@ -109,7 +109,8 @@ export const CrewList = () => {
                     onClick={() => {
                         setMinimized(!minimized);
                     }}
-                    aria-label="Toggle filters"
+                    aria-label="Minimize filters"
+                    aria-pressed={minimized}
                 >
                     <svg
                         class="group-data-[minimized]:rotate-180"
@@ -129,31 +130,33 @@ export const CrewList = () => {
                     </svg>
                 </button>
 
-                <div class="flex flex-col gap-4 p-4 lg:px-8 lg:pt-5 lg:pb-6 rounded-t-[inherit] group-data-[minimized]:hidden">
-                    <div class="flex justify-center flex-col">
-                        <h1 class="font-hand text-3xl text-center">
-                            <span class="text-primary">KAPLAY</span> Crew
-                        </h1>
-                        <p class="text-lg text-center">
-                            <span class="font-hand text-slate-200 uppercase">
-                                Royalty free
-                            </span>{" "}
-                            assets, for using in{"  "}
-                            <span class="font-hand text-[#ea6262] uppercase">
-                                game jams
-                            </span>{" "}
-                            and prototypes
-                        </p>
-                    </div>
+                <div class="grid grid-rows-[1fr] p-4 lg:px-8 lg:pt-5 lg:pb-6 group-data-[minimized]:grid-rows-[0fr] group-data-[minimized]:py-0 overflow-hidden transition-all ease-out duration-200">
+                    <div class="flex flex-col gap-4 min-h-0 rounded-t-[inherit] group-data-[minimized]:invisible">
+                        <div class="flex justify-center flex-col">
+                            <h1 class="font-hand text-3xl text-center">
+                                <span class="text-primary">KAPLAY</span> Crew
+                            </h1>
+                            <p class="text-lg text-center">
+                                <span class="font-hand text-slate-200 uppercase">
+                                    Royalty free
+                                </span>{" "}
+                                assets, for using in{"  "}
+                                <span class="font-hand text-[#ea6262] uppercase">
+                                    game jams
+                                </span>{" "}
+                                and prototypes
+                            </p>
+                        </div>
 
-                    <CrewSearch
-                        nameFilter={nameFilter}
-                        setNameFilter={setNameFilter}
-                        tagFilter={tagFilter}
-                        setTagFilter={setTagFilter}
-                        originFilter={originFilter}
-                        setOriginFilter={setOriginFilter}
-                    />
+                        <CrewSearch
+                            nameFilter={nameFilter}
+                            setNameFilter={setNameFilter}
+                            tagFilter={tagFilter}
+                            setTagFilter={setTagFilter}
+                            originFilter={originFilter}
+                            setOriginFilter={setOriginFilter}
+                        />
+                    </div>
                 </div>
 
                 <CrewTabs
