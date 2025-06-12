@@ -56,14 +56,27 @@ export const CrewTabs = (
     const handleTypeChange = (type: typeOptions) => {
         tabsScrollTop.current[typeFilter] = tabsRef.current?.scrollTop ?? 0;
 
+        tabsRef?.current?.classList.remove(
+            "transition-opacity",
+            "delay-[50ms]",
+        );
+        tabsRef?.current?.classList.add("opacity-0");
+
         setTypeFilter(type);
     };
 
     useEffect(() => {
-        if (!tabsRef.current) return;
+        if (tabsRef.current) {
+            tabsRef.current.scrollTop = tabsScrollTop.current[typeFilter] ?? 0;
+        }
 
-        const scrollTop = tabsScrollTop.current[typeFilter] ?? 0;
-        tabsRef.current.scrollTop = scrollTop;
+        requestAnimationFrame(() => {
+            tabsRef?.current?.classList.add(
+                "transition-opacity",
+                "delay-[50ms]",
+            );
+            tabsRef?.current?.classList.remove("opacity-0");
+        });
     }, [typeFilter]);
 
     return (
