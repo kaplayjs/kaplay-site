@@ -1,62 +1,114 @@
-import { assets, type typeOptions } from "@/data/crew";
+import { assets, crewPacks, typeOptions } from "@/data/crew";
+import { useEffect, useMemo, useRef, useState } from "preact/hooks";
+import { CrewListItem } from "./CrewListItem";
+import { CrewListPack } from "./CrewListPack";
+import { CrewTabsTriggers } from "./CrewTabsTriggers";
 
-const typeIcons = {
-    "All": assets.assetbrew.outlined,
-    "Sprite": assets.art.outlined,
-    "Sound": assets.sounds.outlined,
-    "UI": assets.like.outlined,
+type CrewTabsProps = {
+    items: (keyof typeof assets)[];
+    setCurCrewItem: (item: keyof typeof assets) => void;
+    maximized: boolean;
+    dialogRef: preact.RefObject<HTMLDialogElement>;
 };
 
-interface CrewTabProps {
-    active: typeOptions;
-    tabs: Record<typeOptions, number>;
-    onChange: (type: typeOptions) => void;
-}
-
 export const CrewTabs = (
-    { active, tabs, onChange, ...props }: CrewTabProps,
+    { items, setCurCrewItem, maximized, dialogRef }: CrewTabsProps,
 ) => {
+    const [typeFilter, setTypeFilter] = useState<typeOptions>("All");
+    const tabsScrollTop = useRef<Record<typeOptions, number> | {}>({});
+    const tabsRef = useRef<HTMLDivElement>(null);
+
+    const crewItems = useMemo(
+        () =>
+            items.filter(asset =>
+                typeFilter === "All"
+                    ? true
+                    : assets[asset].type === typeFilter
+            ),
+        [items, typeFilter],
+    );
+
+    const crewItemsPacked = useMemo(
+        () =>
+            crewPacks.reduce((obj, pack) => {
+                obj[pack] = crewItems.filter(
+                    item => (assets[item].pack || "Other") == pack,
+                );
+                return obj;
+            }, {} as Record<typeof crewPacks[number], typeof crewItems>),
+        [crewItems],
+    );
+
+    const tabTriggers = useMemo(
+        () =>
+            Object.fromEntries(
+                typeOptions.map(type => [
+                    type,
+                    type === "All"
+                        ? items.length
+                        : items.filter(asset => assets[asset].type == type)
+                            .length,
+                ]),
+            ) as Record<typeOptions, number>,
+        [items],
+    );
+
+    const handleTypeChange = (type: typeOptions) => {
+        tabsScrollTop.current[typeFilter] = tabsRef.current?.scrollTop ?? 0;
+
+        setTypeFilter(type);
+    };
+
+    useEffect(() => {
+        if (!tabsRef.current) return;
+
+        const scrollTop = tabsScrollTop.current[typeFilter] ?? 0;
+        tabsRef.current.scrollTop = scrollTop;
+    }, [typeFilter]);
+
     return (
-        <div
-            class="tabs tabs-lifted tabs-lg group -mx-px group-data-[minimized]:pr-12 w-auto bg-base-300 overflow-x-auto"
-            {...props}
-        >
-            {Object.entries(tabs).map(([type, count]) => (
-                <label
-                    class="tab no-wrap w-full has-[:checked]:tab-active has-[:checked]:[--tab-bg:oklch(var(--b1)/60%)] px-6 text-sm hover:bg-base-200 transition-[background-color] has-[:checked]:last:before:!w-full last:before:-left-[var(--tab-radius)]"
-                    key={type}
+        <>
+            <CrewTabsTriggers
+                tabs={tabTriggers}
+                active={typeFilter}
+                onChange={handleTypeChange}
+                data-maximized={maximized || undefined}
+            />
+
+            <div class="flex flex-col flex-1 bg-base-100/60 min-h-0 rounded-b-xl group-data-[minimized]:rounded-tr-lg">
+                <div
+                    class="flex-1 px-4 lg:px-8 pb-4 lg:pb-8 overflow-y-auto !scroll-auto scrollbar-thin focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-base-content/10 rounded-[inherit]"
+                    ref={tabsRef}
                 >
-                    <input
-                        type="radio"
-                        name="type"
-                        key={type}
-                        aria-label={type}
-                        class="appearance-none absolute inset-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-base-content/40 rounded-t-[inherit] pointer-events-none"
-                        checked={type == active}
-                        onChange={() => onChange(type as typeOptions)}
-                    />
-
-                    <span className="flex gap-2 items-center justify-center">
-                        {typeIcons[type] && (
-                            <img
-                                src={typeIcons[type]}
-                                alt={type}
-                                className="inline h-5 w-5 object-scale-down"
-                            />
-                        )}
-
-                        <span className="inline font-medium">{type}</span>
-
-                        <span className="badge badge-xs font-medium py-1 px-1 min-w-5 h-auto bg-base-content/15 border-0">
-                            {count}
-                        </span>
-                    </span>
-                </label>
-            ))}
-
-            {!props?.["data-maximized"] && (
-                <span class="maximize-placeholder hidden"></span>
-            )}
-        </div>
+                    {Object.entries(crewItemsPacked).map((
+                        [pack, crewItems],
+                    ) => (
+                        <CrewListPack
+                            key={pack}
+                            pack={pack as typeof crewPacks[number]}
+                            count={crewItems.length}
+                        >
+                            {crewItems.map((
+                                crewItem: keyof typeof assets,
+                                i,
+                            ) => (
+                                <a
+                                    class="max-[459px]:grow max-[459px]:basis-1/3 focus:outline-none focus-visible:ring-2 focus-visible:ring-base-content rounded-xl"
+                                    key={i}
+                                    href={`/crew/${crewItem}`}
+                                    onClick={e => {
+                                        e.preventDefault();
+                                        setCurCrewItem(crewItem);
+                                        dialogRef.current?.showModal();
+                                    }}
+                                >
+                                    <CrewListItem crewItem={crewItem} />
+                                </a>
+                            ))}
+                        </CrewListPack>
+                    ))}
+                </div>
+            </div>
+        </>
     );
 };

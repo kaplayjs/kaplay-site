@@ -1,15 +1,6 @@
-import {
-    assets,
-    crewPacks,
-    originOptions,
-    tags,
-    tagsMessages,
-    typeOptions,
-} from "@/data/crew";
-import { cn } from "@/util/cn";
-import { useEffect, useRef, useState } from "preact/hooks";
+import { assets, originOptions, tags } from "@/data/crew";
+import { useMemo, useRef, useState } from "preact/hooks";
 import { CrewItem } from "./CrewItem";
-import { CrewListItem } from "./CrewListItem";
 import { CrewSearch } from "./CrewSearch";
 import { CrewTabs } from "./CrewTabs";
 
@@ -20,23 +11,14 @@ export const CrewList = () => {
     const [originFilter, setOriginFilter] = useState<originOptions>("All");
     const [tagFilter, setTagFilter] = useState<string[]>([]);
     const [nameFilter, setNameFilter] = useState<string>("");
-    const [typeFilter, setTypeFilter] = useState<typeOptions>("All");
     const [curCrewItem, setCurCrewItem] = useState<keyof typeof assets | null>(
         null,
-    );
-    const [openCollapses, setOpenCollapses] = useState<Record<string, boolean>>(
-        Object.fromEntries(crewPacks.map(pack => [pack, true])),
     );
     const dialogRef = useRef<HTMLDialogElement>(null);
 
     const filterAssetsByOrigin = (asset: string | null) => {
         if (originFilter == "All") return true;
         return assets[asset as keyof typeof assets].origin == originFilter;
-    };
-
-    const filterAssetsByType = (asset: string | null) => {
-        if (typeFilter == "All") return true;
-        return assets[asset as keyof typeof assets].type == typeFilter;
     };
 
     const filterAssetsByTag = (asset: string | null) => {
@@ -53,49 +35,14 @@ export const CrewList = () => {
             .includes(nameFilter.toLowerCase());
     };
 
-    const allTabFiltered = Object.keys(assets)
-        .filter(filterAssetsByOrigin)
-        .filter(filterAssetsByTag)
-        .filter(filterAssetsByName);
-
-    const crewItems = allTabFiltered
-        .filter(filterAssetsByType);
-
-    const crewItemsPacked = crewPacks.reduce(
-        (obj: Record<string, typeof crewItems>, pack) => {
-            const items = crewItems.filter(item =>
-                (assets[item].pack || "Other") == pack
-            );
-            if (items.length > 0) obj[pack] = items;
-            return obj;
-        },
-        {} as Record<string, typeof crewItems>,
+    const crewItems = useMemo(
+        () =>
+            Object.keys(assets)
+                .filter(filterAssetsByOrigin)
+                .filter(filterAssetsByTag)
+                .filter(filterAssetsByName),
+        [originFilter, tagFilter, nameFilter],
     );
-
-    const tabsRef = useRef<HTMLDivElement>(null);
-    const tabsScrollTop = useRef<Record<typeOptions, number> | {}>({});
-    const tabTriggers = Object.fromEntries(typeOptions.map(type => [
-        type,
-        type == "All"
-            ? allTabFiltered.length
-            : allTabFiltered.filter(asset =>
-                assets[asset as keyof typeof assets].type == type
-            ).length,
-    ])) as Record<typeOptions, number>;
-
-    const handleCollapseToggle = (pack: string) => {
-        setOpenCollapses(prev => ({
-            ...prev,
-            [pack]: !prev[pack],
-        }));
-    };
-
-    useEffect(() => {
-        if (!tabsRef.current) return;
-
-        const scrollTop = tabsScrollTop.current[typeFilter] ?? 0;
-        tabsRef.current.scrollTop = scrollTop;
-    }, [typeFilter]);
 
     return (
         <div class="h-full w-full lg:py-2.5 2xl:py-10 md:flex md:justify-center">
@@ -160,92 +107,11 @@ export const CrewList = () => {
                 </div>
 
                 <CrewTabs
-                    tabs={tabTriggers}
-                    active={typeFilter}
-                    onChange={type => {
-                        tabsScrollTop.current[typeFilter] =
-                            tabsRef.current?.scrollTop ?? 0;
-                        setTypeFilter(type);
-                    }}
-                    data-maximized={!minimized || undefined}
+                    items={crewItems}
+                    setCurCrewItem={setCurCrewItem}
+                    dialogRef={dialogRef}
+                    maximized={!minimized}
                 />
-
-                <div
-                    id="crew-list"
-                    class="flex flex-col flex-1 bg-base-100/60 overflow-y-auto !scroll-auto scrollbar-thin focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-base-content/10 rounded-b-xl group-data-[minimized]:rounded-tr-lg"
-                    ref={tabsRef}
-                >
-                    <div class="px-4 lg:px-8 pb-4 lg:pb-8">
-                        {Object.entries(crewItemsPacked).map((
-                            [pack, crewItems],
-                            i,
-                        ) => (
-                            <div
-                                key={i}
-                                class={cn(
-                                    "collapse collapse-arrow px-1 rounded-none has-[:focus]:rounded-lg !-outline-offset-2 group-collapse",
-                                )}
-                            >
-                                <input
-                                    class="peer min-h-12"
-                                    type="checkbox"
-                                    checked={openCollapses[pack] ?? true}
-                                    onChange={() => handleCollapseToggle(pack)}
-                                />
-
-                                <div
-                                    class={cn(
-                                        "collapse-title flex items-center gap-1.5 font-medium pl-0 pr-6 py-3.5 min-h-12 border-t border-base-content/10 group-[-collapse:first-child]:border-t-0 after:!top-7 after:!right-2 peer-hover:text-white transition-colors",
-                                        {
-                                            "text-base-content/50":
-                                                pack == "Other",
-                                        },
-                                    )}
-                                >
-                                    <span class="badge badge-xs font-bold text-[inherit] text-[0.625rem] py-1 px-1 min-w-5 h-auto bg-base-content/15 border-0">
-                                        {crewItems.length}
-                                    </span>
-
-                                    <div class="flex flex-wrap items-baseline gap-x-2">
-                                        <h3 class="capitalize">{pack}</h3>
-
-                                        {tagsMessages?.[pack.toLowerCase()] && (
-                                            <p className="self-baseline font-normal text-xs tracking-wide text-base-content/80">
-                                                {tagsMessages[
-                                                    pack.toLowerCase()
-                                                ]}
-                                            </p>
-                                        )}
-                                    </div>
-                                </div>
-
-                                <div class="collapse-content -mx-0.5 !p-0 -mt-4 peer-checked:!pt-5 group-[-collapse:not(:last-child)]:peer-checked:!pb-5">
-                                    <div class="flex flex-wrap items-center justify-center gap-2">
-                                        {crewItems.map((crewItem, i) => (
-                                            <a
-                                                class="max-[459px]:grow max-[459px]:basis-1/3 focus:outline-none focus-visible:ring-2 focus-visible:ring-base-content rounded-xl"
-                                                key={i}
-                                                href={`/crew/${crewItem}`}
-                                                onClick={(e) => {
-                                                    e.preventDefault();
-                                                    setCurCrewItem(
-                                                        crewItem as keyof typeof assets,
-                                                    );
-                                                    dialogRef.current
-                                                        ?.showModal();
-                                                }}
-                                            >
-                                                <CrewListItem
-                                                    crewItem={crewItem as keyof typeof assets}
-                                                />
-                                            </a>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
             </div>
 
             <dialog

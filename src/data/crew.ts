@@ -84,7 +84,7 @@ export const crewPacks: crewPacksOrdered[] = [
         pack: crewPacksOrdered,
     ) => !crewPacksOrdered.includes(pack) && pack != "Other")),
     "Other",
-];
+] as const;
 
 export const tagsMessages = {
     "kaworld": "Welcome to KAWorld, the KAPLAYER's home :D",
