@@ -135,8 +135,8 @@ You can download them for free in [Itch.io](https://fowluhhdev.itch.io/kcepi).
 
 ### 📦 More stuff
 
-- 🤖 **nojaf** is exploring **REScript** along KAPLAY: https://nojaf.com/rescript-kaplay/
-- 🇫🇷 **Colin** French docs features a lot of **AWESOME** examples using KAPLAY: https://martiansparlor.com/ateliers/kaplay/documentation
+- 🤖 **nojaf** is exploring [**REScript** along KAPLAY](https://nojaf.com/rescript-kaplay/)
+- 🇫🇷 **Colin** [French docs](https://martiansparlor.com/ateliers/kaplay/documentation) features a lot of **AWESOME** examples using KAPLAY
 
 ## 👁️ KAPLAY Crew Revamped
 
