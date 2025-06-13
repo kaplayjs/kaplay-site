@@ -1,20 +1,19 @@
 import { assets, originOptions, tags } from "@/data/crew";
-import { useMemo, useRef, useState } from "preact/hooks";
-import { CrewItem } from "./CrewItem";
+import { useMemo, useState } from "preact/hooks";
 import { CrewSearch } from "./CrewSearch";
 import { CrewTabs } from "./CrewTabs";
 
+type CrewListProps = {
+    openModal: (item: keyof typeof assets) => void;
+};
+
 type Tag = typeof tags[number];
 
-export const CrewList = () => {
+export const CrewList = ({ openModal }: CrewListProps) => {
     const [minimized, setMinimized] = useState<boolean>(false);
     const [originFilter, setOriginFilter] = useState<originOptions>("All");
     const [tagFilter, setTagFilter] = useState<string[]>([]);
     const [nameFilter, setNameFilter] = useState<string>("");
-    const [curCrewItem, setCurCrewItem] = useState<keyof typeof assets | null>(
-        null,
-    );
-    const dialogRef = useRef<HTMLDialogElement>(null);
 
     const filterAssetsByOrigin = (asset: string | null) => {
         if (originFilter == "All") return true;
@@ -108,52 +107,10 @@ export const CrewList = () => {
 
                 <CrewTabs
                     items={crewItems}
-                    setCurCrewItem={setCurCrewItem}
-                    dialogRef={dialogRef}
                     maximized={!minimized}
+                    openModal={openModal}
                 />
             </div>
-
-            <dialog
-                ref={dialogRef}
-                class="modal p-2 backdrop:opacity-0 bg-[#0a0c10]/60"
-                id="crew-modal"
-            >
-                <div
-                    class="modal-box flex p-0 m-0 w-full max-w-[calc(64rem-4rem)] max-h-full focus:outline-none"
-                    tabIndex={0}
-                >
-                    <button
-                        class="btn absolute top-2 right-2 p-2 min-h-0 h-auto bg-base-50 border-0 rounded-xl z-10 hover:bg-base-content/30 transition-colors"
-                        type="button"
-                        onClick={() => dialogRef.current?.close()}
-                    >
-                        <svg
-                            width="14"
-                            height="14"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                        >
-                            <path d="M18 6 6 18" />
-                            <path d="m6 6 12 12" />
-                        </svg>
-                    </button>
-
-                    <CrewItem crewItem={curCrewItem ?? undefined} isModal />
-                </div>
-                <form method="dialog" class="modal-backdrop">
-                    <button
-                        type="button"
-                        onClick={() => dialogRef.current?.close()}
-                    >
-                        close
-                    </button>
-                </form>
-            </dialog>
         </div>
     );
 };

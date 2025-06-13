@@ -1,5 +1,5 @@
 ---
-import { CrewList } from "@/components/Crew/CrewList";
+import { Crew as CrewApp } from "@/components/Crew/Crew";
 import NavbarPage from "@/layouts/NavbarPage.astro";
 ---
 
@@ -16,7 +16,7 @@ import NavbarPage from "@/layouts/NavbarPage.astro";
     <div
         class="flex flex-col h-[calc(100svh-4.5rem)] md:h-[calc(100svh-5rem)] scroll-smooth"
     >
-        <CrewList client:load />
+        <CrewApp client:load />
     </div>
 </NavbarPage>
 

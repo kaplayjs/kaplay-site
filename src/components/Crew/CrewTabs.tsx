@@ -6,13 +6,12 @@ import { CrewTabsTriggers } from "./CrewTabsTriggers";
 
 type CrewTabsProps = {
     items: (keyof typeof assets)[];
-    setCurCrewItem: (item: keyof typeof assets) => void;
+    openModal: (crewItem: keyof typeof assets) => void;
     maximized: boolean;
-    dialogRef: preact.RefObject<HTMLDialogElement>;
 };
 
 export const CrewTabs = (
-    { items, setCurCrewItem, maximized, dialogRef }: CrewTabsProps,
+    { items, maximized, openModal }: CrewTabsProps,
 ) => {
     const [typeFilter, setTypeFilter] = useState<typeOptions>("All");
     const tabsScrollTop = useRef<Record<typeOptions, number> | {}>({});
@@ -111,8 +110,7 @@ export const CrewTabs = (
                                     href={`/crew/${crewItem}`}
                                     onClick={e => {
                                         e.preventDefault();
-                                        setCurCrewItem(crewItem);
-                                        dialogRef.current?.showModal();
+                                        openModal(crewItem);
                                     }}
                                 >
                                     <CrewListItem crewItem={crewItem} />
