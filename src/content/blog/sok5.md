@@ -150,7 +150,7 @@ Don't want to do a lot of spoiler, just expect **more assets**, **more lore**, *
 
 ## 🐱 Random Cat Gif
 
-> Really you think it's ok having there...? Ok...
+> Really do you think it's ok having this here? Ok...
 
 ![](./assets/17mbcat.gif)
 
