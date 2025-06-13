@@ -5,9 +5,7 @@ import SidebarPage from "@/layouts/SidebarPage.astro";
 import { getCollection } from "astro:content";
 
 const blogs = await getCollection("blog");
-const orderedBlogs = blogs.sort(
-    (a, b) => Number(new Date(b.data.date)) - Number(new Date(a.data.date)),
-);
+const orderedBlogs = blogs.sort((a, b) => Number(new Date(b.data.date)) - Number(new Date(a.data.date)));
 ---
 
 <SidebarPage
@@ -19,13 +17,18 @@ const orderedBlogs = blogs.sort(
 >
     <Prose>
         <h1>Blog</h1>
-        <p>
-            A collection of blog posts about KAPLAY, the development process,
-            game jams, and other topics related to game development.
-        </p>
+        <p> A collection of blog posts about KAPLAY, the development process, game jams, and other topics related to game development. </p>
     </Prose>
 
     <div class="flex max-w-screen-lg flex-col gap-4 px-4 pb-4">
         {orderedBlogs.map((blog) => <BlogEntry entry={blog.slug} />)}
     </div>
+
+    <Prose>
+        <p>
+            Before all this blogs, there were some blogs about Kaboom.js, check them here:
+
+            <a target="_blank" href="https://kaboomjs.com/blog" class="link-primary link link-hover">Kaboom.js Blog</a>
+        </p>
+    </Prose>
 </SidebarPage>
