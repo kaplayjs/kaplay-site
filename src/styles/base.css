@@ -12,6 +12,10 @@ h1,
     @apply text-white;
 }
 
+:root .prose {
+    --tw-prose-body: var(--fallback-bc,oklch(var(--bc)));
+}
+
 .btn:hover {
     cursor: url(/cursor_pointer.png), auto;
 }
