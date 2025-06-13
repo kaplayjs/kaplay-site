@@ -12,6 +12,10 @@ h1,
     @apply text-white;
 }
 
+iframe {
+    max-width: 100%;
+}
+
 :root .prose {
     --tw-prose-body: var(--fallback-bc,oklch(var(--bc)));
 }
