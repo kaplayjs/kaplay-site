@@ -1,6 +1,7 @@
 import { assets, crewPacks, typeOptions } from "@/data/crew";
 import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import { CrewListItem } from "./CrewListItem";
+import { CrewListItem404 } from "./CrewListItem404";
 import { CrewListPack } from "./CrewListPack";
 import { CrewTabsTriggers } from "./CrewTabsTriggers";
 
@@ -118,6 +119,15 @@ export const CrewTabs = (
                             ))}
                         </CrewListPack>
                     ))}
+
+                    {crewItems.length == 0 && (
+                        <CrewListItem404
+                            onClick={(crewItem, e) => {
+                                e.preventDefault();
+                                openModal(crewItem);
+                            }}
+                        />
+                    )}
                 </div>
             </div>
         </>
