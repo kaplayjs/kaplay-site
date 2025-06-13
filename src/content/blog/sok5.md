@@ -105,7 +105,7 @@ Now it's time to see a lot of cool stuff our community made these days.
 
 ### 🏌 Golf Course: Ocean Wave Edition
 
-**Erik** have finished this great mini-golf game. It's game feeling, mechanics, visuals, music. All it's just perfect in this game, so give it a [try on Itch.io](erikgxdev.itch.io/golf-course)!
+**Erik** have finished this great mini-golf game. It's game feeling, mechanics, visuals, music. All it's just perfect in this game, so give it a [try on Itch.io](https://erikgxdev.itch.io/golf-course)!
 
 ![](./assets/golfgame.gif)
 
