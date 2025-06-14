@@ -35,7 +35,7 @@ _wait for it_
 
 _Now, the KAPLAY Triforce is complete!_
 
-As one of the KAPLAY founders, I'm so happy having him working along with us, is not only a new team member, for me, also a friend. Now, he is our **official** designer, so all the eggcellents UI/UX you're going to see, comes from his hand.
+As one of the KAPLAY founders, I'm so happy having him working along with us, is not only a new team member, for me, he's also a friend. Now, he is our **official** designer, so all the eggcellents UI/UX you're going to see, comes from his hand.
 
 ## 🧰 Where my last project was...?
 
@@ -71,7 +71,7 @@ Okay okay this thing of KAPLAYGROUND is so good but, what's going on with KAPLAY
 - **A lot of text-related improvements**: [#676](https://github.com/kaplayjs/kaplay/pull/676), [#687](https://github.com/kaplayjs/kaplay/pull/687), [#691](https://github.com/kaplayjs/kaplay/pull/691). (Special thanks to dragoncoder047)
 - **Improvements in rendering**: [#760](https://github.com/kaplayjs/kaplay/pull/760)
 
-In general lines, that were the most important changes, but there **was a lot** and also a lot of bug fixes. You can see them all [here](https://github.com/kaplayjs/kaplay/pulls?q=is%3Apr+created%3A%3E2025-02-28+is%3Aclosed).
+In general terms, that we the most important changes, but there **was a lot** of bug fixes. You can see them all [here](https://github.com/kaplayjs/kaplay/pulls?q=is%3Apr+created%3A%3E2025-02-28+is%3Aclosed).
 
 **KAPLAY v4000** is closer than never, maybe we can even get a beta soon, but now the hardest part left, _change-logging and documenting_ (😥).
 
@@ -91,7 +91,7 @@ But nothing... _**nothing**_ can be perfect, right? There's a problematic we sho
 
 > Community
 
-It's pride month, June! And KAPLAY show it's support to all our Queer community (and we're going to highlight a special game made by one of our greatest queer community members and someone I consider a _friend_. Oh! also we got this so cool photo for pride month:
+It's pride month, June! And KAPLAY show it's support to all our Queer community, we're going to highlight a special game made by one of our greatest queer community members and someone I consider a _friend_. Oh! Also we got this so cool photo for pride month:
 
 ![](./assets/prideplay.jpg)
 
@@ -113,7 +113,7 @@ Now it's time to see a lot of cool stuff our community made these days.
 
 From **AmySparkNG**, Clickery Hexagon creator (and if you haven't played it, check our section about it in [State of KAPLAY #2](https://kaplayjs.com/blog/sok2/)) is developing a new game called **KAPLAYWare** (**kaplayware** or **KAPLAYWARE** is also acceptable).
 
-It's like Wario-Ware, but with KAPLAY and also it's own "_engine_" built in top of KAPLAY.
+It's like Wario-Ware, but with KAPLAY. It also has it's own "_engine_" built on top of KAPLAY.
 
 ![](./assets/kware.gif)
 
@@ -142,15 +142,15 @@ You can download them for free in [Itch.io](https://fowluhhdev.itch.io/kcepi).
 
 > Product Update
 
-Let's go with Product Updates again with something we're doing **NOW**. And it is **KAPLAY Crew v2**, the next Crew Version:
+Let's go with Product Updates again with something we're doing **NOW**. And it is **KAPLAY Crew v2.0**, the next Crew Version:
 
 ![](./assets/cre2.gif)
 
 Don't want to do a lot of spoiler, just expect **more assets**, **more lore**, **more wiki** and a lot of more **FUN** using our next asset browser. We're maybe showing more in our social media so be sure to [follow us](https://linktr.ee/kaplayjs).
 
-## 🐱 Random Cat Gif
+## 🐱 Random Cat GIF
 
-> Really do you think it's ok having this here? Ok...
+> Do you really think it's okay having this here? OK...
 
 ![](./assets/17mbcat.gif)
 
@@ -164,7 +164,7 @@ Yeah, it's already been **a year** with this project. I wanted to do something s
 
 > Product Update
 
-WOO! The classic KAPLAY defaulty font **happy** got a redesign with a bunch of changes on it's **2.0** version, but the main one is now it's available in **.TTF** format, so you can use it in your notepad, your code-editor, terminal or even in your calculator (doubt it).
+Hey! The classic KAPLAY defaulty font **happy** got a redesign with a bunch of changes on it's **2.0** version. The main change is that now it's available in `.ttf` format, so you can use it in your notepad, your code-editor, terminal, or even in your calculator (doubt it).
 
 ![](./assets/notepad.gif)
 
@@ -214,10 +214,10 @@ So, this is the state of KAPLAY:
 
 So okay, we're reaching the end to the **MAGNIFIC** State of KAPLAY, the fifth edition. But now, what to expect on the next weeks? I'm not doing a State of KAPLAY every month (I never did, but now I'm realistic).
 
-From now on State of KAPLAY will be held when we get **important updates**. I want to make state really **interesting** for reading and also having fun as everything we do inside KAPLAY.
+From now on State of KAPLAY will be held when we get **important updates**. I want to make state really **interesting** for reading and having fun as everything we do inside KAPLAY.
 
 > However, I would say next one will be not with that big lap like we got in between #4 and #5. Don't expect it being this big anyway xD
 
-By the way, I opened the [`📫-sok-dump`](https://discord.gg/nrApn8rZ6h) channel in our **✨ A W E S O M E ✨** Discord Server, so you can send there what you would like to be in the next **SOK** (🧦) edition :D
+By the way, I opened the [`📫-sok-dump`](https://discord.gg/nrApn8rZ6h) channel in our **✨ A W E S O M E ✨** Discord Server, so you can send there what you would like to be in the next **State of KAPLAY** (SOK 🧦) edition :D
 
 Saying that, I go to go. Bye, thanks for reading and have a nice day.
