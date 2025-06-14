@@ -71,7 +71,7 @@ Okay okay this thing of KAPLAYGROUND is so good but, what's going on with KAPLAY
 - **A lot of text-related improvements**: [#676](https://github.com/kaplayjs/kaplay/pull/676), [#687](https://github.com/kaplayjs/kaplay/pull/687), [#691](https://github.com/kaplayjs/kaplay/pull/691). (Special thanks to dragoncoder047)
 - **Improvements in rendering**: [#760](https://github.com/kaplayjs/kaplay/pull/760)
 
-In general terms, that we the most important changes, but there **was a lot** of bug fixes. You can see them all [here](https://github.com/kaplayjs/kaplay/pulls?q=is%3Apr+created%3A%3E2025-02-28+is%3Aclosed).
+In general terms, those are the most important changes, but there **was a lot** of bug fixes. You can see them all [here](https://github.com/kaplayjs/kaplay/pulls?q=is%3Apr+created%3A%3E2025-02-28+is%3Aclosed).
 
 **KAPLAY v4000** is closer than never, maybe we can even get a beta soon, but now the hardest part left, _change-logging and documenting_ (😥).
 
