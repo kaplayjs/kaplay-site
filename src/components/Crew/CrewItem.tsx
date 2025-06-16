@@ -300,7 +300,9 @@ export const CrewItem = (props: CrewItemProps) => {
                                         {crewItem.crewmeta.favoriteFood}, and
                                         {" "}
                                         {genderWord[crewItem.crewmeta.gender][0]
-                                            .toLowerCase()} loves the color{" "}
+                                            .toLowerCase()}{" "}
+                                        love{crewItem.crewmeta.gender < 2
+                                            && "s"} the color{" "}
                                         {crewItem.crewmeta.favoriteColor}.
                                     </span>
                                 </>
