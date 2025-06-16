@@ -23,7 +23,7 @@ export const CrewTabsTriggers = (
         >
             {Object.entries(tabs).map(([type, count]) => (
                 <label
-                    class="tab no-wrap w-full has-[:checked]:tab-active has-[:checked]:[--tab-bg:oklch(var(--b1)/60%)] px-6 text-sm hover:bg-base-200 transition-[background-color] has-[:checked]:last:before:!w-full last:before:-left-[var(--tab-radius)]"
+                    class="tab no-wrap w-full has-[:checked]:tab-active has-[:checked]:[--tab-bg:oklch(var(--b1)/60%)] px-6 text-sm hover:bg-base-200 transition-[background-color] has-[:checked]:last:before:!w-full  has-[:checked]:last:before:-left-[var(--tab-radius)]"
                     key={type}
                 >
                     <input

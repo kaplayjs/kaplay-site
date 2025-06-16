@@ -50,7 +50,7 @@ export const CrewList = ({ openModal }: CrewListProps) => {
                 data-minimized={minimized || undefined}
             >
                 <button
-                    class="btn absolute top-2 right-2 p-[0.5625rem] min-h-0 h-auto bg-base-50 border-0 hover:!border-bg-base-content/30 rounded-xl z-10 hover:bg-base-content/30 transition-colors"
+                    class="btn absolute top-2 right-2 p-[0.5625rem] min-h-0 h-auto bg-base-50 border-0 hover:!border-bg-base-highlight rounded-xl z-10 hover:bg-base-highlight shadow-md shadow-base-300 transition-colors"
                     type="button"
                     onClick={() => {
                         setMinimized(!minimized);
