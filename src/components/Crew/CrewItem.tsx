@@ -113,7 +113,7 @@ export const CrewItem = (props: CrewItemProps) => {
                             <img
                                 src={crewItem.sprite}
                                 alt={crewItem.name}
-                                class="w-32 object-scale-down py-4"
+                                class="w-32 max-h-48 object-scale-down py-4"
                             />
                         </button>
 
@@ -137,7 +137,7 @@ export const CrewItem = (props: CrewItemProps) => {
                                 <img
                                     src={crewItem.outlined}
                                     alt={crewItem.name}
-                                    class="w-32 object-scale-down py-4"
+                                    class="w-32 max-h-48 object-scale-down py-4"
                                 />
                             </button>
                         )}
@@ -188,9 +188,9 @@ export const CrewItem = (props: CrewItemProps) => {
                                     ))}
 
                                 {crewItem.appearances && (
-                                    <li class="tooltip flex flex-wrap gap-2 items-start grow basis-[calc(50%-1rem)] min-w-fit">
+                                    <li class="flex flex-wrap gap-2 items-start grow basis-[calc(50%-1rem)] min-w-fit">
                                         <span
-                                            class="tooltip flex gap-2 items-center text-left before:max-w-48 data-[tip]:underline decoration-dotted decoration-base-content/25 underline-offset-4"
+                                            class="tooltip flex gap-2 items-center text-left before:max-w-48 data-[tip]:underline decoration-dotted decoration-base-content/25 underline-offset-4 before:left-0 before:translate-x-0"
                                             data-tip="Green is Canon / Officially Acknowledged™"
                                         >
                                             <img
