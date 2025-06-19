@@ -144,12 +144,68 @@ export const CrewItem = (props: CrewItemProps) => {
                     </div>
 
                     <div>
-                        <h2 class="flex items-center gap-2 text-2xl font-bold text-white">
-                            {crewItem.name}
-                            <span class="badge badge-outline text-base-content mt-1 px-1.5 h-auto bg-base-content/10 border-base-content/15">
+                        <div class="flex items-center gap-2">
+                            <h2 class="text-2xl font-bold text-white">
+                                {crewItem.name}
+                            </h2>
+
+                            {crewItem.aliases?.length && (
+                                <div class="dropdown dropdown-right flex flex-col items-center -ml-1 pt-0.5">
+                                    <div
+                                        class="btn btn-ghost p-0 h-auto min-h-0 bg-base-50 border-base-content/10 rounded-md focus:bg-base-content/20 focus:border-transparent focus:rounded-box focus:pointer-events-none"
+                                        role="button"
+                                        aria-label="Aliases"
+                                        tabindex={0}
+                                    >
+                                        <svg
+                                            class="[.dropdown:has(:focus)_&]:-rotate-90 transition-transform"
+                                            width="14"
+                                            height="14"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        >
+                                            <path d="m6 9 6 6 6-6" />
+                                        </svg>
+                                    </div>
+
+                                    <div
+                                        class="dropdown-content -mt-1.5 ml-1 bg-base-100 rounded-box z-[1] min-w-40 py-2 px-3 space-y-1 shadow-2xl"
+                                        tabindex={0}
+                                    >
+                                        <h3 class="font-semibold text-xs tracking-wide">
+                                            Aliases / Known As
+                                        </h3>
+
+                                        <ul class="flex flex-col items-start gap-1">
+                                            {crewItem.aliases.map(alias => (
+                                                <li
+                                                    class={cn(
+                                                        "tooltip text-left text-sm before:-left-2 before:translate-x-0 decoration-dotted decoration-base-content/25 underline-offset-4",
+                                                        {
+                                                            "underline": alias
+                                                                ?.description,
+                                                        },
+                                                    )}
+                                                    data-tip={alias?.description
+                                                        ?? undefined}
+                                                >
+                                                    {alias.name}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                </div>
+                            )}
+
+                            <span class="badge badge-outline font-bold text-base-content mt-1 px-1.5 h-auto bg-base-content/10 border-base-content/5">
                                 {crewItem.pack}
                             </span>
-                        </h2>
+                        </div>
+
                         <p class="text-md">by {crewItem.author}</p>
 
                         {(facts || crewItem.appearances) && (
