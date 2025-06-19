@@ -13,7 +13,7 @@ export const CrewList = ({ openModal }: CrewListProps) => {
     const [minimized, setMinimized] = useState<boolean>(false);
     const [originFilter, setOriginFilter] = useState<originOptions>("All");
     const [tagFilter, setTagFilter] = useState<string[]>([]);
-    const [nameFilter, setNameFilter] = useState<string>("");
+    const [keywordFilter, setKeywordFilter] = useState<string>("");
 
     const filterAssetsByOrigin = (asset: string | null) => {
         if (originFilter == "All") return true;
@@ -27,11 +27,18 @@ export const CrewList = ({ openModal }: CrewListProps) => {
         );
     };
 
-    const filterAssetsByName = (asset: string | null) => {
-        if (!nameFilter) return true;
-        return assets[asset as keyof typeof assets].name
+    const filterAssetsByKeyword = (asset: string | null) => {
+        if (!keywordFilter) return true;
+
+        const crewItem = assets[asset as keyof typeof assets];
+        const searchTerm = keywordFilter.toLowerCase();
+
+        return crewItem.name
             .toLowerCase()
-            .includes(nameFilter.toLowerCase());
+            .includes(searchTerm)
+            || (crewItem?.searchTerms ?? []).some(term =>
+                term.includes(searchTerm)
+            );
     };
 
     const crewItems = useMemo(
@@ -39,8 +46,8 @@ export const CrewList = ({ openModal }: CrewListProps) => {
             Object.keys(assets)
                 .filter(filterAssetsByOrigin)
                 .filter(filterAssetsByTag)
-                .filter(filterAssetsByName),
-        [originFilter, tagFilter, nameFilter],
+                .filter(filterAssetsByKeyword),
+        [originFilter, tagFilter, keywordFilter],
     );
 
     return (
@@ -95,8 +102,8 @@ export const CrewList = ({ openModal }: CrewListProps) => {
                         </div>
 
                         <CrewSearch
-                            nameFilter={nameFilter}
-                            setNameFilter={setNameFilter}
+                            keywordFilter={keywordFilter}
+                            setKeywordFilter={setKeywordFilter}
                             tagFilter={tagFilter}
                             setTagFilter={setTagFilter}
                             originFilter={originFilter}

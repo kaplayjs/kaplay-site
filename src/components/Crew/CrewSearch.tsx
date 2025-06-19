@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from "preact/hooks";
 import { CrewTags } from "./CrewTags";
 
 interface CrewSearchProps {
-    nameFilter: string;
-    setNameFilter: (val: string) => void;
+    keywordFilter: string;
+    setKeywordFilter: (val: string) => void;
     tagFilter: string[];
     setTagFilter: (val: string[]) => void;
     originFilter: originOptions;
@@ -13,8 +13,8 @@ interface CrewSearchProps {
 }
 
 export const CrewSearch = ({
-    nameFilter,
-    setNameFilter,
+    keywordFilter,
+    setKeywordFilter,
     tagFilter,
     setTagFilter,
     originFilter,
@@ -80,9 +80,9 @@ export const CrewSearch = ({
                     type="text"
                     class="join-item input input-bordered w-full focus:z-[1]"
                     placeholder="Search..."
-                    value={nameFilter}
+                    value={keywordFilter}
                     onInput={e =>
-                        setNameFilter((e.target as HTMLInputElement).value)}
+                        setKeywordFilter((e.target as HTMLInputElement).value)}
                 />
 
                 <div class="tooltip grid" data-tip="Filter by Origin">
