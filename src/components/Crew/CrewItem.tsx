@@ -1,6 +1,7 @@
 import { assets } from "@/data/crew";
 import { cn } from "@/util/cn.ts";
 import { useState } from "preact/hooks";
+import { AudioPlayer } from "../Util/AudioPlayer";
 
 export interface CrewItemProps {
     crewItem?: keyof typeof assets;
@@ -66,7 +67,11 @@ export const CrewItem = (props: CrewItemProps) => {
         ].map(k => [k, crewItem.crewmeta![k]]))
         : undefined;
 
-    if (!crewItem.outlined) setVersionSelected("original");
+    if (!("outlined" in crewItem)) setVersionSelected("original");
+
+    const supportsImport =
+        ("sprite" in crewItem && !crewItem.sprite?.includes("/gif"))
+        || !("sprite" in crewItem);
 
     return (
         <div
@@ -89,35 +94,37 @@ export const CrewItem = (props: CrewItemProps) => {
                         class="tooltip tooltip-bottom sm:tooltip-top flex gap-1 p-1 border border-base-content/15 rounded-xl max-sm:before:top-auto max-sm:before:-bottom-2.5 max-sm:after:hidden"
                         data-tip={crewItem.secret || undefined}
                     >
-                        <button
-                            class={cn(
-                                "flex-1 flex flex-col items-center pb-2 rounded-lg border-2 hover:bg-base-100 transition-colors focus:outline-none focus-visible:border-current",
-                                {
-                                    "bg-base-100 border-primary":
-                                        versionSelected == "original"
-                                        && crewItem.outlined,
-                                    "bg-base-100 border-base-300": !crewItem
-                                        .outlined,
-                                    "bg-base-300 border-base-300":
-                                        versionSelected != "original",
-                                },
-                            )}
-                            type="button"
-                            onClick={() => setVersionSelected("original")}
-                        >
-                            {crewItem.outlined && (
-                                <span class="relative top-2 text-xs tracking-wide font-semibold">
-                                    Original
-                                </span>
-                            )}
-                            <img
-                                src={crewItem.sprite}
-                                alt={crewItem.name}
-                                class="w-32 max-h-48 object-scale-down py-4"
-                            />
-                        </button>
+                        {crewItem.kind != "Sound" && (
+                            <button
+                                class={cn(
+                                    "flex-1 flex flex-col items-center pb-2 rounded-lg border-2 hover:bg-base-100 transition-colors focus:outline-none focus-visible:border-current",
+                                    {
+                                        "bg-base-100 border-primary":
+                                            versionSelected == "original"
+                                            && crewItem.outlined,
+                                        "bg-base-100 border-base-300": !crewItem
+                                            .outlined,
+                                        "bg-base-300 border-base-300":
+                                            versionSelected != "original",
+                                    },
+                                )}
+                                type="button"
+                                onClick={() => setVersionSelected("original")}
+                            >
+                                {crewItem.outlined && (
+                                    <span class="relative top-2 text-xs tracking-wide font-semibold">
+                                        Original
+                                    </span>
+                                )}
+                                <img
+                                    src={crewItem.sprite}
+                                    alt={crewItem.name}
+                                    class="w-32 max-h-48 object-scale-down py-4"
+                                />
+                            </button>
+                        )}
 
-                        {crewItem.outlined && (
+                        {crewItem.kind != "Sound" && crewItem.outlined && (
                             <button
                                 class={cn(
                                     "flex-1 flex flex-col items-center pb-2 rounded-lg border-2 hover:bg-base-100 transition-colors focus:outline-none focus-visible:border-current",
@@ -140,6 +147,10 @@ export const CrewItem = (props: CrewItemProps) => {
                                     class="w-32 max-h-48 object-scale-down py-4"
                                 />
                             </button>
+                        )}
+
+                        {crewItem.kind == "Sound" && (
+                            <AudioPlayer src={crewItem.sound} />
                         )}
                     </div>
 
@@ -376,7 +387,7 @@ export const CrewItem = (props: CrewItemProps) => {
                         )}
                     >
                         <div class="sm:sticky bottom-2 lg:bottom-6 mt-auto space-y-2 max-sm:bg-base-100 rounded-lg max-sm:p-4 max-sm:-mx-4 max-sm:-mb-4 max-sm:border-t border-base-content/10 max-sm:shadow-[0_0_50px_0_rgba(0,0,0,0.2)]">
-                            {!crewItem.sprite.includes("/gif")
+                            {supportsImport
                                 && crewItem.imports.importInCrew
                                 && crewItem.imports
                                     .importInCrew[versionSelected]
@@ -425,9 +436,10 @@ export const CrewItem = (props: CrewItemProps) => {
                                     </div>
                                 )}
 
-                            {!crewItem.sprite.includes("/gif")
+                            {supportsImport
                                 && crewItem.imports.importInPG
-                                && crewItem.imports.importInPG[versionSelected]
+                                && crewItem.imports
+                                    .importInPG[versionSelected]
                                 && (
                                     <div class="mb-2.5">
                                         <h3 class="text-xs font-semibold tracking-wider">
@@ -457,20 +469,30 @@ export const CrewItem = (props: CrewItemProps) => {
                             <button
                                 class="btn btn-outline btn-primary w-full border-2"
                                 type="button"
-                                onClick={() => {
-                                    const a = document.createElement("a");
-                                    a.href = versionSelected == "original"
-                                        ? crewItem.sprite
-                                        : crewItem.outlined!;
-                                    const extra = versionSelected == "original"
-                                        ? ""
-                                        : "-o";
-                                    a.download =
-                                        `${props.crewItem}${extra}.png`;
-                                    a.click();
-                                }}
+                                onClick={crewItem.kind != "Sound"
+                                    ? () => {
+                                        const a = document.createElement("a");
+                                        a.href = versionSelected == "original"
+                                            ? crewItem.sprite
+                                            : crewItem.outlined;
+                                        const suffix =
+                                            versionSelected == "original"
+                                                ? ""
+                                                : "-o";
+                                        a.download =
+                                            `${props.crewItem}${suffix}.png`;
+                                        a.click();
+                                    }
+                                    : () => {
+                                        const a = document.createElement("a");
+                                        a.href = crewItem.sound;
+                                        a.download = `${props.crewItem}.${
+                                            crewItem?.fileFormat || "mp3"
+                                        }`;
+                                        a.click();
+                                    }}
                             >
-                                Download Sprite
+                                Download {crewItem.kind}
                             </button>
                         </div>
                     </div>

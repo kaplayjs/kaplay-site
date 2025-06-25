@@ -6,22 +6,18 @@ import {
     type Tag,
 } from "@kaplayjs/crew";
 
-type Asset = (typeof assets)[keyof typeof assets];
-
-export type CrewItem = Asset & {
-    imports: {
-        [key: string]: {
-            original: string;
-            outlined: string;
+export type Crew = {
+    [K in keyof typeof assets]: typeof assets[K] & {
+        imports: {
+            [key: string]: {
+                original: string;
+                outlined: string;
+            };
         };
     };
 };
 
-export interface Crew {
-    [key: string]: CrewItem;
-}
-
-const crew: Crew = {};
+const crew = {} as Crew;
 
 for (const [key, value] of Object.entries(assets).sort()) {
     crew[key] = {
@@ -31,9 +27,11 @@ for (const [key, value] of Object.entries(assets).sort()) {
                 Object.entries(value.imports).map(async ([k, v]) => {
                     return [k, {
                         original: await highlight(v),
-                        outlined: await highlight(
-                            v.replaceAll(key, `${key}-o`),
-                        ),
+                        outlined: "outlined" in value
+                            ? await highlight(
+                                v.replaceAll(key, `${key}-o`),
+                            )
+                            : undefined,
                     }];
                 }),
             ),
@@ -99,6 +97,7 @@ export const tagsMessages = {
     "ui": "*Click*",
     "emojis": "More in Discord!",
     "fonts": "Sad font coming soon...",
+    "sounds": "Beep boop burp...",
 } satisfies Record<typeof tags[number] | "kaworld", string>;
 
 export { crew as assets };

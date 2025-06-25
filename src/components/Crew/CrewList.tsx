@@ -48,7 +48,7 @@ export const CrewList = ({ openModal }: CrewListProps) => {
                 .filter(filterAssetsByTag)
                 .filter(filterAssetsByKeyword),
         [originFilter, tagFilter, keywordFilter],
-    );
+    ) as (keyof typeof assets)[];
 
     return (
         <div class="h-full w-full lg:py-2.5 2xl:py-10 md:flex md:justify-center">

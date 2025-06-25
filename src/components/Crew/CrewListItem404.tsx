@@ -20,7 +20,7 @@ export const CrewListItem404 = ({ onClick }: CrewListItem404Props) => {
         <a
             class="flex flex-row items-center gap-4 lg:gap-6 mt-4 lg:mt-6 p-6 lg:p-8 rounded-box bg-[rgb(50,56,68)]/50 hover:bg-base-content/10 transition-all"
             href={`/crew/${asset}`}
-            onClick={e => onClick(asset, e)}
+            onClick={e => onClick(asset as keyof typeof assets, e)}
         >
             <img
                 class="w-12 h-12 object-contain"
