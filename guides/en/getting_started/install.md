@@ -134,3 +134,19 @@ loadSound("horse", "sounds/horse.mp3");
 
 To learn more check out this
 [MDN doc](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/set_up_a_local_testing_server).
+
+## Prerequisites
+
+### Node.js
+
+Node.js lets you **execute JavaScript locally** (without the necessity of a browser)
+and it's used for performing building and developments tasks.
+
+Node.js Team gives you it's [Installation page](https://nodejs.org/en/download)
+that is very simple to follow, following your operating system steps.
+
+### NPM
+
+NPM is the default package manager for the NPM Registry. With it, you can
+install modules and use pre-made functionality in your codebase (in this case,
+functionality for making games). **NPM is installed with Node**
