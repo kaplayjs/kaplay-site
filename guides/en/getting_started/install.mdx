@@ -7,72 +7,103 @@ url: install
 order: "basics-0"
 ---
 
+import Info from "@/components/Content/Info.astro";
+import InstallationCode from "@/components/Content/InstallationCode.astro";
+
 # Installation
 
-The most easy way to get started with KAPLAY is to use the
-[CLI tool](https://www.npmjs.com/package/create-kaplay), which will generate a
-project for you:
+<Info crew="bean" title="Basic Knowledge">
+If you're new in the **JavaScript World** and you don't know what a Node is,
+what a Bundler is or what to do with your life in general,
+check our [Basic Knowledge](#basic-knowledge) section.
+</Info>
+
+## Recommended Installation
+
+Once you have [Node](https://nodejs.org/en/download) Installed, the most easy way to get started with **KAPLAY** is to use
+[`our installation package`](https://www.npmjs.com/package/create-kaplay), which
+will generate a project for you using the **Recommended** structure.
 
 ```sh
-$ npx create-kaplay mygame
-$ cd mygame
-$ npm run dev
+npx create-kaplay myGame && cd myGame
 ```
 
-This will create your game in the `mygame` folder, and start a development
-server for you to preview your game. If you edit `src/main.js` and refresh the
-page, you will see your changes.
-
-To see all options, run:
+Then, using `npm run dev` you can start the **Development Server**, where you can test your game locally at [`https://localhost:5173`](https://localhost:5173).
 
 ```sh
-$ create-kaplay --help
+npm run dev
 ```
 
-## Using a CDN
+That's! You're ready to **start making games**. If you want to know all the options available
+in the `create-kaplay` package, run `npx create-kaplay --help`.
 
-If you prefer to use KAPLAY without any bundlers, you can use a CDN to include
-it directly in your HTML file, or import it with ECMAScript modules.
+## Zero Bundlers Installation
+
+If you prefer to use **KAPLAY** **without any bundlers**, you can! Start with
+an `index.html` file:
 
 ```html
-<script type="module">
-    // import kaplay
-    import kaplay from "https://unpkg.com/kaplay@3001/dist/kaplay.mjs";
-    // start kaplay
-    kaplay();
-</script>
+<html>
+  <head>
+    <title>My Game</title>
+  </head>
+  <body></body>
+</html>
 ```
 
-You can also just include it with a `<script>` tag.
-
-```html
-<script src="https://unpkg.com/kaplay@3001/dist/kaplay.js"></script>
-
-<script>
-    kaplay();
-</script>
-```
-
-## Setup your own Node.js environment
-
-With Node.js and npm it's easier have some other packages and use version
-control, also it's easier to get typescript autocomplete support, but it
-requires a bit more setup. (This is the way of `create-kaplay`)
+<Info crew="kat" title="Serve your statics!">
+For using this method correctly, you can't just open the `index.html`, you need
+to serve your files. **After using any of the 2 methods**, run `http-server`:
 
 ```sh
-$ npm install kaplay
+npm install --global http-server
 ```
 
-You'll need to use a bundler to use Kaboom with NPM. There's a lot of options
-like:
+```sh
+http-server # Serve your files!
+```
 
-- `esbuild`,
-- `webpack`,
-- `parcel`,
-- `vitejs`,
+</Info>
 
-This is a short example of how to use Kaboom with
-["esbuild"](https://esbuild.github.io/).
+Now, we have **2 methods**:
+
+### Method 1: JavaScript Modules (Recommended)
+
+You can import KAPLAY using JavaScript Modules. **This is the recommended method.**
+Create a `main.js` script file and connect it to your `index.html`:
+
+```html
+<body>
+  <script type="module" src="./main.js"></script>
+</body>
+```
+
+Then, import KAPLAY library inside `index.html`:
+
+<InstallationCode mode="module" />
+
+### Method 2: Legacy JavaScript
+
+Create a `main.js` script file. Connect both `main.js` and KAPLAY library into your
+`index.html`:
+
+<InstallationCode mode="script_tag" />
+
+## Custom Node.js Installation
+
+So, you're a pro? Let's get into creating our own template using Node.js. First,
+we need to install KAPLAY library in a fresh folder:
+
+```sh
+npm install kaplay
+```
+
+You'll need to use a bundler to use KAPLAY with NPM. There's a lot of options
+like `esbuild`, `webpack`, `parcel`, `vite` and etc. This is a short example using [`esbuild`](https://esbuild.github.io/).
+
+```sh
+npm install esbuild
+```
 
 Once you have `esbuild` installed, and you have this in a `.js` or `.ts` file:
 
@@ -85,68 +116,24 @@ kaplay();
 just run
 
 ```sh
-$ esbuild game.js --bundle > build.js
+esbuild game.js --bundle > build.js
 ```
 
 and it'll find the KAPLAY package and include it in the built `build.js`,
 include `build.js` in your HTML and you're good to go. Feel free to automate
 this process.
 
-## Loading Assets
+## Basic Knowledge
 
-You might have encountered errors when trying to `loadSprite()` from local file
-system, that is because browser won't allow loading local files with JavaScript.
-To get around that you'll need to use a static file that serves the files
-through HTTP. There're a lot of programs that helps you to do that.
+Congratulations! If you're here it is because you want to know the background of
+the tools you will be using, that's great. Let's do it as short as possible.
 
-- `$ python3 -m http.server` if you have [python3](https://www.python.org)
-  installed
-- `$ python -m SimpleHTTPServer` if you have [python2](https://www.python.org)
-  installed
-- `$ serve` if you have [serve](https://github.com/vercel/serve) installed
-- `$ caddy file-server` if you have [caddy](https://caddyserver.com/) installed
-- `$ static-here` if you have
-  [static-here](https://github.com/amasad/static-here) installed
-- `$ ruby -run -ehttpd . -p8000` if you have
-  [ruby](https://www.ruby-lang.org/en) installed
-- `$ php -S localhost:8000` if you have [php](https://php.net) installed
+### JavaScript
 
-Let's say you have a folder structure like this:
-
-```sh
-.
-├── sprites
-│   ├── froggy.png
-│   └── cloud.png
-├── sounds
-│   └── horse.mp3
-└── index.html
-```
-
-and you have the static file server running on port `8000`, just go to
-`http://localhost:8000/index.html`, and you should be able to load stuff from
-relative paths like
-
-```js
-loadSprite("froggy", "sprites/froggy.png");
-loadSound("horse", "sounds/horse.mp3");
-```
-
-To learn more check out this
-[MDN doc](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/set_up_a_local_testing_server).
-
-## Prerequisites
+It's the programming language you will use for create your game. It is mean to be
+executed in a browser.
 
 ### Node.js
 
 Node.js lets you **execute JavaScript locally** (without the necessity of a browser)
 and it's used for performing building and developments tasks.
-
-Node.js Team gives you it's [Installation page](https://nodejs.org/en/download)
-that is very simple to follow, following your operating system steps.
-
-### NPM
-
-NPM is the default package manager for the NPM Registry. With it, you can
-install modules and use pre-made functionality in your codebase (in this case,
-functionality for making games). **NPM is installed with Node**
