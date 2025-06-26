@@ -109,6 +109,13 @@ export const AudioPlayer = (
         if ((audio.current?.readyState ?? 0) > 0) onLoadedMetadata();
     }, [audio]);
 
+    useEffect(() => {
+        if (!audio.current) return;
+
+        audio.current.load();
+        setProgress(0);
+    }, [src]);
+
     return (
         <div class="flex flex-wrap gap-px p-px bg-base-50 rounded-lg">
             <audio
