@@ -7,8 +7,8 @@ type AudioPlayerProps = {
     bigPlayButton?: boolean;
 };
 
-const calcTime = (secs: number) => {
-    return secs > 1
+const calcTime = (secs: number, dur?: number): string => {
+    return (dur ?? secs) > 1
         ? `${Math.floor(secs / 60)}:${
             Math.floor(secs % 60).toString().padStart(2, "0")
         }`
@@ -32,7 +32,7 @@ export const AudioPlayer = (
     const onLoadedMetadata = () => {
         const duration = audio.current?.duration ?? 0;
         setDuration(calcTime(duration));
-        if (duration < 1) setCurTime(calcTime(0));
+        setCurTime(calcTime(0, duration));
     };
 
     const togglePlay = () => {
@@ -48,7 +48,7 @@ export const AudioPlayer = (
         const curTime = audio.current.currentTime;
 
         setProgress(curTime * 100 / audio.current.duration);
-        setCurTime(calcTime(curTime));
+        setCurTime(calcTime(curTime, audio.current.duration));
 
         progressRaf.current = requestAnimationFrame(onPlaying);
     };
