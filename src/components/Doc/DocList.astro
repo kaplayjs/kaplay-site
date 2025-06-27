@@ -12,9 +12,7 @@ const docEntries = Object.values(docGroups)
 
 {
     docEntries.map((entry) => {
-        const referenceList =
-            allDoc[entry as keyof typeof allDoc] ??
-            ctxDoc[entry as keyof typeof ctxDoc];
+        const referenceList = allDoc[entry as keyof typeof allDoc] ?? ctxDoc[entry as keyof typeof ctxDoc];
 
         return (
             <>

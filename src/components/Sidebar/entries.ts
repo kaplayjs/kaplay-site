@@ -117,8 +117,7 @@ const getDocEntryDescription = (item: string) => {
 const getDocDescription = (item: unknown) => {
     if (typeof item === "string") {
         return item;
-    }
-    else if (Array.isArray(item)) {
+    } else if (Array.isArray(item)) {
         return item.map((part: any) => part.text).join("");
     }
 
@@ -134,9 +133,17 @@ export const getDocEntries = async () => {
     const groupsKeys = Object.keys(doc.groups) as string[];
 
     groupsKeys.map((groupName) => {
+        let registeredElements: string[] = [];
+
         renderList.push({
             folder: groupName,
-            linkList: groups[groupName].entries.map((item: any) => {
+            linkList: groups[groupName].entries.filter((item: string) => {
+                if (registeredElements.includes(item)) return false;
+                registeredElements.push(item);
+                return true;
+            }).map((item: string) => {
+                // Check if there's a global version of that Type,
+                // it works for example for prefer `Rect` over `KAPLAYCtx.Rect`
                 const isGlobal = allDoc[item] != null;
                 let asCtxMember = ctxMembers.includes(item);
 

@@ -20,7 +20,7 @@ const { headings } = Astro.props;
 
     {
         headings && headings.length > 0 && (
-            <select class="select select-sm max-w-40" onchange="window.location.href = this.value">
+            <select id="section-select" class="select select-sm max-w-40" onchange="window.location.href = this.value">
                 {headings?.map((heading) => (
                     <option
                         value={`#${heading.slug}`}
@@ -48,3 +48,28 @@ const { headings } = Astro.props;
         >.
     </div>
 </nav>
+
+<script>
+    const select = document.querySelector<HTMLSelectElement>("#section-select")!;
+    const headers = document.querySelectorAll("h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]")!;
+
+    window.addEventListener("scroll", () => {
+        let closest: Element | null = null;
+        let minOffset = Infinity;
+
+        headers.forEach((header) => {
+            const rect = header.getBoundingClientRect();
+            const offset = Math.abs(rect.top);
+
+            if (rect.top <= 100 && offset < minOffset) {
+                minOffset = offset;
+                closest = header;
+            }
+        });
+
+        if (closest) {
+            // @ts-expect-error Wtf why here's never?
+            select.value = `#${closest.id}`;
+        }
+    });
+</script>

@@ -6,6 +6,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.5] - 2025-06-25
+
+### Added
+
+- Now the navigation select is auto-updated with scroll
+
+### Fixed
+
+- Duplicated elements in API sidebar
+
+## [1.1.4] - 2025-06-05
+
+### Added
+
+- New JSON API in `/api/doc/Type.json` and `/api/doc/ctx.func.json` -
+  @lajbel
+- All Type names are avaible in JSON in `/api/doc/names.json` -
+  @lajbel
+
 ## [1.1.3] - 2025-05-20
 
 ### Added

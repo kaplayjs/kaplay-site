@@ -16,16 +16,11 @@ if (!members) {
 
 {
     Object.keys(members).map((member) =>
-        members[member].map((
-            memberData: any,
-        ) => (
-        <>
-            <DocEntry
-                data={memberData}
-                parent={parentName}
-            />
-            <div class="divider pl-4"></div>
-        </>
-    ))
+        members[member].map((memberData: any) => (
+            <>
+                <DocEntry data={memberData} parent={parentName} />
+                <div class="divider pl-4" />
+            </>
+        )),
     )
 }
