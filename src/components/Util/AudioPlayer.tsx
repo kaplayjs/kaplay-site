@@ -33,6 +33,7 @@ export const AudioPlayer = (
         const duration = audio.current?.duration ?? 0;
         setDuration(calcTime(duration));
         setCurTime(calcTime(0, duration));
+        setPlaying(false);
     };
 
     const togglePlay = () => {
@@ -83,6 +84,7 @@ export const AudioPlayer = (
         const value = (e.target as HTMLInputElement).valueAsNumber;
 
         audio.current.volume = value / 100;
+        audio.current.muted = false;
         setVolume(value);
         setMutedAt(value == 0 ? 50 : null);
     };
@@ -115,6 +117,18 @@ export const AudioPlayer = (
         audio.current.load();
         setProgress(0);
     }, [src]);
+
+    useEffect(() => {
+        const parentDialog = audio.current?.closest("dialog");
+        if (!parentDialog) return;
+
+        const observer = new MutationObserver(() =>
+            !parentDialog.open && audio.current?.pause()
+        );
+        observer.observe(parentDialog, { attributes: true });
+
+        return () => observer.disconnect();
+    });
 
     return (
         <div class="flex flex-wrap gap-px p-px bg-base-50 rounded-lg">
