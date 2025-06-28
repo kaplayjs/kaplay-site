@@ -4,6 +4,7 @@ description:
     How to play music, audios and sounds in KAPLAY, the HTML5 Game Library for
     JavaScript and TypeScript.
 url: audio
+order: "basics-8"
 ---
 
 # Playing sounds

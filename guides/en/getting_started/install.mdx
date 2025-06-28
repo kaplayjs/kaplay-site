@@ -1,0 +1,124 @@
+---
+title: Installation
+description:
+    Learn how to install KAPLAY, the HTML5 Game Library for JavaScript and
+    TypeScript.
+url: install
+order: "basics-0"
+---
+
+import Info from "@/components/Content/Info.astro";
+import InstallationCode from "@/components/Content/InstallationCode.astro";
+
+# Installation
+
+<Info crew="bean" title="Basic Knowledge">
+If you're new in the **JavaScript World** and you don't know what a Node is,
+what a Bundler is or what to do with your life in general,
+check our [Basic Knowledge](/guides/knowledge) guide.
+</Info>
+
+## Recommended Installation
+
+Once you have [Node](https://nodejs.org/en/download) Installed, the most easy way to get started with **KAPLAY** is to use
+[`our installation package`](https://www.npmjs.com/package/create-kaplay), which
+will generate a project for you using the **Recommended** structure.
+
+```sh
+npx create-kaplay myGame && cd myGame
+```
+
+Then, using `npm run dev` you can start the **Development Server**, where you can test your game locally at [`https://localhost:5173`](https://localhost:5173).
+
+```sh
+npm run dev
+```
+
+That's! You're ready to **start making games**. If you want to know all the options available
+in the `create-kaplay` package, run `npx create-kaplay --help`.
+
+## Zero Bundlers Installation
+
+If you prefer to use **KAPLAY** **without any bundlers**, you can! Start with
+an `index.html` file:
+
+```html
+<html>
+  <head>
+    <title>My Game</title>
+  </head>
+  <body></body>
+</html>
+```
+
+<Info crew="kat" title="Serve your statics!">
+For using CDN and HTML correctly, you can't just open the `index.html`, you need
+to serve your files. Run `http-server`:
+
+```sh
+npm install --global http-server
+```
+
+```sh
+http-server # Serve your files!
+```
+
+</Info>
+
+Now, for using KAPLAY library with a CDN, we have **2 methods**:
+
+### Method 1: JavaScript Modules (Recommended)
+
+You can import KAPLAY using JavaScript Modules. **This is the recommended method.**
+Create a `main.js` script file and connect it to your `index.html`:
+
+```html
+<body>
+  <script type="module" src="./main.js"></script>
+</body>
+```
+
+Then, import KAPLAY library inside `index.html`:
+
+<InstallationCode mode="module" />
+
+### Method 2: Legacy JavaScript
+
+Create a `main.js` script file. Connect both `main.js` and KAPLAY library into your
+`index.html`:
+
+<InstallationCode mode="script_tag" />
+
+## Custom Node.js Installation
+
+So, you're a pro? Let's get into creating our own template using Node.js. First,
+we need to install KAPLAY library in a fresh folder:
+
+```sh
+npm install kaplay
+```
+
+You'll need to use a bundler to use KAPLAY with NPM. There's a lot of options
+like `esbuild`, `webpack`, `parcel`, `vite` and etc. This is a short example using [`esbuild`](https://esbuild.github.io/).
+
+```sh
+npm install esbuild
+```
+
+Once you have `esbuild` installed, and you have this in a `.js` or `.ts` file:
+
+```js
+import kaplay from "kaplay";
+
+kaplay();
+```
+
+just run
+
+```sh
+esbuild game.js --bundle > build.js
+```
+
+and it'll find the KAPLAY package and include it in the built `build.js`,
+include `build.js` in your HTML and you're good to go. Feel free to automate
+this process.

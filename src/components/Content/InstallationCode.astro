@@ -1,0 +1,27 @@
+---
+import { Code } from "astro:components";
+import kaplaySubmodulePackageJson from "../../../kaplay/package.json";
+
+interface Props {
+    mode: "module" | "script_tag";
+}
+
+const { mode } = Astro.props;
+
+const kv = kaplaySubmodulePackageJson.version;
+let lang;
+let code;
+
+if (mode == "script_tag") {
+    lang = "html";
+    code = `<head>\n  <script src="https://unpkg.com/kaplay@${kv}/dist/kaplay.js"></script>\n</head>
+
+<body>\n  <script src="./main.js">\n</script>`;
+} else if (mode == "module") {
+    lang = "javascript";
+    code = `// main.js\nimport kaplay from "https://unpkg.com/kaplay@${kv}/dist/kaplay.mjs";
+kaplay();`;
+}
+---
+
+<Code lang={lang} code={code} />
