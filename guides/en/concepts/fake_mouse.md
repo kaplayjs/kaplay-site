@@ -1,5 +1,5 @@
 ---
-title: Fake Mouse
+title: Fake Mouse API
 description:
     Learn how to make a fake mouse with support to gamepad and keyboard.
 url: fake_mouse
