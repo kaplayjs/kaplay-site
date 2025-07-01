@@ -15,11 +15,11 @@ When we finish our game, the most important moment is to... Publish it!
 
 ## Preparing the game
 
-We should prepare our game to publishing it in the different platforms.
+We should prepare our game for publishing in different platforms.
 
 ### Assets and source code
 
-The first thing you should know it's both your `public` and `dist` folders (or
+The first thing you should know is that both your `public` and `dist` folders (or
 whatever they are called) should be the same folder. We recommend having a file
 tree like:
 
@@ -42,7 +42,7 @@ If you use `create-kaplay` template, you start with `public` dir by by default.
 
 ### Asset paths
 
-When you host your games in web portals, you should use _relative paths_
+When you host your games in web portals, you should use _relative paths_.
 
 Actually you may have something like this:
 
@@ -55,7 +55,7 @@ There's two ways to handle this:
 - Update all your imports to start with `./`
 - Use `loadRoot()`
 
-`loadRoot()` inserts what it's passed at start of every url:
+`loadRoot()` inserts what it's passed at the start of every url:
 
 ```js
 loadRoot("."); // will add "." at start of every url
@@ -64,7 +64,7 @@ loadSprite("bean", "/sprites/bean.png"); // -> ./sprites/bean.png
 ```
 
 <Info crew="bean" title="Watch out!">
-Your `loadRoot()` depends of how your urls are. Maybe using `loadRoot("./")` *is a better option*
+Your `loadRoot()` depends on how your URLs are. Maybe using `loadRoot("./")` *is a better option*
 </Info>
 
 ```js
@@ -75,17 +75,17 @@ loadSprite("bean", "sprites/bean.png"); // -> ./sprites/bean.png
 
 ## Itch.io
 
-First, go to your account, then **Upload a new project**
+First, go to your account. Then **Upload a new project**
 
 ![image](./assets/itchio-1.png)
 
 Then, in **Kind of project**, you should select **HTML**, so itch.io will let
-you upload a web game
+you upload a web game.
 
 ![image](./assets/itchio-2.png)
 
 After that, the only thing left to do is to upload your zip with your game
-files, or if you have a single `index.html` file (very tasteful) upload it!
+files, or if you have a single `index.html` file (very tasteful), upload it!
 
 [**Itch.io Documentation about HTML5 games**](https://itch.io/docs/creators/html5)
 
@@ -99,4 +99,4 @@ Now, as Itch.io, only upload a zip with your fabulous `index.html` game file.
 
 You can tag your game in the different platforms with the tag `kaplayjs` and
 
-`kaplay`. Probably we will see it and even promote in our social medias :D
+`kaplay`. We will probably see it and even promote in our social media :D
