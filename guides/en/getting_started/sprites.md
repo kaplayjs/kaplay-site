@@ -7,14 +7,14 @@ url: sprites
 order: "basics-7"
 ---
 
-# Rendering sprites
+# Rendering Sprites
 
 The sprites are probably most of your visual aspects of your game.
 
 ## Loading Sprites
 
-For load a sprite, you can use the `loadSprite()` function. This function mainly
-takes two parameters, the sprite name and the sprite path.
+To load a sprite, you can use the `loadSprite()` function. This function mainly
+takes two parameters: the sprite name and the sprite path.
 
 ```js
 loadSprite("bean", "sprites/bean.png");

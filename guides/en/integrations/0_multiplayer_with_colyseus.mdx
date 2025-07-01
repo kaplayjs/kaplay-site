@@ -982,7 +982,7 @@ export default (room: Room<MyRoomState>) => [
     }),
     k.body(),
     k.scale(0), // we will scale-in the puck on spawn
-    k.z((k.height() - size) / 2), // starting Z is the the center of Y
+    k.z((k.height() - size) / 2), // starting Z is the center of Y
     "puck",
     {
         add(this: GameObj) {
@@ -1097,17 +1097,17 @@ export default (room: Room<MyRoomState>) => [
 ];
 ```
 
-The biggest point to take from this code is, that we had to think of how to
-setup collisions and when to send the puck data or when to just apply them. Once
+The biggest point to take from this code is that we had to think of how to
+set up collisions and when to send the puck data or when to just apply them. Once
 again, the local player is the one who is the authority of the puck physics, so
-as soon it's hit, besides sending the new pos, it informs about the hit itself
+as soon as it's hit, besides sending the new pos, it informs about the hit itself
 `room.send("puck", { ...this.pos, hit: true });`. Then, it's checked in
 `onUpdate` if the `lastHitBy` was the local player. In that case, it continues
-in sending updates of the puck's position, each frame. Or if not, it means it's
+sending updates of the puck's position, each frame. Or if not, it means it's
 the other player, which will just apply the updated position from the
 `room.state`.
 
-Another thing to mention is, that whenever the `lastHitBy` changes, we need to
+Another thing to mention is that whenever the `lastHitBy` changes, we need to
 reset puck's velocity for the other player, otherwise it would battle with the
 manual position that is sent and applied from the server. It would make the puck
 shake if the other player hit the puck, but the local player didn't register
@@ -1172,9 +1172,9 @@ this.onMessage("goal", (client, teamNet) => {
 });
 ```
 
-Notice that the team score is the opposite one than the net that puck went in.
-We are also doing a fancy formatting, padding the number to be the same digits
-length, e.g. 0:0, 10:00. Then you should notice we are doing
+Notice that the team score is the one opposite to the net the puck went in.
+We are also doing a fancy formatting, padding the number to be the same digit
+length (e.g. 0:0, 10:00). Then you should notice we are doing
 `this.broadcast("score", ...);` to send the message to all clients, so we can
 easily listen to this event.
 
@@ -1187,7 +1187,7 @@ edit multiple files to address the goal/scoring.
 
 Let's start with the puck as we might still have it in mind. It's at the
 `/client/src/objs/puck.ts` if you forgot like Mark did. Find the line with net
-collision `this.onCollide("net", ...);` and add below the new message listener:
+collision `this.onCollide("net", ...);` and add the new message listener shown below:
 
 ```ts
 room.onMessage("score", async (score) => {
@@ -1230,8 +1230,8 @@ room.onMessage("score", async (score) => {
 });
 ```
 
-With this code we added some sort of rounds mechanic. Puck will disappear and
-reappear after one second after scoring to the net. At the same time, we are
+With this code, we added some sort of rounds mechanic. Puck will disappear and
+reappear one second after scoring in the net. At the same time, we are
 going to reset players to their starting positions as well. In the meantime, we
 disabled the collisions for the accidental hits while doing so. Let's implement
 it for the players as well.
@@ -1252,11 +1252,11 @@ room.onMessage("score", () => {
 I think this code is fairly self-explanatory. But Mark needs it to be summed up.
 We are resetting our local `mousePos` to the player's start position, disabling
 player movement by using the `controllable` property that we have prepared
-earlier for, sync the position back to the server, and make the player
+earlier for, syncing the position back to the server, and making the player
 controllable again after the new round starts.
 
 <Info crew="mark" title="
-    Lovely. But I'm winning and no one will believe me as there is no score shown!
+    Lovely. But I'm winning and no one will believe me since there's no score shown!
 "></Info>
 
 ### Adding the score object
@@ -1266,7 +1266,7 @@ as the default.
 
 Get the font by right clicking
 [this link](https://raw.githubusercontent.com/imaginarny/kaplay-colyseus/refs/heads/main/client/public/assets/happy-o.png)
-and save it as `happy-o.png` to the `/client/public/assets` folder. Then open
+and saving it as `happy-o.png` to the `/client/public/assets` folder. Then open
 the `/client/src/App.ts` file and change the default font in the `kaplay()` init
 options:
 
@@ -1357,7 +1357,7 @@ added a little animation to nudge the whole score bar as well.
 And finally, let's import it in the lobby scene, as always
 `/client/src/scenes/lobby.ts`:
 
-In the beginning of the file, below the other imports add:
+In the beginning of the file, below the other imports, add:
 
 ```ts
 import score from "../objs/score";
@@ -1385,9 +1385,9 @@ Nice indeed. I think we got us some Air Hockey game. 🥳
 ### Resetting the game
 
 Hold on! We forgot one thing about the score. Mark almost tricked us so he can
-cheat. When one of the player leaves, the other would keep the score. So Mark
+cheat. When one of the players leaves, the other would keep the score. So Mark
 could be winning immediately after you join. Same when he starts playing alone.
-We need to reset the game, when any player joins or leaves!
+We need to reset the game when any player joins or leaves!
 
 Let's head to the `/server/src/rooms/MyRoom.ts` and find both `onJoin` and
 `onLeave` events. Add the following as the last lines in the each of them:
@@ -1399,7 +1399,7 @@ this.state.rightScore = 0;
 this.broadcast("score", "0:0");
 ```
 
-Not only we reset the score, but we also informed the remaining player. For
+Not only do we reset the score, but we also informed the remaining player. For
 that, we reused the `"score"` message that our game already implemented. It
 resets the puck's position to the center, player to its initial position and
 resets the score as well. Neato, finito.
@@ -1431,8 +1431,8 @@ Load it in the `/client/src/App.ts` file, in the `main()` function below the
 k.loadSound("hit", "sounds/hit.mp3");
 ```
 
-Now, you might think this is going to be an easy change and we chose it because
-of the sake of it. Quite the opposite. And you will learn one more important
+Now, you might think this is going to be an easy change and we chose it for that.
+Quite the opposite. And you will learn one more important
 thing.
 
 Normally, we would do something for the puck object, like this:
@@ -1445,15 +1445,15 @@ But this will only play when the local player is the authority. It's due to the
 puck's position either being lerped, or having a latency. So there is a very
 high probability that when the other player hits the puck to the wall, it won't
 sync position for you exactly when the puck hits the wall. We will have to split
-it for the local player, and the other players as well, similarly as we were
+it for the local player, and the other players as well, just like we were
 doing with the puck position. And instead of limiting it only to the sound,
-let's also make it more general, to give you one more idea how to sync in-game
+let's also make it more general to give you one more idea how to sync in-game
 events and data.
 
 ### Events & data syncing
 
 Let's implement it on the server side first. We will listen for `"event"`
-message and broadcast another message to all clients, based on received data.
+message and broadcast another message to all clients, based on the received data.
 Open `/server/src/rooms/MyRoom.ts` and add this below the
 `this.onMessage("goal", ...);`:
 
@@ -1511,8 +1511,8 @@ this.onCollide("player", (obj: GameObj) => {
 We are checking if the player isn't local one, meaning the other player. In that
 case we send the hit event. All players will listen to this event.
 
-In the similar fashion, we are going to update `"boundary"` collision as well,
-it's right below it:
+In a similar fashion, we are going to update `"boundary"` collision as well.
+It's right below it:
 
 ```ts
 this.onCollide("boundary", () => {
@@ -1525,7 +1525,7 @@ this.onCollide("boundary", () => {
 ```
 
 First, we are checking if the `localPlayer` is currently the authority, meaning
-the source of truth of the puck movement and the hit. Server will inform us
+the source of truth of the puck movement and the hit. The server will inform us
 about this hit instead. However, we are excluding the local player from
 receiving this event as the sound already played for them. Otherwise we could
 potentially hear the hit twice. This time we are also sending `data` property to
@@ -1543,21 +1543,21 @@ room.onMessage("event:hit", async (target) => {
 ```
 
 This was and always will be confusing. We could do it easier, by not playing any
-sound for the “local” or “authority” player first and just send the event in all
-cases to listen to. This although could introduce some delay, when the latency
-is high, or duplication as already mentioned. Nevertheless, this caveat is good
-to know about and more importantly, know how to solve it.
+sound for the “local” or “authority” player first and just sending the event in all
+cases to listen to. Although, this could introduce some delay when the latency
+is high, or duplication as already mentioned. Nevertheless, it's good to know about
+this caveat, and more importantly, how to solve it.
 
 ### Syncing the other collisions
 
-Now that we have another trick upon our sleeve, let's fix another collision that
-is not syncing. You might have noticed that the kaboom animation on goal is only
+Now that we have another trick up our sleeve, let's fix another collision that
+is not syncing. You might have noticed that the kaboom animation on a goal is only
 showing for the player that scored. Or in other words, the local one with
 authority over the puck. This is also because of the lerp and the latency. For
 the local player, the puck collides with the net. But that doesn't happen for
 the other player, they are just informed about it. You can try to fix it
-yourself to test if you understood the past learning, it's very simple this
-time, just moving one line. Or, you can continue with us right away.
+yourself to test if you understood the past learning. It's very simple this
+time. You just move one line. Or, you can continue with us right away.
 
 Once again, we are going to edit `/client/src/objs/puck.ts`. Find the
 `this.onCollide("net", ...);` function and remove the `k.addKaboom(...);` line.
@@ -1586,10 +1586,10 @@ of “local” player and all the syncing methods available.
 Nowadays, almost everyone owns a smartphone. And you can't play with one mouse
 in two browser windows at the same time. So it makes sense that you would like
 to try play-testing against yourself more interactively and use your phone as
-the second player. Let's add support for it, it's going to be a quick one!
+the second player. Let's add support for it. It's going to be a quick one!
 
 Open `/client/src/objs/player.ts` and look for the
-`let mousePos = playerObj.startPos;` line. Add new variable below it:
+`let mousePos = playerObj.startPos;` line. Add a new variable below it:
 
 ```ts
 let mousePos = playerObj.startPos;

@@ -44,7 +44,7 @@ There's many type of events that runs in different contexts:
 are related to things like the game screen, input, etc.
 
 ```js
-// Only runs when user press "a"
+// Only runs when the user presses "a"
 onKeyPress("a", () => {
     debug.log("aaa");
 });
@@ -54,7 +54,7 @@ onLoad(() => {});
 ```
 
 <Info crew="bobo" title="App events are also in objects">
-There's some events like `onKeyPress()` which also have a `obj.onKeyPress()` version. They are still App events but they got removed when the object is destroyed. See the [App Events list](/#app-events-list) below
+There's some events like `onKeyPress()` which also have a `obj.onKeyPress()` version. They are still App events but they got removed when the object was destroyed. See the [App Events list](/#app-events-list) below
 </Info>
 
 ### Root events
@@ -76,9 +76,9 @@ onDraw(() => {
 });
 ```
 
-You can also associate these event handlers with **Tags**, this means you can
-run an event handler code _4 times_ if there's _4 objects_ with that tag. The
-**first argument** is always **the game object** is running for.
+You can also associate these event handlers with **Tags**. This means you can
+run the event handler code _4 times_ if there's _4 objects_ with that tag. The
+**first argument** is always **the game object** it's running for.
 
 ```js
 // imagine there's 4 objects with tag "friend"
@@ -109,7 +109,7 @@ obj.onUpdate(() => {});
 obj.onDraw(() => {});
 ```
 
-Both Object and Root events operate with [Object Events List](#object-events)
+Both Object and Root events operate with [Object Events List](#object-events-list).
 
 ## Game Object events given by components
 
@@ -140,7 +140,7 @@ events handler are an `on()`.
 
 You can use **global** `on()`, it works for use **Game Object events** with
 certain tags. The first argument is always the object. It is useful when there's
-no a handler for tags, for example in the component events:
+not a handler for tags, for example in the component events:
 
 ```js
 // obj.onHurt() but for many objects
@@ -153,7 +153,7 @@ on("update", "friend", (o) => {
 });
 ```
 
-There's also the object version, `obj.on()`. Useful for listen to an event only
+There's also the object version, `obj.on()`. Useful for listening to an event only
 in that obj:
 
 ```js

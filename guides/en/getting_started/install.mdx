@@ -13,28 +13,28 @@ import InstallationCode from "@/components/Content/InstallationCode.astro";
 # Installation
 
 <Info crew="bean" title="Basic Knowledge">
-If you're new in the **JavaScript World** and you don't know what a Node is,
-what a Bundler is or what to do with your life in general,
-check our [Basic Knowledge](/guides/knowledge) guide.
+If you're new to the **JavaScript World** and you don't know what a _node_ is,
+what a _bundler_ is, or what to do with your life in general,
+check our [Basic Knowledge Guide](/guides/knowledge).
 </Info>
 
 ## Recommended Installation
 
-Once you have [Node](https://nodejs.org/en/download) Installed, the most easy way to get started with **KAPLAY** is to use
+Once you have [Node.js](https://nodejs.org/en/download) installed, the easiest way to get started with **KAPLAY** is to use
 [`our installation package`](https://www.npmjs.com/package/create-kaplay), which
-will generate a project for you using the **Recommended** structure.
+will generate a project for you using the **recommended** structure.
 
 ```sh
 npx create-kaplay myGame && cd myGame
 ```
 
-Then, using `npm run dev` you can start the **Development Server**, where you can test your game locally at [`https://localhost:5173`](https://localhost:5173).
+Then, using `npm run dev` you can start the **development server**, where you can test your game locally at [`https://localhost:5173`](https://localhost:5173).
 
 ```sh
 npm run dev
 ```
 
-That's! You're ready to **start making games**. If you want to know all the options available
+That's it! You're ready to **start making games**. If you want to know all the options available
 in the `create-kaplay` package, run `npx create-kaplay --help`.
 
 ## Zero Bundlers Installation
@@ -52,7 +52,7 @@ an `index.html` file:
 ```
 
 <Info crew="kat" title="Serve your statics!">
-For using CDN and HTML correctly, you can't just open the `index.html`, you need
+For using the CDN and HTML correctly, you can't just open the `index.html`, you need
 to serve your files. Run `http-server`:
 
 ```sh
@@ -69,7 +69,7 @@ Now, for using KAPLAY library with a CDN, we have **2 methods**:
 
 ### Method 1: JavaScript Modules (Recommended)
 
-You can import KAPLAY using JavaScript Modules. **This is the recommended method.**
+You can import KAPLAY using JavaScript modules. **This is the recommended method.**
 Create a `main.js` script file and connect it to your `index.html`:
 
 ```html
@@ -78,7 +78,7 @@ Create a `main.js` script file and connect it to your `index.html`:
 </body>
 ```
 
-Then, import KAPLAY library inside `index.html`:
+Then, import the KAPLAY library inside `index.html`:
 
 <InstallationCode mode="module" />
 
@@ -99,7 +99,7 @@ npm install kaplay
 ```
 
 You'll need to use a bundler to use KAPLAY with NPM. There's a lot of options
-like `esbuild`, `webpack`, `parcel`, `vite` and etc. This is a short example using [`esbuild`](https://esbuild.github.io/).
+like `esbuild`, `webpack`, `parcel`, `vite`, etc. This is a short example using [`esbuild`](https://esbuild.github.io/).
 
 ```sh
 npm install esbuild

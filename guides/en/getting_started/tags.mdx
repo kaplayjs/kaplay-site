@@ -23,10 +23,10 @@ const ghost = add([
 ]);
 ```
 
-This make ghosty to have a tag enemy, and there's much operations you can do
+This makes it so ghosty has a tag, enemy, and there's many operations you can do
 with it.
 
-## Tags operations
+## Tag operations
 
 ### How to add a tag
 
@@ -34,7 +34,7 @@ with it.
 // Add a tag on creation
 const ghosty = add([
     sprite("ghosty"),
-    "enemy";
+    "enemy",
 ]);
 
 // Add 1 tag or many tags!
@@ -57,17 +57,17 @@ ghosty.is("enemy"); // true if tag is there, otherwise false
 ### How to get a list of all tags
 
 ```js
-ghosty.tags; // readonly array with all tags.
+ghosty.tags; // read-only array with all tags.
 // result: ["enemy"]
 ```
 
 <Info crew="gun" title="Important!">
-Don't try to push or modify this array. Is only for read purposes. If you want to add or remove a tag, use `.tag()` and `.untag()` instead.
+Don't try to push to or modify this array. It's only for reading purposes. If you want to add or remove a tag, use `.tag()` and `.untag()` instead.
 </Info>
 
 ## Using tags in events and methods
 
-A big quantity of methods and functions works using tags.
+A large number of methods and functions work using tags.
 
 ```js
 obj.get("enemy"); // returns an array with all enemy game objects
@@ -84,7 +84,7 @@ get("*"); // list of all game objects
 
 ## Components as tags
 
-In v3001, KAPLAY by default will take component id's as tags:
+In v3001, KAPLAY by default will take component IDs as tags:
 
 ```js
 // this means if your object have a sprite() component, it also have a "sprite" tag

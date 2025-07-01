@@ -1,8 +1,8 @@
 ---
 title: Sounds
 description:
-    How to play music, audios and sounds in KAPLAY, the HTML5 Game Library for
-    JavaScript and TypeScript.
+    How to play music, audio, and sounds in KAPLAY, the HTML5 game library for
+    JavaScript and Typescript.
 url: audio
 order: "basics-8"
 ---
@@ -26,7 +26,7 @@ loadSound("soundName", "/path/to/sound.mp3");
 ## Playing sounds
 
 You can play sounds using the [`play()`](. The `play()` function takes the name
-of the sound, and some options proper of [AudioPlayOpt](/doc/AudioPlayOpt/)
+of the sound, and some options proper of the [AudioPlayOpt](/doc/AudioPlayOpt/)
 interface.
 
 ```js

@@ -46,7 +46,7 @@ scene("game", (score) => {
 });
 ```
 
-Now we need to pass the score to the `game` scene, we do it with the `go()`
+Now we need to pass the score to the `game` scene. We do it with the `go()`
 function:
 
 ```js
@@ -73,7 +73,7 @@ go("game", { score: 100, level: 1 });
 
 ## Why can I use KAPLAY outside scenes?
 
-You can use KAPLAY outside scenes, this have some advantages and disadvantages.
+You can use KAPLAY outside scenes. This has some advantages and disadvantages.
 
 - **Advantage**: You can create simple games/examples without worrying about
   scenes.
