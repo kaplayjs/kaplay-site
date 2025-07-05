@@ -5,23 +5,19 @@ interface Props {
     href: string;
     target?: string;
     icon?: keyof typeof assets;
-    current?: boolean;
-    class?: string;
+    selected?: boolean;
 }
 
-const { href, target, icon, current, class: className, ...props } = Astro.props;
+const { href, target, selected: current, icon, ...props } = Astro.props;
 ---
 
 <li class="sidebar-link list-none">
     <a
         href={href}
-        class:list={[
-            "sidebar-link-a btn btn-sm h-auto w-full justify-start text-wrap text-left text-lg aria-[current=false]:btn-ghost aria-[current=true]:btn-primary",
-            className,
-        ]}
+        class="sidebar-link-a btn btn-sm h-auto w-full justify-start text-wrap text-left text-lg text-white aria-[selected=false]:btn-ghost"
         target={target}
         data-link={href}
-        aria-current={current}
+        aria-selected={current}
         {...props}
     >
         {icon && assets?.[icon]?.outlined && <img src={assets[icon].outlined} alt="Sidebar Icon" class="h-6 w-6" />}

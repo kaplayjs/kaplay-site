@@ -9,7 +9,7 @@ const { title, id, isOpen = true, ...props } = Astro.props;
 ---
 
 <div class="folder | flex flex-col" folder-state={isOpen ? "open" : "closed"} id={id} data-sidebar-folder {...props}>
-    <p class="folder-title | btn btn-ghost btn-sm w-full justify-start text-left text-lg">
+    <p class="folder-title | btn btn-ghost btn-sm w-full justify-start text-left text-lg text-white">
         {title}
     </p>
     <ul class="folder-content | mx-4 pl-0.5 flex-col gap-2 border-l border-base-content/30">

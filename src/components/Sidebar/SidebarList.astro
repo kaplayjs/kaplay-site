@@ -8,6 +8,7 @@ interface Props extends SidebarProps {
 }
 
 const { sidebarEntries, sidebarMode } = Astro.props as Props;
+const url = Astro.url;
 ---
 
 <div data-sidebar-entries>
@@ -18,19 +19,11 @@ const { sidebarEntries, sidebarMode } = Astro.props as Props;
     />
 
     {
-        sidebarMode == "guides" && (
-            <>
-                <SidebarLink href={"/guides"}>Getting Started</SidebarLink>
-            </>
-        )
-    }
-
-    {
         sidebarEntries.map(({ linkList, folder }, i) => {
             return (
                 <SidebarFolder title={folder} id={folder} isOpen={linkList.length > 0}>
                     {linkList.map(({ title, link }, i) => (
-                        <SidebarLink href={link} data-sidebar-entry data-title={title} data-url={link}>
+                        <SidebarLink href={link} data-sidebar-entry data-title={title} data-url={link} current={link == url.pathname}>
                             {title}
                         </SidebarLink>
                     ))}
