@@ -2,10 +2,11 @@
 import { Image } from "astro:assets";
 import VersionSelector from "./VersionSelector.astro";
 import SidebarLink from "./SidebarLink.astro";
-import searchIcon from "@/assets/search.png";
+import SidebarCategoryLink from "./SidebarCategoryLink.astro";
 import SidebarList from "./SidebarList.astro";
 import type { SidebarEntry, SidebarProps } from "./Sidebar.astro";
 import { getBlogEntries, getBookEntries, getDocEntries, getGuidesEntries } from "./entries.ts";
+import { assets as news } from "@kaplayjs/crew";
 
 type Props = SidebarProps;
 
@@ -32,34 +33,21 @@ if (sidebarMode === "guides") {
                 <Image src="/kaplay.gif" alt="kaplay logo" class="aspect-auto h-24 w-52 object-contain" width={208} height={100} loading={"eager"} />
             </a>
         </figure>
-        <div class="divider"></div>
-        <button class="btn btn-neutral mb-4 w-full border-primary" onclick="document.querySelector('#search-modal')?.showModal()">
-            <img src={searchIcon.src} alt="search icon" class="h-9 w-9" />
-            <span>SEARCH</span>
-            <kbd id="search-btn" class="kbd">CTRL + K</kbd>
-        </button>
-        <div class="px-4 pb-4">
+
+        <div class="flex items-center justify-center">
             <VersionSelector />
+            <a class="btn btn-sm" href="https://github.com/kaplayjs/kaplay/blob/master/CHANGELOG.md" target="_blank">
+                <img src={news.paper.outlined} class="w-6 h-6" />
+            </a>
         </div>
-        <div class="divider"></div>
-        <ul class="flex-col gap-2">
-            <SidebarLink href="/" icon="home" reloadAll>Home</SidebarLink>
-            <SidebarLink href="https://kaboomjs.com/discord" target="_blank" icon="discord">
-                Discord <div class="badge badge-primary">+2000!</div>
-            </SidebarLink>
-            <SidebarLink href="https://github.com/kaplayjs/kaplay" target="_blank" icon="github"> GitHub </SidebarLink>
-            <SidebarLink href="https://github.com/kaplayjs/kaplay/blob/master/CHANGELOG.md" icon="pog"> Changelog </SidebarLink>
-            <SidebarLink href="https://play.kaplayjs.com" target="_blank" icon="play"> KAPLAYGROUND </SidebarLink>
-            <SidebarLink href="https://opencollective.com/kaplay" target="_blank" icon="money_bag"> Donate to KAPLAY </SidebarLink>
-        </ul>
-        <div class="divider"></div>
-        <ul class="flex-col gap-2">
-            <SidebarLink href="/guides/install" icon="marks_legend" reloadAll> Guides </SidebarLink>
-            <SidebarLink href="/doc/kaplay" icon="api_book" reloadAll> API Docs </SidebarLink>
-            <SidebarLink href="/blog" icon="paper" reloadAll> Blog </SidebarLink>
-        </ul>
 
         <div class="divider"></div>
+
+        <ul class="flex-col gap-2 bg-neutral p-1 rounded-xl border border-base-100 mb-4">
+            <SidebarCategoryLink href="/guides" icon="marks_legend" selected={sidebarMode === "guides"}> Guides </SidebarCategoryLink>
+            <SidebarCategoryLink href="/doc/kaplay" icon="api_book" selected={sidebarMode === "reference"}> API Reference </SidebarCategoryLink>
+            <SidebarCategoryLink href="/blog" icon="paper" selected={sidebarMode === "blog"}> Blog </SidebarCategoryLink>
+        </ul>
 
         <SidebarList sidebarMode={sidebarMode} sidebarEntries={renderList} />
     </div>

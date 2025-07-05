@@ -8,11 +8,7 @@ const versionNames = {
 };
 ---
 
-<select
-    id="versionSelect"
-    class="select select-bordered w-full"
-    data-always-select={selectedByDefault}
->
+<select id="versionSelect" class="w-fit bg-transparent mx-auto block text-white" data-always-select={selectedByDefault}>
     <option value="v4000" selected={selectedByDefault === "v4000"}>
         {versionNames.v4000}
     </option>
@@ -28,9 +24,7 @@ const versionNames = {
         kaboom: "https://kaboomjs.com",
     };
 
-    const versionSelect = document.querySelector<HTMLSelectElement>(
-        "#versionSelect",
-    )!;
+    const versionSelect = document.querySelector<HTMLSelectElement>("#versionSelect")!;
 
     const selectedByDefault = versionSelect.dataset.alwaysSelect;
 
