@@ -6,15 +6,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.6] - 2025-07-05
+
+### Added
+
+- New navigation interface - @lajbel
+
 ## [1.1.5] - 2025-06-25
 
 ### Added
 
-- Now the navigation select is auto-updated with scroll
+- Now the navigation select is auto-updated with scroll - @lajbel
 
 ### Fixed
 
-- Duplicated elements in API sidebar
+- Duplicated elements in API sidebar - @lajbel
 
 ## [1.1.4] - 2025-06-05
 
