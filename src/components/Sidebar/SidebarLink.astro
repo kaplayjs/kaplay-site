@@ -4,24 +4,26 @@ import { assets } from "@kaplayjs/crew";
 interface Props {
     href: string;
     target?: string;
+    reloadAll?: boolean;
     icon?: keyof typeof assets;
     current?: boolean;
     class?: string;
 }
 
-const { href, target, icon, current, class: className, ...props } = Astro.props;
+const { href, target, reloadAll, icon, current, class: className, ...props } = Astro.props;
 ---
 
 <li class="sidebar-link list-none">
     <a
         href={href}
         class:list={[
-            "sidebar-link-a btn btn-sm h-auto w-full justify-start text-wrap text-left text-lg aria-[current=false]:btn-ghost aria-[current=true]:btn-primary",
+            "sidebar-link-a btn btn-sm h-auto w-full justify-start font-normal text-wrap text-left text-lg aria-[current=false]:btn-ghost aria-[current=true]:btn-primary aria-[current=true]:font-medium",
             className,
         ]}
         target={target}
         data-link={href}
         aria-current={current}
+        data-astro-reload={reloadAll ? "all" : undefined}
         {...props}
     >
         {icon && assets?.[icon]?.outlined && <img src={assets[icon].outlined} alt="Sidebar Icon" class="h-6 w-6" />}

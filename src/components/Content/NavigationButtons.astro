@@ -9,17 +9,35 @@ type Props = {
 };
 const { previous, next } = Astro.props;
 ---
-<div class="mt-8 flex justify-between">
+
+<div class="mt-14 flex justify-between">
     <div>
         {
             previous && (
                 <a
                     href={"/guides/" + previous.url}
-                    class="px-4 py-2 hover:underline"
+                    class="not-prose card mb-6 bg-base-content/5 px-4 py-3 no-underline hover:bg-base-content/10 transition-colors"
                     aria-label="Previous guide"
                 >
-                    <div class="text-sm">Previous</div>
-                    <div class="font-bold">{previous.title}</div>
+                    <div class="flex items-center gap-1 text-sm">
+                        <svg
+                            width="14"
+                            height="14"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <>
+                                <path d="m12 19-7-7 7-7" />
+                                <path d="M19 12H5" />
+                            </>
+                        </svg>
+                        Previous
+                    </div>
+                    <div class="font-bold leading-normal text-primary">{previous.title}</div>
                 </a>
             )
         }
@@ -29,11 +47,28 @@ const { previous, next } = Astro.props;
             next && (
                 <a
                     href={"/guides/" + next.url}
-                    class="px-4 py-2 hover:underline"
+                    class="not-prose card mb-6 bg-base-content/5 px-4 py-3 no-underline hover:bg-base-content/10 transition-colors"
                     aria-label="Next guide"
                 >
-                    <div class="text-sm">Next</div>
-                    <div class="font-bold">{next.title}</div>
+                    <div class="flex items-center gap-1 text-sm justify-end">
+                        Next
+                        <svg
+                            width="14"
+                            height="14"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <>
+                                <path d="M5 12h14" />
+                                <path d="m12 5 7 7-7 7" />
+                            </>
+                        </svg>
+                    </div>
+                    <div class="font-bold leading-normal text-primary">{next.title}</div>
                 </a>
             )
         }

@@ -1,15 +1,7 @@
 ---
-import hamburgerIcon from "@/assets/hamburger.webp";
-import searchIcon from "@/assets/search.png";
-import { cn } from "@/util/cn";
 import type { MarkdownHeading } from "astro";
-import { Image } from "astro:assets";
 import Footer from "../Footer/Footer.astro";
 import { getBlogEntries, getBookEntries, getDocEntries, getGuidesEntries } from "./entries";
-import SidebarLink from "./SidebarLink.astro";
-import SidebarList from "./SidebarList.astro";
-import VersionSelector from "./VersionSelector.astro";
-import { assets } from "@kaplayjs/crew";
 import SidebarEntries from "./SidebarEntries.astro";
 import SidebarContentNav from "./SidebarContentNav.astro";
 
@@ -46,7 +38,7 @@ if (sidebarMode === "guides") {
 }
 ---
 
-<div class="drawer z-20 h-full md:drawer-open">
+<div id="drawer" class="drawer z-20 h-full md:drawer-open md:border-r border-base-content/5">
     <input id="sidebar" type="checkbox" class="drawer-toggle" />
 
     <div class="drawer-content w-full">
@@ -54,7 +46,7 @@ if (sidebarMode === "guides") {
             <SidebarContentNav headings={headings} />
         </header>
 
-        <main class="flex w-full flex-col md:flex-row md:pt-3 md:pl-4">
+        <main class="relative flex w-full flex-col md:flex-row md:pt-4 md:pl-4">
             <div class="w-full">
                 <slot name="ad" />
 
@@ -66,6 +58,8 @@ if (sidebarMode === "guides") {
     </div>
 
     <SidebarEntries sidebarMode={sidebarMode} />
+
+    <div class="max-md:hidden fixed bottom-0 left-72 right-0 bg-corner-radius -scale-y-100 pointer-events-none border-t z-40"></div>
 </div>
 
 <script>
@@ -83,4 +77,43 @@ if (sidebarMode === "guides") {
             document.querySelector<HTMLDialogElement>("#search-modal")?.showModal();
         }
     });
+</script>
+
+<script>
+    import type { TransitionBeforeSwapEvent } from "astro:transitions/client";
+
+    const getSidebar = (doc = document) => doc.querySelector<HTMLDivElement>("#drawer .drawer-scrollable");
+
+    const updateActiveLinks = () => {
+        const pathname = new URL(location.href).pathname.replace(/\/$/, "");
+        const links = document.querySelectorAll<HTMLElement>(".sidebar-link-a");
+
+        links.forEach((link) => {
+            const href = link.dataset.link?.replace(/\/$/, "");
+            link.ariaCurrent = `${href === pathname}`;
+        });
+    };
+
+    const beforeSwap = (e: TransitionBeforeSwapEvent) => {
+        if (location.pathname.split("/")[1] != e.to.pathname.split("/")[1]) return;
+
+        const scrollTop = getSidebar()?.scrollTop ?? 0;
+        const sidebar = getSidebar(e.newDocument);
+        if (sidebar) sidebar.dataset.scrolltop = scrollTop + "";
+    };
+
+    const afterSwap = () => {
+        updateActiveLinks();
+
+        const sidebar = getSidebar();
+        if (sidebar) sidebar.scrollTop = parseInt(sidebar.dataset.scrolltop ?? "0");
+
+        const currentLink = document.querySelector<HTMLElement>(".sidebar-link-a[aria-current='true']");
+        const scrollable = currentLink?.closest(".drawer-scrollable");
+        if (currentLink && scrollable) currentLink.scrollIntoView({ block: "nearest" });
+    };
+
+    document.addEventListener("astro:before-swap", beforeSwap);
+    document.addEventListener("astro:after-swap", afterSwap);
+    document.addEventListener("load", updateActiveLinks);
 </script>

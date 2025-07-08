@@ -1,12 +1,11 @@
 ---
 import { Image } from "astro:assets";
 import VersionSelector from "./VersionSelector.astro";
-import SidebarLink from "./SidebarLink.astro";
 import SidebarCategoryLink from "./SidebarCategoryLink.astro";
 import SidebarList from "./SidebarList.astro";
 import type { SidebarEntry, SidebarProps } from "./Sidebar.astro";
 import { getBlogEntries, getBookEntries, getDocEntries, getGuidesEntries } from "./entries.ts";
-import { assets as news } from "@kaplayjs/crew";
+import changelogIcon from "@/assets/history.png";
 
 type Props = SidebarProps;
 
@@ -25,30 +24,35 @@ if (sidebarMode === "guides") {
 }
 ---
 
-<div class="drawer-side z-50 h-dvh md:bg-base-300" transition:persist>
+<div class="drawer-side z-50 h-dvh md:p-px md:pt-0 bg-base-50 max-md:!bg-transparent">
     <label for="sidebar" aria-label="close sidebar" class="drawer-overlay"></label>
-    <div class="min-h-full w-72 bg-base-300 p-4 text-base-content">
-        <figure>
-            <a class="btn btn-ghost h-max w-full p-2" href={"/"} data-astro-reload>
-                <Image src="/kaplay.gif" alt="kaplay logo" class="aspect-auto h-24 w-52 object-contain" width={208} height={100} loading={"eager"} />
-            </a>
-        </figure>
+    <div class="w-72 h-full max-md:border border-l-0 border-base-content/10 max-md:rounded-r-xl md:rounded-br-xl overflow-hidden">
+        <div class="drawer-scrollable w-[inherit] h-full bg-base-300 p-4 text-base-content">
+            <figure class="mb-4">
+                <a class="btn btn-ghost h-max w-full p-2" href={"/"} data-astro-reload>
+                    <Image src="/kaplay.gif" alt="kaplay logo" class="aspect-auto h-24 w-52 object-contain" width={208} height={100} loading={"eager"} />
+                </a>
+            </figure>
 
-        <div class="flex items-center justify-center">
-            <VersionSelector />
-            <a class="btn btn-sm" href="https://github.com/kaplayjs/kaplay/blob/master/CHANGELOG.md" target="_blank">
-                <img src={news.paper.outlined} class="w-6 h-6" />
-            </a>
+            <div class="flex gap-px bg-base-50 p-px rounded-lg justify-center mb-5">
+                <VersionSelector />
+                <a
+                    class="btn btn-sm btn-ghost bg-base-200 p-1"
+                    href="https://github.com/kaplayjs/kaplay/blob/master/CHANGELOG.md"
+                    target="_blank"
+                    title="Changelog"
+                >
+                    <img src={changelogIcon.src} class="w-6 h-full object-scale-down" />
+                </a>
+            </div>
+
+            <ul class="flex-col gap-2 bg-neutral p-1 rounded-xl border border-base-100 mb-4">
+                <SidebarCategoryLink href="/guides" icon="marks_legend" selected={sidebarMode === "guides"}> Guides </SidebarCategoryLink>
+                <SidebarCategoryLink href="/doc/kaplay" icon="api_book" selected={sidebarMode === "reference"}> API Reference </SidebarCategoryLink>
+                <SidebarCategoryLink href="/blog" icon="paper" selected={sidebarMode === "blog"}> Blog </SidebarCategoryLink>
+            </ul>
+
+            <SidebarList sidebarMode={sidebarMode} sidebarEntries={renderList} />
         </div>
-
-        <div class="divider"></div>
-
-        <ul class="flex-col gap-2 bg-neutral p-1 rounded-xl border border-base-100 mb-4">
-            <SidebarCategoryLink href="/guides" icon="marks_legend" selected={sidebarMode === "guides"}> Guides </SidebarCategoryLink>
-            <SidebarCategoryLink href="/doc/kaplay" icon="api_book" selected={sidebarMode === "reference"}> API Reference </SidebarCategoryLink>
-            <SidebarCategoryLink href="/blog" icon="paper" selected={sidebarMode === "blog"}> Blog </SidebarCategoryLink>
-        </ul>
-
-        <SidebarList sidebarMode={sidebarMode} sidebarEntries={renderList} />
     </div>
 </div>
