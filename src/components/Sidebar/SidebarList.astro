@@ -11,7 +11,7 @@ const { sidebarEntries, sidebarMode } = Astro.props as Props;
 const url = Astro.url;
 ---
 
-<div data-sidebar-entries>
+<div data-sidebar-entries transition:persist={sidebarMode}>
     <input
         id="sidebar-search"
         class="input h-auto min-h-0 px-3.5 py-2 border-base-content/5 my-2 w-full"
