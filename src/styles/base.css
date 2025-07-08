@@ -77,6 +77,7 @@ a:hover {
 
 .drawer-scrollable {
     overflow-y: auto;
+    overflow-x: hidden;
     scrollbar-gutter: stable;
     scrollbar-color:
         color-mix(in oklch, currentColor 35%, transparent)
