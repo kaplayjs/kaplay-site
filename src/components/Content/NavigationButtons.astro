@@ -11,15 +11,15 @@ const { previous, next } = Astro.props;
 ---
 
 <div class="mt-14 flex justify-between gap-2">
-    <div class="flex flex-1">
+    <div class="flex">
         {
             previous && (
                 <a
                     href={"/guides/" + previous.url}
-                    class="not-prose card mb-6 bg-base-content/5 px-4 py-3 no-underline hover:bg-base-content/10 transition-colors"
+                    class="not-prose card gap-1 mb-6 bg-base-content/5 p-4 no-underline hover:bg-base-content/10 transition-colors"
                     aria-label="Previous guide"
                 >
-                    <div class="flex items-center gap-1 text-sm">
+                    <div class="flex items-center gap-1 text-sm leading-tight">
                         <svg
                             width="14"
                             height="14"
@@ -37,20 +37,20 @@ const { previous, next } = Astro.props;
                         </svg>
                         Previous
                     </div>
-                    <div class="mt-auto font-bold leading-normal text-primary">{previous.title}</div>
+                    <div class="mt-auto font-bold leading-tight text-primary">{previous.title}</div>
                 </a>
             )
         }
     </div>
-    <div class="flex flex-1">
+    <div class="flex">
         {
             next && (
                 <a
                     href={"/guides/" + next.url}
-                    class="not-prose card mb-6 bg-base-content/5 px-4 py-3 no-underline hover:bg-base-content/10 transition-colors"
+                    class="not-prose card gap-1 mb-6 bg-base-content/5 p-4 no-underline hover:bg-base-content/10 transition-colors"
                     aria-label="Next guide"
                 >
-                    <div class="flex items-center gap-1 text-sm justify-end">
+                    <div class="flex items-center gap-1 text-sm leading-tight justify-end">
                         Next
                         <svg
                             width="14"
@@ -68,7 +68,7 @@ const { previous, next } = Astro.props;
                             </>
                         </svg>
                     </div>
-                    <div class="font-bold leading-normal text-primary">{next.title}</div>
+                    <div class="font-bold leading-tight text-primary text-right">{next.title}</div>
                 </a>
             )
         }
