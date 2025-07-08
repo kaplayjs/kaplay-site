@@ -10,8 +10,8 @@ type Props = {
 const { previous, next } = Astro.props;
 ---
 
-<div class="mt-14 flex justify-between">
-    <div>
+<div class="mt-14 flex justify-between gap-2">
+    <div class="flex flex-1">
         {
             previous && (
                 <a
@@ -37,12 +37,12 @@ const { previous, next } = Astro.props;
                         </svg>
                         Previous
                     </div>
-                    <div class="font-bold leading-normal text-primary">{previous.title}</div>
+                    <div class="mt-auto font-bold leading-normal text-primary">{previous.title}</div>
                 </a>
             )
         }
     </div>
-    <div>
+    <div class="flex flex-1">
         {
             next && (
                 <a
