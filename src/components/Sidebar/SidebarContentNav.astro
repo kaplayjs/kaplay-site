@@ -1,6 +1,5 @@
 ---
 import hamburgerIcon from "@/assets/hamburger.webp";
-import { Image } from "astro:assets";
 import type { MarkdownHeading } from "astro";
 import { assets } from "@kaplayjs/crew";
 import searchIcon from "@/assets/search.png";
@@ -17,7 +16,7 @@ const { headings } = Astro.props;
         <div class="flex items-center justify-between gap-2 flex-1 w-full min-w-fit max-w-[50rem] pr-3">
             <label for="sidebar" class="flex md:hidden shrink-0">
                 <figure>
-                    <Image src={hamburgerIcon} width="36" height="36" alt="hamburger icon" />
+                    <img src={hamburgerIcon.src} alt="Menu" width="36" height="36" loading="lazy" decoding="async">
                 </figure>
             </label>
 
