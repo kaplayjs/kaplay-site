@@ -24,14 +24,15 @@ const versionNames = {
         kaboom: "https://kaboomjs.com",
     };
 
-    const versionSelect = document.querySelector<HTMLSelectElement>("#versionSelect")!;
+    document.addEventListener("astro:page-load", () => {
+        const versionSelect = document.querySelector<HTMLSelectElement>("#versionSelect")!;
+        const selectedByDefault = versionSelect.dataset.alwaysSelect;
 
-    const selectedByDefault = versionSelect.dataset.alwaysSelect;
+        versionSelect.addEventListener("change", () => {
+            const version = versionSelect.value;
+            window.open(links[version]);
 
-    versionSelect.addEventListener("change", (e) => {
-        const version = versionSelect.value;
-        window.open(links[version]);
-
-        versionSelect.value = selectedByDefault!;
+            versionSelect.value = selectedByDefault!;
+        });
     });
 </script>
