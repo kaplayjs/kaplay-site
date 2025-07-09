@@ -63,23 +63,6 @@ if (sidebarMode === "guides") {
 </div>
 
 <script>
-    const isMac = navigator.userAgent.includes("Mac");
-    const searchBtn = document.querySelector("#search-btn");
-
-    if (isMac && searchBtn) {
-        searchBtn.textContent = "⌘ + K";
-    }
-
-    window.addEventListener("keydown", (e) => {
-        if (e.ctrlKey && e.key === "k") {
-            e.preventDefault();
-
-            document.querySelector<HTMLDialogElement>("#search-modal")?.showModal();
-        }
-    });
-</script>
-
-<script>
     import type { TransitionBeforeSwapEvent } from "astro:transitions/client";
 
     const getSidebar = (doc = document) => doc.querySelector<HTMLDivElement>("#drawer .drawer-scrollable");

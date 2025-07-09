@@ -16,7 +16,7 @@ const { headings } = Astro.props;
         <div class="flex items-center justify-between gap-2 flex-1 w-full min-w-fit max-w-[50rem] pr-3">
             <label for="sidebar" class="flex md:hidden shrink-0">
                 <figure>
-                    <img src={hamburgerIcon.src} alt="Menu" width="36" height="36" loading="lazy" decoding="async">
+                    <img src={hamburgerIcon.src} alt="Menu" width="36" height="36" loading="lazy" decoding="async" />
                 </figure>
             </label>
 
@@ -74,26 +74,43 @@ const { headings } = Astro.props;
 </nav>
 
 <script>
-    const select = document.querySelector<HTMLSelectElement>("#section-select")!;
-    const headers = document.querySelectorAll("h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]")!;
+    const isMac = navigator.userAgent.includes("Mac");
+    const searchBtn = document.querySelector("#search-btn");
 
-    window.addEventListener("scroll", () => {
-        let closest: Element | null = null;
-        let minOffset = Infinity;
+    if (isMac && searchBtn) {
+        searchBtn.textContent = "⌘ + K";
+    }
 
-        headers.forEach((header) => {
-            const rect = header.getBoundingClientRect();
-            const offset = Math.abs(rect.top);
+    window.addEventListener("keydown", (e) => {
+        if (e.ctrlKey && e.key === "k") {
+            e.preventDefault();
 
-            if (rect.top <= 100 && offset < minOffset) {
-                minOffset = offset;
-                closest = header;
-            }
-        });
-
-        if (closest) {
-            // @ts-expect-error Wtf why here's never?
-            select.value = `#${closest.id}`;
+            document.querySelector<HTMLDialogElement>("#search-modal")?.showModal();
         }
+    });
+</script>
+
+<script>
+    document.addEventListener("astro:page-load", () => {
+        const select = document.querySelector<HTMLSelectElement>("#section-select")!;
+        const headers = document.querySelectorAll("h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]")!;
+
+        const updateSelect = () => {
+            let closest: Element | null = null;
+
+            headers.forEach((header) => {
+                if (header.getBoundingClientRect().top <= 100) {
+                    closest = header;
+                }
+            });
+
+            if (closest) {
+                // @ts-expect-error Wtf why here's never?
+                select.value = `#${closest.id}`;
+            }
+        };
+
+        updateSelect();
+        window.addEventListener("scroll", updateSelect);
     });
 </script>
