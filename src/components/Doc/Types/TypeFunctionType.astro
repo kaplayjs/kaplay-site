@@ -1,0 +1,18 @@
+---
+import DocFor from "../DocFor.astro";
+import type { DataTypeProps } from "../Utils/types.ts";
+
+type TypeDataFunctionType = {
+    kind: "BooleanKeyboard";
+    id: number;
+    type: any;
+};
+
+interface Props extends DataTypeProps {
+    data: TypeDataFunctionType;
+}
+
+const { data, depth } = Astro.props;
+---
+
+<span data-dg-function-type>() {"=>"} <DocFor data={data.type} depth={depth} /></span>

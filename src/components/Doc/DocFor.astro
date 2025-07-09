@@ -1,0 +1,65 @@
+---
+import TypeClassDeclaration from "./Declaration/TypeClassDeclaration.astro";
+import TypeInterfaceDeclaration from "./Declaration/TypeInterfaceDeclaration.astro";
+import TypeMethodDeclaration from "./Declaration/TypeMethodDeclaration.astro";
+import TypePropertyDeclaration from "./Declaration/TypePropertyDeclaration.astro";
+import TypeBooleanKeyword from "./Keywords/TypeBooleanKeyword.astro";
+import TypeNumberKeyword from "./Keywords/TypeNumberKeyword.astro";
+import TypeStringKeyword from "./Keywords/TypeStringKeyword.astro";
+import TypeVoidKeyword from "./Keywords/TypeVoidKeyword.astro";
+import TypePropertySignature from "./Signatures/TypePropertySignature.astro";
+import TypeFunctionType from "./Types/TypeFunctionType.astro";
+
+type Props = {
+    data: any;
+    depth: number;
+};
+
+const { data, depth } = Astro.props;
+const kind = data?.kind;
+console.log(data);
+---
+
+{
+    () => {
+        // Declarations
+        if (kind == "InterfaceDeclaration") {
+            return <TypeInterfaceDeclaration data={data} depth={depth} />;
+        }
+        if (kind == "ClassDeclaration") {
+            return <TypeClassDeclaration data={data} depth={depth} />;
+        }
+        if (kind == "PropertyDeclaration") {
+            return <TypePropertyDeclaration data={data} depth={depth} />;
+        }
+        if (kind == "MethodDeclaration") {
+            return <TypeMethodDeclaration data={data} depth={depth} />;
+        }
+        // Types
+        if (kind == "FunctionType") {
+            return <TypeFunctionType data={data} depth={depth} />;
+        }
+        // Keywords
+        if (kind == "StringKeyword") {
+            return <TypeStringKeyword data={data} depth={depth} />;
+        }
+        if (kind == "BooleanKeyword") {
+            return <TypeBooleanKeyword data={data} depth={depth} />;
+        }
+        if (kind == "NumberKeyword") {
+            return <TypeNumberKeyword data={data} depth={depth} />;
+        }
+        if (kind == "VoidKeyword") {
+            return <TypeVoidKeyword data={data} depth={depth} />;
+        }
+        if (kind == "PropertySignature") {
+            return <TypePropertySignature data={data} depth={depth} />;
+        }
+
+        return (
+            <div class="bg-base-300 p-4 my-2">
+                Parsing error with <span class="text-warning">{kind}</span>
+            </div>
+        );
+    }
+}

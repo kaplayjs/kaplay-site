@@ -1,0 +1,14 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type Props = {
+    depth: number;
+} & HTMLAttributes<"h1">;
+
+const elementPerDepth = ["h1", "h2", "h3", "h4", "h5", "h6"];
+
+const { depth, ...props } = Astro.props;
+const TitleEl = elementPerDepth[depth];
+---
+
+<TitleEl {...props}><slot /></TitleEl>

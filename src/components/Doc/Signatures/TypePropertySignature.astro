@@ -1,0 +1,23 @@
+---
+import DocFor from "../DocFor.astro";
+import JSDoc from "../JSDoc.astro";
+import Title from "../Utils/Title.astro";
+
+type TypeDataPropertySignature = {
+    kind: "PropertySignature";
+    id: number;
+    name: string;
+    type: any[];
+    questionToken: boolean;
+};
+
+type Props = {
+    data: TypeDataPropertySignature;
+    depth: number;
+};
+
+const { data, depth } = Astro.props;
+---
+
+<Title class="inline" depth={depth}>{data.name}</Title>{data.questionToken ? "?" : ""}: <DocFor data={data.type} depth={depth} />
+<JSDoc data={data} />

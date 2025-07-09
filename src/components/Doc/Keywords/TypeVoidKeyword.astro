@@ -1,0 +1,14 @@
+---
+import type { DataTypeProps } from "../Utils/types.ts";
+
+type TypeDataVoidKeyboard = {
+    kind: "BooleanKeyboard";
+    id: number;
+};
+
+interface Props extends DataTypeProps {
+    data: TypeDataVoidKeyboard;
+}
+---
+
+<span data-dg-void-keyword data-dg-primitive>void</span>

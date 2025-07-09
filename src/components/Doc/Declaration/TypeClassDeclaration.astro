@@ -1,0 +1,28 @@
+---
+import DocEntry from "../DocEntry.astro";
+import JSDoc from "../JSDoc.astro";
+import Title from "../Utils/Title.astro";
+
+type TypeDataClassDeclaration = {
+    kind: "InterfaceDeclaration";
+    id: number;
+    name: string;
+    members: Record<string, any>;
+};
+
+type Props = {
+    data: TypeDataClassDeclaration;
+    depth: number;
+};
+
+const { data, depth } = Astro.props;
+---
+
+<Title depth={depth} data-dg-class-declaration>
+    <span class="text-sm inline rounded-lg border px-2 border-primary text-primary">Class</span>{" "}
+    <span>{data.name}:</span></Title
+>
+
+<JSDoc data={data} />
+
+{Object.keys(data.members).map((d) => data.members[d].map((rd) => <DocEntry data={rd} depth={depth + 1} parent={data.name} />))}
