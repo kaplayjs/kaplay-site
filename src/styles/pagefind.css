@@ -8,27 +8,32 @@
     --pagefind-ui-border-radius: inherit;
     --pagefind-ui-font: inherit;
     --pagefind-ui-background: inherit;
-  }
-
+    width: 100%;
+    height: 100%;
+}
 
 .pagefind-ui__search-input {
-    @apply input input-bordered w-full p-4;
+    @apply input input-bordered w-full p-4 !pr-20 bg-base-50;
 }
 
 .pagefind-ui__form {
-    @apply form-control max-h-96 items-start gap-2;
+    @apply relative form-control h-full gap-2;
 }
 
 .pagefind-ui__search-clear {
-    @apply btn btn-neutral btn-xs;
+    @apply btn btn-xs absolute right-2 top-2 h-8 min-h-8 rounded-md;
 }
 
 .pagefind-ui__drawer {
-    @apply flex-1 overflow-y-auto;
+    @apply flex-1 -m-1 p-1 overflow-y-auto focus:outline-none
+        focus-visible:ring-2 ring-base-content/10 rounded-xl;
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in oklch, currentColor 35%, transparent)
+        transparent;
 }
 
 .pagefind-ui__results-area {
-    @apply space-y-4 py-2;
+    @apply space-y-4 pt-2;
 }
 
 .pagefind-ui__message {
@@ -36,16 +41,21 @@
 }
 
 .pagefind-ui__results {
-    @apply form-control gap-2;
+    @apply form-control gap-1;
 }
 
 .pagefind-ui__result {
-    @apply rounded-box bg-base-200 p-2;
+    @apply rounded-xl bg-base-200 py-2.5 px-3.5;
 }
 
 .pagefind-ui__result-title {
-    @apply text-lg font-bold text-primary underline;
-    text-decoration-style: dotted;
+    @apply link text-lg font-semibold text-white underline
+        decoration-base-content/15 underline-offset-2 rounded-md
+        hover:text-primary transition-colors;
+}
+
+.pagefind-ui__result-link {
+    @apply link rounded-md;
 }
 
 .pagefind-ui__result-nested .pagefind-ui__result-title {
@@ -53,5 +63,9 @@
 }
 
 mark {
-    @apply bg-primary text-black;
+    @apply bg-primary text-black rounded-md px-1 box-decoration-clone;
+}
+
+.pagefind-ui__button {
+    @apply btn btn-ghost bg-base-content/10;
 }

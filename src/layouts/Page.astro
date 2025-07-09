@@ -1,6 +1,6 @@
 ---
-import SearchDialog from "@/components/Search/SearchDialog.astro";
 import { ClientRouter } from "astro:transitions";
+import SearchDialog from "@/components/Search/SearchDialog.astro";
 import "@fontsource-variable/fira-code";
 import "@fontsource-variable/fredoka";
 import "@fontsource/ibm-plex-sans";
@@ -30,7 +30,7 @@ const l = Astro.currentLocale;
 const image = new URL(meta?.image ?? "/kaplayjs.png", Astro.url);
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang={l} class={className}>
     <head>
         <meta charset="UTF-8" />
@@ -55,10 +55,7 @@ const image = new URL(meta?.image ?? "/kaplayjs.png", Astro.url);
         <meta name="twitter:image" content={image} />
         <meta name="theme-color" content={meta?.themeColor ?? "#abdd64"} />
         <meta name="keywords" content={meta?.keywords} />
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/base16/summerfruit-dark.min.css"
-        />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/base16/summerfruit-dark.min.css" />
 
         <title>{meta?.title}</title>
         <script src="/pagefind/pagefind-ui.js" is:inline></script>
@@ -68,4 +65,5 @@ const image = new URL(meta?.image ?? "/kaplayjs.png", Astro.url);
     <body>
         <slot />
         <SearchDialog />
-    </body></html>
+    </body></html
+>

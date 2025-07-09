@@ -1,5 +1,9 @@
 @import "./pagefind.css";
 
+::view-transition-group(root) {
+    animation: none;
+}
+
 body {
     min-height: 100dvh;
     font-family: "Outfit Variable", sans-serif;
@@ -10,6 +14,14 @@ h1,
 .prose h1 {
     --tw-prose-headings: #ffffff;
     @apply text-white;
+}
+
+h2, h3, h4, h5, h6 {
+    &, .drawer & {
+        --subheadings: color-mix(in oklch, currentColor 55%, white);
+        --tw-prose-headings: var(--subheadings);
+        color: var(--subheadings);
+    }
 }
 
 iframe {
@@ -61,11 +73,17 @@ a:hover {
 
 .drawer-side {
     --tw-text-opacity: 1;
+}
+
+.drawer-scrollable {
+    overflow-y: auto;
+    overflow-x: hidden;
     scrollbar-gutter: stable;
     scrollbar-color:
         color-mix(in oklch, currentColor 35%, transparent)
         var(--fallback-b3, oklch(var(--b3) / var(--tw-text-opacity)));
     scrollbar-width: thin;
+    overscroll-behavior: contain;
 }
 
 .land {
@@ -86,6 +104,10 @@ a:hover {
     image-rendering: pixelated;
 }
 
+.modal {
+    @apply backdrop:opacity-0 bg-[#0a0c10]/50;
+}
+
 /** SHIKI  **/
 
 .shiki {
@@ -95,7 +117,12 @@ a:hover {
 
 .astro-code {
     overflow: auto;
-    @apply my-2 rounded-box bg-base-300 p-2 !important;
+    scrollbar-width: thin;
+    scrollbar-color:
+        color-mix(in oklch, oklch(var(--bc)) 35%, transparent)
+        transparent;
+
+    @apply my-2 rounded-box bg-base-300 py-2 px-3 !important;
 }
 
 .line.diff.add {
@@ -193,6 +220,19 @@ span.line.diff.remove::before {
     100% { background-position: 100% 0%; }
 }
 
+.bg-corner-radius {
+    --color: #323844;
+    height: 1rem;
+    border-color: var(--color);
+    background-size: 1rem;
+    background-position: top left,top right;
+    background-repeat: no-repeat;
+    --grad: 69%;
+    --radius-start: radial-gradient( circle at bottom right, transparent var(--grad), var(--color) calc(var(--grad) + .25px), var(--color) calc(var(--grad) + var(--tab-border, 1px)), var(--color) calc(var(--grad) + var(--tab-border, 1px) + .25px) );
+    --radius-end: radial-gradient( circle at bottom left, transparent var(--grad), var(--color) calc(var(--grad) + .25px), var(--color) calc(var(--grad) + var(--tab-border, 1px)), var(--color) calc(var(--grad) + var(--tab-border, 1px) + .25px) );
+    background-image: var(--radius-start),var(--radius-end);
+}
+
 .scrollbar-thin {
     scroll-behavior: smooth;
     scrollbar-width: thin;
@@ -204,7 +244,7 @@ span.line.diff.remove::before {
 pre:has(code) {
     position: relative;
   }
-  
+
   pre button.copy {
     position: absolute;
     right: 8px;
@@ -213,7 +253,7 @@ pre:has(code) {
     width: 28px;
     padding: 0;
     display: flex;
-  
+
     & span {
       width: 100%;
       aspect-ratio: 1 / 1;
@@ -221,24 +261,23 @@ pre:has(code) {
       background-position: center;
       background-size: cover;
     }
-  
+
     & .ready {
       background-image: url(/copy.png);
     }
-  
+
     & .success {
       display: none;
-      background-image: url(/copied.png); 
+      background-image: url(/copied.png);
     }
-  
+
     &.copied {
       & .success {
         display: block;
       }
-  
+
       & .ready {
         display: none;
       }
     }
   }
-  
