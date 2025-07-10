@@ -11,66 +11,38 @@ const l = Astro.currentLocale as Locale;
     <!-- Menu for mobile -->
     <div class="flex w-full justify-between md:hidden">
         <a class="btn btn-ghost" href="/" data-astro-reload>
-            <div
-                class="kaplay-logo bg-gradient-kaplay-animated"
-                role="img"
-                aria-label="KAPLAY, The easy JavaScript game library"
-            ></div>
+            <div class="kaplay-logo bg-gradient-kaplay-animated" role="img" aria-label="KAPLAY, The easy JavaScript game library"></div>
             <span class="hidden">KAPLAY, a TypeScript Game Library</span>
         </a>
 
         <div class="dropdown dropdown-end">
             <div tabindex="0" role="button" class="btn btn-ghost m-1">
-                <img
-                    src={hamburgerIcon.src}
-                    width="42"
-                    height="42"
-                    alt="hamburger icon"
-                    class="px-0 py-0"
-                />
+                <img src={hamburgerIcon.src} width="42" height="42" alt="Menu" class="px-0 py-0" />
             </div>
 
-            <ul
-                tabindex="0"
-                class="menu dropdown-content z-[1] w-56 gap-2 rounded-box bg-base-200 p-6 shadow border border-base-100"
-            >
+            <ul tabindex="0" class="menu dropdown-content z-[1] w-56 gap-2 rounded-box bg-base-200 p-6 shadow border border-base-100">
                 {
-                    [
-                        ...firstLinksRow[l],
-                        ...secondLinksRow[l],
-                    ].map(
-                        (link) => (
+                    [...firstLinksRow[l], ...secondLinksRow[l]].map((link) => (
                         <li
                             class:list={{
-                                "mx-4 first:ml-0 last:mr-0":
-                                    link.highlight,
+                                "mx-4 first:ml-0 last:mr-0": link.highlight,
                             }}
                         >
                             <a
                                 class:list={[
                                     "btn btn-sm uppercase",
                                     {
-                                        "btn-primary":
-                                            link.highlight
-                                                == "docs",
-                                        "btn-ghost": !link
-                                            .highlight,
+                                        "btn-primary": link.highlight == "docs",
+                                        "btn-ghost": !link.highlight,
                                     },
                                 ]}
                                 href={link.url}
                             >
                                 {link.name}
-                                <img
-                                    src={link.icon}
-                                    width="24"
-                                    height="24"
-                                    alt={link.name}
-                                    class="px-0 py-0"
-                                />
+                                <img src={link.icon} width="24" height="24" aria-hidden="true" class="px-0 py-0" />
                             </a>
                         </li>
-                    ),
-                    )
+                    ))
                 }
             </ul>
         </div>
@@ -82,18 +54,8 @@ const l = Astro.currentLocale as Locale;
             {
                 firstLinksRow[l].map((link) => (
                     <li>
-                        <a
-                            class="btn btn-ghost font-semibold uppercase"
-                            href={link.url}
-                            data-astro-reload={link?.reload}
-                        >
-                            <img
-                                src={link.icon}
-                                width="24"
-                                height="24"
-                                alt={link.name}
-                                class="px-0 py-0"
-                            />
+                        <a class="btn btn-ghost font-semibold uppercase" href={link.url} data-astro-reload={link?.reload}>
+                            <img src={link.icon} width="24" height="24" aria-hidden="true" class="px-0 py-0" />
                             {link.name}
                         </a>
                     </li>
@@ -103,11 +65,7 @@ const l = Astro.currentLocale as Locale;
 
         <div class="flex justify-center">
             <a class="btn btn-ghost btn-lg" href="/" data-astro-reload>
-                <div
-                    class="kaplay-logo bg-gradient-kaplay-animated"
-                    role="img"
-                    aria-label="KAPLAY, The easy JavaScript game library"
-                ></div>
+                <div class="kaplay-logo bg-gradient-kaplay-animated" role="img" aria-label="KAPLAY, The easy JavaScript game library"></div>
                 <span class="hidden">KAPLAY, a TypeScript Game Library</span>
             </a>
         </div>
@@ -117,15 +75,14 @@ const l = Astro.currentLocale as Locale;
                 secondLinksRow[l].map((link) => (
                     <li
                         class:list={{
-                            "mx-4 first:ml-0 last:mr-0": link.highlight,
+                            "mx-3 first:ml-0 last:mr-0 [.mx-3+&]:ml-0.5": link.highlight,
                         }}
                     >
                         <a
                             class:list={[
-                                "btn uppercase",
+                                "btn uppercase h-full min-h-11 py-2",
                                 {
-                                    "btn-primary":
-                                        link.highlight == "docs",
+                                    "btn-primary": link.highlight == "docs",
                                     "inline-flex gap-2 text-white items-center justify-center bg-[#4e585d]/70 border border-green-100/10 shadow-[0_0.25em_0_0_rgba(255,255,255,0.1)] hover:scale-105 hover:bg-[#ee8fcb] hover:border-[#d46eb3] hover:shadow-[0_0.25em_0_0_#873e84] hover:text-black transition-all":
                                         link.highlight == "support",
                                     "btn-ghost": !link.highlight,
@@ -135,13 +92,7 @@ const l = Astro.currentLocale as Locale;
                             target={link.target ?? "_self"}
                         >
                             {link.name}
-                            <img
-                                src={link.icon}
-                                width="24"
-                                height="24"
-                                alt={link.name}
-                                class="px-0 py-0"
-                            />
+                            <img src={link.icon} width="24" height="24" aria-hidden="true" class="px-0 py-0" />
                         </a>
                     </li>
                 ))

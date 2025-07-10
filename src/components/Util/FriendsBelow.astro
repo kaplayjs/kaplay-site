@@ -18,13 +18,7 @@ const offsets = ["top-2", "top-4", "top-6", "top-8", "top-10"].reverse();
 <div class:list={["friends-below relative z-10", className]}>
     <div class="flex w-full items-center justify-center">
         <a class="hoverable special-friends" href="/crew">
-            <div
-                class:list={[
-                    `friends relative -z-10 flex w-full flex-row justify-center gap-4 ${
-                        offsets[offset]
-                    }`,
-                ]}
-            >
+            <div class:list={[`friends relative -z-10 flex w-full flex-row justify-center gap-4 ${offsets[offset]}`]}>
                 {
                     friends?.map((friend) => (
                         <div class="select-none">
@@ -32,10 +26,21 @@ const offsets = ["top-2", "top-4", "top-6", "top-8", "top-10"].reverse();
                                 src={assets[friend].outlined}
                                 alt="KAFriend"
                                 class:list={[
+                                    "w-auto",
                                     {
                                         "h-14": limited,
+                                        "h-auto": !limited,
                                     },
                                 ]}
+                                {...(limited
+                                    ? {
+                                          width: 56,
+                                          height: 56,
+                                      }
+                                    : {
+                                          width: 64,
+                                          height: 64,
+                                      })}
                             />
                         </div>
                     ))

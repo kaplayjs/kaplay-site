@@ -10,12 +10,8 @@ const landBlocks = blocks[l];
 ---
 
 <div class="flex w-full flex-col gap-6" id="blocks">
-    <div
-        class="flex w-full flex-col items-center gap-9 sm:gap-12 px-2 md:px-8 lg:pt-10"
-    >
-        <div
-            class="relative w-full max-w-lg sm:max-w-2xl space-y-4 md:space-y-6 text-center z-20"
-        >
+    <div class="flex w-full flex-col items-center gap-9 sm:gap-12 px-2 md:px-8 lg:pt-10">
+        <div class="relative w-full max-w-lg sm:max-w-2xl space-y-4 md:space-y-6 text-center z-20">
             <h2 class="px-4 sm:px-0 text-4xl sm:text-5xl font-bold text-white">
                 <slot name="title" />
             </h2>
@@ -25,46 +21,26 @@ const landBlocks = blocks[l];
             </div>
         </div>
 
-        <div
-            class="relative grid grid-cols-1 w-full max-w-6xl text-sm md:text-base"
-        >
+        <div class="relative grid grid-cols-1 w-full max-w-6xl text-sm md:text-base">
             <div class="row-start-1 col-start-1 text-[1em]">
-                <div
-                    class="sticky top-2 md:top-[20vh] h-[calc(100vh-1rem)] md:h-[60vh] bg-[#3a3f48] rounded-xl shadow-2xl shadow-black/20"
-                ></div>
+                <div class="sticky top-2 md:top-[20vh] h-[calc(100vh-1rem)] md:h-[60vh] bg-[#3a3f48] rounded-xl shadow-2xl shadow-black/20"></div>
             </div>
 
-            <div
-                class="row-start-1 col-start-1 text-[1em] md:z-0 max-h-[calc(100%-(51vh-0.5rem/2-1px))] md:max-h-none"
-            >
+            <div class="row-start-1 col-start-1 text-[1em] md:z-0 max-h-[calc(100%-(51vh-0.5rem/2-1px))] md:max-h-none">
                 <div
                     class="sticky top-2 md:top-[20vh] md:w-1/2 h-[calc(49vh-0.5rem/2)] md:h-[60vh] shadow-[0_-2rem_0_0_#242933,inset_0_0_0_1px_#3a3f48] md:shadow-[inset_0_0_0_1px_#3a3f48] rounded-xl z-20"
                 >
-                    <div
-                        class="flex flex-col h-full rounded-l-xl p-px md:pr-0 z-10"
-                    >
-                        <div
-                            class="flex flex-col flex-1 bg-base-200 rounded-xl min-h-0"
-                        >
+                    <div class="flex flex-col h-full rounded-l-xl p-px md:pr-0 z-10">
+                        <div class="flex flex-col flex-1 bg-base-200 rounded-xl min-h-0">
                             <div class="flex items-center gap-1.5 px-5 h-12">
-                                <div
-                                    class="size-2.5 bg-red-400 rounded-full"
-                                ></div>
-                                <div
-                                    class="size-2.5 bg-amber-400 rounded-full"
-                                ></div>
-                                <div
-                                    class="size-2.5 bg-green-400 rounded-full"
-                                ></div>
+                                <div class="size-2.5 bg-red-400 rounded-full"></div>
+                                <div class="size-2.5 bg-amber-400 rounded-full"></div>
+                                <div class="size-2.5 bg-green-400 rounded-full"></div>
                             </div>
 
                             <div class="flex-1 flex m-1.5 mt-0 min-h-0">
-                                <div
-                                    class="flex flex-1 bg-base-300 rounded-lg overflow-hidden"
-                                >
-                                    <canvas
-                                        id="blocks-example-canvas"
-                                        class="flex-1 size-full rounded-[inherit] transition-opacity pointer-events-none"
+                                <div class="flex flex-1 bg-base-300 rounded-lg overflow-hidden">
+                                    <canvas id="blocks-example-canvas" class="flex-1 size-full rounded-[inherit] transition-opacity pointer-events-none"
                                     ></canvas>
                                 </div>
                             </div>
@@ -73,70 +49,54 @@ const landBlocks = blocks[l];
                 </div>
             </div>
 
-            <div
-                class="row-start-1 col-start-1 mt-[calc(49vh-0.5rem/2)] md:mt-0 md:ml-auto md:-mr-px md:-mb-px md:w-[calc(50%+2px)] rounded-xl p-px gap-px"
-            >
-                <div class="rounded-xl bg-[#3a3f48]">{
-                    landBlocks.map((
-                        { title, code },
-                        i,
-                    ) => (
-                        <div
-                            id={`block-example-${i + 1}`}
-                            class="flex flex-col group first:h-[calc((51vh-0.5rem)-3rem-1px)] last:h-[calc((51vh-0.5rem)+1px)] h-[calc((51vh-0.5rem)-3rem-1px)] md:first:h-[calc(60vh-3rem-1px)] md:last:h-[calc(60vh-49px)] md:h-[calc(60vh-3rem-1px)] md:px-px bg-base-200 shadow-[0_0_0_1px_#3a3f48] md:shadow-[inset_0_0_0_1px_#3a3f48] rounded-xl [clip-path:inset(-2px_round_1rem)]"
-                        >
+            <div class="row-start-1 col-start-1 mt-[calc(49vh-0.5rem/2)] md:mt-0 md:ml-auto md:-mr-px md:-mb-px md:w-[calc(50%+2px)] rounded-xl p-px gap-px">
+                <div class="rounded-xl bg-[#3a3f48]"
+                    >{
+                        landBlocks.map(({ title, code }, i) => (
                             <div
-                                class="sticky [.group:not(:last-child)_&]:top-[calc(49vh+0.5rem/2)] md:[.group:not(:last-child)_&]:top-[calc(20vh+1px)] group-last:top-0 -bottom-px shadow-[inset_0_1rem_0_0_#3a3f48] z-10"
+                                id={`block-example-${i + 1}`}
+                                class="flex flex-col group first:h-[calc((51vh-0.5rem)-3rem-1px)] last:h-[calc((51vh-0.5rem)+1px)] h-[calc((51vh-0.5rem)-3rem-1px)] md:first:h-[calc(60vh-3rem-1px)] md:last:h-[calc(60vh-49px)] md:h-[calc(60vh-3rem-1px)] md:px-px bg-base-200 shadow-[0_0_0_1px_#3a3f48] md:shadow-[inset_0_0_0_1px_#3a3f48] rounded-xl [clip-path:inset(-2px_round_1rem)]"
                             >
-                                <h3
-                                    class="flex items-center bg-base-200 font-semibold px-5 py-3 min-h-[49px] text-white shadow-[0_-1px_0_0_#3a3f48] rounded-xl"
-                                >
-                                    <span set:html={title}></span>
-                                    <span
-                                        class="absolute top-full left-0.5 -mt-1 rounded-tl-full size-3 border-4 border-r-0 border-b-0 border-base-200"
-                                        aria-hidden="true"
-                                    ></span>
-                                    <span
-                                        class="absolute top-full right-0.5 -mt-1 rounded-tr-full size-3 border-4 border-l-0 border-b-0 border-base-200"
-                                        aria-hidden="true"
-                                    ></span>
-                                </h3>
-                            </div>
+                                <div class="sticky [.group:not(:last-child)_&]:top-[calc(49vh+0.5rem/2)] md:[.group:not(:last-child)_&]:top-[calc(20vh+1px)] group-last:top-0 -bottom-px shadow-[inset_0_1rem_0_0_#3a3f48] z-10">
+                                    <h3 class="flex items-center bg-base-200 font-semibold px-5 py-3 min-h-[49px] text-white shadow-[0_-1px_0_0_#3a3f48] rounded-xl">
+                                        <span set:html={title} />
+                                        <span
+                                            class="absolute top-full left-0.5 -mt-1 rounded-tl-full size-3 border-4 border-r-0 border-b-0 border-base-200"
+                                            aria-hidden="true"
+                                        />
+                                        <span
+                                            class="absolute top-full right-0.5 -mt-1 rounded-tr-full size-3 border-4 border-l-0 border-b-0 border-base-200"
+                                            aria-hidden="true"
+                                        />
+                                    </h3>
+                                </div>
 
-                            <div
-                                class="flex-1 min-h-0 bg-base-300 mx-1.5 my-0 mb-1.5 p-5 rounded-lg"
-                            >
-                                <div
-                                    class="sticky [.group:not(:last-child)_&]:top-[calc(49vh+4.5rem)] group-last:top-[4.5rem] md:[.group:not(:last-child)_&]:top-[calc(20vh+4.5rem)] md:group-last:top-[4.5rem] min-h-0 max-h-full overflow-y-auto overflow-x-hidden"
-                                >
-                                    <code><pre class="whitespace-pre-wrap"
-                                        ><Fragment set:html={code}></Fragment></pre></code>
+                                <div class="flex-1 min-h-0 bg-base-300 mx-1.5 my-0 mb-1.5 p-5 rounded-lg">
+                                    <div class="sticky [.group:not(:last-child)_&]:top-[calc(49vh+4.5rem)] group-last:top-[4.5rem] md:[.group:not(:last-child)_&]:top-[calc(20vh+4.5rem)] md:group-last:top-[4.5rem] min-h-0 max-h-full overflow-y-auto overflow-x-hidden">
+                                        <code>
+                                            <pre class="whitespace-pre-wrap">
+                                                <Fragment set:html={code} />
+                                            </pre>
+                                        </code>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))
-                }</div>
+                        ))
+                    }</div
+                >
             </div>
 
             <div
                 class="row-start-1 col-start-1 sticky top-[calc(49vh+0.5rem/2)] md:top-[20vh] h-[calc(51vh-0.5rem/2)] md:h-[60vh] z-10 pointer-events-none shadow-[0_-2px_0_0_#242933]"
             >
-                <div
-                    class="hidden md:block absolute -top-[60vh] left-0 w-full h-[60vh] bg-base-200"
-                ></div>
-                <div
-                    class="hidden md:block absolute top-[60vh] left-0 w-full h-[42vh] bg-gradient-to-b from-black/0 via-base-200 to-base-200"
-                ></div>
+                <div class="hidden md:block absolute -top-[60vh] left-0 w-full h-[60vh] bg-base-200"></div>
+                <div class="hidden md:block absolute top-[60vh] left-0 w-full h-[42vh] bg-gradient-to-b from-black/0 via-base-200 to-base-200"></div>
 
-                <div
-                    class="flex size-full md:w-1/2 md:ml-auto flex-col h-12 overflow-hidden rounded-t-xl md:rounded-none shadow-[0_-1rem_0_0_#3a3f48]"
-                >
+                <div class="flex size-full md:w-1/2 md:ml-auto flex-col h-12 overflow-hidden rounded-t-xl md:rounded-none shadow-[0_-1rem_0_0_#3a3f48]">
                     <div
                         class="flex flex-col flex-1 md:-mb-2 md:shadow-[inset_0_0_0_1px_#3a3f48,0_0_0_6px_#242933] rounded-t-xl md:rounded-xl md:rounded-l-none md:rounded-b-none"
                     >
-                        <div
-                            class="flex-1 rounded-t-[calc(0.75rem+3px)] shadow-[0_-16px_0_0_#3a3f48] md:shadow-[-16px_0_0_0_#3a3f48,0_2px_0_0_#3a3f48]"
-                        ></div>
+                        <div class="flex-1 rounded-t-[calc(0.75rem+3px)] shadow-[0_-16px_0_0_#3a3f48] md:shadow-[-16px_0_0_0_#3a3f48,0_2px_0_0_#3a3f48]"></div>
                     </div>
                 </div>
 
@@ -146,16 +106,14 @@ const landBlocks = blocks[l];
                         alt="Dino claw"
                         class="absolute -left-[30px] min-[1300px]:-left-[60px] top-[15%] -scale-y-100 w-[49px] min-[1300px]:w-auto pixelated"
                         data-parallax="1"
-                    >
+                    />
                     <img
                         src={dinoClaw.src}
                         alt="Dino claw"
                         class="absolute -right-[30px] min-[1300px]:-right-[60px] bottom-2 -scale-x-100 w-[49px] min-[1300px]:w-auto pixelated"
                         data-parallax="-1"
-                    >
-                    <div
-                        class="absolute left-0 bottom-full w-full h-80 overflow-hidden"
-                    >
+                    />
+                    <div class="absolute left-0 bottom-full w-full h-80 overflow-hidden">
                         <img
                             src={dinoHead.src}
                             alt="Dino head"
@@ -163,36 +121,24 @@ const landBlocks = blocks[l];
                             data-parallax="-1"
                             data-parallax-speed="1.5"
                             data-parallax-max="-100%"
-                        >
+                        />
                     </div>
                 </div>
             </div>
         </div>
 
-        <div
-            class="relative w-full max-w-6xl z-10 bg-[#3a3f48] rounded-xl -mt-9 sm:-mt-12 -top-px"
-        >
-            <div
-                class="absolute top-0 left-0 flex items-start w-full text-center md:-mt-32"
-            >
-                <div
-                    class="md:sticky md:top-[80vh] flex w-[calc(50%+1px)] h-80 bg-[#3a3f48] rounded-xl rounded-tr-none"
-                >
-                    <div
-                        class="w-full bg-base-200 bg-image-pattern shadow-[inset_0_0_0_1px_#3a3f48] rounded-xl"
-                    ></div>
+        <div class="relative w-full max-w-6xl z-10 bg-[#3a3f48] rounded-xl -mt-9 sm:-mt-12 -top-px">
+            <div class="absolute top-0 left-0 flex items-start w-full text-center md:-mt-32">
+                <div class="md:sticky md:top-[80vh] flex w-[calc(50%+1px)] h-80 bg-[#3a3f48] rounded-xl rounded-tr-none">
+                    <div class="w-full bg-base-200 bg-image-pattern shadow-[inset_0_0_0_1px_#3a3f48] rounded-xl"></div>
                 </div>
-                <div
-                    class="flex-1 md:mt-32 h-80 bg-base-300 shadow-[inset_-1px_1px_0_0_#3a3f48] rounded-xl"
-                ></div>
+                <div class="flex-1 md:mt-32 h-80 bg-base-300 shadow-[inset_-1px_1px_0_0_#3a3f48] rounded-xl"></div>
             </div>
 
             <div
                 class="relative col-start-1 row-start-1 flex flex-col md:flex-row items-center w-full min-h-80 pt-1 sm:pt-4 md:pt-0 pb-6 sm:pb-0 bg-gradient-to-t from-base-200 via-base-200/90 to-black/0 max-md:text-center"
             >
-                <div
-                    class="md:flex-1 flex flex-col gap-4 max-md:max-w-lg px-6 sm:px-12 xl:px-[100px] pt-12 pb-9 md:py-20 xl:pt-[90px]"
-                >
+                <div class="md:flex-1 flex flex-col gap-4 max-md:max-w-lg px-6 sm:px-12 xl:px-[100px] pt-12 pb-9 md:py-20 xl:pt-[90px]">
                     <h2 class="font-semibold text-2xl md:text-3xl">
                         <slot name="blocks-title" />
                     </h2>
@@ -202,25 +148,23 @@ const landBlocks = blocks[l];
                     </p>
                 </div>
 
-                <div
-                    class="relative md:flex-1 flex flex-col items-center justify-center px-6 sm:px-12 xl:px-[100px] md:py-12 xl:pt-[90px]"
-                >
-                    <div
-                        class="relative flex flex-col sm:flex-row md:flex-col gap-4 md:items-stretch justify-center flex-wrap"
-                    >
+                <div class="relative md:flex-1 flex flex-col items-center justify-center px-6 sm:px-12 xl:px-[100px] md:py-12 xl:pt-[90px]">
+                    <div class="relative flex flex-col sm:flex-row md:flex-col gap-4 md:items-stretch justify-center flex-wrap">
                         <img
                             class="absolute bottom-full left-full rotate-6 -translate-x-4 translate-y-4 scale-75 sm:scale-100 pointer-events-none"
-                            src={assets.lightening
-                            .outlined}
+                            src={assets.lightening.outlined}
+                            width="36"
+                            height="47"
                             aria-hidden="true"
-                        >
+                        />
 
                         <img
-                            class="absolute top-full right-full -rotate-12 translate-x-4 -translate-y-4 scale-75 sm:scale-90 pointer-events-none"
-                            src={assets.assetbrew
-                            .outlined}
+                            class="absolute top-full right-full -rotate-12 translate-x-6 -translate-y-4 scale-75 sm:scale-90 pointer-events-none"
+                            src={assets.assetbrew.outlined}
+                            width="64"
+                            height="64"
                             aria-hidden="true"
-                        >
+                        />
 
                         <slot name="buttons" />
                     </div>
@@ -355,31 +299,14 @@ const landBlocks = blocks[l];
             k.scale(0),
             {
                 add() {
-                    this.inner = this.add([
-                        k.anchor("center"),
-                        k.pos(0),
-                        k.circle(100),
-                        k.color(k.WHITE),
-                        k.outline(38, k.rgb("#a32858")),
-                        k.scale(1),
-                    ]);
+                    this.inner = this.add([k.anchor("center"), k.pos(0), k.circle(100), k.color(k.WHITE), k.outline(38, k.rgb("#a32858")), k.scale(1)]);
                 },
             },
         ]);
 
-        const pointer = circlePointer.add([
-            k.anchor("center"),
-            k.sprite("pointer"),
-            k.scale(0),
-            k.rotate(60),
-        ]);
+        const pointer = circlePointer.add([k.anchor("center"), k.sprite("pointer"), k.scale(0), k.rotate(60)]);
 
-        const like = circlePointer.add([
-            k.anchor("center"),
-            k.sprite("like"),
-            k.scale(0),
-            k.rotate(60),
-        ]);
+        const like = circlePointer.add([k.anchor("center"), k.sprite("like"), k.scale(0), k.rotate(60)]);
 
         const bubble = k.add([
             k.anchor("center"),
@@ -393,64 +320,28 @@ const landBlocks = blocks[l];
         const text = bubble.add([
             k.anchor("center"),
             k.pos(0),
-            k.text(
-                `${
-                    k.isTouchscreen()
-                        ? "Tap"
-                        : "Click"
-                } to enable sound!`,
-                {
-                    size: 24,
-                    width: bubble.width - 60,
-                    align: "center",
-                },
-            ),
+            k.text(`${k.isTouchscreen() ? "Tap" : "Click"} to enable sound!`, {
+                size: 24,
+                width: bubble.width - 60,
+                align: "center",
+            }),
             k.color(k.BLACK),
         ]);
 
-        k.tween(
-            circlePointer.scale,
-            k.vec2(1),
-            0.33,
-            (v: any) => circlePointer.scale = v,
-            k.easings.easeOutBack,
-        );
-        k.tween(
-            pointer.angle,
-            0,
-            0.4,
-            (v: any) => pointer.angle = v,
-            k.easings.easeOutBack,
-        );
-        k.tween(
-            pointer.scale,
-            k.vec2(3),
-            0.5,
-            (v: any) => pointer.scale = v,
-            k.easings.easeOutBack,
-        );
+        k.tween(circlePointer.scale, k.vec2(1), 0.33, (v: any) => (circlePointer.scale = v), k.easings.easeOutBack);
+        k.tween(pointer.angle, 0, 0.4, (v: any) => (pointer.angle = v), k.easings.easeOutBack);
+        k.tween(pointer.scale, k.vec2(3), 0.5, (v: any) => (pointer.scale = v), k.easings.easeOutBack);
 
         if (!k.volume()) {
             await k.wait(0.05);
-            await k.tween(
-                bubble.scale,
-                k.vec2(1),
-                0.55,
-                (v: any) => bubble.scale = v,
-                k.easings.easeOutBack,
-            );
+            await k.tween(bubble.scale, k.vec2(1), 0.55, (v: any) => (bubble.scale = v), k.easings.easeOutBack);
 
             circlePointer.use(k.animate());
-            circlePointer.animate(
-                "scale",
-                [k.vec2(1), k.vec2(0.88), k.vec2(1)],
-                {
-                    duration: 6,
-                    easing: k.easings.easeInOutQuad,
-                },
-            );
-        }
-        else {
+            circlePointer.animate("scale", [k.vec2(1), k.vec2(0.88), k.vec2(1)], {
+                duration: 6,
+                easing: k.easings.easeInOutQuad,
+            });
+        } else {
             await k.wait(0.33);
             onSoundEnabled();
         }
@@ -464,64 +355,16 @@ const landBlocks = blocks[l];
 
             k.play("powerup", { detune: 400, volume: 0.6 });
 
-            k.tween(
-                pointer.scale,
-                k.vec2(0),
-                0.33,
-                (v: any) => pointer.scale = v,
-                k.easings.easeOutQuad,
-            );
-            k.tween(
-                bubble.scale,
-                k.vec2(0),
-                0.33,
-                (v: any) => bubble.scale = v,
-                k.easings.easeOutQuad,
-            );
-            k.tween(
-                like.angle,
-                0,
-                0.4,
-                (v: any) => like.angle = v,
-                k.easings.easeOutBack,
-            );
-            k.tween(
-                like.scale,
-                k.vec2(3),
-                0.5,
-                (v: any) => like.scale = v,
-                k.easings.easeOutBack,
-            );
-            k.tween(
-                circlePointer.pos,
-                k.center(),
-                0.33,
-                (v: any) => circlePointer.pos = v,
-                k.easings.easeOutQuad,
-            );
+            k.tween(pointer.scale, k.vec2(0), 0.33, (v: any) => (pointer.scale = v), k.easings.easeOutQuad);
+            k.tween(bubble.scale, k.vec2(0), 0.33, (v: any) => (bubble.scale = v), k.easings.easeOutQuad);
+            k.tween(like.angle, 0, 0.4, (v: any) => (like.angle = v), k.easings.easeOutBack);
+            k.tween(like.scale, k.vec2(3), 0.5, (v: any) => (like.scale = v), k.easings.easeOutBack);
+            k.tween(circlePointer.pos, k.center(), 0.33, (v: any) => (circlePointer.pos = v), k.easings.easeOutQuad);
 
             circlePointer.unuse("animate");
-            k.tween(
-                circlePointer.inner.scale,
-                k.vec2(1.2),
-                0.55,
-                (v: any) => circlePointer.inner.scale = v,
-                k.easings.easeOutBack,
-            );
-            k.tween(
-                circlePointer.inner.outline.color,
-                k.rgb("#abdd64"),
-                0.55,
-                (v: any) => circlePointer.inner.outline.color = v,
-                k.easings.easeOutBack,
-            );
-            k.tween(
-                circlePointer.color,
-                k.rgb("#6bc96c"),
-                0.55,
-                (v: any) => circlePointer.color = v,
-                k.easings.easeOutBack,
-            );
+            k.tween(circlePointer.inner.scale, k.vec2(1.2), 0.55, (v: any) => (circlePointer.inner.scale = v), k.easings.easeOutBack);
+            k.tween(circlePointer.inner.outline.color, k.rgb("#abdd64"), 0.55, (v: any) => (circlePointer.inner.outline.color = v), k.easings.easeOutBack);
+            k.tween(circlePointer.color, k.rgb("#6bc96c"), 0.55, (v: any) => (circlePointer.color = v), k.easings.easeOutBack);
 
             bgLerp?.cancel();
             setBackground("#5ba675");
@@ -535,47 +378,19 @@ const landBlocks = blocks[l];
 
         k.setGravity(0);
 
-        const bean = k.add([
-            k.anchor("center"),
-            k.sprite("bean"),
-            k.pos(k.center()),
-            k.outline(2, k.WHITE),
-            k.health(5, 5),
-            k.body(),
-            k.area(),
-            k.scale(0),
-        ]);
+        const bean = k.add([k.anchor("center"), k.sprite("bean"), k.pos(k.center()), k.outline(2, k.WHITE), k.health(5, 5), k.body(), k.area(), k.scale(0)]);
 
         k.play("powerup");
-        await k.tween(
-            bean.scale,
-            k.vec2(1.5),
-            0.33,
-            (v: any) => bean.scale = v,
-            k.easings.easeOutBack,
-        );
+        await k.tween(bean.scale, k.vec2(1.5), 0.33, (v: any) => (bean.scale = v), k.easings.easeOutBack);
 
         let hearts: any[] = [];
 
         for (let i = 0; i < 5; i++) {
-            hearts[i] = k.add([
-                k.anchor("center"),
-                k.pos(k.width() - 40 - (50 * i), 40),
-                k.sprite("heart"),
-                k.fixed(),
-                k.scale(0),
-                k.timer(),
-            ]);
+            hearts[i] = k.add([k.anchor("center"), k.pos(k.width() - 40 - 50 * i, 40), k.sprite("heart"), k.fixed(), k.scale(0), k.timer()]);
 
             k.wait(0.1 * (5 - i), () => {
                 k.play("powerup", { detune: 1000, volume: 0.2 });
-                hearts[i].tween(
-                    hearts[i].scale,
-                    k.vec2(1),
-                    0.33,
-                    (v: any) => hearts[i].scale = v,
-                    k.easings.easeOutBack,
-                );
+                hearts[i].tween(hearts[i].scale, k.vec2(1), 0.33, (v: any) => (hearts[i].scale = v), k.easings.easeOutBack);
             });
         }
     });
@@ -583,15 +398,7 @@ const landBlocks = blocks[l];
     scene("block-example-3", () => {
         setBackground("#ea6262");
 
-        const bean = k.add([
-            k.anchor("bot"),
-            k.sprite("bean"),
-            k.pos(k.center()),
-            k.health(5, 5),
-            k.body(),
-            k.area(),
-            k.scale(1.5),
-        ]);
+        const bean = k.add([k.anchor("bot"), k.sprite("bean"), k.pos(k.center()), k.health(5, 5), k.body(), k.area(), k.scale(1.5)]);
 
         const spikes = k.add([
             k.anchor("center"),
@@ -604,25 +411,11 @@ const landBlocks = blocks[l];
             "spikes",
         ]);
 
-        k.tween(
-            spikes.scale,
-            k.vec2(1.5),
-            0.33,
-            (v: any) => spikes.scale = v,
-            k.easings.easeOutBack,
-        );
+        k.tween(spikes.scale, k.vec2(1.5), 0.33, (v: any) => (spikes.scale = v), k.easings.easeOutBack);
 
         let hearts: any[] = [];
         for (let i = 0; i < 5; i++) {
-            hearts[i] = k.add([
-                k.anchor("center"),
-                k.pos(k.width() - 40 - (50 * i), 40),
-                k.sprite("heart"),
-                k.fixed(),
-                k.scale(1),
-                k.opacity(1),
-                k.timer(),
-            ]);
+            hearts[i] = k.add([k.anchor("center"), k.pos(k.width() - 40 - 50 * i, 40), k.sprite("heart"), k.fixed(), k.scale(1), k.opacity(1), k.timer()]);
         }
 
         bean.onCollide("spikes", () => {
@@ -632,20 +425,8 @@ const landBlocks = blocks[l];
             hearts.forEach((heart, i) => {
                 heart.wait(0.1 * i, () => {
                     k.play("powerup", { volume: 0.3 });
-                    k.tween(
-                        heart.scale,
-                        k.vec2(0.5),
-                        0.33,
-                        (v: any) => heart.scale = v,
-                        k.easings.easeOutBack,
-                    );
-                    k.tween(
-                        heart.opacity,
-                        0.5,
-                        0.33,
-                        (v: any) => heart.opacity = v,
-                        k.easings.easeOutQuad,
-                    );
+                    k.tween(heart.scale, k.vec2(0.5), 0.33, (v: any) => (heart.scale = v), k.easings.easeOutBack);
+                    k.tween(heart.opacity, 0.5, 0.33, (v: any) => (heart.opacity = v), k.easings.easeOutQuad);
                     heart.use(k.color(k.BLACK));
                 });
             });
@@ -655,13 +436,7 @@ const landBlocks = blocks[l];
             k.camFlash("#cc425e", 0.2);
 
             k.wait(0.16, () => bean.use(k.color(k.RED)));
-            k.tween(
-                bean.scale,
-                k.vec2(0),
-                0.33,
-                (v: any) => bean.scale = v,
-                k.easings.easeOutQuad,
-            ).then(() => bean.destroy());
+            k.tween(bean.scale, k.vec2(0), 0.33, (v: any) => (bean.scale = v), k.easings.easeOutQuad).then(() => bean.destroy());
         });
 
         k.setGravity(1000);
@@ -682,10 +457,7 @@ const landBlocks = blocks[l];
 
         const bg = spillObj.add([
             k.pos(0),
-            k.rect(
-                Math.max(k.width(), 1000),
-                Math.max(k.height(), 1000),
-            ),
+            k.rect(Math.max(k.width(), 1000), Math.max(k.height(), 1000)),
             k.color("#e9967a"),
             k.opacity(k.getBackground() ? 0 : 1),
             k.stay(),
@@ -697,76 +469,69 @@ const landBlocks = blocks[l];
             bg.use(k.animate());
             bg.animate(
                 "color",
-                ["#e9967a", "#ee8fcb", "#8db7ff", "#873e84", "#e9967a"]
-                    .map(c => k.rgb(c)),
+                ["#e9967a", "#ee8fcb", "#8db7ff", "#873e84", "#e9967a"].map((c) => k.rgb(c)),
                 {
                     duration: 8,
                 },
             );
         });
 
-        spillObj.add([k.stay(), k.timer(), {
-            async add() {
-                [
-                    [-10, -k.height(), 10, k.height() * 2],
-                    [-10, k.height(), k.width() + 20, 10],
-                    [k.width(), -k.height(), 10, k.height() * 2],
-                ].forEach(([x, y, w, h]) => {
-                    this.add([
-                        k.pos(x, y),
-                        k.rect(w, h, { fill: false }),
-                        k.body({ isStatic: true }),
-                        k.area({ collisionIgnore: ["boundary"] }),
-                        "boundary",
-                    ]);
-                });
+        spillObj.add([
+            k.stay(),
+            k.timer(),
+            {
+                async add() {
+                    [
+                        [-10, -k.height(), 10, k.height() * 2],
+                        [-10, k.height(), k.width() + 20, 10],
+                        [k.width(), -k.height(), 10, k.height() * 2],
+                    ].forEach(([x, y, w, h]) => {
+                        this.add([
+                            k.pos(x, y),
+                            k.rect(w, h, { fill: false }),
+                            k.body({ isStatic: true }),
+                            k.area({ collisionIgnore: ["boundary"] }),
+                            "boundary",
+                        ]);
+                    });
 
-                let loopCounter = 0;
-                const spillLoop = this.loop(spillDelay, () => {
-                    if (loopCounter == beansCount) {
-                        spillLoop.cancel();
-                        return;
-                    }
+                    let loopCounter = 0;
+                    const spillLoop = this.loop(spillDelay, () => {
+                        if (loopCounter == beansCount) {
+                            spillLoop.cancel();
+                            return;
+                        }
 
-                    loopCounter++;
+                        loopCounter++;
 
-                    const b = this.add([
-                        k.anchor("center"),
-                        k.sprite(["bean", "beant"][k.randi(2)]),
-                        k.pos(k.center().add(k.randi(-1, 1))),
-                        k.body(),
-                        k.area({
-                            shape: new k.Circle(k.vec2(0), 36),
-                            scale: k.vec2(1, 0.8),
-                        }),
-                        k.scale(0),
-                        k.rotate(k.randi(-1, 360)),
-                        k.offscreen({ destroy: true }),
-                        k.timer(),
-                    ]);
+                        const b = this.add([
+                            k.anchor("center"),
+                            k.sprite(["bean", "beant"][k.randi(2)]),
+                            k.pos(k.center().add(k.randi(-1, 1))),
+                            k.body(),
+                            k.area({
+                                shape: new k.Circle(k.vec2(0), 36),
+                                scale: k.vec2(1, 0.8),
+                            }),
+                            k.scale(0),
+                            k.rotate(k.randi(-1, 360)),
+                            k.offscreen({ destroy: true }),
+                            k.timer(),
+                        ]);
 
-                    b.tween(
-                        b.scale,
-                        k.vec2(1.5),
-                        0.33,
-                        (v: any) => b.scale = v,
-                        k.easings.easeOutQuad,
-                    );
-                    b.applyImpulse(
-                        k.vec2(k.randi(-500, 500), k.randi(-800, 500)),
-                    );
+                        b.tween(b.scale, k.vec2(1.5), 0.33, (v: any) => (b.scale = v), k.easings.easeOutQuad);
+                        b.applyImpulse(k.vec2(k.randi(-500, 500), k.randi(-800, 500)));
 
-                    k.burp({ detune: 100 * k.randi(-2, 1) });
-                });
+                        k.burp({ detune: 100 * k.randi(-2, 1) });
+                    });
 
-                this.wait((spillDelay * beansCount) + 2, () => {
-                    this.paused = true;
-                    this.children.forEach((
-                        b: ReturnType<typeof k.GameObject>,
-                    ) => b.unuse("area"));
-                });
+                    this.wait(spillDelay * beansCount + 2, () => {
+                        this.paused = true;
+                        this.children.forEach((b: ReturnType<typeof k.GameObject>) => b.unuse("area"));
+                    });
+                },
             },
-        }]);
+        ]);
     });
 
     scene("block-example-5", async () => {
@@ -792,20 +557,8 @@ const landBlocks = blocks[l];
             k.scale(0),
         ]);
 
-        const mark = k.add([
-            k.anchor("center"),
-            k.pos(k.center().sub(0, bubble.height / 2 + 6)),
-            k.sprite("mark"),
-            k.scale(0),
-        ]);
-        [bubble, text, mark].forEach((o, i) =>
-            k.wait(
-                0.15 * i,
-                () =>
-                    k.tween(o.scale, k.vec2(1), 0.33, (v: any) =>
-                        o.scale = v, k.easings.easeOutBack),
-            )
-        );
+        const mark = k.add([k.anchor("center"), k.pos(k.center().sub(0, bubble.height / 2 + 6)), k.sprite("mark"), k.scale(0)]);
+        [bubble, text, mark].forEach((o, i) => k.wait(0.15 * i, () => k.tween(o.scale, k.vec2(1), 0.33, (v: any) => (o.scale = v), k.easings.easeOutBack)));
 
         k.burp();
     });
@@ -815,39 +568,40 @@ const landBlocks = blocks[l];
     function goScene(scene = "") {
         if (currentScene == scene) return;
 
-        if (
-            spillObj
-            && !["block-example-4", "block-example-5"].includes(scene)
-        ) destroySpill();
+        if (spillObj && !["block-example-4", "block-example-5"].includes(scene)) destroySpill();
 
-        k.go(currentScene = scene);
+        k.go((currentScene = scene));
     }
 
     function scene(name = "", fn: () => void, data = null) {
-        k.scene(name, () => {
-            let resizeTimer: ReturnType<typeof setTimeout>;
+        k.scene(
+            name,
+            () => {
+                let resizeTimer: ReturnType<typeof setTimeout>;
 
-            k.onResize(() => {
-                k.getTreeRoot().paused = true;
-                canvas?.classList.add("opacity-50");
+                k.onResize(() => {
+                    k.getTreeRoot().paused = true;
+                    canvas?.classList.add("opacity-50");
 
-                clearTimeout(resizeTimer);
-                resizeTimer = setTimeout(() => {
-                    if (k.getSceneName() != currentScene) return;
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(() => {
+                        if (k.getSceneName() != currentScene) return;
 
-                    destroySpill();
-                    k.go(currentScene);
-                }, 500);
-            });
+                        destroySpill();
+                        k.go(currentScene);
+                    }, 500);
+                });
 
-            k.onSceneLeave(() => {
-                clearTimeout(resizeTimer);
-                k.getTreeRoot().paused = false;
-                canvas?.classList.remove("opacity-50");
-            });
+                k.onSceneLeave(() => {
+                    clearTimeout(resizeTimer);
+                    k.getTreeRoot().paused = false;
+                    canvas?.classList.remove("opacity-50");
+                });
 
-            fn();
-        }, data);
+                fn();
+            },
+            data,
+        );
     }
 
     function destroySpill() {
@@ -858,50 +612,40 @@ const landBlocks = blocks[l];
         spillObj = null;
     }
 
-    document.querySelectorAll("[id^=\"block-example-\"]").forEach(
-        (trigger, i) => {
-            new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
+    document.querySelectorAll('[id^="block-example-"]').forEach((trigger, i) => {
+        new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
                     if (entry.isIntersecting) {
                         goScene(trigger.id);
-                    }
-                    else if (
-                        i > 0 && trigger.id == currentScene
-                        && entry.boundingClientRect.top > 0
-                    ) {
+                    } else if (i > 0 && trigger.id == currentScene && entry.boundingClientRect.top > 0) {
                         goScene(`block-example-${i}`);
                     }
                 });
-            }, { threshold: 1.0 }).observe(trigger);
-        },
-    );
+            },
+            { threshold: 1.0 },
+        ).observe(trigger);
+    });
 
-    document.addEventListener("keypress", e => {
+    document.addEventListener("keypress", (e) => {
         if (e.key != "b" || k.isFocused()) return;
         k.burp();
     });
 
-    const parallaxItems = [
-        ...document.querySelectorAll("[data-parallax]"),
-    ].map(
-        el => ({
-            el,
-            // @ts-ignore
-            dir: parseInt(el.dataset.parallax),
-            // @ts-ignore
-            speed: parseFloat(el.dataset.parallaxSpeed ?? 1),
-            // @ts-ignore
-            max: el.dataset.parallaxMax ?? `-400%`,
-        }),
-    );
+    const parallaxItems = [...document.querySelectorAll("[data-parallax]")].map((el) => ({
+        el,
+        // @ts-ignore
+        dir: parseInt(el.dataset.parallax),
+        // @ts-ignore
+        speed: parseFloat(el.dataset.parallaxSpeed ?? 1),
+        // @ts-ignore
+        max: el.dataset.parallaxMax ?? `-400%`,
+    }));
 
     const setParralaxItems = () => {
         parallaxItems.forEach(({ el, dir, speed, max }) => {
             // @ts-ignore
-            el.style.setProperty(
-                "--tw-translate-y",
-                `max(${window.scrollY * 0.05 * speed * dir}px, ${max})`,
-            );
+            el.style.setProperty("--tw-translate-y", `max(${window.scrollY * 0.05 * speed * dir}px, ${max})`);
         });
     };
 
