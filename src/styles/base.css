@@ -1,12 +1,29 @@
 @import "./pagefind.css";
 
+@font-face {
+    font-family: "Sans Fallback";
+    src: local(Arial);
+    size-adjust: 96%;
+    ascent-override: 100%;
+    descent-override: 18%;
+    line-gap-override: 11%;
+}
+
+@font-face {
+    font-family: "Hand Fallback";
+    src: local(Arial Black);
+    size-adjust: 79%;
+    ascent-override: normal;
+    descent-override: 13%;
+    line-gap-override: 65%;
+}
+
 ::view-transition-group(root) {
     animation: none;
 }
 
 body {
     min-height: 100dvh;
-    font-family: "Outfit Variable", sans-serif;
     cursor: url(/cursor_default.png), auto;
 }
 

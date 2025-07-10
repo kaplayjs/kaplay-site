@@ -11,8 +11,16 @@ export default {
                 "3xl": "1920px",
             },
             fontFamily: {
-                sans: ["\"Outfit Variable\"", ...defaultTheme.fontFamily.sans],
-                hand: ["\"Darumadrop One\"", ...defaultTheme.fontFamily.sans],
+                sans: [
+                    "\"Outfit Variable\"",
+                    "\"Sans Fallback\"",
+                    ...defaultTheme.fontFamily.sans,
+                ],
+                hand: [
+                    "\"Darumadrop One\"",
+                    "\"Hand Fallback\"",
+                    ...defaultTheme.fontFamily.sans,
+                ],
             },
             dropShadow: {
                 "2": [
