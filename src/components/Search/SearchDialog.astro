@@ -19,6 +19,8 @@ import searchIcon from "@/assets/search.png";
 
 <script is:inline>
     document.addEventListener("astro:page-load", () => {
+        if (!document.querySelector("#search")) return;
+
         // @ts-ignore
         new PagefindUI({
             element: "#search",
