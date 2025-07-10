@@ -26,6 +26,8 @@ const versionNames = {
 
     document.addEventListener("astro:page-load", () => {
         const versionSelect = document.querySelector<HTMLSelectElement>("#versionSelect")!;
+        if (!versionSelect) return;
+
         const selectedByDefault = versionSelect.dataset.alwaysSelect;
 
         versionSelect.addEventListener("change", () => {
