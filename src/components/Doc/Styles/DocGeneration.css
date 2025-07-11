@@ -1,3 +1,7 @@
-[data-dg-primitive=""] {
+[data-dg-primitive=""], [data-dg-unknown=""] {
     @apply text-primary;
+}
+
+[data-dg-entry="true"] strong {
+    font-weight: normal;
 }

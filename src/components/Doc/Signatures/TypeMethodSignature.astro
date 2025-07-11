@@ -1,15 +1,16 @@
 ---
 import DocFor from "../DocFor.astro";
 import JSDoc from "../JSDoc.astro";
+import Parameters from "../Other/Parameters.astro";
 import Title from "../Utils/Title.astro";
 import type { JSX } from "astro/jsx-runtime";
 
 type TypeDataPropertySignature = {
-    kind: "PropertySignature";
+    kind: "MethodSignature";
     id: number;
     name: string;
+    parameters: any[];
     type: any[];
-    questionToken: boolean;
 };
 
 type Props = {
@@ -21,6 +22,6 @@ const { data, depth } = Astro.props;
 ---
 
 <Title class="inline" depth={depth}>{data.name}</Title><strong role={"doc-subtitle" as JSX.AriaRole}
-    >{data.questionToken ? "?" : ""}: <DocFor data={data.type} depth={depth} /></strong
+    >(<Parameters parameters={data.parameters} />) => <DocFor data={data.type} depth={depth} /></strong
 >
 <JSDoc data={data} />

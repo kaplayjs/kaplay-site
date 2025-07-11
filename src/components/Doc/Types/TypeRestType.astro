@@ -2,17 +2,17 @@
 import DocFor from "../DocFor.astro";
 import type { DataTypeProps } from "../Utils/types.ts";
 
-type TypeDataFunctionType = {
-    kind: "FunctionType";
+type TypeDataRestType = {
+    kind: "RestType";
     id: number;
     type: any;
 };
 
 interface Props extends DataTypeProps {
-    data: TypeDataFunctionType;
+    data: TypeDataRestType;
 }
 
 const { data, depth } = Astro.props;
 ---
 
-<span data-dg-function-type>() {"=>"} <DocFor data={data.type} depth={depth} /></span>
+<span data-dg-rest-type>...<DocFor data={data.type} depth={depth} /></span>

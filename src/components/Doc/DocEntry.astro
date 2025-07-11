@@ -9,23 +9,18 @@ export interface Props {
 
 const { data, parent, depth = 0 } = Astro.props;
 
-const optionalMark = (data: any) => {
-    return data?.questionToken ? "?" : "";
-};
-
-const parentText = parent ? `${parent}-` : "";
-const Title = parent ? "h2" : "h1";
-
 const extraProps = {
     "data-doc-entry-children": true,
 };
 
-const props = parent ? extraProps : {};
 const EntryEl = depth > 0 ? "section" : "article";
+const props = parent ? extraProps : {};
+const parentText = parent ? `${parent}-` : "";
 ---
 
 <EntryEl
     id={`${parentText}${data?.name ?? ""}`}
+    data-dg-entry
     data-doc-entry
     data-depth={depth}
     data-doc-entry-name={data?.name ?? ""}

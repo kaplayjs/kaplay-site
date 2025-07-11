@@ -1,0 +1,26 @@
+---
+import DocFor from "../DocFor.astro";
+import type { DataTypeProps } from "../Utils/types.ts";
+
+type TypeDataTupleType = {
+    kind: "TupleType";
+    id: number;
+    elements: {
+        type: any;
+    }[];
+};
+
+interface Props extends DataTypeProps {
+    data: TypeDataTupleType;
+}
+
+const { data, depth } = Astro.props;
+---
+
+<span data-dg-tuple-type
+    >[{
+        data.elements.map((e) => (
+            <>{}<DocFor data={e} depth={depth} />{}</>
+        ))
+    }]</span
+>

@@ -1,0 +1,18 @@
+---
+import TypeLink from "../TypeLink.astro";
+import type { DataTypeProps } from "../Utils/types.ts";
+
+type TypeDataTypeReference = {
+    kind: "BooleanKeyboard";
+    id: number;
+    typeName: string;
+};
+
+interface Props extends DataTypeProps {
+    data: TypeDataTypeReference;
+}
+
+const { data } = Astro.props;
+---
+
+<TypeLink name={data.typeName} />

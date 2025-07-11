@@ -7,8 +7,13 @@ import TypeBooleanKeyword from "./Keywords/TypeBooleanKeyword.astro";
 import TypeNumberKeyword from "./Keywords/TypeNumberKeyword.astro";
 import TypeStringKeyword from "./Keywords/TypeStringKeyword.astro";
 import TypeVoidKeyword from "./Keywords/TypeVoidKeyword.astro";
+import TypeTypeReference from "./References/TypeTypeReference.astro";
+import TypeMethodSignature from "./Signatures/TypeMethodSignature.astro";
 import TypePropertySignature from "./Signatures/TypePropertySignature.astro";
+import TypeArrayType from "./Types/TypeArrayType.astro";
 import TypeFunctionType from "./Types/TypeFunctionType.astro";
+import TypeRestType from "./Types/TypeRestType.astro";
+import TypeTupleType from "./Types/TypeTupleType.astro";
 
 type Props = {
     data: any;
@@ -35,9 +40,22 @@ console.log(data);
         if (kind == "MethodDeclaration") {
             return <TypeMethodDeclaration data={data} depth={depth} />;
         }
+        // References
+        if (kind == "TypeReference") {
+            return <TypeTypeReference data={data} depth={depth} />;
+        }
         // Types
         if (kind == "FunctionType") {
             return <TypeFunctionType data={data} depth={depth} />;
+        }
+        if (kind == "ArrayType") {
+            return <TypeArrayType data={data} depth={depth} />;
+        }
+        if (kind == "TupleType") {
+            return <TypeTupleType data={data} depth={depth} />;
+        }
+        if (kind == "RestType") {
+            return <TypeRestType data={data} depth={depth} />;
         }
         // Keywords
         if (kind == "StringKeyword") {
@@ -52,8 +70,12 @@ console.log(data);
         if (kind == "VoidKeyword") {
             return <TypeVoidKeyword data={data} depth={depth} />;
         }
+        // Signatures
         if (kind == "PropertySignature") {
             return <TypePropertySignature data={data} depth={depth} />;
+        }
+        if (kind == "MethodSignature") {
+            return <TypeMethodSignature data={data} depth={depth} />;
         }
 
         return (
