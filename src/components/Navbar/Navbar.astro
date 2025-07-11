@@ -49,8 +49,8 @@ const l = Astro.currentLocale as Locale;
     </div>
 
     <!-- Menu for desktop -->
-    <div class="hidden w-full grid-cols-5 gap-2 md:grid">
-        <ul class="col-span-2 hidden justify-end gap-2 md:flex">
+    <div class="hidden w-full max-w-[72.5rem] grid-cols-5 gap-2 md:grid mx-auto">
+        <ul class="col-span-2 hidden gap-2 md:flex">
             {
                 firstLinksRow[l].map((link) => (
                     <li>
@@ -70,7 +70,7 @@ const l = Astro.currentLocale as Locale;
             </a>
         </div>
 
-        <ul class="col-span-2 hidden justify-start gap-2 md:flex">
+        <ul class="col-span-2 hidden justify-end gap-2 md:flex">
             {
                 secondLinksRow[l].map((link) => (
                     <li
