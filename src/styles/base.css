@@ -2,7 +2,7 @@
 
 @font-face {
     font-family: "Sans Fallback";
-    src: local(Arial);
+    src: local(Arial), local(Helvetica), sans-serif;
     size-adjust: 96%;
     ascent-override: 100%;
     descent-override: 18%;
@@ -11,11 +11,12 @@
 
 @font-face {
     font-family: "Hand Fallback";
-    src: local(Arial Black);
+    src: local(Arial Black), local(Gadget), sans-serif;
     size-adjust: 79%;
     ascent-override: normal;
     descent-override: 13%;
     line-gap-override: 65%;
+    font-weight: 900;
 }
 
 ::view-transition-group(root) {
