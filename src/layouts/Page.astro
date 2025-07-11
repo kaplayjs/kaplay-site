@@ -1,11 +1,10 @@
 ---
 import { ClientRouter } from "astro:transitions";
-import SearchDialog from "@/components/Search/SearchDialog.astro";
-import "@fontsource-variable/fira-code";
-import "@fontsource-variable/fredoka";
-import "@fontsource/ibm-plex-sans";
 import "@fontsource-variable/outfit";
+import outfitWoff2 from "@fontsource-variable/outfit/files/outfit-latin-wght-normal.woff2?url";
 import "@fontsource/darumadrop-one";
+import darumadropOneWoff2 from "@fontsource/darumadrop-one/files/darumadrop-one-latin-400-normal.woff2?url";
+import "@fontsource-variable/fira-code";
 import "@fontsource-variable/rubik";
 import "@fontsource/pangolin";
 import "../styles/base.css";
@@ -55,15 +54,20 @@ const image = new URL(meta?.image ?? "/kaplayjs.png", Astro.url);
         <meta name="twitter:image" content={image} />
         <meta name="theme-color" content={meta?.themeColor ?? "#abdd64"} />
         <meta name="keywords" content={meta?.keywords} />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/base16/summerfruit-dark.min.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/base16/summerfruit-dark.min.css"
+            media="none"
+            onload="if(media!=='all')media='all'"
+        />
+        <link rel="preload" as="font" type="font/woff2" href={outfitWoff2} crossorigin="anonymous" />
+        <link rel="preload" as="font" type="font/woff2" href={darumadropOneWoff2} crossorigin="anonymous" />
 
         <title>{meta?.title}</title>
-        <script src="/pagefind/pagefind-ui.js" is:inline></script>
         <slot name="head" />
         <ClientRouter />
     </head>
     <body>
         <slot />
-        <SearchDialog />
     </body></html
 >

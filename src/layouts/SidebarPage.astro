@@ -3,6 +3,7 @@ import type { SidebarProps } from "@/components/Sidebar/Sidebar.astro";
 import Sidebar from "@/components/Sidebar/Sidebar.astro";
 import CarbonAd from "@/components/Util/CarbonAd.astro";
 import Page, { type MetaTagData } from "./Page.astro";
+import SearchDialog from "@/components/Search/SearchDialog.astro";
 
 type Props = {
     meta?: MetaTagData;
@@ -12,6 +13,7 @@ const { sidebarMode, meta, headings } = Astro.props;
 ---
 
 <Page meta={meta} class="scroll-pt-24">
+    <script src="/pagefind/pagefind-ui.js" is:inline defer slot="head"></script>
     <slot name="head" slot="head" />
 
     <Sidebar sidebarMode={sidebarMode} headings={headings}>
@@ -19,4 +21,6 @@ const { sidebarMode, meta, headings } = Astro.props;
 
         <CarbonAd slot="ad" preferStart />
     </Sidebar>
+
+    <SearchDialog />
 </Page>
