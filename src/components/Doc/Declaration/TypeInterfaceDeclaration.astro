@@ -1,6 +1,7 @@
 ---
 import DocEntry from "../DocEntry.astro";
 import JSDoc from "../JSDoc.astro";
+import TypeBadge from "../Other/TypeBadge.astro";
 import Title from "../Utils/Title.astro";
 
 type TypeDataInterfaceDeclaration = {
@@ -18,10 +19,8 @@ type Props = {
 const { data, depth } = Astro.props;
 ---
 
-<Title depth={depth}>
-    <span class="text-sm inline rounded-lg border px-2 border-primary text-primary">Interface</span>{" "}
-    <span>{data.name}:</span></Title
->
+<TypeBadge depth={depth}>Interface</TypeBadge>
+<Title depth={depth}> <span>{data.name}:</span></Title>
 
 <JSDoc data={data} />
 

@@ -1,0 +1,15 @@
+---
+interface Props {
+    depth: number;
+}
+
+const { depth } = Astro.props;
+
+if (depth > 0) return;
+---
+
+<div>
+    <span class="text-sm rounded-lg border px-2 border-primary text-primary">
+        <slot />
+    </span>
+</div>

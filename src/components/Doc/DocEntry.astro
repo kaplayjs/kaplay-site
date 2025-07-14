@@ -5,9 +5,10 @@ export interface Props {
     data?: any;
     parent?: string;
     depth?: number;
+    divider?: boolean;
 }
 
-const { data, parent, depth = 0 } = Astro.props;
+const { data, parent, depth = 0, divider = true } = Astro.props;
 
 const extraProps = {
     "data-doc-entry-children": true,
@@ -33,5 +34,5 @@ const parentText = parent ? `${parent}-` : "";
     {...props}
 >
     <DocFor data={data} depth={depth} />
-    {depth > 0 && <div class="divider my-0" />}
+    {depth > 0 && divider && <div class="divider my-0" />}
 </EntryEl>

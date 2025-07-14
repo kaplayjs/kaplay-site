@@ -1,6 +1,8 @@
 ---
 import DocFor from "../DocFor.astro";
 import JSDoc from "../JSDoc.astro";
+import Strong from "../Other/Strong.astro";
+import TypeBadge from "../Other/TypeBadge.astro";
 import Title from "../Utils/Title.astro";
 import type { JSX } from "astro/jsx-runtime";
 
@@ -20,7 +22,7 @@ type Props = {
 const { data, depth } = Astro.props;
 ---
 
-<Title class="inline" depth={depth}>{data.name}</Title><strong role={"doc-subtitle" as JSX.AriaRole}
-    >{data.questionToken ? "?" : ""}: <DocFor data={data.type} depth={depth} /></strong
->
+<TypeBadge depth={depth}>Constant</TypeBadge>
+<Title class="inline" depth={depth}>{data.name}</Title><Strong depth={depth}>{data.questionToken ? "?" : ""}: <DocFor data={data.type} depth={depth} /></Strong>
+
 <JSDoc data={data} />

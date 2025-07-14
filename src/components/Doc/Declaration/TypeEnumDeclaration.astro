@@ -1,0 +1,29 @@
+---
+import DocEntry from "../DocEntry.astro";
+import DocFor from "../DocFor.astro";
+import JSDoc from "../JSDoc.astro";
+import TypeBadge from "../Other/TypeBadge.astro";
+import Title from "../Utils/Title.astro";
+
+type TypeDataEnumDeclaration = {
+    kind: "EnumDeclaration";
+    id: number;
+    name: string;
+    members: Record<string, any>;
+};
+
+type Props = {
+    data: TypeDataEnumDeclaration;
+    depth: number;
+};
+
+const { data, depth } = Astro.props;
+console.log(data);
+---
+
+<TypeBadge depth={depth}>Enum</TypeBadge>
+<Title depth={depth} data-dg-enum-declaration><span>{data.name}:</span></Title>
+
+{Object.keys(data.members).map((d) => data.members[d].map((rd) => <DocEntry data={rd} depth={depth + 1} parent={data.name} divider={false} />))}
+
+<JSDoc data={data} />

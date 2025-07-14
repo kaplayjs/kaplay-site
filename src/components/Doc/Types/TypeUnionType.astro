@@ -1,0 +1,26 @@
+---
+import DocFor from "../DocFor.astro";
+import type { DataTypeProps } from "../Utils/types.ts";
+
+type TypeDataUnionType = {
+    kind: "UnionType";
+    id: number;
+    types: any[];
+};
+
+interface Props extends DataTypeProps {
+    data: TypeDataUnionType;
+}
+
+const { data, depth } = Astro.props;
+---
+
+<span data-dg-union-type
+    >{
+        data.types.map((t, i) => (
+            <Fragment>
+                <DocFor data={t} depth={depth} />{i < data.types.length - 1 ? " |" : ""}{}
+            </Fragment>
+        ))
+    }</span
+>

@@ -5,3 +5,7 @@
 [data-dg-entry="true"] strong {
     font-weight: normal;
 }
+
+[data-dg-title="true"] {
+    @apply text-xl;
+}

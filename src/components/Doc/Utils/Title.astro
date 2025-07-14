@@ -11,4 +11,4 @@ const { depth, ...props } = Astro.props;
 const TitleEl = elementPerDepth[depth];
 ---
 
-<TitleEl {...props}><slot /></TitleEl>
+<TitleEl {...props} data-dg-title={depth < 1}><slot /></TitleEl>

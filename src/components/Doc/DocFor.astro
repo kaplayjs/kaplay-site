@@ -1,19 +1,24 @@
 ---
 import TypeClassDeclaration from "./Declaration/TypeClassDeclaration.astro";
+import TypeEnumDeclaration from "./Declaration/TypeEnumDeclaration.astro";
 import TypeInterfaceDeclaration from "./Declaration/TypeInterfaceDeclaration.astro";
 import TypeMethodDeclaration from "./Declaration/TypeMethodDeclaration.astro";
 import TypePropertyDeclaration from "./Declaration/TypePropertyDeclaration.astro";
 import TypeBooleanKeyword from "./Keywords/TypeBooleanKeyword.astro";
+import TypeNullKeyword from "./Keywords/TypeNullKeyword.astro";
 import TypeNumberKeyword from "./Keywords/TypeNumberKeyword.astro";
 import TypeStringKeyword from "./Keywords/TypeStringKeyword.astro";
 import TypeVoidKeyword from "./Keywords/TypeVoidKeyword.astro";
+import EnumMember from "./Other/EnumMember.astro";
 import TypeTypeReference from "./References/TypeTypeReference.astro";
 import TypeMethodSignature from "./Signatures/TypeMethodSignature.astro";
 import TypePropertySignature from "./Signatures/TypePropertySignature.astro";
 import TypeArrayType from "./Types/TypeArrayType.astro";
 import TypeFunctionType from "./Types/TypeFunctionType.astro";
+import TypeLiteralType from "./Types/TypeLiteralType.astro";
 import TypeRestType from "./Types/TypeRestType.astro";
 import TypeTupleType from "./Types/TypeTupleType.astro";
+import TypeUnionType from "./Types/TypeUnionType.astro";
 
 type Props = {
     data: any;
@@ -26,61 +31,66 @@ const kind = data?.kind;
 
 {
     () => {
-        // Declarations
-        if (kind == "InterfaceDeclaration") {
-            return <TypeInterfaceDeclaration data={data} depth={depth} />;
-        }
-        if (kind == "ClassDeclaration") {
-            return <TypeClassDeclaration data={data} depth={depth} />;
-        }
-        if (kind == "PropertyDeclaration") {
-            return <TypePropertyDeclaration data={data} depth={depth} />;
-        }
-        if (kind == "MethodDeclaration") {
-            return <TypeMethodDeclaration data={data} depth={depth} />;
-        }
-        // References
-        if (kind == "TypeReference") {
-            return <TypeTypeReference data={data} depth={depth} />;
-        }
-        // Types
-        if (kind == "FunctionType") {
-            return <TypeFunctionType data={data} depth={depth} />;
-        }
-        if (kind == "ArrayType") {
-            return <TypeArrayType data={data} depth={depth} />;
-        }
-        if (kind == "TupleType") {
-            return <TypeTupleType data={data} depth={depth} />;
-        }
-        if (kind == "RestType") {
-            return <TypeRestType data={data} depth={depth} />;
-        }
-        // Keywords
-        if (kind == "StringKeyword") {
-            return <TypeStringKeyword data={data} depth={depth} />;
-        }
-        if (kind == "BooleanKeyword") {
-            return <TypeBooleanKeyword data={data} depth={depth} />;
-        }
-        if (kind == "NumberKeyword") {
-            return <TypeNumberKeyword data={data} depth={depth} />;
-        }
-        if (kind == "VoidKeyword") {
-            return <TypeVoidKeyword data={data} depth={depth} />;
-        }
-        // Signatures
-        if (kind == "PropertySignature") {
-            return <TypePropertySignature data={data} depth={depth} />;
-        }
-        if (kind == "MethodSignature") {
-            return <TypeMethodSignature data={data} depth={depth} />;
-        }
+        switch (kind) {
+            // Declarations
+            case "InterfaceDeclaration":
+                return <TypeInterfaceDeclaration data={data} depth={depth} />;
+            case "ClassDeclaration":
+                return <TypeClassDeclaration data={data} depth={depth} />;
+            case "PropertyDeclaration":
+                return <TypePropertyDeclaration data={data} depth={depth} />;
+            case "MethodDeclaration":
+                return <TypeMethodDeclaration data={data} depth={depth} />;
+            case "EnumDeclaration":
+                return <TypeEnumDeclaration data={data} depth={depth} />;
 
-        return (
-            <div class="bg-base-300 p-4 my-2">
-                Parsing error with <span class="text-warning">{kind}</span>
-            </div>
-        );
+            // References
+            case "TypeReference":
+                return <TypeTypeReference data={data} depth={depth} />;
+
+            // Types
+            case "FunctionType":
+                return <TypeFunctionType data={data} depth={depth} />;
+            case "ArrayType":
+                return <TypeArrayType data={data} depth={depth} />;
+            case "TupleType":
+                return <TypeTupleType data={data} depth={depth} />;
+            case "RestType":
+                return <TypeRestType data={data} depth={depth} />;
+            case "UnionType":
+                return <TypeUnionType data={data} depth={depth} />;
+            case "LiteralType":
+                return <TypeLiteralType data={data} depth={depth} />;
+
+            // Keywords
+            case "StringKeyword":
+                return <TypeStringKeyword data={data} depth={depth} />;
+            case "BooleanKeyword":
+                return <TypeBooleanKeyword data={data} depth={depth} />;
+            case "NumberKeyword":
+                return <TypeNumberKeyword data={data} depth={depth} />;
+            case "VoidKeyword":
+                return <TypeVoidKeyword data={data} depth={depth} />;
+            case "NullKeyword":
+                return <TypeNullKeyword data={data} depth={depth} />;
+
+            // Signatures
+            case "PropertySignature":
+                return <TypePropertySignature data={data} depth={depth} />;
+            case "MethodSignature":
+                return <TypeMethodSignature data={data} depth={depth} />;
+
+            // Members
+            case "EnumMember":
+                return <EnumMember data={data} depth={depth} />;
+
+            // Fallback
+            default:
+                return (
+                    <div class="bg-base-300 p-4 my-2">
+                        Parsing error with <span class="text-warning">{kind}</span>
+                    </div>
+                );
+        }
     }
 }
