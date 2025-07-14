@@ -1,0 +1,24 @@
+---
+import DocFor from "../DocFor.astro";
+
+type Parameter = {
+    kind: "Parameter";
+    id: number;
+    name: string;
+    type: any;
+};
+
+type Props = {
+    parameters: Parameter[];
+};
+
+const { parameters } = Astro.props;
+---
+
+{
+    parameters.map((param, i) => (
+        <>
+            {param.name}: <DocFor data={param.type} depth={0} /> {i >= parameters.length - 1 ? "" : ", "}
+        </>
+    ))
+}
