@@ -1,0 +1,30 @@
+---
+export type DataTypeModifier = {
+    kind: string;
+    id: number;
+    name: string;
+};
+
+interface Props {
+    modifiers: DataTypeModifier[];
+}
+
+const { modifiers } = Astro.props;
+
+const getModifier = (mod: DataTypeModifier) => {
+    switch (mod.kind) {
+        case "StaticKeyword":
+            return "static";
+        default:
+            return "Unknown Modifier";
+    }
+};
+---
+
+{
+    modifiers.map((mod) => (
+        <Fragment>
+            <span data-dg-modifier>{getModifier(mod)}</span>
+        </Fragment>
+    ))
+}

@@ -23,20 +23,19 @@ function transform(o, f) {
             transform(o[k], f);
         }
     }
+
     return o;
 }
 
 // transform and prune typescript ast to a format more meaningful to us
 const statements = transform(f.statements, (k, v) => {
-    const typeArguments = {};
-
     switch (k) {
         case "end":
         case "flags":
         case "parent":
-        case "modifiers":
         case "transformFlags":
         case "modifierFlagsCache":
+        case "id":
             return;
         case "name":
         case "typeName":

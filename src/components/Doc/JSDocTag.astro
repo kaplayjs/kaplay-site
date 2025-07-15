@@ -20,11 +20,11 @@ const getItem = (items: any[]) => {
             {tag === "example" ? (
                 <Code code={items.join("").replace(/^```js\s+|```$/g, "")} lang="js" data-jsdoc-example />
             ) : tag === "param" ? (
-                <p class="prose gap-2" data-jsdoc-tag>
+                <p class="prose gap-2 items-center" data-jsdoc-tag>
                     <code data-jsdoc-name class="mr-1 inline">
                         {tag}
                     </code>
-                    <span data-jsdoc-describe>{paramName ?? "unknown"}</span>
+                    <span data-jsdoc-describe>{(paramName ?? "unknown") + " "}</span>
                     <span data-jsdoc-value>{getItem(items)}</span>
                 </p>
             ) : tag === "experimental" ? (
@@ -35,7 +35,7 @@ const getItem = (items: any[]) => {
                     <span data-jsdoc-value>{getItem(items)}</span>
                 </p>
             ) : (
-                <p class="prose gap-2 inline-flex items-center" data-jsdoc-tag>
+                <p class="prose gap-2 items-center" data-jsdoc-tag>
                     <code data-jsdoc-name class="mr-1 inline">
                         {tag}
                     </code>

@@ -1,14 +1,16 @@
 ---
 import DocFor from "../DocFor.astro";
 import JSDoc from "../JSDoc.astro";
+import Modifiers from "../Other/Modifiers.astro";
 import Title from "../Utils/Title.astro";
 
 type TypeDataPropertyDeclaration = {
-    kind: "PropertySignature";
+    kind: "PropertyDeclaration";
     id: number;
     name: string;
     type: any[];
     questionToken: boolean;
+    modifiers?: any[];
 };
 
 type Props = {
@@ -19,5 +21,6 @@ type Props = {
 const { data, depth } = Astro.props;
 ---
 
-<Title class="inline" depth={depth}>{data.name}</Title>{data.questionToken ? "?" : ""}: <DocFor data={data.type} depth={depth} />
+{data.modifiers ? <Modifiers modifiers={data.modifiers} /> : ""}
+{" "}<Title class="inline" depth={depth}>{data.name}</Title>{data.questionToken ? "?" : ""}: <DocFor data={data.type} depth={depth} />
 <JSDoc data={data} />

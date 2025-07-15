@@ -1,6 +1,7 @@
 ---
 import DocFor from "../DocFor.astro";
 import JSDoc from "../JSDoc.astro";
+import Modifiers from "../Other/Modifiers.astro";
 import Parameters from "../Other/Parameters.astro";
 import Title from "../Utils/Title.astro";
 import type { DataTypeProps } from "../Utils/types.ts";
@@ -12,6 +13,7 @@ type TypeDataMethodDeclaration = {
     parameters: any[];
     type: any[];
     questionToken: boolean;
+    modifiers?: any[];
 };
 
 interface Props extends DataTypeProps {
@@ -21,7 +23,8 @@ interface Props extends DataTypeProps {
 const { data, depth } = Astro.props;
 ---
 
-<Title class="inline" depth={depth}>{data.name}</Title>{data.questionToken ? "?." : ""}<Parameters data={data.parameters} depth={depth} />
+{data.modifiers ? <Modifiers modifiers={data.modifiers} /> : ""}
+{" "}<Title class="inline" depth={depth}>{data.name}</Title>{data.questionToken ? "?." : ""}(<Parameters data={data.parameters} depth={depth} />)
 <span>{"=>"} <DocFor data={data.type} depth={depth} /></span>
 
 <JSDoc data={data} />
