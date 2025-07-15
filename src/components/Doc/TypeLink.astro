@@ -10,8 +10,13 @@ const { name } = Astro.props;
 const ctxMember = doc.types.KaboomCtx?.[0].members[name] ?? doc.types.KAPLAYCtx?.[0].members[name];
 const typesMember = doc.types[name];
 
-const isType = Boolean(typesMember) || Boolean(ctxMember);
-const isTypesMember = Boolean(typesMember);
+let isType = Boolean(typesMember) || Boolean(ctxMember);
+let isTypesMember = Boolean(typesMember);
+
+if (name == "KAPLAYCtx") {
+    isType = false;
+    isTypesMember = false;
+}
 
 const props = isType
     ? {
@@ -23,7 +28,7 @@ const props = isType
 
 <span
     {...props}
-    data-dg-unknown
+    data-dg-reference
     class:list={{
         // prettier-ignore
         "hoverable link link-primary link-hover underline decoration-current decoration-dashed": isType,

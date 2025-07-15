@@ -1,0 +1,18 @@
+---
+import DocFor from "../DocFor.astro";
+import type { DataTypeProps } from "../Utils/types.ts";
+
+export type DataTypeParenthesizedType = {
+    kind: "ParenthesizedType";
+    id: number;
+    type: any;
+};
+
+interface Props extends DataTypeProps {
+    data: DataTypeParenthesizedType;
+}
+
+const { data, depth } = Astro.props;
+---
+
+(<DocFor data={data.type} depth={depth} />)

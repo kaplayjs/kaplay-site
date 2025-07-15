@@ -19,8 +19,8 @@ const { data, depth } = Astro.props;
 
 <span data-dg-tuple-type
     >[{
-        data.elements.map((e) => (
-            <>{}<DocFor data={e} depth={depth} />{}</>
+        data.elements.map((e, i) => (
+            <>{}<DocFor data={e} depth={depth} />{i >= data.elements.length - 1 ? "" : ", "}</>
         ))
     }]</span
 >

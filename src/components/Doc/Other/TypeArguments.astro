@@ -1,24 +1,23 @@
 ---
 import DocFor from "../DocFor.astro";
 
-type Parameter = {
-    kind: "Parameter";
+type Argument = {
+    kind: string;
     id: number;
-    name: string;
-    type: any;
+    typeName: string;
 };
 
 type Props = {
-    parameters: Parameter[];
+    args: Argument[];
 };
 
-const { parameters } = Astro.props;
+const { args } = Astro.props;
 ---
 
 {
-    parameters.map((param, i) => (
+    args.map((arg, i) => (
         <>
-            {param.name}: <DocFor data={param.type} depth={0} /> {i >= parameters.length - 1 ? "" : ", "}
+            <DocFor data={arg} depth={0} /> {i >= args.length - 1 ? "" : "| "}
         </>
     ))
 }

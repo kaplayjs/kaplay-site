@@ -1,20 +1,25 @@
 ---
 import TypeClassDeclaration from "./Declaration/TypeClassDeclaration.astro";
 import TypeEnumDeclaration from "./Declaration/TypeEnumDeclaration.astro";
+import TypeFunctionDeclaration from "./Declaration/TypeFunctionDeclaration.astro";
 import TypeInterfaceDeclaration from "./Declaration/TypeInterfaceDeclaration.astro";
 import TypeMethodDeclaration from "./Declaration/TypeMethodDeclaration.astro";
 import TypePropertyDeclaration from "./Declaration/TypePropertyDeclaration.astro";
+import TypeTypeAliasDeclaration from "./Declaration/TypeTypeAliasDeclaration.astro";
+import TypeAnyKeyword from "./Keywords/TypeAnyKeyword.astro";
 import TypeBooleanKeyword from "./Keywords/TypeBooleanKeyword.astro";
 import TypeNullKeyword from "./Keywords/TypeNullKeyword.astro";
 import TypeNumberKeyword from "./Keywords/TypeNumberKeyword.astro";
 import TypeStringKeyword from "./Keywords/TypeStringKeyword.astro";
 import TypeVoidKeyword from "./Keywords/TypeVoidKeyword.astro";
 import EnumMember from "./Other/EnumMember.astro";
+import ParenthesizedType from "./Other/ParenthesizedType.astro";
 import TypeTypeReference from "./References/TypeTypeReference.astro";
 import TypeMethodSignature from "./Signatures/TypeMethodSignature.astro";
 import TypePropertySignature from "./Signatures/TypePropertySignature.astro";
 import TypeArrayType from "./Types/TypeArrayType.astro";
 import TypeFunctionType from "./Types/TypeFunctionType.astro";
+import TypeIntersectionType from "./Types/TypeIntersectionType.astro";
 import TypeLiteralType from "./Types/TypeLiteralType.astro";
 import TypeRestType from "./Types/TypeRestType.astro";
 import TypeTupleType from "./Types/TypeTupleType.astro";
@@ -43,6 +48,10 @@ const kind = data?.kind;
                 return <TypeMethodDeclaration data={data} depth={depth} />;
             case "EnumDeclaration":
                 return <TypeEnumDeclaration data={data} depth={depth} />;
+            case "TypeAliasDeclaration":
+                return <TypeTypeAliasDeclaration data={data} depth={depth} />;
+            case "FunctionDeclaration":
+                return <TypeFunctionDeclaration data={data} depth={depth} />;
 
             // References
             case "TypeReference":
@@ -59,6 +68,8 @@ const kind = data?.kind;
                 return <TypeRestType data={data} depth={depth} />;
             case "UnionType":
                 return <TypeUnionType data={data} depth={depth} />;
+            case "IntersectionType":
+                return <TypeIntersectionType data={data} depth={depth} />;
             case "LiteralType":
                 return <TypeLiteralType data={data} depth={depth} />;
 
@@ -73,6 +84,8 @@ const kind = data?.kind;
                 return <TypeVoidKeyword data={data} depth={depth} />;
             case "NullKeyword":
                 return <TypeNullKeyword data={data} depth={depth} />;
+            case "AnyKeyword":
+                return <TypeAnyKeyword data={data} depth={depth} />;
 
             // Signatures
             case "PropertySignature":
@@ -83,6 +96,9 @@ const kind = data?.kind;
             // Members
             case "EnumMember":
                 return <EnumMember data={data} depth={depth} />;
+
+            case "ParenthesizedType":
+                return <ParenthesizedType data={data} depth={depth} />;
 
             // Fallback
             default:

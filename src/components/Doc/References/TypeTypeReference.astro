@@ -1,11 +1,13 @@
 ---
-import TypeLink from "../TypeLink.astro";
+import TypeArguments from "../Other/TypeArguments.astro";
 import type { DataTypeProps } from "../Utils/types.ts";
+import { doc } from "@/data/doc";
 
 type TypeDataTypeReference = {
     kind: "BooleanKeyboard";
     id: number;
     typeName: string;
+    typeArguments: any[];
 };
 
 interface Props extends DataTypeProps {
@@ -13,6 +15,33 @@ interface Props extends DataTypeProps {
 }
 
 const { data } = Astro.props;
+
+const { typeName: name } = data;
+
+const ctxMember = doc.types.KaboomCtx?.[0].members[name] ?? doc.types.KAPLAYCtx?.[0].members[name];
+const typesMember = doc.types[name];
+
+let isType = Boolean(typesMember) || Boolean(ctxMember);
+let isTypesMember = Boolean(typesMember);
+
+if (name == "KAPLAYCtx") {
+    isType = false;
+    isTypesMember = false;
+}
+
+const props = isType
+    ? {
+          "data-type-link": isType,
+          "data-link-type": `${isTypesMember ? "/" : "/ctx/"}${name}`,
+      }
+    : {};
 ---
 
-<TypeLink name={data.typeName} />
+<span
+    {...props}
+    data-dg-reference
+    class:list={{
+        // prettier-ignore
+        "hoverable link link-primary link-hover underline decoration-current decoration-dashed": isType,
+    }}>{name}</span
+>{data.typeArguments ? <Fragment>{"<"}<TypeArguments args={data.typeArguments}/>{">"}{}</Fragment> : ""}

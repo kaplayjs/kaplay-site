@@ -17,6 +17,8 @@ const extraProps = {
 const EntryEl = depth > 0 ? "section" : "article";
 const props = parent ? extraProps : {};
 const parentText = parent ? `${parent}-` : "";
+
+console.log(data);
 ---
 
 <EntryEl
@@ -26,7 +28,7 @@ const parentText = parent ? `${parent}-` : "";
     data-depth={depth}
     data-doc-entry-name={data?.name ?? ""}
     class:list={[
-        "text-fira",
+        "text-fira mb-8",
         {
             "py-2 pl-4": depth == 1,
         },

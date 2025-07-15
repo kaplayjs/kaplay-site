@@ -1,6 +1,7 @@
 ---
 import DocFor from "../DocFor.astro";
 import JSDoc from "../JSDoc.astro";
+import Parameters from "../Other/Parameters.astro";
 import Title from "../Utils/Title.astro";
 import type { DataTypeProps } from "../Utils/types.ts";
 
@@ -8,7 +9,7 @@ type TypeDataMethodDeclaration = {
     kind: "MethodDeclaration";
     id: number;
     name: string;
-    parameters: [];
+    parameters: any[];
     type: any[];
     questionToken: boolean;
 };
@@ -20,7 +21,7 @@ interface Props extends DataTypeProps {
 const { data, depth } = Astro.props;
 ---
 
-<Title class="inline" depth={depth}>{data.name}</Title>{data.questionToken ? "?." : ""}()
+<Title class="inline" depth={depth}>{data.name}</Title>{data.questionToken ? "?." : ""}<Parameters data={data.parameters} depth={depth} />
 <span>{"=>"} <DocFor data={data.type} depth={depth} /></span>
 
 <JSDoc data={data} />

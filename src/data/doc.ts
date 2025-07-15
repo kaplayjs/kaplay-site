@@ -24,43 +24,15 @@ function deepMerge<T>(target: T, replacement: Partial<T>): T {
     return result;
 }
 
-for (const key of Object.keys(docs.types)) {
-    const ogs = docs.types[key];
-    const replacements = docsReplacement[key];
+for (const key of Object.keys(docsReplacement)) {
+    const originalEntries = docs.types[key];
+    const replacementEntries = docsReplacement[key] as any[];
 
-    if (replacements) {
-        for (let i = 0; i < replacements.length; i++) {
-            const replacement = replacements[i];
-            const og = ogs[i];
+    if (!originalEntries) continue;
 
-            for (const replacementKey of Object.keys(replacement)) {
-                if (replacementKey == "members") {
-                    const replacementMembers = replacement["members"];
-                    const originalMembers = og["members"];
-
-                    for (
-                        const replacementMemberKey of Object.keys(
-                            replacementMembers,
-                        )
-                    ) {
-                        const originalMember =
-                            originalMembers[replacementMemberKey];
-                        const replacementMember =
-                            replacementMembers[replacementMemberKey];
-
-                        originalMembers[replacementMemberKey] = Object.values(
-                            deepMerge(
-                                originalMember,
-                                replacementMember,
-                            ),
-                        );
-
-                        console.log(originalMembers[replacementMemberKey]);
-                    }
-                }
-            }
-        }
-    }
+    replacementEntries.forEach((replacement, i) => {
+        originalEntries[i] = deepMerge(originalEntries[i], replacement);
+    });
 }
 
 export const doc = generatedDocs as any;

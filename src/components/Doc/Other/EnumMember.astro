@@ -17,7 +17,6 @@ interface Props extends DataTypeProps {
 }
 
 const { data, depth } = Astro.props;
-console.log(data);
 ---
 
 <Title depth={depth}>{data.name} = {data.initializer.text}</Title>

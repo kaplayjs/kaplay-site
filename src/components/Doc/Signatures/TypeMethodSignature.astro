@@ -1,17 +1,17 @@
 ---
 import DocFor from "../DocFor.astro";
 import JSDoc from "../JSDoc.astro";
+import type { DataTypeParameter } from "../Other/Parameter.astro";
 import Parameters from "../Other/Parameters.astro";
 import Strong from "../Other/Strong.astro";
 import TypeBadge from "../Other/TypeBadge.astro";
 import Title from "../Utils/Title.astro";
-import type { JSX } from "astro/jsx-runtime";
 
 type TypeDataPropertySignature = {
     kind: "MethodSignature";
     id: number;
     name: string;
-    parameters: any[];
+    parameters: DataTypeParameter[];
     type: any[];
 };
 
@@ -25,7 +25,7 @@ const { data, depth } = Astro.props;
 
 <TypeBadge depth={depth}>Function</TypeBadge>
 <Title class="inline" depth={depth}>{data.name}</Title><Strong depth={depth}
-    >(<Parameters parameters={data.parameters} />): <DocFor data={data.type} depth={depth} />
+    >(<Parameters data={data.parameters} depth={depth} />): <DocFor data={data.type} depth={depth} />
 </Strong>
 
 <JSDoc data={data} />

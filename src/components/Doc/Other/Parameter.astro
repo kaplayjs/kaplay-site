@@ -1,0 +1,20 @@
+---
+import DocFor from "../DocFor.astro";
+import type { DataTypeProps } from "../Utils/types.ts";
+
+export type DataTypeParameter = {
+    kind: "Parameter";
+    id: number;
+    name: string;
+    type: any;
+    questionToken?: boolean;
+};
+
+interface Props extends DataTypeProps {
+    data: DataTypeParameter;
+}
+
+const { data, depth } = Astro.props;
+---
+
+<span>{data.name}{data.questionToken ? "?" : ""}: <DocFor data={data.type} depth={depth} /></span>
