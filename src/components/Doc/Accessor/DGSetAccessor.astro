@@ -1,0 +1,23 @@
+---
+import JSDoc from "../JSDoc.astro";
+import type { DataTypeParameter } from "../Other/Parameter.astro";
+import Parameters from "../Other/Parameters.astro";
+import Title from "../Utils/Title.astro";
+import type { DataTypeProps } from "../Utils/types.ts";
+
+type TypeDataSetAccessor = {
+    kind: "SetAccessor";
+    name: string;
+    parameters: DataTypeParameter[];
+};
+
+interface Props extends DataTypeProps {
+    data: TypeDataSetAccessor;
+}
+
+const { data, depth } = Astro.props;
+---
+
+<span data-dg-get-accessor>set</span>
+<Title class="inline" depth={depth}>{data.name}</Title>(<Parameters data={data.parameters} depth={depth} />)
+<JSDoc data={data} />

@@ -1,4 +1,6 @@
 ---
+import DGGetAccessor from "./Accessor/DGGetAccessor.astro";
+import DGSetAccessor from "./Accessor/DGSetAccessor.astro";
 import TypeClassDeclaration from "./Declaration/TypeClassDeclaration.astro";
 import TypeEnumDeclaration from "./Declaration/TypeEnumDeclaration.astro";
 import TypeFunctionDeclaration from "./Declaration/TypeFunctionDeclaration.astro";
@@ -76,6 +78,12 @@ const kind = data?.kind;
                 return <TypeLiteralType data={data} depth={depth} />;
             case "IndexedAccessType":
                 return <TypeIndexedAccessType data={data} depth={depth} />;
+
+            // Accessors
+            case "SetAccessor":
+                return <DGSetAccessor data={data} depth={depth} />;
+            case "GetAccessor":
+                return <DGGetAccessor data={data} depth={depth} />;
 
             // Others
             case "StringLiteral":
