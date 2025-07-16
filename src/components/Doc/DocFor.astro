@@ -20,6 +20,8 @@ import TypeStringLiteral from "./Other/TypeStringLiteral.astro";
 import TypeTypeReference from "./References/TypeTypeReference.astro";
 import TypeMethodSignature from "./Signatures/TypeMethodSignature.astro";
 import TypePropertySignature from "./Signatures/TypePropertySignature.astro";
+import DGConditionalType from "./Types/DGConditionalType.astro";
+import DGMappedType from "./Types/DGMappedType.astro";
 import TypeArrayType from "./Types/TypeArrayType.astro";
 import TypeFunctionType from "./Types/TypeFunctionType.astro";
 import TypeIndexedAccessType from "./Types/TypeIndexedAccessType.astro";
@@ -28,6 +30,10 @@ import TypeLiteralType from "./Types/TypeLiteralType.astro";
 import TypeRestType from "./Types/TypeRestType.astro";
 import TypeTupleType from "./Types/TypeTupleType.astro";
 import TypeUnionType from "./Types/TypeUnionType.astro";
+import DGTypeOperator from "./Other/DGTypeOperator.astro";
+import DGNeverKeyword from "./Keywords/DGNeverKeyword.astro";
+import DGUndefinedKeyword from "./Keywords/DGUndefinedKeyword.astro";
+import DGTypeQuery from "./Other/DGTypeQuery.astro";
 
 type Props = {
     data: any;
@@ -40,6 +46,8 @@ const kind = data?.kind;
 
 {
     () => {
+        if (!kind) return "";
+
         switch (kind) {
             // Declarations
             case "InterfaceDeclaration":
@@ -78,6 +86,10 @@ const kind = data?.kind;
                 return <TypeLiteralType data={data} depth={depth} />;
             case "IndexedAccessType":
                 return <TypeIndexedAccessType data={data} depth={depth} />;
+            case "MappedType":
+                return <DGMappedType data={data} depth={depth} />;
+            case "ConditionalType":
+                return <DGConditionalType data={data} depth={depth} />;
 
             // Accessors
             case "SetAccessor":
@@ -88,6 +100,10 @@ const kind = data?.kind;
             // Others
             case "StringLiteral":
                 return <TypeStringLiteral data={data} depth={depth} />;
+            case "TypeOperator":
+                return <DGTypeOperator data={data} depth={depth} />;
+            case "TypeQuery":
+                return <DGTypeQuery data={data} depth={depth} />;
 
             // Keywords
             case "StringKeyword":
@@ -102,6 +118,10 @@ const kind = data?.kind;
                 return <TypeNullKeyword data={data} depth={depth} />;
             case "AnyKeyword":
                 return <TypeAnyKeyword data={data} depth={depth} />;
+            case "NeverKeyword":
+                return <DGNeverKeyword data={data} depth={depth} />;
+            case "UndefinedKeyword":
+                return <DGUndefinedKeyword data={data} depth={depth} />;
 
             // Signatures
             case "PropertySignature":

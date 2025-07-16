@@ -44,6 +44,7 @@ const statements = transform(f.statements, (k, v) => {
         case "pos":
             return typeof v === "number" ? undefined : v;
         case "kind":
+        case "operator":
             return ts.SyntaxKind[v];
         case "questionToken":
             return true;
