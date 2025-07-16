@@ -14,11 +14,13 @@ import TypeStringKeyword from "./Keywords/TypeStringKeyword.astro";
 import TypeVoidKeyword from "./Keywords/TypeVoidKeyword.astro";
 import EnumMember from "./Other/EnumMember.astro";
 import ParenthesizedType from "./Other/ParenthesizedType.astro";
+import TypeStringLiteral from "./Other/TypeStringLiteral.astro";
 import TypeTypeReference from "./References/TypeTypeReference.astro";
 import TypeMethodSignature from "./Signatures/TypeMethodSignature.astro";
 import TypePropertySignature from "./Signatures/TypePropertySignature.astro";
 import TypeArrayType from "./Types/TypeArrayType.astro";
 import TypeFunctionType from "./Types/TypeFunctionType.astro";
+import TypeIndexedAccessType from "./Types/TypeIndexedAccessType.astro";
 import TypeIntersectionType from "./Types/TypeIntersectionType.astro";
 import TypeLiteralType from "./Types/TypeLiteralType.astro";
 import TypeRestType from "./Types/TypeRestType.astro";
@@ -72,6 +74,12 @@ const kind = data?.kind;
                 return <TypeIntersectionType data={data} depth={depth} />;
             case "LiteralType":
                 return <TypeLiteralType data={data} depth={depth} />;
+            case "IndexedAccessType":
+                return <TypeIndexedAccessType data={data} depth={depth} />;
+
+            // Others
+            case "StringLiteral":
+                return <TypeStringLiteral data={data} depth={depth} />;
 
             // Keywords
             case "StringKeyword":

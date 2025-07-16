@@ -9,3 +9,7 @@
 [data-dg-title="true"] {
     @apply text-xl;
 }
+
+[data-dg-string-literal] {
+    @apply text-orange-300;
+}
