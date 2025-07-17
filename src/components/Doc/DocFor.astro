@@ -20,17 +20,17 @@ import TypeStringLiteral from "./Other/TypeStringLiteral.astro";
 import DGTypeReference from "./References/DGTypeReference.astro";
 import DGMethodSignature from "./Signatures/DGMethodSignature.astro";
 import DGPropertySignature from "./Signatures/DGPropertySignature.astro";
-import DGConditionalDG from "./Types/DGConditionalType.astro";
-import DGMappedDG from "./Types/DGMappedType.astro";
-import DGArrayDG from "./Types/DGArrayType.astro";
-import DGFunctionDG from "./Types/DGFunctionType.astro";
-import DGIndexedAccessDG from "./Types/DGIndexedAccessType.astro";
-import DGIntersectionDG from "./Types/DGIntersectionType.astro";
-import DGLiteralDG from "./Types/DGLiteralType.astro";
-import DGRestDG from "./Types/DGRestType.astro";
-import DGTupleDG from "./Types/DGTupleType.astro";
-import DGUnionDG from "./Types/DGUnionType.astro";
-import DGDGOperator from "./Other/DGTypeOperator.astro";
+import DGConditionalType from "./Types/DGConditionalType.astro";
+import DGMappedType from "./Types/DGMappedType.astro";
+import DGArrayType from "./Types/DGArrayType.astro";
+import DGFunctionType from "./Types/DGFunctionType.astro";
+import DGIndexedAccessType from "./Types/DGIndexedAccessType.astro";
+import DGIntersectionType from "./Types/DGIntersectionType.astro";
+import DGLiteralType from "./Types/DGLiteralType.astro";
+import DGRestType from "./Types/DGRestType.astro";
+import DGTupleType from "./Types/DGTupleType.astro";
+import DGUnionType from "./Types/DGUnionType.astro";
+import DGTypeOperator from "./Other/DGTypeOperator.astro";
 import DGNeverKeyword from "./Keywords/DGNeverKeyword.astro";
 import DGUndefinedKeyword from "./Keywords/DGUndefinedKeyword.astro";
 import DGTypeQuery from "./Other/DGTypeQuery.astro";
@@ -72,26 +72,26 @@ const kind = data?.kind;
                 return <DGTypeReference data={data} depth={depth} />;
 
             // DGs
-            case "FunctionDG":
-                return <DGFunctionDG data={data} depth={depth} />;
-            case "ArrayDG":
-                return <DGArrayDG data={data} depth={depth} />;
-            case "TupleDG":
-                return <DGTupleDG data={data} depth={depth} />;
-            case "RestDG":
-                return <DGRestDG data={data} depth={depth} />;
-            case "UnionDG":
-                return <DGUnionDG data={data} depth={depth} />;
-            case "IntersectionDG":
-                return <DGIntersectionDG data={data} depth={depth} />;
-            case "LiteralDG":
-                return <DGLiteralDG data={data} depth={depth} />;
-            case "IndexedAccessDG":
-                return <DGIndexedAccessDG data={data} depth={depth} />;
-            case "MappedDG":
-                return <DGMappedDG data={data} depth={depth} />;
-            case "ConditionalDG":
-                return <DGConditionalDG data={data} depth={depth} />;
+            case "FunctionType":
+                return <DGFunctionType data={data} depth={depth} />;
+            case "ArrayType":
+                return <DGArrayType data={data} depth={depth} />;
+            case "TupleType":
+                return <DGTupleType data={data} depth={depth} />;
+            case "RestType":
+                return <DGRestType data={data} depth={depth} />;
+            case "UnionType":
+                return <DGUnionType data={data} depth={depth} />;
+            case "IntersectionType":
+                return <DGIntersectionType data={data} depth={depth} />;
+            case "LiteralType":
+                return <DGLiteralType data={data} depth={depth} />;
+            case "IndexedAccessType":
+                return <DGIndexedAccessType data={data} depth={depth} />;
+            case "MappedType":
+                return <DGMappedType data={data} depth={depth} />;
+            case "ConditionalType":
+                return <DGConditionalType data={data} depth={depth} />;
 
             // Accessors
             case "SetAccessor":
@@ -102,11 +102,11 @@ const kind = data?.kind;
             // Others
             case "StringLiteral":
                 return <TypeStringLiteral data={data} depth={depth} />;
-            case "DGOperator":
-                return <DGDGOperator data={data} depth={depth} />;
-            case "DGQuery":
+            case "TypeOperator":
+                return <DGTypeOperator data={data} depth={depth} />;
+            case "TypeQuery":
                 return <DGTypeQuery data={data} depth={depth} />;
-            case "DGLiteral":
+            case "TypeLiteral":
                 return <DGTypeLiteral data={data} depth={depth} />;
 
             // Keywords
@@ -139,7 +139,7 @@ const kind = data?.kind;
             case "EnumMember":
                 return <EnumMember data={data} depth={depth} />;
 
-            case "ParenthesizedDG":
+            case "ParenthesizedType":
                 return <ParenthesizedType data={data} depth={depth} />;
 
             // Fallback
