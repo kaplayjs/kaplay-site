@@ -1,0 +1,18 @@
+---
+import DocFor from "../DocFor.astro";
+import type { DataTypeProps } from "../Utils/types.ts";
+
+type TypeDataRestType = {
+    kind: "IndexedAccessType";
+    objectType: any;
+    indexType: any;
+};
+
+interface Props extends DataTypeProps {
+    data: TypeDataRestType;
+}
+
+const { data, depth } = Astro.props;
+---
+
+<span data-dg-indexed-access-type><DocFor data={data.objectType} depth={depth} />[<DocFor data={data.indexType} depth={depth} />]</span>

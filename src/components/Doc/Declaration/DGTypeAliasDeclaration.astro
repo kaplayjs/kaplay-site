@@ -1,0 +1,27 @@
+---
+import DocFor from "../DocFor.astro";
+import JSDoc from "../JSDoc.astro";
+import TypeBadge from "../Other/TypeBadge.astro";
+import Title from "../Utils/Title.astro";
+
+type TypeDataTypeAliasDeclaration = {
+    kind: "TypeAliasDeclaration";
+    id: number;
+    name: string;
+    type: any;
+};
+
+type Props = {
+    data: TypeDataTypeAliasDeclaration;
+    depth: number;
+};
+
+const { data, depth } = Astro.props;
+---
+
+<TypeBadge depth={depth}>Type</TypeBadge>
+<Title depth={depth} data-dg-type-alias-declaration><span>{data.name}:</span></Title>
+
+<DocFor data={data.type} depth={depth + 1} />
+
+<JSDoc data={data} />

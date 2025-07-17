@@ -1,0 +1,14 @@
+---
+import type { DataTypeProps } from "../Utils/types.ts";
+
+type TypeDataVoidKeyword = {
+    kind: "VoidKeyword";
+    id: number;
+};
+
+interface Props extends DataTypeProps {
+    data: TypeDataVoidKeyword;
+}
+---
+
+<span data-dg-void-keyword data-dg-primitive>void</span>

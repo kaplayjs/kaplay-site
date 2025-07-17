@@ -16,14 +16,14 @@ function transform(o, f) {
         const v = f(k, o[k]);
         if (v != null) {
             o[k] = v;
-        }
-        else {
+        } else {
             delete o[k];
         }
         if (typeof o[k] === "object") {
             transform(o[k], f);
         }
     }
+
     return o;
 }
 
@@ -33,9 +33,9 @@ const statements = transform(f.statements, (k, v) => {
         case "end":
         case "flags":
         case "parent":
-        case "modifiers":
         case "transformFlags":
         case "modifierFlagsCache":
+        case "id":
             return;
         case "name":
         case "typeName":
@@ -44,6 +44,7 @@ const statements = transform(f.statements, (k, v) => {
         case "pos":
             return typeof v === "number" ? undefined : v;
         case "kind":
+        case "operator":
             return ts.SyntaxKind[v];
         case "questionToken":
             return true;
@@ -153,15 +154,13 @@ for (const statement of statements) {
                         name: name,
                         entries: [mem[0].name],
                     };
-                }
-                else {
+                } else {
                     const section = groups[name];
                     section.entries.push(mem[0].name);
                 }
             }
         }
-    }
-    else {
+    } else {
         const tags = statement.jsDoc?.tags ?? {};
 
         if (tags["group"]) {
@@ -172,13 +171,11 @@ for (const statement of statements) {
                     name: name,
                     entries: [statement.name],
                 };
-            }
-            else {
+            } else {
                 const section = groups[name];
                 section.entries.push(statement.name);
             }
-        }
-        else {
+        } else {
             miscGroup.entries.push(statement.name);
         }
     }

@@ -1,0 +1,18 @@
+---
+import DocFor from "../DocFor.astro";
+import type { DataTypeProps } from "../Utils/types.ts";
+
+type TypeDataLiteralType = {
+    kind: "LiteralType";
+    id: number;
+    literal: any;
+};
+
+interface Props extends DataTypeProps {
+    data: TypeDataLiteralType;
+}
+
+const { data, depth } = Astro.props;
+---
+
+<span data-dg-literal-type><DocFor data={data.literal} depth={depth} /></span>

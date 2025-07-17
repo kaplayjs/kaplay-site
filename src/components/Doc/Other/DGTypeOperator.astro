@@ -1,0 +1,28 @@
+---
+import DocFor from "../DocFor.astro";
+import type { DataTypeProps } from "../Utils/types.ts";
+
+export type DataTypeOperator = {
+    kind: "TypeOperator";
+    operator: "KeyOfKeyword";
+    type: any;
+};
+
+interface Props extends DataTypeProps {
+    data: DataTypeOperator;
+}
+
+const { data, depth } = Astro.props;
+
+const getOperator = (mod: DataTypeOperator) => {
+    switch (mod.operator) {
+        case "KeyOfKeyword":
+            return "keyof";
+        default:
+            return "Unknown Operator";
+    }
+};
+---
+
+<span data-dg-operator>{getOperator(data)}</span>
+<DocFor data={data.type} depth={depth} />

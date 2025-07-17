@@ -1,0 +1,16 @@
+---
+import type { DataTypeProps } from "../Utils/types.ts";
+
+type TypeDataStringLiteral = {
+    kind: "StringLiteral";
+    text: string;
+};
+
+interface Props extends DataTypeProps {
+    data: TypeDataStringLiteral;
+}
+
+const { data, depth } = Astro.props;
+---
+
+<span data-dg-string-literal>"{data.text}"</span>

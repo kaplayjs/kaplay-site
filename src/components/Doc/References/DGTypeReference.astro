@@ -1,11 +1,22 @@
 ---
+import TypeArguments from "../Other/TypeArguments.astro";
+import type { DataTypeProps } from "../Utils/types.ts";
 import { doc } from "@/data/doc";
 
-interface Props {
-    name: string;
+type TypeDataTypeReference = {
+    kind: "BooleanKeyboard";
+    id: number;
+    typeName: string;
+    typeArguments: any[];
+};
+
+interface Props extends DataTypeProps {
+    data: TypeDataTypeReference;
 }
 
-const { name } = Astro.props;
+const { data } = Astro.props;
+
+const { typeName: name } = data;
 
 const ctxMember = doc.types.KaboomCtx?.[0].members[name] ?? doc.types.KAPLAYCtx?.[0].members[name];
 const typesMember = doc.types[name];
@@ -33,4 +44,4 @@ const props = isType
         // prettier-ignore
         "hoverable link link-primary link-hover underline decoration-current decoration-dashed": isType,
     }}>{name}</span
->
+>{data.typeArguments ? <Fragment>{"<"}<TypeArguments args={data.typeArguments}/>{">"}{}</Fragment> : ""}

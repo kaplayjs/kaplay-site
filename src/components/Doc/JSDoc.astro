@@ -27,6 +27,8 @@ const otherTags = tags.filter((tag) => tag.tag !== "param");
     )
 }
 
-{paramTag && paramTag.items.map((item, i) => <JSDocTag tag="param" items={[item]} paramName={fParams[i]?.name} />)}
+<div>
+    {paramTag && paramTag.items.map((item, i) => <JSDocTag tag="param" items={[item]} paramName={fParams[i]?.name} />)}
 
-{otherTags && otherTags.map(({ items, tag }) => <JSDocTag tag={tag} items={items} />)}
+    {otherTags && otherTags.map(({ items, tag }) => <JSDocTag tag={tag} items={items} />)}
+</div>

@@ -1,0 +1,33 @@
+---
+import DocFor from "../DocFor.astro";
+import type { DataTypeProps } from "../Utils/types.ts";
+
+type TypeDataMappedType = {
+    kind: "MappedType";
+    name: string;
+    typeParameter: {
+        kind: "TypeParameter";
+        name: string;
+        constraint: {
+            kind: "TypeOperator";
+            operator: "KeyOfKeyword";
+            type: any;
+        };
+    };
+    type: any;
+};
+
+interface Props extends DataTypeProps {
+    data: TypeDataMappedType;
+}
+
+const { data, depth } = Astro.props;
+---
+
+<span data-dg-mapped-type
+    >{"{"}
+    [{data.typeParameter.name} in
+    <DocFor data={data.typeParameter.constraint} depth={depth} />]:
+    <DocFor data={data.type} depth={depth} />
+    {"}"}
+</span>

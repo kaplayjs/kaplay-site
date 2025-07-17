@@ -1,54 +1,38 @@
 ---
-import JSDoc from "./JSDoc.astro";
-import TypeGenerics from "./TypeGenerics.astro";
-import TypeMembers from "./TypeMembers.astro";
-import TypeName from "./TypeName.astro";
-import TypeParams from "./TypeParams.astro";
-import TypeReturn from "./TypeReturn.astro";
+import DocFor from "./DocFor.astro";
 
 export interface Props {
     data?: any;
     parent?: string;
+    depth?: number;
+    divider?: boolean;
 }
 
-const { data, parent } = Astro.props;
-
-const optionalMark = (data: any) => {
-    return data?.questionToken ? "?" : "";
-};
-
-const parentText = parent ? `${parent}-` : "";
-const Title = parent ? "h2" : "h1";
+const { data, parent, depth = 0, divider = true } = Astro.props;
 
 const extraProps = {
     "data-doc-entry-children": true,
 };
 
+const EntryEl = depth > 0 ? "section" : "article";
 const props = parent ? extraProps : {};
+const parentText = parent ? `${parent}-` : "";
 ---
 
-<article
+<EntryEl
     id={`${parentText}${data?.name ?? ""}`}
+    data-dg-entry
     data-doc-entry
+    data-depth={depth}
     data-doc-entry-name={data?.name ?? ""}
     class:list={[
-        "gal-1 text-fira flex flex-col",
+        "text-fira mb-8",
         {
-            "py-2 pl-4": parent,
+            "py-2 pl-4": depth == 1,
         },
     ]}
     {...props}
 >
-    <Title
-        data-doc-entry-title
-        class:list={[
-            {
-                "text-xl": !parent,
-                "text-lg": parent,
-            },
-        ]}><TypeName data={data} parent={parent} /><TypeGenerics data={data} />{optionalMark(data)}<TypeParams data={data} /><TypeReturn data={data} /></Title
-    >
-
-    <JSDoc data={data} />
-    <TypeMembers data={data} />
-</article>
+    <DocFor data={data} depth={depth} />
+    {depth > 0 && divider && <div class="divider my-0" />}
+</EntryEl>
