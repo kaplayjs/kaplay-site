@@ -1,6 +1,5 @@
 ---
 import DocEntry from "../DocEntry.astro";
-import DocFor from "../DocFor.astro";
 import JSDoc from "../JSDoc.astro";
 import TypeBadge from "../Other/TypeBadge.astro";
 import Title from "../Utils/Title.astro";
@@ -22,7 +21,5 @@ const { data, depth } = Astro.props;
 
 <TypeBadge depth={depth}>Enum</TypeBadge>
 <Title depth={depth} data-dg-enum-declaration><span>{data.name}:</span></Title>
-
 {Object.keys(data.members).map((d) => data.members[d].map((rd) => <DocEntry data={rd} depth={depth + 1} parent={data.name} divider={false} />))}
-
 <JSDoc data={data} />

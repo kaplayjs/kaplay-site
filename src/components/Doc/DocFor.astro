@@ -1,9 +1,9 @@
 ---
 import DGGetAccessor from "./Accessor/DGGetAccessor.astro";
 import DGSetAccessor from "./Accessor/DGSetAccessor.astro";
-import TypeClassDeclaration from "./Declaration/TypeClassDeclaration.astro";
-import TypeEnumDeclaration from "./Declaration/TypeEnumDeclaration.astro";
-import TypeFunctionDeclaration from "./Declaration/TypeFunctionDeclaration.astro";
+import DGClassDeclaration from "./Declaration/DGClassDeclaration.astro";
+import DGEnumDeclaration from "./Declaration/DGEnumDeclaration.astro";
+import DGFunctionDeclaration from "./Declaration/DGFunctionDeclaration.astro";
 import TypeInterfaceDeclaration from "./Declaration/TypeInterfaceDeclaration.astro";
 import TypeMethodDeclaration from "./Declaration/TypeMethodDeclaration.astro";
 import TypePropertyDeclaration from "./Declaration/TypePropertyDeclaration.astro";
@@ -53,17 +53,17 @@ const kind = data?.kind;
             case "InterfaceDeclaration":
                 return <TypeInterfaceDeclaration data={data} depth={depth} />;
             case "ClassDeclaration":
-                return <TypeClassDeclaration data={data} depth={depth} />;
+                return <DGClassDeclaration data={data} depth={depth} />;
             case "PropertyDeclaration":
                 return <TypePropertyDeclaration data={data} depth={depth} />;
             case "MethodDeclaration":
                 return <TypeMethodDeclaration data={data} depth={depth} />;
             case "EnumDeclaration":
-                return <TypeEnumDeclaration data={data} depth={depth} />;
+                return <DGEnumDeclaration data={data} depth={depth} />;
             case "TypeAliasDeclaration":
                 return <TypeTypeAliasDeclaration data={data} depth={depth} />;
             case "FunctionDeclaration":
-                return <TypeFunctionDeclaration data={data} depth={depth} />;
+                return <DGFunctionDeclaration data={data} depth={depth} />;
 
             // References
             case "TypeReference":
