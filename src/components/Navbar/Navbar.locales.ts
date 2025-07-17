@@ -18,7 +18,6 @@ export const firstLinksRow: NavbarLinksRow = {
             name: "Home",
             url: "/",
             icon: assets.bean.outlined,
-            reload: true,
         },
         {
             name: "Assets",
@@ -36,7 +35,6 @@ export const firstLinksRow: NavbarLinksRow = {
             name: "Inicio",
             url: "/",
             icon: assets.bean.outlined,
-            reload: true,
         },
         {
             name: "Pandilla",

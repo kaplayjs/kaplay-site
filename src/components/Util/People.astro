@@ -1,14 +1,11 @@
 ---
-import { assets } from "@kaplayjs/crew";
 import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
 import peopleData from "../../data/contributors.json";
 import sponsorsData from "../../data/sponsors.json";
 
 const sponsors = Object.values(sponsorsData);
-const sponsorImages = import.meta.glob<{ default: ImageMetadata }>(
-    "/src/assets/sponsors/*.{jpeg,jpg,png,gif}",
-);
+const sponsorImages = import.meta.glob<{ default: ImageMetadata }>("/src/assets/sponsors/*.{jpeg,jpg,png,gif}");
 const sponsorBg: { [char: string]: string } = {
     gray: "bg-gray-950/50",
     slate: "bg-slate-950/50",
@@ -20,12 +17,8 @@ const sponsorBg: { [char: string]: string } = {
 const contributors = Object.values(peopleData);
 ---
 
-<section
-    class="flex flex-col items-center justify-center px-2 sm:px-4 py-2 md:py-4 lg:py-10 sm:mb-4"
->
-    <div
-        class="flex flex-col items-center justify-center gap-8 w-full max-w-6xl"
-    >
+<section class="flex flex-col items-center justify-center px-2 sm:px-4 py-2 md:py-4 lg:py-10 sm:mb-4">
+    <div class="flex flex-col items-center justify-center gap-8 w-full max-w-6xl">
         <h2 class="text-2xl sm:text-3xl font-bold">
             <slot name="sponsors-title" />
         </h2>
@@ -36,22 +29,17 @@ const contributors = Object.values(peopleData);
                     <a
                         href={sponsor.url}
                         target="_blank"
-                        class:list={[
-                            "grow basis-5/12 lg:basis-60 rounded-xl px-8 py-2 sm:px-10 md:px-14 md:py-8",
-                            sponsorBg[sponsor?.bgTint ?? "default"],
-                        ]}
+                        class:list={["grow basis-5/12 lg:basis-60 rounded-xl px-8 py-2 sm:px-10 md:px-14 md:py-8", sponsorBg[sponsor?.bgTint ?? "default"]]}
                     >
                         <Image
-                            src={sponsorImages
-                            [`/src/assets/sponsors/${sponsor.image}`]()}
+                            src={sponsorImages[`/src/assets/sponsors/${sponsor.image}`]()}
                             alt={sponsor.name}
                             width={500}
                             height={200}
                             class:list={[
                                 "w-96 h-28 object-scale-down mx-auto",
                                 {
-                                    "mix-blend-screen":
-                                        sponsor?.lighten ?? false,
+                                    "mix-blend-screen": sponsor?.lighten ?? false,
                                 },
                             ]}
                         />
@@ -60,15 +48,9 @@ const contributors = Object.values(peopleData);
             }
         </div>
 
-        <div
-            class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-px bg-white/10 p-px rounded-xl"
-        >
-            <div
-                class="flex flex-col justify-center xl:justify-start bg-base-200/90 bg-image-pattern rounded-[inherit]"
-            >
-                <div
-                    class="flex flex-col gap-4 px-6 sm:px-12 xl:px-[100px] py-12 md:py-20 xl:pt-[90px] text-center md:text-left"
-                >
+        <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-px bg-white/10 p-px rounded-xl">
+            <div class="flex flex-col justify-center xl:justify-start bg-base-200/90 bg-image-pattern rounded-[inherit]">
+                <div class="flex flex-col gap-4 px-6 sm:px-12 xl:px-[100px] py-12 md:py-20 xl:pt-[90px] text-center md:text-left">
                     <h2 class="text-2xl md:text-3xl font-bold">
                         <slot name="contributors-title" />
                     </h2>
@@ -77,38 +59,28 @@ const contributors = Object.values(peopleData);
                         <slot name="contributors-description" />
                     </p>
 
-                    <div
-                        class="mt-4 flex flex-wrap md:flex-col gap-4 items-center justify-center md:items-start"
-                    >
+                    <div class="mt-4 flex flex-wrap md:flex-col gap-4 items-center justify-center md:items-start">
                         <slot name="contributors-buttons" />
                     </div>
                 </div>
             </div>
 
-            <div
-                class="flex flex-row flex-wrap items-center justify-center gap-4 lg:gap-6 p-10 lg:p-12 bg-base-300 rounded-[inherit]"
-            >
+            <div class="flex flex-row flex-wrap items-center justify-center gap-4 lg:gap-6 p-10 lg:p-12 bg-base-300 rounded-[inherit]">
                 {
                     contributors
                         .filter((_, i) => i < 20)
                         .map((person, i) => (
-                        <a
-                            href={`https://github.com/${person.login}`}
-                            target="_blank"
-                        >
-                            <Image
-                                class="w-14 lg:w-[72px] h-14 lg:h-[72px] rounded-full"
-                                src={person.avatar_url}
-                                alt={person.login}
-                                width={72}
-                                height={72}
-                                style={`animation-delay: ${
-                                    (2 + Math.random() * 2)
-                                    * ~~(i % 2)
-                                }s`}
-                            />
-                        </a>
-                    ))
+                            <a href={`https://github.com/${person.login}`} target="_blank">
+                                <Image
+                                    class="w-14 lg:w-[72px] h-14 lg:h-[72px] rounded-full"
+                                    src={person.avatar_url}
+                                    alt={person.login}
+                                    width={72}
+                                    height={72}
+                                    style={`animation-delay: ${(2 + Math.random() * 2) * ~~(i % 2)}s`}
+                                />
+                            </a>
+                        ))
                 }
                 <div class="flex flex-col items-center justify-center">
                     <a
