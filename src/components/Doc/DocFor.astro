@@ -34,6 +34,8 @@ import DGTypeOperator from "./Other/DGTypeOperator.astro";
 import DGNeverKeyword from "./Keywords/DGNeverKeyword.astro";
 import DGUndefinedKeyword from "./Keywords/DGUndefinedKeyword.astro";
 import DGTypeQuery from "./Other/DGTypeQuery.astro";
+import DGTypeLiteral from "./Types/DGTypeLiteral.astro";
+import DGUnknownKeyword from "./Keywords/DGUnknownKeyword.astro";
 
 type Props = {
     data: any;
@@ -104,6 +106,8 @@ const kind = data?.kind;
                 return <DGTypeOperator data={data} depth={depth} />;
             case "TypeQuery":
                 return <DGTypeQuery data={data} depth={depth} />;
+            case "TypeLiteral":
+                return <DGTypeLiteral data={data} depth={depth} />;
 
             // Keywords
             case "StringKeyword":
@@ -122,6 +126,8 @@ const kind = data?.kind;
                 return <DGNeverKeyword data={data} depth={depth} />;
             case "UndefinedKeyword":
                 return <DGUndefinedKeyword data={data} depth={depth} />;
+            case "UnknownKeyword":
+                return <DGUnknownKeyword data={data} depth={depth} />;
 
             // Signatures
             case "PropertySignature":

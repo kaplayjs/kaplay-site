@@ -21,7 +21,6 @@ const { data, depth } = Astro.props;
 
 <TypeBadge depth={depth}>Interface</TypeBadge>
 <Title depth={depth}> <span>{data.name}:</span></Title>
-
 <JSDoc data={data} />
 
 {Object.keys(data.members).map((d) => data.members[d].map((rd) => <DocEntry data={rd} depth={depth + 1} parent={data.name} />))}
