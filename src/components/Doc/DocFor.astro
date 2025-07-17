@@ -62,13 +62,13 @@ const kind = data?.kind;
                 return <DGMethodDeclaration data={data} depth={depth} />;
             case "EnumDeclaration":
                 return <DGEnumDeclaration data={data} depth={depth} />;
-            case "DGAliasDeclaration":
+            case "TypeAliasDeclaration":
                 return <DGTypeAliasDeclaration data={data} depth={depth} />;
             case "FunctionDeclaration":
                 return <DGFunctionDeclaration data={data} depth={depth} />;
 
             // References
-            case "DGReference":
+            case "TypeReference":
                 return <DGTypeReference data={data} depth={depth} />;
 
             // DGs
