@@ -4,33 +4,33 @@ import DGSetAccessor from "./Accessor/DGSetAccessor.astro";
 import DGClassDeclaration from "./Declaration/DGClassDeclaration.astro";
 import DGEnumDeclaration from "./Declaration/DGEnumDeclaration.astro";
 import DGFunctionDeclaration from "./Declaration/DGFunctionDeclaration.astro";
-import TypeInterfaceDeclaration from "./Declaration/TypeInterfaceDeclaration.astro";
-import TypeMethodDeclaration from "./Declaration/TypeMethodDeclaration.astro";
-import TypePropertyDeclaration from "./Declaration/TypePropertyDeclaration.astro";
-import TypeTypeAliasDeclaration from "./Declaration/TypeTypeAliasDeclaration.astro";
-import TypeAnyKeyword from "./Keywords/TypeAnyKeyword.astro";
-import TypeBooleanKeyword from "./Keywords/TypeBooleanKeyword.astro";
-import TypeNullKeyword from "./Keywords/TypeNullKeyword.astro";
-import TypeNumberKeyword from "./Keywords/TypeNumberKeyword.astro";
-import TypeStringKeyword from "./Keywords/TypeStringKeyword.astro";
-import TypeVoidKeyword from "./Keywords/TypeVoidKeyword.astro";
-import EnumMember from "./Other/EnumMember.astro";
+import DGInterfaceDeclaration from "./Declaration/DGInterfaceDeclaration.astro";
+import DGMethodDeclaration from "./Declaration/DGMethodDeclaration.astro";
+import DGPropertyDeclaration from "./Declaration/DGPropertyDeclaration.astro";
+import DGTypeAliasDeclaration from "./Declaration/DGTypeAliasDeclaration.astro";
+import DGAnyKeyword from "./Keywords/DGAnyKeyword.astro";
+import DGBooleanKeyword from "./Keywords/DGBooleanKeyword.astro";
+import DGNullKeyword from "./Keywords/DGNullKeyword.astro";
+import DGNumberKeyword from "./Keywords/DGNumberKeyword.astro";
+import DGStringKeyword from "./Keywords/DGStringKeyword.astro";
+import DGVoidKeyword from "./Keywords/DGVoidKeyword.astro";
+import EnumMember from "./Other/DGEnumMember.astro";
 import ParenthesizedType from "./Other/ParenthesizedType.astro";
 import TypeStringLiteral from "./Other/TypeStringLiteral.astro";
-import TypeTypeReference from "./References/TypeTypeReference.astro";
-import TypeMethodSignature from "./Signatures/TypeMethodSignature.astro";
-import TypePropertySignature from "./Signatures/TypePropertySignature.astro";
-import DGConditionalType from "./Types/DGConditionalType.astro";
-import DGMappedType from "./Types/DGMappedType.astro";
-import TypeArrayType from "./Types/TypeArrayType.astro";
-import TypeFunctionType from "./Types/TypeFunctionType.astro";
-import TypeIndexedAccessType from "./Types/TypeIndexedAccessType.astro";
-import TypeIntersectionType from "./Types/TypeIntersectionType.astro";
-import TypeLiteralType from "./Types/TypeLiteralType.astro";
-import TypeRestType from "./Types/TypeRestType.astro";
-import TypeTupleType from "./Types/TypeTupleType.astro";
-import TypeUnionType from "./Types/TypeUnionType.astro";
-import DGTypeOperator from "./Other/DGTypeOperator.astro";
+import DGTypeReference from "./References/DGTypeReference.astro";
+import DGMethodSignature from "./Signatures/DGMethodSignature.astro";
+import DGPropertySignature from "./Signatures/DGPropertySignature.astro";
+import DGConditionalDG from "./Types/DGConditionalType.astro";
+import DGMappedDG from "./Types/DGMappedType.astro";
+import DGArrayDG from "./Types/DGArrayType.astro";
+import DGFunctionDG from "./Types/DGFunctionType.astro";
+import DGIndexedAccessDG from "./Types/DGIndexedAccessType.astro";
+import DGIntersectionDG from "./Types/DGIntersectionType.astro";
+import DGLiteralDG from "./Types/DGLiteralType.astro";
+import DGRestDG from "./Types/DGRestType.astro";
+import DGTupleDG from "./Types/DGTupleType.astro";
+import DGUnionDG from "./Types/DGUnionType.astro";
+import DGDGOperator from "./Other/DGTypeOperator.astro";
 import DGNeverKeyword from "./Keywords/DGNeverKeyword.astro";
 import DGUndefinedKeyword from "./Keywords/DGUndefinedKeyword.astro";
 import DGTypeQuery from "./Other/DGTypeQuery.astro";
@@ -53,45 +53,45 @@ const kind = data?.kind;
         switch (kind) {
             // Declarations
             case "InterfaceDeclaration":
-                return <TypeInterfaceDeclaration data={data} depth={depth} />;
+                return <DGInterfaceDeclaration data={data} depth={depth} />;
             case "ClassDeclaration":
                 return <DGClassDeclaration data={data} depth={depth} />;
             case "PropertyDeclaration":
-                return <TypePropertyDeclaration data={data} depth={depth} />;
+                return <DGPropertyDeclaration data={data} depth={depth} />;
             case "MethodDeclaration":
-                return <TypeMethodDeclaration data={data} depth={depth} />;
+                return <DGMethodDeclaration data={data} depth={depth} />;
             case "EnumDeclaration":
                 return <DGEnumDeclaration data={data} depth={depth} />;
-            case "TypeAliasDeclaration":
-                return <TypeTypeAliasDeclaration data={data} depth={depth} />;
+            case "DGAliasDeclaration":
+                return <DGTypeAliasDeclaration data={data} depth={depth} />;
             case "FunctionDeclaration":
                 return <DGFunctionDeclaration data={data} depth={depth} />;
 
             // References
-            case "TypeReference":
-                return <TypeTypeReference data={data} depth={depth} />;
+            case "DGReference":
+                return <DGTypeReference data={data} depth={depth} />;
 
-            // Types
-            case "FunctionType":
-                return <TypeFunctionType data={data} depth={depth} />;
-            case "ArrayType":
-                return <TypeArrayType data={data} depth={depth} />;
-            case "TupleType":
-                return <TypeTupleType data={data} depth={depth} />;
-            case "RestType":
-                return <TypeRestType data={data} depth={depth} />;
-            case "UnionType":
-                return <TypeUnionType data={data} depth={depth} />;
-            case "IntersectionType":
-                return <TypeIntersectionType data={data} depth={depth} />;
-            case "LiteralType":
-                return <TypeLiteralType data={data} depth={depth} />;
-            case "IndexedAccessType":
-                return <TypeIndexedAccessType data={data} depth={depth} />;
-            case "MappedType":
-                return <DGMappedType data={data} depth={depth} />;
-            case "ConditionalType":
-                return <DGConditionalType data={data} depth={depth} />;
+            // DGs
+            case "FunctionDG":
+                return <DGFunctionDG data={data} depth={depth} />;
+            case "ArrayDG":
+                return <DGArrayDG data={data} depth={depth} />;
+            case "TupleDG":
+                return <DGTupleDG data={data} depth={depth} />;
+            case "RestDG":
+                return <DGRestDG data={data} depth={depth} />;
+            case "UnionDG":
+                return <DGUnionDG data={data} depth={depth} />;
+            case "IntersectionDG":
+                return <DGIntersectionDG data={data} depth={depth} />;
+            case "LiteralDG":
+                return <DGLiteralDG data={data} depth={depth} />;
+            case "IndexedAccessDG":
+                return <DGIndexedAccessDG data={data} depth={depth} />;
+            case "MappedDG":
+                return <DGMappedDG data={data} depth={depth} />;
+            case "ConditionalDG":
+                return <DGConditionalDG data={data} depth={depth} />;
 
             // Accessors
             case "SetAccessor":
@@ -102,26 +102,26 @@ const kind = data?.kind;
             // Others
             case "StringLiteral":
                 return <TypeStringLiteral data={data} depth={depth} />;
-            case "TypeOperator":
-                return <DGTypeOperator data={data} depth={depth} />;
-            case "TypeQuery":
+            case "DGOperator":
+                return <DGDGOperator data={data} depth={depth} />;
+            case "DGQuery":
                 return <DGTypeQuery data={data} depth={depth} />;
-            case "TypeLiteral":
+            case "DGLiteral":
                 return <DGTypeLiteral data={data} depth={depth} />;
 
             // Keywords
             case "StringKeyword":
-                return <TypeStringKeyword data={data} depth={depth} />;
+                return <DGStringKeyword data={data} depth={depth} />;
             case "BooleanKeyword":
-                return <TypeBooleanKeyword data={data} depth={depth} />;
+                return <DGBooleanKeyword data={data} depth={depth} />;
             case "NumberKeyword":
-                return <TypeNumberKeyword data={data} depth={depth} />;
+                return <DGNumberKeyword data={data} depth={depth} />;
             case "VoidKeyword":
-                return <TypeVoidKeyword data={data} depth={depth} />;
+                return <DGVoidKeyword data={data} depth={depth} />;
             case "NullKeyword":
-                return <TypeNullKeyword data={data} depth={depth} />;
+                return <DGNullKeyword data={data} depth={depth} />;
             case "AnyKeyword":
-                return <TypeAnyKeyword data={data} depth={depth} />;
+                return <DGAnyKeyword data={data} depth={depth} />;
             case "NeverKeyword":
                 return <DGNeverKeyword data={data} depth={depth} />;
             case "UndefinedKeyword":
@@ -131,15 +131,15 @@ const kind = data?.kind;
 
             // Signatures
             case "PropertySignature":
-                return <TypePropertySignature data={data} depth={depth} />;
+                return <DGPropertySignature data={data} depth={depth} />;
             case "MethodSignature":
-                return <TypeMethodSignature data={data} depth={depth} />;
+                return <DGMethodSignature data={data} depth={depth} />;
 
             // Members
             case "EnumMember":
                 return <EnumMember data={data} depth={depth} />;
 
-            case "ParenthesizedType":
+            case "ParenthesizedDG":
                 return <ParenthesizedType data={data} depth={depth} />;
 
             // Fallback
