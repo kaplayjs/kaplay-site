@@ -2,9 +2,10 @@
 title: Prefabs
 description: Learn how to use prefabs in KAPLAY.
 url: prefabs
+version: "4000"
 ---
 
-# Introduction
+# Prefabs
 
 Prefabs make it easy to define an object once, and make multiple, customized, instances later.
 
@@ -47,7 +48,9 @@ serialize() {
 Additionally, a factory function needs to be registered in order to support deserialization.
 
 ```ts
-registerFactory("pos", data => { return pos(data.pos); });
+registerFactory("pos", data => {
+    return pos(data.pos);
+});
 ```
 
 For more information about prefabs, see [the wiki](https://github.com/kaplayjs/kaplay/wiki/Prefabs).
