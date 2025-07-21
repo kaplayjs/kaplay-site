@@ -1,5 +1,5 @@
 ---
-title: Migrating to KAPLAY v4000
+title: Migrating to v4000
 description: Migrate your codebase to v4000.
 url: migration-4000
 order: "misc-2"
@@ -10,15 +10,60 @@ import Info from "@/components/Content/Info.astro";
 
 # v3001 to v4000 Migration
 
-KAPLAY v4000 is the next-generation KAPLAY version. Unlike v3001, KAPLAY v4000
-is focused on features/stability over compatibility, that's why if you're
-migrating a game, you have to take all the incompatibilities.
-
 <Info crew="gun" title="Important!">
-Some of this information may be based on `master` KAPLAY version (the one that match the last GitHub commit), it's version we recommend
+This guide is currently based on `master` KAPLAY version (the one that match the last GitHub commit), it's version we recommend
 for all developers trying out v4000!
 </Info>
 
 ## Removed: `make()`
 
-(TODO)
+`make()` is an internal function that KAPLAY uses for creating the `GameObjRaw` interface
+without adding it to the tree. If you was using it, it was for one of these 2 reasons:
+
+1. If you were using it for prefab-like factory functions, **like this:**
+
+```js
+// BEFORE
+const makeCar = (centered) => {
+    const obj = make([sprite("car")]);
+
+    if (centered) {
+        obj.use(pos(center()));
+    }
+
+    return obj;
+};
+
+const car1 = add(makeCar());
+const car2 = add(makeCar(true));
+```
+
+```js
+// NOW
+const car = add([sprite("car")]);
+const carPrefab = createPrefab("car", car);
+
+const car1 = addPrefab("car");
+const ca2 = addPrefab("car", [
+    pos(center()),
+]);
+```
+
+Check the [Prefab guide](/guides/prefabs) for more information.
+
+2. If you were using it for "modifying" the object before its "creation", **like this:**
+
+```js
+// BEFORE
+const obj = make([sprite("bean")]);
+
+obj.sprite = "mark";
+
+add(obj);
+```
+
+TODO: Do the now
+
+## Renamed: `onShow`, `onHidden`, `onResize`
+
+TODO
