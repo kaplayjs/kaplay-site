@@ -21,6 +21,10 @@ export default {
                     "\"Hand Fallback\"",
                     ...defaultTheme.fontFamily.sans,
                 ],
+                code: [
+                    "\"DM Mono\"",
+                    ...defaultTheme.fontFamily.mono,
+                ],
             },
             dropShadow: {
                 "2": [

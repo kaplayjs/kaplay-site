@@ -8,8 +8,8 @@ const { depth } = Astro.props;
 if (depth > 0) return;
 ---
 
-<div>
-    <span class="text-sm rounded-lg border px-2 border-primary text-primary">
+<div class="mb-1.5">
+    <span class="text-sm rounded-lg border px-1.5 py-px border-primary text-primary">
         <slot />
     </span>
 </div>

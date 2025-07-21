@@ -21,14 +21,22 @@ const otherTags = tags.filter((tag) => tag.tag !== "param");
     typeof jsDoc.doc === "object" ? (
         <JSDocDescription data={data} />
     ) : (
-        <p class="pb-2" data-jsdoc-description>
-            {jsDoc.doc}
-        </p>
+        jsDoc.doc && (
+            <p
+                class="pt-1 pb-2"
+                data-jsdoc-description
+                set:html={jsDoc.doc.replace(/`([^\`]*)`/g, `<code class="font-code px-1.5 py-0.5 bg-neutral/40 rounded-lg box-decoration-clone">$1</code>`)}
+            />
+        )
     )
 }
 
-<div>
-    {paramTag && paramTag.items.map((item, i) => <JSDocTag tag="param" items={[item]} paramName={fParams[i]?.name} />)}
+{
+    (paramTag || otherTags.length > 0) && (
+        <div class="mb-1 last:mb-0">
+            {paramTag && paramTag.items.map((item, i) => <JSDocTag tag="param" items={[item]} paramName={fParams[i]?.name} />)}
 
-    {otherTags && otherTags.map(({ items, tag }) => <JSDocTag tag={tag} items={items} />)}
-</div>
+            {otherTags && otherTags.map(({ items, tag }) => <JSDocTag tag={tag} items={items} />)}
+        </div>
+    )
+}

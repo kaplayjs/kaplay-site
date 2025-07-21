@@ -23,6 +23,14 @@
     animation: none;
 }
 
+:root {
+    --color-subheadings: color-mix(in oklch, currentColor 55%, white);
+}
+
+:root .prose {
+    --tw-prose-body: var(--fallback-bc, oklch(var(--bc)));
+}
+
 body {
     min-height: 100dvh;
     cursor: url(/cursor_default.png), auto;
@@ -36,18 +44,13 @@ h1,
 
 h2, h3, h4, h5, h6 {
     &, .drawer & {
-        --subheadings: color-mix(in oklch, currentColor 55%, white);
-        --tw-prose-headings: var(--subheadings);
-        color: var(--subheadings);
+        --tw-prose-headings: var(--color-subheadings);
+        color: var(--color-subheadings);
     }
 }
 
 iframe {
     max-width: 100%;
-}
-
-:root .prose {
-    --tw-prose-body: var(--fallback-bc,oklch(var(--bc)));
 }
 
 .btn:hover {
@@ -168,17 +171,6 @@ span.line.diff.remove::before {
 }
 
 /** UTILS **/
-.text-fira {
-    font-family: "Fira Code Variable", monospace;
-}
-
-.text-pangolin {
-    font-family: "Pangolin", monospace;
-}
-
-.text-rubik {
-    font-family: "Rubik Variable", sans-serif;
-}
 
 .special-friends:hover > .friends {
     @apply -translate-y-10 scale-100 transition-all duration-150;

@@ -29,27 +29,15 @@ importers:
       '@astrojs/tailwind':
         specifier: ^6.0.2
         version: 6.0.2(astro@5.7.5(@types/node@20.17.30)(jiti@1.21.7)(rollup@4.40.0)(typescript@5.6.3)(yaml@2.7.1))(tailwindcss@3.4.17)
-      '@fontsource-variable/fira-code':
-        specifier: ^5.1.0
-        version: 5.2.5
-      '@fontsource-variable/fredoka':
-        specifier: ^5.1.0
-        version: 5.2.6
       '@fontsource-variable/outfit':
-        specifier: ^5.1.0
-        version: 5.2.5
-      '@fontsource-variable/rubik':
         specifier: ^5.1.0
         version: 5.2.5
       '@fontsource/darumadrop-one':
         specifier: ^5.1.1
         version: 5.2.5
-      '@fontsource/ibm-plex-sans':
-        specifier: ^5.1.0
-        version: 5.2.5
-      '@fontsource/pangolin':
-        specifier: ^5.1.0
-        version: 5.2.5
+      '@fontsource/dm-mono':
+        specifier: ^5.2.6
+        version: 5.2.6
       '@kaplayjs/crew':
         specifier: 2.0.0-beta.5
         version: 2.0.0-beta.5(@types/node@20.17.30)(typescript@5.6.3)
@@ -1189,26 +1177,14 @@ packages:
     resolution: {integrity: sha512-vBZP4NlzfOlerQTnba4aqZoMhE/a9HY7HRqoOPaETQcSQuWEIyZMHGfVu6w9wGtGK5fED5qRs2DteVCjOH60sA==}
     engines: {node: '>=14'}
 
-  '@fontsource-variable/fira-code@5.2.5':
-    resolution: {integrity: sha512-rw0z/D9Tsp7asvwK/XFHz+xMkgR7MPRCa6U9e77alsmJQFqniEWt/c+1xKCZR2omEw1hVP7ej48Z1O8c/YiSVg==}
-
-  '@fontsource-variable/fredoka@5.2.6':
-    resolution: {integrity: sha512-tPOsXUwvjHbdxjh6xpmUKQibpZhsprfAH0YTfCft6OdnPz4ry4puiRHk91ldgXINurhLtEiPTmky5ZF9eB3tKQ==}
-
   '@fontsource-variable/outfit@5.2.5':
     resolution: {integrity: sha512-MejrIp6Cbmd3u5AZtsot8kmhZiyQM5CATsdcBB2hktYIrv5CVekRSUmFDXL4FpF7K70IvFp2ZMfImm5VhnVf7Q==}
-
-  '@fontsource-variable/rubik@5.2.5':
-    resolution: {integrity: sha512-6tXqnHFA9/ItIEODfH5LrzLSmcNE5TXD8OuXx14cvmS7j1zX4JgEHjYrhlWhLGuBXXzrOnz0A0oMheMMbXwmWA==}
 
   '@fontsource/darumadrop-one@5.2.5':
     resolution: {integrity: sha512-LOA2MOaz3MEgRttz09kSbulLPxHXIbWmouG/vCBZ6nPqzqkaa6qCN8Tu5WcP0fW4EkaDSrGXTOLRYWT4BumxVQ==}
 
-  '@fontsource/ibm-plex-sans@5.2.5':
-    resolution: {integrity: sha512-W1kkC/fpDuoKQ5pNSQt/Bg0rpV9AATreA9ABwZf678AlwSCY2TQBT1YwAxxB65E9jcT/ysDrU1sGVNUyWCBXRw==}
-
-  '@fontsource/pangolin@5.2.5':
-    resolution: {integrity: sha512-5f6+QAF2Hj8wpzwaIdxTmyoffbWXoRyRUAZFJMrEjqCRh9ZKC/5SYH4anBtKh0+P9qJrM4aG2xA3AiAPr3QAnw==}
+  '@fontsource/dm-mono@5.2.6':
+    resolution: {integrity: sha512-d38urf08wZ/UcAM13kmuPkhr9xGEo0S9undlZ/99nBb7dK5+w1uqriP6VVJ8T7pYiNtRtZq7NxV/2KI/6Obsog==}
 
   '@img/sharp-darwin-arm64@0.33.5':
     resolution: {integrity: sha512-UT4p+iz/2H4twwAoLCqfA9UH5pI6DggwKEGuaPy7nCVQ8ZsiY5PIcrRvD1DzuY3qYL07NtIQcWnBSY/heikIFQ==}
@@ -5141,19 +5117,11 @@ snapshots:
 
   '@fastify/busboy@2.1.1': {}
 
-  '@fontsource-variable/fira-code@5.2.5': {}
-
-  '@fontsource-variable/fredoka@5.2.6': {}
-
   '@fontsource-variable/outfit@5.2.5': {}
-
-  '@fontsource-variable/rubik@5.2.5': {}
 
   '@fontsource/darumadrop-one@5.2.5': {}
 
-  '@fontsource/ibm-plex-sans@5.2.5': {}
-
-  '@fontsource/pangolin@5.2.5': {}
+  '@fontsource/dm-mono@5.2.6': {}
 
   '@img/sharp-darwin-arm64@0.33.5':
     optionalDependencies:

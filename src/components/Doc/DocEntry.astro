@@ -26,13 +26,14 @@ const parentText = parent ? `${parent}-` : "";
     data-depth={depth}
     data-doc-entry-name={data?.name ?? ""}
     class:list={[
-        "text-fira mb-8",
+        "group font-code [&+[data-depth='0']]:mt-8",
         {
-            "py-2 pl-4": depth == 1,
+            "py-3 pl-4 border-l border-base-content/10": depth == 1,
+            "": depth > 0 && divider,
         },
     ]}
     {...props}
 >
     <DocFor data={data} depth={depth} />
-    {depth > 0 && divider && <div class="divider my-0" />}
+    {depth > 0 && divider && <div class="divider [section:last-child_&]:hidden before:h-px after:h-px mt-2 [p+&]:mt-0 -mb-3" />}
 </EntryEl>
