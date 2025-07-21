@@ -24,34 +24,31 @@ without adding it to the tree. If you was using it, it was for one of these 2 re
 
 ```js
 // BEFORE
-const makeCar = (centered) => {
-    const obj = make([sprite("car")]);
-
-    if (centered) {
-        obj.use(pos(center()));
-    }
+const makeEnemy = (x = 100, y = 100) => {
+    const obj = make([
+        sprite("alien"),
+        pos(x, y),
+    ]);
 
     return obj;
 };
 
-const car1 = add(makeCar());
-const car2 = add(makeCar(true));
+const car1 = add(makeEnemy()); // (100, 100)
+const car2 = add(makeEnemy(400, 200)); // (400, 200)
 ```
 
 ```js
 // NOW
-const car = add([sprite("car")]);
-const carPrefab = createPrefab("car", car);
+const enemy = add([sprite("alien")]);
+const enemyPrefab = createPrefab("enemy", enemy);
 
-const car1 = addPrefab("car");
-const ca2 = addPrefab("car", [
-    pos(center()),
-]);
+const enemy1 = addPrefab("enemy"); // (100, 100)
+const enemy2 = addPrefab("enemy", [pos(400, 200)]); // (400, 200)
 ```
 
 Check the [Prefab guide](/guides/prefabs) for more information.
 
-2. If you were using it for "modifying" the object before its "creation", **like this:**
+1. If you were using it for "modifying" the object before its "creation", **like this:**
 
 ```js
 // BEFORE
