@@ -57,11 +57,15 @@ if (sidebarMode === "guides") {
 
                 <div
                     id="sidebar-back-to-top"
-                    class="absolute inset-3 left-auto hidden [&:not(.hidden)]:flex flex-col items-end w-0 overflow-visible before:h-[calc(100vh+300px)]"
+                    class="absolute inset-6 sm:inset-3 left-auto sm:left-auto hidden [&:not(.hidden)]:flex flex-col items-end w-0 overflow-visible before:h-[calc(100dvh+300px)]"
                 >
-                    <div class="sticky top-[calc(100vh-2.8rem)] tooltip tooltip-left" data-tip="Back to Top">
+                    <div
+                        class="!sticky top-[calc(100dvh-3.5rem-2px)] sm:top-[calc(100dvh-2.75rem-2px)] [@media(hover:hover)]:tooltip [@media(hover:hover)]:tooltip-left"
+                        data-tip="Back to Top"
+                    >
                         <button
-                            class="btn btn-sm btn-ghost px-0 h-8 min-h-0 aspect-square bg-base-100 hover:bg-base-highlight"
+                            type="button"
+                            class="btn btn-sm btn-ghost px-0 h-8 min-h-0 aspect-square bg-base-100 [@media(hover:hover)]:hover:bg-base-highlight active:bg-base-highlight active:transition-none"
                             onclick="this.closest('.drawer-scrollable')?.scrollTo({ top: 0, behavior: 'smooth' })"
                             aria-label="Back to Top"
                         >
