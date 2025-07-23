@@ -4,7 +4,7 @@ import JSDoc from "../JSDoc.astro";
 import Modifiers from "../Other/Modifiers.astro";
 import Parameters from "../Other/Parameters.astro";
 import Title from "../Utils/Title.astro";
-import type { DataTypeProps } from "../Utils/types.ts";
+import type { DataMaybeMemberTypeProps } from "../Utils/types.ts";
 
 type TypeDataMethodDeclaration = {
     kind: "MethodDeclaration";
@@ -16,15 +16,18 @@ type TypeDataMethodDeclaration = {
     modifiers?: any[];
 };
 
-interface Props extends DataTypeProps {
+interface Props extends DataMaybeMemberTypeProps {
     data: TypeDataMethodDeclaration;
 }
 
-const { data, depth } = Astro.props;
+const { data, depth, parent } = Astro.props;
 ---
 
 {data.modifiers ? <Modifiers modifiers={data.modifiers} /> : ""}
-{" "}<Title class="inline" depth={depth}>{data.name}</Title>{data.questionToken ? "?." : ""}(<Parameters data={data.parameters} depth={depth} />)
-<span>{"=>"} <DocFor data={data.type} depth={depth} /></span>
+{" "}<Title name={data.name} class="inline" depth={depth} parent={parent} />{data.questionToken ? "?." : ""}(<Parameters
+    data={data.parameters}
+    depth={depth}
+/>)
+<span>{"=>"} <DocFor data={data.type} depth={depth} parent={data.name} /></span>
 
 <JSDoc data={data} />

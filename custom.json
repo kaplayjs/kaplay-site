@@ -24,66 +24,60 @@
             }
         }
     ],
-    "KAPLAYCtx": [
-        {
-            "members": {
-                "add": [
+    "KAPLAYCtx.add": [
+        [
+            {
+                "kind": "MethodSignature",
+                "id": 0,
+                "name": "add",
+                "parameters": [
                     {
-                        "kind": "MethodSignature",
+                        "kind": "Parameter",
                         "id": 0,
-                        "name": "add",
-                        "parameters": [
-                            {
-                                "kind": "Parameter",
-                                "id": 0,
-                                "name": "comps",
-                                "questionToken": true,
-                                "type": {
-                                    "kind": "TypeReference",
-                                    "id": 0,
-                                    "typeName": "CompList"
-                                }
-                            }
-                        ],
+                        "name": "comps",
+                        "questionToken": true,
                         "type": {
                             "kind": "TypeReference",
                             "id": 0,
-                            "typeName": "GameObj"
+                            "typeName": "CompList"
                         }
                     }
-                ]
+                ],
+                "type": {
+                    "kind": "TypeReference",
+                    "id": 0,
+                    "typeName": "GameObj",
+                    "typeArguments": null
+                }
             }
-        }
+        ]
     ],
-    "GameObjRaw": [
-        {
-            "members": {
-                "add": [
+    "GameObjRaw.add": [
+        [
+            {
+                "kind": "MethodSignature",
+                "id": 0,
+                "name": "add",
+                "parameters": [
                     {
-                        "kind": "MethodSignature",
+                        "kind": "Parameter",
                         "id": 0,
-                        "name": "add",
-                        "parameters": [
-                            {
-                                "kind": "Parameter",
-                                "id": 0,
-                                "name": "comps",
-                                "questionToken": true,
-                                "type": {
-                                    "kind": "TypeReference",
-                                    "id": 0,
-                                    "typeName": "CompList"
-                                }
-                            }
-                        ],
+                        "name": "comps",
+                        "questionToken": true,
                         "type": {
                             "kind": "TypeReference",
                             "id": 0,
-                            "typeName": "GameObj"
+                            "typeName": "CompList"
                         }
                     }
-                ]
+                ],
+                "type": {
+                    "kind": "TypeReference",
+                    "id": 0,
+                    "typeName": "GameObj",
+                    "typeArguments": null
+                }
             }
-        }
+        ]
     ]
 }

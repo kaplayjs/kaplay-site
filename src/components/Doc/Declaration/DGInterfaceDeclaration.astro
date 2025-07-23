@@ -3,6 +3,7 @@ import DocEntry from "../DocEntry.astro";
 import JSDoc from "../JSDoc.astro";
 import TypeBadge from "../Other/TypeBadge.astro";
 import Title from "../Utils/Title.astro";
+import type { DataMaybeMemberTypeProps } from "../Utils/types.ts";
 
 type TypeDataInterfaceDeclaration = {
     kind: "InterfaceDeclaration";
@@ -11,16 +12,15 @@ type TypeDataInterfaceDeclaration = {
     members: Record<string, any>;
 };
 
-type Props = {
+interface Props extends DataMaybeMemberTypeProps {
     data: TypeDataInterfaceDeclaration;
-    depth: number;
-};
+}
 
-const { data, depth } = Astro.props;
+const { parent, data, depth } = Astro.props;
 ---
 
 <TypeBadge depth={depth}>Interface</TypeBadge>
-<Title depth={depth}> <span>{data.name}:</span></Title>
+<Title name={data.name} parent={parent} depth={depth} class="inline">:</Title>
 <JSDoc data={data} />
 
 {Object.keys(data.members).map((d) => data.members[d].map((rd) => <DocEntry data={rd} depth={depth + 1} parent={data.name} />))}

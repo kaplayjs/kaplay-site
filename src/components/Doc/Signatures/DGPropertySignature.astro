@@ -5,6 +5,7 @@ import Strong from "../Other/Strong.astro";
 import TypeBadge from "../Other/TypeBadge.astro";
 import Title from "../Utils/Title.astro";
 import type { JSX } from "astro/jsx-runtime";
+import type { DataMaybeMemberTypeProps } from "../Utils/types.ts";
 
 type TypeDataPropertySignature = {
     kind: "PropertySignature";
@@ -14,15 +15,16 @@ type TypeDataPropertySignature = {
     questionToken: boolean;
 };
 
-type Props = {
+interface Props extends DataMaybeMemberTypeProps {
     data: TypeDataPropertySignature;
-    depth: number;
-};
+}
 
-const { data, depth } = Astro.props;
+const { data, depth, parent } = Astro.props;
 ---
 
 <TypeBadge depth={depth}>Constant</TypeBadge>
-<Title class="inline" depth={depth}>{data.name}</Title><Strong depth={depth}>{data.questionToken ? "?" : ""}: <DocFor data={data.type} depth={depth} /></Strong>
+<Title name={data.name} class="inline" depth={depth} parent={parent} /><Strong depth={depth}
+    >{data.questionToken ? "?" : ""}: <DocFor data={data.type} depth={depth} parent={data.name} /></Strong
+>
 
 <JSDoc data={data} />

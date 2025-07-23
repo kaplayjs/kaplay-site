@@ -34,6 +34,6 @@ const parentText = parent ? `${parent}-` : "";
     ]}
     {...props}
 >
-    <DocFor data={data} depth={depth} />
+    <DocFor data={data} depth={depth} parent={parent} />
     {depth > 0 && divider && <div class="divider [section:last-child_&]:hidden before:h-px after:h-px mt-2 [p+&]:mt-0 -mb-3" />}
 </EntryEl>

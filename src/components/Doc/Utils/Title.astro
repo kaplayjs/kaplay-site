@@ -3,12 +3,15 @@ import type { HTMLAttributes } from "astro/types";
 
 type Props = {
     depth: number;
+    parent?: string;
+    name: string;
 } & HTMLAttributes<"h1">;
 
 const elementPerDepth = ["h1", "h2", "h3", "h4", "h5", "h6"];
 
-const { depth, ...props } = Astro.props;
+const { name, depth, parent, ...props } = Astro.props;
 const TitleEl = elementPerDepth[depth];
+const anchor = parent ? `#${parent}-${name}` : `#${name}`;
 ---
 
-<TitleEl {...props} data-dg-title={depth < 1}><slot /></TitleEl>
+<TitleEl {...props} data-dg-title={depth < 1}><a href={anchor}>{name}</a><slot /></TitleEl>

@@ -2,7 +2,7 @@
 import DocFor from "../DocFor.astro";
 import JSDoc from "../JSDoc.astro";
 import Title from "../Utils/Title.astro";
-import type { DataTypeProps } from "../Utils/types.ts";
+import type { DataMaybeMemberTypeProps, DataTypeProps } from "../Utils/types.ts";
 
 type TypeDataFunctionDeclaration = {
     kind: "FunctionDeclaration";
@@ -13,13 +13,15 @@ type TypeDataFunctionDeclaration = {
     questionToken: boolean;
 };
 
-interface Props extends DataTypeProps {
+interface Props extends DataMaybeMemberTypeProps {
     data: TypeDataFunctionDeclaration;
 }
 
-const { data, depth } = Astro.props;
+const { data, depth, parent } = Astro.props;
 ---
 
-<span data-dg-function-declaration><Title depth={depth}>{data.name}:</Title> <DocFor data={data.type} depth={depth} /></span>
+<span data-dg-function-declaration
+    ><Title name={data.name} parent={parent} depth={depth}>:</Title><DocFor data={data.type} depth={depth} parent={data.name} />
 
-<JSDoc data={data} />
+    <JSDoc data={data} />
+</span>

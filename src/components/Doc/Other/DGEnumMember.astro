@@ -1,6 +1,4 @@
 ---
-import DocFor from "../DocFor.astro";
-import Title from "../Utils/Title.astro";
 import type { DataTypeProps } from "../Utils/types.ts";
 
 type TypeDataEnumMember = {
@@ -16,7 +14,7 @@ interface Props extends DataTypeProps {
     data: TypeDataEnumMember;
 }
 
-const { data, depth } = Astro.props;
+const { data } = Astro.props;
 ---
 
-<Title depth={depth}>{data.name} = {data.initializer.text}</Title>
+<span>{data.name} = {data.initializer.text}</span>

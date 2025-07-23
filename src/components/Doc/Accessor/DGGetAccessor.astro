@@ -4,7 +4,7 @@ import JSDoc from "../JSDoc.astro";
 import type { DataTypeParameter } from "../Other/Parameter.astro";
 import Parameters from "../Other/Parameters.astro";
 import Title from "../Utils/Title.astro";
-import type { DataTypeProps } from "../Utils/types.ts";
+import type { DataMaybeMemberTypeProps } from "../Utils/types.ts";
 
 type TypeDataGetAccessor = {
     kind: "GetAccessor";
@@ -13,14 +13,16 @@ type TypeDataGetAccessor = {
     type: any;
 };
 
-interface Props extends DataTypeProps {
+interface Props extends DataMaybeMemberTypeProps {
     data: TypeDataGetAccessor;
 }
 
-const { data, depth } = Astro.props;
-console.log(data);
+const { data, depth, parent } = Astro.props;
 ---
 
 <span data-dg-set-accessor>get</span>
-<Title class="inline" depth={depth}>{data.name}</Title>(<Parameters data={data.parameters} depth={depth} />): <DocFor data={data.type} depth={depth} />
+<Title name={data.name} class="inline" depth={depth} parent={parent} />(<Parameters data={data.parameters} depth={depth} />): <DocFor
+    data={data.type}
+    depth={depth}
+/>
 <JSDoc data={data} />

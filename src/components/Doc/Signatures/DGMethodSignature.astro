@@ -6,6 +6,7 @@ import Parameters from "../Other/Parameters.astro";
 import Strong from "../Other/Strong.astro";
 import TypeBadge from "../Other/TypeBadge.astro";
 import Title from "../Utils/Title.astro";
+import type { DataMaybeMemberTypeProps } from "../Utils/types.ts";
 
 type TypeDataPropertySignature = {
     kind: "MethodSignature";
@@ -15,17 +16,16 @@ type TypeDataPropertySignature = {
     type: any[];
 };
 
-type Props = {
+interface Props extends DataMaybeMemberTypeProps {
     data: TypeDataPropertySignature;
-    depth: number;
-};
+}
 
-const { data, depth } = Astro.props;
+const { data, depth, parent } = Astro.props;
 ---
 
 <TypeBadge depth={depth}>Function</TypeBadge>
-<Title class="inline" depth={depth}>{data.name}</Title><Strong depth={depth}
-    >(<Parameters data={data.parameters} depth={depth} />): <DocFor data={data.type} depth={depth} />
-</Strong>
+<Title name={data.name} parent={parent} class="inline" depth={depth} /><Strong depth={depth}
+    >(<Parameters data={data.parameters} depth={depth} />): <DocFor data={data.type} depth={depth} parent={data.name} /></Strong
+>
 
 <JSDoc data={data} />

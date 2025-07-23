@@ -3,6 +3,7 @@ import DocFor from "../DocFor.astro";
 import JSDoc from "../JSDoc.astro";
 import TypeBadge from "../Other/TypeBadge.astro";
 import Title from "../Utils/Title.astro";
+import type { DataMaybeMemberTypeProps } from "../Utils/types.ts";
 
 type TypeDataTypeAliasDeclaration = {
     kind: "TypeAliasDeclaration";
@@ -11,17 +12,16 @@ type TypeDataTypeAliasDeclaration = {
     type: any;
 };
 
-type Props = {
+interface Props extends DataMaybeMemberTypeProps {
     data: TypeDataTypeAliasDeclaration;
-    depth: number;
-};
+}
 
-const { data, depth } = Astro.props;
+const { parent, data, depth } = Astro.props;
 ---
 
 <TypeBadge depth={depth}>Type</TypeBadge>
-<Title depth={depth} data-dg-type-alias-declaration><span>{data.name}:</span></Title>
+<Title name={data.name} parent={parent} depth={depth} data-dg-type-alias-declaration>:</Title>
 
-<DocFor data={data.type} depth={depth + 1} />
+<DocFor data={data.type} depth={depth + 1} parent={data.name} />
 
 <JSDoc data={data} />
