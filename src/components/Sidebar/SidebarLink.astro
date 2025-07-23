@@ -17,7 +17,7 @@ const { href, target, reloadAll, icon, current, class: className, ...props } = A
     <a
         href={href}
         class:list={[
-            "sidebar-link-a btn btn-sm h-auto w-max min-w-full max-w-[calc(100%+1rem)] justify-start font-normal text-balance break-words text-left text-lg aria-[current=false]:btn-ghost aria-[current=true]:btn-primary aria-[current=true]:font-medium",
+            "sidebar-link-a btn btn-sm h-auto w-max min-w-full max-w-[calc(100%+1.4rem)] justify-start font-normal text-balance break-words text-left text-lg aria-[current=false]:btn-ghost aria-[current=true]:btn-primary aria-[current=true]:font-medium",
             className,
         ]}
         target={target}
@@ -28,7 +28,7 @@ const { href, target, reloadAll, icon, current, class: className, ...props } = A
     >
         {icon && assets?.[icon]?.outlined && <img src={assets[icon].outlined} alt="Sidebar Icon" class="h-6 w-6" />}
 
-        <span class="max-w-full">
+        <span class="max-w-[calc(100%+0.5rem)]">
             <slot />
         </span>
     </a>
