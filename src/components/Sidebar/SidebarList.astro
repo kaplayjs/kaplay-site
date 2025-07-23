@@ -12,11 +12,13 @@ const url = Astro.url;
 ---
 
 <div data-sidebar-entries transition:persist={sidebarMode}>
-    <input
-        id="sidebar-search"
-        class="input h-auto min-h-0 px-3.5 py-2 border-base-content/5 my-2 w-full"
-        placeholder={sidebarMode == "reference" ? "Search for API..." : "Search for Guides..."}
-    />
+    <div class="sticky -top-1 -mt-2 mb-2.5 pt-4 bg-base-300">
+        <input
+            id="sidebar-search"
+            class="input h-auto min-h-0 px-3.5 py-2 border-base-content/5 w-full"
+            placeholder={sidebarMode == "reference" ? "Search for API..." : "Search for Guides..."}
+        />
+    </div>
 
     {
         sidebarEntries.map(({ linkList, folder }) => {
