@@ -12,13 +12,37 @@ const url = Astro.url;
 ---
 
 <div data-sidebar-entries transition:persist={sidebarMode}>
-    <div class="sticky -top-1 -mt-2 mb-2.5 pt-4 bg-base-300">
-        <input
-            id="sidebar-search"
-            class="input h-auto min-h-0 px-3.5 py-2 border-base-content/5 w-full"
-            placeholder={sidebarMode == "reference" ? "Search for API..." : "Search for Guides..."}
-        />
-    </div>
+    <form class="sticky -top-1 -mt-2 mb-2.5 pt-4 bg-base-300" action="javascript:void(0)">
+        <label class="input flex items-center gap-1 h-auto min-h-0 px-3.5 py-2 border-base-content/5" aria-label="Search">
+            <input
+                id="sidebar-search"
+                class="peer grow min-w-0"
+                placeholder={sidebarMode == "reference" ? "Search for API..." : "Search for Guides..."}
+                type="text"
+                autocomplete="off"
+            />
+
+            <button
+                type="reset"
+                class="btn btn-xs btn-ghost -mr-1.5 px-1 shrink-0 peer-placeholder-shown:invisible peer-placeholder-shown:scale-0 peer-placeholder-shown:opacity-0 transition-[visibility,transform,opacity]"
+                aria-label="Clear"
+            >
+                <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                >
+                    <path d="M18 6 6 18"></path><path d="m6 6 12 12"></path>
+                </svg>
+            </button>
+        </label>
+    </form>
 
     {
         sidebarEntries.map(({ linkList, folder }) => {
@@ -39,8 +63,8 @@ const url = Astro.url;
     document.addEventListener("astro:page-load", () => {
         const searchInput = document.querySelector<HTMLInputElement>("#sidebar-search");
 
-        searchInput?.addEventListener("input", () => {
-            const query = searchInput.value.toLowerCase().trim();
+        const filterMenu = (searchQuery?: string) => {
+            const query = searchQuery ?? searchInput!.value.toLowerCase().trim();
             const links = document.querySelectorAll("[data-sidebar-entry]");
             const folders = document.querySelectorAll("[data-sidebar-folder]");
 
@@ -64,6 +88,13 @@ const url = Astro.url;
                     folder.classList.add("hidden");
                 }
             });
+        };
+
+        searchInput?.addEventListener("input", () => filterMenu());
+
+        searchInput?.closest("form")?.addEventListener("reset", () => {
+            filterMenu("");
+            searchInput.focus();
         });
     });
 </script>
