@@ -13,7 +13,7 @@ type Props = {
 const { sidebarMode, meta, headings } = Astro.props;
 ---
 
-<Page meta={meta} class="scroll-pt-24">
+<Page meta={meta} class="scroll-pt-[5.625rem]">
     <script src="/pagefind/pagefind-ui.js" is:inline defer slot="head"></script>
     <slot name="head" slot="head" />
 
@@ -25,3 +25,11 @@ const { sidebarMode, meta, headings } = Astro.props;
 
     <SearchDialog />
 </Page>
+
+<script>
+    const toggleSmoothScroll = (enable: boolean) => document.documentElement.classList.toggle("scroll-smooth", enable);
+
+    document.addEventListener("astro:page-load", () => toggleSmoothScroll(true));
+    document.addEventListener("astro:before-swap", () => toggleSmoothScroll(false));
+    document.addEventListener("astro:after-swap", () => toggleSmoothScroll(true));
+</script>

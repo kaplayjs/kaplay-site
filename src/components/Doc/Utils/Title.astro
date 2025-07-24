@@ -17,4 +17,4 @@ let anchor = parent ? `#${parent}-${name}` : `#${name}`;
 if (index) anchor += `-${index}`;
 ---
 
-<TitleEl {...props} data-dg-title={depth < 1}><a href={anchor}>{name}</a><slot /></TitleEl>
+<TitleEl {...props} data-dg-title={depth < 1}><a href={anchor} class="heading-anchor-link">{name}</a><slot /></TitleEl>

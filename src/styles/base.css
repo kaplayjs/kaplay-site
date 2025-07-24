@@ -49,6 +49,28 @@ h2, h3, h4, h5, h6 {
     }
 }
 
+.heading-anchor-link {
+    all: inherit;
+    @apply underline underline-offset-2 decoration-white/0 hover:decoration-white/50
+        hover:text-white target:text-red-500 transition-all;
+
+    &::before {
+        content: "#";
+        @apply inline-block w-5 -ml-6 mr-1 text-[min(90%,1.75rem)] leading-[1]
+            text-white/80 text-center no-underline p-0.5 bg-base-100 rounded-md
+            invisible opacity-0 hover:visible hover:opacity-100 transition-all;
+    }
+
+    .prose h1 &::before {
+        @apply w-6 -ml-7 text-4xl leading-[1];
+    }
+
+    :target > &,
+    :target > :is(h1, h2, h3, h4, h5, h6) > & {
+        @apply text-white;
+    }
+}
+
 iframe {
     max-width: 100%;
 }
