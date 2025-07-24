@@ -10,7 +10,9 @@ import astroMetaTags from "astro-meta-tags";
 import pagefind from "astro-pagefind";
 import robotsTxt from "astro-robots-txt";
 import { defineConfig } from "astro/config";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeKatex from "rehype-katex";
+import rehypeSlug from "rehype-slug";
 import remarkMath from "remark-math";
 import kaplayPackageJson from "./kaplay/package.json";
 import websitePackageJson from "./package.json";
@@ -73,6 +75,7 @@ export default defineConfig({
         "/lib/kaplay.master.js": "https://cdn.kaplayjs.com/kaplay.master.js",
     },
     markdown: {
+        gfm: true,
         shikiConfig: {
             transformers: [
                 transformerNotationDiff(),
@@ -81,6 +84,11 @@ export default defineConfig({
         },
         remarkPlugins: [remarkMath],
         rehypePlugins: [
+            rehypeSlug,
+            [rehypeAutolinkHeadings, {
+                behavior: "wrap",
+                properties: { className: ["heading-anchor-link"] },
+            }],
             [rehypeKatex, {}],
             [rehypeKAPLAY, {}],
         ],
