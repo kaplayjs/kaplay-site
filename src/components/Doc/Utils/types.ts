@@ -7,4 +7,5 @@ export type DataMaybeMemberTypeProps = {
     data: any;
     depth: number;
     parent?: string;
+    index?: number;
 };

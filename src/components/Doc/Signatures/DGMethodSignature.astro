@@ -20,11 +20,11 @@ interface Props extends DataMaybeMemberTypeProps {
     data: TypeDataPropertySignature;
 }
 
-const { data, depth, parent } = Astro.props;
+const { index, data, depth, parent } = Astro.props;
 ---
 
 <TypeBadge depth={depth}>Function</TypeBadge>
-<Title name={data.name} parent={parent} class="inline" depth={depth} /><Strong depth={depth}
+<Title index={index} name={data.name} parent={parent} class="inline" depth={depth} /><Strong depth={depth}
     >(<Parameters data={data.parameters} depth={depth} />): <DocFor data={data.type} depth={depth} parent={data.name} /></Strong
 >
 

@@ -38,12 +38,13 @@ import DGTypeLiteral from "./Types/DGTypeLiteral.astro";
 import DGUnknownKeyword from "./Keywords/DGUnknownKeyword.astro";
 
 type Props = {
+    index?: number;
     parent?: string;
     data: any;
     depth: number;
 };
 
-const { data, parent, depth } = Astro.props;
+const { index, data, parent, depth } = Astro.props;
 const kind = data?.kind;
 ---
 
@@ -54,19 +55,19 @@ const kind = data?.kind;
         switch (kind) {
             // Declarations
             case "InterfaceDeclaration":
-                return <DGInterfaceDeclaration parent={parent} data={data} depth={depth} />;
+                return <DGInterfaceDeclaration index={index} parent={parent} data={data} depth={depth} />;
             case "ClassDeclaration":
-                return <DGClassDeclaration parent={parent} data={data} depth={depth} />;
+                return <DGClassDeclaration index={index} parent={parent} data={data} depth={depth} />;
             case "PropertyDeclaration":
-                return <DGPropertyDeclaration parent={parent} data={data} depth={depth} />;
+                return <DGPropertyDeclaration index={index} parent={parent} data={data} depth={depth} />;
             case "MethodDeclaration":
-                return <DGMethodDeclaration parent={parent} data={data} depth={depth} />;
+                return <DGMethodDeclaration index={index} parent={parent} data={data} depth={depth} />;
             case "EnumDeclaration":
-                return <DGEnumDeclaration parent={parent} data={data} depth={depth} />;
+                return <DGEnumDeclaration index={index} parent={parent} data={data} depth={depth} />;
             case "TypeAliasDeclaration":
-                return <DGTypeAliasDeclaration parent={parent} data={data} depth={depth} />;
+                return <DGTypeAliasDeclaration index={index} parent={parent} data={data} depth={depth} />;
             case "FunctionDeclaration":
-                return <DGFunctionDeclaration parent={parent} data={data} depth={depth} />;
+                return <DGFunctionDeclaration index={index} parent={parent} data={data} depth={depth} />;
 
             // References
             case "TypeReference":
@@ -96,9 +97,9 @@ const kind = data?.kind;
 
             // Accessors
             case "SetAccessor":
-                return <DGSetAccessor parent={parent} data={data} depth={depth} />;
+                return <DGSetAccessor index={index} parent={parent} data={data} depth={depth} />;
             case "GetAccessor":
-                return <DGGetAccessor parent={parent} data={data} depth={depth} />;
+                return <DGGetAccessor index={index} parent={parent} data={data} depth={depth} />;
 
             // Others
             case "StringLiteral":
@@ -132,9 +133,9 @@ const kind = data?.kind;
 
             // Signatures
             case "PropertySignature":
-                return <DGPropertySignature parent={parent} data={data} depth={depth} />;
+                return <DGPropertySignature index={index} parent={parent} data={data} depth={depth} />;
             case "MethodSignature":
-                return <DGMethodSignature parent={parent} data={data} depth={depth} />;
+                return <DGMethodSignature index={index} parent={parent} data={data} depth={depth} />;
 
             // Members
             case "EnumMember":

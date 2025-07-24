@@ -17,11 +17,11 @@ interface Props extends DataMaybeMemberTypeProps {
     data: TypeDataFunctionDeclaration;
 }
 
-const { data, depth, parent } = Astro.props;
+const { index, data, depth, parent } = Astro.props;
 ---
 
 <span data-dg-function-declaration
-    ><Title name={data.name} parent={parent} depth={depth}>:</Title><DocFor data={data.type} depth={depth} parent={data.name} />
+    ><Title index={index} name={data.name} parent={parent} depth={depth}>:</Title><DocFor data={data.type} depth={depth} parent={data.name} />
 
     <JSDoc data={data} />
 </span>

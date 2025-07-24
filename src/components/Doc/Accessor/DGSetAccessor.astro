@@ -15,9 +15,9 @@ interface Props extends DataMaybeMemberTypeProps {
     data: TypeDataSetAccessor;
 }
 
-const { data, depth, parent } = Astro.props;
+const { index, data, depth, parent } = Astro.props;
 ---
 
 <span data-dg-get-accessor>set</span>
-<Title name={data.name} parent={parent} class="inline" depth={depth} />(<Parameters data={data.parameters} depth={depth} />)
+<Title index={index} name={data.name} parent={parent} class="inline" depth={depth} />(<Parameters data={data.parameters} depth={depth} />)
 <JSDoc data={data} />

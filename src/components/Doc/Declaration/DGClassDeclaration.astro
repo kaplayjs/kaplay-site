@@ -16,11 +16,11 @@ interface Props extends DataMaybeMemberTypeProps {
     data: TypeDataClassDeclaration;
 }
 
-const { data, depth, parent } = Astro.props;
+const { index, data, depth, parent } = Astro.props;
 ---
 
 <TypeBadge depth={depth}>Class</TypeBadge>
-<Title name={data.name} parent={parent} name={data.name} depth={depth} data-dg-class-declaration>:</Title>
+<Title index={index} name={data.name} parent={parent} name={data.name} depth={depth} data-dg-class-declaration>:</Title>
 
 <JSDoc data={data} />
 

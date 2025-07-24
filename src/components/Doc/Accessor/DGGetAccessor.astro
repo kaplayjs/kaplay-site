@@ -17,11 +17,11 @@ interface Props extends DataMaybeMemberTypeProps {
     data: TypeDataGetAccessor;
 }
 
-const { data, depth, parent } = Astro.props;
+const { index, data, depth, parent } = Astro.props;
 ---
 
 <span data-dg-set-accessor>get</span>
-<Title name={data.name} class="inline" depth={depth} parent={parent} />(<Parameters data={data.parameters} depth={depth} />): <DocFor
+<Title index={index} name={data.name} class="inline" depth={depth} parent={parent} />(<Parameters data={data.parameters} depth={depth} />): <DocFor
     data={data.type}
     depth={depth}
 />

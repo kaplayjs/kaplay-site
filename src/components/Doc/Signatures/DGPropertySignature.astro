@@ -19,11 +19,11 @@ interface Props extends DataMaybeMemberTypeProps {
     data: TypeDataPropertySignature;
 }
 
-const { data, depth, parent } = Astro.props;
+const { index, data, depth, parent } = Astro.props;
 ---
 
 <TypeBadge depth={depth}>Constant</TypeBadge>
-<Title name={data.name} class="inline" depth={depth} parent={parent} /><Strong depth={depth}
+<Title index={index} name={data.name} class="inline" depth={depth} parent={parent} /><Strong depth={depth}
     >{data.questionToken ? "?" : ""}: <DocFor data={data.type} depth={depth} parent={data.name} /></Strong
 >
 

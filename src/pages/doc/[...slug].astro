@@ -6,9 +6,7 @@ import SidebarPage from "@/layouts/SidebarPage.astro";
 
 export async function getStaticPaths() {
     const allDoc: any = doc.types;
-    const allDocKeys: string[] = Object.keys(doc.types).filter(
-        (k) => k !== "KAPLAYCtx" && k !== "KaboomCtx" && k !== "undefined",
-    );
+    const allDocKeys: string[] = Object.keys(doc.types).filter((k) => k !== "KAPLAYCtx" && k !== "KaboomCtx" && k !== "undefined");
 
     return allDocKeys.map((key) => ({
         params: { slug: key },
@@ -31,7 +29,7 @@ const { type } = Astro.props;
     sidebarMode="reference"
 >
     <div class="min-h-dvh max-w-[50rem] p-4">
-        {type?.map((refData) => <DocEntry data={refData} />)}
+        {type?.map((refData, i) => <DocEntry index={i} data={refData} />)}
     </div>
 
     <DocPreview />

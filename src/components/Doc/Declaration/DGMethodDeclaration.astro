@@ -20,11 +20,11 @@ interface Props extends DataMaybeMemberTypeProps {
     data: TypeDataMethodDeclaration;
 }
 
-const { data, depth, parent } = Astro.props;
+const { index, data, depth, parent } = Astro.props;
 ---
 
 {data.modifiers ? <Modifiers modifiers={data.modifiers} /> : ""}
-{" "}<Title name={data.name} class="inline" depth={depth} parent={parent} />{data.questionToken ? "?." : ""}(<Parameters
+{" "}<Title index={index} name={data.name} class="inline" depth={depth} parent={parent} />{data.questionToken ? "?." : ""}(<Parameters
     data={data.parameters}
     depth={depth}
 />)

@@ -16,10 +16,10 @@ interface Props extends DataMaybeMemberTypeProps {
     data: TypeDataEnumDeclaration;
 }
 
-const { data, depth, parent } = Astro.props;
+const { index, data, depth, parent } = Astro.props;
 ---
 
 <TypeBadge depth={depth}>Enum</TypeBadge>
-<Title name={data.name} parent={parent} depth={depth} data-dg-enum-declaration />:
+<Title index={index} name={data.name} parent={parent} depth={depth} data-dg-enum-declaration />:
 {Object.keys(data.members).map((d) => data.members[d].map((rd) => <DocEntry data={rd} depth={depth + 1} parent={data.name} divider={false} />))}
 <JSDoc data={data} />
