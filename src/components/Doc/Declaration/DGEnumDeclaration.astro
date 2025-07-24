@@ -20,6 +20,6 @@ const { index, data, depth, parent } = Astro.props;
 ---
 
 <TypeBadge depth={depth}>Enum</TypeBadge>
-<Title index={index} name={data.name} class="inline" parent={parent} depth={depth} data-dg-enum-declaration />:
+<Title index={index} name={data.name} class="inline" parent={parent} depth={depth} data-dg-enum-declaration /><span data-dg-title="true">:</span>
 {Object.keys(data.members).map((d) => data.members[d].map((rd) => <DocEntry data={rd} depth={depth + 1} parent={data.name} divider={false} />))}
 <JSDoc data={data} />

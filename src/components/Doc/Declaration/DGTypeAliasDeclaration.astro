@@ -20,7 +20,7 @@ const { index, parent, data, depth } = Astro.props;
 ---
 
 <TypeBadge depth={depth}>Type</TypeBadge>
-<Title index={index} name={data.name} parent={parent} depth={depth} data-dg-type-alias-declaration>:</Title>
+<Title index={index} name={data.name} class="inline" parent={parent} depth={depth} data-dg-type-alias-declaration /><strong data-dg-title="true">:</strong>
 
 <DocFor data={data.type} depth={depth + 1} parent={data.name} />
 

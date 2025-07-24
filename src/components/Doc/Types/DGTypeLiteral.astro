@@ -17,6 +17,6 @@ const { data, depth } = Astro.props;
 console.log(data);
 ---
 
-<span data-dg-type-literal>
+<div data-dg-type-literal>
     {Object.keys(data.members).map((d) => data.members[d].map((rd) => <DocFor data={rd} depth={depth + 1} />))}
-</span>
+</div>

@@ -20,7 +20,7 @@ const { index, parent, data, depth } = Astro.props;
 ---
 
 <TypeBadge depth={depth}>Interface</TypeBadge>
-<Title name={data.name} parent={parent} depth={depth} class="inline" index={index}>:</Title>
+<Title name={data.name} parent={parent} depth={depth} class="inline" index={index} /><strong data-dg-title="true">:</strong>
 <JSDoc data={data} />
 
 {Object.keys(data.members).map((d) => data.members[d].map((rd) => <DocEntry data={rd} depth={depth + 1} parent={data.name} />))}

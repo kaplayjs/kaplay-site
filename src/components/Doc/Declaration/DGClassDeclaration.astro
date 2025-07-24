@@ -20,7 +20,9 @@ const { index, data, depth, parent } = Astro.props;
 ---
 
 <TypeBadge depth={depth}>Class</TypeBadge>
-<Title index={index} name={data.name} parent={parent} name={data.name} depth={depth} data-dg-class-declaration>:</Title>
+<Title index={index} name={data.name} class="inline" parent={parent} name={data.name} depth={depth} data-dg-class-declaration /><strong data-dg-title="true"
+    >:</strong
+>
 
 <JSDoc data={data} />
 
