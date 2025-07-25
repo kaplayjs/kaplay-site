@@ -115,7 +115,7 @@ bag.remove(miniBag); // 18, independency
 
 ```js
 bag.get("*"); // all children
-bag.get("favorite", { recursive:true }); // [superMiniBag] - all descendants with tag favorite
+bag.get("favorite", { recursive: true }); // [superMiniBag] - all descendants with tag favorite
 ```
 
 You can see the full list of operations in the [`GameObjRaw`](/doc/GameObjRaw)
