@@ -98,7 +98,7 @@ const miniBag = bag.add([
 ]);
 
 // Now our original Bag is a grandfather...
-const superMiniBag = bag.add([
+const superMiniBag = miniBag.add([
     sprite("superminibag"),
     "favorite", // ...And the favorite
 ]);
@@ -115,7 +115,7 @@ bag.remove(miniBag); // 18, independency
 
 ```js
 bag.get("*"); // all children
-bag.get("favorite"); // [superMiniBag] - all children with tag favorite
+bag.get("favorite", { recursive: true }); // [superMiniBag] - all descendants with tag favorite
 ```
 
 You can see the full list of operations in the [`GameObjRaw`](/doc/GameObjRaw)
