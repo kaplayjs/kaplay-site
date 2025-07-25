@@ -1,0 +1,66 @@
+---
+title: Migrating to v4000
+description: Migrate your codebase to v4000.
+url: migration-4000
+order: "misc-2"
+version: "4000"
+---
+
+import Info from "@/components/Content/Info.astro";
+
+# v3001 to v4000 Migration
+
+<Info crew="gun" title="Important!">
+This guide is currently based on `master` KAPLAY version (the one that match the last GitHub commit), it's version we recommend
+for all developers trying out v4000!
+</Info>
+
+## Removed: `make()`
+
+`make()` is an internal function that KAPLAY uses for creating the `GameObjRaw` interface
+without adding it to the tree. If you was using it, it was for one of these 2 reasons:
+
+1. If you were using it for prefab-like factory functions, **like this:**
+
+```js
+// BEFORE
+const makeEnemy = (x = 100, y = 100) => {
+    const obj = make([
+        sprite("alien"),
+        pos(x, y),
+    ]);
+
+    return obj;
+};
+
+const car1 = add(makeEnemy()); // (100, 100)
+const car2 = add(makeEnemy(400, 200)); // (400, 200)
+```
+
+```js
+// NOW
+const enemy = add([sprite("alien")]);
+const enemyPrefab = createPrefab("enemy", enemy);
+
+const enemy1 = addPrefab("enemy"); // (100, 100)
+const enemy2 = addPrefab("enemy", [pos(400, 200)]); // (400, 200)
+```
+
+Check the [Prefab guide](/guides/prefabs) for more information.
+
+1. If you were using it for "modifying" the object before its "creation", **like this:**
+
+```js
+// BEFORE
+const obj = make([sprite("bean")]);
+
+obj.sprite = "mark";
+
+add(obj);
+```
+
+TODO: Do the now
+
+## Renamed: `onShow`, `onHidden`, `onResize`
+
+TODO

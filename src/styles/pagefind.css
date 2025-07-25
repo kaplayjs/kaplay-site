@@ -21,7 +21,12 @@
 }
 
 .pagefind-ui__search-clear {
-    @apply btn btn-xs absolute right-2 top-2 h-8 min-h-8 rounded-md;
+    @apply btn btn-xs absolute right-2 top-2 h-8 min-h-8 rounded-md
+        transition-[visibility,transform,opacity];
+
+    &.pagefind-ui__suppressed {
+        @apply invisible opacity-0 scale-90;
+    }
 }
 
 .pagefind-ui__drawer {

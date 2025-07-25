@@ -34,6 +34,10 @@ export default {
                     "0 2px 0 currentColor",
                 ],
             },
+            colors: {
+                "base-highlight":
+                    "color-mix(in oklch, oklch(var(--bc)) 30%, oklch(var(--b1)))",
+            },
         },
     },
     plugins: [require("daisyui"), require("@tailwindcss/typography")],

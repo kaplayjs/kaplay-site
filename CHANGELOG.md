@@ -6,6 +6,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.9] - 2025-07-24
+
+### Fixed
+
+- Sidebar back to top button is now better reachable on phones - @imaginarny
+
+## [1.1.8] - 2025-07-23
+
+### Added
+
+- Back to top button was added to the sidebar when scrolled - @imaginarny
+- Clear button was added to the sidebar search input - @imaginarny
+
+### Changed
+
+- Search input in sidebar is now sticky on scroll - @imaginarny
+- Sidebar is slightly wider and menu items have more room to grow - @imaginarny
+
 ## [1.1.7] - 2025-07-11
 
 ### Fixed

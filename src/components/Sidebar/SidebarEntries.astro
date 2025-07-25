@@ -26,33 +26,79 @@ if (sidebarMode === "guides") {
 
 <div class="drawer-side z-50 h-dvh md:p-px md:pt-0 bg-base-50 max-md:!bg-transparent">
     <label for="sidebar" aria-label="close sidebar" class="drawer-overlay"></label>
-    <div class="w-72 h-full max-md:border border-l-0 border-base-100 max-md:rounded-r-xl md:rounded-br-xl overflow-hidden">
-        <div class="drawer-scrollable w-[inherit] h-full bg-base-300 p-4 text-base-content">
-            <figure class="mb-4">
-                <a class="btn btn-ghost h-max w-full p-2" href={"/"} data-astro-reload>
-                    <Image src="/kaplay.gif" alt="kaplay logo" class="aspect-auto h-24 w-52 object-contain" width={208} height={100} loading={"eager"} />
-                </a>
-            </figure>
+    <div class="w-[300px] h-full max-md:border border-l-0 border-base-100 max-md:rounded-r-xl md:rounded-br-xl overflow-hidden">
+        <div class="drawer-scrollable grid w-[inherit] h-full bg-base-300 text-base-content">
+            <div class="relative w-[inherit] px-5 pt-4 pb-8">
+                <figure class="mb-4">
+                    <a class="btn btn-ghost h-max w-full p-2" href={"/"} data-astro-reload>
+                        <Image src="/kaplay.gif" alt="kaplay logo" class="aspect-auto h-24 w-52 object-contain" width={208} height={100} loading={"eager"} />
+                    </a>
+                </figure>
 
-            <div class="flex gap-px bg-base-50 p-px rounded-lg justify-center mb-5">
-                <VersionSelector />
-                <a
-                    class="btn btn-sm btn-ghost bg-base-200 p-1"
-                    href="https://github.com/kaplayjs/kaplay/blob/master/CHANGELOG.md"
-                    target="_blank"
-                    title="Changelog"
+                <div class="flex gap-px bg-base-50 p-px rounded-lg justify-center mb-5">
+                    <VersionSelector />
+                    <a
+                        class="btn btn-sm btn-ghost bg-base-200 p-1"
+                        href="https://github.com/kaplayjs/kaplay/blob/master/CHANGELOG.md"
+                        target="_blank"
+                        title="Changelog"
+                    >
+                        <img src={changelogIcon.src} class="w-6 h-full object-scale-down" />
+                    </a>
+                </div>
+
+                <ul class="flex-col gap-2 bg-neutral p-1 rounded-xl border border-base-100 mb-4">
+                    <SidebarCategoryLink href="/guides" icon="marks_legend" selected={sidebarMode === "guides"}> Guides </SidebarCategoryLink>
+                    <SidebarCategoryLink href="/doc/kaplay" icon="api_book" selected={sidebarMode === "reference"}> API Reference </SidebarCategoryLink>
+                    <SidebarCategoryLink href="/blog" icon="paper" selected={sidebarMode === "blog"}> Blog </SidebarCategoryLink>
+                </ul>
+
+                <SidebarList sidebarMode={sidebarMode} sidebarEntries={renderList} />
+
+                <div
+                    id="sidebar-back-to-top"
+                    class="absolute inset-6 sm:inset-3 left-auto sm:left-auto hidden [&:not(.hidden)]:flex flex-col items-end w-0 overflow-visible before:h-[calc(100dvh+300px)]"
                 >
-                    <img src={changelogIcon.src} class="w-6 h-full object-scale-down" />
-                </a>
+                    <div
+                        class="!sticky top-[calc(100dvh-3.5rem-2px)] sm:top-[calc(100dvh-2.75rem-2px)] [@media(hover:hover)]:tooltip [@media(hover:hover)]:tooltip-left"
+                        data-tip="Back to Top"
+                    >
+                        <button
+                            type="button"
+                            class="btn btn-sm btn-ghost px-0 h-8 min-h-0 aspect-square bg-base-100 [@media(hover:hover)]:hover:bg-base-highlight active:bg-base-highlight active:transition-none"
+                            onclick="this.closest('.drawer-scrollable')?.scrollTo({ top: 0, behavior: 'smooth' })"
+                            aria-label="Back to Top"
+                        >
+                            <svg
+                                width="14"
+                                height="14"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+                                <path d="M5 3h14"></path><path d="m18 13-6-6-6 6"></path><path d="M12 7v14"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
             </div>
-
-            <ul class="flex-col gap-2 bg-neutral p-1 rounded-xl border border-base-100 mb-4">
-                <SidebarCategoryLink href="/guides" icon="marks_legend" selected={sidebarMode === "guides"}> Guides </SidebarCategoryLink>
-                <SidebarCategoryLink href="/doc/kaplay" icon="api_book" selected={sidebarMode === "reference"}> API Reference </SidebarCategoryLink>
-                <SidebarCategoryLink href="/blog" icon="paper" selected={sidebarMode === "blog"}> Blog </SidebarCategoryLink>
-            </ul>
-
-            <SidebarList sidebarMode={sidebarMode} sidebarEntries={renderList} />
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener("astro:page-load", () => {
+        const scrollableEl = document.querySelector<HTMLDivElement>(".drawer-scrollable > *:first-child");
+        const backToTopEl = document.querySelector<HTMLDivElement>("#sidebar-back-to-top");
+
+        if (!scrollableEl || !backToTopEl) return;
+
+        new ResizeObserver(() => {
+            backToTopEl.classList.toggle("hidden", scrollableEl.clientHeight < window.innerHeight + 300);
+        }).observe(scrollableEl);
+    });
+</script>
