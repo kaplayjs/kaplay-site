@@ -32,7 +32,7 @@ if (index) id += `-${index}`;
     class:list={[
         "group font-code [&+[data-depth='0']]:mt-8",
         {
-            "py-3 pl-4 border-l border-base-content/10": depth == 1,
+            "py-3 pl-4 border-l border-base-content/10": depth > 0,
             "": depth > 0 && divider,
         },
     ]}
