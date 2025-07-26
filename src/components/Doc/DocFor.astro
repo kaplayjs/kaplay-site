@@ -110,7 +110,7 @@ const kind = data?.kind;
             case "TypeQuery":
                 return <DGTypeQuery data={data} depth={depth} />;
             case "TypeLiteral":
-                return <DGTypeLiteral index={index} parent={parent} data={data} depth={depth} />;
+                return <DGTypeLiteral index={index} parent={parent} data={data} depth={depth + 1} />;
 
             // Keywords
             case "StringKeyword":

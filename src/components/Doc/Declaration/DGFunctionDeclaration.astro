@@ -1,6 +1,7 @@
 ---
 import DocFor from "../DocFor.astro";
 import JSDoc from "../JSDoc.astro";
+import TypeBadge from "../Other/TypeBadge.astro";
 import Title from "../Utils/Title.astro";
 import type { DataMaybeMemberTypeProps, DataTypeProps } from "../Utils/types.ts";
 
@@ -20,10 +21,9 @@ interface Props extends DataMaybeMemberTypeProps {
 const { index, data, depth, parent } = Astro.props;
 ---
 
-<div data-dg-function-declaration
-    ><Title index={index} name={data.name} class="inline" parent={parent} depth={depth} /><span data-dg-title="true">:</span>
+<TypeBadge depth={depth}>Function</TypeBadge>
+<Title index={index} name={data.name} class="inline" parent={parent} depth={depth} /><span data-dg-title="true">:</span>
 
-    <DocFor data={data.type} depth={depth} parent={data.name} />
+<DocFor data={data.type} depth={depth} parent={data.name} />
 
-    <JSDoc data={data} />
-</div>
+<JSDoc data={data} />

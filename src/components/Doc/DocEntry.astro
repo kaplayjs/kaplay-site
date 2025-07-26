@@ -14,10 +14,11 @@ const { index, data, parent, depth = 0, divider = true } = Astro.props;
 
 const extraProps = {
     "data-doc-entry-children": true,
+    "data-dg-kind": data.kind,
 };
 
 const EntryEl = depth > 0 ? "section" : "article";
-const props = parent ? extraProps : {};
+const props = parent ? extraProps : { "data-dg-kind": data.kind };
 let id = `${parent ? `${parent}-` : ""}${data.name ?? ""}`;
 if (index) id += `-${index}`;
 ---
