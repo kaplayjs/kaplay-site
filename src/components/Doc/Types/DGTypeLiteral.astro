@@ -1,22 +1,19 @@
 ---
 import DocEntry from "../DocEntry.astro";
 import DocFor from "../DocFor.astro";
-import type { DataTypeProps } from "../Utils/types.ts";
+import type { DataMaybeMemberTypeProps } from "../Utils/types.ts";
 
 type TypeDataTypeLiteral = {
     kind: "TypeLiteral";
-    id: number;
     members: any[];
 };
 
-interface Props extends DataTypeProps {
+interface Props extends DataMaybeMemberTypeProps {
     data: TypeDataTypeLiteral;
 }
 
-const { data, depth } = Astro.props;
-console.log(data);
+const { data, depth, parent, index } = Astro.props;
+const memberKeys = Object.keys(data.members);
 ---
 
-<div data-dg-type-literal>
-    {Object.keys(data.members).map((d) => data.members[d].map((rd) => <DocFor data={rd} depth={depth + 1} />))}
-</div>
+<span data-dg-type-literal>{memberKeys.map((d) => data.members[d].map((rd, i) => <DocEntry parent={parent} index={i} data={rd} depth={depth} />))} </span>

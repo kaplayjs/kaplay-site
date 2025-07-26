@@ -18,9 +18,7 @@ const { data, depth } = Astro.props;
 <span data-dg-union-type
     >{
         data.types.map((t, i) => (
-            <Fragment>
-                <DocFor data={t} depth={depth} />{i < data.types.length - 1 ? " |" : ""}{}
-            </Fragment>
+            <Fragment><DocFor data={t} depth={depth} />{i < data.types.length - 1 ? " | " : ""}{}</Fragment>
         ))
     }</span
 >

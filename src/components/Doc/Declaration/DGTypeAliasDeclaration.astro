@@ -17,11 +17,23 @@ interface Props extends DataMaybeMemberTypeProps {
 }
 
 const { index, parent, data, depth } = Astro.props;
+const dataType = data.type;
+let renderInline = true;
+
+if ("members" in dataType) {
+    renderInline = false;
+}
 ---
 
 <TypeBadge depth={depth}>Type</TypeBadge>
-<Title index={index} name={data.name} class="inline" parent={parent} depth={depth} data-dg-type-alias-declaration /><strong data-dg-title="true">:</strong>
+<Title index={index} name={data.name} class="inline" parent={parent} depth={depth} data-dg-type-alias-declaration />{
+    renderInline && (
+        <strong data-dg-title="true">{}{":"}
+            <DocFor data={data.type} depth={depth + 1} parent={data.name} />
+        </strong>
+    )
+}{!renderInline && <strong data-dg-title="true">:</strong>}
 
-<DocFor data={data.type} depth={depth + 1} parent={data.name} />
+{!renderInline && <DocFor data={data.type} depth={depth + 1} parent={data.name} />}
 
 <JSDoc data={data} />
