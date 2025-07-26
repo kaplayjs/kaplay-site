@@ -132,6 +132,8 @@ export const getDocEntries = async () => {
     const groups = doc.groups as any;
     const groupsKeys = Object.keys(doc.groups) as string[];
 
+    console.log(groupsKeys);
+
     groupsKeys.map((groupName) => {
         let registeredElements: string[] = [];
 
