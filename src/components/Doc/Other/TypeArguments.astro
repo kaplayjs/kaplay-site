@@ -17,7 +17,7 @@ const { args } = Astro.props;
 {
     args.map((arg, i) => (
         <>
-            <DocFor data={arg} depth={0} /> {i >= args.length - 1 ? "" : " | "}
+            <DocFor data={arg} depth={0} /> {i >= args.length - 1 ? "" : ", "}
         </>
     ))
 }
