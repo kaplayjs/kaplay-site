@@ -1,0 +1,23 @@
+---
+import doc from "@/../doc.json";
+import DocEntry from "@/components/Doc/DocEntry.astro";
+
+export async function getStaticPaths() {
+    const allDoc: any = doc.types;
+    const allDocKeys: string[] = Object.keys(doc.types).filter((k) => k !== "KAPLAYCtx" && k !== "KaboomCtx" && k !== "undefined");
+
+    return allDocKeys.map((key) => {
+        return {
+            params: { slug: key },
+            props: {
+                type: allDoc[key] as any[],
+                name: key,
+            },
+        };
+    });
+}
+
+const { type } = Astro.props;
+---
+
+{type?.map((refData) => <DocEntry data={refData} />)}
