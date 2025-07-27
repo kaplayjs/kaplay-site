@@ -1,0 +1,13 @@
+---
+import type { DataTypeProps } from "../Utils/types.ts";
+
+type TypeDataUnknownKeyword = {
+    kind: "UnknownKeyword";
+};
+
+interface Props extends DataTypeProps {
+    data: TypeDataUnknownKeyword;
+}
+---
+
+<span data-dg-unknown-keyword data-dg-primitive>unknown</span>

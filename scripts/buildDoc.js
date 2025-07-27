@@ -8,6 +8,11 @@ let dts = await fs.readFile(`kaplay/dist/doc.d.ts`, "utf-8");
 
 const f = ts.createSourceFile("ts", dts, ts.ScriptTarget.Latest, true);
 
+/**
+ * @param {*} o
+ * @param {*} f
+ * @returns {Record<string, any>} Object
+ */
 function transform(o, f) {
     for (const k in o) {
         if (o[k] == null) {
@@ -16,14 +21,14 @@ function transform(o, f) {
         const v = f(k, o[k]);
         if (v != null) {
             o[k] = v;
-        }
-        else {
+        } else {
             delete o[k];
         }
         if (typeof o[k] === "object") {
             transform(o[k], f);
         }
     }
+
     return o;
 }
 
@@ -33,9 +38,9 @@ const statements = transform(f.statements, (k, v) => {
         case "end":
         case "flags":
         case "parent":
-        case "modifiers":
         case "transformFlags":
         case "modifierFlagsCache":
+        case "id":
             return;
         case "name":
         case "typeName":
@@ -44,6 +49,7 @@ const statements = transform(f.statements, (k, v) => {
         case "pos":
             return typeof v === "number" ? undefined : v;
         case "kind":
+        case "operator":
             return ts.SyntaxKind[v];
         case "questionToken":
             return true;
@@ -104,7 +110,7 @@ const types = {};
 const groups = {};
 const sortedGroups = {};
 const miscGroup = {
-    name: "Misc",
+    name: "Miscalenous",
     entries: [],
 };
 
@@ -120,12 +126,61 @@ const groupsOrder = [
     "Info",
     "Timer",
     "Math",
-    "Misc",
 ];
 
 const sectionsSort = {
     Start: ["kaplay", "quit", "KAPLAYOpt"],
 };
+
+let groupedItems = [];
+
+// #region Register Smt
+/**
+ * @param {string} name
+ * @param {boolean} isGrouped
+ * @param {string} groupName
+ */
+const registerEntry = (name, isGrouped, groupName) => {
+    if (groupedItems.includes(name)) return;
+
+    if (isGrouped && groupName !== "Misc") {
+        let group = groups[groupName];
+
+        if (!group) {
+            group = {
+                name: groupName,
+                entries: [],
+            };
+
+            groups[groupName] = group;
+        }
+
+        group.entries.push(name);
+    } else {
+        miscGroup.entries.push(name);
+    }
+
+    groupedItems.push(name);
+};
+
+// #endregion
+
+// #region Register `KAPLAYCtx` members
+const kaplayCtxStatement = Object.values(statements).find((s) =>
+    s.name === "KAPLAYCtx" || s.name === "KaboomCtx"
+);
+
+for (const statName in kaplayCtxStatement.members) {
+    const mem = kaplayCtxStatement.members[statName];
+    const tags = mem[0].jsDoc?.tags ?? {};
+    const name = mem[0].name;
+
+    const isGrouped = Boolean(tags["group"]);
+    const groupName = tags["group"]?.[0];
+
+    registerEntry(name, isGrouped, groupName);
+}
+// #endregion
 
 for (const statement of statements) {
     if (!types[statement.name]) {
@@ -137,79 +192,44 @@ for (const statement of statements) {
     if (statement.name === undefined) continue;
 
     if (statement.name === "KAPLAYCtx" || statement.name === "KaboomCtx") {
-        if (statement.kind !== "InterfaceDeclaration") {
-            throw new Error("KAPLAYCtx must be an interface.");
-        }
-
-        for (const name in statement.members) {
-            const mem = statement.members[name];
-            const tags = mem[0].jsDoc?.tags ?? {};
-
-            if (tags["group"]) {
-                const name = tags["group"][0];
-
-                if (!groups[name]) {
-                    groups[name] = {
-                        name: name,
-                        entries: [mem[0].name],
-                    };
-                }
-                else {
-                    const section = groups[name];
-                    section.entries.push(mem[0].name);
-                }
-            }
-        }
-    }
-    else {
-        const tags = statement.jsDoc?.tags ?? {};
-
-        if (tags["group"]) {
-            const name = tags["group"][0];
-
-            if (!groups[name]) {
-                groups[name] = {
-                    name: name,
-                    entries: [statement.name],
-                };
-            }
-            else {
-                const section = groups[name];
-                section.entries.push(statement.name);
-            }
-        }
-        else {
-            miscGroup.entries.push(statement.name);
-        }
+        continue;
     }
 
-    groups["Misc"] = miscGroup;
+    const tags = statement.jsDoc?.tags ?? {};
+    const name = statement.name;
 
-    for (const group of groupsOrder) {
+    const isGrouped = Boolean(tags["group"]);
+    const groupName = tags["group"]?.[0];
+
+    registerEntry(name, isGrouped, groupName);
+}
+
+for (const group of groupsOrder) {
+    sortedGroups[group] = groups[group];
+}
+
+for (const group of Object.keys(groups)) {
+    if (!sortedGroups[group]) {
         sortedGroups[group] = groups[group];
     }
+}
 
-    for (const group of Object.keys(groups)) {
-        if (!sortedGroups[group]) {
-            sortedGroups[group] = groups[group];
+sortedGroups["Miscalenous"] = miscGroup;
+
+for (const sectionOrder of Object.keys(sectionsSort)) {
+    const section = sortedGroups[sectionOrder];
+    if (!section) continue;
+
+    const sortedEntries = [];
+    for (const entry of sectionsSort[sectionOrder]) {
+        const index = section.entries.indexOf(entry);
+        if (index !== -1) {
+            sortedEntries.push(section.entries[index]);
+            section.entries.splice(index, 1);
         }
     }
 
-    for (const sectionOrder of Object.keys(sectionsSort)) {
-        const section = sortedGroups[sectionOrder];
-        if (!section) continue;
-
-        const sortedEntries = [];
-        for (const entry of sectionsSort[sectionOrder]) {
-            const index = section.entries.indexOf(entry);
-            if (index !== -1) {
-                sortedEntries.push(section.entries[index]);
-                section.entries.splice(index, 1);
-            }
-        }
-
-        section.entries = sortedEntries.concat(section.entries);
-    }
+    section.entries = sortedEntries.concat(section.entries);
 }
 
 await fs.writeFile(

@@ -1,0 +1,13 @@
+---
+import type { DataTypeProps } from "../Utils/types.ts";
+
+type TypeDataAnyKeyword = {
+    kind: "ThisType";
+};
+
+interface Props extends DataTypeProps {
+    data: TypeDataAnyKeyword;
+}
+---
+
+<span data-dg-this-keyword data-dg-primitive>this</span>

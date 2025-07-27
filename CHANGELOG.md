@@ -6,6 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2025-07-26
+
+### Added
+
+- Major improvements in API Docs experience and style - @lajbel, @imaginarny
+- Heading anchors, now clicking on docs headings and API members will give you a link to that section - @lajbel, @imaginarny
+
+### Fixed
+
+- Many "type kinds" that wasn't being rendered now are - @lajbel, @imaginarny
+
 ## [1.1.9] - 2025-07-24
 
 ### Fixed

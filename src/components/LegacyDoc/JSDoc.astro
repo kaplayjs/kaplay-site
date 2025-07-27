@@ -1,0 +1,32 @@
+---
+import JSDocDescription from "./JSDocDescription.astro";
+import JSDocTag from "./JSDocTag.astro";
+
+export interface Props {
+    data?: any;
+}
+
+const { data = {} } = Astro.props;
+const jsDoc = data.jsDoc || {};
+const tags = Object.entries(jsDoc.tags || {}).map(([tag, items]) => ({
+    tag,
+    items: items as any[],
+}));
+const fParams = data.parameters || [];
+const paramTag = tags.find((tag) => tag.tag === "param");
+const otherTags = tags.filter((tag) => tag.tag !== "param");
+---
+
+{
+    typeof jsDoc.doc === "object" ? (
+        <JSDocDescription data={data} />
+    ) : (
+        <p class="pb-2" data-jsdoc-description>
+            {jsDoc.doc}
+        </p>
+    )
+}
+
+{paramTag && paramTag.items.map((item, i) => <JSDocTag tag="param" items={[item]} paramName={fParams[i]?.name} />)}
+
+{otherTags && otherTags.map(({ items, tag }) => <JSDocTag tag={tag} items={items} />)}

@@ -1,0 +1,39 @@
+---
+import DocFor from "../DocFor.astro";
+import JSDoc from "../JSDoc.astro";
+import TypeBadge from "../Other/TypeBadge.astro";
+import Title from "../Utils/Title.astro";
+import type { DataMaybeMemberTypeProps } from "../Utils/types.ts";
+
+type TypeDataTypeAliasDeclaration = {
+    kind: "TypeAliasDeclaration";
+    id: number;
+    name: string;
+    type: any;
+};
+
+interface Props extends DataMaybeMemberTypeProps {
+    data: TypeDataTypeAliasDeclaration;
+}
+
+const { index, parent, data, depth } = Astro.props;
+const dataType = data.type;
+let renderInline = true;
+
+if ("members" in dataType) {
+    renderInline = false;
+}
+---
+
+<TypeBadge depth={depth}>Type</TypeBadge>
+<Title index={index} name={data.name} class="inline" parent={parent} depth={depth} data-dg-type-alias-declaration />{
+    renderInline && (
+        <strong data-dg-title="true">{}{":"}
+            <DocFor data={data.type} depth={depth + 1} parent={data.name} />
+        </strong>
+    )
+}{!renderInline && <strong data-dg-title="true">:</strong>}
+
+{!renderInline && <DocFor data={data.type} depth={depth + 1} parent={data.name} />}
+
+<JSDoc data={data} />

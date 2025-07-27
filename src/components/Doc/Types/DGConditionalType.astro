@@ -1,0 +1,28 @@
+---
+import DocFor from "../DocFor.astro";
+import DGTypeOperator from "../Other/DGTypeOperator.astro";
+import type { DataTypeProps } from "../Utils/types.ts";
+
+type TypeDataConditionalType = {
+    kind: "ConditionalType";
+    checkType: any;
+    extendsType: any;
+    trueType: any;
+    falseType: any;
+};
+
+interface Props extends DataTypeProps {
+    data: TypeDataConditionalType;
+}
+
+// [K in keyof T]: K extends keyof Comp ? never : T[K];
+const { data, depth } = Astro.props;
+console.log(data);
+---
+
+<span data-dg-conditional-type
+    ><DocFor data={data.checkType} depth={depth} /> extends <DocFor data={data.extendsType} depth={depth} /> ? <DocFor data={data.trueType} depth={depth} /> : <DocFor
+        data={data.falseType}
+        depth={depth}
+    />
+</span>

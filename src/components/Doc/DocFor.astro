@@ -1,0 +1,159 @@
+---
+import DGGetAccessor from "./Accessor/DGGetAccessor.astro";
+import DGSetAccessor from "./Accessor/DGSetAccessor.astro";
+import DGClassDeclaration from "./Declaration/DGClassDeclaration.astro";
+import DGEnumDeclaration from "./Declaration/DGEnumDeclaration.astro";
+import DGFunctionDeclaration from "./Declaration/DGFunctionDeclaration.astro";
+import DGInterfaceDeclaration from "./Declaration/DGInterfaceDeclaration.astro";
+import DGMethodDeclaration from "./Declaration/DGMethodDeclaration.astro";
+import DGPropertyDeclaration from "./Declaration/DGPropertyDeclaration.astro";
+import DGTypeAliasDeclaration from "./Declaration/DGTypeAliasDeclaration.astro";
+import DGAnyKeyword from "./Keywords/DGAnyKeyword.astro";
+import DGBooleanKeyword from "./Keywords/DGBooleanKeyword.astro";
+import DGNullKeyword from "./Keywords/DGNullKeyword.astro";
+import DGNumberKeyword from "./Keywords/DGNumberKeyword.astro";
+import DGStringKeyword from "./Keywords/DGStringKeyword.astro";
+import DGVoidKeyword from "./Keywords/DGVoidKeyword.astro";
+import EnumMember from "./Other/DGEnumMember.astro";
+import ParenthesizedType from "./Other/ParenthesizedType.astro";
+import TypeStringLiteral from "./Other/TypeStringLiteral.astro";
+import DGTypeReference from "./References/DGTypeReference.astro";
+import DGMethodSignature from "./Signatures/DGMethodSignature.astro";
+import DGPropertySignature from "./Signatures/DGPropertySignature.astro";
+import DGConditionalType from "./Types/DGConditionalType.astro";
+import DGMappedType from "./Types/DGMappedType.astro";
+import DGArrayType from "./Types/DGArrayType.astro";
+import DGFunctionType from "./Types/DGFunctionType.astro";
+import DGIndexedAccessType from "./Types/DGIndexedAccessType.astro";
+import DGIntersectionType from "./Types/DGIntersectionType.astro";
+import DGLiteralType from "./Types/DGLiteralType.astro";
+import DGRestType from "./Types/DGRestType.astro";
+import DGTupleType from "./Types/DGTupleType.astro";
+import DGUnionType from "./Types/DGUnionType.astro";
+import DGTypeOperator from "./Other/DGTypeOperator.astro";
+import DGNeverKeyword from "./Keywords/DGNeverKeyword.astro";
+import DGUndefinedKeyword from "./Keywords/DGUndefinedKeyword.astro";
+import DGTypeQuery from "./Other/DGTypeQuery.astro";
+import DGTypeLiteral from "./Types/DGTypeLiteral.astro";
+import DGUnknownKeyword from "./Keywords/DGUnknownKeyword.astro";
+import DGThisType from "./Keywords/DGThisType.astro";
+
+type Props = {
+    index?: number;
+    parent?: string;
+    data: any;
+    depth: number;
+};
+
+const { index, data, parent, depth } = Astro.props;
+const kind = data?.kind;
+---
+
+{
+    () => {
+        if (!kind) return "";
+
+        switch (kind) {
+            // Declarations
+            case "InterfaceDeclaration":
+                return <DGInterfaceDeclaration index={index} parent={parent} data={data} depth={depth} />;
+            case "ClassDeclaration":
+                return <DGClassDeclaration index={index} parent={parent} data={data} depth={depth} />;
+            case "PropertyDeclaration":
+                return <DGPropertyDeclaration index={index} parent={parent} data={data} depth={depth} />;
+            case "MethodDeclaration":
+                return <DGMethodDeclaration index={index} parent={parent} data={data} depth={depth} />;
+            case "EnumDeclaration":
+                return <DGEnumDeclaration index={index} parent={parent} data={data} depth={depth} />;
+            case "TypeAliasDeclaration":
+                return <DGTypeAliasDeclaration index={index} parent={parent} data={data} depth={depth} />;
+            case "FunctionDeclaration":
+                return <DGFunctionDeclaration index={index} parent={parent} data={data} depth={depth} />;
+
+            // References
+            case "TypeReference":
+                return <DGTypeReference data={data} depth={depth} />;
+
+            // DGs
+            case "FunctionType":
+                return <DGFunctionType data={data} depth={depth} />;
+            case "ArrayType":
+                return <DGArrayType data={data} depth={depth} />;
+            case "TupleType":
+                return <DGTupleType data={data} depth={depth} />;
+            case "RestType":
+                return <DGRestType data={data} depth={depth} />;
+            case "UnionType":
+                return <DGUnionType data={data} depth={depth} />;
+            case "IntersectionType":
+                return <DGIntersectionType data={data} depth={depth} />;
+            case "LiteralType":
+                return <DGLiteralType data={data} depth={depth} />;
+            case "IndexedAccessType":
+                return <DGIndexedAccessType data={data} depth={depth} />;
+            case "MappedType":
+                return <DGMappedType data={data} depth={depth} />;
+            case "ConditionalType":
+                return <DGConditionalType data={data} depth={depth} />;
+
+            // Accessors
+            case "SetAccessor":
+                return <DGSetAccessor index={index} parent={parent} data={data} depth={depth} />;
+            case "GetAccessor":
+                return <DGGetAccessor index={index} parent={parent} data={data} depth={depth} />;
+
+            // Others
+            case "StringLiteral":
+                return <TypeStringLiteral data={data} depth={depth} />;
+            case "TypeOperator":
+                return <DGTypeOperator data={data} depth={depth} />;
+            case "TypeQuery":
+                return <DGTypeQuery data={data} depth={depth} />;
+            case "TypeLiteral":
+                return <DGTypeLiteral index={index} parent={parent} data={data} depth={depth + 1} />;
+
+            // Keywords
+            case "StringKeyword":
+                return <DGStringKeyword data={data} depth={depth} />;
+            case "BooleanKeyword":
+                return <DGBooleanKeyword data={data} depth={depth} />;
+            case "NumberKeyword":
+                return <DGNumberKeyword data={data} depth={depth} />;
+            case "VoidKeyword":
+                return <DGVoidKeyword data={data} depth={depth} />;
+            case "NullKeyword":
+                return <DGNullKeyword data={data} depth={depth} />;
+            case "AnyKeyword":
+                return <DGAnyKeyword data={data} depth={depth} />;
+            case "NeverKeyword":
+                return <DGNeverKeyword data={data} depth={depth} />;
+            case "UndefinedKeyword":
+                return <DGUndefinedKeyword data={data} depth={depth} />;
+            case "UnknownKeyword":
+                return <DGUnknownKeyword data={data} depth={depth} />;
+            case "ThisType":
+                return <DGThisType data={data} depth={depth} />;
+
+            // Signatures
+            case "PropertySignature":
+                return <DGPropertySignature index={index} parent={parent} data={data} depth={depth} />;
+            case "MethodSignature":
+                return <DGMethodSignature index={index} parent={parent} data={data} depth={depth} />;
+
+            // Members
+            case "EnumMember":
+                return <EnumMember data={data} depth={depth} />;
+
+            case "ParenthesizedType":
+                return <ParenthesizedType data={data} depth={depth} />;
+
+            // Fallback
+            default:
+                return (
+                    <div class="bg-base-300 p-4 my-2">
+                        Parsing error with <span class="text-warning">{kind}</span>
+                    </div>
+                );
+        }
+    }
+}

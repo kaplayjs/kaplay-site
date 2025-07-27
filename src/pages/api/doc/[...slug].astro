@@ -1,12 +1,10 @@
 ---
 import doc from "@/../doc.json";
-import DocEntry from "@/components/Doc/DocEntry.astro";
+import DocEntry from "@/components/LegacyDoc/DocEntry.astro";
 
 export async function getStaticPaths() {
     const allDoc: any = doc.types;
-    const allDocKeys: string[] = Object.keys(doc.types).filter(
-        (k) => k !== "KAPLAYCtx" && k !== "KaboomCtx" && k !== "undefined",
-    );
+    const allDocKeys: string[] = Object.keys(doc.types).filter((k) => k !== "KAPLAYCtx" && k !== "KaboomCtx" && k !== "undefined");
 
     return allDocKeys.map((key) => {
         return {

@@ -1,0 +1,26 @@
+---
+import DocFor from "../DocFor.astro";
+import type { DataTypeProps } from "../Utils/types.ts";
+
+type TypeDataIntersectionType = {
+    kind: "IntersectionType";
+    id: number;
+    types: any[];
+};
+
+interface Props extends DataTypeProps {
+    data: TypeDataIntersectionType;
+}
+
+const { data, depth } = Astro.props;
+---
+
+<span data-dg-intersection-type
+    >{
+        data.types.map((t, i) => (
+            <Fragment>
+                <DocFor data={t} depth={depth} />{i < data.types.length - 1 ? " &" : ""}{}
+            </Fragment>
+        ))
+    }</span
+>

@@ -23,6 +23,14 @@
     animation: none;
 }
 
+:root {
+    --color-subheadings: color-mix(in oklch, currentColor 55%, white);
+}
+
+:root .prose {
+    --tw-prose-body: var(--fallback-bc, oklch(var(--bc)));
+}
+
 body {
     min-height: 100dvh;
     cursor: url(/cursor_default.png), auto;
@@ -36,18 +44,35 @@ h1,
 
 h2, h3, h4, h5, h6 {
     &, .drawer & {
-        --subheadings: color-mix(in oklch, currentColor 55%, white);
-        --tw-prose-headings: var(--subheadings);
-        color: var(--subheadings);
+        --tw-prose-headings: var(--color-subheadings);
+        color: var(--color-subheadings);
+    }
+}
+
+.heading-anchor-link {
+    all: inherit;
+    @apply underline underline-offset-2 decoration-white/0 hover:decoration-white/50
+        hover:text-white target:text-red-500 transition-all;
+
+    &::before {
+        content: "#";
+        @apply inline-block w-5 -ml-6 mr-1 text-[min(90%,1.75rem)] leading-[1]
+            text-white/80 text-center no-underline p-0.5 bg-base-100 rounded-md
+            invisible opacity-0 hover:visible hover:opacity-100 transition-all;
+    }
+
+    .prose h1 &::before {
+        @apply w-6 -ml-7 text-4xl leading-[1];
+    }
+
+    :target > &,
+    :target > :is(h1, h2, h3, h4, h5, h6) > & {
+        @apply text-white;
     }
 }
 
 iframe {
     max-width: 100%;
-}
-
-:root .prose {
-    --tw-prose-body: var(--fallback-bc,oklch(var(--bc)));
 }
 
 .btn:hover {
@@ -168,17 +193,6 @@ span.line.diff.remove::before {
 }
 
 /** UTILS **/
-.text-fira {
-    font-family: "Fira Code Variable", monospace;
-}
-
-.text-pangolin {
-    font-family: "Pangolin", monospace;
-}
-
-.text-rubik {
-    font-family: "Rubik Variable", sans-serif;
-}
 
 .special-friends:hover > .friends {
     @apply -translate-y-10 scale-100 transition-all duration-150;
