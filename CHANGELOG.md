@@ -11,6 +11,7 @@ and this project adheres to
 ### Added
 
 - Major improvements in API Docs experience and style
+- Heading anchors, now clicking on docs headings and API members will give you a link to that section
 
 ### Fixed
 
