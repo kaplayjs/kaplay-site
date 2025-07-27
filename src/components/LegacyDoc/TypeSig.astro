@@ -1,0 +1,132 @@
+---
+import DocEntry from "./DocEntry.astro";
+import Type from "./Type.astro";
+import TypeLink from "./TypeLink.astro";
+import TypeParams from "./TypeParams.astro";
+
+interface Props {
+    data: any;
+    parentData?: any;
+}
+
+const { data, parentData } = Astro.props;
+const keyword = data?.kind;
+---
+
+{
+    () => {
+        if (keyword === "NumberKeyword") {
+            return <Type>number</Type>;
+        }
+        if (keyword === "StringKeyword") {
+            return <Type>string</Type>;
+        }
+        if (keyword === "BooleanKeyword") {
+            return <Type>boolean</Type>;
+        }
+        if (keyword === "AnyKeyword") {
+            return <Type>any</Type>;
+        }
+        if (keyword === "NullKeyword") {
+            return <Type>null</Type>;
+        }
+        if (keyword === "UnknownKeyword") {
+            return <Type>unknown</Type>;
+        }
+        if (keyword === "ThisType") {
+            return <Type>this</Type>;
+        }
+        if (keyword === "UndefinedKeyword") {
+            return <Type>undefined</Type>;
+        }
+        if (keyword === "VoidKeyword") {
+            return <Type>void</Type>;
+        }
+        if (keyword === "NeverKeyword") {
+            return <Type>never</Type>;
+        }
+        if (keyword === "StringLiteral") {
+            return <Type>"{data.text}"</Type>;
+        }
+        if (keyword === "TypeParameter") {
+            return <Type>{data.name}</Type>;
+        }
+        if (keyword === "TypeReference") {
+            // prettier-ignore
+            return <Type><TypeLink name={data.typeName} /></Type>
+        }
+        if (keyword === "LiteralType") {
+            return <Astro.self data={data.literal} />;
+        }
+        if (keyword === "ParenthesizedType") {
+            return <Astro.self data={data.type} />;
+        }
+        if (keyword === "UnionType") {
+            return (
+                // prettier-ignore
+                <Fragment>{data?.types?.map((type: any, i: number) => (
+                    <Fragment><Astro.self data={type} />{i === data.types.length - 1 ? "" : " | "}</Fragment>
+                ))}</Fragment>
+            );
+        }
+        if (keyword === "FunctionType") {
+            return (
+                // prettier-ignore
+                <span><TypeParams data={data} /> {"=>"} <Astro.self data={data.type} /></span>
+            );
+        }
+        if (keyword === "TypeLiteral") {
+            if (!data.members || Object.keys(data.members).length === 0) {
+                return <Type>{"{}"}</Type>;
+            }
+
+            // prettier-ignore
+            return <Fragment>{Object.entries(data.members)?.map(([, variants]: [string, any]) =>
+                    variants?.map((mem: any, i: number) => (
+                        <DocEntry data={mem} parent={`${parentData?.name}`} />
+                    )),
+                )}</Fragment>
+        }
+        if (keyword === "ArrayType") {
+            return (
+                // prettier-ignore
+                <Fragment><Astro.self data={data.elementType} />[]</Fragment>
+            );
+        }
+        if (keyword === "IntersectionType") {
+            return (
+                // prettier-ignore
+                <Fragment>{data.types?.map((type: any, i: number) =>
+                    <span><Astro.self data={type} />{i === data.types.length - 1 ? "" : " & "}</span>,
+                )}</Fragment>
+            );
+        }
+        if (keyword === "IndexedAccessType") {
+            return (
+                // prettier-ignore
+                <Fragment><Astro.self data={data.objectType} />[<Astro.self data={data.indexType} />]</Fragment>
+            );
+        }
+        if (keyword === "TypeQuery") {
+            return <TypeLink name={data.exprName?.escapedText} />;
+        }
+        if (keyword === "TupleType") {
+            return (
+                <>
+                    [
+                    {data.elements?.map((type: any, i: number) => (
+                        <>
+                            <Astro.self data={type} />
+                            {i === data.elements.length - 1 ? "" : ", "}
+                        </>
+                    ))}
+                    ]
+                </>
+            );
+        }
+        return (
+            // prettier-ignore
+            <Fragment>{keyword ? <span class="text-warning">{keyword}</span> : ""}</Fragment>
+        );
+    }
+}

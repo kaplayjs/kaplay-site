@@ -1,0 +1,27 @@
+---
+import doc from "@/../doc.json";
+import DocEntry from "./DocEntry.astro";
+
+const allDoc = doc.types as any;
+const ctxDoc = allDoc.KaboomCtx?.[0].members ?? allDoc.KAPLAYCtx?.[0].members;
+const docGroups = doc.groups;
+const docEntries = Object.values(docGroups)
+    .map((group) => group.entries)
+    .flat();
+---
+
+{
+    docEntries.map((entry) => {
+        const referenceList = allDoc[entry as keyof typeof allDoc] ?? ctxDoc[entry as keyof typeof ctxDoc];
+
+        return (
+            <>
+                {referenceList?.map((reference: any) => (
+                    <DocEntry data={reference} />
+                ))}
+
+                <div class="divider" />
+            </>
+        );
+    })
+}
