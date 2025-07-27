@@ -1,10 +1,10 @@
 ---
-import type { SidebarEntry, SidebarProps } from "./Sidebar.astro";
+import type { SidebarFolderData, SidebarProps } from "./Sidebar.astro";
 import SidebarFolder from "./SidebarFolder.astro";
 import SidebarLink from "./SidebarLink.astro";
 
 interface Props extends SidebarProps {
-    sidebarEntries: SidebarEntry[];
+    sidebarEntries: SidebarFolderData[];
 }
 
 const { sidebarEntries, sidebarMode } = Astro.props as Props;
@@ -45,16 +45,8 @@ const url = Astro.url;
     </form>
 
     {
-        sidebarEntries.map(({ linkList, folder }) => {
-            return (
-                <SidebarFolder title={folder} id={folder} isOpen={linkList.length > 0}>
-                    {linkList.map(({ title, link }) => (
-                        <SidebarLink href={link} data-sidebar-entry data-title={title} data-url={link} current={link == url.pathname}>
-                            {title}
-                        </SidebarLink>
-                    ))}
-                </SidebarFolder>
-            );
+        sidebarEntries.map((folder) => {
+            return <SidebarFolder folder={folder} isOpen={folder.entries.length > 0} />;
         })
     }
 </div>

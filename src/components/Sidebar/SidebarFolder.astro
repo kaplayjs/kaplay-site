@@ -1,19 +1,34 @@
 ---
+import type { SidebarFolderData } from "./Sidebar.astro";
+import SidebarLink from "./SidebarLink.astro";
+
 interface Props {
-    title: string;
-    id: string;
+    folder: SidebarFolderData;
     isOpen?: boolean;
 }
 
-const { title, id, isOpen = true, ...props } = Astro.props;
+const { folder, isOpen = true, ...props } = Astro.props;
+const url = Astro.url;
 ---
 
-<div class="folder | flex flex-col mt-0.5" folder-state={isOpen ? "open" : "closed"} id={id} data-sidebar-folder {...props}>
+<div class="folder | flex flex-col mt-0.5" folder-state={isOpen ? "open" : "closed"} id={folder.name} data-sidebar-folder {...props}>
     <p class="folder-title | btn btn-ghost btn-sm w-full justify-start font-medium text-left text-lg text-white">
-        {title}
+        {folder.name}
     </p>
     <ul class="folder-content | mx-3.5 space-y-px pl-0.5 flex-col gap-2 border-l border-base-content/15">
-        <slot />
+        {
+            folder.entries.map((data) => {
+                if (data.kind == "Folder") {
+                    return <Astro.self folder={data} isOpen={false} />;
+                } else {
+                    return (
+                        <SidebarLink href={data.link} data-sidebar-entry data-title={data.name} data-url={data.link} current={data.link == url.pathname}>
+                            {data.name}
+                        </SidebarLink>
+                    );
+                }
+            })
+        }
     </ul>
 </div>
 

@@ -107,63 +107,101 @@ for (const statement of statements) {
 
 // contain the type data for doc gen
 const types = {};
-const groups = {};
-const sortedGroups = {};
-const miscGroup = {
-    name: "Miscalenous",
-    entries: [],
-};
+let groups = {};
 
-const groupsOrder = [
-    "Start",
-    "Assets",
-    "Game Obj",
-    "Components",
-    "Component Types",
-    "Scene",
-    "Input",
-    "Events",
-    "Info",
-    "Timer",
-    "Math",
-];
+// Group Data
+try {
+    let groupsData = await fs.readFile(`kaplay/data/groups.json`, "utf-8");
+    let groupsJson = JSON.parse(groupsData);
 
-const sectionsSort = {
-    Start: ["kaplay", "quit", "KAPLAYOpt"],
-};
+    const generateEntries = (obj, key) => {
+        const object = obj[key];
+
+        object.entries = [];
+        if (!object.subgroups) object.subgroups = {};
+
+        if ("subgroups" in object) {
+            for (const key of Object.keys(object.subgroups)) {
+                generateEntries(object.subgroups, key);
+            }
+        }
+    };
+
+    for (const key of Object.keys(groupsJson)) {
+        generateEntries(groupsJson, key);
+    }
+
+    groups = groupsJson;
+} catch (e) {
+    console.log(e);
+}
 
 let groupedItems = [];
 
 // #region Register Smt
 /**
  * @param {string} name
- * @param {boolean} isGrouped
  * @param {string} groupName
+ * @param {string} subgroupName
  */
-const registerEntry = (name, isGrouped, groupName) => {
+const registerEntry = (name, groupName, subgroupName) => {
     if (groupedItems.includes(name)) return;
 
-    if (isGrouped && groupName !== "Misc") {
+    if (groupName && groupName !== "Misc") {
         let group = groups[groupName];
+        let subGroup = group?.subgroups?.[subgroupName];
 
         if (!group) {
             group = {
                 name: groupName,
                 entries: [],
+                subgroups: {},
             };
 
             groups[groupName] = group;
         }
 
-        group.entries.push(name);
+        if (subgroupName && !subGroup) {
+            subGroup = {
+                name: subgroupName,
+                entries: [],
+                subgroups: {},
+            };
+
+            group.subgroups[subgroupName] = subGroup;
+        }
+
+        if (subgroupName) {
+            group.subgroups[subgroupName].entries.push(name);
+        } else {
+            group.entries.push(name);
+        }
     } else {
-        miscGroup.entries.push(name);
+        groups["Misc"].entries.push(name);
     }
 
     groupedItems.push(name);
 };
 
+const registerStatement = (stmnt) => {
+    const tags = stmnt.jsDoc?.tags ?? {};
+    const name = stmnt.name;
+
+    const groupName = tags["group"]?.[0];
+    const subgroupName = tags["subgroup"]?.[0];
+    if (tags["ignore"]) return;
+
+    registerEntry(name, groupName, subgroupName);
+};
+
 // #endregion
+
+// #region Register `kaplay`
+
+const kaplayStatement = Object.values(statements).find((s) =>
+    s.name === "kaplay" || s.name === "kaboom"
+);
+registerStatement(kaplayStatement);
 
 // #region Register `KAPLAYCtx` members
 const kaplayCtxStatement = Object.values(statements).find((s) =>
@@ -172,13 +210,7 @@ const kaplayCtxStatement = Object.values(statements).find((s) =>
 
 for (const statName in kaplayCtxStatement.members) {
     const mem = kaplayCtxStatement.members[statName];
-    const tags = mem[0].jsDoc?.tags ?? {};
-    const name = mem[0].name;
-
-    const isGrouped = Boolean(tags["group"]);
-    const groupName = tags["group"]?.[0];
-
-    registerEntry(name, isGrouped, groupName);
+    registerStatement(mem[0]);
 }
 // #endregion
 
@@ -189,54 +221,24 @@ for (const statement of statements) {
 
     types[statement.name].push(statement);
 
-    if (statement.name === undefined) continue;
-
-    if (statement.name === "KAPLAYCtx" || statement.name === "KaboomCtx") {
+    if (
+        statement.name === undefined
+        || statement.name === "KAPLAYCtx"
+        || statement.name === "KaboomCtx"
+        || statement.name === "kaplay"
+        || statement.name === "kaboom"
+    ) {
         continue;
     }
 
-    const tags = statement.jsDoc?.tags ?? {};
-    const name = statement.name;
-
-    const isGrouped = Boolean(tags["group"]);
-    const groupName = tags["group"]?.[0];
-
-    registerEntry(name, isGrouped, groupName);
-}
-
-for (const group of groupsOrder) {
-    sortedGroups[group] = groups[group];
-}
-
-for (const group of Object.keys(groups)) {
-    if (!sortedGroups[group]) {
-        sortedGroups[group] = groups[group];
-    }
-}
-
-sortedGroups["Miscalenous"] = miscGroup;
-
-for (const sectionOrder of Object.keys(sectionsSort)) {
-    const section = sortedGroups[sectionOrder];
-    if (!section) continue;
-
-    const sortedEntries = [];
-    for (const entry of sectionsSort[sectionOrder]) {
-        const index = section.entries.indexOf(entry);
-        if (index !== -1) {
-            sortedEntries.push(section.entries[index]);
-            section.entries.splice(index, 1);
-        }
-    }
-
-    section.entries = sortedEntries.concat(section.entries);
+    registerStatement(statement);
 }
 
 await fs.writeFile(
     "doc.json",
     JSON.stringify({
         types,
-        groups: sortedGroups,
+        groups,
     }),
 );
 
@@ -244,6 +246,6 @@ await fs.writeFile(
     "public/doc.json",
     JSON.stringify({
         types,
-        groups: sortedGroups,
+        groups,
     }),
 );

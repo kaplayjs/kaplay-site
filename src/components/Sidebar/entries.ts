@@ -6,7 +6,7 @@ import {
     type InferEntrySchema,
     type RenderedContent,
 } from "astro:content";
-import type { LinkListEntry, SidebarEntry } from "./Sidebar.astro";
+import type { SidebarFolderData, SidebarItemData } from "./Sidebar.astro";
 
 type Category = keyof typeof guidesData.categories;
 
@@ -17,11 +17,12 @@ export const getGuidesEntries = async () => {
     const guides = (await getCollection("guides")).filter(filterGuides);
     const categories = Object.keys(guidesData.categories);
 
-    const sortedGuides: LinkListEntry[] = guides.sort(sortGuides).map((
+    const sortedGuides: SidebarItemData[] = guides.sort(sortGuides).map((
         guide,
     ) => ({
+        kind: "Item",
         description: guide.data.description,
-        title: guide.data.title,
+        name: guide.data.title,
         link: `/guides/${guide.data.url ?? guide.id.split("/")[2]}`,
         folder: guide.id.split("/")[1],
     }));
@@ -30,10 +31,11 @@ export const getGuidesEntries = async () => {
         return guide.folder ?? "no-folder";
     });
 
-    const renderList: SidebarEntry[] = categories.map((category) => {
+    const renderList: SidebarFolderData[] = categories.map((category) => {
         return {
-            folder: guidesData.categories[<Category> category].displayName,
-            linkList: guidesByCategory[category] ?? [],
+            kind: "Folder",
+            name: guidesData.categories[<Category> category].displayName,
+            entries: guidesByCategory[category] ?? [],
         };
     });
 
@@ -41,7 +43,7 @@ export const getGuidesEntries = async () => {
 };
 
 export const getBlogEntries = async () => {
-    let renderList: SidebarEntry[] = [];
+    let renderList: SidebarFolderData[] = [];
 
     const guides = await getCollection("blog");
     const sortedEntries = guides
@@ -54,9 +56,11 @@ export const getBlogEntries = async () => {
 
     renderList = [
         {
-            folder: "Blog",
-            linkList: sortedEntries.map((entry: any) => ({
-                title: entry.data.title,
+            kind: "Folder",
+            name: "Blog",
+            entries: sortedEntries.map((entry: any) => ({
+                kind: "Item",
+                name: entry.data.title,
                 link: `/blog/${entry.slug}`,
                 description: "",
             })),
@@ -67,7 +71,7 @@ export const getBlogEntries = async () => {
 };
 
 export const getBookEntries = async () => {
-    let renderList: SidebarEntry[] = [];
+    let renderList: SidebarFolderData[] = [];
 
     const books = await getCollection("books");
     const sortedBooks = books.sort((a, b) => a.data.chapter - b.data.chapter);
@@ -90,8 +94,10 @@ export const getBookEntries = async () => {
 
     renderList = [
         ...Object.keys(booksByCategory).map((category) => ({
-            folder: booksInfo[category].title ?? category,
-            linkList: booksByCategory[category].map((book: any) => ({
+            kind: "Folder",
+            name: booksInfo[category].title ?? category,
+            entries: booksByCategory[category].map((book: any) => ({
+                kind: "Item",
                 title: book.data.title,
                 link: `/books/${book.slug.split("/")[1]}/${
                     book.slug.split("/")[2]
@@ -125,38 +131,54 @@ const getDocDescription = (item: unknown) => {
 };
 
 export const getDocEntries = async () => {
-    const renderList: SidebarEntry[] = [];
+    const renderList: SidebarFolderData[] = [];
     const ctxMembers = Object.keys(
         allDoc.KaboomCtx?.[0].members ?? allDoc.KAPLAYCtx?.[0].members,
     );
     const groups = doc.groups as any;
     const groupsKeys = Object.keys(doc.groups) as string[];
 
-    groupsKeys.map((groupName) => {
-        let registeredElements: string[] = [];
+    const getItems = (entries: string[]): SidebarItemData[] => {
+        return entries.map((item) => {
+            // Check if there's a global version of that Type,
+            // it works for example for prefer `Rect` over `KAPLAYCtx.Rect`
+            const isGlobal = allDoc[item] != null;
+            let asCtxMember = ctxMembers.includes(item);
+
+            if (isGlobal) {
+                asCtxMember = false;
+            }
+
+            return {
+                kind: "Item",
+                name: item,
+                link: asCtxMember ? `/doc/ctx/${item}` : `/doc/${item}`,
+                description: `${getDocEntryDescription(item)}`,
+            };
+        });
+    };
+
+    groupsKeys.map((groupKey) => {
+        const group = groups[groupKey];
+        let rootItems = getItems(group.entries);
+        let otherFolders: SidebarFolderData[] = [];
+
+        Object.keys(group.subgroups).forEach((subGroupKey) => {
+            const subgroup = group.subgroups[subGroupKey];
+
+            otherFolders.push({
+                entries: getItems(
+                    subgroup.entries,
+                ),
+                kind: "Folder",
+                name: subgroup.name,
+            });
+        });
 
         renderList.push({
-            folder: groupName,
-            linkList: groups[groupName].entries.filter((item: string) => {
-                if (registeredElements.includes(item)) return false;
-                registeredElements.push(item);
-                return true;
-            }).map((item: string) => {
-                // Check if there's a global version of that Type,
-                // it works for example for prefer `Rect` over `KAPLAYCtx.Rect`
-                const isGlobal = allDoc[item] != null;
-                let asCtxMember = ctxMembers.includes(item);
-
-                if (isGlobal) {
-                    asCtxMember = false;
-                }
-
-                return {
-                    title: item,
-                    link: asCtxMember ? `/doc/ctx/${item}` : `/doc/${item}`,
-                    description: `${getDocEntryDescription(item)}`,
-                };
-            }),
+            kind: "Folder",
+            name: group.name,
+            entries: [...rootItems, ...otherFolders],
         });
     });
 
