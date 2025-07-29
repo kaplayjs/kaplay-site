@@ -183,13 +183,26 @@ const registerEntry = (name, groupName, subgroupName) => {
     groupedItems.push(name);
 };
 
+const IGNORE_ENTRIES = [
+    "KAPLAYCtx",
+    "KaboomCtx",
+];
+
 const registerStatement = (stmnt) => {
     const tags = stmnt.jsDoc?.tags ?? {};
-    const name = stmnt.name;
+    if (Array.isArray(tags["ignore"])) return;
 
+    const name = stmnt.name;
     const groupName = tags["group"]?.[0];
     const subgroupName = tags["subgroup"]?.[0];
-    if (tags["ignore"]) return;
+
+    if (!types[stmnt.name]) {
+        types[stmnt.name] = [];
+    }
+
+    types[stmnt.name].push(stmnt);
+
+    if (IGNORE_ENTRIES.includes(name)) return;
 
     registerEntry(name, groupName, subgroupName);
 };
@@ -201,12 +214,15 @@ const registerStatement = (stmnt) => {
 const kaplayStatement = Object.values(statements).find((s) =>
     s.name === "kaplay" || s.name === "kaboom"
 );
+
 registerStatement(kaplayStatement);
 
 // #region Register `KAPLAYCtx` members
 const kaplayCtxStatement = Object.values(statements).find((s) =>
     s.name === "KAPLAYCtx" || s.name === "KaboomCtx"
 );
+
+registerStatement(kaplayCtxStatement);
 
 for (const statName in kaplayCtxStatement.members) {
     const mem = kaplayCtxStatement.members[statName];
@@ -215,12 +231,6 @@ for (const statName in kaplayCtxStatement.members) {
 // #endregion
 
 for (const statement of statements) {
-    if (!types[statement.name]) {
-        types[statement.name] = [];
-    }
-
-    types[statement.name].push(statement);
-
     if (
         statement.name === undefined
         || statement.name === "KAPLAYCtx"

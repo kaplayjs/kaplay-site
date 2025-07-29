@@ -46,7 +46,7 @@ const url = Astro.url;
 
     {
         sidebarEntries.map((folder) => {
-            return <SidebarFolder folder={folder} isOpen={folder.entries.length > 0} />;
+            return <SidebarFolder folder={folder} isOpen={folder.opened ?? true} />;
         })
     }
 </div>

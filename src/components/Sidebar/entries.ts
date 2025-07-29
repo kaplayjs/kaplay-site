@@ -172,12 +172,14 @@ export const getDocEntries = async () => {
                 ),
                 kind: "Folder",
                 name: subgroup.name,
-            });
+                opened: subgroup.closed ? false : true,
+            } as SidebarFolderData);
         });
 
         renderList.push({
             kind: "Folder",
             name: group.name,
+            opened: group.closed ? false : true,
             entries: [...rootItems, ...otherFolders],
         });
     });

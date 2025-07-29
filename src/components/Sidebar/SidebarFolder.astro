@@ -19,7 +19,7 @@ const url = Astro.url;
         {
             folder.entries.map((data) => {
                 if (data.kind == "Folder") {
-                    return <Astro.self folder={data} isOpen={false} />;
+                    return <Astro.self folder={data} isOpen={data.opened ?? true} />;
                 } else {
                     return (
                         <SidebarLink href={data.link} data-sidebar-entry data-title={data.name} data-url={data.link} current={data.link == url.pathname}>

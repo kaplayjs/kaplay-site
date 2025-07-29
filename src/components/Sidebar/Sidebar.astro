@@ -16,6 +16,8 @@ export interface SidebarFolderData {
     kind: "Folder";
     name: string;
     entries: (SidebarItemData | SidebarFolderData)[];
+    /** @default true */
+    opened?: boolean;
 }
 
 export type SidebarProps = {
