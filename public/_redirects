@@ -1,0 +1,15 @@
+/docs /docs/guides/
+
+/guides /docs/guides/ 301
+/guides/* /docs/guides/:splat 301
+
+/doc /docs/api/
+/doc/* /docs/api/:splat 301
+/reference /docs/api/reference
+
+/changelog https://github.com/kaplayjs/kaplay/blob/master/CHANGELOG.md
+
+/lib/kaplay.master.js https://cdn.kaplayjs.com/kaplay.master.js
+
+/github https://github.com/kaplayjs/kaplay
+/discord https://discord.com/invite/aQ6RuQm3TF
