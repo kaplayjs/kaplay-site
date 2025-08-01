@@ -40,7 +40,7 @@ kaplay({
 });
 ```
 
-You can find all options in the [**KAPLAYOpt**](/doc/KAPLAYOpt) type definition.
+You can find all options in the [**KAPLAYOpt**](/docs/api/KAPLAYOpt) type definition.
 
 ## Game Objects
 
@@ -72,7 +72,7 @@ game objects. For example:
 - `rect(width, height)` draws a rectangle.
 - `color(r, g, b)` sets the color of the object.
 
-We will go in depth on components in the [**Components**](/guides/components)
+We will go in depth on components in the [**Components**](/docs/guides/components)
 guide.
 
 ## Scenes
@@ -108,4 +108,4 @@ onKeyPress("space", () => {
 });
 ```
 
-We go in depth with events on the [**Events guide**](/guides/events) guide.
+We go in depth with events on the [**Events guide**](/docs/guides/events) guide.

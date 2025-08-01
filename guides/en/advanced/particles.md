@@ -7,7 +7,7 @@ url: particles
 # Introduction
 
 In this guide we will learn how to use the
-[`particles()` component](/doc/ctx/particles)
+[`particles()` component](/docs/api/ctx/particles)
 
 The particles component is a very efficient way of display tons of visual
 feedback, due to its optimized nature internally on KAPLAY.

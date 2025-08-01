@@ -65,7 +65,7 @@ export const secondLinksRow: NavbarLinksRow = {
         },
         {
             name: "Docs",
-            url: "/guides/",
+            url: "/docs/guides/",
             highlight: "docs",
             icon: assets.api_book.outlined,
         },
@@ -86,7 +86,7 @@ export const secondLinksRow: NavbarLinksRow = {
         },
         {
             name: "Docs (EN)",
-            url: "/guides/",
+            url: "/docs/guides/",
             highlight: "docs",
             icon: assets.api_book.outlined,
         },

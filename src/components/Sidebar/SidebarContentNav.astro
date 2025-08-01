@@ -27,7 +27,7 @@ const { headings } = Astro.props;
                 <img src={searchIcon.src} alt="search icon" class="h-7 w-7 object-scale-down" />
                 <span class="hidden sm:inline tracking-wide">SEARCH</span>
 
-                <kbd id="search-btn" class="kbd hidden md:inline-flex -mr-1 text-xs">CTRL + K</kbd>
+                <kbd data-search-btn class="kbd hidden md:inline-flex -mr-1 text-xs">CTRL + K</kbd>
             </button>
 
             {
@@ -75,10 +75,10 @@ const { headings } = Astro.props;
 
 <script>
     const isMac = navigator.userAgent.includes("Mac");
-    const searchBtn = document.querySelector("#search-btn");
+    const searchBtns = document.querySelectorAll("[data-search-btn]");
 
-    if (isMac && searchBtn) {
-        searchBtn.textContent = "⌘ + K";
+    if (isMac && searchBtns) {
+        searchBtns.forEach(b => b.textContent = "⌘ + K");
     }
 
     window.addEventListener("keydown", (e) => {
