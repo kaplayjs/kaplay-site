@@ -17,6 +17,7 @@ import remarkMath from "remark-math";
 import kaplayPackageJson from "./kaplay/package.json";
 import websitePackageJson from "./package.json";
 import { rehypeKAPLAY } from "./plugins/rehypeKAPLAY";
+import cloudflareRedirects from "astro-cloudflare-redirects";
 
 // https://astro.build/config
 export default defineConfig({
@@ -53,6 +54,7 @@ export default defineConfig({
         sitemap(),
         pagefind(),
         preact(),
+        cloudflareRedirects(),
     ],
     output: "static",
     contentLayer: true,
@@ -66,13 +68,6 @@ export default defineConfig({
         routing: {
             prefixDefaultLocale: false,
         },
-    },
-    redirects: {
-        "/docs": "/guides/install",
-        "/doc": "/docs",
-        "/changelog/":
-            "https://github.com/kaplayjs/kaplay/blob/master/CHANGELOG.md",
-        "/lib/kaplay.master.js": "https://cdn.kaplayjs.com/kaplay.master.js",
     },
     markdown: {
         gfm: true,

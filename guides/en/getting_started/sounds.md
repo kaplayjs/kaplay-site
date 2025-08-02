@@ -26,7 +26,7 @@ loadSound("soundName", "/path/to/sound.mp3");
 ## Playing sounds
 
 You can play sounds using the [`play()`](. The `play()` function takes the name
-of the sound, and some options proper of the [AudioPlayOpt](/doc/AudioPlayOpt/)
+of the sound, and some options proper of the [AudioPlayOpt](/docs/api/AudioPlayOpt/)
 interface.
 
 ```js
@@ -39,7 +39,7 @@ play("soundName", {
 
 ## Stopping sounds
 
-All `play()` returns an [AudioPlay](/doc/AudioPlay/) object that you can use to
+All `play()` returns an [AudioPlay](/docs/api/AudioPlay/) object that you can use to
 stop the sound.
 
 ```js

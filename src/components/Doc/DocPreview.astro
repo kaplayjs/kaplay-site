@@ -71,7 +71,7 @@
             modalType.innerHTML = `<div class="loading loading-dots"></div>`;
 
             // get html of the page
-            const page = await fetch(`/api/doc2${event.detail}`);
+            const page = await fetch(`/api/v2/doc${event.detail}`);
             const html = await page.text();
             const parser = new DOMParser();
             const typeDom = parser.parseFromString(html, "text/html");

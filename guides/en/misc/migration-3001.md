@@ -43,7 +43,7 @@ import kaboom from "https://unpkg.com/kaplay@3000.1.17/dist/kaboom.mjs";
 
 To try out new features, you have to install the `@next` version of KAPLAY.
 
-Check the [Installation Guide](/guides/install) for more information about
+Check the [Installation Guide](/docs/guides/install) for more information about
 installing KAPLAY.
 
 Check the

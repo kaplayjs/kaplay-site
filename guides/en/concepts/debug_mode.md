@@ -50,7 +50,7 @@ the objects.
 ## Changing the default key for activate the debug mode
 
 You can set the property
-[`KAPLAYOpt.debugKey`](/doc/KAPLAYOpt/#KAPLAYOpt-debugKey) to change the default
+[`KAPLAYOpt.debugKey`](/docs/api/KAPLAYOpt/#KAPLAYOpt-debugKey) to change the default
 key for activate the debug mode.
 
 ```js
@@ -62,7 +62,7 @@ kaplay({
 ## Disabling the debug mode
 
 If your game is ready to be published, you can disable the debug mode by setting
-the property [`KAPLAYOpt.debug`](/doc/KAPLAYOpt/#KAPLAYOpt-debug) to `false`.
+the property [`KAPLAYOpt.debug`](/docs/api/KAPLAYOpt/#KAPLAYOpt-debug) to `false`.
 
 ```js
 kaplay({

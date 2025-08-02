@@ -22,7 +22,7 @@ export const getGuidesEntries = async () => {
     ) => ({
         description: guide.data.description,
         title: guide.data.title,
-        link: `/guides/${guide.data.url ?? guide.id.split("/")[2]}`,
+        link: `/docs/guides/${guide.data.url ?? guide.id.split("/")[2]}`,
         folder: guide.id.split("/")[1],
     }));
 
@@ -153,7 +153,7 @@ export const getDocEntries = async () => {
 
                 return {
                     title: item,
-                    link: asCtxMember ? `/doc/ctx/${item}` : `/doc/${item}`,
+                    link: asCtxMember ? `/docs/api/ctx/${item}` : `/docs/api/${item}`,
                     description: `${getDocEntryDescription(item)}`,
                 };
             }),
