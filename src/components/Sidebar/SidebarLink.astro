@@ -21,7 +21,7 @@ const { href, target, reloadAll, icon, ...props } = Astro.props;
         data-astro-reload={reloadAll ? "all" : undefined}
         {...props}
     >
-        {icon && assets?.[icon]?.outlined && <img src={assets[icon].outlined} alt="Sidebar Icon" class="h-6 w-6" />}
+        {icon && assets?.[icon]?.kind == "Sprite" && assets?.[icon]?.outlined && <img src={assets[icon].outlined} alt="Sidebar Icon" class="h-6 w-6" />}
 
         <slot />
     </a>

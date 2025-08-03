@@ -20,10 +20,10 @@ const columnsClass =
         {title}
 
         {
-            icon && (
+            icon && assets?.[icon]?.kind == "Sprite" && (
                 <img
                     class="icon h-6 object-scale-down"
-                    src={assets[icon as keyof typeof assets].outlined}
+                    src={assets[icon].outlined}
                     loading={"eager"}
                     aria-hidden="true"
                     width="40"

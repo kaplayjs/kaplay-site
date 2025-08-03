@@ -10,11 +10,9 @@ type Props = {
 const { crew = "burpman", title = "Level Up!" } = Astro.props;
 ---
 
-<aside
-    class="mb-4 mt-4 rounded-l-md rounded-r-box border-l-8 border-primary bg-base-200 px-4 py-2 text-base"
->
+<aside class="mb-4 mt-4 rounded-l-md rounded-r-box border-l-8 border-primary bg-base-200 px-4 py-2 text-base">
     <div class="not-prose flex items-center gap-2 text-xl font-bold">
-        <img src={assets[crew].outlined} class="my-2 h-8" />
+        {assets[crew].kind == "Sprite" && <img src={assets[crew].outlined} class="my-2 h-8" />}
         <p set:html={marked.parse(title)} />
     </div>
 
