@@ -33,6 +33,18 @@ function receives the name of the scene you want to go.
 go("game");
 ```
 
+**IMPORTANT**: switching current scene to new one will destroy all game objects which have been created.
+That could be unexpected for some your objects like HUD, menus or other UI elements. To prevent that and keep
+required game object you can use `stay()` component.
+
+```js
+add([
+    text('Player score: 123`),
+    pos(12, 12),
+    stay()
+]);
+```
+
 ## Passing Data Between Scenes
 
 Passing data between scenes is quite easy, `go()` and `scene()` functions have
