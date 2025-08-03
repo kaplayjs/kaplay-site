@@ -33,15 +33,26 @@ function receives the name of the scene you want to go.
 go("game");
 ```
 
-**IMPORTANT**: switching current scene to new one will destroy all game objects which have been created.
-That could be unexpected for some your objects like HUD, menus or other UI elements. To prevent that and keep
-required game object you can use `stay()` component.
+**IMPORTANT**: Switching the current scene to a new one will destroy all existing game objects.
+That could be unexpected for some of your objects like HUD, menus or other UI elements. To prevent that and keep
+required game objects you can use `stay()` component.
 
 ```js
-add([
-    text('Player score: 123`),
-    pos(12, 12),
+const menuBtn = add([
+    rect(50, 20, { radius: 2 }),
+    pos(35, 20),
+    area(),
+    outline(2),
+    anchor("center"),
+    color(255, 255, 255),
     stay()
+]);
+
+menuBtn.add([
+    pos(1, 1),
+    text('Menu', { size: 12 }),
+    anchor("center"),
+    color(0, 0, 0),
 ]);
 ```
 
