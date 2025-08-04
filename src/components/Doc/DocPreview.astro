@@ -6,11 +6,17 @@
         "open:opacity-100 open:pointer-events-auto",
     ]}
 >
+    <form method="dialog" class="hidden min-[500px]:block xl:hidden">
+        <button class="fixed inset-0 bg-[#0a0c10]/50 focus:outline-none" aria-label="Close"></button>
+    </form>
+
     <div
-        class="fixed top-0 w-full max-w-[inherit] md:max-w-[max(min(calc(100%-52rem-300px),53rem),500px)] h-16 px-px bg-base-50 z-10 focus:outline-none scale-x-95 group-open:scale-x-100 origin-top-right transition-transform"
-        tabindex="0"
+        class="fixed top-0 w-full max-w-[inherit] md:max-w-[max(min(calc(100%-52rem-300px),53rem),500px)] h-16 px-px bg-base-50 z-10 scale-x-95 group-open:scale-x-100 origin-top-right transition-transform"
     >
-        <div class="flex items-center gap-2 h-full px-3 text-base-content bg-base-200 rounded-b-box">
+        <div
+            class="flex items-center gap-2 h-full px-3 text-base-content bg-base-200 rounded-b-box focus:outline-none overflow-hidden overflow-x-auto"
+            tabindex="0"
+        >
             <form method="dialog">
                 <button class="btn btn-ghost min-h-10 h-10 px-0 bg-base-100 aspect-square">
                     <svg
@@ -31,9 +37,9 @@
                     id="btn-back"
                     type="button"
                     class:list={[
-                        "group btn btn-ghost flex min-h-10 h-10 px-0 bg-base-100 aspect-square rounded-r-sm select-none",
+                        "group btn btn-ghost !flex min-h-10 h-10 px-0 bg-base-100 aspect-square rounded-r-sm select-none",
                         "disabled:bg-base-100/60 disabled:text-current",
-                        "tooltip tooltip-bottom before:left-0 before:translate-x-0 before:mt-2 after:mt-2",
+                        "[@media(hover:hover)]:tooltip tooltip-bottom before:left-0 before:translate-x-0 before:mt-2 after:mt-2",
                     ]}
                     disabled
                 >
@@ -54,9 +60,9 @@
                     id="btn-forward"
                     type="button"
                     class:list={[
-                        "group btn btn-ghost flex min-h-10 h-10 px-0 bg-base-100 aspect-square rounded-l-sm select-none",
+                        "group btn btn-ghost !flex min-h-10 h-10 px-0 bg-base-100 aspect-square rounded-l-sm select-none",
                         "disabled:bg-base-100/60 disabled:text-current",
-                        "tooltip tooltip-bottom before:left-0 before:translate-x-0 before:mt-2 after:mt-2",
+                        "[@media(hover:hover)]:tooltip tooltip-bottom before:left-0 before:translate-x-0 before:mt-2 after:mt-2",
                     ]}
                     disabled
                 >
@@ -76,13 +82,18 @@
 
             <div class="flex gap-2 ml-auto">
                 <div class="flex gap-px">
-                    <a data-open-link class="btn btn-ghost bg-base-100 min-h-10 h-10 px-3.5 font-medium rounded-r-sm [&:not(:hover)]:text-base-content">
+                    <a
+                        data-open-link
+                        class="btn btn-ghost bg-base-100 min-h-10 h-10 px-3.5 font-medium rounded-r-sm [&:not(:hover)]:text-base-content"
+                        href="#"
+                    >
                         Open
                     </a>
 
                     <a
                         data-open-link
                         class="btn btn-ghost bg-base-100 min-h-10 h-10 px-0 sm:pl-3.5 sm:pr-3 aspect-square sm:aspect-auto font-medium rounded-l-sm [&:not(:hover)]:text-base-content"
+                        href="#"
                         target="_blank"
                     >
                         <span class="hidden sm:inline">In new tab</span>
@@ -118,7 +129,7 @@
                         data-tip="Copy link"
                         aria-hidden="true"
                     >
-                        <img class="opacity-70 [.btn:hover_&]:opacity-100 transition-opacity" src="/copy.png" width="22" height="22" aria-hidden="true" />
+                        <img class="opacity-75 [.btn:hover_&]:opacity-100 transition-opacity" src="/copy.png" width="22" height="22" aria-hidden="true" />
                     </span>
 
                     <span
@@ -133,11 +144,11 @@
         </div>
     </div>
 
-    <div id="preview-aside" class="sticky top-16 h-[calc(100vh-4rem)] p-px bg-base-50 scale-x-95 group-open:scale-x-100 origin-top-right transition-transform">
+    <div id="preview-aside" class="sticky top-16 h-[calc(100dvh-4rem)] p-px bg-base-50 scale-x-95 group-open:scale-x-100 origin-top-right transition-transform">
         <div class="h-full bg-base-100/60 rounded-box overflow-clip">
             <div
                 id="preview-content"
-                class="sticky top-16 max-h-full p-4 md:p-8 overflow-y-auto text-base-content break-all scrollbar-thin scroll-pt-8 scale-x-105 group-open:scale-x-100 origin-top-left transition-[transform,opacity]"
+                class="sticky top-16 max-h-full p-4 md:p-8 overflow-y-auto overscroll-y-contain lg:overscroll-auto text-base-content break-words scrollbar-thin scroll-pt-8 scale-x-105 group-open:scale-x-100 origin-top-left transition-[transform,opacity]"
             ></div>
         </div>
     </div>

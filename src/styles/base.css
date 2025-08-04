@@ -32,6 +32,10 @@
     --tw-prose-body: var(--fallback-bc, oklch(var(--bc)));
 }
 
+html:has(#preview-dialog[open]) {
+    @apply max-xl:overflow-hidden max-xl:[scrollbar-gutter:stable];
+}
+
 body {
     min-height: 100dvh;
     cursor: url(/cursor_default.png), auto;
