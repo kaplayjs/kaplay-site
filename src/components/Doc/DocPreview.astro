@@ -14,7 +14,7 @@
         class="fixed top-0 w-full max-w-[inherit] md:max-w-[max(min(calc(100%-52rem-300px),53rem),500px)] h-16 px-px bg-base-50 z-10 scale-x-95 group-open:scale-x-100 origin-top-right transition-transform"
     >
         <div
-            class="flex items-center gap-2 h-full px-3 text-base-content bg-base-200 rounded-b-box focus:outline-none overflow-hidden overflow-x-auto"
+            class="flex items-center gap-2 h-full px-3 text-base-content bg-base-200 rounded-b-box focus:outline-none max-[319px]:overflow-hidden max-[319px]:overflow-x-auto"
             tabindex="0"
         >
             <form method="dialog">
@@ -39,7 +39,7 @@
                     class:list={[
                         "group btn btn-ghost !flex min-h-10 h-10 px-0 bg-base-100 aspect-square rounded-r-sm select-none",
                         "disabled:bg-base-100/60 disabled:text-current",
-                        "[@media(hover:hover)]:tooltip tooltip-bottom before:left-0 before:translate-x-0 before:mt-2 after:mt-2",
+                        "hover-hover:tooltip hover-hover:tooltip-bottom before:left-0 before:translate-x-0 before:mt-2 after:mt-2",
                     ]}
                     disabled
                 >
@@ -62,7 +62,7 @@
                     class:list={[
                         "group btn btn-ghost !flex min-h-10 h-10 px-0 bg-base-100 aspect-square rounded-l-sm select-none",
                         "disabled:bg-base-100/60 disabled:text-current",
-                        "[@media(hover:hover)]:tooltip tooltip-bottom before:left-0 before:translate-x-0 before:mt-2 after:mt-2",
+                        "hover-hover:tooltip hover-hover:tooltip-bottom before:left-0 before:translate-x-0 before:mt-2 after:mt-2",
                     ]}
                     disabled
                 >
@@ -228,7 +228,7 @@
         // data-type-link(s) and anchors
         const registerLinks = () => {
             const linkButtons = document.querySelectorAll<HTMLSpanElement>("[data-type-link]");
-            const anchors = previewDialog.querySelectorAll<HTMLAnchorElement>("[href^='#']");
+            const anchors = previewDialog.querySelectorAll<HTMLAnchorElement>("[href^='#']:not([href='#'])");
 
             linkButtons.forEach((button) => {
                 if (button.dataset.checking === "true") return;
@@ -259,7 +259,9 @@
                         e.preventDefault();
                         e.stopPropagation();
                         scrollToAnchor(a);
-                        window.history.replaceState(null, "", a.href);
+                        openLinks.forEach(
+                            (l) => (l.href = l.href.includes("#") ? l.href.replace(/#.*/, a.getAttribute("href")!) : (l.href += a.getAttribute("href"))),
+                        );
                     },
                     true,
                 );
@@ -369,7 +371,6 @@
         const updateUrl = (path: string) => {
             const newUrl = new URL(window.location.toString());
             newUrl.searchParams.set("preview", path.replace(/^\//, ""));
-            newUrl.hash = window.location.hash;
             window.history.replaceState({ preview: path }, "", newUrl);
         };
 

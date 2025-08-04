@@ -30,7 +30,7 @@ if (index) id += `-${index}`;
     data-depth={depth}
     data-doc-entry-name={data?.name ?? ""}
     class:list={[
-        "group font-code [&+[data-depth='0']]:mt-8",
+        "group font-code [&+[data-depth='0']]:mt-8 break-words",
         {
             "py-3 pl-4 border-l border-base-content/10": depth > 0,
             "": depth > 0 && divider,

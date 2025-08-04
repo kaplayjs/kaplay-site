@@ -66,7 +66,7 @@ h2, h3, h4, h5, h6 {
             invisible opacity-0 hover:visible hover:opacity-100 transition-all;
     }
 
-    .preview &::before {
+    #preview-dialog &::before {
         background-color: color-mix(in oklch, oklch(var(--b1)) 60%, var(--b0));
     }
 
