@@ -13,14 +13,18 @@ const sponsorImages = import.meta.glob<{ default: ImageMetadata }>(
 
 type Props = {
     class?: string;
+    friendsClass?: string;
+    friendsInnerClass?: string;
 };
 
-const { class: className } = Astro.props;
+const { class: className, friendsClass, friendsInnerClass } = Astro.props;
 ---
 
 <FriendsBelow
     friends={["bag", "ghosty", "ghostiny", "kat", "burpman", "mark"]}
     offset={2}
+    class={friendsClass}
+    innerClass={friendsInnerClass}
 >
     <footer
         class:list={[
@@ -32,13 +36,13 @@ const { class: className } = Astro.props;
             class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 md:grid-cols-3 lg:[grid-template-columns:1.5fr_2fr_2fr_1.5fr] max-w-[1545px] mx-auto"
         >
             <FooterNav title="KAPLAY" icon="pog">
-                <FooterLink href="/guides/install">
+                <FooterLink href="/docs/guides/install">
                     Installing KAPLAY
                 </FooterLink>
-                <FooterLink href="/guides/starting">
+                <FooterLink href="/docs/guides/starting">
                     Basics of KAPLAY
                 </FooterLink>
-                <FooterLink href="/guides/components">
+                <FooterLink href="/docs/guides/components">
                     Components of KAPLAY
                 </FooterLink>
             </FooterNav>

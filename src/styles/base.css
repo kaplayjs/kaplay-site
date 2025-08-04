@@ -199,6 +199,10 @@ span.line.diff.remove::before {
 
 /** UTILS **/
 
+.text-base-subheading {
+    color: var(--color-subheadings);
+}
+
 .special-friends:hover > .friends {
     @apply -translate-y-10 scale-100 transition-all duration-150;
 }

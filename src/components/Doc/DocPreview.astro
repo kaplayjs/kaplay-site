@@ -183,7 +183,7 @@
 
             registerLinks();
 
-            openLinks.forEach((a) => (a.href = `/doc${event.detail}`));
+            openLinks.forEach((a) => (a.href = `/docs/api${event.detail}`));
 
             if (window.location.hash) scrollToAnchor(previewContent.querySelector(`[href="${window.location.hash}"]`)!);
 
@@ -276,7 +276,7 @@
                     showLoader();
                 }
 
-                const page = await fetch(`/api/doc2${path}`);
+                const page = await fetch(`/api/v2/doc${path}`);
                 const html = await page.text();
                 const parser = new DOMParser();
                 const typeDom = parser.parseFromString(html, "text/html");
@@ -342,7 +342,7 @@
             updateUrl(path);
             updateNavButtons();
 
-            openLinks.forEach((a) => (a.href = `/doc${path}`));
+            openLinks.forEach((a) => (a.href = `/docs/api${path}`));
         };
 
         const updateNavButtons = () => {

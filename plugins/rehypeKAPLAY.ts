@@ -44,5 +44,5 @@ const getUrl = (element: Element) => {
 };
 
 const isDoc = (url: string) => {
-    return url.startsWith("/doc");
+    return url.startsWith("/docs/api");
 };
