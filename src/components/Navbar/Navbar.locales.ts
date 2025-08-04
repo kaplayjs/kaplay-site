@@ -8,6 +8,13 @@ interface NavbarLink {
     target?: string;
     reload?: boolean;
     highlight?: "support" | "docs" | false;
+    dropdown?: {
+        name: string;
+        url: string;
+        icon: string;
+        target?: string;
+        reload?: boolean;
+    }[];
 }
 
 type NavbarLinksRow = Record<Locale, NavbarLink[]>;
@@ -68,6 +75,18 @@ export const secondLinksRow: NavbarLinksRow = {
             url: "/docs/guides/",
             highlight: "docs",
             icon: assets.api_book.outlined,
+            dropdown: [
+                {
+                    name: "Guides",
+                    url: "/docs/guides/",
+                    icon: assets.marks_legend.outlined,
+                },
+                {
+                    name: "API Reference",
+                    url: "/docs/api/",
+                    icon: assets.api_book.outlined,
+                },
+            ],
         },
     ],
     "es": [
@@ -89,6 +108,18 @@ export const secondLinksRow: NavbarLinksRow = {
             url: "/docs/guides/",
             highlight: "docs",
             icon: assets.api_book.outlined,
+            dropdown: [
+                {
+                    name: "Guías (EN)",
+                    url: "/docs/guides/",
+                    icon: assets.marks_legend.outlined,
+                },
+                {
+                    name: "API (EN)",
+                    url: "/docs/api/",
+                    icon: assets.api_book.outlined,
+                },
+            ],
         },
     ],
 };
