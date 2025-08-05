@@ -7,7 +7,7 @@
     ]}
 >
     <form method="dialog" class="hidden min-[500px]:block xl:hidden">
-        <button class="fixed inset-0 bg-[#0a0c10]/50 focus:outline-none" aria-label="Close"></button>
+        <button class="fixed inset-0 bg-[#0a0c10]/50 focus:outline-none" aria-label="Close" value="close"></button>
     </form>
 
     <div
@@ -18,7 +18,7 @@
             tabindex="0"
         >
             <form method="dialog">
-                <button class="btn btn-ghost min-h-10 h-10 px-0 bg-base-100 aspect-square">
+                <button class="btn btn-ghost min-h-10 h-10 px-0 bg-base-100 aspect-square" aria-label="Close" value="close">
                     <svg
                         width="16"
                         height="16"
@@ -162,11 +162,13 @@
     declare global {
         interface Window {
             previewContentCache: Record<string, HTMLElement>;
+            directPreviewNavigation: boolean | null;
         }
     }
 
     document.addEventListener("astro:page-load", () => {
         window["previewContentCache"] ??= {};
+        window.directPreviewNavigation ??= !document.referrer && location.search.includes("preview");
         const history: string[] = [];
         let curHistoryIndex = -1;
 
@@ -175,6 +177,15 @@
         const backBtn = document.querySelector<HTMLButtonElement>("#btn-back");
         const forwardBtn = document.querySelector<HTMLButtonElement>("#btn-forward");
         const openLinks = document.querySelectorAll<HTMLAnchorElement>("[data-open-link]")!;
+
+        const openModal = (path: string) => {
+            const newUrl = new URL(window.location.toString());
+            newUrl.searchParams.set("preview", path.replace(/^\//, ""));
+            window.history.pushState({ preview: path }, "", newUrl);
+
+            previewDialog.dispatchEvent(new CustomEvent("onSetDocPreview", { detail: path }));
+            previewDialog.show();
+        };
 
         previewDialog.addEventListener("onSetDocPreview", async (e) => {
             const event = e as CustomEvent<string>;
@@ -204,23 +215,27 @@
             });
         });
 
-        previewDialog.addEventListener("close", () => {
-            const newUrl = new URL(window.location.toString());
-            newUrl.searchParams.delete("preview");
-            newUrl.hash = "";
-            window.history.replaceState(null, "", newUrl);
+        previewDialog.addEventListener("close", () =>
+            setTimeout(() => {
+                requestAnimationFrame(() => {
+                    if (previewDialog.returnValue == "close") {
+                        if (window.directPreviewNavigation) {
+                            const url = new URL(window.location.toString());
+                            url.searchParams.delete("preview");
+                            window.history.replaceState({}, "", url);
+                            window.directPreviewNavigation = false;
+                        } else {
+                            window.history.back();
+                        }
+                    }
 
-            setTimeout(
-                () =>
-                    requestAnimationFrame(() => {
-                        curHistoryIndex = -1;
-                        setHtml(window.previewContentCache[history[0]]);
-                        history.splice(0, Infinity);
-                        updateNavButtons();
-                    }),
-                150,
-            );
-        });
+                    curHistoryIndex = -1;
+                    setHtml(window.previewContentCache[history[0]]);
+                    history.splice(0, Infinity);
+                    updateNavButtons();
+                });
+            }, 150),
+        );
 
         backBtn?.addEventListener("click", () => navigate(-1), { capture: true, passive: true });
         forwardBtn?.addEventListener("click", () => navigate(1), { capture: true, passive: true });
@@ -236,18 +251,16 @@
 
                 button.addEventListener("click", () => {
                     const linkType = button.dataset.linkType;
+                    if (!linkType) return;
+
                     const previewDialog = document.querySelector<HTMLDialogElement>("#preview-dialog")!;
 
                     if (isBottomed()) previewDialog?.scrollIntoView(false);
 
-                    if (linkType && previewDialog) {
-                        previewDialog.dispatchEvent(
-                            new CustomEvent("onSetDocPreview", {
-                                detail: linkType,
-                            }),
-                        );
-
-                        previewDialog.show();
+                    if (previewDialog.open) {
+                        previewDialog.dispatchEvent(new CustomEvent("onSetDocPreview", { detail: linkType }));
+                    } else {
+                        openModal(linkType);
                     }
                 });
             });
@@ -258,6 +271,7 @@
                     (e) => {
                         e.preventDefault();
                         e.stopPropagation();
+                        window.history.replaceState(window.history.state, "", a.getAttribute("href")!);
                         scrollToAnchor(a);
                         openLinks.forEach(
                             (l) => (l.href = l.href.includes("#") ? l.href.replace(/#.*/, a.getAttribute("href")!) : (l.href += a.getAttribute("href"))),
