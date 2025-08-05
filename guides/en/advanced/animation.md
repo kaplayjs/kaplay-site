@@ -141,3 +141,15 @@ const obj = add([
     animate({ relative: true }),
 ]);
 ```
+
+If you want to change the animation for a property that you have animated before, 
+like when you're doing a fade-in/fade-out animation for example, you need to use `unanimate` or `unanimateAll`. 
+You also need to reset the animation playback by calling `animation.seek(0)`.
+
+```js
+obj.animate('opacity', [0, 1], {duration: 1, loops: 1});
+// then somewhere later
+obj.unanimate('opacity');
+obj.animation.seek(0);
+obj.animate('opacity', [1, 0], {duration: 1, loops: 1});
+```
