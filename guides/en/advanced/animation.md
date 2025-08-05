@@ -148,9 +148,9 @@ You also need to reset the animation playback by calling `animation.seek(0)` (ne
 the internal timer does not reset when you call `unanimate` or `unanimateAll` so if you don't, it will instantly jump to the end).
 
 ```js
-obj.animate('opacity', [0, 1], {duration: 1, loops: 1});
+obj.animate("opacity", [0, 1], { duration: 1, loops: 1 });
 // then somewhere later
-obj.unanimate('opacity');
+obj.unanimate("opacity");
 obj.animation.seek(0);
-obj.animate('opacity', [1, 0], {duration: 1, loops: 1});
+obj.animate("opacity", [1, 0], { duration: 1, loops: 1 });
 ```
