@@ -162,13 +162,11 @@
     declare global {
         interface Window {
             previewContentCache: Record<string, HTMLElement>;
-            directPreviewNavigation: boolean | null;
         }
     }
 
     document.addEventListener("astro:page-load", () => {
         window["previewContentCache"] ??= {};
-        window.directPreviewNavigation ??= !document.referrer && location.search.includes("preview");
         const history: string[] = [];
         let curHistoryIndex = -1;
 
@@ -178,25 +176,16 @@
         const forwardBtn = document.querySelector<HTMLButtonElement>("#btn-forward");
         const openLinks = document.querySelectorAll<HTMLAnchorElement>("[data-open-link]")!;
 
-        const openModal = (path: string) => {
-            const newUrl = new URL(window.location.toString());
-            newUrl.searchParams.set("preview", path.replace(/^\//, ""));
-            window.history.pushState({ preview: path }, "", newUrl);
-
-            previewDialog.dispatchEvent(new CustomEvent("onSetDocPreview", { detail: path }));
-            previewDialog.show();
-        };
-
         previewDialog.addEventListener("onSetDocPreview", async (e) => {
             const event = e as CustomEvent<string>;
             const previewContent = document.getElementById("preview-content")!;
-
-            updateUrl(event.detail);
 
             if (history && history[curHistoryIndex] == event.detail) {
                 previewContent.scrollTo(0, 0);
                 return;
             }
+
+            updateUrl(event.detail);
 
             openLinks.forEach((a) => (a.href = ""));
 
@@ -218,16 +207,10 @@
         previewDialog.addEventListener("close", () =>
             setTimeout(() => {
                 requestAnimationFrame(() => {
-                    if (previewDialog.returnValue == "close") {
-                        if (window.directPreviewNavigation) {
-                            const url = new URL(window.location.toString());
-                            url.searchParams.delete("preview");
-                            window.history.replaceState({}, "", url);
-                            window.directPreviewNavigation = false;
-                        } else {
-                            window.history.back();
-                        }
-                    }
+                    const url = new URL(window.location.toString());
+                    url.searchParams.delete("preview");
+                    url.hash = "";
+                    window.history.replaceState({}, "", url);
 
                     curHistoryIndex = -1;
                     setHtml(window.previewContentCache[history[0]]);
@@ -237,8 +220,8 @@
             }, 150),
         );
 
-        backBtn?.addEventListener("click", () => navigate(-1), { capture: true, passive: true });
-        forwardBtn?.addEventListener("click", () => navigate(1), { capture: true, passive: true });
+        backBtn?.addEventListener("click", () => previewNavigate(-1), { capture: true, passive: true });
+        forwardBtn?.addEventListener("click", () => previewNavigate(1), { capture: true, passive: true });
 
         // data-type-link(s) and anchors
         const registerLinks = () => {
@@ -257,11 +240,8 @@
 
                     if (isBottomed()) previewDialog?.scrollIntoView(false);
 
-                    if (previewDialog.open) {
-                        previewDialog.dispatchEvent(new CustomEvent("onSetDocPreview", { detail: linkType }));
-                    } else {
-                        openModal(linkType);
-                    }
+                    previewDialog.dispatchEvent(new CustomEvent("onSetDocPreview", { detail: linkType }));
+                    previewDialog.show();
                 });
             });
 
@@ -271,7 +251,7 @@
                     (e) => {
                         e.preventDefault();
                         e.stopPropagation();
-                        window.history.replaceState(window.history.state, "", a.getAttribute("href")!);
+                        window.history.replaceState({}, "", a.getAttribute("href")!);
                         scrollToAnchor(a);
                         openLinks.forEach(
                             (l) => (l.href = l.href.includes("#") ? l.href.replace(/#.*/, a.getAttribute("href")!) : (l.href += a.getAttribute("href"))),
@@ -358,7 +338,7 @@
             updateNavButtons();
         };
 
-        const navigate = (dir: 1 | -1) => {
+        const previewNavigate = (dir: 1 | -1) => {
             const newHistoryIndex = Math.min(Math.max(0, curHistoryIndex + dir), history.length - 1);
 
             if (newHistoryIndex == curHistoryIndex) return;
@@ -385,7 +365,7 @@
         const updateUrl = (path: string) => {
             const newUrl = new URL(window.location.toString());
             newUrl.searchParams.set("preview", path.replace(/^\//, ""));
-            window.history.replaceState({ preview: path }, "", newUrl);
+            window.history.replaceState({}, "", newUrl);
         };
 
         if (location.search.includes("preview")) {
