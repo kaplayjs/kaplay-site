@@ -33,28 +33,10 @@ function receives the name of the scene you want to go.
 go("game");
 ```
 
-**IMPORTANT**: Switching the current scene to a new one will destroy all existing game objects.
-That could be unexpected for some of your objects like HUD, menus or other UI elements. To prevent that and keep
-required game objects you can use `stay()` component.
-
-```js
-const menuBtn = add([
-    rect(50, 20, { radius: 2 }),
-    pos(35, 20),
-    area(),
-    outline(2),
-    anchor("center"),
-    color(255, 255, 255),
-    stay()
-]);
-
-menuBtn.add([
-    pos(1, 1),
-    text('Menu', { size: 12 }),
-    anchor("center"),
-    color(0, 0, 0),
-]);
-```
+Note that this will destroy all objects that are not inside of the target
+scene. You will learn how to
+[preserve objects on a scene change](#preserving-objects-on-a-scene-change)
+later below.
 
 ## Passing Data Between Scenes
 
@@ -92,6 +74,22 @@ And pass the object to the `go()` function:
 
 ```js
 go("game", { score: 100, level: 1 });
+```
+
+## Preserving objects on a scene change
+
+Changing the current scene to a new one will destroy **all existing objects**,
+and not only those inside of the scene. That could be unexpected for some of
+your objects like HUD, menus or other UI elements. To prevent that and keep
+required game objects, you can use the [`stay()`](/docs/api/ctx/stay) component.
+
+```js
+const menuBtn = add([
+    text("Menu"),
+    pos(12, 36),
+    area(),
+    stay(), // survives the scene switch
+]);
 ```
 
 ## Why can I use KAPLAY outside scenes?
