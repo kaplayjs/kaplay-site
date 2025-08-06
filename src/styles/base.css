@@ -24,11 +24,16 @@
 }
 
 :root {
+    --b0: #323844;
     --color-subheadings: color-mix(in oklch, currentColor 55%, white);
 }
 
 :root .prose {
     --tw-prose-body: var(--fallback-bc, oklch(var(--bc)));
+}
+
+html:has(#preview-dialog[open]) {
+    @apply max-xl:overflow-hidden max-xl:[scrollbar-gutter:stable];
 }
 
 body {
@@ -59,6 +64,10 @@ h2, h3, h4, h5, h6 {
         @apply inline-block w-5 -ml-6 mr-1 text-[min(90%,1.75rem)] leading-[1]
             text-white/80 text-center no-underline p-0.5 bg-base-100 rounded-md
             invisible opacity-0 hover:visible hover:opacity-100 transition-all;
+    }
+
+    #preview-dialog &::before {
+        background-color: color-mix(in oklch, oklch(var(--b1)) 60%, var(--b0));
     }
 
     .prose h1 &::before {
@@ -220,7 +229,7 @@ span.line.diff.remove::before {
 }
 
 .bg-base-50 {
-    @apply bg-[#323844];
+    @apply bg-[var(--b0)];
 }
 
 :where(.bg-image-pattern) {

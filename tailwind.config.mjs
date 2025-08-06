@@ -40,7 +40,11 @@ export default {
             },
         },
     },
-    plugins: [require("daisyui"), require("@tailwindcss/typography")],
+    plugins: [
+        require("daisyui"),
+        require("@tailwindcss/typography"),
+        ({ addVariant }) => addVariant('hover-hover', '@media (hover: hover)'),
+    ],
     /** @type {import('daisyui').Config} */
     daisyui: {
         themes: [
