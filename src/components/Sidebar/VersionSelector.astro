@@ -8,11 +8,7 @@ const versionNames = {
 };
 ---
 
-<select
-    id="versionSelect"
-    class="select select-bordered w-full"
-    data-always-select={selectedByDefault}
->
+<select id="versionSelect" class="select select-sm w-full text-center mx-auto block text-white bg-base-200" data-always-select={selectedByDefault}>
     <option value="v4000" selected={selectedByDefault === "v4000"}>
         {versionNames.v4000}
     </option>
@@ -28,16 +24,17 @@ const versionNames = {
         kaboom: "https://kaboomjs.com",
     };
 
-    const versionSelect = document.querySelector<HTMLSelectElement>(
-        "#versionSelect",
-    )!;
+    document.addEventListener("astro:page-load", () => {
+        const versionSelect = document.querySelector<HTMLSelectElement>("#versionSelect")!;
+        if (!versionSelect) return;
 
-    const selectedByDefault = versionSelect.dataset.alwaysSelect;
+        const selectedByDefault = versionSelect.dataset.alwaysSelect;
 
-    versionSelect.addEventListener("change", (e) => {
-        const version = versionSelect.value;
-        window.open(links[version]);
+        versionSelect.addEventListener("change", () => {
+            const version = versionSelect.value;
+            window.open(links[version]);
 
-        versionSelect.value = selectedByDefault!;
+            versionSelect.value = selectedByDefault!;
+        });
     });
 </script>

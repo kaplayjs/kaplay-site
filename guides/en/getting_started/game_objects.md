@@ -16,11 +16,11 @@ the entities that move, interact, and make the game interesting.
 ## Creating Game Objects
 
 We create game objects with the `add()` function. It creates the object and
-attach it to the scene. It receives **components** and **tags**.
+attaches it to the scene. It receives **components** and **tags**.
 
 ```js
 const dinosaur = add([
-    // while components gives different behaviours to the game obj
+    // while components give different behaviors to the game obj
     rect(32, 32), // draw a rect
     pos(80, 80), // set a position
     // tags classify the game object
@@ -29,12 +29,12 @@ const dinosaur = add([
 ]);
 ```
 
-We will see in deep components and tags in their respective guides.
+We will look in depth at components and tags in their respective guides.
 
-## Parents, childs and root
+## Parents, children, and root
 
 A game object can have child game objects. This will give to the children the
-possibility of follow parent's position, rotation and scale.
+possibility of following the parent's position, rotation and scale.
 
 ```js
 const player = add([
@@ -98,7 +98,7 @@ const miniBag = bag.add([
 ]);
 
 // Now our original Bag is a grandfather...
-const superMiniBag = bag.add([
+const superMiniBag = miniBag.add([
     sprite("superminibag"),
     "favorite", // ...And the favorite
 ]);
@@ -111,19 +111,19 @@ const superMiniBag = bag.add([
 bag.remove(miniBag); // 18, independency
 ```
 
-### How to get childs
+### How to get children
 
 ```js
 bag.get("*"); // all children
-bag.get("favorite"); // [superMiniBag] - all children with tag favorite
+bag.get("favorite", { recursive: true }); // [superMiniBag] - all descendants with tag favorite
 ```
 
-You can see the full list of operations in the [`GameObjRaw`](/doc/GameObjRaw)
+You can see the full list of operations in the [`GameObjRaw`](/docs/api/GameObjRaw)
 type definition.
 
 ## Creating game object dynamically
 
-One way for create a game object dinamically is creating a function that returns
+One way for create a game object dynamically is creating a function that returns
 a list of components:
 
 ```js

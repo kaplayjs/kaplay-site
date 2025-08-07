@@ -8,29 +8,48 @@ interface Props extends SidebarProps {
 }
 
 const { sidebarEntries, sidebarMode } = Astro.props as Props;
+const url = Astro.url;
 ---
 
-<div data-sidebar-entries>
-    <input
-        id="sidebar-search"
-        class="input input-primary my-2 w-full"
-        placeholder={sidebarMode == "reference" ? "Search for API..." : "Search for Guides..."}
-    />
+<div data-sidebar-entries transition:persist={sidebarMode}>
+    <form class="sticky -top-1 -mt-2 mb-2.5 -mx-4 pt-4 px-4 bg-base-300" action="javascript:void(0)">
+        <label class="input flex items-center gap-1 h-auto min-h-0 px-3.5 py-2 border-base-content/5" aria-label="Search">
+            <input
+                id="sidebar-search"
+                class="peer grow min-w-0"
+                placeholder={sidebarMode == "reference" ? "Search for API..." : "Search for Guides..."}
+                type="text"
+                autocomplete="off"
+            />
+
+            <button
+                type="reset"
+                class="btn btn-xs btn-ghost -mr-1.5 px-1 shrink-0 peer-placeholder-shown:invisible peer-placeholder-shown:scale-0 peer-placeholder-shown:opacity-0 transition-[visibility,transform,opacity]"
+                aria-label="Clear"
+            >
+                <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                >
+                    <path d="M18 6 6 18"></path><path d="m6 6 12 12"></path>
+                </svg>
+            </button>
+        </label>
+    </form>
 
     {
-        sidebarMode == "guides" && (
-            <>
-                <SidebarLink href={"/guides"}>Getting Started</SidebarLink>
-            </>
-        )
-    }
-
-    {
-        sidebarEntries.map(({ linkList, folder }, i) => {
+        sidebarEntries.map(({ linkList, folder }) => {
             return (
                 <SidebarFolder title={folder} id={folder} isOpen={linkList.length > 0}>
-                    {linkList.map(({ title, link }, i) => (
-                        <SidebarLink href={link} data-sidebar-entry data-title={title} data-url={link}>
+                    {linkList.map(({ title, link }) => (
+                        <SidebarLink href={link} data-sidebar-entry data-title={title} data-url={link} current={link == url.pathname}>
                             {title}
                         </SidebarLink>
                     ))}
@@ -41,32 +60,41 @@ const { sidebarEntries, sidebarMode } = Astro.props as Props;
 </div>
 
 <script>
-    const searchInput = document.querySelector<HTMLInputElement>("#sidebar-search");
+    document.addEventListener("astro:page-load", () => {
+        const searchInput = document.querySelector<HTMLInputElement>("#sidebar-search");
 
-    searchInput?.addEventListener("input", (e) => {
-        const query = searchInput.value.toLowerCase().trim();
-        const links = document.querySelectorAll("[data-sidebar-entry]");
-        const folders = document.querySelectorAll("[data-sidebar-folder]");
+        const filterMenu = (searchQuery?: string) => {
+            const query = searchQuery ?? searchInput!.value.toLowerCase().trim();
+            const links = document.querySelectorAll("[data-sidebar-entry]");
+            const folders = document.querySelectorAll("[data-sidebar-folder]");
 
-        links.forEach((link) => {
-            const title = link.getAttribute("data-title")?.toLowerCase() || "";
-            const url = link.getAttribute("data-url")?.toLowerCase() || "";
+            links.forEach((link) => {
+                const title = link.getAttribute("data-title")?.toLowerCase() || "";
+                const url = link.getAttribute("data-url")?.toLowerCase() || "";
 
-            if (title.includes(query) || url.includes(query)) {
-                link.classList.remove("hidden");
-            } else {
-                link.classList.add("hidden");
-            }
-        });
+                if (title.includes(query) || url.includes(query)) {
+                    link.classList.remove("hidden");
+                } else {
+                    link.classList.add("hidden");
+                }
+            });
 
-        folders.forEach((folder) => {
-            const linksInFolder = folder.querySelectorAll("[data-sidebar-entry]:not(.hidden)");
+            folders.forEach((folder) => {
+                const linksInFolder = folder.querySelectorAll("[data-sidebar-entry]:not(.hidden)");
 
-            if (linksInFolder.length > 0) {
-                folder.classList.remove("hidden");
-            } else {
-                folder.classList.add("hidden");
-            }
+                if (linksInFolder.length > 0) {
+                    folder.classList.remove("hidden");
+                } else {
+                    folder.classList.add("hidden");
+                }
+            });
+        };
+
+        searchInput?.addEventListener("input", () => filterMenu());
+
+        searchInput?.closest("form")?.addEventListener("reset", () => {
+            filterMenu("");
+            searchInput.focus();
         });
     });
 </script>

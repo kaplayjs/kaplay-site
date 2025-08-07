@@ -1,14 +1,14 @@
 ---
-title: Input Bindings
+title: Buttons API
 description:
     How to use the Input Bindings in KAPLAY, to use the same event for mouse,
     keyboard and gamepad.
 url: input
 ---
 
-# Input Bindings
+# Buttons API
 
-Input bindings allows you to use the same event for mouse, keyboard and gamepad.
+Buttons API (aka Input bindings) allows you to use the same event for mouse, keyboard, and gamepad.
 Also you can set a generic name like `jump` and bind it to the keys or buttons
 you want.
 
@@ -44,7 +44,7 @@ onButtonRelease("jump", () => {
 });
 ```
 
-## Getting and setting bindings
+## Getting and setting buttons
 
 Maybe you can dynamically change the bindings in your game. Depending for
 example of a configuration or a level.
@@ -64,9 +64,9 @@ setButton("jump", {
 });
 ```
 
-## Virtually trigger buttons
+## Trigger buttons virtually
 
-Sometiems there's a need to trigger a button virtually, for example when you
+Sometimes there's a need to trigger a button virtually, for example when you
 want to simulate a button press in mobile or in a cutscene.
 
 You can use `pressButton(btn)` and `releaseButton(btn)` to trigger the button:

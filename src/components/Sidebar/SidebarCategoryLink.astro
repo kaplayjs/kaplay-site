@@ -1,0 +1,28 @@
+---
+import { assets } from "@kaplayjs/crew";
+
+interface Props {
+    href: string;
+    target?: string;
+    icon?: keyof typeof assets;
+    selected?: boolean;
+}
+
+const { href, target, selected: current, icon, ...props } = Astro.props;
+---
+
+<li class="sidebar-link list-none">
+    <a
+        href={href}
+        class="sidebar-link-a btn btn-sm btn-ghost pl-1.5 py-0.5 h-auto w-full justify-start font-medium text-wrap text-left text-lg text-white bg-base-100 aria-[selected=false]:btn-ghost hover:bg-base-100"
+        target={target}
+        data-link={href}
+        aria-selected={current}
+        data-astro-reload="all"
+        {...props}
+    >
+        {icon && assets?.[icon]?.outlined && <img src={assets[icon].outlined} alt="Sidebar Icon" class="h-6 w-6 object-scale-down" />}
+
+        <slot />
+    </a>
+</li>

@@ -1,8 +1,8 @@
 ---
 import hamburgerIcon from "@/assets/hamburger.webp";
-import { Image } from "astro:assets";
 import type { MarkdownHeading } from "astro";
 import { assets } from "@kaplayjs/crew";
+import searchIcon from "@/assets/search.png";
 
 interface Props {
     headings?: MarkdownHeading[];
@@ -11,65 +11,106 @@ interface Props {
 const { headings } = Astro.props;
 ---
 
-<nav class="fixed z-30 flex h-16 w-full items-center justify-between gap-4 bg-base-200 px-4 lg:pl-8 md:w-[calc(100%-18rem)] rounded-b-xl">
-    <label for="sidebar" class="flex md:hidden">
-        <figure>
-            <Image src={hamburgerIcon} width="64" height="64" alt="hamburger icon" />
-        </figure>
-    </label>
+<nav class="fixed z-30 w-full bg-base-50 md:w-[calc(100%-302px)] pb-px md:pr-px pl-0 pt-0">
+    <div class="flex items-center justify-between h-16 bg-base-200 px-3 rounded-xl rounded-t-none">
+        <div class="flex items-center justify-between gap-2 flex-1 w-full min-w-fit max-w-[50rem] pr-3">
+            <label for="sidebar" class="flex md:hidden shrink-0">
+                <figure>
+                    <img src={hamburgerIcon.src} alt="Menu" width="36" height="36" loading="lazy" decoding="async" />
+                </figure>
+            </label>
 
-    {
-        headings && headings.length > 0 && (
-            <select id="section-select" class="select select-sm max-w-40" onchange="window.location.href = this.value">
-                {headings?.map((heading) => (
-                    <option
-                        value={`#${heading.slug}`}
-                        class:list={[
-                            {
-                                "lg:text-xl lg:font-semibold": heading.depth === 1,
-                                "lg:text-lg": heading.depth === 2,
-                                "lg:text-base": heading.depth >= 3,
-                            },
-                        ]}
-                    >
-                        {heading.text}
-                    </option>
-                ))}
-            </select>
-        )
-    }
-    <div class="hidden md:block p-2 text-sm text-base-content">
-        <img class="h-4 inline-block mr-1 align-text-bottom" alt="Heart" src={assets.heart.outlined} />
-        KAPLAY is free and open source, <strong>forever</strong>. Help keep it alive,
-        <a
-            href="https://opencollective.com/kaplay/contribute/bean-rex-77456/checkout?interval=month&amount=10&contributeAs=me"
-            target="_blank"
-            class="link link-primary">donate $5</a
-        >.
+            <button
+                class="btn max-sm:btn-ghost bg-base-100 max-sm:px-1.5 sm:pl-2.5 mr-auto min-h-11 h-11"
+                onclick="document.querySelector('#search-modal')?.showModal()"
+            >
+                <img src={searchIcon.src} alt="search icon" class="h-7 w-7 object-scale-down" />
+                <span class="hidden sm:inline tracking-wide">SEARCH</span>
+
+                <kbd data-search-btn class="kbd hidden md:inline-flex -mr-1 text-xs">CTRL + K</kbd>
+            </button>
+
+            {
+                headings && headings.length > 0 && (
+                    <div class="fixed sm:static bottom-0 left-0 w-full sm:max-w-40 lg:max-w-60 max-sm:bg-base-300 p-2 sm:p-0 rounded-t-xl z-50 max-sm:shadow-[0_0_50px_0_rgba(0,0,0,0.2)]">
+                        <select id="section-select" class="select w-full min-h-10 h-10 pr-8 text-ellipsis" onchange="window.location.href = this.value">
+                            {headings?.map((heading) => (
+                                <option
+                                    value={`#${heading.slug}`}
+                                    class:list={[
+                                        {
+                                            "lg:text-lg lg:font-semibold": heading.depth === 1,
+                                            "lg:text-base lg:font-medium": heading.depth === 2,
+                                            "lg:text-sm": heading.depth >= 3,
+                                        },
+                                    ]}
+                                >
+                                    {heading.text}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                )
+            }
+        </div>
+
+        <div class="flex flex-row text-sm text-base-content overflow-x-auto scrollbar-thin">
+            <a href="https://github.com/kaplayjs" target="_blank" class="btn btn-ghost min-h-10 h-10 px-2">
+                <img src={assets["github"].outlined} alt="GitHub" class="h-6 w-6 object-scale-down" />
+            </a>
+            <a href="https://discord.com/invite/aQ6RuQm3TF" target="_blank" class="btn btn-ghost min-h-10 h-10 px-2">
+                <img src={assets["discord"].outlined} alt="Discord" class="h-6 w-6 object-scale-down" />
+            </a>
+            <a href="https://opencollective.com/kaplay" target="_blank" class="btn btn-ghost min-h-10 h-10 px-2">
+                <img src={assets["heart"].outlined} alt="Donate" class="h-6 w-6 object-scale-down" />
+            </a>
+            <a href="https://play.kaplayjs.com" target="_blank" class="btn btn-ghost min-h-10 h-10 px-2">
+                <img src={assets["play"].outlined} alt="KAPLAYGROUND" class="h-6 w-6 object-scale-down" />
+            </a>
+        </div>
     </div>
+
+    <div class="absolute top-full left-0 w-full bg-corner-radius pointer-events-none"></div>
 </nav>
 
 <script>
-    const select = document.querySelector<HTMLSelectElement>("#section-select")!;
-    const headers = document.querySelectorAll("h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]")!;
+    const isMac = navigator.userAgent.includes("Mac");
+    const searchBtns = document.querySelectorAll("[data-search-btn]");
 
-    window.addEventListener("scroll", () => {
-        let closest: Element | null = null;
-        let minOffset = Infinity;
+    if (isMac && searchBtns) {
+        searchBtns.forEach(b => b.textContent = "⌘ + K");
+    }
 
-        headers.forEach((header) => {
-            const rect = header.getBoundingClientRect();
-            const offset = Math.abs(rect.top);
+    window.addEventListener("keydown", (e) => {
+        if (e.ctrlKey && e.key === "k") {
+            e.preventDefault();
 
-            if (rect.top <= 100 && offset < minOffset) {
-                minOffset = offset;
-                closest = header;
-            }
-        });
-
-        if (closest) {
-            // @ts-expect-error Wtf why here's never?
-            select.value = `#${closest.id}`;
+            document.querySelector<HTMLDialogElement>("#search-modal")?.showModal();
         }
+    });
+</script>
+
+<script>
+    document.addEventListener("astro:page-load", () => {
+        const select = document.querySelector<HTMLSelectElement>("#section-select")!;
+        const headers = document.querySelectorAll("h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]")!;
+
+        const updateSelect = () => {
+            let closest: Element | null = null;
+
+            headers.forEach((header) => {
+                if (header.getBoundingClientRect().top <= 100) {
+                    closest = header;
+                }
+            });
+
+            if (closest) {
+                // @ts-expect-error Wtf why here's never?
+                select.value = `#${closest.id}`;
+            }
+        };
+
+        updateSelect();
+        window.addEventListener("scroll", updateSelect);
     });
 </script>

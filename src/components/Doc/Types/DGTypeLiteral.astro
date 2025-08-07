@@ -1,0 +1,21 @@
+---
+import DocEntry from "../DocEntry.astro";
+import DocFor from "../DocFor.astro";
+import type { DataMaybeMemberTypeProps } from "../Utils/types.ts";
+
+type TypeDataTypeLiteral = {
+    kind: "TypeLiteral";
+    members: any[];
+};
+
+interface Props extends DataMaybeMemberTypeProps {
+    data: TypeDataTypeLiteral;
+}
+
+const { data, depth, parent } = Astro.props;
+const memberKeys = Object.keys(data.members);
+---
+
+<span data-dg-type-literal
+    >{"{"}{memberKeys.map((d) => data.members[d].map((rd, i) => <DocEntry parent={parent} index={i} data={rd} depth={depth} />))}{"}"}</span
+>

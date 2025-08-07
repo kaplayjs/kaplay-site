@@ -1,0 +1,17 @@
+---
+import type { DataTypeProps } from "../Utils/types.ts";
+import Parameter, { type DataTypeParameter } from "./Parameter.astro";
+interface Props extends DataTypeProps {
+    data: DataTypeParameter[];
+}
+
+const { data, depth } = Astro.props;
+---
+
+{
+    data.map((param, i) => (
+        <Fragment>
+            <Parameter data={param} depth={depth} /> {i >= data.length - 1 ? "" : ", "}
+        </Fragment>
+    ))
+}

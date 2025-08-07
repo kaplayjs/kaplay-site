@@ -37,7 +37,7 @@ k.hi(); // from myPlugin
 We recommend using our templates:
 
 - [`kaplay-plugin-template`](https://github.com/kaplayjs/kaplay-plugin-template)
-- [`kaplay-plugin-template-ts`](https://github.com/kaplayjs/kaplay-plugin-template-s)
+- [`kaplay-plugin-template-ts`](https://github.com/kaplayjs/kaplay-plugin-template-ts)
   (for TypeScript)
 
 Both are minimal and simple templates for create and publish plugins on NPM.

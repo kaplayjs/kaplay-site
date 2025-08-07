@@ -1,0 +1,11 @@
+---
+import type { JSX } from "astro/jsx-runtime";
+
+interface Props {
+    depth: number;
+}
+
+const { depth } = Astro.props;
+---
+
+<strong data-dg-title={depth < 1} role={"doc-subtitle" as JSX.AriaRole}><slot /></strong>

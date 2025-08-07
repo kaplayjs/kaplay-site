@@ -1,0 +1,37 @@
+---
+import doc from "@/../doc.json";
+import DocEntry from "@/components/Doc/DocEntry.astro";
+import DocPreview from "@/components/Doc/DocPreview.astro";
+import SidebarPage from "@/layouts/SidebarPage.astro";
+
+export async function getStaticPaths() {
+    const allDoc = doc.types as any;
+    const kaboomDoc: any = allDoc.KaboomCtx?.[0].members ?? allDoc.KAPLAYCtx?.[0].members;
+    const allKaboomDocKeys: string[] = Object.keys(kaboomDoc);
+
+    return allKaboomDocKeys.map((key) => ({
+        params: { slug: key },
+        props: {
+            type: kaboomDoc[key],
+            name: key,
+        },
+    }));
+}
+
+const { type } = Astro.props;
+---
+
+<SidebarPage
+    meta={{
+        title: "KAPLAY Docs, " + type[0].name,
+        description: type[0].jsDoc?.doc ?? "KAPLAY Doc about " + type[0].name,
+        keywords: "kaplayjs, guides, documentation",
+    }}
+    sidebarMode="reference"
+>
+    <div class="min-h-dvh w-full max-w-[50rem] p-4">
+        {type?.map((refData, i) => <DocEntry index={i} data={refData} />)}
+    </div>
+
+    <DocPreview />
+</SidebarPage>

@@ -1,0 +1,29 @@
+---
+import DocFor from "../DocFor.astro";
+import JSDoc from "../JSDoc.astro";
+import TypeBadge from "../Other/TypeBadge.astro";
+import Title from "../Utils/Title.astro";
+import type { DataMaybeMemberTypeProps, DataTypeProps } from "../Utils/types.ts";
+
+type TypeDataFunctionDeclaration = {
+    kind: "FunctionDeclaration";
+    id: number;
+    name: string;
+    parameters: [];
+    type: any[];
+    questionToken: boolean;
+};
+
+interface Props extends DataMaybeMemberTypeProps {
+    data: TypeDataFunctionDeclaration;
+}
+
+const { index, data, depth, parent } = Astro.props;
+---
+
+<TypeBadge depth={depth}>Function</TypeBadge>
+<Title index={index} name={data.name} class="inline" parent={parent} depth={depth} /><span data-dg-title="true">:</span>
+
+<DocFor data={data.type} depth={depth} parent={data.name} />
+
+<JSDoc data={data} />

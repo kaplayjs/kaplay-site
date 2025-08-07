@@ -19,6 +19,10 @@ import { assets } from "@kaplayjs/crew";
     }}
     pageClass="land"
 >
+    <Fragment slot="head">
+        <link rel="preconnect" href="https://unpkg.com" />
+    </Fragment>
+
     <About>
         <Fragment slot="title">
             The <span class="font-hand text-primary">fun</span> and open source game
@@ -33,14 +37,14 @@ import { assets } from "@kaplayjs/crew";
             and fun.
         </Fragment>
         <Fragment slot="promotion">
-            <img class="w-8" src="/sok.png" />
+            <img class="w-8 shrink-0" src="/sok.png" alt="SOK" width="32" height="42" />
             <p>
                 Hey! <a class="link link-hover text-primary" href="blog/sok5">State of KAPLAY #5</a> is out! Get updated on the latest features and improvements
                 in KAPLAY.js.
             </p>
         </Fragment>
         <Fragment slot="buttons">
-            <LandButton kind="yellowish" href="/guides/"> Explore Docs </LandButton>
+            <LandButton kind="yellowish" href="/docs/guides/"> Explore Docs </LandButton>
 
             <LandButton kind="greenish" href="https://play.kaplayjs.com"> Play in KAPLAYGround </LandButton>
 
@@ -62,7 +66,7 @@ import { assets } from "@kaplayjs/crew";
             based
             <span class="inline-flex items-baseline gap-[0.25em]">
                 on
-                <img class="shrink-0 w-8 sm:w-10 -rotate-6" src={assets.steel.outlined} aria-hidden="true" />
+                <img class="shrink-0 w-8 sm:w-10 -rotate-6" src={assets.steel.outlined} width="40" height="40" aria-hidden="true" />
                 <span class="font-hand text-primary text-[106%]">blocks</span>
             </span>
         </Fragment>
@@ -88,7 +92,7 @@ import { assets } from "@kaplayjs/crew";
             </code>
         </Fragment>
         <Fragment slot="buttons">
-            <LandButton kind="mini-yellowish" href="/guides/install/" target="_blank" rel="noreferrer noopener"> Get Started (Docs) </LandButton>
+            <LandButton kind="mini-yellowish" href="/docs/guides/" target="_blank" rel="noreferrer noopener"> Get Started (Docs) </LandButton>
             <LandButton kind="mini-redish" href="https://play.kaplayjs.com/" target="_blank" rel="noreferrer noopener"> Explore more examples </LandButton>
         </Fragment>
     </BlocksSection>
@@ -96,7 +100,7 @@ import { assets } from "@kaplayjs/crew";
         <Fragment slot="title">
             <span class="inline-flex items-end gap-[0.25em]">
                 <span class="font-hand text-[108%] text-[#ffb879]">Voices</span>
-                <img class="shrink-0 w-10 sm:w-14" src={assets.burpman.outlined} aria-hidden="true" />
+                <img class="shrink-0 w-10 sm:w-14" src={assets.burpman.outlined} width="40" height="27" aria-hidden="true" />
             </span>
             of
             <span class="font-hand text-[108%]">
@@ -107,7 +111,7 @@ import { assets } from "@kaplayjs/crew";
             Don't just take our word for it, see what our users say about
             <strong>KAPLAY</strong>! We're&nbsp;proud to have such a great community.<br />
             <a href="https://discord.com/invite/aQ6RuQm3TF" target="_blank" class="inline-flex gap-1 align-bottom font-semibold text-indigo-300">
-                <img class="self-center shrink-0 w-5 sm:w-6 h-auto" src={assets.discord.outlined} aria-hidden="true" />
+                <img class="self-center shrink-0 w-5 sm:w-6 h-auto" src={assets.discord.outlined} width="24" height="24" aria-hidden="true" />
                 Join our Discord
             </a>
             to be a part of it!
@@ -117,14 +121,14 @@ import { assets } from "@kaplayjs/crew";
         <Fragment slot="sponsors-title">
             Our <span class="text-white">great</span>
             <span class="inline-flex items-baseline gap-1 font-hand text-[#ee8fcb] text-[108%]">
-                <img class="relative top-0.5 shrink-0 w-6 sm:w-8" src={assets.heart.outlined} aria-hidden="true" />
+                <img class="relative top-0.5 shrink-0 w-6 sm:w-8" src={assets.heart.outlined} width="32" height="28" aria-hidden="true" />
                 <span>Sponsors</span>
             </span>
         </Fragment>
         <Fragment slot="contributors-title">
             <span class="text-white">People</span> who
             <span class="inline-flex items-baseline gap-1 font-hand text-primary text-[106%]">
-                <img class="relative top-0.5 shrink-0 w-6 md:w-8" src={assets.plus.outlined} aria-hidden="true" />
+                <img class="relative top-0.5 shrink-0 w-6 md:w-8" src={assets.plus.outlined} width="32" height="32" aria-hidden="true" />
                 contributed
             </span>
             to&nbsp;<span class="text-white">KAPLAY</span>.js
@@ -134,11 +138,11 @@ import { assets } from "@kaplayjs/crew";
         </Fragment>
         <Fragment slot="contributors-buttons">
             <LandButton kind="mini-yellowish" href="https://opencollective.com/kaplay/donate" target="_blank" rel="noreferrer noopener">
-                <img class="shrink-0 w-6 h-6 object-contain" src={assets.money_bag.outlined} aria-hidden="true" />
+                <img class="shrink-0 w-6 h-6 object-contain" src={assets.money_bag.outlined} width="24" height="24" aria-hidden="true" />
                 Consider Donating
             </LandButton>
             <LandButton kind="githubish" href="https://github.com/kaplayjs/kaplay" target="_blank" rel="noreferrer noopener">
-                <img class="shrink-0 w-6 h-5 object-contain" src={assets.github.outlined} aria-hidden="true" />
+                <img class="shrink-0 w-6 h-5 object-contain" src={assets.github.outlined} width="24" height="20" aria-hidden="true" />
                 Contribute on GitHub
             </LandButton>
         </Fragment>

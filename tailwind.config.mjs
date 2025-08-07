@@ -11,8 +11,20 @@ export default {
                 "3xl": "1920px",
             },
             fontFamily: {
-                sans: ["\"Outfit Variable\"", ...defaultTheme.fontFamily.sans],
-                hand: ["\"Darumadrop One\"", ...defaultTheme.fontFamily.sans],
+                sans: [
+                    "\"Outfit Variable\"",
+                    "\"Sans Fallback\"",
+                    ...defaultTheme.fontFamily.sans,
+                ],
+                hand: [
+                    "\"Darumadrop One\"",
+                    "\"Hand Fallback\"",
+                    ...defaultTheme.fontFamily.sans,
+                ],
+                code: [
+                    "\"DM Mono\"",
+                    ...defaultTheme.fontFamily.mono,
+                ],
             },
             dropShadow: {
                 "2": [
@@ -28,7 +40,11 @@ export default {
             },
         },
     },
-    plugins: [require("daisyui"), require("@tailwindcss/typography")],
+    plugins: [
+        require("daisyui"),
+        require("@tailwindcss/typography"),
+        ({ addVariant }) => addVariant('hover-hover', '@media (hover: hover)'),
+    ],
     /** @type {import('daisyui').Config} */
     daisyui: {
         themes: [

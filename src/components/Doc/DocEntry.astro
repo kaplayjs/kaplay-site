@@ -1,54 +1,43 @@
 ---
-import JSDoc from "./JSDoc.astro";
-import TypeGenerics from "./TypeGenerics.astro";
-import TypeMembers from "./TypeMembers.astro";
-import TypeName from "./TypeName.astro";
-import TypeParams from "./TypeParams.astro";
-import TypeReturn from "./TypeReturn.astro";
+import DocFor from "./DocFor.astro";
 
 export interface Props {
+    /** Used when there's more than 1 entry for the same member/type. */
+    index?: number;
     data?: any;
     parent?: string;
+    depth?: number;
+    divider?: boolean;
 }
 
-const { data, parent } = Astro.props;
-
-const optionalMark = (data: any) => {
-    return data?.questionToken ? "?" : "";
-};
-
-const parentText = parent ? `${parent}-` : "";
-const Title = parent ? "h2" : "h1";
+const { index, data, parent, depth = 0, divider = true } = Astro.props;
 
 const extraProps = {
     "data-doc-entry-children": true,
+    "data-dg-kind": data.kind,
 };
 
-const props = parent ? extraProps : {};
+const EntryEl = depth > 0 ? "section" : "article";
+const props = parent ? extraProps : { "data-dg-kind": data.kind };
+let id = `${parent ? `${parent}-` : ""}${data.name ?? ""}`;
+if (index) id += `-${index}`;
 ---
 
-<article
-    id={`${parentText}${data?.name ?? ""}`}
+<EntryEl
+    id={id}
+    data-dg-entry
     data-doc-entry
+    data-depth={depth}
     data-doc-entry-name={data?.name ?? ""}
     class:list={[
-        "gal-1 text-fira flex flex-col",
+        "group font-code [&+[data-depth='0']]:mt-8 break-words",
         {
-            "py-2 pl-4": parent,
+            "py-3 pl-4 border-l border-base-content/10": depth > 0,
+            "": depth > 0 && divider,
         },
     ]}
     {...props}
 >
-    <Title
-        data-doc-entry-title
-        class:list={[
-            {
-                "text-xl": !parent,
-                "text-lg": parent,
-            },
-        ]}><TypeName data={data} parent={parent} /><TypeGenerics data={data} />{optionalMark(data)}<TypeParams data={data} /><TypeReturn data={data} /></Title
-    >
-
-    <JSDoc data={data} />
-    <TypeMembers data={data} />
-</article>
+    <DocFor index={index} data={data} depth={depth} parent={parent} />
+    {depth > 0 && divider && <div class="divider [section:last-child_&]:hidden before:h-px after:h-px mt-2 [p+&]:mt-0 -mb-3" />}
+</EntryEl>

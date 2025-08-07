@@ -1,0 +1,18 @@
+---
+import DocFor from "../DocFor.astro";
+import type { DataTypeProps } from "../Utils/types.ts";
+
+type TypeDataArrayType = {
+    kind: "ArrayType";
+    id: number;
+    elementType: any;
+};
+
+interface Props extends DataTypeProps {
+    data: TypeDataArrayType;
+}
+
+const { data, depth } = Astro.props;
+---
+
+<span data-dg-array-type><DocFor data={data.elementType} depth={depth} />[]</span>

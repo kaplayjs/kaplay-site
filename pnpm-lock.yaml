@@ -29,27 +29,15 @@ importers:
       '@astrojs/tailwind':
         specifier: ^6.0.2
         version: 6.0.2(astro@5.7.5(@types/node@20.17.30)(jiti@1.21.7)(rollup@4.40.0)(typescript@5.6.3)(yaml@2.7.1))(tailwindcss@3.4.17)
-      '@fontsource-variable/fira-code':
-        specifier: ^5.1.0
-        version: 5.2.5
-      '@fontsource-variable/fredoka':
-        specifier: ^5.1.0
-        version: 5.2.6
       '@fontsource-variable/outfit':
-        specifier: ^5.1.0
-        version: 5.2.5
-      '@fontsource-variable/rubik':
         specifier: ^5.1.0
         version: 5.2.5
       '@fontsource/darumadrop-one':
         specifier: ^5.1.1
         version: 5.2.5
-      '@fontsource/ibm-plex-sans':
-        specifier: ^5.1.0
-        version: 5.2.5
-      '@fontsource/pangolin':
-        specifier: ^5.1.0
-        version: 5.2.5
+      '@fontsource/dm-mono':
+        specifier: ^5.2.6
+        version: 5.2.6
       '@kaplayjs/crew':
         specifier: 2.0.0-beta.5
         version: 2.0.0-beta.5(@types/node@20.17.30)(typescript@5.6.3)
@@ -65,6 +53,9 @@ importers:
       astro:
         specifier: ^5.7.5
         version: 5.7.5(@types/node@20.17.30)(jiti@1.21.7)(rollup@4.40.0)(typescript@5.6.3)(yaml@2.7.1)
+      astro-cloudflare-redirects:
+        specifier: ^1.0.0
+        version: 1.0.0(vite@6.3.3(@types/node@20.17.30)(jiti@1.21.7)(yaml@2.7.1))
       astro-meta-tags:
         specifier: ^0.3.1
         version: 0.3.1(astro@5.7.5(@types/node@20.17.30)(jiti@1.21.7)(rollup@4.40.0)(typescript@5.6.3)(yaml@2.7.1))
@@ -162,6 +153,12 @@ importers:
       prettier-plugin-tailwindcss:
         specifier: ^0.6.8
         version: 0.6.11(prettier-plugin-astro@0.14.1)(prettier@3.5.3)
+      rehype-autolink-headings:
+        specifier: ^7.1.0
+        version: 7.1.0
+      rehype-slug:
+        specifier: ^6.0.0
+        version: 6.0.0
       shiki:
         specifier: ^1.21.0
         version: 1.29.2
@@ -1189,26 +1186,14 @@ packages:
     resolution: {integrity: sha512-vBZP4NlzfOlerQTnba4aqZoMhE/a9HY7HRqoOPaETQcSQuWEIyZMHGfVu6w9wGtGK5fED5qRs2DteVCjOH60sA==}
     engines: {node: '>=14'}
 
-  '@fontsource-variable/fira-code@5.2.5':
-    resolution: {integrity: sha512-rw0z/D9Tsp7asvwK/XFHz+xMkgR7MPRCa6U9e77alsmJQFqniEWt/c+1xKCZR2omEw1hVP7ej48Z1O8c/YiSVg==}
-
-  '@fontsource-variable/fredoka@5.2.6':
-    resolution: {integrity: sha512-tPOsXUwvjHbdxjh6xpmUKQibpZhsprfAH0YTfCft6OdnPz4ry4puiRHk91ldgXINurhLtEiPTmky5ZF9eB3tKQ==}
-
   '@fontsource-variable/outfit@5.2.5':
     resolution: {integrity: sha512-MejrIp6Cbmd3u5AZtsot8kmhZiyQM5CATsdcBB2hktYIrv5CVekRSUmFDXL4FpF7K70IvFp2ZMfImm5VhnVf7Q==}
-
-  '@fontsource-variable/rubik@5.2.5':
-    resolution: {integrity: sha512-6tXqnHFA9/ItIEODfH5LrzLSmcNE5TXD8OuXx14cvmS7j1zX4JgEHjYrhlWhLGuBXXzrOnz0A0oMheMMbXwmWA==}
 
   '@fontsource/darumadrop-one@5.2.5':
     resolution: {integrity: sha512-LOA2MOaz3MEgRttz09kSbulLPxHXIbWmouG/vCBZ6nPqzqkaa6qCN8Tu5WcP0fW4EkaDSrGXTOLRYWT4BumxVQ==}
 
-  '@fontsource/ibm-plex-sans@5.2.5':
-    resolution: {integrity: sha512-W1kkC/fpDuoKQ5pNSQt/Bg0rpV9AATreA9ABwZf678AlwSCY2TQBT1YwAxxB65E9jcT/ysDrU1sGVNUyWCBXRw==}
-
-  '@fontsource/pangolin@5.2.5':
-    resolution: {integrity: sha512-5f6+QAF2Hj8wpzwaIdxTmyoffbWXoRyRUAZFJMrEjqCRh9ZKC/5SYH4anBtKh0+P9qJrM4aG2xA3AiAPr3QAnw==}
+  '@fontsource/dm-mono@5.2.6':
+    resolution: {integrity: sha512-d38urf08wZ/UcAM13kmuPkhr9xGEo0S9undlZ/99nBb7dK5+w1uqriP6VVJ8T7pYiNtRtZq7NxV/2KI/6Obsog==}
 
   '@img/sharp-darwin-arm64@0.33.5':
     resolution: {integrity: sha512-UT4p+iz/2H4twwAoLCqfA9UH5pI6DggwKEGuaPy7nCVQ8ZsiY5PIcrRvD1DzuY3qYL07NtIQcWnBSY/heikIFQ==}
@@ -1767,6 +1752,10 @@ packages:
     resolution: {integrity: sha512-LElXdjswlqjWrPpJFg1Fx4wpkOCxj1TDHlSV4PlaRxHGWko024xICaa97ZkMfs6DRKlCguiAI+rbXv5GWwXIkg==}
     hasBin: true
 
+  astro-cloudflare-redirects@1.0.0:
+    resolution: {integrity: sha512-nwuKgcgyn1yoQbLRLdJ0GS/ciXiWCPXcKDSACsvq6vY/tApz2RwNaceM9nstoDDzXr7twq+N3ZPvAW2rwvvxdw==}
+    engines: {node: '>=18.0.0'}
+
   astro-meta-tags@0.3.1:
     resolution: {integrity: sha512-6g/SfAVTV7BsGlfWU+s/Kvo6atyn9DpfI7Dq3fE/ck3ppfg30aoeT2Uxu7UH4yla3QXAUWaJIher7fGjewf0ew==}
     peerDependencies:
@@ -1915,6 +1904,9 @@ packages:
   clone@2.1.2:
     resolution: {integrity: sha512-3Pe/CF1Nn94hyhIYpjtiLhdCoEoz0DqQ+988E9gmeEdQZlojxnOb74wctFyuwWQHzqyf9X7C7MG8juUpqBJT8w==}
     engines: {node: '>=0.8'}
+
+  cloudflare-redirect-parser@0.1.0:
+    resolution: {integrity: sha512-M4pDIvjLX4wuC9SX1CaQ3ClLIgNOa37gaeL4c31cCJpJ2b+GlaXybnB14iUTtuGbhmS+Eu6JGLoWbiJ2PW8g+A==}
 
   clsx@2.1.1:
     resolution: {integrity: sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==}
@@ -2434,6 +2426,9 @@ packages:
   hast-util-from-parse5@8.0.3:
     resolution: {integrity: sha512-3kxEVkEKt0zvcZ3hCRYI8rqrgwtlIOFMWkbclACvjlDw8Li9S2hk/d51OI0nr/gIpdMHNepwgOKqZ/sy0Clpyg==}
 
+  hast-util-heading-rank@3.0.0:
+    resolution: {integrity: sha512-EJKb8oMUXVHcWZTDepnr+WNbfnXKFNf9duMesmr4S8SXTJBJ9M4Yok08pu9vxdJwdlGRhVumk9mEhkEvKGifwA==}
+
   hast-util-is-element@3.0.0:
     resolution: {integrity: sha512-Val9mnv2IWpLbNPqc/pUem+a7Ipj2aHacCwgNfTiK0vJKl0LF+4Ba4+v1oPHFpf3bLYmreq0/l3Gud9S5OH42g==}
 
@@ -2454,6 +2449,9 @@ packages:
 
   hast-util-to-parse5@8.0.0:
     resolution: {integrity: sha512-3KKrV5ZVI8if87DVSi1vDeByYrkGzg4mEfeu4alwgmmIeARiBLKCZS2uw5Gb6nU9x9Yufyj3iudm6i7nl52PFw==}
+
+  hast-util-to-string@3.0.1:
+    resolution: {integrity: sha512-XelQVTDWvqcl3axRfI0xSeoVKzyIFPwsAGSLIsKdJKQMXDYJS4WYrBNF/8J7RdhIcFI2BOHgAifggsvsxp/3+A==}
 
   hast-util-to-text@4.0.2:
     resolution: {integrity: sha512-KK6y/BN8lbaq654j7JgBydev7wuNMcID54lkRav1P0CaE1e47P72AWWPiGKXTJU271ooYzcvTAn/Zt0REnvc7A==}
@@ -3379,6 +3377,9 @@ packages:
     resolution: {integrity: sha512-Up50Xfra8tyxnkJdCzLBIBtxOcB2M1xdeKe1324U06RAvSjYm7ULSeoM+b/nYPQPVd7jsXJ9+39IG1WAJPXONw==}
     engines: {node: '>=16'}
 
+  rehype-autolink-headings@7.1.0:
+    resolution: {integrity: sha512-rItO/pSdvnvsP4QRB1pmPiNHUskikqtPojZKJPPPAVx9Hj8i8TwMBhofrrAYRhYOOBZH9tgmG5lPqDLuIWPWmw==}
+
   rehype-katex@7.0.1:
     resolution: {integrity: sha512-OiM2wrZ/wuhKkigASodFoo8wimG3H12LWQaH8qSPVJn9apWKFSH3YOCtbKpBorTVw/eI7cuT21XBbvwEswbIOA==}
 
@@ -3393,6 +3394,9 @@ packages:
 
   rehype-recma@1.0.0:
     resolution: {integrity: sha512-lqA4rGUf1JmacCNWWZx0Wv1dHqMwxzsDWYMTowuplHF3xH0N/MmrZ/G3BDZnzAkRmxDadujCjaKM2hqYdCBOGw==}
+
+  rehype-slug@6.0.0:
+    resolution: {integrity: sha512-lWyvf/jwu+oS5+hL5eClVd3hNdmwM1kAC0BUvEGD19pajQMIzcNUd/k9GsfQ+FfECvX+JE+e9/btsKH0EjJT6A==}
 
   rehype-stringify@10.0.1:
     resolution: {integrity: sha512-k9ecfXHmIPuFVI61B9DeLPN0qFHfawM6RsuX48hoqlaKSF61RskNjSm1lI8PhBEM0MRdLxVVm4WmTqJQccH9mA==}
@@ -3918,6 +3922,14 @@ packages:
 
   vfile@6.0.3:
     resolution: {integrity: sha512-KzIbH/9tXat2u30jf+smMwFCsno4wHVdNmzFyL+T/L3UGqqk6JKfVqOFOZEpZSHADH1k40ab6NUIXZq422ov3Q==}
+
+  vite-plugin-cloudflare-redirect@0.1.2:
+    resolution: {integrity: sha512-EgFA8OkfnCLR2VQAStXW7L0Yndl9fQegd51kebxaun7OvMzxcyonT86gA+KMvdkLWYO+1hKmQIrwOSNFAf//mg==}
+    peerDependencies:
+      vite: ^3.0.0 || ^4.0.0 || ^5.0.0
+    peerDependenciesMeta:
+      vite:
+        optional: true
 
   vite-prerender-plugin@0.5.10:
     resolution: {integrity: sha512-m4i0G5oc3LPLA02uW2XsFZmYNxZdyryz5Ksi78O9puj/ao5c8dBUW06caGwoM1TmYknTBBUyKhtqajUpoP+z8Q==}
@@ -5141,19 +5153,11 @@ snapshots:
 
   '@fastify/busboy@2.1.1': {}
 
-  '@fontsource-variable/fira-code@5.2.5': {}
-
-  '@fontsource-variable/fredoka@5.2.6': {}
-
   '@fontsource-variable/outfit@5.2.5': {}
-
-  '@fontsource-variable/rubik@5.2.5': {}
 
   '@fontsource/darumadrop-one@5.2.5': {}
 
-  '@fontsource/ibm-plex-sans@5.2.5': {}
-
-  '@fontsource/pangolin@5.2.5': {}
+  '@fontsource/dm-mono@5.2.6': {}
 
   '@img/sharp-darwin-arm64@0.33.5':
     optionalDependencies:
@@ -5726,6 +5730,12 @@ snapshots:
 
   astring@1.9.0: {}
 
+  astro-cloudflare-redirects@1.0.0(vite@6.3.3(@types/node@20.17.30)(jiti@1.21.7)(yaml@2.7.1)):
+    dependencies:
+      vite-plugin-cloudflare-redirect: 0.1.2(vite@6.3.3(@types/node@20.17.30)(jiti@1.21.7)(yaml@2.7.1))
+    transitivePeerDependencies:
+      - vite
+
   astro-meta-tags@0.3.1(astro@5.7.5(@types/node@20.17.30)(jiti@1.21.7)(rollup@4.40.0)(typescript@5.6.3)(yaml@2.7.1)):
     dependencies:
       astro: 5.7.5(@types/node@20.17.30)(jiti@1.21.7)(rollup@4.40.0)(typescript@5.6.3)(yaml@2.7.1)
@@ -5981,6 +5991,8 @@ snapshots:
       wrap-ansi: 7.0.0
 
   clone@2.1.2: {}
+
+  cloudflare-redirect-parser@0.1.0: {}
 
   clsx@2.1.1: {}
 
@@ -6629,6 +6641,10 @@ snapshots:
       vfile-location: 5.0.3
       web-namespaces: 2.0.1
 
+  hast-util-heading-rank@3.0.0:
+    dependencies:
+      '@types/hast': 3.0.4
+
   hast-util-is-element@3.0.0:
     dependencies:
       '@types/hast': 3.0.4
@@ -6717,6 +6733,10 @@ snapshots:
       space-separated-tokens: 2.0.2
       web-namespaces: 2.0.1
       zwitch: 2.0.4
+
+  hast-util-to-string@3.0.1:
+    dependencies:
+      '@types/hast': 3.0.4
 
   hast-util-to-text@4.0.2:
     dependencies:
@@ -7878,6 +7898,15 @@ snapshots:
       unified: 11.0.5
       unist-util-visit: 5.0.0
 
+  rehype-autolink-headings@7.1.0:
+    dependencies:
+      '@types/hast': 3.0.4
+      '@ungap/structured-clone': 1.3.0
+      hast-util-heading-rank: 3.0.0
+      hast-util-is-element: 3.0.0
+      unified: 11.0.5
+      unist-util-visit: 5.0.0
+
   rehype-katex@7.0.1:
     dependencies:
       '@types/hast': 3.0.4
@@ -7923,6 +7952,14 @@ snapshots:
       hast-util-to-estree: 3.1.3
     transitivePeerDependencies:
       - supports-color
+
+  rehype-slug@6.0.0:
+    dependencies:
+      '@types/hast': 3.0.4
+      github-slugger: 2.0.0
+      hast-util-heading-rank: 3.0.0
+      hast-util-to-string: 3.0.1
+      unist-util-visit: 5.0.0
 
   rehype-stringify@10.0.1:
     dependencies:
@@ -8552,6 +8589,12 @@ snapshots:
     dependencies:
       '@types/unist': 3.0.3
       vfile-message: 4.0.2
+
+  vite-plugin-cloudflare-redirect@0.1.2(vite@6.3.3(@types/node@20.17.30)(jiti@1.21.7)(yaml@2.7.1)):
+    dependencies:
+      cloudflare-redirect-parser: 0.1.0
+    optionalDependencies:
+      vite: 6.3.3(@types/node@20.17.30)(jiti@1.21.7)(yaml@2.7.1)
 
   vite-prerender-plugin@0.5.10(vite@6.3.5(@types/node@20.17.30)(jiti@1.21.7)(yaml@2.7.1)):
     dependencies:

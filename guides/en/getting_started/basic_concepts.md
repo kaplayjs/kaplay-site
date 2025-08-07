@@ -11,10 +11,10 @@ order: "basics-1"
 # Basic Concepts
 
 To get started with KAPLAY, you must know 4 main concepts: **Scenes**, **Game
-Objects**, **Components** and **Events**
+Objects**, **Components** and **Events**.
 
 You can think of your game as a _theater_: scenes are the acts, game objects are
-the actors and components are the script the actors follow:
+the actors, and components are the script the actors follow:
 
 ![alt text](./assets/theater.png)
 
@@ -40,12 +40,12 @@ kaplay({
 });
 ```
 
-You can find all options in the [**KAPLAYOpt**](/doc/KAPLAYOpt) type definition.
+You can find all options in the [**KAPLAYOpt**](/docs/api/KAPLAYOpt) type definition.
 
 ## Game Objects
 
 The **game object** is the basic unit of KAPLAY. The player, a butterfly, a
-tree, or even a piece of text are all game objects. they are our actors, they
+tree, or even a piece of text are all game objects. They are our actors. They
 move, interact, and make the game interesting.
 
 You can create objects with the `add()` function, which takes an array of
@@ -72,7 +72,7 @@ game objects. For example:
 - `rect(width, height)` draws a rectangle.
 - `color(r, g, b)` sets the color of the object.
 
-We will go in deep on components in the [**Components**](/guides/components)
+We will go in depth on components in the [**Components**](/docs/guides/components)
 guide.
 
 ## Scenes
@@ -108,4 +108,4 @@ onKeyPress("space", () => {
 });
 ```
 
-We go in deep with events on the [**Events guide**](/guides/events) guide.
+We go in depth with events on the [**Events guide**](/docs/guides/events) guide.

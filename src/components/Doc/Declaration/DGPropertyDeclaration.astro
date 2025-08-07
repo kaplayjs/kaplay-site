@@ -1,0 +1,30 @@
+---
+import DocFor from "../DocFor.astro";
+import JSDoc from "../JSDoc.astro";
+import Modifiers from "../Other/Modifiers.astro";
+import Title from "../Utils/Title.astro";
+import type { DataMaybeMemberTypeProps } from "../Utils/types.ts";
+
+type TypeDataPropertyDeclaration = {
+    kind: "PropertyDeclaration";
+    id: number;
+    name: string;
+    type: any[];
+    questionToken: boolean;
+    modifiers?: any[];
+};
+
+interface Props extends DataMaybeMemberTypeProps {
+    data: TypeDataPropertyDeclaration;
+}
+
+const { index, parent, data, depth } = Astro.props;
+---
+
+{data.modifiers ? <Modifiers modifiers={data.modifiers} /> : ""}
+{" "}<Title index={index} name={data.name} parent={parent} class="inline" depth={depth} />{data.questionToken ? "?" : ""}: <DocFor
+    data={data.type}
+    depth={depth}
+    parent={data.name}
+/>
+<JSDoc data={data} />

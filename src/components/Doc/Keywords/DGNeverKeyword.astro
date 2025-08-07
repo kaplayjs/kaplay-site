@@ -1,0 +1,13 @@
+---
+import type { DataTypeProps } from "../Utils/types.ts";
+
+type TypeDataNeverKeyword = {
+    kind: "NeverKeyword";
+};
+
+interface Props extends DataTypeProps {
+    data: TypeDataNeverKeyword;
+}
+---
+
+<span data-dg-never-keyword data-dg-primitive>never</span>

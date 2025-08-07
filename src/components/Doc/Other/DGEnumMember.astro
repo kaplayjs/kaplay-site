@@ -1,0 +1,20 @@
+---
+import type { DataTypeProps } from "../Utils/types.ts";
+
+type TypeDataEnumMember = {
+    kind: "EnumMember";
+    id: number;
+    name: string;
+    initializer: {
+        text: string;
+    };
+};
+
+interface Props extends DataTypeProps {
+    data: TypeDataEnumMember;
+}
+
+const { data } = Astro.props;
+---
+
+<span>{data.name} = {data.initializer.text}</span>

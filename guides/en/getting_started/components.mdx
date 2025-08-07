@@ -17,7 +17,7 @@ the game object.
 
 ## Using a component
 
-For use components we have to attach them in the `add()` function.
+To use components, we have to attach them in the `add()` function.
 
 ```js
 const player = add([
@@ -35,17 +35,17 @@ debug.log(player.height); // will log 60
 
 There are a lot of useful components in KAPLAY like:
 
-- [`sprite()`](/doc/ctx/sprite) to make the object draw an image, and play
+- [`sprite()`](/docs/api/ctx/sprite) to make the object draw an image, and play
   animations
-- [`area()`](/doc/ctx/area) to make the object do collision detection, with
-  methods like [`onCollide()`](/doc/AreaComp#AreaComp-onCollide)
-- [`text()`](/doc/ctx/text) to make the object draw text
-- [`scale()`](/doc/ctx/scale) to make the game object bigger or smaller or to
+- [`area()`](/docs/api/ctx/area) to make the object do collision detection, with
+  methods like [`onCollide()`](/docs/api/AreaComp#AreaComp-onCollide)
+- [`text()`](/docs/api/ctx/text) to make the object draw text
+- [`scale()`](/docs/api/ctx/scale) to make the game object bigger or smaller or to
   stretch it
 
-You can see all the components in the [API Reference](/doc/ctx/pos).
+You can see all the components in the [API Reference](/docs/api/ctx/pos).
 
-## Components operations
+## Component operations
 
 All components have an _id_, this is the **name** of the component, `sprite()`'s
 id is `"sprite"`. This is used in many operations.
@@ -68,11 +68,11 @@ bean.use(color("#ff00ff")); // green bean <:
 ### How to remove components
 
 ```js
-// We pass the component id for remove it.
+// We pass the component id to remove it
 bean.unuse("sprite"); // bye bean
 ```
 
-### How to know if a game object have a component
+### How to know if a game object has a component
 
 ```js
 // We pass the component id:
@@ -80,12 +80,12 @@ bean.has("sprite"); // false - true if comp is there, otherwise false
 ```
 
 <Info crew="gun" title="Important!">
-Do note that you can't pass the component itself to `.unuse()` / `.has()`,
-you have to pass the component _name_!
+Do note that you can't pass the component itself to `.unuse()` / `.has()`.
+You have to pass the component _name_!
 </Info>
 
 ## Making your own components
 
 If you are creating a larger game, it's probably a good idea to bundle some of
 your game's functionality into custom components. You can check out how to do
-that in [this guide](/guides/custom_components/).
+that in [this guide](/docs/guides/custom_components/).

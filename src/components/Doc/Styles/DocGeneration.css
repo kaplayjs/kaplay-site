@@ -1,0 +1,28 @@
+[data-dg-primitive], [data-dg-unknown] {
+    @apply text-primary;
+}
+
+[data-dg-entry="true"] strong {
+    font-weight: normal;
+}
+
+[data-dg-title="true"] {
+    @apply font-medium text-xl;
+}
+
+[data-dg-title="false"] {
+    @apply font-medium text-lg leading-tight;
+}
+
+strong[data-dg-title],
+[data-jsdoc-describe] {
+    color: var(--color-subheadings);
+}
+
+[data-jsdoc-value] {
+    @apply text-sm;
+}
+
+[data-dg-string-literal] {
+    @apply text-orange-300;
+}

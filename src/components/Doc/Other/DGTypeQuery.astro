@@ -1,0 +1,19 @@
+---
+import type { DataTypeProps } from "../Utils/types.ts";
+
+export type DataTypeQuery = {
+    kind: "TypeQuery";
+    exprName: {
+        kind: "Indentifier";
+        escapedText: "initApp";
+    };
+};
+
+interface Props extends DataTypeProps {
+    data: DataTypeQuery;
+}
+
+const { data, depth } = Astro.props;
+---
+
+<span data-dg-type-query>typeof {data.exprName.escapedText}</span>

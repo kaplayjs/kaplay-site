@@ -16,8 +16,8 @@ const docEntries = Object.values(docGroups)
 
         return (
             <>
-                {referenceList?.map((reference: any) => (
-                    <DocEntry data={reference} />
+                {referenceList?.map((reference: any, i) => (
+                    <DocEntry index={i} data={reference} />
                 ))}
 
                 <div class="divider" />
