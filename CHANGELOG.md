@@ -6,6 +6,30 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.0] - 2025-08-06
+
+### Added
+
+- New preview side panel for API Reference types - @imaginarny
+
+## [1.3.1] - 2025-08-04
+
+### Changed
+
+- Docs button on landing page was extended with a dropdown menu including both Guides and API Reference links - @imaginarny
+- Improved spacing and alignment of mobile menu items on landing page - @imaginarny
+
+## [1.3.0] - 2025-08-01
+
+### Added
+
+- New API Reference index page at /docs/api - @imaginarny
+
+### Changed
+
+- All links that are part of docs are now prefixed with /docs - @imaginarny
+- Notably, API Reference /doc/* links now redirect to /docs/api/* - @imaginarny
+
 ## [1.2.0] - 2025-07-26
 
 ### Added

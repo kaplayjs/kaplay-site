@@ -9,7 +9,7 @@ url: creating_your_first_game
 This is an intro tutorial that will cover the basic concepts and make a very
 simple [Chrome Dino](https://en.wikipedia.org/wiki/Dinosaur_Game) - ish game.
 For setting up KAPLAY development, see the
-[Installation Guide](/guides/install).
+[Installation Guide](/docs/guides/install).
 
 ![game](intro/game.png)
 

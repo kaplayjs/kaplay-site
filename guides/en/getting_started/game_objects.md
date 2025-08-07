@@ -118,7 +118,7 @@ bag.get("*"); // all children
 bag.get("favorite", { recursive: true }); // [superMiniBag] - all descendants with tag favorite
 ```
 
-You can see the full list of operations in the [`GameObjRaw`](/doc/GameObjRaw)
+You can see the full list of operations in the [`GameObjRaw`](/docs/api/GameObjRaw)
 type definition.
 
 ## Creating game object dynamically

@@ -1,0 +1,97 @@
+---
+import Info from "@/components/Content/Info.astro";
+import Prose from "@/components/Content/Prose.astro";
+import SidebarPage from "@/layouts/SidebarPage.astro";
+import { assets } from "@kaplayjs/crew";
+---
+
+<SidebarPage
+    meta={{
+        title: "KAPLAY API Reference",
+        description: "hi",
+        keywords: "kaplayjs, API, documentation",
+    }}
+    sidebarMode="reference"
+>
+    <Prose>
+        <h1>API Reference</h1>
+
+        <p class="text-base-subheading">Docs for all KAPLAY functions, components, types and more.</p>
+
+        <div class="-mt-5">
+            <blockquote class="text-base tracking-wide">
+                <p>KAPLAY API is the easiest and a lot of fun to use!</p>
+            </blockquote>
+        </div>
+    </Prose>
+
+    <div class="max-w-[50rem] -mt-1">
+        <div class="grid bg-base-50 rounded-xl gap-px p-px">
+            <div class="flex flex-1 flex-col rounded-xl bg-base-300 p-4 w-full gap-4">
+                <h2 class="text-2xl font-bold mt-1 -mb-0.5"
+                    >It all starts with <a class="link link-hover link-primary" href="/docs/api/kaplay">kaplay()</a>...</h2
+                >
+                <p class="leading-relaxed">
+                    Then you usually <code class="bg-base-100 px-1 py-0.5 rounded-md"
+                        ><a href="/docs/api/add" class="hover:text-base-content/80 focus:outline-none focus-visible:ring-2 ring-base-content rounded-md"
+                            ><span class="underline decoration-base-content/20">add</span>()</a
+                        ></code
+                    > objects. The object itself includes many useful methods and properties that you might miss if you only search for general functions or components.
+                    You can see these when you navigate to their "returns", interfaces, or types, like <a
+                        class="link link-hover link-primary"
+                        href="/docs/api/ctx/add">add()</a
+                    >
+                    <span class="font-mono opacity-80">&gt;</span>
+                    <a class="link link-hover link-primary" href="/docs/api/GameObj">GameObj</a>
+                    <span class="font-mono opacity-80">&gt;</span>
+                    <a class="link link-hover link-primary" href="/docs/api/GameObjRaw">GameObjRaw</a>.
+                </p>
+                <p class="leading-relaxed">
+                    The same goes for components. When you check how to use them, don't forget to explore everything they offer. For example, <a
+                        class="link link-hover link-primary"
+                        href="/docs/api/ctx/pos">pos()</a
+                    >
+                    <span class="font-mono opacity-80">&gt;</span>
+                    <a class="link link-hover link-primary" href="/docs/api/PosComp">PosComp</a> &ndash; besides setting the position of the object, you could miss
+                    all the things you can do with it now, like <code class="bg-base-100 px-1 py-0.5 rounded-md"
+                        ><a href="/docs/api/PosComp#PosComp-move" class="hover:text-base-content/80 focus:outline-none focus-visible:ring-2 ring-base-content rounded-md"
+                            >obj.<span class="underline decoration-base-content/20">move</span>()</a
+                        ></code
+                    >!
+                </p>
+                <p>
+                    Or the other way around, check types if you can't find specific mechanics like e.g. collisions in <a class="link link-hover link-primary" href="/docs/api/AreaComp">AreaComp</a>.
+                </p>
+
+                <div class="divider before:h-px after:h-px -my-2"></div>
+
+                <div class="flex items-center justify-between gap-2">
+                    <p class="text-sm"
+                        ><strong class="font-semibold text-base-subheading"> TL;DR:</strong> Remember to also check params, returns, interfaces, or types, besides the
+                        global functions for their goodies.
+                    </p>
+
+                    <img src={assets.mark.outlined} alt="Mark Smiling" width="21" height="19" />
+                </div>
+            </div>
+        </div>
+
+        <Info crew="question_mark" title="How to search">
+            <p>
+                You can use the <button
+                    type="button"
+                    class="group inline-flex items-center gap-1 font-semibold text-base-subheading -mx-1 px-1.5 pr-1 py-0.5 rounded-xl hover:bg-base-content/10 focus:outline-none focus-visible:ring-2 ring-base-content transition-colors"
+                    onclick="document.querySelector('#sidebar-search')?.focus()"
+                    ><span class="underline decoration-base-content/20 group-hover:decoration-transparent transition-colors">Search field</span></button
+                > in the sidebar to <strong class="font-semibold text-base-subheading">filter</strong> menu items by name, e.g. "sprite". If you can't find what you
+                are looking for, try using the main <button
+                    type="button"
+                    class="group inline-flex items-center gap-1 font-semibold text-base-subheading -mx-1 px-1.5 pr-1 py-0.5 rounded-xl hover:bg-base-content/10 focus:outline-none focus-visible:ring-2 ring-base-content transition-colors"
+                    onclick="document.querySelector('#search-modal')?.showModal()"
+                    ><span class="underline decoration-base-content/20 group-hover:decoration-transparent transition-colors">site-wide search</span>
+                    <kbd data-search-btn class="kbd hidden md:inline-flex text-xs min-h-0 px-1.5 py-0.5">CTRL + K</kbd></button
+                > in the navbar instead.
+            </p>
+        </Info>
+    </div>
+</SidebarPage>

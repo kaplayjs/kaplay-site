@@ -62,9 +62,9 @@ objects.
 This guide covers:
 
 - Component & Tags system, what they are and how they work
-- The [`GameObjRaw.use()` method](/doc/GameObjRaw/#GameObjRaw-use)
-- The [`GameObjRaw.c()` method](/doc/GameObjRaw/#GameObjRaw-c)
-- The [`GameObjRaw.is()` method](/doc/GameObjRaw/#GameObjRaw-is)
+- The [`GameObjRaw.use()` method](/docs/api/GameObjRaw/#GameObjRaw-use)
+- The [`GameObjRaw.c()` method](/docs/api/GameObjRaw/#GameObjRaw-c)
+- The [`GameObjRaw.is()` method](/docs/api/GameObjRaw/#GameObjRaw-is)
 
 The components system of KAPLAY (the `C` of ECS) is powerful and flexible.
 

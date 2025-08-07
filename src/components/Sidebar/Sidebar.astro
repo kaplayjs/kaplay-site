@@ -33,7 +33,7 @@ const { sidebarMode, headings } = Astro.props;
 <div id="drawer" class="drawer z-20 h-full md:drawer-open md:border-r border-base-content/5">
     <input id="sidebar" type="checkbox" class="drawer-toggle" />
 
-    <div class="drawer-content w-full">
+    <div class="drawer-content flex flex-col w-full min-w-0">
         <header class="z-30 flex min-h-16 w-full">
             <SidebarContentNav headings={headings} />
         </header>
@@ -46,7 +46,7 @@ const { sidebarMode, headings } = Astro.props;
             </div>
         </main>
 
-        <Footer />
+        <Footer friendsClass="mt-auto" friendsInnerClass="max-w-[50rem]" />
     </div>
 
     <SidebarEntries sidebarMode={sidebarMode} />
