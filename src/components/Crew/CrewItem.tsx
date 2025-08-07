@@ -6,6 +6,7 @@ import { AudioPlayer } from "../Util/AudioPlayer";
 export interface CrewItemProps {
     crewItem?: keyof typeof assets;
     isModal?: boolean;
+    openModal?: (item: keyof typeof assets) => void;
 }
 
 type FactData = {
@@ -49,17 +50,18 @@ const genderWord = [
     ["They", "Them", "Their"],
 ];
 
-export const CrewItem = (props: CrewItemProps) => {
-    const isModal = props.isModal ?? false;
+export const CrewItem = (
+    { crewItem: crewItemKey, isModal = false, openModal }: CrewItemProps,
+) => {
     const [versionSelected, setVersionSelected] = useState<
         "original" | "outlined"
     >("original");
 
-    if (!props.crewItem) {
+    if (!crewItemKey) {
         return <div>loading...</div>;
     }
 
-    const crewItem = assets[props.crewItem];
+    const crewItem = assets[crewItemKey];
 
     const facts = crewItem.crewmeta
         ? Object.fromEntries([
@@ -72,6 +74,22 @@ export const CrewItem = (props: CrewItemProps) => {
     const supportsImport =
         ("sprite" in crewItem && !crewItem.sprite?.includes("/gif"))
         || !("sprite" in crewItem);
+
+    const swapModal = (item: keyof typeof assets) => {
+        if (!isModal || !openModal) return;
+
+        const dialog = document.querySelector<HTMLDialogElement>("#crew-modal");
+
+        if (!dialog) {
+            openModal(item);
+            return;
+        }
+
+        dialog.addEventListener("transitionend", () => openModal(item), {
+            once: true,
+        });
+        dialog?.close();
+    };
 
     return (
         <div
@@ -150,7 +168,12 @@ export const CrewItem = (props: CrewItemProps) => {
                         )}
 
                         {crewItem.kind == "Sound" && (
-                            <AudioPlayer src={crewItem.sound} />
+                            <AudioPlayer
+                                src={crewItem.sound}
+                                bgImage={crewItem?.["relatedSprite"]
+                                        && assets?.[crewItem?.["relatedSprite"]]
+                                            ?.outlined || undefined}
+                            />
                         )}
                     </div>
 
@@ -219,7 +242,9 @@ export const CrewItem = (props: CrewItemProps) => {
 
                         <p class="text-md">by {crewItem.author}</p>
 
-                        {(facts || crewItem.appearances) && (
+                        {(facts || crewItem.appearances
+                            || crewItem?.["relatedSprite"]
+                            || crewItem?.["relatedSound"]) && (
                             <ul class="flex flex-wrap gap-x-4 gap-y-2 mt-5 lg:mt-7">
                                 {facts
                                     && Object.entries(facts).map((
@@ -253,6 +278,78 @@ export const CrewItem = (props: CrewItemProps) => {
                                             {factsData?.[key]?.suffix}
                                         </li>
                                     ))}
+
+                                {crewItem?.["relatedSound"] && (
+                                    <li class="flex flex-wrap gap-2 items-start grow basis-[calc(50%-1rem)] min-w-fit">
+                                        <span class="flex gap-2 items-center text-left">
+                                            <img
+                                                src={assets.sounds.outlined}
+                                                class="h-5 w-5 object-contain"
+                                                aria-hidden="true"
+                                            />
+                                            <span class="font-bold min-w-16">
+                                                Sound
+                                            </span>
+                                        </span>
+
+                                        <a
+                                            class="link-primary link-hover underline-offset-4 transition-all"
+                                            href={`/crew/${
+                                                crewItem["relatedSound"]
+                                            }`}
+                                            {...(isModal && {
+                                                onClick: e => {
+                                                    e.preventDefault();
+                                                    swapModal(
+                                                        crewItem[
+                                                            "relatedSound"
+                                                        ],
+                                                    );
+                                                },
+                                            })}
+                                        >
+                                            {assets[crewItem["relatedSound"]]
+                                                .name}
+                                        </a>
+                                    </li>
+                                )}
+
+                                {crewItem?.["relatedSprite"] && (
+                                    <li class="flex flex-wrap gap-2 items-start grow basis-[calc(50%-1rem)] min-w-fit">
+                                        <span class="flex gap-2 items-center text-left">
+                                            <img
+                                                src={assets[
+                                                    crewItem["relatedSprite"]
+                                                ].outlined}
+                                                class="h-5 w-5 object-contain"
+                                                aria-hidden="true"
+                                            />
+                                            <span class="font-bold min-w-16">
+                                                Related Sprite
+                                            </span>
+                                        </span>
+
+                                        <a
+                                            class="link-primary link-hover underline-offset-4 transition-all"
+                                            href={`/crew/${
+                                                crewItem["relatedSprite"]
+                                            }`}
+                                            {...(isModal && {
+                                                onClick: e => {
+                                                    e.preventDefault();
+                                                    swapModal(
+                                                        crewItem[
+                                                            "relatedSprite"
+                                                        ],
+                                                    );
+                                                },
+                                            })}
+                                        >
+                                            {assets[crewItem["relatedSprite"]]
+                                                .name}
+                                        </a>
+                                    </li>
+                                )}
 
                                 {crewItem.appearances && (
                                     <li class="flex flex-wrap gap-2 items-start grow basis-[calc(50%-1rem)] min-w-fit">
@@ -307,7 +404,7 @@ export const CrewItem = (props: CrewItemProps) => {
                         <div class="mt-auto pt-4">
                             <a
                                 class="inline-flex gap-2 items-center font-medium text-sm px-0.5 hover:text-primary transition-colors rounded-lg focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-base-content"
-                                href={`/crew/${props.crewItem}`}
+                                href={`/crew/${crewItemKey}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
@@ -340,7 +437,7 @@ export const CrewItem = (props: CrewItemProps) => {
 
                 <div class="contents sm:flex sm:flex-1 flex-col min-h-max gap-8 lg:p-6">
                     <div class="space-y-2">
-                        <h3 class="font-bold">
+                        <h3 class="font-bold mt-1">
                             About {crewItem.name}
                         </h3>
                         <p class="max-w-[40ch] text-balance mb-6">
@@ -480,13 +577,13 @@ export const CrewItem = (props: CrewItemProps) => {
                                                 ? ""
                                                 : "-o";
                                         a.download =
-                                            `${props.crewItem}${suffix}.png`;
+                                            `${crewItemKey}${suffix}.png`;
                                         a.click();
                                     }
                                     : () => {
                                         const a = document.createElement("a");
                                         a.href = crewItem.sound;
-                                        a.download = `${props.crewItem}.${
+                                        a.download = `${crewItemKey}.${
                                             crewItem?.fileFormat || "mp3"
                                         }`;
                                         a.click();

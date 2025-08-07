@@ -13,13 +13,15 @@ export const CrewModal = ({ setOpenHandler }: CrewModalProps) => {
         null,
     );
 
+    const handleOpen = (item: keyof typeof assets) => {
+        setCurCrewItem(item);
+        dialogRef?.current?.showModal();
+    };
+
     const handleClose = () => dialogRef?.current?.close();
 
     useEffect(() => {
-        setOpenHandler(() => (item: keyof typeof assets) => {
-            setCurCrewItem(item);
-            dialogRef?.current?.showModal();
-        });
+        setOpenHandler(() => (item: keyof typeof assets) => handleOpen(item));
     }, [setOpenHandler]);
 
     return (
@@ -52,7 +54,11 @@ export const CrewModal = ({ setOpenHandler }: CrewModalProps) => {
                     </svg>
                 </button>
 
-                <CrewItem crewItem={curCrewItem ?? undefined} isModal />
+                <CrewItem
+                    crewItem={curCrewItem ?? undefined}
+                    openModal={handleOpen}
+                    isModal
+                />
             </div>
             <form method="dialog" class="modal-backdrop">
                 <button

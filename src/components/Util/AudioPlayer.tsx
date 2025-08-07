@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "preact/hooks";
 type AudioPlayerProps = {
     src: string;
     bigPlayButton?: boolean;
+    bgImage?: string;
 };
 
 const calcTime = (secs: number, dur?: number): string => {
@@ -16,7 +17,7 @@ const calcTime = (secs: number, dur?: number): string => {
 };
 
 export const AudioPlayer = (
-    { src, bigPlayButton = true }: AudioPlayerProps,
+    { src, bigPlayButton = true, bgImage }: AudioPlayerProps,
 ) => {
     const playSize = bigPlayButton ? 32 : 18;
 
@@ -145,15 +146,28 @@ export const AudioPlayer = (
             <button
                 onClick={togglePlay}
                 class={cn(
-                    "swap shrink-0 p-2 bg-base-300 rounded-lg hover:bg-base-300/80 focus:outline-none focus-visible:ring-2 ring-base-content transition-colors",
+                    "relative swap shrink-0 p-2 bg-base-300 rounded-lg hover:bg-base-300/80 focus:outline-none focus-visible:ring-2 ring-base-content overflow-hidden transition-colors",
                     {
                         "w-full py-4": bigPlayButton,
                         "swap-active": playing,
                     },
                 )}
+                aria-label="Play / Pause"
             >
+                {(bgImage && bigPlayButton) && (
+                    <img
+                        class="scale-[4] object-scale-down opacity-5 translate-y-2 pixelated"
+                        src={bgImage}
+                        width={playSize}
+                        height={playSize}
+                        aria-hidden="true"
+                    />
+                )}
+
                 <img
-                    class="swap-off duration-100"
+                    class={cn("relative swap-off duration-100", {
+                        "drop-shadow-lg": bgImage && bigPlayButton,
+                    })}
                     src={assets.play.outlined}
                     width={playSize}
                     height={playSize}
@@ -161,7 +175,9 @@ export const AudioPlayer = (
                 />
 
                 <img
-                    class="swap-on duration-100"
+                    class={cn("relative swap-on duration-100", {
+                        "drop-shadow-lg": bgImage && bigPlayButton,
+                    })}
                     src={assets.pause.outlined}
                     width={playSize}
                     height={playSize}
@@ -169,7 +185,17 @@ export const AudioPlayer = (
                 />
             </button>
 
-            <div class="flex items-center gap-2 flex-1 px-3 py-2 bg-base-300 rounded-lg">
+            <div class="relative flex items-center gap-2 flex-1 px-3 py-2 bg-base-300 rounded-lg overflow-hidden">
+                {(bgImage && !bigPlayButton) && (
+                    <img
+                        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mt-0.5 w-auto h-[210%] opacity-5"
+                        src={bgImage}
+                        width={playSize}
+                        height={playSize}
+                        aria-hidden="true"
+                    />
+                )}
+
                 <output class="text-sm tabular-nums">{curTime}</output>
 
                 <input
