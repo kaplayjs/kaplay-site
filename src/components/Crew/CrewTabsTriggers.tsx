@@ -7,6 +7,11 @@ const typeIcons = {
     "UI": assets.like.outlined,
 };
 
+const tabsRenamed = {
+    "Sprite": "Sprites",
+    "Sound": "Sounds",
+};
+
 interface CrewTabTriggersProps {
     active: typeOptions;
     tabs: Record<typeOptions, number>;
@@ -45,7 +50,9 @@ export const CrewTabsTriggers = (
                             />
                         )}
 
-                        <span className="inline font-medium">{type}</span>
+                        <span className="inline font-medium">
+                            {tabsRenamed?.[type] || type}
+                        </span>
 
                         <span className="badge badge-xs font-medium py-1 px-1 min-w-5 h-auto bg-base-content/15 border-0">
                             {count}
