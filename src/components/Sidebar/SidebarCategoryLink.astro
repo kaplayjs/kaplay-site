@@ -21,7 +21,11 @@ const { href, target, selected: current, icon, ...props } = Astro.props;
         data-astro-reload="all"
         {...props}
     >
-        {icon && assets?.[icon]?.outlined && <img src={assets[icon].outlined} alt="Sidebar Icon" class="h-6 w-6 object-scale-down" />}
+        {
+            icon && assets?.[icon]?.kind == "Sprite" && assets?.[icon]?.outlined && (
+                <img src={assets[icon].outlined} alt="Sidebar Icon" class="h-6 w-6 object-scale-down" />
+            )
+        }
 
         <slot />
     </a>
