@@ -104,7 +104,7 @@ export const getBookEntries = async () => {
                 }`,
                 description: "",
             })),
-        })),
+        } as SidebarFolderData)),
     ];
 
     return renderList;
