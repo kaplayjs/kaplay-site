@@ -218,7 +218,7 @@ export const CrewItem = (
                                             {crewItem.aliases.map(alias => (
                                                 <li
                                                     class={cn(
-                                                        "tooltip text-left text-sm before:-left-2 before:translate-x-0 decoration-dotted decoration-base-content/25 underline-offset-4",
+                                                        "tooltip text-left text-sm before:-left-2 before:translate-x-0 decoration-1 decoration-dotted decoration-base-content/25 underline-offset-4",
                                                         {
                                                             "underline": alias
                                                                 ?.description,
@@ -251,7 +251,7 @@ export const CrewItem = (
                                         [key, value],
                                     ) => (
                                         <li
-                                            class="tooltip flex gap-2 items-start grow basis-[calc(50%-1rem)] min-w-fit text-left data-[tip]:underline decoration-dotted decoration-base-content/25 underline-offset-4"
+                                            class="tooltip flex gap-2 items-start grow basis-[calc(50%-1rem)] min-w-fit text-left data-[tip]:underline decoration-1 decoration-dotted decoration-base-content/25 underline-offset-4"
                                             data-tip={(factsData?.[key]?.tooltip
                                                         && (factsData?.[key]
                                                             ?.tooltipCheck(
@@ -354,7 +354,7 @@ export const CrewItem = (
                                 {crewItem.appearances && (
                                     <li class="flex flex-wrap gap-2 items-start grow basis-[calc(50%-1rem)] min-w-fit">
                                         <span
-                                            class="tooltip flex gap-2 items-center text-left before:max-w-48 data-[tip]:underline decoration-dotted decoration-base-content/25 underline-offset-4 before:left-0 before:translate-x-0"
+                                            class="tooltip flex gap-2 items-center text-left before:max-w-48 data-[tip]:underline decoration-1 decoration-dotted decoration-base-content/25 underline-offset-4 before:left-0 before:translate-x-0"
                                             data-tip="Green is Canon / Officially Acknowledged™"
                                         >
                                             <img
@@ -375,7 +375,7 @@ export const CrewItem = (
                                                 i > 0 && ", ",
                                                 <a
                                                     class={cn(
-                                                        "tooltip before:z-50 before:max-w-60 after:z-50 underline decoration-dotted decoration-base-content/25 underline-offset-4 hover:decoration-solid hover:decoration-current transition-all",
+                                                        "tooltip before:z-50 before:max-w-60 after:z-50 underline decoration-1 decoration-dotted decoration-base-content/25 underline-offset-4 hover:decoration-solid hover:decoration-current transition-all",
                                                         {
                                                             "link-primary":
                                                                 item.canon,
