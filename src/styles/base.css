@@ -84,13 +84,15 @@ iframe {
     max-width: 100%;
 }
 
-a:hover,
-button:not([disabled]):hover,
-.btn:not(.disabled):hover,
+a[href],
+button:not([disabled]),
+.btn:not(.disabled),
 select:not([disabled]),
 select:not([disabled]):hover,
-label:hover,
-.hoverable:not(.disabled):hover,
+label:not(.cursor-default),
+input[type="range"]:not(.cursor-default),
+input[type="radio"]:not(.cursor-default),
+.hoverable:not(.disabled),
 .collapse:not(.collapse-open):not(.collapse-close) > input[type="checkbox"] {
     cursor: url(/cursor_pointer.png) 8 4, auto;
 }
