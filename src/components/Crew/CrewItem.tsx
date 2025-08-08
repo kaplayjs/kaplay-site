@@ -72,7 +72,9 @@ export const CrewItem = (
     if (!("outlined" in crewItem)) setVersionSelected("original");
 
     const supportsImport =
-        ("sprite" in crewItem && !crewItem.sprite?.includes("/gif"))
+        ("sprite" in crewItem && crewItem.sprite?.includes("/gif")
+            ? crewItem?.["loadSpriteOpt"]?.anims
+            : true)
         || !("sprite" in crewItem);
 
     const swapModal = (item: keyof typeof assets) => {
@@ -552,7 +554,7 @@ export const CrewItem = (
                                         </h3>
 
                                         <div
-                                            class="text-sm m-0 -mx-0.5 p-0 [--rounded-box:0.75rem] [&>.shiki]:!pr-10 [&>.shiki]:whitespace-normal"
+                                            class="relative text-sm my-2 -mx-0.5 p-0 rounded-box overflow-hidden [--rounded-box:0.75rem] [&>.shiki]:whitespace-pre-wrap [&>.shiki]:max-h-36 [&>.shiki]:!my-0 [&>.shiki]:static"
                                             dangerouslySetInnerHTML={{
                                                 __html: crewItem.imports
                                                     .importInPG[

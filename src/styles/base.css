@@ -165,6 +165,11 @@ input[type="radio"]:not(.cursor-default),
 .shiki {
     overflow: auto;
     @apply my-2 rounded-box bg-base-300 p-2 !important;
+    @apply scrollbar-thin;
+
+    &:has(.copy) {
+        @apply pr-10 !important;
+    }
 }
 
 .astro-code {
