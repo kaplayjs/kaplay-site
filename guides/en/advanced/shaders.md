@@ -128,6 +128,11 @@ drawSprite({
 });
 ```
 
+## Fullscreen post-processing shaders
+
+To apply fullscreen post-processing shader effects you can use built-in [usePostEffect](/docs/api/reference/#usePostEffect)
+method. Check shader examples here: https://play.kaplayjs.com/?example=postEffect
+
 ## Multipass shaders
 
 Some shaders, like gaussian blur, need multiple passes in order to work. This
