@@ -76,14 +76,49 @@ export const CrewSearch = ({
     return (
         <div class="crew-search flex flex-col gap-2">
             <div class="join w-full">
-                <input
-                    type="text"
-                    class="join-item input input-bordered w-full focus:z-[1]"
-                    placeholder="Search..."
-                    value={keywordFilter}
-                    onInput={e =>
-                        setKeywordFilter((e.target as HTMLInputElement).value)}
-                />
+                <form
+                    class="relative w-full focus-within:z-[1]"
+                    action="javascript:void(0)"
+                >
+                    <label
+                        className="join-item input input-bordered flex items-center gap-1 w-full"
+                        aria-label="Search"
+                    >
+                        <input
+                            type="text"
+                            className="peer grow w-full h-full"
+                            placeholder="Search..."
+                            autoComplete="off"
+                            value={keywordFilter}
+                            onInput={e =>
+                                setKeywordFilter(
+                                    (e.target as HTMLInputElement).value,
+                                )}
+                        />
+
+                        <button
+                            type="reset"
+                            className="btn btn-xs btn-ghost -mr-1.5 px-1 shrink-0 peer-placeholder-shown:invisible peer-placeholder-shown:scale-0 peer-placeholder-shown:opacity-0 transition-[visibility,transform,opacity]"
+                            aria-label="Clear"
+                            onClick={() => setKeywordFilter("")}
+                        >
+                            <svg
+                                width="14"
+                                height="14"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+                                <path d="M18 6 6 18"></path>
+                                <path d="m6 6 12 12"></path>
+                            </svg>
+                        </button>
+                    </label>
+                </form>
 
                 <div class="tooltip grid" data-tip="Filter by Origin">
                     <select
