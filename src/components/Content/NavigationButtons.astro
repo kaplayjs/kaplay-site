@@ -15,7 +15,7 @@ const { previous, next } = Astro.props;
         {
             previous && (
                 <a
-                    href={"/docs/guides/" + previous.url}
+                    href={previous.url}
                     class="not-prose card gap-1 mb-6 bg-base-content/5 p-4 no-underline hover:bg-base-content/10 transition-colors"
                     aria-label="Previous guide"
                 >
@@ -46,7 +46,7 @@ const { previous, next } = Astro.props;
         {
             next && (
                 <a
-                    href={"/docs/guides/" + next.url}
+                    href={next.url}
                     class="not-prose card gap-1 mb-6 bg-base-content/5 p-4 no-underline hover:bg-base-content/10 transition-colors"
                     aria-label="Next guide"
                 >

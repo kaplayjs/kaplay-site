@@ -4,7 +4,7 @@ description: Learn how to use an offscreen canvas in KAPLAY.
 url: canvas
 ---
 
-# Introduction
+# Canvas
 
 A Kaplay canvas is basically a framebuffer texture. It is used for optimization
 in some cases, though sometimes a picture may be better, since a picture uses

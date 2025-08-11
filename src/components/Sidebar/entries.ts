@@ -20,9 +20,10 @@ export const getGuidesEntries = async () => {
     const sortedGuides: LinkListEntry[] = guides.sort(sortGuides).map((
         guide,
     ) => ({
+        id: guide.id,
         description: guide.data.description,
         title: guide.data.title,
-        link: `/docs/guides/${guide.data.url ?? guide.id.split("/")[2]}`,
+        url: `/docs/guides/${guide.data.url ?? guide.id.split("/")[2]}`,
         folder: guide.id.split("/")[1],
     }));
 
@@ -56,8 +57,9 @@ export const getBlogEntries = async () => {
         {
             folder: "Blog",
             linkList: sortedEntries.map((entry: any) => ({
+                id: entry.id,
                 title: entry.data.title,
-                link: `/blog/${entry.slug}`,
+                url: `/blog/${entry.slug}`,
                 description: "",
             })),
         },
@@ -93,7 +95,7 @@ export const getBookEntries = async () => {
             folder: booksInfo[category].title ?? category,
             linkList: booksByCategory[category].map((book: any) => ({
                 title: book.data.title,
-                link: `/books/${book.slug.split("/")[1]}/${
+                url: `/books/${book.slug.split("/")[1]}/${
                     book.slug.split("/")[2]
                 }`,
                 description: "",
@@ -153,7 +155,9 @@ export const getDocEntries = async () => {
 
                 return {
                     title: item,
-                    link: asCtxMember ? `/docs/api/ctx/${item}` : `/docs/api/${item}`,
+                    url: asCtxMember
+                        ? `/docs/api/ctx/${item}`
+                        : `/docs/api/${item}`,
                     description: `${getDocEntryDescription(item)}`,
                 };
             }),
@@ -208,7 +212,7 @@ const filterByHidden = (entry: {
     return !entry.data.hidden;
 };
 
-const filterGuides = (entry: {
+export const filterGuides = (entry: {
     data: InferEntrySchema<"guides">;
 }): boolean => {
     return filterByVersion(entry) && filterByHidden(entry);

@@ -5,12 +5,13 @@ import { getBlogEntries, getBookEntries, getDocEntries, getGuidesEntries } from 
 import SidebarEntries from "./SidebarEntries.astro";
 import SidebarContentNav from "./SidebarContentNav.astro";
 
-export type LinkListEntry = {
+export interface LinkListEntry {
+    id: string;
     title: string;
     description: string;
-    link: string;
+    url: string;
     folder?: string;
-};
+}
 
 export type SidebarEntry = {
     linkList: LinkListEntry[];

@@ -4,7 +4,7 @@ description: Learn how to use physics in KAPLAY.
 url: physics
 ---
 
-# Introduction
+# Physics
 
 There are two main components which implement physics in KAPLAY. Area and Body.
 

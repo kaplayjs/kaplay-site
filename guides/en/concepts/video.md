@@ -2,9 +2,10 @@
 title: Video
 description: Learn how to load and play a video in KAPLAY
 url: video
+version: "4000"
 ---
 
-# Introduction
+# Videos
 
 A video can be played using the video component. This can be used for intros, or cut-scenes for example.
 
