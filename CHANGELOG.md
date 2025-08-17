@@ -8,6 +8,38 @@ and this project adheres to
 
 ## [unreleased]
 
+## [1.5.0] - TBD
+
+### Added
+
+- Many new Crew sprites, sounds and animated emojis that comes with Crew v2 - @lajbel, @imaginarny
+- Many new Crew facts and details like:
+  - Aliases / Known as - @imaginarny
+  - Origin - @lajbel
+  - Birthday - @lajbel, @imaginarny
+  - Appearances (links to where sprite was used) - @lajbel, @imaginarny
+  - Releated sound/sprite - @imaginarny
+  - KAPLAYGROUND import code instructions - @imaginarny
+- New additions to Crew page UI:
+  - Filter by Crew Origin (Official, Commission, Community) - @lajbel, @imaginarny
+  - Tabs to browse by Type (All, Sprites, UI, Sounds) - @imaginarny
+  - Toggle minimize for Crew filters - @imaginarny
+  - Copy to Clipboard for import codes - @lajbel, @imaginarny
+  - No items found message when there are no search results - @imaginarny
+
+### Changed
+
+- Crew page now includes:
+  - Improved Search with more search terms besides item name - @imaginarny
+  - Improved Tags UI - @imaginarny
+  - Design and layout improvents of page, modal, and its content - @imaginarny
+  - Improved responsive and accessibility - @imaginarny
+- Updated a lot of Crew details, secrets, and descriptions - @lajbel, @imaginarny
+
+## Fixed
+
+- Pointer cursor over interactive elements not showing or blinking - @imaginarny
+
 ## [1.4.1] - 2025-08-11
 
 ### Fixed
