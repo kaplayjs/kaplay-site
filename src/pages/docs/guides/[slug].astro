@@ -1,7 +1,7 @@
 ---
 import NavigationButtons from "@/components/Content/NavigationButtons.astro";
 import Prose from "@/components/Content/Prose.astro";
-import { sortGuides } from "@/components/Sidebar/entries.ts";
+import { filterGuides, getGuidesEntries, sortGuides } from "@/components/Sidebar/entries.ts";
 import SidebarPage from "@/layouts/SidebarPage.astro";
 import { getCollection, render } from "astro:content";
 import type { CollectionEntry } from "astro:content";
@@ -24,20 +24,13 @@ export async function getStaticPaths() {
 }
 
 const previousAndNextPage = async (entry: CollectionEntry<"guides">) => {
-    const entries = await getCollection("guides");
-    const sortedEntries = entries.sort(sortGuides);
-    const currentIndex = sortedEntries.findIndex((e) => e.id === entry.id);
-    const previous = currentIndex === 0
-        ? null
-        : sortedEntries[currentIndex - 1];
-    const next = currentIndex === sortedEntries.length - 1
-        ? null
-        : sortedEntries[currentIndex + 1];
+    const entries = (await getGuidesEntries()).flatMap((s) => s.linkList);
+    const currentIndex = entries.findIndex((e) => e.id === entry.id);
+    const previous = currentIndex === 0 ? null : entries[currentIndex - 1];
+    const next = currentIndex === entries.length - 1 ? null : entries[currentIndex + 1];
     return {
-        previous: previous
-            ? { url: previous.data.url!, title: previous.data.title }
-            : null,
-        next: next ? { url: next.data.url!, title: next.data.title } : null,
+        previous: previous ? { url: previous.url!, title: previous.title } : null,
+        next: next ? { url: next.url!, title: next.title } : null,
     };
 };
 

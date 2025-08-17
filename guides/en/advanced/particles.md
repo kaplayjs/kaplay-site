@@ -4,12 +4,9 @@ description: Learn how to create particles in KAPLAY.
 url: particles
 ---
 
-# Introduction
+# Particles
 
-In this guide we will learn how to use the
-[`particles()` component](/docs/api/ctx/particles)
-
-The particles component is a very efficient way of display tons of visual
+The [`particles()` component](/docs/api/ctx/particles) component is a very efficient way of display tons of visual
 feedback, due to its optimized nature internally on KAPLAY.
 
 ## Creating a Particle Emitter

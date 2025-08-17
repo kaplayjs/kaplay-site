@@ -48,7 +48,7 @@ const url = Astro.url;
         sidebarEntries.map(({ linkList, folder }) => {
             return (
                 <SidebarFolder title={folder} id={folder} isOpen={linkList.length > 0}>
-                    {linkList.map(({ title, link }) => (
+                    {linkList.map(({ title, url: link }) => (
                         <SidebarLink href={link} data-sidebar-entry data-title={title} data-url={link} current={link == url.pathname}>
                             {title}
                         </SidebarLink>

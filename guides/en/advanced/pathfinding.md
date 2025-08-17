@@ -4,18 +4,18 @@ description: Learn how to help objects find their way around in KAPLAY.
 url: pathfinding
 ---
 
-# Introduction
+# Pathfinding
 
 Pathfinding means searching for a path between one location and the other. It is
 mostly used in adventure or realtime strategy games, but is found in a lot of
 other game genres as well. There are both high level and low level pathfinding
 APIs available in Kaplay. This outlines their use.
 
-# Using Level
+## Using Level
 
 Using the ready to go solution of the level, tile and agent components.
 
-## Level component
+### Level component
 
 Level has built-in pathfinding when using the agent component. By giving the
 player or enemy the agent component and spawning them inside a level,
@@ -37,7 +37,7 @@ const bean = level.spawn(
 );
 ```
 
-## Tile component
+### Tile component
 
 The tile component is a component automatically added to objects spawned within
 the level if it is not present already. The tile component has properties which
@@ -56,12 +56,12 @@ const level = addLevel(createMazeLevelMap(15, 15, {}), {
 });
 ```
 
-# Custom pathfinding
+## Custom pathfinding
 
 While level supplies a ready made solution, your game might need more specific
 behavior.
 
-## Maps or graphs
+### Maps or graphs
 
 While level provides a map based on its tiles, there are situations when you may
 want to use a custom map. A map is a graph with nodes and connections. A node is
@@ -78,7 +78,7 @@ const nav = new NavMesh();
 nav.addPolygon([vec2(20, 20), vec2(1004, 20), vec2(620, 120), vec2(20, 120)]);
 ```
 
-## Navigation component
+### Navigation component
 
 The navigation component simplifies using a map for navigation. It can be
 assigned a map to use, or it will look for an object with a navigationMap
@@ -104,7 +104,7 @@ waypoints to follow.
 path = enemy.navigateTo(player.pos);
 ```
 
-## Patrol component
+### Patrol component
 
 The patrol component can follow a set of waypoints, like the ones calculated by
 the navigation component. Like this, the two components can be used to simulate
@@ -117,7 +117,7 @@ add([...patrol({ speed: 100 })]);
 enemy.waypoints = path;
 ```
 
-## Sentry component
+### Sentry component
 
 The sentry component is made to sense when certain objects come into view. It is
 made to make enemies act on visual cues like noticing the player.
