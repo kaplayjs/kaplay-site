@@ -201,48 +201,50 @@ obj.trigger("hi"); // :>
 
 - 🏷️ = Require tags for working
 
+---
+
 ### Object Events List
 
-| Event                  | Comp        | Description                                   | Global Handler        | Object Handler                    |
-| ---------------------- | ----------- | --------------------------------------------- | --------------------- | --------------------------------- |
-| update                 | None        | Runs every frame                              | `onUpdate()`          | `obj.onUpdate()`                  |
-| draw                   | None        | Runs every frame after update                 | `onDraw()`            | `obj.onDraw()`                    |
-| add                    | None        | Runs when an object is added as child         | `onAdd()`             | `obj.onAdd()`                     |
-| destroy                | None        | Runs when an object is destroyed              | `onDestroy()`         | `obj.onDestroy()`                 |
-| use                    | None        | Runs when a component is added                | `onUse()`             | `obj.onUse(comp)`                 |
-| unuse                  | None        | Runs when a component is unused               | `onUnuse()`           | `obj.onUnuse(comp)`               |
-| tag                    | None        | Runs when a tag is added                      | `onTag()`             | `obj.onTag(tag)`                  |
-| untag                  | None        | Runs when a tag is removed                    | `onUntag()`           | `obj.onUntag(tag)`                |
-| collide                | area()      | Runs when object collides with another object | `onCollide()` 🏷️       | `obj.onCollide(other, col)`       |
-| collideUpdate          | area()      | Runs every frame when objects are colliding   | `onCollideUpdate()` 🏷️ | `obj.onCollideUpdate()`           |
-| collideEnd             | area()      | Runs when object stops colliding              | `onCollideEnd()` 🏷️    | `obj.onCollideEnd()`              |
-| hurt                   | health()    | Runs when object is hurt                      | Using `on()`          | `obj.onHurt(damage)`              |
-| heal                   | health()    | Runs when object is healed                    | Using `on()`          | `obj.onHeal(amount)`              |
-| death                  | health()    | Runs when object dies                         | Using `on()`          | `obj.onDeath()`                   |
-| beforePhysicsResolve   | body()      | Runs before physics resolves                  | Using `on()`          | `obj.onBeforePhysicsResolve(col)` |
-| physicsResolve         | body()      | Runs after physics resolves                   | Using `on()`          | `obj.onPhysicsResolve(col)`       |
-| ground                 | body()      | Runs when object is on the ground             | Using `on()`          | `obj.onGround()`                  |
-| fall                   | body()      | Runs when object starts falling               | Using `on()`          | `obj.onFall()`                    |
-| fallOff                | body()      | Runs when object stops falling                | Using `on()`          | `obj.onFallOff()`                 |
-| headbutt               | body()      | Runs when object headbutts                    | Using `on()`          | `obj.onHeadbutt()`                |
-| land                   | body()      | Runs when object lands                        | Using `on()`          | `obj.onLand()`                    |
-| headbutted             | body()      | Runs when object is headbutted                | Using `on()`          | `obj.onHeadbutted()`              |
-| doubleJump             | doubleJump  | Runs when object double jumps                 | Using `on()`          | `obj.onDoubleJump()`              |
-| exitView               | offscreen() | Runs when object goes out of view             | Using `on()`          | `obj.onExitScreen()`              |
-| enterView              | offscreen() | Runs when object enters view                  | Using `on()`          | `obj.onEnterScreen()`             |
-| animStart              | sprite()    | Runs when animation starts                    | Using `on()`          | `obj.onAnimStart(anim)`           |
-| animEnd                | sprite()    | Runs when animation ends                      | Using `on()`          | `obj.onAnimEnd(anim)`             |
-| navigationNext         | agent()     | Runs when navigation moves to the next point  | Using `on()`          | `obj.onNavigationNext()`          |
-| navigationEnded        | agent()     | Runs when navigation ends                     | Using `on()`          | `obj.onNavigationEnded()`         |
-| navigationStarted      | agent()     | Runs when navigation starts                   | Using `on()`          | `obj.onNavigationStarted()`       |
-| targetReached          | agent()     | Runs when navigation target is reached        | Using `on()`          | `obj.onTargetReached()`           |
-| patrolFinished         | patrol()    | Runs when patrol finishes                     | Using `on()`          | `obj.onPatrolFinished()`          |
-| objectSpotted          | sentry()    | Runs when object spots another                | Using `on()`          | `obj.onObjectsSpotted()`          |
-| animateChannelFinished | animate()   | Runs when animation channel finishes          | Using `on()`          | `obj.onAnimateChannelFinished()`  |
-| animateFinished        | animate     | Runs when animation finishes                  | Using `on()`          | `obj.onAnimateFinished()`         |
-| spatialMapChanged      | level()     | Runs when spatial map changes                 | Using `on()`          | `obj.onSpatialMapChanged()`       |
-| navigationMapInvalid   | level()     | Runs when navigation map becomes invalid      | Using `on()`          | `obj.onNavigationMapInvalid()`    |
-| avigationMapChanged    | level()     | Runs when navigation map changes              | Using `on()`          | `obj.onNavigationMapChanged()`    |
+| Event                  | Comp           | Description                                   | Global Handler        | Object Handler                    |
+| ---------------------- | -------------- | --------------------------------------------- | --------------------- | --------------------------------- |
+| update                 | None           | Runs every frame                              | `onUpdate()`          | `obj.onUpdate()`                  |
+| draw                   | None           | Runs every frame after update                 | `onDraw()`            | `obj.onDraw()`                    |
+| add                    | None           | Runs when an object is added as child         | `onAdd()`             | `obj.onAdd()`                     |
+| destroy                | None           | Runs when an object is destroyed              | `onDestroy()`         | `obj.onDestroy()`                 |
+| use                    | None           | Runs when a component is added                | `onUse()`             | `obj.onUse(comp)`                 |
+| unuse                  | None           | Runs when a component is unused               | `onUnuse()`           | `obj.onUnuse(comp)`               |
+| tag                    | None           | Runs when a tag is added                      | `onTag()`             | `obj.onTag(tag)`                  |
+| untag                  | None           | Runs when a tag is removed                    | `onUntag()`           | `obj.onUntag(tag)`                |
+| collide                | `area()`       | Runs when object collides with another object | `onCollide()` 🏷️       | `obj.onCollide(other, col)`       |
+| collideUpdate          | `area()`       | Runs every frame when objects are colliding   | `onCollideUpdate()` 🏷️ | `obj.onCollideUpdate()`           |
+| collideEnd             | `area()`       | Runs when object stops colliding              | `onCollideEnd()` 🏷️    | `obj.onCollideEnd()`              |
+| hurt                   | `health()`     | Runs when object is hurt                      | Using `on()`          | `obj.onHurt(damage)`              |
+| heal                   | `health()`     | Runs when object is healed                    | Using `on()`          | `obj.onHeal(amount)`              |
+| death                  | `health()`     | Runs when object dies                         | Using `on()`          | `obj.onDeath()`                   |
+| beforePhysicsResolve   | `body()`       | Runs before physics resolves                  | Using `on()`          | `obj.onBeforePhysicsResolve(col)` |
+| physicsResolve         | `body()`       | Runs after physics resolves                   | Using `on()`          | `obj.onPhysicsResolve(col)`       |
+| ground                 | `body()`       | Runs when object is on the ground             | Using `on()`          | `obj.onGround()`                  |
+| fall                   | `body()`       | Runs when object starts falling               | Using `on()`          | `obj.onFall()`                    |
+| fallOff                | `body()`       | Runs when object stops falling                | Using `on()`          | `obj.onFallOff()`                 |
+| headbutt               | `body()`       | Runs when object headbutts                    | Using `on()`          | `obj.onHeadbutt()`                |
+| land                   | `body()`       | Runs when object lands                        | Using `on()`          | `obj.onLand()`                    |
+| headbutted             | `body()`       | Runs when object is headbutted                | Using `on()`          | `obj.onHeadbutted()`              |
+| doubleJump             | `doubleJump()` | Runs when object double jumps                 | Using `on()`          | `obj.onDoubleJump()`              |
+| exitView               | `offscreen()`  | Runs when object goes out of view             | Using `on()`          | `obj.onExitScreen()`              |
+| enterView              | `offscreen()`  | Runs when object enters view                  | Using `on()`          | `obj.onEnterScreen()`             |
+| animStart              | `sprite()`     | Runs when animation starts                    | Using `on()`          | `obj.onAnimStart(anim)`           |
+| animEnd                | `sprite()`     | Runs when animation ends                      | Using `on()`          | `obj.onAnimEnd(anim)`             |
+| navigationNext         | `agent()`      | Runs when navigation moves to the next point  | Using `on()`          | `obj.onNavigationNext()`          |
+| navigationEnded        | `agent()`      | Runs when navigation ends                     | Using `on()`          | `obj.onNavigationEnded()`         |
+| navigationStarted      | `agent()`      | Runs when navigation starts                   | Using `on()`          | `obj.onNavigationStarted()`       |
+| targetReached          | `agent()`      | Runs when navigation target is reached        | Using `on()`          | `obj.onTargetReached()`           |
+| patrolFinished         | `patrol()`     | Runs when patrol finishes                     | Using `on()`          | `obj.onPatrolFinished()`          |
+| objectSpotted          | `sentry()`     | Runs when object spots another                | Using `on()`          | `obj.onObjectsSpotted()`          |
+| animateChannelFinished | `animate()`    | Runs when animation channel finishes          | Using `on()`          | `obj.onAnimateChannelFinished()`  |
+| animateFinished        | `animate()`    | Runs when animation finishes                  | Using `on()`          | `obj.onAnimateFinished()`         |
+| spatialMapChanged      | `level()`      | Runs when spatial map changes                 | Using `on()`          | `obj.onSpatialMapChanged()`       |
+| navigationMapInvalid   | `level()`      | Runs when navigation map becomes invalid      | Using `on()`          | `obj.onNavigationMapInvalid()`    |
+| navigationMapChanged   | `level()`      | Runs when navigation map changes              | Using `on()`          | `obj.onNavigationMapChanged()`    |
 
 ---
 
@@ -276,3 +278,5 @@ obj.trigger("hi"); // :>
 | show                 | Runs once when the game tab is showed                 | `onShow()`                 | No ❌                          |
 | resize               | Runs continously when the game screen is resizing     | `onResize()`               | No ❌                          |
 | input                | Runs when the input is processed                      | No ❌                      | No ❌                          |
+
+---
