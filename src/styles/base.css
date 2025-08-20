@@ -326,3 +326,16 @@ pre:has(code) {
       }
     }
   }
+
+.md-doc-code {
+    @apply bg-base-200 px-1 py-0.5 rounded-md;
+}
+
+.md-doc-code-link {
+    @apply hover:text-base-content/80 focus:outline-none focus-visible:ring-2 ring-base-content rounded-md text-base-content;
+    text-decoration: none;
+}
+
+.md-doc-code-span {
+    @apply underline decoration-base-content/20;
+}

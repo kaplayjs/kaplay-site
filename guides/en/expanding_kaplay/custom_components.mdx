@@ -35,8 +35,8 @@ contain all the exposed states, methods, and event hooks of the component.
 
 In this case, the `lifespan()` component returns:
 
-- `id`: unique identification of the comp, used in require, `.unuse()`, etc.
-- `update()`: an event hook that'll run every frame while the component is
+- `Comp.id`: unique identification of the comp, used in require, `obj.unuse()`, etc.
+- `Comp.update()`: an event hook that'll run every frame while the component is
   attached to a Game Object.
 
 Also, all `this` inside the component functions refer to the **Game Object**

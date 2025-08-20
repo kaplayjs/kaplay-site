@@ -118,8 +118,7 @@ bag.get("*"); // all children
 bag.get("favorite", { recursive: true }); // [superMiniBag] - all descendants with tag favorite
 ```
 
-You can see the full list of operations in the [`GameObjRaw`](/docs/api/GameObjRaw)
-type definition.
+You can see the full list of operations in the `GameObjRaw` type definition.
 
 ## Creating game object dynamically
 
@@ -152,8 +151,7 @@ function addFriend(spr) {
     // If we pass a sprite, we use it
     if (spr) {
         obj.use(sprite(spr));
-    }
-    // If not, we use a circle
+    } // If not, we use a circle
     else {
         obj.use(circle(16));
     }

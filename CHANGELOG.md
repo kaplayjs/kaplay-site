@@ -8,6 +8,13 @@ and this project adheres to
 
 ## [unreleased]
 
+## [1.4.2] - 2025-08-19
+
+### Added
+
+- Now Documentation Guides and all markdown generated code can parse type links from
+  \`backticks\` syntax - @lajbel
+
 ## [1.4.1] - 2025-08-11
 
 ### Fixed

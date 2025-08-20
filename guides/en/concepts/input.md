@@ -14,7 +14,7 @@ you want.
 
 ## Creating input bindings
 
-You can define the bindings in the `buttons` object in `kaplay()`
+You can define the bindings in the `KAPLAYOpt.buttons` option in `kaplay()`
 
 ```js
 // bind your buttons
