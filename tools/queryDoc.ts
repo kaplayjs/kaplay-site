@@ -43,18 +43,7 @@ export const queryDoc = (query: string): QueryResult | null => {
         if (!memberDocEntry && parentQuery === "GameObjRaw") {
             const comp = getComponentOfMember(memberQuery);
 
-            if (!comp) {
-                if (isApp(memberQuery)) {
-                    return {
-                        apiEntry: query,
-                        from: "global",
-                        url: `/docs/api/ctx/${memberQuery}`,
-                        extras: extras,
-                    };
-                }
-
-                return null;
-            }
+            if (!comp) return null;
 
             parentQuery = comp;
         }
@@ -92,16 +81,4 @@ export const getComponentOfMember = (maybeCompMember: string) => {
             return compQuery;
         }
     }
-};
-
-export const isApp = (maybeAppMember: string) => {
-    const globalDoc = (doc as any).types;
-    const ctxDoc: any = globalDoc.KaboomCtx?.[0].members
-        ?? globalDoc.KAPLAYCtx?.[0].members;
-
-    if (ctxDoc[maybeAppMember]) {
-        return true;
-    }
-
-    return false;
 };
