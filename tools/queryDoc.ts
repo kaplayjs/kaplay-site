@@ -40,7 +40,7 @@ export const queryDoc = (query: string): QueryResult | null => {
         const memberDocEntry = parentDocEntry.members[memberQuery];
         if (!memberDocEntry && parentQuery !== "GameObjRaw") return null;
 
-        if (parentQuery === "GameObjRaw") {
+        if (!memberDocEntry && parentQuery === "GameObjRaw") {
             const comp = getComponentOfMember(memberQuery);
 
             if (!comp) {
