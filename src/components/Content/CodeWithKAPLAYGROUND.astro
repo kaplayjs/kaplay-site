@@ -3,10 +3,10 @@ import { Code } from "astro:components";
 import kaplaySubmodulePackageJson from "../../../kaplay/package.json";
 import { assets } from "@kaplayjs/crew";
 import pako from "pako";
-import prettier from "prettier/standalone";
-import prettierPluginBabel from "prettier/plugins/babel";
-import prettierPluginEstree from "prettier/plugins/estree";
+import js_beautify, { type JSBeautifyOptions } from "js-beautify";
 import { transformerNotationDiff, transformerNotationHighlight, transformerNotationWordHighlight } from "@shikijs/transformers";
+
+// TODO: Update this to use new Crew
 
 export function compressCode(str: string) {
     return btoa(String.fromCharCode.apply(null, Array.from(pako.deflate(str))));
@@ -15,29 +15,36 @@ export function compressCode(str: string) {
 interface Props {
     code: string;
     pgCode?: string;
+    loadCrew?: string[];
+    addKAPLAYCall?: boolean;
 }
 
-const { code, pgCode } = Astro.props;
+let { code, pgCode, addKAPLAYCall, loadCrew } = Astro.props;
 
-const formattedCode = await prettier.format(code, {
-    parser: "babel",
-    plugins: [prettierPluginBabel, prettierPluginEstree],
-    tabWidth: 4,
-});
+let visualCode = code;
+let playgroundCode = pgCode ?? code;
 
-let shareCode = formattedCode;
+let crewLoads = ``;
 
-if (pgCode) {
-    const pgFormattedCode = await prettier.format(pgCode, {
-        parser: "babel",
-        plugins: [prettierPluginBabel, prettierPluginEstree],
-        tabWidth: 4,
+if (loadCrew) {
+    loadCrew.forEach((crew) => {
+        crewLoads += `loadSprite("${crew}", "/crew/${crew}.png");\n`;
     });
-
-    shareCode = pgFormattedCode;
 }
 
-const compressedCode = compressCode(shareCode);
+if (addKAPLAYCall) playgroundCode = `kaplay();\n\n` + crewLoads + visualCode;
+
+// Format code
+
+const formatterOptions: JSBeautifyOptions = {
+    indent_size: 4,
+    preserve_newlines: true,
+};
+
+visualCode = js_beautify(visualCode, formatterOptions);
+playgroundCode = js_beautify(playgroundCode, formatterOptions);
+
+const compressedCode = compressCode(playgroundCode);
 const kaplaygroundUrl = `https://play.kaplayjs.com/?code=${encodeURIComponent(compressedCode)}&version=master`;
 ---
 
@@ -52,7 +59,7 @@ const kaplaygroundUrl = `https://play.kaplayjs.com/?code=${encodeURIComponent(co
             <div
                 class="flex h-full tooltip tooltip-bottom before:text-xs before:py-1.5 before:left-auto before:right-0 before:translate-x-0 before:mt-0.5 after:mt-0.5"
                 data-tip="Copy code"
-                data-code={formattedCode}
+                data-code={visualCode}
             >
                 <button
                     class="swap btn btn-xs bg-base-100 h-full rounded-xl aspect-square"
@@ -87,7 +94,7 @@ const kaplaygroundUrl = `https://play.kaplayjs.com/?code=${encodeURIComponent(co
         <div class="flex flex-1 bg-base-300 rounded-xl overflow-hidden">
             <Code
                 lang={"js"}
-                code={formattedCode}
+                code={visualCode}
                 transformers={// @ts-expect-error
                 [transformerNotationDiff(), transformerNotationHighlight(), transformerNotationWordHighlight()]}
             />
