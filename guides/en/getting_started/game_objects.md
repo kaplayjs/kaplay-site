@@ -19,7 +19,7 @@ We create game objects with the `add()` function. It creates the object and
 attaches it to the scene. It receives **components** and **tags**.
 
 ```js
-const dinosaur = add([
+const dino = add([
     // while components give different behaviors to the game obj
     rect(32, 32), // draw a rect
     pos(80, 80), // set a position
@@ -28,8 +28,6 @@ const dinosaur = add([
     "big",
 ]);
 ```
-
-We will look in depth at components and tags in their respective guides.
 
 ## Parents, children, and root
 
