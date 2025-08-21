@@ -49,7 +49,7 @@ This is the frontmatter used in all guides:
 ---
 title: Creating Guides # The title, it appears in the sidebar
 description: You shouldn't see this # Description for metadata
-version: "4000" # "Don't use it unless the guide is only for v4000"
+version: "4000" # Don't use it unless the guide is only for v4000
 url: contributor-guide-on-guides # The url
 order: "misc-4" # The order string, just follow the others in the same category
 hidden: true # Hide it
@@ -164,13 +164,13 @@ It doesn't matter the content between (), it will be ignored for generating the 
 
 You can use `get()` for getting all objects. There's also `GameObjRaw.get()`.
 
-### Special alias for Type Links
+### Special aliases for Type Links
 
 You can use convenient alias like `obj` for refer to `GameObjRaw`, there's the
 table with all special aliases and features around this:
 
-| This                  | Refers to      | Works in                                                                    |
-|-----------------------|----------------|-----------------------------------------------------------------------------|
-| obj                   | `GameObjRaw`   | Referring to `GameObjRaw` members like `obj.onAnimStart()`                        |
-| debug                 | `Debug`        | Referring to `Debug` members like `debug.log()`                             |
-| obj.[componentMethod] | That component | Referring to components as they were part of `obj`, like `obj.onDoubleJump()` |
+| This                  | Refers to      | Works in                                                                                                                 |
+|-----------------------|----------------|--------------------------------------------------------------------------------------------------------------------------|
+| obj                   | `GameObjRaw`   | Referring to `GameObjRaw` members. `obj.id` links to `GameObjRaw.id`                                                     |
+| debug                 | `Debug`        | Referring to `Debug` members. `debug.log()` links to `Debug.log()`                                                       |
+| obj.[componentMethod] | That component | Referring to component members as they were part of `obj`. `obj.onDoubleJump()` links to `DoubleJumpComp.onDoubleJump()` |
