@@ -12,7 +12,7 @@ and this project adheres to
 
 ### Added
 
-- Added playable examples - @lajbel
+- Added playable examples - @lajbel, @imaginarny
 
 ## [1.4.2] - 2025-08-19
 
