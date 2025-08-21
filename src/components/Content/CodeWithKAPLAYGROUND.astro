@@ -10,25 +10,26 @@ interface Props {
 const { code } = Astro.props;
 ---
 
-<div class="flex flex-col h-full rounded-l-xl p-px md:pr-0 z-10">
-    <div class="flex flex-col flex-1 bg-base-200 rounded-xl min-h-0">
-        <div class="flex justify-between">
-            <div class="flex items-center gap-1.5 px-5 h-12">
-                <div class="size-2.5 bg-base-content/10 rounded-full"></div>
-                <div class="size-2.5 bg-base-content/10 rounded-full"></div>
-                <div class="size-2.5 bg-base-content/10 rounded-full"></div>
-            </div>
-            <div class="flex items-center gap-1.5 px-5 h-12 not-prose">
-                <div class="btn btn-xs btn-ghost bg-base-content/10 h-auto min-h-0 py-1.5">
-                    <img src={assets.play.outlined} class="w-6 h-6 inline p-0 my-o mx" />
-                </div>
-            </div>
+<div class="flex flex-col gap-1.5 flex-1 bg-base-200 p-1.5 rounded-box min-h-0">
+    <div class="flex items-center justify-between h-10">
+        <div class="flex items-center gap-1.5 px-3.5 pt-0.5">
+            <div class="size-2.5 bg-base-content/15 rounded-full"></div>
+            <div class="size-2.5 bg-base-content/15 rounded-full"></div>
+            <div class="size-2.5 bg-base-content/15 rounded-full"></div>
         </div>
+        <div
+            class="flex h-full gap-1.5 not-prose tooltip tooltip-bottom before:text-xs before:py-1.5 before:left-auto before:right-0 before:translate-x-0 before:mt-0.5 after:mt-0.5"
+            data-tip="Open in KAPLAYGROUND"
+        >
+            <a class="btn btn-xs bg-base-100 h-full rounded-xl" target="_blank">
+                <img src={assets.play.outlined} class="w-5 h-5 object-scale-down ml-0.5" />
+            </a>
+        </div>
+    </div>
 
-        <div class="flex-1 flex m-1.5 mt-0 min-h-0">
-            <div class="flex flex-1 bg-base-300 rounded-lg overflow-hidden">
-                <Code lang={"js"} code={code} />
-            </div>
+    <div class="flex-1 flex min-h-0">
+        <div class="flex flex-1 bg-base-300 rounded-xl overflow-hidden">
+            <Code lang={"js"} code={code} />
         </div>
     </div>
 </div>
