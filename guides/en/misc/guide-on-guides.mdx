@@ -83,7 +83,9 @@ quality document piece.
 
 ### Info component
 
-Display extra or useful information. You can import this component:
+Display useful information or tips.
+
+#### Usage
 
 ```jsx
 import Info from "@/components/Content/Info.astro";
@@ -93,7 +95,14 @@ Say hi!
 </Info>
 ```
 
-**Rendered:**
+#### Props
+| Prop              | Description                             |
+|-------------------|-----------------------------------------|
+| `crew`: `string`  | Crew member to display                  |
+| `title`: `string` | Title to display, it supports MarkDown  |
+
+
+#### Rendered
 
 <Info crew="mark" title="oh!">
 Say hi!
@@ -103,7 +112,9 @@ There's many cool usages of this component among guides.
 
 ### Code component
 
-Render JavaScript code with an option to Open in KAPLAYGROUND. You can import this component:
+Render JavaScript code with an option to Open in KAPLAYGROUND.
+
+#### Usage
 
 ```jsx
 import Code from "@/components/Content/CodeWithKAPLAYGROUND.astro";
@@ -118,7 +129,16 @@ import Code from "@/components/Content/CodeWithKAPLAYGROUND.astro";
 />
 ```
 
-**Rendered:**
+#### Props
+
+| Prop                        | Description                                                                                                                    |
+|-----------------------------|--------------------------------------------------------------------------------------------------------------------------------|
+| `code`: `string`            | The JavaScript code to be rendered.                                                                                            |
+| `pgCode?`: `string`         | The JavaScript code to be played in KAPLAYGROUND, if there's not, `code` is used                                               |
+| `addKAPLAYCall?`: `boolean` | If no `pgCode`, it will use `code` inserting `kaplay()` in the start                                                           |
+| `loadCrew`: `string[]`      | Load sprites from crew in the start of the example. Just works if `addKAPLAYCall` is true, and just work with sprites for now. |
+
+#### Rendered
 
 <Code
     code={`
@@ -129,48 +149,18 @@ import Code from "@/components/Content/CodeWithKAPLAYGROUND.astro";
     `}
 />
 
-There's situations that the code in `code` is very similar to the one in
-`pgCode`, just without the initial `kaplay()` call, so you can use some options:
-
-| Options                   | Works for                                                                                                                      |
-|---------------------------|--------------------------------------------------------------------------------------------------------------------------------|
-| `addKAPLAYCall`           | If no `pgCode`, it will use `code` inserting `kaplay()` in the start                                                           |
-| `loadCrew(["crewAsset"])` | Load sprites from crew in the start of the example. Just works if `addKAPLAYCall` is true, and just work with sprites for now. |
-
-```jsx
-<Code
-    addKAPLAYCall
-    loadCrew={["bean"]}
-    code={`
-add([sprite("bean")]);
-`}
-/>
-```
-
-**Rendered:**
-
-<Code
-    addKAPLAYCall
-    loadCrew={["bean"]}
-    code={`
-add([sprite("bean")]);
-`}
-/>
-
-
 ### Type Links
 
 You can easily link to types writing them between backticks (`):
 
 ```mdx
-You can use `get(*)` for getting all objects. There's also `GameObjRaw.get()`.
+You can use `get(*)` for getting all objects. There's also `GameObjRaw.get()`. 
+It doesn't matter the content between (), it will be ignored for generating the link.
 ```
 
-**Rendered:**
+#### Rendered
 
 You can use `get()` for getting all objects. There's also `GameObjRaw.get()`.
-
-It doesn't matter the content between (), it will be ignored for generating the link.
 
 ### Special alias for Type Links
 
