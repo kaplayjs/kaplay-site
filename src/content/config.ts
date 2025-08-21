@@ -30,6 +30,7 @@ const guideCollection = defineCollection({
             version: z.optional(z.string()),
             order: z.optional(z.string()),
             hidden: z.optional(z.boolean()),
+            noAds: z.optional(z.boolean()),
         }),
 });
 

@@ -1,0 +1,184 @@
+---
+title: Creating Guides
+description: You shouldn't see this
+url: contributor-guide-on-guides
+order: "misc-4"
+hidden: true
+noAds: true
+---
+
+import Info from "@/components/Content/Info.astro";
+import Code from "@/components/Content/CodeWithKAPLAYGROUND.astro";
+import InstallationCode from "@/components/Content/InstallationCode.astro";
+
+# Creating Guides
+
+<Info crew="mark" title="Advice">
+This guide tries to be brief so you can start as soon as possible, so I won't go into too much detail about why. Some of the guides that are on our documentation **still doesn't follow these guidelines** so it's also cool check some for updating them.
+</Info>
+
+Hey! Before starting, let's stand this guide is just for the one wondering to
+contribute with **KAPLAY Docs**, specifically the **guides** part. Thanks for your interest on improving **KAPLAY** ♥
+
+## Get the repo
+
+```
+git clone https://github.com/kaplayjs/kaplay-site.git
+pnpm i
+pnpm dev
+```
+
+Then, when you finish, just [Open a PR](https://github.blog/developer-skills/github/beginners-guide-to-github-creating-a-pull-request/).
+
+## Guidelines
+
+### Communication
+
+The most important thing for creating a guide is the communication with KAPLAY
+Dev internals, you can use the [#dev](https://discord.com/channels/883781994583056384/883782527809122367) channel,
+telling us what guide are you updating (so no other dev interfers with that) or any other question/blocker you got.
+
+### Creating your guide
+
+After cloning the repo, go to  `/guides/en/` and create in any of the category
+folders an `.mdx` file, for example `/guides/en/concepts/anchor.mdx`.
+
+This is the frontmatter used in all guides:
+
+```yml
+---
+title: Creating Guides # The title, it appears in the sidebar
+description: You shouldn't see this # Description for metadata
+url: contributor-guide-on-guides # The url
+order: "misc-4" # The order string, just follow the others in the same category
+hidden: true # Hide it
+noads: true # Disable ads (used in Contributors pages)
+---
+```
+
+You can know available categories just looking the folders inside `/guides/` or `/guides/data.json`.
+
+### Writing style
+
+There's little things you've to take in account in the writing style
+
+- **Main Title** should be the same than frontmatter `title`.
+- Talk to the user as **you**. Instead of "we can use `get()` for..." do "you can use `get()`" for
+- Try to do descriptive titles, instead of **Introduction** -> **How to X** / **Creating X**
+
+#### How to sections
+
+Some guides may include a **How to** section, we could stand this format:
+
+```mdx
+# How to [thing]
+
+You can [thing] with [thing they can use]
+```
+
+## Components and features in Markdown
+
+There's some special components and markdown features you must know for creating a great
+quality document piece.
+
+### Info component
+
+Display extra or useful information. You can import this component:
+
+```jsx
+import Info from "@/components/Content/Info.astro";
+
+<Info crew="mark" title="oh!">
+Say hi!
+</Info>
+```
+
+**Rendered:**
+
+<Info crew="mark" title="oh!">
+Say hi!
+</Info>
+
+There's many cool usages of this component among guides.
+
+### Code component
+
+Render JavaScript code with an option to Open in KAPLAYGROUND. You can import this component:
+
+```jsx
+import Code from "@/components/Content/CodeWithKAPLAYGROUND.astro";
+
+<Code
+    code={`
+// Code to be rendered
+    `}
+    pgCode={`
+// Code to be played
+    `}
+/>
+```
+
+**Rendered:**
+
+<Code
+    code={`
+// Code to be rendered
+    `}
+    pgCode={`
+// Code to be played
+    `}
+/>
+
+There's situations that the code in `code` is very similar to the one in
+`pgCode`, just without the initial `kaplay()` call, so you can use some options:
+
+| Options                   | Works for                                                                                                                      |
+|---------------------------|--------------------------------------------------------------------------------------------------------------------------------|
+| `addKAPLAYCall`           | If no `pgCode`, it will use `code` inserting `kaplay()` in the start                                                           |
+| `loadCrew(["crewAsset"])` | Load sprites from crew in the start of the example. Just works if `addKAPLAYCall` is true, and just work with sprites for now. |
+
+```jsx
+<Code
+    addKAPLAYCall
+    loadCrew={["bean"]}
+    code={`
+add([sprite("bean")]);
+`}
+/>
+```
+
+**Rendered:**
+
+<Code
+    addKAPLAYCall
+    loadCrew={["bean"]}
+    code={`
+add([sprite("bean")]);
+`}
+/>
+
+
+### Type Links
+
+You can easily link to types writing them between backticks (`):
+
+```mdx
+You can use `get(*)` for getting all objects. There's also `GameObjRaw.get()`.
+```
+
+**Rendered:**
+
+You can use `get()` for getting all objects. There's also `GameObjRaw.get()`.
+
+It doesn't matter the content between (), it will be ignored for generating the link.
+
+### Special alias for Type Links
+
+You can use convenient alias like `obj` for refer to `GameObjRaw`, there's the
+table with all special aliases and features around this:
+
+| This                  | Refers to      | Works in                                                                    |
+|-----------------------|----------------|-----------------------------------------------------------------------------|
+| obj                   | `GameObjRaw`   | Referring to `GameObjRaw` members like `obj.press()`                        |
+| debug                 | `Debug`        | Referring to `Debug` members like `debug.log()`                             |
+| obj.[componentMethod] | That component | Referring to components as they were part of `obj`, like `obj.onDoubleJump()` |

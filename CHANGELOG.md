@@ -8,6 +8,12 @@ and this project adheres to
 
 ## [unreleased]
 
+## [1.4.3] - 2025-08-21
+
+### Added
+
+- Added playable examples - @lajbel
+
 ## [1.4.2] - 2025-08-19
 
 ### Added

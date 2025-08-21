@@ -1,7 +1,4 @@
 {
-  "files.associations": {
-    "*.mdx": "markdown"
-  },
   "[astro]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },

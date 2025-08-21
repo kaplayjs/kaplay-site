@@ -1,0 +1,329 @@
+---
+title: Game Objects
+description:
+    How to create and manipulate game objects in KAPLAY, the HTML5 Game Engine
+    for JavaScript and TypeScript.
+url: game_objects
+image: "./assets/tree.png"
+order: "basics-2"
+---
+
+import Code from "@/components/Content/CodeWithKAPLAYGROUND.astro";
+import Info from "@/components/Content/Info.astro";
+
+# Game Objects
+
+Game objects are the entity unit of KAPLAY. They are the actors of your game,
+the entities that move, interact, and make the game interesting.
+
+## Creating Game Objects
+
+You can create game objects with `add(compList)`. It takes an array with **components** and **tags**, creates the object,
+attaches it to the scene and returns the created `GameObj`: 
+
+<Code
+    addKAPLAYCall
+    code={`
+const myObj = add([
+    // Components give different behaviors to the game obj
+    rect(200, 120),
+    pos(80, 80),
+    // Tags classify the game
+    "shape",
+    "big",
+]);
+    `}
+/>
+
+## Parents, children, and root
+
+A game object can have child game objects using `obj.add()`. This will give to the children the
+possibility of following the parent's position, rotation and scale.
+
+<Code
+    addKAPLAYCall
+    code={
+`
+const player = add([
+    rect(32, 32),
+    pos(80, 80),
+]);
+
+const head = player.add([
+    circle(16),
+    pos(16, -16), // relative to player position
+]);
+`}
+/>
+
+**Every game object** is a child of the **root game object**. The root game
+object is the game object that contains all the game objects in the scene.
+
+![Game Object tree](./assets/tree.png)
+
+That's why the `add()` function is, in fact, an `obj.add()` method, obj being the root game object.
+
+<Info crew="mark" title="Just for your information!">
+You can actually get the root game object using `getTreeRoot()`, but it is not recommended to modify or interact with it.
+</Info>
+
+## Game Objects operations
+
+There's some of the most important operations that can be done without any component. Check `GameObjRaw` to know all of them.
+
+### How to create a game object
+
+You can create a game object using `add()`:
+
+<Code
+    addKAPLAYCall
+    loadCrew={["bag"]}
+    code={
+`
+const bag = add([
+    sprite("bag"),
+]);
+`
+}
+/>
+
+### How to remove a game object
+
+You can remove a game object using `destroy()` or `obj.destroy()`:
+
+<Code
+    code={
+`
+const bag = add([
+    sprite("bag"),
+]);
+
+onKeyPress("space", () => {
+    destroy(bag); // [!code highlight] OR bag.destroy();
+});
+`}
+    pgCode={`
+kaplay();
+
+loadSprite("bag", "/crew/bag.png");
+
+const bag = add([
+    sprite("bag")
+]);
+
+onKeyPress("space", () => {
+    destroy(bag); // OR bag.destroy();
+});
+    `}
+/>
+
+### How to get all game objects
+
+You can **get** a list of game objects with certain tag using `get()`, and all with `get("*")`:
+
+<Code
+    code={
+`
+// Get a list with all game objects
+const allObjs = get("*");
+debug.log(allObjs.length);
+
+// Get a list of friends tagged objects and iterate over them
+get("friend").forEach((friend) => {
+    debug.log(friend.sprite, "is here!");
+});
+`
+}
+    pgCode={
+`
+kaplay();
+
+loadSprite("bean", "/crew/bean.png");
+loadSprite("bag", "/crew/bag.png");
+
+add([
+    sprite("bean"),
+    "friend",
+]);
+
+add([
+    sprite("bag"),
+    pos(80, 0),
+    "friend",
+]);
+
+// Get a list with all game objects
+const allObjs = get("*");
+debug.log(allObjs.length);
+
+// Get a list of friends tagged objects and iterate over them
+get("friend").forEach((friend) => {
+    debug.log(friend.sprite, "is here!");
+});
+`
+    }
+/>
+
+
+### How to add a child
+
+You can add children to a game object using `obj.add()`:
+
+<Code
+    loadCrew={["bag"]}
+    addKAPLAYCall
+    code={`
+const bag = add([
+    sprite("bag"),
+]);
+
+// It adds a mini-bag to bag
+const miniBag = bag.add([
+    sprite("bag"),
+    scale(0.8),
+    pos(40, 40),
+]);
+
+// Now our original Bag is a grandfather...
+const superMiniBag = miniBag.add([
+    sprite("bag"),
+    scale(0.6),
+    pos(40, 40),
+    "favorite", // ...And the favorite
+]);
+    `}
+/>
+
+### How to remove a child
+
+You can remove a child from a Game Object using `obj.remove()`;
+
+<Code
+    code={`
+miniBag.remove(superMiniBag) // bye
+bag.remove(miniBag); // bye
+    `}
+    pgCode={`
+kaplay();
+
+loadSprite("bag", "/crew/bag.png");
+
+const bag = add([
+    sprite("bag"),
+]);
+
+// It adds a mini-bag to bag
+const miniBag = bag.add([
+    sprite("bag"),
+    scale(0.8),
+    pos(40, 40),
+]);
+
+// Now our original Bag is a grandfather...
+const superMiniBag = miniBag.add([
+    sprite("bag"),
+    scale(0.6),
+    pos(40, 40),
+    "favorite", // ...And the favorite
+]);
+
+onKeyPress("space", () => {
+    miniBag.remove(superMiniBag) // bye
+    bag.remove(miniBag); // bye
+});
+    `}
+/>
+
+### How to get children
+
+You can use `obj.get()` to get children. Optionally, it takes a `GetOpt` options object, where
+`GetOpt.recursive` makes it work recursively get all children and their descendants.
+
+<Code
+    code={`
+bag.get("*"); // Get all children [2]
+// We can pass recursive: true for getting descendants too
+bah.get("favorite", { recursive: true }); // The favorite! [superMiniBag] 
+    `}
+    pgCode={`
+kaplay();
+
+loadSprite("bag", "/crew/bag.png");
+
+const bag = add([
+    sprite("bag"),
+]);
+
+// It adds a mini-bag to bag
+const miniBag = bag.add([
+    sprite("bag"),
+    scale(0.8),
+    pos(40, 40),
+]);
+
+// Now our original Bag is a grandfather...
+const superMiniBag = miniBag.add([
+    sprite("bag"),
+    scale(0.6),
+    pos(40, 40),
+    "favorite", // ...And the favorite
+]);
+
+debug.log(bag.get("*").length); // Get all children
+// We can pass recursive: true for getting descendants too
+debug.log(bag.get("favorite", { recursive: true })[0].scale); // The favorite! 
+    `}
+/>
+
+## Creating game object dynamically
+
+One way for create a game object dynamically is creating a function that returns
+a list of components:
+
+<Code
+    addKAPLAYCall
+    code={`
+function makeCakeComps() {
+    return [
+        rect(6, 18),
+        pos(80, 80),
+        color(0.5, 0.5, 1),
+    ];
+}
+
+const cake = add(makeCakeComps());
+    `}
+/>
+
+Another option is return an object with `add()`, and then add it.
+
+
+<Code
+    addKAPLAYCall
+    loadCrew={["bag"]}
+    code={`
+function addFriend(spr) {
+    const posX = rand(0, width()); // Random position between 0 and width
+    const posY = rand(0, height()); // Random position between 0 and height
+
+    const obj = add([
+        pos(posX, posY),
+    ]);
+
+    // If we pass a sprite, we use it
+    if (spr) {
+        obj.use(sprite(spr));
+    } // If not, we use a circle
+    else {
+        obj.use(circle(16));
+    }
+
+    return obj; // IMPORTANT: Return the object reference
+}
+
+const bagFriend = addFriend("bag"); // A Sprite
+const circledFriend = addFriend(); // A Circled
+
+debug.log(bagFriend.id);
+    `}
+/>

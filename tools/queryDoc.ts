@@ -34,10 +34,11 @@ export const queryDoc = (query: string): QueryResult | null => {
 
         // TODO: Support for multiple overloads
         const parentDocEntry = globalDoc[parentQuery]?.[0];
+        const parentDocEntryMembers = parentDocEntry?.members
+            ?? parentDocEntry?.type?.members;
+        if (!parentDocEntry || !parentDocEntryMembers) return null;
 
-        if (!parentDocEntry || !parentDocEntry.members) return null;
-
-        const memberDocEntry = parentDocEntry.members[memberQuery];
+        const memberDocEntry = parentDocEntryMembers[memberQuery];
         if (!memberDocEntry && parentQuery !== "GameObjRaw") return null;
 
         if (!memberDocEntry && parentQuery === "GameObjRaw") {

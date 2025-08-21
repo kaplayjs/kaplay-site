@@ -22,25 +22,33 @@ the actors, and **components** are the script the actors follow:
 
 ## Game Initialization
 
-All KAPLAY games start with the `kaplay()` function. This function makes
-available all methods and functions that you will use to create your game.
+All KAPLAY games start with the `kaplay(opt?)` function. This function makes
+available all methods and functions that you will use to create your game. Optionally it takes
+a `KAPLAYOpt` options object.
 
-```js
+<Code code={`// Start with default options
 kaplay();
-```
 
-You can also pass an object with `KAPLAYOpt`:
-
-```js
+// Start with options
 kaplay({
-    width: 640,
-    height: 480,
-    background: "#00ff00",
+    width: 200,
+    height: 200,
+    background: "#d46eb3",
     scale: 2,
     canvas: document.getElementById("canvas"),
-    // other options...
-});
-```
+});`}
+
+pgCode={`// Start with default options
+// kaplay();
+
+// Start with options
+kaplay({
+    width: 200,
+    height: 200,
+    background: "#d46eb3",
+    scale: 2,
+});`}
+/>
 
 ## Game Objects
 
@@ -50,14 +58,48 @@ move, interact, and make the game interesting.
 You can create objects with the `add()` function, which takes an array of
 **components** and **tags**. The **components** define the object's behavior while **tags** classify it in some way:
 
-```js
+<Code code={
+`const obj = add([
+    rect(32, 32), // Draw this object as a rectangle
+    pos(10, 20), // Position this object in X: 10 and Y: 20
+    "shape", // Classify this object as "shape"
+]);`}
+
+pgCode={`kaplay();
+
 const obj = add([
-    // this is a component that draws a rectangle
-    rect(32, 32),
-    // I can classify it as a shape
-    "shape",
+    rect(32, 32), // Draw this object as a rectangle
+    pos(10, 20), // Position this object in X: 10 and Y: 20
+    "shape", // Classify this object as "shape"
+]);`}
+/>
+
+It returns a `GameObjRaw`, which with you can perform **game object operations**:
+
+
+<Code code={`onKeyDown("right", () => {
+    obj.move(200, 0); // Move the object while "right" key is held down [!code highlight]
+});
+
+const isShape = obj.is("shape"); // Check for tags [!code highlight]
+debug.log(isShape); // Log it on the screen`}
+
+pgCode={`kaplay();
+
+const obj = add([
+    rect(32, 32), // Draw this object as a rectangle
+    pos(10, 20), // Position this object in X: 10 and Y: 20
+    "shape", // Classify this object as "shape"
 ]);
-```
+
+onKeyDown("right", () => {
+    obj.move(200, 0); // Move the object while "right" key is held down [!code highlight]
+});
+
+const isShape = obj.is("shape"); // Check for tags [!code highlight]
+debug.log(isShape); // Log it on the screen
+`}
+/>
 
 We go in depth with game objects in the [**Game Objects**](/docs/guides/game_objects)
 guide.
@@ -82,18 +124,62 @@ guide.
 Scenes are what wrap the game objects -- the acts of the stageplay. Typical
 scenes might include a main menu, the game itself, and a game over screen.
 
-In KAPLAY, you create scenes with the `scene()` function:
+In KAPLAY, you create scenes with `scene()` and change them with `go()`:
 
-```js
-kaplay(); // remember to initialize the game
+<Code code={
+`
+kaplay();
+loadBean(); // Load the default sprite.
 
-scene("game", () => {
-    const rect = add([
-        // a component
-        rect(32, 32),
+scene("red_bean", () => {
+    add([
+        sprite("bean"),
+        color(RED),
+    ]);
+
+    onKeyPress(() => {
+        go("blue_bean");
+    });
+});
+
+scene("blue_bean", () => {
+    add([
+        sprite("bean"),
+        color(BLUE),
     ]);
 });
-```
+
+// Initial scene
+go("red_bean");
+`
+}
+
+pgCode={`
+kaplay();
+loadBean();
+
+scene("red_bean", () => {
+    add([
+        sprite("bean"),
+        color(RED),
+    ]);
+
+    onKeyPress(() => {
+        go("blue_bean");
+    });
+});
+
+scene("blue_bean", () => {
+    add([
+        sprite("bean"),
+        color(BLUE),
+    ]);
+});
+
+// Initial scene
+go("red_bean");
+`}
+/>
 
 We go in depth with scenes on the [**Scenes**](/docs/guides/scenes) guide.
 
@@ -102,14 +188,53 @@ We go in depth with scenes on the [**Scenes**](/docs/guides/scenes) guide.
 Events are specific moments of your game execution that you can handle and
 execute code when that happens.
 
-```js
+<Code code={
+`
+// Runs every frame (normally 60 times per second)
 onUpdate(() => {
-    // this code is executed every frame (normally 60 times per second)
+    if (isKeyDown("h")) {
+        debug.log("hi");
+    }
 });
 
+// Runs when the space key is pressed
 onKeyPress("space", () => {
-    // this code is executed only when the space key is pressed
+    debug.log("spaced");
 });
-```
+
+// Runs when an object with the tag "shape" is added
+onAdd("shape", () => {
+    debug.log("shaped");
+});
+`
+}
+
+pgCode={`
+kaplay();
+
+// Runs every frame (normally 60 times per second)
+onUpdate(() => {
+    if (isKeyDown("h")) {
+        debug.log("hi");
+    }
+});
+
+// Runs when the space key is pressed
+onKeyPress("space", () => {
+    debug.log("spaced");
+});
+
+// Runs when an object with the tag "shape" is added
+onAdd("shape", () => {
+    debug.log("shaped");
+});
+
+add([
+    rect(40, 40),
+    "shape"
+]);
+`}
+/>
+
 
 We go in depth with events on the [**Events**](/docs/guides/events) guide.

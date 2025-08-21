@@ -168,17 +168,28 @@ a:hover {
 }
 
 .astro-code {
+    display: block;
+    min-width: 100%;
     overflow: auto;
     scrollbar-width: thin;
     scrollbar-color:
         color-mix(in oklch, oklch(var(--bc)) 35%, transparent)
         transparent;
 
-    @apply my-2 rounded-box bg-base-300 py-2 px-3 !important;
+    @apply my-2 rounded-box bg-base-300 px-0 py-2 !important;
+}
+
+
+.line {
+    @apply px-2;
 }
 
 .line.diff.add {
     @apply bg-green-400 bg-opacity-40;
+}
+
+.line.highlighted {
+    @apply bg-base-content/5 w-full inline-block
 }
 
 span.line.diff.add::before {
