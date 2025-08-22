@@ -10,6 +10,8 @@ interface Props {
 
 let { version, requireToBeEqualIn = "major" } = Astro.props;
 
+if (!version) throw new Error("JustForVersion requires version prop.");
+
 const isVersion = () => {
     const [major, minor, patch] = kaplaySubmodulePackageJson.version.replace(/^(\d+\.\d+\.\d+).*/, "$1").split(".");
     const [checkMajor, checkMinor, checkPatch] = version.split(".");

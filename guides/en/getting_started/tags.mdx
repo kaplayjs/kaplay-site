@@ -6,25 +6,99 @@ order: "basics-4"
 ---
 
 import Info from "@/components/Content/Info.astro";
+import Code from "@/components/Content/CodeWithKAPLAYGROUND.astro";
+import JustForVersion from "@/components/Content/JustForVersion.astro";
 
 # Tags
 
-Tags are names, labels or keywords that group game objects, such as enemies,
-friends, trees, etc. They are useful for classifying different types of objects.
+Tags are labels that classify game objects, such as enemies,
+friends, trees, etc. They are useful for grouping different kinds of game objects.
 
-## Using tags
+## Adding tags
 
-Tags can be added on the `add([])` function array as a string.
+You can add a tag to a game object on it's creation passing a string to `add()`, or using:
 
-```js
+<Code
+    code={`
 const ghost = add([
     sprite("ghosty"),
     "enemy",
 ]);
-```
+    `}
+    pgCode={`
+kaplay();
 
-This makes it so ghosty has a tag, enemy, and there's many operations you can do
-with it.
+loadSprite("ghosty", "/crew/ghosty.png");
+
+const ghost = add([
+    sprite("ghosty"),
+    "enemy",
+]);
+
+debug.log(ghost.is("enemy"));
+    `}
+/>
+
+If the object is already created, you can use `obj.tag()` to tag it:
+
+<Code
+    code={`
+const ghost = add([
+    sprite("ghosty"),
+]);
+
+ghost.tag("enemy");
+    `}
+    pgCode={`
+kaplay();
+
+loadSprite("ghosty", "/crew/ghosty.png");
+
+const ghost = add([
+    sprite("ghosty"),
+]);
+
+ghost.tag("enemy");
+
+debug.log(ghost.is("enemy"));
+    `}
+/>
+
+<JustForVersion version="4000">
+It will trigger `objEvent:tag` event, you can handle it with `onTag()` or `obj.onTag()`.
+</JustForVersion>
+
+
+## Removing tags
+
+You can remove a tag from an object using `obj.untag()`:
+
+<Code
+    code={`
+ghost.untag("enemy"); // A friend again :D
+    `}
+pgCode={`
+kaplay();
+
+loadSprite("ghosty", "/crew/ghosty.png");
+
+const ghost = add([
+    sprite("ghosty"),
+]);
+
+ghost.tag("enemy");
+
+debug.log(ghost.is("enemy"));
+
+ghost.untag("enemy"); // A friend again :D
+
+debug.log(ghost.is("enemy"));
+    `}
+/>
+
+<JustForVersion version="4000">
+It will trigger `objEvent:untag` event, you can handle it with `onUntag()` or `obj.onUntag()`.
+</JustForVersion>
 
 ## Tag operations
 

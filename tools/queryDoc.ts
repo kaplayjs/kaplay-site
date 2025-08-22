@@ -8,16 +8,23 @@ interface QueryResult {
     extras: string;
 }
 
-export const queryDoc = (query: string): QueryResult | null => {
+export const queryDoc = (displayQuery: string): QueryResult | null => {
     const globalDoc = (doc as any).types;
     const ctxDoc: any = globalDoc.KaboomCtx?.[0].members
         ?? globalDoc.KAPLAYCtx?.[0].members;
     let extras: string = "";
 
-    query = query.replace(/\(.*?\)/g, match => {
+    let query = displayQuery.replace(/\(.*?\)/g, match => {
         extras = match;
         return "";
     });
+
+    displayQuery = query;
+
+    if (query.startsWith("objEvent:")) {
+        displayQuery = `"${displayQuery.replace("objEvent:", "")}"`;
+        query = `GameObjEventMap.` + query.replace("objEvent:", "");
+    }
 
     if (query.includes(".")) {
         let [parentQuery, memberQuery] = query.split(".");
@@ -50,7 +57,7 @@ export const queryDoc = (query: string): QueryResult | null => {
         }
 
         return {
-            apiEntry: query,
+            apiEntry: displayQuery,
             from: "global",
             url: `/docs/api/${parentQuery}#${parentQuery}-${memberQuery}`,
             extras: extras,
@@ -62,7 +69,7 @@ export const queryDoc = (query: string): QueryResult | null => {
         if (!docEntry) return null;
 
         return {
-            apiEntry: query,
+            apiEntry: displayQuery,
             from: isCtx ? "ctx" : "global",
             url: `/docs/api${isCtx ? `/ctx/` : "/"}${query}`,
             extras: extras,
