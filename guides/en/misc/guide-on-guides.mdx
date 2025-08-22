@@ -9,7 +9,9 @@ noAds: true
 
 import Info from "@/components/Content/Info.astro";
 import Code from "@/components/Content/CodeWithKAPLAYGROUND.astro";
+import JustForVersion from "@/components/Content/JustForVersion.astro";
 import InstallationCode from "@/components/Content/InstallationCode.astro";
+import RenderedMarkdown from "@/components/Content/RenderedMarkdown.astro";
 
 # Creating Guides
 
@@ -67,22 +69,31 @@ There's little things you've to take in account in the writing style
 - Talk to the user as **you**. Instead of "we can use `get()` for..." do "you can use `get()`" for
 - Try to do descriptive titles, instead of **Introduction** -> **How to X** / **Creating X**
 
-#### How to sections
+#### "X Operations" or "How To" collection sections
 
-Some guides may include a **How to** section, we could stand this format:
+Some guides include many **How to** section under a "X Operations" section, as a complement of main content, check for example
+[Game Object](/docs/guides/game_objects) guide, we could standarize this format:
 
 ```mdx
-# How to [thing]
+## [Title of Guide] Operations 
 
-You can [thing] with [thing they can use]
+### How to [thing]
+
+You can do [thing] with [thing they can use]
 ```
+
+<Info title="Don't make them the whole thing!" crew="bobo">
+Remember, these sections shouldn't replace the main content of the guide but give some common
+questions with their responses, another good exmaple is [Tags](/docs/guides/tags) guide, first it introduces
+what is a tag, how to use them, and then the operations.
+</Info>
 
 ## Components and features in Markdown
 
-There's some special components and markdown features you must know for creating a great
+There's some special components and Markdown features you must know for creating a great
 quality document piece.
 
-### Info component
+### `Info` component
 
 Display useful information or tips.
 
@@ -105,13 +116,56 @@ Say hi!
 
 #### Rendered
 
+<RenderedMarkdown>
 <Info crew="mark" title="oh!">
 Say hi!
 </Info>
+</RenderedMarkdown>
 
 There's many cool usages of this component among guides.
 
-### Code component
+### `JustForVersion` component
+
+Display useful information or tips.
+
+#### Usage
+
+```jsx
+import JustForVersion from "@/components/Content/JustForVersion.astro";
+
+<JustForVersion version="4000">
+## This Markdown
+
+Is just rendered in the 4000 version.
+</JustForVersion>
+```
+
+#### Props
+| Prop              | Description                             |
+|-------------------|-----------------------------------------|
+| `crew`: `string`  | Crew member to display                  |
+| `title`: `string` | Title to display, it supports Markdown  |
+
+
+#### Rendered
+
+
+<JustForVersion version="4000">
+<RenderedMarkdown>
+## This Markdown
+
+Is just rendered in the 4000 version.
+</RenderedMarkdown>
+</JustForVersion>
+
+<JustForVersion version="3001">
+<RenderedMarkdown>
+Yeah, you **wont** see it on this version of docs, but hey, those v4000 fools can't read this one!
+</RenderedMarkdown>
+</JustForVersion>
+
+
+### `Code` component
 
 Render JavaScript code with an option to Open in KAPLAYGROUND. Don't worry 
 by formatting, it auto formats.
@@ -142,6 +196,7 @@ import Code from "@/components/Content/CodeWithKAPLAYGROUND.astro";
 
 #### Rendered
 
+<RenderedMarkdown>
 <Code
     code={`
 // Code to be rendered
@@ -150,10 +205,11 @@ import Code from "@/components/Content/CodeWithKAPLAYGROUND.astro";
 // Code to be played
     `}
 />
+</RenderedMarkdown>
 
-### Type Links
+### API Docs links
 
-You can easily link to types writing them between backticks (`):
+You can easily link to API Docs writing an entry name them between backticks (`):
 
 ```mdx
 You can use `get(*)` for getting all objects. There's also `GameObjRaw.get()`. 
@@ -162,9 +218,11 @@ It doesn't matter the content between (), it will be ignored for generating the 
 
 #### Rendered
 
+<RenderedMarkdown>
 You can use `get()` for getting all objects. There's also `GameObjRaw.get()`.
+</RenderedMarkdown>
 
-### Special aliases for Type Links
+### Special aliases for API Docs links
 
 You can use convenient alias like `obj` for refer to `GameObjRaw`, there's the
 table with all special aliases and features around this:
