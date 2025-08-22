@@ -7,7 +7,6 @@ import {
     transformerNotationHighlight,
     transformerNotationWordHighlight,
 } from "@shikijs/transformers";
-import { rendererRich, transformerTwoslash } from "@shikijs/twoslash";
 import cloudflareRedirects from "astro-cloudflare-redirects";
 import astroMetaTags from "astro-meta-tags";
 import pagefind from "astro-pagefind";
@@ -20,6 +19,7 @@ import remarkMath from "remark-math";
 import kaplayPackageJson from "./kaplay/package.json";
 import websitePackageJson from "./package.json";
 import { rehypeKAPLAY } from "./plugins/rehypeKAPLAY";
+import { rehypeWrapTables } from "./plugins/rehypeWrap";
 
 // https://astro.build/config
 export default defineConfig({
@@ -89,6 +89,7 @@ export default defineConfig({
             }],
             [rehypeKatex, {}],
             [rehypeKAPLAY, {}],
+            [rehypeWrapTables, {}],
         ],
     },
 });

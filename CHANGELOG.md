@@ -8,6 +8,12 @@ and this project adheres to
 
 ## [unreleased]
 
+## [1.4.4] - 2025-08-21
+
+### Fixed
+
+- Table style is now responsive and spacing issues were fixed - @imaginarny
+
 ## [1.4.3] - 2025-08-21
 
 ### Added

@@ -2,15 +2,29 @@
 title: AI
 description: Learn how to write AI for entities in KAPLAY.
 url: ai
+version: "4000"
 ---
 
-# Three ways to automate characters, buildings or other entities.
+import Info from "@/components/Content/Info.astro";
+
+# AI
+
+<Info title="Experimental Content" crew="home">
+This content is currently experimental, for versions that are not stable. If
+you want to try this experimental feature we recommend installing github latest version:
+
+```sh
+npm i github:kaplayjs/kaplay
+```
+</Info>
+
+There's three ways to automate characters or buildings.
 
 ## The state component
 
-The state component models a FSM or Finite State Machine. It is not exclusively used for AI, but also helps everywhere where there are a finite amount of states with strict transitions between them (like going from walking to jumping to falling to idle). A simple AI can be modeled using states and transitions between them. 
+The state component models a FSM or Finite State Machine. It is not exclusively used for AI, but also helps everywhere where there are a finite amount of states with strict transitions between them (like going from walking to jumping to falling to idle). A simple AI can be modeled using states and transitions between them.
 
-For example an enemy may *patrol* as its initial state. Once it sees the player, it will transition to *hunt*. If it can reach the player, it will *attack*. After the attack it will go into *cooldown*. Once cooled down, it will go back to *hunt* and go to *attack* once more if the player is still near. Once the player gets out of reach, it will go back to *patrol*.
+For example an enemy may _patrol_ as its initial state. Once it sees the player, it will transition to _hunt_. If it can reach the player, it will _attack_. After the attack it will go into _cooldown_. Once cooled down, it will go back to _hunt_ and go to _attack_ once more if the player is still near. Once the player gets out of reach, it will go back to _patrol_.
 
 ```ts
 add([
@@ -120,12 +134,15 @@ This looks more complex than a state machine, so why use this? Mainly, because w
 
 A decision tree is a tree structure where each node poses a question about an attribute. Each child node of the node has a different answer to that question, and the child with the correct answer is chosen until we reach a child which is a leaf. This child contains the answer on what we should do.
 
-For example, we could first check on *health*. If *health* is lower than 20, we *patrol*. If it is larger than 20, we check on *playerVisible*. If not, we patrol, if yes, we check *playerClose*. If yes we *attack*, if not, we *hunt*.
+For example, we could first check on _health_. If _health_ is lower than 20, we _patrol_. If it is larger than 20, we check on _playerVisible_. If not, we patrol, if yes, we check _playerClose_. If yes we _attack_, if not, we _hunt_.
 
 ```ts
 const tree = new DecisionTree("health");
 tree.root.addPredicateNode(health => health < 20, "patrol");
-let branch = tree.root.addPredicateNode(health => health >= 20, "playerVisible");
+let branch = tree.root.addPredicateNode(
+    health => health >= 20,
+    "playerVisible",
+);
 branch.addValueNode(false, "patrol");
 branch = branch.addValueNode(true, "playerClose");
 branch.addValueNode(false, "hunt");
@@ -141,7 +158,7 @@ const actionToTake = evaluate({
 This type of AI poses questions and the answers lead it to a certain outcome. It can have fuzzy properties by using addWeightNode(), which adds weighted branches with probabilities. This is handy to add a critical attack for example.
 
 ```ts
-branch.addWeightNode(5, "critical_attack", );
+branch.addWeightNode(5, "critical_attack");
 branch.addWeightNode(95, "attack");
 ```
 
