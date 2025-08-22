@@ -8,6 +8,12 @@ and this project adheres to
 
 ## [unreleased]
 
+## [1.4.5] - 2025-08-22
+
+### Added
+
+- Now you can access to changelog in the website
+
 ## [1.4.4] - 2025-08-21
 
 ### Fixed

@@ -45,7 +45,7 @@ let result = await remark()
             if (inSection) {
                 childCount++;
 
-                if (childCount == 5) continue;
+                if (childCount == 5 && curKAPLAYVersion == "4000") continue;
 
                 newChildren.push(node);
             }
