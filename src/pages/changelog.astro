@@ -4,7 +4,7 @@ import SidebarPage from "@/layouts/SidebarPage.astro";
 import { getEntry } from "astro:content";
 import "../styles/changelog.css";
 
-const entry = await getEntry("misc", `en/changelog`);
+const entry = await getEntry("misc", `en/changes`);
 if (!entry) return;
 const { Content } = await entry.render();
 ---

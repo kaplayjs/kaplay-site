@@ -4,9 +4,6 @@ import { remark } from "remark";
 import remarkGithub, { defaultBuildUrl } from "remark-github";
 import remarkParse from "remark-parse";
 import remarkStringify from "remark-stringify";
-import kaplaySubmodulePackageJson from "../kaplay/package.json" with {
-    type: "json",
-};
 
 const kaplayVersion = kaplaySubmodulePackageJson.version;
 const changelogUrl =
@@ -69,7 +66,7 @@ const changelogPath = path.resolve(
     "content",
     "misc",
     "en",
-    "CHANGELOG.md",
+    "changes.md",
 );
 
 fs.mkdirSync(path.dirname(changelogPath), { recursive: true });
