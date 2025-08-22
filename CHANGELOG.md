@@ -12,7 +12,7 @@ and this project adheres to
 
 ### Added
 
-- Now you can access to changelog in the website
+- Now you can access to changelog in the website - @lajbel
 
 ## [1.4.4] - 2025-08-21
 
