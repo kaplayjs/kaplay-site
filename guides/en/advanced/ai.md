@@ -4,9 +4,9 @@ description: Learn how to write AI for entities in KAPLAY.
 url: ai
 ---
 
-# Three ways to automate characters or buildings.
+# Three ways to automate characters, buildings or other entities.
 
-## State component
+## The state component
 
 The state component models a FSM or Finite State Machine. It is not exclusively used for AI, but also helps everywhere where there are a finite amount of states with strict transitions between them (like going from walking to jumping to falling to idle). A simple AI can be modeled using states and transitions between them. 
 
@@ -130,6 +130,12 @@ branch.addValueNode(false, "patrol");
 branch = branch.addValueNode(true, "playerClose");
 branch.addValueNode(false, "hunt");
 branch.addValueNode(true, "attack");
+
+const actionToTake = evaluate({
+    health: 100,
+    playerVisible: true,
+    playerClose: false
+}); // Will be "hunt"
 ```
 
 This type of AI poses questions and the answers lead it to a certain outcome. It can have fuzzy properties by using addWeightNode(), which adds weighted branches with probabilities. This is handy to add a critical attack for example.
