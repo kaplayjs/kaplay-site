@@ -49,7 +49,6 @@ const miscCollection = defineCollection({
     schema: z.object({
         title: z.string(),
         description: z.string(),
-        version: z.optional(z.string()),
     }),
 });
 
