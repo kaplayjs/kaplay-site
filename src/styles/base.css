@@ -350,3 +350,11 @@ pre:has(code) {
 .md-doc-code-span {
     @apply underline decoration-base-content/20;
 }
+
+.md-table-wrapper {
+    @apply overflow-auto my-8;
+
+    table {
+        @apply my-0;
+    }
+}
