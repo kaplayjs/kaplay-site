@@ -1,0 +1,144 @@
+---
+title: AI
+description: Learn how to write AI for entities in KAPLAY.
+url: ai
+---
+
+# Three ways to automate characters or buildings.
+
+## State component
+
+The state component models a FSM or Finite State Machine. It is not exclusively used for AI, but also helps everywhere where there are a finite amount of states with strict transitions between them (like going from walking to jumping to falling to idle). A simple AI can be modeled using states and transitions between them. 
+
+For example an enemy may *patrol* as its initial state. Once it sees the player, it will transition to *hunt*. If it can reach the player, it will *attack*. After the attack it will go into *cooldown*. Once cooled down, it will go back to *hunt* and go to *attack* once more if the player is still near. Once the player gets out of reach, it will go back to *patrol*.
+
+```ts
+add([
+    "enemy",
+    sprite("zombean");
+    state("patrol", ["patrol", "hunt", "attack", "cooldown"]),
+    {
+        cooldown: 0,
+        add() {
+            this.onStateEnter("patrol", () => {
+                // Determine patrolling pattern depending on location
+            });
+            this.onStateUpdate("patrol", () => {
+                // Look for player
+                if (player visible) {
+                    this.enterState("hunt"),
+                }
+            });
+            this.onStateUpdate("hunt", () => {
+                // Move towards player
+                if (player in range) {
+                    this.moveTo(player.pos);
+                    if (player in attack range) {
+                        this.enterState("attack");
+                    }
+                }
+                else {
+                    this.enterState("patrol");
+                }
+            });
+            this.onStateEnter("attack", () => {
+                // Damage player
+                player.damage(10);
+                this.cooldown = 2;
+                this.enterState("cooldown");
+            });
+            this.onStateUpdate("cooldown", () => {
+                if (this.cooldown > 0) {
+                    // Wait
+                    this.cooldown -= dt();
+                }
+                else {
+                    // Look if player is still there
+                    this.enterState("hunt");
+                }
+            });
+        }
+    }
+])
+```
+
+This will create a very simple AI enough for most platformer games.
+
+## Rule System
+
+A rule system is a list of rules which are checked one by one. Each rule has a predicate. If the predicate asserts to true, the rule will be executed. A rule can do one of three things when executed. It can assert a fact, or retract it or it can perform a custom action. The idea is that rules assert and retract facts so that the AI can determine what to do according to the facts.
+
+For example an enemy may assert an attack fact if it has enough health. Being close to the player may also assert that fact. Being too weak compared to the player may retract the fact.
+
+```ts
+const rs = new RuleSystem();
+// We start with just patrolling, no reason is needed to do that
+rs.addRuleAssertingFact(sys => true, "patrol");
+// If the player is visible and close, we may attack
+rs.addRuleAssertingFact(sys => sys.state.playerVisible && sys.state.playerClose, "attack");
+rs.addRuleAssertingFact(sys => sys.state.health > 50, "attack_ok");
+rs.addRuleAssertingFact(sys => sys.state.playerWeak, "attack_ok");
+// Don't attack if we're sure to lose in a battle
+rs.addRuleRetractingFact(sys => sys.state.health < 10, "attack_ok");
+// If we're ok to attack, cancel patrol
+rs.addRuleRetractingFact(sys => sys.gradeForFact("attack_ok"), "patrol");
+// If the player is visible but far, we may hunt
+rs.addRuleAssertingFact(sys => sys.state.playerVisible && !sys.state.playerClose, "hunt");
+rs.addRuleAssertingFact(sys => sys.state.health > 50, "hunt_ok");
+rs.addRuleAssertingFact(sys => sys.state.playerWeak, "hunt_ok");
+// Don't hunt if we're sure to lose in a battle
+rs.addRuleRetractingFact(sys => sys.state.health < 10, "hunt_ok");
+// If we're ok to hunt, cancel patrol
+rs.addRuleRetractingFact(sys => sys.gradeForFact(rs."hunt_ok"), "patrol");
+
+onUpdate() {
+    // Only evaluate sporadically
+    if (!timeToUpdateAI) return;
+
+    rs.reset();
+    rs.state.health = enemy.health;
+    rs.state.playerClose = enemy.pos.dist(player.pos) < 50;
+    rs.execute();
+
+    // Taking the minimum of several probabilities is the same as logical &&
+    // Taking the maximum of several probabilities is the same as logical ||
+    if (rs.minimumGradeForFacts("attack", "attack_ok") > 0) {
+        enemy.attack(player);
+    }
+    else if (rs.minimumGradeForFacts("hunt", "hunt_ok") > 0) {
+        enemy.hunt(player);
+    }
+    else if (rs.gradeForFacts("patrol") > 0) {
+        enemy.patrol();
+    }
+}
+```
+
+This looks more complex than a state machine, so why use this? Mainly, because we can use fuzzy logic in order to make things less predictable. Facts don't need to be 0 or 1, they are a probability. This means we can have several rules assert a fact with 0.2, and make our final check whether it exceeds a threshold of 0.5 for example. We can also let the amount of assertion depend on state, for example, even if our health is low, we may retract attack with a value of 0.6^n where n is the amount of other enemies attacking instead of using 1. This makes it that if enough enemies are ganging up against the player, the enemy will attack even while being with low health.
+
+## Decision Tree
+
+A decision tree is a tree structure where each node poses a question about an attribute. Each child node of the node has a different answer to that question, and the child with the correct answer is chosen until we reach a child which is a leaf. This child contains the answer on what we should do.
+
+For example, we could first check on *health*. If *health* is lower than 20, we *patrol*. If it is larger than 20, we check on *playerVisible*. If not, we patrol, if yes, we check *playerClose*. If yes we *attack*, if not, we *hunt*.
+
+```ts
+const tree = new DecisionTree("health");
+tree.root.addPredicateNode(health => health < 20, "patrol");
+let branch = tree.root.addPredicateNode(health => health >= 20, "playerVisible");
+branch.addValueNode(false, "patrol");
+branch = branch.addValueNode(true, "playerClose");
+branch.addValueNode(false, "hunt");
+branch.addValueNode(true, "attack");
+```
+
+This type of AI poses questions and the answers lead it to a certain outcome. It can have fuzzy properties by using addWeightNode(), which adds weighted branches with probabilities. This is handy to add a critical attack for example.
+
+```ts
+branch.addWeightNode(5, "critical_attack", );
+branch.addWeightNode(95, "attack");
+```
+
+But the most useful to this kind of approach is that you can have it learn from examples. Using DecisionTree.learnFromExamples(), you can obtain a tree given real player data, which is easier than constructing a good tree yourself.
+
+## More coming soon
