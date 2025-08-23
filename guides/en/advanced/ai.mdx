@@ -148,7 +148,7 @@ branch = branch.addValueNode(true, "playerClose");
 branch.addValueNode(false, "hunt");
 branch.addValueNode(true, "attack");
 
-const actionToTake = evaluate({
+const actionToTake = tree.evaluate({
     health: 100,
     playerVisible: true,
     playerClose: false
