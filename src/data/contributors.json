@@ -41,7 +41,7 @@
     "type": "User",
     "user_view_type": "public",
     "site_admin": false,
-    "contributions": 430
+    "contributions": 461
   },
   {
     "login": "mflerackers",
@@ -63,7 +63,7 @@
     "type": "User",
     "user_view_type": "public",
     "site_admin": false,
-    "contributions": 128
+    "contributions": 28
   },
   {
     "login": "dragoncoder047",
@@ -85,7 +85,7 @@
     "type": "User",
     "user_view_type": "public",
     "site_admin": false,
-    "contributions": 64
+    "contributions": 2
   },
   {
     "login": "amyspark-ng",
@@ -107,7 +107,7 @@
     "type": "User",
     "user_view_type": "public",
     "site_admin": false,
-    "contributions": 47
+    "contributions": 3
   },
   {
     "login": "niceEli",
@@ -129,7 +129,7 @@
     "type": "User",
     "user_view_type": "public",
     "site_admin": false,
-    "contributions": 29
+    "contributions": 2
   },
   {
     "login": "SpcFORK",
@@ -195,7 +195,7 @@
     "type": "User",
     "user_view_type": "public",
     "site_admin": false,
-    "contributions": 10
+    "contributions": 25
   },
   {
     "login": "abhay7dev",
@@ -283,7 +283,7 @@
     "type": "User",
     "user_view_type": "public",
     "site_admin": false,
-    "contributions": 4
+    "contributions": 2
   },
   {
     "login": "kgish",
@@ -393,7 +393,7 @@
     "type": "User",
     "user_view_type": "public",
     "site_admin": false,
-    "contributions": 4
+    "contributions": 1
   },
   {
     "login": "luluxia",
@@ -657,7 +657,7 @@
     "type": "User",
     "user_view_type": "public",
     "site_admin": false,
-    "contributions": 2
+    "contributions": 1
   },
   {
     "login": "juneaucross",
@@ -811,7 +811,7 @@
     "type": "User",
     "user_view_type": "public",
     "site_admin": false,
-    "contributions": 2
+    "contributions": 1
   },
   {
     "login": "marianyp",
@@ -1229,7 +1229,7 @@
     "type": "User",
     "user_view_type": "public",
     "site_admin": false,
-    "contributions": 1
+    "contributions": 3
   },
   {
     "login": "codingMASTER398",
@@ -1647,7 +1647,7 @@
     "type": "User",
     "user_view_type": "public",
     "site_admin": false,
-    "contributions": 1
+    "contributions": 2
   },
   {
     "login": "JSLegendDev",
@@ -1798,6 +1798,160 @@
     "repos_url": "https://api.github.com/users/itzKiwiSky/repos",
     "events_url": "https://api.github.com/users/itzKiwiSky/events{/privacy}",
     "received_events_url": "https://api.github.com/users/itzKiwiSky/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false,
+    "contributions": 1
+  },
+  {
+    "login": "kaplay-bagbot",
+    "id": 205440754,
+    "node_id": "U_kgDODD7G8g",
+    "avatar_url": "https://avatars.githubusercontent.com/u/205440754?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/kaplay-bagbot",
+    "html_url": "https://github.com/kaplay-bagbot",
+    "followers_url": "https://api.github.com/users/kaplay-bagbot/followers",
+    "following_url": "https://api.github.com/users/kaplay-bagbot/following{/other_user}",
+    "gists_url": "https://api.github.com/users/kaplay-bagbot/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/kaplay-bagbot/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/kaplay-bagbot/subscriptions",
+    "organizations_url": "https://api.github.com/users/kaplay-bagbot/orgs",
+    "repos_url": "https://api.github.com/users/kaplay-bagbot/repos",
+    "events_url": "https://api.github.com/users/kaplay-bagbot/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/kaplay-bagbot/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false,
+    "contributions": 79
+  },
+  {
+    "login": "ArnavK-09",
+    "id": 69188140,
+    "node_id": "MDQ6VXNlcjY5MTg4MTQw",
+    "avatar_url": "https://avatars.githubusercontent.com/u/69188140?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/ArnavK-09",
+    "html_url": "https://github.com/ArnavK-09",
+    "followers_url": "https://api.github.com/users/ArnavK-09/followers",
+    "following_url": "https://api.github.com/users/ArnavK-09/following{/other_user}",
+    "gists_url": "https://api.github.com/users/ArnavK-09/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/ArnavK-09/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/ArnavK-09/subscriptions",
+    "organizations_url": "https://api.github.com/users/ArnavK-09/orgs",
+    "repos_url": "https://api.github.com/users/ArnavK-09/repos",
+    "events_url": "https://api.github.com/users/ArnavK-09/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/ArnavK-09/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false,
+    "contributions": 1
+  },
+  {
+    "login": "kitsune7",
+    "id": 1205871,
+    "node_id": "MDQ6VXNlcjEyMDU4NzE=",
+    "avatar_url": "https://avatars.githubusercontent.com/u/1205871?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/kitsune7",
+    "html_url": "https://github.com/kitsune7",
+    "followers_url": "https://api.github.com/users/kitsune7/followers",
+    "following_url": "https://api.github.com/users/kitsune7/following{/other_user}",
+    "gists_url": "https://api.github.com/users/kitsune7/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/kitsune7/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/kitsune7/subscriptions",
+    "organizations_url": "https://api.github.com/users/kitsune7/orgs",
+    "repos_url": "https://api.github.com/users/kitsune7/repos",
+    "events_url": "https://api.github.com/users/kitsune7/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/kitsune7/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false,
+    "contributions": 1
+  },
+  {
+    "login": "gkalpak",
+    "id": 8604205,
+    "node_id": "MDQ6VXNlcjg2MDQyMDU=",
+    "avatar_url": "https://avatars.githubusercontent.com/u/8604205?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/gkalpak",
+    "html_url": "https://github.com/gkalpak",
+    "followers_url": "https://api.github.com/users/gkalpak/followers",
+    "following_url": "https://api.github.com/users/gkalpak/following{/other_user}",
+    "gists_url": "https://api.github.com/users/gkalpak/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/gkalpak/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/gkalpak/subscriptions",
+    "organizations_url": "https://api.github.com/users/gkalpak/orgs",
+    "repos_url": "https://api.github.com/users/gkalpak/repos",
+    "events_url": "https://api.github.com/users/gkalpak/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/gkalpak/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false,
+    "contributions": 1
+  },
+  {
+    "login": "gregwoodsfrontier",
+    "id": 80141657,
+    "node_id": "MDQ6VXNlcjgwMTQxNjU3",
+    "avatar_url": "https://avatars.githubusercontent.com/u/80141657?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/gregwoodsfrontier",
+    "html_url": "https://github.com/gregwoodsfrontier",
+    "followers_url": "https://api.github.com/users/gregwoodsfrontier/followers",
+    "following_url": "https://api.github.com/users/gregwoodsfrontier/following{/other_user}",
+    "gists_url": "https://api.github.com/users/gregwoodsfrontier/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/gregwoodsfrontier/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/gregwoodsfrontier/subscriptions",
+    "organizations_url": "https://api.github.com/users/gregwoodsfrontier/orgs",
+    "repos_url": "https://api.github.com/users/gregwoodsfrontier/repos",
+    "events_url": "https://api.github.com/users/gregwoodsfrontier/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/gregwoodsfrontier/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false,
+    "contributions": 1
+  },
+  {
+    "login": "Shoozza",
+    "id": 276143,
+    "node_id": "MDQ6VXNlcjI3NjE0Mw==",
+    "avatar_url": "https://avatars.githubusercontent.com/u/276143?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/Shoozza",
+    "html_url": "https://github.com/Shoozza",
+    "followers_url": "https://api.github.com/users/Shoozza/followers",
+    "following_url": "https://api.github.com/users/Shoozza/following{/other_user}",
+    "gists_url": "https://api.github.com/users/Shoozza/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/Shoozza/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/Shoozza/subscriptions",
+    "organizations_url": "https://api.github.com/users/Shoozza/orgs",
+    "repos_url": "https://api.github.com/users/Shoozza/repos",
+    "events_url": "https://api.github.com/users/Shoozza/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/Shoozza/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false,
+    "contributions": 1
+  },
+  {
+    "login": "floriansimunek",
+    "id": 60973568,
+    "node_id": "MDQ6VXNlcjYwOTczNTY4",
+    "avatar_url": "https://avatars.githubusercontent.com/u/60973568?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/floriansimunek",
+    "html_url": "https://github.com/floriansimunek",
+    "followers_url": "https://api.github.com/users/floriansimunek/followers",
+    "following_url": "https://api.github.com/users/floriansimunek/following{/other_user}",
+    "gists_url": "https://api.github.com/users/floriansimunek/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/floriansimunek/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/floriansimunek/subscriptions",
+    "organizations_url": "https://api.github.com/users/floriansimunek/orgs",
+    "repos_url": "https://api.github.com/users/floriansimunek/repos",
+    "events_url": "https://api.github.com/users/floriansimunek/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/floriansimunek/received_events",
     "type": "User",
     "user_view_type": "public",
     "site_admin": false,

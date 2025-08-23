@@ -1,17 +1,38 @@
 import fs from "fs";
 import contributors from "github-contributors";
 
-const repo = "kaplayjs/kaplay";
 const dist = "src/data/contributors.json";
 let opts = {};
 
-contributors(repo, opts, (err, res) => {
-    if (err) return console.log(err);
+let contributorsList = new Map();
 
-    const contributors = res.filter((u, i) => !u.login.endsWith("[bot]"));
+const registerContributors = (contributorsArray) => {
+    contributorsArray.forEach(contributor => {
+        contributorsList.set(contributor.id, contributor);
+    });
+};
 
-    fs.writeFile(dist, JSON.stringify(contributors, null, 2), (err) => {
+const contributorsAndThen = (repo, then) => {
+    contributors(repo, opts, (err, res) => {
         if (err) return console.log(err);
-        console.log(`Contributors list has been saved to ${dist}`);
+
+        const list = res.filter((u, i) => !u.login.endsWith("[bot]"));
+        registerContributors(list);
+        then();
+    });
+};
+
+contributorsAndThen("kaplayjs/kaplay", () => {
+    contributorsAndThen("kaplayjs/kaplayground", () => {
+        contributorsAndThen("kaplayjs/kaplay-site", () => {
+            fs.writeFile(
+                dist,
+                JSON.stringify(Array.from(contributorsList.values()), null, 2),
+                (err) => {
+                    if (err) return console.log(err);
+                    console.log(`Contributors list has been saved to ${dist}`);
+                },
+            );
+        });
     });
 });
