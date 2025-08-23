@@ -4,6 +4,9 @@ import { remark } from "remark";
 import remarkGithub, { defaultBuildUrl } from "remark-github";
 import remarkParse from "remark-parse";
 import remarkStringify from "remark-stringify";
+import kaplaySubmodulePackageJson from "../kaplay/package.json" with {
+    type: "json",
+};
 
 const kaplayVersion = kaplaySubmodulePackageJson.version;
 const changelogUrl =
