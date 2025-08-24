@@ -54,10 +54,11 @@ h2, h3, h4, h5, h6 {
     }
 }
 
-.heading-anchor-link {
+.heading-anchor-link,
+.prose .heading-anchor-link {
     all: inherit;
     @apply underline underline-offset-2 decoration-white/0 hover:decoration-white/50
-        hover:text-white target:text-red-500 transition-all;
+        hover:text-white outline-none focus-visible:ring-2 focus-visible:ring-current focus-visible:rounded-md transition-all;
 
     &::before {
         content: "#";
@@ -70,14 +71,14 @@ h2, h3, h4, h5, h6 {
         background-color: color-mix(in oklch, oklch(var(--b1)) 60%, var(--b0));
     }
 
-    .prose h1 &::before {
-        @apply w-6 -ml-7 text-4xl leading-[1];
-    }
-
     :target > &,
     :target > :is(h1, h2, h3, h4, h5, h6) > & {
         @apply text-white;
     }
+}
+
+.prose h1 .heading-anchor-link::before {
+    @apply w-6 -ml-7 text-4xl leading-[1];
 }
 
 iframe {
@@ -173,17 +174,28 @@ input[type="radio"]:not(.cursor-default),
 }
 
 .astro-code {
+    display: block;
+    min-width: 100%;
     overflow: auto;
     scrollbar-width: thin;
     scrollbar-color:
         color-mix(in oklch, oklch(var(--bc)) 35%, transparent)
         transparent;
 
-    @apply my-2 rounded-box bg-base-300 py-2 px-3 !important;
+    @apply my-2 rounded-box bg-base-300 px-0 py-2 !important;
+}
+
+
+.line {
+    @apply px-2;
 }
 
 .line.diff.add {
     @apply bg-green-400 bg-opacity-40;
+}
+
+.line.highlighted {
+    @apply bg-base-content/5 w-full inline-block
 }
 
 span.line.diff.add::before {
@@ -370,6 +382,27 @@ pre button.copy {
             opacity: 0;
         }
     }
+  }
+
+.md-doc-code {
+    @apply bg-base-200 px-1 py-0.5 rounded-md;
+}
+
+.md-doc-code-link {
+    @apply hover:text-base-content/80 focus:outline-none focus-visible:ring-2 ring-base-content rounded-md text-base-content;
+    text-decoration: none;
+}
+
+.md-doc-code-span {
+    @apply underline decoration-base-content/20;
+}
+
+.md-table-wrapper {
+    @apply overflow-auto my-8;
+
+    table {
+        @apply my-0;
+    }
 }
 
 /* daisyUI */
@@ -380,5 +413,5 @@ pre button.copy {
     &:is([open], :focus:not(.collapse-close)),
     &:not(.collapse-close):has(> input:is([type="checkbox"], [type="radio"]):checked) {
         grid-template-rows: max-content 1fr;
-    }
+  }
 }

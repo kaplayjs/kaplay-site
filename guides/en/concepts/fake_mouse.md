@@ -15,7 +15,7 @@ special component for it, `fakeMouse`.
 Using a game object as a mouse has many advantages like use shaders, transform,
 rotation or even physics if you want, the possibilities are infinite.
 
-## `fakeMouse` component
+## fakeMouse component
 
 The `fakeMouse` component actives the behaviors of events like `onHover` and
 `onClick` and them listen for this object too. It creates a virtual mouse that
@@ -36,7 +36,7 @@ const cursor = add([
 ]);
 ```
 
-Now, you need to bind `FakeCursorComp.press()` and `FakeCursorComp.release()` to
+Now, you need to bind `FakeMouseComp.press()` and `FakeMouseComp.release()` to
 a key. It can be a keyboard click for example:
 
 ```js

@@ -38,7 +38,7 @@ k.onDraw(() => {
 If you're creating and destroying objects in an absurd rate, you should find
 another solution.
 
-- Particles: `particle()` component instead of creating and destroying objects
+- Particles: `particles()` component instead of creating and destroying objects
   for each particle.
 - Rendering: `onDraw` for rendering static images or shapes.
 - Text: `text()` or `drawText()` transform instead of creating a game object for
@@ -89,7 +89,7 @@ for (let i = 0; i < 1000; i++) {
 ## Avoid Global Namespace
 
 By default KAPLAY uses a lot of common names like `pos`, `sprite` that occupies
-global namespace, it's often better to use `global: false` to not export KAPLAY
+global namespace, it's often better to use `KAPLAYOpt.global` in `false` to not export KAPLAY
 functions to `window`
 
 ```js
@@ -105,7 +105,7 @@ const pos = k.vec2(120, 200);
     title="Browsers replace the global namespace whenever they feel like it.">
 Another reason for avoid global namespace is that browsers can patch global
 namespace with their own functions, which can cause conflicts with KAPLAY
-functions. That happened with `navigate` component in the past.
+functions. That happened with `pathfinder()` component in the past, it was `navigate()`.
 </Info>
 
 ## Compress Assets

@@ -232,6 +232,19 @@ for (const sectionOrder of Object.keys(sectionsSort)) {
     section.entries = sortedEntries.concat(section.entries);
 }
 
+const compMap = {};
+
+for (const comp of groups["Components"].entries) {
+    if (comp.substring(0, 1) === comp.substring(0, 1).toLowerCase()) {
+        const contextEntries = types.KAPLAYCtx[0].members;
+        const returnType = contextEntries[comp]?.[0]?.type?.typeName;
+
+        if (returnType) {
+            compMap[comp] = returnType;
+        }
+    }
+}
+
 await fs.writeFile(
     "doc.json",
     JSON.stringify({
@@ -245,5 +258,12 @@ await fs.writeFile(
     JSON.stringify({
         types,
         groups: sortedGroups,
+    }),
+);
+
+await fs.writeFile(
+    "src/data/comps.json",
+    JSON.stringify({
+        compMap,
     }),
 );

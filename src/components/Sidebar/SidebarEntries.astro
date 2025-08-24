@@ -6,10 +6,12 @@ import SidebarList from "./SidebarList.astro";
 import type { SidebarEntry, SidebarProps } from "./Sidebar.astro";
 import { getBlogEntries, getBookEntries, getDocEntries, getGuidesEntries } from "./entries.ts";
 import changelogIcon from "@/assets/history.png";
+import { cn } from "@/util/cn";
 
 type Props = SidebarProps;
 
 const { sidebarMode } = Astro.props;
+const pathname = Astro.url.pathname;
 
 let renderList: SidebarEntry[] = [];
 
@@ -38,9 +40,8 @@ if (sidebarMode === "guides") {
                 <div class="flex gap-px bg-base-50 p-px rounded-lg justify-center mb-5">
                     <VersionSelector />
                     <a
-                        class="btn btn-sm btn-ghost bg-base-200 p-1"
-                        href="https://github.com/kaplayjs/kaplay/blob/master/CHANGELOG.md"
-                        target="_blank"
+                        class={cn("btn btn-sm btn-ghost bg-base-200 p-1", { "bg-base-content/20": pathname == "/changelog" })}
+                        href="/changelog"
                         title="Changelog"
                     >
                         <img src={changelogIcon.src} class="w-6 h-full object-scale-down" />

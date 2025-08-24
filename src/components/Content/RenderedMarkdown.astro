@@ -1,0 +1,14 @@
+---
+import { assets } from "@kaplayjs/crew";
+import Prose from "./Prose.astro";
+---
+
+<div class="rounded-box bg-base-200/60 px-2 py-2 text-base border border-base-300">
+    {
+        Astro.slots.has("default") && (
+            <Prose>
+                <slot />
+            </Prose>
+        )
+    }
+</div>

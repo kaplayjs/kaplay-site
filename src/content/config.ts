@@ -30,6 +30,7 @@ const guideCollection = defineCollection({
             version: z.optional(z.string()),
             order: z.optional(z.string()),
             hidden: z.optional(z.boolean()),
+            noAds: z.optional(z.boolean()),
         }),
 });
 
@@ -48,7 +49,6 @@ const miscCollection = defineCollection({
     schema: z.object({
         title: z.string(),
         description: z.string(),
-        version: z.optional(z.string()),
     }),
 });
 

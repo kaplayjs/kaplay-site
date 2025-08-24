@@ -4,6 +4,7 @@ import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import {
     transformerNotationDiff,
+    transformerNotationHighlight,
     transformerNotationWordHighlight,
 } from "@shikijs/transformers";
 import cloudflareRedirects from "astro-cloudflare-redirects";
@@ -18,6 +19,7 @@ import remarkMath from "remark-math";
 import kaplayPackageJson from "./kaplay/package.json";
 import websitePackageJson from "./package.json";
 import { rehypeKAPLAY } from "./plugins/rehypeKAPLAY";
+import { rehypeWrapTables } from "./plugins/rehypeWrap";
 
 // https://astro.build/config
 export default defineConfig({
@@ -77,6 +79,7 @@ export default defineConfig({
         shikiConfig: {
             transformers: [
                 transformerNotationDiff(),
+                transformerNotationHighlight(),
                 transformerNotationWordHighlight(),
             ],
         },
@@ -89,6 +92,7 @@ export default defineConfig({
             }],
             [rehypeKatex, {}],
             [rehypeKAPLAY, {}],
+            [rehypeWrapTables, {}],
         ],
     },
 });

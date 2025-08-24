@@ -5,12 +5,14 @@ import CarbonAd from "@/components/Util/CarbonAd.astro";
 import Page, { type MetaTagData } from "./Page.astro";
 import SearchDialog from "@/components/Search/SearchDialog.astro";
 import "@/components/Doc/Styles/DocGeneration.css";
+import "@shikijs/twoslash/style-rich.css";
 
 type Props = {
     meta?: MetaTagData;
+    noAd?: boolean;
 } & SidebarProps;
 
-const { sidebarMode, meta, headings } = Astro.props;
+const { sidebarMode, meta, headings, noAd } = Astro.props;
 ---
 
 <Page meta={meta} class="scroll-pt-[5.625rem]">
@@ -20,7 +22,7 @@ const { sidebarMode, meta, headings } = Astro.props;
     <Sidebar sidebarMode={sidebarMode} headings={headings}>
         <slot />
 
-        <CarbonAd slot="ad" preferStart />
+        {!noAd && <CarbonAd slot="ad" preferStart />}
     </Sidebar>
 
     <SearchDialog />

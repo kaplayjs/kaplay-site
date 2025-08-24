@@ -1,0 +1,17 @@
+{
+  "KAPLAY Markdown Code Component": {
+    "scope": "javascript,typescript,jsx,tsx,markdown,mdx",
+    "prefix": "kpd-markdown-code",
+    "body": [
+      "<Code",
+      "    code={`",
+      "$1",
+      "    `}",
+      "    pgCode={`",
+      "$2",
+      "    `}",
+      "/>"
+    ],
+    "description": "KAPLAY Markdown Code Component snippet"
+  }
+}

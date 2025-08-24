@@ -11,7 +11,7 @@ Now, we will see how to use it.
 
 ## Inspect Mode
 
-You can enable inspect mode by pressing `F1` key. This will open the debug
+You can enable inspect mode by pressing <kbd class="kbd kbd-sm">F1</kbd> key. This will open the debug
 panel.
 
 ![](./assets/inspect2.png)

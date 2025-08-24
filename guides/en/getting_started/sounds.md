@@ -7,10 +7,9 @@ url: audio
 order: "basics-8"
 ---
 
-# Playing sounds
+# Sounds
 
-In KAPLAY, you can easily add background music and sound effects to your game.
-You can play music, audios and sounds using the `play()` function.
+In KAPLAY, you can easily add sound effects and background music to your game.
 
 ## Loading sounds
 
@@ -25,24 +24,25 @@ loadSound("soundName", "/path/to/sound.mp3");
 
 ## Playing sounds
 
-You can play sounds using the [`play()`](. The `play()` function takes the name
-of the sound, and some options proper of the [AudioPlayOpt](/docs/api/AudioPlayOpt/)
-interface.
+Use `play(sound, opt?)` to play an audio. It takes the name
+of the sound and, optionally, an `AudioPlayOpt` options object. It will return an `AudioPlay`.
 
 ```js
-play("soundName", {
+const burpSnd = play("burp", {
     volume: 0.5, // set the volume to 50%
     speed: 1.5, // speed up the sound
     loop: true, // loop the sound
 });
 ```
 
-## Stopping sounds
+## Controlling audio
 
-All `play()` returns an [AudioPlay](/docs/api/AudioPlay/) object that you can use to
-stop the sound.
+To stop, seek or modify playing sounds you can use the `AudioPlay` object, returned
+by `play()`.
 
 ```js
 const sound = play("soundName");
-sound.stop();
+
+// pause the song
+sound.pause();
 ```

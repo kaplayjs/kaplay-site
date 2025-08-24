@@ -33,7 +33,7 @@ import { assets } from "@kaplayjs/crew";
                 >
                 <p class="leading-relaxed">
                     Then you usually <code class="bg-base-100 px-1 py-0.5 rounded-md"
-                        ><a href="/docs/api/add" class="hover:text-base-content/80 focus:outline-none focus-visible:ring-2 ring-base-content rounded-md"
+                        ><a href="/docs/api/ctx/add" class="hover:text-base-content/80 focus:outline-none focus-visible:ring-2 ring-base-content rounded-md"
                             ><span class="underline decoration-base-content/20">add</span>()</a
                         ></code
                     > objects. The object itself includes many useful methods and properties that you might miss if you only search for general functions or components.
@@ -54,21 +54,26 @@ import { assets } from "@kaplayjs/crew";
                     <span class="font-mono opacity-80">&gt;</span>
                     <a class="link link-hover link-primary" href="/docs/api/PosComp">PosComp</a> &ndash; besides setting the position of the object, you could miss
                     all the things you can do with it now, like <code class="bg-base-100 px-1 py-0.5 rounded-md"
-                        ><a href="/docs/api/PosComp#PosComp-move" class="hover:text-base-content/80 focus:outline-none focus-visible:ring-2 ring-base-content rounded-md"
+                        ><a
+                            href="/docs/api/PosComp#PosComp-move"
+                            class="hover:text-base-content/80 focus:outline-none focus-visible:ring-2 ring-base-content rounded-md"
                             >obj.<span class="underline decoration-base-content/20">move</span>()</a
                         ></code
                     >!
                 </p>
                 <p>
-                    Or the other way around, check types if you can't find specific mechanics like e.g. collisions in <a class="link link-hover link-primary" href="/docs/api/AreaComp">AreaComp</a>.
+                    Or the other way around, check types if you can't find specific mechanics like e.g. collisions in <a
+                        class="link link-hover link-primary"
+                        href="/docs/api/AreaComp">AreaComp</a
+                    >.
                 </p>
 
                 <div class="divider before:h-px after:h-px -my-2"></div>
 
                 <div class="flex items-center justify-between gap-2">
                     <p class="text-sm"
-                        ><strong class="font-semibold text-base-subheading"> TL;DR:</strong> Remember to also check params, returns, interfaces, or types, besides the
-                        global functions for their goodies.
+                        ><strong class="font-semibold text-base-subheading"> TL;DR:</strong> Remember to also check params, returns, interfaces, or types, besides
+                        the global functions for their goodies.
                     </p>
 
                     <img src={assets.mark.outlined} alt="Mark Smiling" width="21" height="19" />
@@ -83,8 +88,8 @@ import { assets } from "@kaplayjs/crew";
                     class="group inline-flex items-center gap-1 font-semibold text-base-subheading -mx-1 px-1.5 pr-1 py-0.5 rounded-xl hover:bg-base-content/10 focus:outline-none focus-visible:ring-2 ring-base-content transition-colors"
                     onclick="document.querySelector('#sidebar-search')?.focus()"
                     ><span class="underline decoration-base-content/20 group-hover:decoration-transparent transition-colors">Search field</span></button
-                > in the sidebar to <strong class="font-semibold text-base-subheading">filter</strong> menu items by name, e.g. "sprite". If you can't find what you
-                are looking for, try using the main <button
+                > in the sidebar to <strong class="font-semibold text-base-subheading">filter</strong> menu items by name, e.g. "sprite". If you can't find what
+                you are looking for, try using the main <button
                     type="button"
                     class="group inline-flex items-center gap-1 font-semibold text-base-subheading -mx-1 px-1.5 pr-1 py-0.5 rounded-xl hover:bg-base-content/10 focus:outline-none focus-visible:ring-2 ring-base-content transition-colors"
                     onclick="document.querySelector('#search-modal')?.showModal()"

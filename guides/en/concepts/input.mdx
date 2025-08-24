@@ -1,0 +1,171 @@
+---
+title: Buttons API
+description:
+    How to use the Input Bindings in KAPLAY, to use the same event for mouse,
+    keyboard and gamepad.
+url: input
+---
+
+import Code from "@/components/Content/CodeWithKAPLAYGROUND.astro";
+import JustForVersion from "@/components/Content/JustForVersion.astro";
+
+# Buttons API
+
+The Buttons API (a.k.a Input bindings) allows you to use the same event for mouse, keyboard, and gamepad.
+You can set generic names like `jump` and bind it to the keys, gamepad/mouse buttons
+you want.
+
+## Creating input bindings
+
+You have to define the initial input bindings in the `KAPLAYOpt.buttons` option in `kaplay()`, passing
+a `ButtonsDef` object:
+
+<Code
+    code={`
+kaplay({
+    buttons: {
+        jump: {
+            keyboard: ["space", "up"], // You can bind various buttons...
+            gamepad: "south", // ...Or just one
+        },
+    },
+});
+    `}
+/>
+
+## Listening to input bindings
+
+After setting your input bindings, you can use the different input handlers 
+to listen to the buttons:
+
+<Code
+    code={`
+onButtonPress("jump", () => {
+    player.jump();
+});
+    `}
+    pgCode={`
+// Start kaplay
+kaplay({
+    buttons: {
+        jump: {
+            keyboard: ["space", "up"], // You can bind various buttons...
+            gamepad: "south", // ...Or just one
+        },
+    },
+});
+
+// Load assets
+loadSprite("bean", "/sprites/bean.png");
+
+// Set the gravity acceleration (pixels per second)
+setGravity(1600);
+
+// Add player game object
+const player = add([
+    sprite("bean"),
+    pos(center()),
+    area(),
+    // body() component gives the ability to respond to gravity
+    body(),
+]);
+
+add([
+    rect(width(), 48),
+    outline(4),
+    area(),
+    pos(0, height() - 48),
+    // Give objects a body() component if you don't want other solid objects pass through
+    body({ isStatic: true }),
+]);
+
+onButtonPress("jump", () => {
+    player.jump();
+});
+    `}
+/>
+
+There's a list with all handlers, with its boolean versions:
+
+| Boolean              | Handler              |
+|----------------------|----------------------|
+| `isButtonPressed()`  | `onButtonPress()`    |
+| `isButtonDown()`     | `onButtonDown()`     |
+| `isButtonReleased()` | `onButtonRelease()`  |
+
+## Getting and setting buttons
+
+Maybe you want dynamically change the bindings in your game. Depending for
+example of a configuration or a level.
+
+You can use the `getButton(btn)` and `setButton(btn)` to get and set
+input bindings, it perfoms a shallow merge, so the devices you don't change:
+stays the same.
+
+<Code
+    code={`
+// Get jump binding for keyboard
+getButton("jump").keyboard;
+
+// Set new binding for jump with keyboard, keeping gamepad
+setButton("jump", {
+    keyboard: ["w"],
+});
+    `}
+    pgCode={`
+kaplay({
+    buttons: {
+        jump: {
+            keyboard: ["space", "up"], // You can bind various buttons...
+            gamepad: "south", // ...Or just one
+        },
+    },
+});
+
+debug.log(getButton("jump").keyboard);
+
+setButton("jump", {
+    keyboard: ["w"],
+});
+
+debug.log(getButton("jump"));
+    `}
+/>
+
+
+<JustForVersion version="4000">
+You can get also get all the input bindings using `getButtons()`.
+
+<Code
+    code={`
+debug.log(getButtons()); // { jump: { keyboard: [], gamepad: [] } }
+    `}
+    pgCode={`
+kaplay({
+    buttons: {
+        jump: {
+            keyboard: ["space", "up"],
+            gamepad: ["south"],
+        },
+    },
+});
+
+debug.log(getButtons());
+    `}
+/>
+
+</JustForVersion>
+
+
+
+## Trigger buttons virtually
+
+Sometimes there's a need to trigger a button virtually, for example when you
+want to simulate a button press in mobile or in a cutscene.
+
+You can use `pressButton(btn)` and `releaseButton(btn)` to trigger the button:
+
+```js
+pressButton("jump"); // triggers onButtonPress and starts onButtonDown
+releaseButton("jump"); // triggers onButtonRelease and stops onButtonDown
+```
