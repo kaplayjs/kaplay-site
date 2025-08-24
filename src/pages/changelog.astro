@@ -6,7 +6,7 @@ import "../styles/changelog.css";
 
 const entry = await getEntry("misc", `en/changes`);
 if (!entry) return;
-const { Content } = await entry.render();
+const { Content, headings } = await entry.render();
 ---
 
 <SidebarPage
@@ -16,6 +16,7 @@ const { Content } = await entry.render();
         description: "KAPLAY is a JavaScript game library that makes it easy to create games. Is the successor of KABOOM.JS.",
         keywords: "kaplay, KAPLAY, changelog",
     }}
+    headings={headings}
     noAd
 >
     <Prose>
