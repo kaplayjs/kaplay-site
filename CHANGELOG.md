@@ -8,11 +8,11 @@ and this project adheres to
 
 ## [unreleased]
 
-## [1.4.5] - 2025-08-22
+## [1.4.5] - 2025-08-24
 
 ### Added
 
-- Now you can access to changelog in the website - @lajbel
+- Now you can access the changelog on the website - @lajbel, @imaginarny
 
 ## [1.4.4] - 2025-08-21
 
