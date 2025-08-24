@@ -176,7 +176,7 @@
         const forwardBtn = document.querySelector<HTMLButtonElement>("#btn-forward");
         const openLinks = document.querySelectorAll<HTMLAnchorElement>("[data-open-link]")!;
 
-        previewDialog.addEventListener("onSetDocPreview", async (e) => {
+        previewDialog?.addEventListener("onSetDocPreview", async (e) => {
             const event = e as CustomEvent<string>;
             const previewContent = document.getElementById("preview-content")!;
 
@@ -204,7 +204,7 @@
             });
         });
 
-        previewDialog.addEventListener("close", () =>
+        previewDialog?.addEventListener("close", () =>
             setTimeout(() => {
                 requestAnimationFrame(() => {
                     const url = new URL(window.location.toString());
@@ -262,7 +262,7 @@
             });
         };
 
-        registerLinks();
+        if (previewDialog) registerLinks();
 
         const replaceContent = async (path: string) => {
             let content: HTMLElement | null = window.previewContentCache[path] ?? null;
@@ -369,13 +369,13 @@
         };
 
         if (location.search.includes("preview")) {
-            previewDialog.dispatchEvent(
+            previewDialog?.dispatchEvent(
                 new CustomEvent("onSetDocPreview", {
                     detail: "/" + new URL(window.location.toString()).searchParams.get("preview"),
                 }),
             );
 
-            previewDialog.show();
+            previewDialog?.show();
         }
     });
 </script>
