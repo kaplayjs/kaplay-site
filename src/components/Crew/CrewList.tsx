@@ -91,9 +91,9 @@ export const CrewList = ({ openModal }: CrewListProps) => {
                             </h1>
                             <p class="text-lg text-center">
                                 <span class="font-hand text-slate-200 uppercase">
-                                    Royalty free
+                                    Royalty-free
                                 </span>{" "}
-                                assets, for using in{"  "}
+                                assets, for use in{"  "}
                                 <span class="font-hand text-[#ea6262] uppercase">
                                     game jams
                                 </span>{" "}

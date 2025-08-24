@@ -6,6 +6,7 @@ import {
     transformerNotationDiff,
     transformerNotationWordHighlight,
 } from "@shikijs/transformers";
+import cloudflareRedirects from "astro-cloudflare-redirects";
 import astroMetaTags from "astro-meta-tags";
 import pagefind from "astro-pagefind";
 import robotsTxt from "astro-robots-txt";
@@ -17,7 +18,6 @@ import remarkMath from "remark-math";
 import kaplayPackageJson from "./kaplay/package.json";
 import websitePackageJson from "./package.json";
 import { rehypeKAPLAY } from "./plugins/rehypeKAPLAY";
-import cloudflareRedirects from "astro-cloudflare-redirects";
 
 // https://astro.build/config
 export default defineConfig({
@@ -59,6 +59,9 @@ export default defineConfig({
     output: "static",
     contentLayer: true,
     srcDir: "src",
+    devToolbar: {
+        enabled: false,
+    },
     server: {
         port: 3200,
     },
