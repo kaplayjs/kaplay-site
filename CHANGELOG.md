@@ -14,6 +14,10 @@ and this project adheres to
 
 - Now you can access the changelog on the website - @lajbel, @imaginarny
 
+### Fixed
+
+- Fixed `add()` link on API Reference page leading to 404 - @imaginarny
+
 ## [1.4.4] - 2025-08-21
 
 ### Fixed
