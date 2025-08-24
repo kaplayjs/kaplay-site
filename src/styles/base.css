@@ -54,10 +54,11 @@ h2, h3, h4, h5, h6 {
     }
 }
 
-.heading-anchor-link {
+.heading-anchor-link,
+.prose .heading-anchor-link {
     all: inherit;
     @apply underline underline-offset-2 decoration-white/0 hover:decoration-white/50
-        hover:text-white target:text-red-500 transition-all;
+        hover:text-white outline-none focus-visible:ring-2 focus-visible:ring-current focus-visible:rounded-md transition-all;
 
     &::before {
         content: "#";
@@ -70,14 +71,14 @@ h2, h3, h4, h5, h6 {
         background-color: color-mix(in oklch, oklch(var(--b1)) 60%, var(--b0));
     }
 
-    .prose h1 &::before {
-        @apply w-6 -ml-7 text-4xl leading-[1];
-    }
-
     :target > &,
     :target > :is(h1, h2, h3, h4, h5, h6) > & {
         @apply text-white;
     }
+}
+
+.prose h1 .heading-anchor-link::before {
+    @apply w-6 -ml-7 text-4xl leading-[1];
 }
 
 iframe {

@@ -1,5 +1,5 @@
 .prose a {
-    @apply hover:text-base-content/80 focus:outline-none focus-visible:ring-2 ring-base-content rounded-md text-base-content;
-    text-decoration: none;
+    @apply text-base-content hover:text-base-content/80 no-underline rounded-md
+        outline-none focus-visible:ring-2 focus-visible:ring-current
+        focus-visible:rounded-md;
 }
-
