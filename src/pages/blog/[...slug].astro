@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { Content, headings } = await entry.render();
 ---
 
 <SidebarPage
@@ -24,6 +24,7 @@ const { Content } = await entry.render();
         image: "/" + entry.data.image,
     }}
     sidebarMode="blog"
+    headings={headings}
     noAd
 >
     <img class="px-4 w-full object-cover h-60 object-top" src={"/" + entry.data.image} />
