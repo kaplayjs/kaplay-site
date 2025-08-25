@@ -40,6 +40,35 @@ and this project adheres to
 
 - Pointer cursor over interactive elements not showing or blinking - @imaginarny
 
+## [1.4.5] - 2025-08-24
+
+### Added
+
+- Now you can access the changelog on the website - @lajbel, @imaginarny
+
+### Fixed
+
+- Fixed `add()` link on API Reference page leading to 404 - @imaginarny
+
+## [1.4.4] - 2025-08-21
+
+### Fixed
+
+- Table style is now responsive and spacing issues were fixed - @imaginarny
+
+## [1.4.3] - 2025-08-21
+
+### Added
+
+- Added playable examples - @lajbel, @imaginarny
+
+## [1.4.2] - 2025-08-19
+
+### Added
+
+- Now Documentation Guides and all markdown generated code can parse type links from
+  \`backticks\` syntax - @lajbel
+
 ## [1.4.1] - 2025-08-11
 
 ### Fixed
