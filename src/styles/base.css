@@ -173,7 +173,7 @@ input[type="radio"]:not(.cursor-default),
 
 .shiki {
     overflow: auto;
-    @apply my-2 rounded-box bg-base-300 p-2 !important;
+    @apply my-2 rounded-box bg-base-300 px-0 py-2 !important;
     @apply scrollbar-thin;
 
     &:has(.copy) {
@@ -193,7 +193,7 @@ input[type="radio"]:not(.cursor-default),
 }
 
 .line {
-    @apply px-2;
+    @apply inline-block px-2;
 }
 
 .line.diff.add {
@@ -201,7 +201,7 @@ input[type="radio"]:not(.cursor-default),
 }
 
 .line.highlighted {
-    @apply bg-base-content/5 w-full inline-block;
+    @apply bg-base-content/5 w-full;
 }
 
 span.line.diff.add::before {
