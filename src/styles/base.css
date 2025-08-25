@@ -415,3 +415,18 @@ pre button.copy {
         grid-template-rows: max-content 1fr;
   }
 }
+
+/* daisyUI */
+
+.collapse {
+    grid-template-rows: max-content 0fr;
+
+    &:is([open], :focus:not(.collapse-close)),
+    &:not(.collapse-close):has(> input:is([type="checkbox"], [type="radio"]):checked) {
+        grid-template-rows: max-content 1fr;
+  }
+}
+
+.head-badge {
+    @apply badge -mt-4
+}

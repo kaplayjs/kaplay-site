@@ -1,0 +1,317 @@
+---
+title: "State of KAPLAY #6"
+author: lajbel
+date: 08/24/2025
+description: Explore the latest advancements and community highlights in KAPLAY, the successor to Kaboom.js. Discover new features, contributors, and more!
+image: banners/sok6.webp
+---
+
+
+# State of KAPLAY #6
+
+> _lajbel_, 24/08/2025, Direct from the KAPLAY Basement
+
+Hey! Welcome to the act of reading the **State of KAPLAY #6**, the kinda bi-monthly **blog** about the current **state** of **KAPLAY**, on it's **6th** edition!
+
+I've prepared for you a _**lot**_ (☠️) of product updates, events, and surprises for this month, and a *very special announcement* about the near future of KAPLAY Library.
+## Revamped KAPLAY API Docs ✨
+
+<span class="head-badge">Product Update</span>
+
+We published a _lot_ of **✨ U P D A T E S ✨** (updates) in KAPLAY Website and specially, in **documentation** for making KAPLAY learning _stronger_ and _easier_. We present to you the versions **v1.2**, **v1.3**, and **v1.4**! (**WHOA!**)
+
+Version **1.2** was mainly a rewrite in our **rendering** API docs workflow. Now it's most accurate in rendering types, and they look better. Also, now you can click on anchors for link to specific members.
+
+![](https://i.imgur.com/g6Ndtrk.gif)
+
+In the other side, **v1.3** landed some design and structure improvements. Now all links related to docs are prefixed with `/docs/`, being the two main categories `/docs/guides` and `/docs/api`. Also, there's a new [**special introduction**](https://kaplayjs.com/docs/api/) in API Docs.
+
+Finally, in **1.4+** we're shipping one of the greatest **Quality of Life** features, the new **Docs Preview** window!
+
+![](https://i.imgur.com/Xk7cwcZ.gif)
+
+The main objective of all these feature was improving general experience for new learners. I hope it helps both for new and old users.
+
+## OK but our guides 📕
+
+Our guides also needed some love, so we added **Playable Examples**, now you can open the examples present in guides directly in the **KAPLAYGROUND**. 
+
+![](https://i.imgur.com/7a00pJ8.png)
+
+These playable examples are available in guides like **Basic Concepts** and **Game Objects**, but we have to do an overall guides improvements, and if you're wondering to contribute in KAPLAY, there's a new [**Guide about creating guides**](kaplayjs.com/docs/guides/contributor-guide-on-guides/)!
+
+We've added API Docs linking too, where *special words* like `add()` or `sprite()` are converted in links to the KAPLAY API Docs, **great**! [Check KAPLAY Site changelog](https://github.com/kaplayjs/kaplay-site/blob/main/CHANGELOG.md) to see all the things we shipped.
+## Prefabs 🤖
+
+<span class="head-badge">Product Update</span>
+
+One of the most requested features in KAPLAY, since beginning (and specially since [`make` was doomed](https://github.com/kaplayjs/kaplay/pull/666)), was component serialization and **prefabs**, and we added it:
+
+```js
+const bean = add([
+    sprite("bean"),
+    pos(20, 20),
+    "gamer",
+]);
+
+// Get the serialized data in an object
+const beanPrefab = createPrefab(bean);
+
+// Register it as an asset
+createPrefab("bean", bean);
+```
+
+Now, `beanPrefab` is a prefab, it contains serialized data of components and tags for it's recreation later:
+
+```js
+addPrefab(beanPrefab); // Use the serialized object 
+addPrefab("bean"); // Use the registered asset
+```
+
+This awesome feature is still on experimental phase, so I hope many of you try it. Not all components got serialization methods yet, we'll add it progressively.
+## Lajbubu 📸
+
+<span class="head-badge">Remember to remove this ok?</span>
+
+![](https://i.imgur.com/TWyZOFj.png)
+
+**Laj**bubu, now lajbel is a labubu! *I just hope the internet gets deleted soon*.
+
+## KAPLAY v4000 🦖
+
+KAPLAY v4000 It's been in development for **over a year**, so it's normal that many of you asked *When it's going to be released?*
+
+I am pleased to tell you that **the next KAPLAY blog** **will be** **totally focused on v4000 stuff**, from changelogs, breaking changes, new features and even release dates. So, I'll have to tell you to wait a little longer, but the wait will be worth it. 
+
+Anyway, I encourage you checking [KAPLAY Changelog](https://v4000.kaplayjs.com/changelog/) for get a good brief of all what's coming.
+
+## Literally the KAPLAY IDE 🖥️
+
+The feature set available in **KAPLAYGROUND v2.4** is sick, you will see the first surprise just opening it, but I'm not going to spoiler it here because it's so cool guys just open it before continue reading this text...
+
+**...**
+
+Haven't you done it yet?
+
+**...**
+
+Okay, you want the link? Then find it.
+
+[**...**](https://play.kaplayjs.com/)
+
+Well now I hope all of you have already opened it. Yes, the first feature is the new **Welcome Screen**, looks so pretty, pretty, pretty, and beautiful.
+
+But that's not all, the main feature I want introduce to you are the new **Build Mode**, we've integrated **ESBuild** as the under-the-hood KAPLAYGROUND bundler.
+
+This, means that your code in new **v2.4** projects will work with **import/export** syntax resolve. This introduces an experience more similar to how they work locally, and the possibility of supporting **TypeScript** and NPM Packages soon™.
+
+![](https://i.imgur.com/SkL9YQ8.gif)
+
+
+Projects created before **v2.4** will be using the **Legacy Build Mode**, which uses our code merge process, and it depends on the file order, read more about it in the [KAPLAYGROUND wiki](https://github.com/kaplayjs/kaplayground/wiki/How-Legacy-Build-Mode-works).
+
+In addition, the new **Project Preferences Menu** add you the possibility to modify your exported game favicon, and some other features like the **Build Mode**, cool if you want to upgrade an old project.
+
+![](https://i.imgur.com/EmCTzqT.gif)
+
+
+## Crew is watching you 👁️
+
+<span class="head-badge">Product Update</span>
+
+We started with **Crew v2** in March of this year, and after a lot of iterations, modifications, new ideas and many other work suddenly appearing, we can showcase you the **new Crew plugin:**
+
+```sh
+npm i @kaplayjs/crew
+```
+
+```js
+import kaplay from "kaplay";
+import { crew } from "@kaplayjs/crew";
+
+kaplay({
+	plugins: [crew],
+});
+
+loadCrew("sprite", "mark");
+loadCrew("sound", "burp");
+
+add([
+	sprite("mark"),
+]);
+
+play("burp");
+```
+
+And that simple you can start using the Crew assets in your KAPLAY games, the crew plugin is available since: [**NOW**](https://www.npmjs.com/package/@kaplayjs/crew).
+
+But, that's not all! As part of **KAPLAY Site v1.5**, with you, the new **Crew Browser**:
+
+![](https://i.imgur.com/12BaawH.gif)
+
+A lot of **ways** to categorize the assets:
+
+- Type: Sprite, UI, Sounds
+- Category: KAWorld, Icons, Emojis, etc
+- Tags: Animals, Brand, Fonts, Food
+- Origin: Official, Community, or Commission
+
+But that's not all, new information was added to Assets, like its **apparitions**, **birthdays**, and a lot of cool information of your **favorite characters**, so remember say "Happy Birthday" to Bean on 01/01 :D
+
+![](https://i.imgur.com/ucF7Hbw.gif)
+
+This is my *favorite* thing of all this blog, really, just go to the [Crew website](https://kaplayjs.com/crew/) and take a look around all the stuff, you will found a lot of fun things. This is a gift for all KAPLAY fans. 
+
+There was a lot, a lot of more changes that I couldn't put all of them on this blog so check out the [KAPLAY Crew changelog](https://github.com/kaplayjs/crew/blob/main/CHANGELOG.md).
+
+## Community Showcase 🌱
+
+<span class="head-badge">Community</span>
+
+The **🌱 a w e s o m e 🌱** (awesome) 🌱 community did a lot of cool stuff, let's take a look to all!
+
+### Games
+
+#### Untitled Car Game 🛻
+
+Untitled Car Game is the new game [plantainchip](https://plantainchip.itch.io) is presenting. It have cars, and so much 
+
+![](https://i.imgur.com/vGhgFTh.gif)
+
+#### The minutes to Live 🚪
+
+> **"You woke up inside a locked room with three items in your backpack. And to escape, you have to choose what to keep and what to leave."**
+
+Woah! That's a very interesting premise! [Rikir Akiko](https://rikir-akiko.itch.io/) & [KisekiMiracle](https://kiseki-miracle.itch.io/) is presenting us **their first game**, a visual novel for the **freeCodeCamp** jam, so give them a good vote!
+
+![](https://i.imgur.com/2B1FMC3.png)
+#### Rage bait game ❓
+
+Candy&Carmel is into a new phase as a game developer and is making a rage bait game. I'll just say that all the gifs I've recorded this one was the most long take to me for recording... Thanks Candy.
+
+#### **Unknown Tank Game** by Erik ⚠️
+
+From the [Golf Course: Ocean Wave Edition](https://erikgxdev.itch.io/golf-course) Developer. He's developing a new brand tank-war game, I really don't know the name or when it's getting released but it looks SICK! **Tank you!**
+
+![](https://i.imgur.com/HdUIDGq.gif)
+
+### 3D? 🔫
+
+The user [nik.best](https://nik.best) wowed everyone showing it's fake 3D plugin for KAPLAY, [**Billboard3D.js**](https://billboard3djs.nik.best/)
+
+![](https://i.imgur.com/md0TjEa.gif)
+
+So maybe it's the perfect time to create your own Doom-style game! **KADOOM**.
+
+### Woah what the fruit is this 🥝
+
+Scriptie is creating this awesome effect for his game, just look at it.
+
+![](https://i.imgur.com/vgJtvZN.gif)
+
+### Tile Map editors battle 🗺️
+
+EVERYONE wants to get the best tile map editor for KAPLAY, this is freaking cool:
+
+In one corner, [Luluxia](https://luluxia.itch.io/), the [I wanna shrinking](https://luluxia.itch.io/i-wanna-shrinking) developer, is burning the kitchen making this tilemap editor, dynamic editing, scripting, whaaat, it looks soo **gOOooOOd** (good)!.
+
+![](https://i.imgur.com/axiqXv3.gif)
+
+And in the other corner, we have this black & white tilemap editor for a **Baba is You** styled game, made by [neverUsedDC](https://github.com/neverUsedGithub)!
+
+![](https://i.imgur.com/qVvSPR2.gif)
+
+![](https://i.imgur.com/dvR3i7c.gif)
+
+## Bean Tag 🫘
+
+<span class="head-badge">Sponsored Space</span>
+
+Now our official discord is featuring the **BEAN** tag, yeah, you can add it to your profile, free, and show to all the world that you're a true **BEANER** (or kaplayer). Special thanks to **@noita** for giving us the _3 boosts_ we needed for it!
+
+![](https://i.imgur.com/HQOv5Kd.png)
+
+## B1T Jam 2 🎮
+
+<span class="head-badge">Events</span>
+
+We collaborated with [**Macrow**](https://macrowdev.itch.io/) for the upcoming [**B1T Jam**](https://itch.io/jam/b1t-jam-2), on it's 2nd edition, where all devs who used KAPLAY participated for 2 x **$50** prize for the best 2 KAPLAY games.
+
+Before getting on the winners, let's celebrate the [21 games](https://itch.io/jam/b1t-jam-2/entries) that were made on this edition:
+
+![](https://i.imgur.com/LyNfSuq.png)
+
+I'm very happy seeing the amount and the quality of the games, many of them were really really **REALLY** fun, and it's cool see some using the crew assets. Thanks to all the participants who decided to try KAPLAY. 
+
+Would be a lot mention all these games in a single blog. If you want to play all this games, go to [B1T Jam 2 Submissions page](https://itch.io/jam/b1t-jam-2/entries) and filter them by **KAPLAY Yes (21)**. Remember leaving a comment so all devs can get feedback and positive words! Spread the word of love.
+
+## KABLOOM 💮
+
+<span class="head-badge">Product Update</span>
+
+The theme was **KABLOOM**, well, not Kabloom but it was Bloom, so we added a new character, [**Flowy**](https://kaplayjs.com/crew/flowy)!
+
+![](https://i.imgur.com/4UXzSh7.png)
+## Now yes, the winners 🥁
+
+<span class="head-badge">Events</span>
+
+
+<div aria-label="drum rolls">🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁🥁</div>
+
+### Oken 🌊
+
+By [circadianarrhythmia](https://circadianarrhythmia.itch.io) and [athenaya](https://athenaya.itch.io), [Oken](https://circadianarrhythmia.itch.io/oken), It impressed all the judges, both from the KAPLAY Team and the jam itself, great graphics and polish!
+
+![](https://i.imgur.com/S1oIh81.png)
+### Duotone Gardens 🥀
+
+By [Erik G](https://erikgxdev.itch.io), [Duotone Gardens](https://erikgxdev.itch.io/duotone-gardens) is another great Erik game, with a good movement, graphics and interesting mechanic. 
+
+![](https://i.imgur.com/m5cfyNi.png)
+
+Okay, great games, really, great games, but there was a lot of great games made with KAPLAY, so **KAPLAY Team** decided, after a **SO HARD** votation, to give **3 extra prizes** of **$25** each one, so, let's go with those winners
+
+### In the Calyx 👁️
+
+By [plantainchip](https://plantainchip.itch.io), [In the Calyx](https://plantainchip.itch.io/in-the-calyx) was for us a game with a good atmosphere and gameplay.
+
+![](https://i.imgur.com/T602oRG.png)
+
+### Be Bouncing Bee 🐝
+
+By [TheRulerMeasure](https://twitter.com/TheRulerMeasure), [Be Bouncing Bee](https://therulermeasure.itch.io/be-bouncing-bee), we just loved it.
+
+![](https://i.imgur.com/uaHyevo.gif)
+
+### TumbleBee 🐝
+
+By [ChimeraLC](https://chimeralc.itch.io), [LuckyLuciano314](https://luckyluciano314.itch.io) and [greenzanman](https://greenzanman.itch.io), [TumbleBee](https://chimeralc.itch.io/tumblebees) was so cool
+
+![](https://i.imgur.com/kKa32AN.png)
+
+All these games were definitely so good, and there were ones that was very very very very close, we love all of them equaly and I am the happiest person to see them making games with KAPLAY:
+
+- [The Allergic Florist](https://candyandcarmel.itch.io/the-allergic-florist) by [Candy&Carmel](https://candyandcarmel.itch.io/)
+- [Inflorescence](https://ogsokor.itch.io/inflorescence) by [ogsokor](https://ogsokor.itch.io/)
+
+**Thanks to everyone who did KAPLAY games ♥️**
+
+Okay, let's go with the state of KAPLAY and close this.
+## The State of KAPLAY 🦖
+
+<span class="head-badge">The State of The State of KAPLAY</span>
+
+Let's see this month state:
+
+| State Of         | Stable    | **Dev**       | **What came these weeks**                                | What's coming these weeks                |
+| ---------------- | --------- | ------------- | -------------------------------------------------------- | ---------------------------------------- |
+| **KAPLAY**       | 3001.0.20 | 4000.0.0 Beta | Prefabs and various fixes                                | Hover rework, stabilization              |
+| **KAPLAYGROUND** | 2.4.0     | 2.5.0         | Files Browser and Asset browser rework                   | Bug fixes and stability.                 |
+| **KAPLAY Site**  | 1.5.0     | 1.6.0         | New Doc preview,  Crew browser and API Docs improvements | More improvements in guides and api docs |
+| **KAPLAY Crew**  | 2.0.0     | N.A           | Package and plugin improvements                          | N.A                                      |
+| **Happy Font**   | 2.0.0     | N.A           | N.A                                                      | N.A                                      |
+
+Thanks to all our sponsors, [Colyseus](https://colyseus.io/) and [Robin](), and to **all our contributors** along all the KAPLAY repositories, this wouldn't make sense without you, we're gonna prepare something special for all contributors very soon, so wait for it ;)
+
+I love you. *lajbel out*

@@ -24,7 +24,9 @@ const { Content } = await entry.render();
         image: "/" + entry.data.image,
     }}
     sidebarMode="blog"
+    noAd
 >
+    <img class="px-4 w-full object-cover h-60 object-top" src={"/" + entry.data.image} />
     <Prose>
         <Content />
     </Prose>
