@@ -5,6 +5,7 @@ date: 2/16/2025
 description:
     Explore the latest advancements in KAPLAY.js this 2025
 image: banners/sok4.png
+imageFocus: ["50%", "35%"]
 ---
 
 # State of KAPLAY #4

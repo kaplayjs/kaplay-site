@@ -6,6 +6,7 @@ description:
     Explore the latest advancements and community highlights in KAPLAY, the
     successor to Kaboom.js. Discover new features, contributors, and more!
 image: banners/sok1.png
+imageFocus: ["50%", "44%"]
 ---
 
 # State of KAPLAY #1
