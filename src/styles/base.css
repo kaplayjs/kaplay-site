@@ -2,7 +2,10 @@
 
 @font-face {
     font-family: "Sans Fallback";
-    src: local(Arial), local(Helvetica), sans-serif;
+    src:
+        local(Arial),
+        local(Helvetica),
+        sans-serif;
     size-adjust: 96%;
     ascent-override: 100%;
     descent-override: 18%;
@@ -11,7 +14,10 @@
 
 @font-face {
     font-family: "Hand Fallback";
-    src: local(Arial Black), local(Gadget), sans-serif;
+    src:
+        local(Arial Black),
+        local(Gadget),
+        sans-serif;
     size-adjust: 79%;
     ascent-override: normal;
     descent-override: 13%;
@@ -47,8 +53,13 @@ h1,
     @apply text-white;
 }
 
-h2, h3, h4, h5, h6 {
-    &, .drawer & {
+h2,
+h3,
+h4,
+h5,
+h6 {
+    &,
+    .drawer & {
         --tw-prose-headings: var(--color-subheadings);
         color: var(--color-subheadings);
     }
@@ -57,8 +68,10 @@ h2, h3, h4, h5, h6 {
 .heading-anchor-link,
 .prose .heading-anchor-link {
     all: inherit;
-    @apply underline underline-offset-2 decoration-white/0 hover:decoration-white/50
-        hover:text-white outline-none focus-visible:ring-2 focus-visible:ring-current focus-visible:rounded-md transition-all;
+    @apply underline underline-offset-2 decoration-white/0
+        hover:decoration-white/50 hover:text-white outline-none
+        focus-visible:ring-2 focus-visible:ring-current focus-visible:rounded-md
+        transition-all;
 
     &::before {
         content: "#";
@@ -120,11 +133,6 @@ input[type="radio"]:not(.cursor-default),
     display: none;
 }
 
-.sidebar-link {
-    text-overflow: ellipsis;
-    text-wrap: nowrap;
-}
-
 .drawer-side {
     --tw-text-opacity: 1;
 }
@@ -178,13 +186,11 @@ input[type="radio"]:not(.cursor-default),
     min-width: 100%;
     overflow: auto;
     scrollbar-width: thin;
-    scrollbar-color:
-        color-mix(in oklch, oklch(var(--bc)) 35%, transparent)
+    scrollbar-color: color-mix(in oklch, oklch(var(--bc)) 35%, transparent)
         transparent;
 
     @apply my-2 rounded-box bg-base-300 px-0 py-2 !important;
 }
-
 
 .line {
     @apply px-2;
@@ -195,7 +201,7 @@ input[type="radio"]:not(.cursor-default),
 }
 
 .line.highlighted {
-    @apply bg-base-content/5 w-full inline-block
+    @apply bg-base-content/5 w-full inline-block;
 }
 
 span.line.diff.add::before {
@@ -280,8 +286,12 @@ span.line.diff.remove::before {
 }
 
 @keyframes kaplayGradient {
-    0% { background-position: 0% 0%; }
-    100% { background-position: 100% 0%; }
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 100% 0%;
+    }
 }
 
 .bg-corner-radius {
@@ -289,12 +299,26 @@ span.line.diff.remove::before {
     height: 1rem;
     border-color: var(--color);
     background-size: 1rem;
-    background-position: top left,top right;
+    background-position: top left, top right;
     background-repeat: no-repeat;
     --grad: 69%;
-    --radius-start: radial-gradient( circle at bottom right, transparent var(--grad), var(--color) calc(var(--grad) + .25px), var(--color) calc(var(--grad) + var(--tab-border, 1px)), var(--color) calc(var(--grad) + var(--tab-border, 1px) + .25px) );
-    --radius-end: radial-gradient( circle at bottom left, transparent var(--grad), var(--color) calc(var(--grad) + .25px), var(--color) calc(var(--grad) + var(--tab-border, 1px)), var(--color) calc(var(--grad) + var(--tab-border, 1px) + .25px) );
-    background-image: var(--radius-start),var(--radius-end);
+    --radius-start: radial-gradient(
+        circle at bottom right,
+        transparent var(--grad),
+        var(--color) calc(var(--grad) + 0.25px),
+        var(--color) calc(var(--grad) + var(--tab-border, 1px)),
+        var(--color) calc(var(--grad) + var(--tab-border, 1px) + 0.25px)
+    );
+    --radius-end: radial-gradient(
+        circle at bottom left,
+        transparent var(--grad),
+        var(--color) calc(var(--grad) + 0.25px),
+        var(--color) calc(var(--grad) + var(--tab-border, 1px)),
+        var(--color) calc(var(--grad) + var(--tab-border, 1px) + 0.25px)
+    );
+    background-image:
+        var(--radius-start),
+        var(--radius-end);
 }
 
 .bg-corner-radius {
@@ -302,12 +326,26 @@ span.line.diff.remove::before {
     height: 1rem;
     border-color: var(--color);
     background-size: 1rem;
-    background-position: top left,top right;
+    background-position: top left, top right;
     background-repeat: no-repeat;
     --grad: 69%;
-    --radius-start: radial-gradient( circle at bottom right, transparent var(--grad), var(--color) calc(var(--grad) + .25px), var(--color) calc(var(--grad) + var(--tab-border, 1px)), var(--color) calc(var(--grad) + var(--tab-border, 1px) + .25px) );
-    --radius-end: radial-gradient( circle at bottom left, transparent var(--grad), var(--color) calc(var(--grad) + .25px), var(--color) calc(var(--grad) + var(--tab-border, 1px)), var(--color) calc(var(--grad) + var(--tab-border, 1px) + .25px) );
-    background-image: var(--radius-start),var(--radius-end);
+    --radius-start: radial-gradient(
+        circle at bottom right,
+        transparent var(--grad),
+        var(--color) calc(var(--grad) + 0.25px),
+        var(--color) calc(var(--grad) + var(--tab-border, 1px)),
+        var(--color) calc(var(--grad) + var(--tab-border, 1px) + 0.25px)
+    );
+    --radius-end: radial-gradient(
+        circle at bottom left,
+        transparent var(--grad),
+        var(--color) calc(var(--grad) + 0.25px),
+        var(--color) calc(var(--grad) + var(--tab-border, 1px)),
+        var(--color) calc(var(--grad) + var(--tab-border, 1px) + 0.25px)
+    );
+    background-image:
+        var(--radius-start),
+        var(--radius-end);
 }
 
 .scrollbar-thin {
@@ -355,7 +393,6 @@ pre button.copy {
         background-size: cover;
     }
 
-
     & .ready {
         background-image: url(/copy.png);
         opacity: 1;
@@ -382,15 +419,15 @@ pre button.copy {
             opacity: 0;
         }
     }
-  }
+}
 
 .md-doc-code {
     @apply bg-base-200 px-1 py-0.5 rounded-md;
 }
 
 .md-doc-code-link {
-    @apply hover:text-base-content/80 focus:outline-none focus-visible:ring-2 ring-base-content rounded-md text-base-content;
-    text-decoration: none;
+    @apply hover:text-base-content/80 focus:outline-none focus-visible:ring-2
+        ring-base-content rounded-md text-base-content no-underline;
 }
 
 .md-doc-code-span {
@@ -413,20 +450,9 @@ pre button.copy {
     &:is([open], :focus:not(.collapse-close)),
     &:not(.collapse-close):has(> input:is([type="checkbox"], [type="radio"]):checked) {
         grid-template-rows: max-content 1fr;
-  }
-}
-
-/* daisyUI */
-
-.collapse {
-    grid-template-rows: max-content 0fr;
-
-    &:is([open], :focus:not(.collapse-close)),
-    &:not(.collapse-close):has(> input:is([type="checkbox"], [type="radio"]):checked) {
-        grid-template-rows: max-content 1fr;
-  }
+    }
 }
 
 .head-badge {
-    @apply badge -mt-4
+    @apply badge -mt-4;
 }
