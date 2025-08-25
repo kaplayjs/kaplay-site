@@ -454,5 +454,14 @@ pre button.copy {
 }
 
 .head-badge {
-    @apply badge -mt-4;
+    @apply badge badge-ghost flex w-fit h-auto mb-5 py-0.5 text-base-subheading
+        bg-base-content/10 border-none;
+
+    :is(h1, h2, h3, h4, h5, h6) + & {
+        @apply -mt-2;
+    }
+
+    &:has(+ :is(h1, h2, h3, h4, h5, h6)) {
+        @apply relative top-10 -mt-2;
+    }
 }
