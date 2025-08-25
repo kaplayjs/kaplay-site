@@ -12,14 +12,14 @@ type Props = {
     noAd?: boolean;
 } & SidebarProps;
 
-const { sidebarMode, meta, headings, noAd } = Astro.props;
+const { sidebarMode, meta, headings, noAd, pageAlign } = Astro.props;
 ---
 
 <Page meta={meta} class="scroll-pt-[5.625rem]">
     <script src="/pagefind/pagefind-ui.js" is:inline defer slot="head"></script>
     <slot name="head" slot="head" />
 
-    <Sidebar sidebarMode={sidebarMode} headings={headings}>
+    <Sidebar sidebarMode={sidebarMode} headings={headings} pageAlign={pageAlign}>
         <slot />
 
         {!noAd && <CarbonAd slot="ad" preferStart />}

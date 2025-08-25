@@ -13,7 +13,7 @@ const { headings } = Astro.props;
 
 <nav class="fixed z-30 w-full bg-base-50 md:w-[calc(100%-302px)] pb-px md:pr-px pl-0 pt-0">
     <div class="flex items-center justify-between h-16 bg-base-200 px-3 rounded-xl rounded-t-none">
-        <div class="flex items-center justify-between gap-2 flex-1 w-full min-w-fit max-w-[50rem] pr-3">
+        <div class="flex items-center justify-between gap-2 flex-1 w-full min-w-fit [.page-left_&]:max-w-[50rem] pr-3">
             <label for="sidebar" class="flex md:hidden shrink-0">
                 <figure>
                     <img src={hamburgerIcon.src} alt="Menu" width="36" height="36" loading="lazy" decoding="async" />
@@ -32,7 +32,7 @@ const { headings } = Astro.props;
 
             {
                 headings && headings.length > 0 && (
-                    <div class="fixed sm:static bottom-0 left-0 w-full sm:max-w-40 lg:max-w-60 max-sm:bg-base-300 p-2 sm:p-0 rounded-t-xl z-50 max-sm:shadow-[0_0_50px_0_rgba(0,0,0,0.2)]">
+                    <div class="fixed sm:static bottom-0 left-0 w-full sm:max-w-40 lg:max-w-60 max-sm:bg-base-300 p-2 sm:p-0 [.page-center_&]:mr-auto rounded-t-xl z-50 max-sm:shadow-[0_0_50px_0_rgba(0,0,0,0.2)]">
                         <select id="section-select" class="select w-full min-h-10 h-10 pr-8 text-ellipsis" onchange="window.location.href = this.value">
                             {headings?.map((heading) => (
                                 <option
@@ -78,7 +78,7 @@ const { headings } = Astro.props;
     const searchBtns = document.querySelectorAll("[data-search-btn]");
 
     if (isMac && searchBtns) {
-        searchBtns.forEach(b => b.textContent = "⌘ + K");
+        searchBtns.forEach((b) => (b.textContent = "⌘ + K"));
     }
 
     window.addEventListener("keydown", (e) => {

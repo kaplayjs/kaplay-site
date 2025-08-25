@@ -4,6 +4,7 @@ import Footer from "../Footer/Footer.astro";
 import { getBlogEntries, getBookEntries, getDocEntries, getGuidesEntries } from "./entries";
 import SidebarEntries from "./SidebarEntries.astro";
 import SidebarContentNav from "./SidebarContentNav.astro";
+import { cn } from "@/util/cn";
 
 export interface LinkListEntry {
     id: string;
@@ -21,11 +22,12 @@ export type SidebarEntry = {
 export type SidebarProps = {
     sidebarMode?: "guides" | "reference" | "blog" | "books";
     headings?: MarkdownHeading[];
+    pageAlign?: "left" | "center";
 };
 
 type Props = SidebarProps;
 
-const { sidebarMode, headings } = Astro.props;
+const { sidebarMode, headings, pageAlign } = Astro.props;
 let renderList: SidebarEntry[] = [];
 
 if (sidebarMode === "guides") {
@@ -39,7 +41,7 @@ if (sidebarMode === "guides") {
 }
 ---
 
-<div id="drawer" class="drawer z-20 h-full md:drawer-open md:border-r border-base-content/5">
+<div id="drawer" class:list={["drawer z-20 h-full md:drawer-open md:border-r border-base-content/5", `page-${pageAlign || "left"}`]}>
     <input id="sidebar" type="checkbox" class="drawer-toggle" />
 
     <div class="drawer-content flex flex-col w-full min-w-0">
@@ -47,15 +49,15 @@ if (sidebarMode === "guides") {
             <SidebarContentNav headings={headings} />
         </header>
 
-        <main class="relative flex w-full flex-col md:flex-row md:pt-4 md:pl-4">
-            <div class="w-full">
+        <main class="relative flex w-full flex-col md:flex-row md:pt-4 md:px-4">
+            <div class={cn("w-full", { "flex flex-col items-center min-w-0 [:where(&>*)]:w-full": pageAlign == "center" })}>
                 <slot name="ad" />
 
                 <slot />
             </div>
         </main>
 
-        <Footer friendsClass="mt-auto" friendsInnerClass="max-w-[50rem]" />
+        <Footer friendsClass="mt-auto" {...pageAlign != "center" && { friendsInnerClass: "max-w-[50rem]" }} />
     </div>
 
     <SidebarEntries sidebarMode={sidebarMode} />
