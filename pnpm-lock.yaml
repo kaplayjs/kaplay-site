@@ -39,8 +39,8 @@ importers:
         specifier: ^5.2.6
         version: 5.2.6
       '@kaplayjs/crew':
-        specifier: link:../crew
-        version: link:../crew
+        specifier: ^2.0.0
+        version: 2.0.0(typescript@5.6.3)
       '@lunariajs/core':
         specifier: ^0.1.1
         version: 0.1.1
@@ -1213,6 +1213,11 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
+
+  '@kaplayjs/crew@2.0.0':
+    resolution: {integrity: sha512-VCCaHR2ylQSgJCdVUu1ndwNSbRdLxYIyTrwkNUlehcQSKKx6aD/naqjL0FT3ErO5dgfTRRKieYz8oqBqZk+QmQ==}
+    peerDependencies:
+      typescript: ^5.0.0
 
   '@kaplayjs/dprint-config@1.2.0':
     resolution: {integrity: sha512-rgvqu2WGGbexOdG22J/q8WWkqGN7kBqXyFHm95UhYk2j7CiTHrNr+58mNiinQ1FNHFkqO0Ae9H//18ecO0sw6w==}
@@ -3900,37 +3905,6 @@ packages:
     peerDependencies:
       vite: 5.x || 6.x
 
-  vite@5.4.19:
-    resolution: {integrity: sha512-qO3aKv3HoQC8QKiNSTuUM1l9o/XX3+c+VTgLHbJWHZGeTPVAg2XwazI9UWzoxjIJCGCV2zU60uqMzjeLZuULqA==}
-    engines: {node: ^18.0.0 || >=20.0.0}
-    hasBin: true
-    peerDependencies:
-      '@types/node': ^18.0.0 || >=20.0.0
-      less: '*'
-      lightningcss: ^1.21.0
-      sass: '*'
-      sass-embedded: '*'
-      stylus: '*'
-      sugarss: '*'
-      terser: ^5.4.0
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-      less:
-        optional: true
-      lightningcss:
-        optional: true
-      sass:
-        optional: true
-      sass-embedded:
-        optional: true
-      stylus:
-        optional: true
-      sugarss:
-        optional: true
-      terser:
-        optional: true
-
   vite@6.3.3:
     resolution: {integrity: sha512-5nXH+QsELbFKhsEfWLkHrvgRpTdGJzqOZ+utSdmPTvwHmvU6ITTm3xx+mRusihkcI8GeC7lCDyn3kDtiki9scw==}
     engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
@@ -5160,19 +5134,9 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  '@kaplayjs/crew@2.0.0-beta.5(@types/node@20.17.30)(typescript@5.6.3)':
+  '@kaplayjs/crew@2.0.0(typescript@5.6.3)':
     dependencies:
       typescript: 5.6.3
-      vite: 5.4.19(@types/node@20.17.30)
-    transitivePeerDependencies:
-      - '@types/node'
-      - less
-      - lightningcss
-      - sass
-      - sass-embedded
-      - stylus
-      - sugarss
-      - terser
 
   '@kaplayjs/dprint-config@1.2.0':
     dependencies:
@@ -8580,15 +8544,6 @@ snapshots:
       source-map: 0.7.4
       stack-trace: 1.0.0-pre2
       vite: 6.3.5(@types/node@20.17.30)(jiti@1.21.7)(yaml@2.7.1)
-
-  vite@5.4.19(@types/node@20.17.30):
-    dependencies:
-      esbuild: 0.21.5
-      postcss: 8.5.3
-      rollup: 4.40.0
-    optionalDependencies:
-      '@types/node': 20.17.30
-      fsevents: 2.3.3
 
   vite@6.3.3(@types/node@20.17.30)(jiti@1.21.7)(yaml@2.7.1):
     dependencies:

@@ -1,7 +1,7 @@
 {
     "name": "kaplay-site",
     "type": "module",
-    "version": "1.4.5",
+    "version": "1.5.0",
     "scripts": {
         "install": "cd kaplay && pnpm i",
         "dev": "npm run doc && astro dev",
@@ -31,7 +31,7 @@
         "@fontsource-variable/outfit": "^5.1.0",
         "@fontsource/darumadrop-one": "^5.1.1",
         "@fontsource/dm-mono": "^5.2.6",
-        "@kaplayjs/crew": "link:../crew",
+        "@kaplayjs/crew": "^2.0.0",
         "@lunariajs/core": "^0.1.1",
         "@nanostores/persistent": "^0.10.2",
         "@types/js-beautify": "^1.14.3",
