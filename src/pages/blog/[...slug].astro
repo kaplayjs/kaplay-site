@@ -2,6 +2,7 @@
 import CrewBadge from "@/components/Content/CrewBadge.astro";
 import Prose from "@/components/Content/Prose.astro";
 import SidebarPage from "@/layouts/SidebarPage.astro";
+import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
@@ -16,8 +17,17 @@ export async function getStaticPaths() {
     }));
 }
 
+const previousAndNextPage = async (entry: CollectionEntry<"blog">) => {
+    const entries = (await getCollection("blog")).sort((a, b) => Number(new Date(b.data.date)) - Number(new Date(a.data.date)));
+    const currentIndex = entries.findIndex((e) => e.id === entry.id);
+    const previous = currentIndex === 0 ?  entries[entries.length - 1] : entries[currentIndex - 1];
+    const next = currentIndex === entries.length - 1 ? entries[0] : entries[currentIndex + 1];
+    return { previous, next };
+};
+
 const { entry, imageFocus } = Astro.props;
 const { Content, headings } = await entry.render();
+const { previous, next } = await previousAndNextPage(entry)
 
 const imagePosParsed = (p: string) => (["left", "top"].includes(p) ? "0%" : ["right", "bottom"].includes(p) ? "100%" : ["center"].includes(p) ? "50%" : p);
 const imagePosX = imagePosParsed(imageFocus?.[0] ?? "50%");
@@ -36,27 +46,79 @@ const imagePosY = imagePosParsed(imageFocus?.[1] ?? imagePosX);
     pageAlign="center"
     noAd
 >
-    <div
-        class="relative md:-mx-0.5 md:-mt-0.5 mb-6 lg:mb-7 w-full md:w-[calc(100%+0.25rem)] max-w-[49rem] [.page-center_&]:max-w-6xl h-60 xl:h-[330px] bg-base-200 text-base-200 rounded-box md:rounded-lg 2xl:rounded-xl"
-    >
-        <img
+    <div class="relative flex gap-px md:-mx-4 md:-mt-4 mb-6 lg:mb-7 xl:mb-0 pb-px bg-base-50 md:w-[calc(100%+2rem)] perspe">
+        <div
             class:list={[
-                "absolute inset-0 size-full object-cover rounded-[inherit]",
-                "object-[var(--obj-pos-x)_var(--obj-pos-y)] xl:object-[var(--obj-pos-x)_clamp(100%,var(--obj-pos-y)-2rem,0%)]",
+                "hidden sm:block md:hidden lg:block relative flex-1 min-w-28 xl:min-w-28 bg-base-300 rounded-box",
+                "tooltip tooltip-bottom before:min-w-full before:left-0 before:translate-x-0 before:py-1.5 before:rounded-xl",
             ]}
-            src={"/" + entry.data.image}
-            alt={entry.slug + " featured image"}
-            {...imageFocus && { style: `--obj-pos-x: ${imagePosX}; --obj-pos-y: ${imagePosY};` }}
-        />
+            data-tip={previous.data.title}
+        >
+            <a
+                class="absolute inset-0 rounded-[inherit] opacity-15 hover:opacity-100 transition-all overflow-hidden"
+                href={`/${previous.collection}/${previous.slug}`}
+            >
+                {previous.data.image && <img
+                    class:list={[
+                        "absolute -inset-x-4 inset-y-0 w-[calc(100%+2rem)] max-w-none h-full object-cover rounded-[inherit] text-base-300",
+                        "object-[var(--obj-pos-x)_var(--obj-pos-y)] xl:object-[var(--obj-pos-x)_clamp(100%,var(--obj-pos-y)-2rem,0%)]",
+                        "hover:translate-x-4 transition-all",
+                    ]}
+                    src={"/" + previous.data.image}
+                    alt={previous.slug + " featured image"}
+                    {...previous.data.imageFocus && { style: `--obj-pos-x: ${imagePosParsed(previous.data.imageFocus[0])}; --obj-pos-y: ${imagePosParsed(previous.data.imageFocus[1])};` }}
+                />}
+            </a>
+        </div>
 
-        {entry.data?.crewBadge && <CrewBadge {...entry.data.crewBadge} class="absolute top-4 left-4 sm:scale-[1.4] origin-top-left" />}
+        <div
+            class="relative w-full md:w-full max-w-[49rem] [.page-center_&]:max-w-[66rem] h-60 xl:h-[330px] bg-base-200 rounded-box"
+        >
+            {entry.data.image && <img
+                class:list={[
+                    "absolute inset-0 size-full object-cover rounded-[inherit] text-base-200",
+                    "object-[var(--obj-pos-x)_var(--obj-pos-y)] xl:object-[var(--obj-pos-x)_clamp(100%,var(--obj-pos-y)-2rem,0%)]",
+                ]}
+                src={"/" + entry.data.image}
+                alt={entry.slug + " featured image"}
+                {...imageFocus && { style: `--obj-pos-x: ${imagePosX}; --obj-pos-y: ${imagePosY};` }}
+            />}
+
+            {entry.data?.crewBadge && <CrewBadge {...entry.data.crewBadge} class="absolute top-4 left-4 sm:scale-[1.4] origin-top-left" />}
+        </div>
+
+        <div
+            class:list={[
+                "hidden sm:block md:hidden lg:block relative flex-1 min-w-28 xl:min-w-28 bg-base-300 rounded-box",
+                "tooltip tooltip-bottom before:min-w-full before:left-auto before:right-0 before:translate-x-0 before:py-1.5 before:rounded-xl",
+            ]}
+            data-tip={next.data.title}
+        >
+            <a
+                class="absolute inset-0 rounded-[inherit] opacity-15 hover:opacity-100 transition-all overflow-hidden"
+                href={`/${next.collection}/${next.slug}`}
+            >
+                {next.data.image && <img
+                    class:list={[
+                        "absolute -inset-x-4 inset-y-0 w-[calc(100%+2rem)] max-w-none h-full object-cover rounded-[inherit] text-base-300",,
+                        "object-[var(--obj-pos-x)_var(--obj-pos-y)] xl:object-[var(--obj-pos-x)_clamp(100%,var(--obj-pos-y)-2rem,0%)]",
+                        "hover:-translate-x-4 transition-all",
+                    ]}
+                    src={"/" + next.data.image}
+                    alt={next.slug + " featured image"}
+                    {...next.data.imageFocus && { style: `--obj-pos-x: ${imagePosParsed(next.data.imageFocus[0])}; --obj-pos-y: ${imagePosParsed(next.data.imageFocus[1])};` }}
+                />}
+            </a>
+        </div>
+
+        <div class="absolute top-full left-0 w-full bg-corner-radius pointer-events-none"></div>
     </div>
 
-    <div class="relative xl:-mt-28 bg-gradient-to-b from-base-100/95 to-base-100 to-[5rem] max-w-[54rem] xl:px-8 xl:pt-5 rounded-box">
+    <div class="relative xl:-mt-[5.25rem] bg-gradient-to-b from-base-100/95 to-base-100 to-[5rem] max-w-[54rem] xl:px-8 xl:pt-5 rounded-box">
         {
-            ["bg-corner-radius-end right-full", "bg-corner-radius-start left-full"].map((c) => (
+            ["bg-corner-radius-end right-full", "bg-corner-radius-start left-full"].map((className) => (
                 <div
-                    class:list={["hidden xl:block absolute top-[4.5rem] w-3 [--color:oklch(var(--b1))] [--size:0.75rem] pointer-events-none -scale-y-100", c]}
+                    class:list={["hidden xl:block absolute top-[4.25rem] w-4 [--color:oklch(var(--b1))] pointer-events-none -scale-y-100", className]}
                     aria-hidden="true"
                 />
             ))

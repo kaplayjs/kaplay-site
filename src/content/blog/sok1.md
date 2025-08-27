@@ -6,7 +6,7 @@ description:
     Explore the latest advancements and community highlights in KAPLAY, the
     successor to Kaboom.js. Discover new features, contributors, and more!
 image: banners/sok1.png
-imageFocus: ["50%", "44%"]
+imageFocus: ["50%", "30%"]
 crewBadge:
     text: "SOK #1"
     crew: sok
