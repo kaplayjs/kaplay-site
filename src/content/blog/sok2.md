@@ -3,8 +3,8 @@ title: "State of KAPLAY #2"
 author: lajbel
 date: 09/2/2024
 description:
-    Explore the latest advancements and community highlights in KAPLAY, the
-    successor to Kaboom.js. Discover new features, contributors, and more!
+    Discover the latest updates and features in KAPLAY library and new additions to our website.
+    Explore community highlights - games, tutorials, and more.
 image: banners/sok2.png
 crewBadge:
     text: "SOK #2"
