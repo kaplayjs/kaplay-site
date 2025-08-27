@@ -6,6 +6,11 @@ description:
     Explore the latest advancements and community highlights in KAPLAY, the
     successor to Kaboom.js. Discover new features, contributors, and more!
 image: banners/sok2.png
+crewBadge:
+    text: "SOK #2"
+    crew: sok
+    bgColor: red
+    borderColor: lightpink
 ---
 
 # State of KAPLAY #2

@@ -6,6 +6,12 @@ description:
     Explore the latest advancements in KAPLAY.js this 2025
 image: banners/sok4.png
 imageFocus: ["50%", "35%"]
+crewBadge:
+    text: "SOK #4"
+    crew: sok
+    textColor: black
+    bgColor: lime
+    borderColor: yellow
 ---
 
 # State of KAPLAY #4

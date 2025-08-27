@@ -7,6 +7,11 @@ description:
     successor to Kaboom.js. Discover new features, contributors, and more!
 image: banners/sok1.png
 imageFocus: ["50%", "44%"]
+crewBadge:
+    text: "SOK #1"
+    crew: sok
+    bgColor: pink
+    borderColor: lightpink
 ---
 
 # State of KAPLAY #1

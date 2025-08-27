@@ -4,6 +4,12 @@ author: "lajbel"
 date: 06/13/2025
 description: All the latest updates on KAPLAY, SOCKS 5
 image: banners/sok5.png
+crewBadge:
+    text: "SOK #5"
+    crew: sok
+    textColor: white
+    bgColor: purple
+    borderColor: lightpink
 ---
 
 # State of KAPLAY #5

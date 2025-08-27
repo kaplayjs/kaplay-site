@@ -12,6 +12,13 @@ const blogCollection = defineCollection({
         hidden: z.optional(z.boolean()),
         version: z.optional(z.string()),
         imageFocus: z.tuple([z.string(), z.string()]).optional().nullable(),
+        crewBadge: z.object({
+            crew: z.string(),
+            text: z.string(),
+            textColor: z.string().optional(),
+            bgColor: z.string().optional(),
+            borderColor: z.string().optional(),
+        }).optional(),
     }),
 });
 

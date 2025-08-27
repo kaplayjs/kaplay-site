@@ -2,6 +2,7 @@
 // A card that represents a blog post. With Image of the blog, title, author, date and a short description.
 
 import { getEntry } from "astro:content";
+import CrewBadge from "../Content/CrewBadge.astro";
 
 type Props = {
     entry: string;
@@ -20,29 +21,28 @@ const entryData = entry.data;
         <a href={"/blog/" + entryName}>
             <img
                 src={"/" + entryData.image}
-                alt="Placeholder"
-                class="absolute inset-0 h-full w-full rounded-box object-cover"
+                alt={entryName + " featured image"}
+                class="absolute inset-0 h-full w-full rounded-box object-cover bg-base-300 text-base-300"
             />
+
+            {entryData?.crewBadge && <CrewBadge {...entryData.crewBadge} class="absolute top-3 left-3" />}
         </a>
     </figure>
     <div class="flex-auto p-6">
         <main class="flex flex-col flex-wrap">
             <h1 class="text-xl font-semibold">
-                <a href={"/blog/" + entryName} class="hover:underline">{
-                    entryData.title
-                }</a>
+                <a href={"/blog/" + entryName} class="hover:underline">{entryData.title}</a>
             </h1>
             <p class="text-xl font-semibold text-primary">
                 {entryData.author}
             </p>
             <time class="flex-none text-base font-medium text-gray-500">
                 {
-                    new Date(entryData.date)
-                        .toLocaleDateString("en-US", {
-                            year: "numeric",
-                            month: "long",
-                            day: "numeric",
-                        })
+                    new Date(entryData.date).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                    })
                 }
             </time>
         </main>

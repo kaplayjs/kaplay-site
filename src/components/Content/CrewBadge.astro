@@ -1,0 +1,65 @@
+---
+import { cn } from "@/util/cn";
+import { assets, type SpriteCrewAsset } from "@kaplayjs/crew";
+
+export interface CrewBadgeProps {
+    crew?: SpriteCrewAsset;
+    text?: string;
+    class?: string;
+    bgColor?: keyof typeof textColors;
+    textColor?: keyof typeof bgColors;
+    borderColor?: keyof typeof textColors;
+}
+
+const { crew = "mark", text = "ohhi", bgColor = "purple", textColor = "white", borderColor, class: className }: CrewBadgeProps = Astro.props;
+
+const textColors = {
+    white: "text-white",
+    black: "text-black",
+    red: "text-[#cc425e]",
+    lightorange: "text-[#ffb879]",
+    orange: "text-[#ea6262]",
+    lightbrown: "text-[#f2ae99]",
+    brown: "text-[#c97373]",
+    yellow: "text-[#fcef8d]",
+    lime: "text-[#abdd64]",
+    green: "text-[#6bc96c]",
+    darkgreen: "text-[#5ba675]",
+    lightblue: "text-[#aee2ff]",
+    blue: "text-[#6d80fa]",
+    purple: "text-[#7d2da0]",
+    lightpink: "text-[#ffc3f2]",
+    pink: "text-[#d46eb3]",
+    darkpink: "text-[#873e84]",
+};
+
+const bgColors = {
+    white: "bg-white",
+    black: "bg-black",
+    red: "bg-[#cc425e]",
+    lightorange: "bg-[#ffb879]",
+    orange: "bg-[#ea6262]",
+    lightbrown: "bg-[#f2ae99]",
+    brown: "bg-[#c97373]",
+    yellow: "bg-[#fcef8d]",
+    lime: "bg-[#abdd64]",
+    green: "bg-[#6bc96c]",
+    darkgreen: "bg-[#5ba675]",
+    lightblue: "bg-[#aee2ff]",
+    blue: "bg-[#6d80fa]",
+    purple: "bg-[#7d2da0]",
+    lightpink: "bg-[#ffc3f2]",
+    pink: "bg-[#d46eb3]",
+    darkpink: "bg-[#873e84]",
+};
+---
+
+<strong class={cn("inline-flex m-0.5 ml-1 align-middle font-normal drop-shadow-2", textColors?.[borderColor || textColor], className)}>
+    <span class="relative">
+        <span class:list={["absolute top-0 right-0 h-full w-1/2 pr-px box-content", bgColors[bgColor]]} aria-hidden="true"></span>
+        <img src={assets[crew].sprite} class="h-5 object-scale-down scale-125" alt={crew} />
+    </span>
+    <span class:list={["flex items-center rounded-r-lg pl-1.5 pr-2 py-1.5", bgColors[bgColor]]}>
+        <span class:list={["self-center -mt-1 font-hand text-sm leading-none", textColors[textColor]]}>{text}</span>
+    </span>
+</strong>
