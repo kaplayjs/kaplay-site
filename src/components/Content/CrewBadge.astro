@@ -54,12 +54,21 @@ const bgColors = {
 };
 ---
 
-<strong class={cn("inline-flex m-0.5 ml-1 align-middle font-normal drop-shadow-2", textColors?.[borderColor || textColor], className)}>
+<strong
+    class={cn(
+        "inline-flex m-0.5 ml-1 align-middle font-normal drop-shadow-2 [p_&]:ml-2 [p_&]:mr-1 [p_&]:mt-0",
+        textColors?.[borderColor || textColor],
+        className,
+    )}
+>
     <span class="relative">
-        <span class:list={["absolute top-0 right-0 h-full w-1/2 pr-px box-content", bgColors[bgColor]]} aria-hidden="true"></span>
-        <img src={assets[crew].sprite} class="h-5 object-scale-down scale-125" alt={crew} />
+        <span class={cn(["absolute top-0 right-0 h-full w-1/2 pr-px box-content", bgColors[bgColor], { "w-3/4": crew == "burpman" }])} aria-hidden="true"
+        ></span>
+        <img src={assets[crew].sprite} class="h-5 !m-0 object-scale-down scale-125 !rounded-none" alt={crew} />
     </span>
     <span class:list={["flex items-center rounded-r-lg pl-1.5 pr-2 py-1.5", bgColors[bgColor]]}>
-        <span class:list={["self-center -mt-1 font-hand text-sm leading-none", textColors[textColor]]}>{text}</span>
+        <span class:list={["self-center -mt-1 font-hand text-sm leading-none", textColors[textColor]]}>
+            {Astro.slots.has("default") ? <slot /> : text}
+        </span>
     </span>
 </strong>
