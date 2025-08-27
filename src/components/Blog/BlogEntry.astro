@@ -16,13 +16,13 @@ if (!entry) return;
 const entryData = entry.data;
 ---
 
-<article class="flex flex-col rounded-box bg-base-200 md:flex-row">
-    <figure class="relative aspect-video flex-none rounded-box md:w-[260px]">
+<article class="flex flex-col rounded-box bg-base-200 sm:flex-row">
+    <figure class="relative aspect-video flex-none rounded-box sm:w-[260px] md:w-[200px] lg:w-[260px] overflow-hidden">
         <a href={"/blog/" + entryName}>
             <img
                 src={"/" + entryData.image}
                 alt={entryName + " featured image"}
-                class="absolute inset-0 h-full w-full rounded-box object-cover bg-base-300 text-base-300"
+                class="absolute inset-0 h-full w-full rounded-box object-cover bg-base-300 text-base-300 hover:scale-105 transition-all"
             />
 
             {entryData?.crewBadge && <CrewBadge {...entryData.crewBadge} class="absolute top-3 left-3" />}
@@ -33,7 +33,7 @@ const entryData = entry.data;
             <h1 class="text-xl font-semibold">
                 <a href={"/blog/" + entryName} class="hover:underline">{entryData.title}</a>
             </h1>
-            <p class="text-xl font-semibold text-primary">
+            <p class="text-lg font-semibold text-primary">
                 {entryData.author}
             </p>
             <time class="flex-none text-base font-medium text-gray-500">
