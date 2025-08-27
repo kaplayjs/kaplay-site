@@ -8,6 +8,18 @@ and this project adheres to
 
 ## [unreleased]
 
+## [1.5.1] - 2025-08-27
+
+### Changed
+
+- Blog posts have a new centered layout with a header image navigation - @imaginarny
+- SOK blog post badges are now made in html instead of drawn in featured image - @imaginarny
+- Improved blog page responsive - @imaginarny
+
+### Fixed
+
+- Various grammar and formatting errors - @imaginarny
+
 ## [1.5.0] - 2025-08-25
 
 ### Added
@@ -36,7 +48,7 @@ and this project adheres to
   - Improved responsive and accessibility - @imaginarny
 - Updated a lot of Crew details, secrets, and descriptions - @lajbel, @imaginarny
 
-## Fixed
+### Fixed
 
 - Pointer cursor over interactive elements not showing or blinking - @imaginarny
 
