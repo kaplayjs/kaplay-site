@@ -294,58 +294,45 @@ span.line.diff.remove::before {
     }
 }
 
-.bg-corner-radius {
-    --color: #323844;
-    height: 1rem;
-    border-color: var(--color);
-    background-size: 1rem;
+.bg-corner-radius,
+.bg-corner-radius-start,
+.bg-corner-radius-end {
+    --c: var(--color, #323844);
+
+    height: var(--size, 1rem);
+    border-color: var(--c);
+    background-size: var(--size, 1rem);
     background-position: top left, top right;
     background-repeat: no-repeat;
-    --grad: 69%;
+    --grad: calc(69% - var(--border, 0px));
     --radius-start: radial-gradient(
         circle at bottom right,
         transparent var(--grad),
-        var(--color) calc(var(--grad) + 0.25px),
-        var(--color) calc(var(--grad) + var(--tab-border, 1px)),
-        var(--color) calc(var(--grad) + var(--tab-border, 1px) + 0.25px)
+        var(--c) calc(var(--grad) + 0.25px),
+        var(--c) calc(var(--grad) + var(--border, 1px)),
+        var(--c) calc(var(--grad) + var(--border, 1px) + 0.25px)
     );
     --radius-end: radial-gradient(
         circle at bottom left,
         transparent var(--grad),
-        var(--color) calc(var(--grad) + 0.25px),
-        var(--color) calc(var(--grad) + var(--tab-border, 1px)),
-        var(--color) calc(var(--grad) + var(--tab-border, 1px) + 0.25px)
+        var(--c) calc(var(--grad) + 0.25px),
+        var(--c) calc(var(--grad) + var(--border, 1px)),
+        var(--c) calc(var(--grad) + var(--border, 1px) + 0.25px)
     );
+}
+
+.bg-corner-radius {
     background-image:
         var(--radius-start),
         var(--radius-end);
 }
 
-.bg-corner-radius {
-    --color: #323844;
-    height: 1rem;
-    border-color: var(--color);
-    background-size: 1rem;
-    background-position: top left, top right;
-    background-repeat: no-repeat;
-    --grad: 69%;
-    --radius-start: radial-gradient(
-        circle at bottom right,
-        transparent var(--grad),
-        var(--color) calc(var(--grad) + 0.25px),
-        var(--color) calc(var(--grad) + var(--tab-border, 1px)),
-        var(--color) calc(var(--grad) + var(--tab-border, 1px) + 0.25px)
-    );
-    --radius-end: radial-gradient(
-        circle at bottom left,
-        transparent var(--grad),
-        var(--color) calc(var(--grad) + 0.25px),
-        var(--color) calc(var(--grad) + var(--tab-border, 1px)),
-        var(--color) calc(var(--grad) + var(--tab-border, 1px) + 0.25px)
-    );
-    background-image:
-        var(--radius-start),
-        var(--radius-end);
+.bg-corner-radius-start {
+    background-image: var(--radius-start);
+}
+
+.bg-corner-radius-end {
+    background-image: var(--radius-end);
 }
 
 .scrollbar-thin {

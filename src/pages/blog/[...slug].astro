@@ -18,6 +18,10 @@ export async function getStaticPaths() {
 
 const { entry, imageFocus } = Astro.props;
 const { Content, headings } = await entry.render();
+
+const imagePosParsed = (p: string) => (["left", "top"].includes(p) ? "0%" : ["right", "bottom"].includes(p) ? "100%" : ["center"].includes(p) ? "50%" : p);
+const imagePosX = imagePosParsed(imageFocus?.[0] ?? "50%");
+const imagePosY = imagePosParsed(imageFocus?.[1] ?? imagePosX);
 ---
 
 <SidebarPage
@@ -29,19 +33,37 @@ const { Content, headings } = await entry.render();
     }}
     sidebarMode="blog"
     headings={headings}
+    pageAlign="center"
     noAd
 >
-    <div class="relative md:-mx-0.5 md:-mt-0.5 mb-6 lg:mb-7 w-full md:w-[calc(100%+0.25rem)] max-w-[49rem] [.page-center_&]:max-w-6xl h-60 bg-base-200 text-base-200 rounded-box md:rounded-lg">
+    <div
+        class="relative md:-mx-0.5 md:-mt-0.5 mb-6 lg:mb-7 w-full md:w-[calc(100%+0.25rem)] max-w-[49rem] [.page-center_&]:max-w-6xl h-60 xl:h-[330px] bg-base-200 text-base-200 rounded-box md:rounded-lg 2xl:rounded-xl"
+    >
         <img
-            class="absolute inset-0 size-full object-cover rounded-[inherit]"
-            src={"/" + entry.data.image} alt={entry.slug + " featured image"}
-            {...(imageFocus && {style: `object-position: ${imageFocus.join(" ")}`})}
+            class:list={[
+                "absolute inset-0 size-full object-cover rounded-[inherit]",
+                "object-[var(--obj-pos-x)_var(--obj-pos-y)] xl:object-[var(--obj-pos-x)_clamp(100%,var(--obj-pos-y)-2rem,0%)]",
+            ]}
+            src={"/" + entry.data.image}
+            alt={entry.slug + " featured image"}
+            {...imageFocus && { style: `--obj-pos-x: ${imagePosX}; --obj-pos-y: ${imagePosY};` }}
         />
 
-        {entry.data?.crewBadge && <CrewBadge {...(entry.data.crewBadge)} class="absolute top-4 left-4 sm:scale-[1.4] origin-top-left" />}
+        {entry.data?.crewBadge && <CrewBadge {...entry.data.crewBadge} class="absolute top-4 left-4 sm:scale-[1.4] origin-top-left" />}
     </div>
 
-    <Prose>
-        <Content />
-    </Prose>
+    <div class="relative xl:-mt-28 bg-gradient-to-b from-base-100/95 to-base-100 to-[5rem] max-w-[54rem] xl:px-8 xl:pt-5 rounded-box">
+        {
+            ["bg-corner-radius-end right-full", "bg-corner-radius-start left-full"].map((c) => (
+                <div
+                    class:list={["hidden xl:block absolute top-[4.5rem] w-3 [--color:oklch(var(--b1))] [--size:0.75rem] pointer-events-none -scale-y-100", c]}
+                    aria-hidden="true"
+                />
+            ))
+        }
+
+        <Prose>
+            <Content />
+        </Prose>
+    </div>
 </SidebarPage>

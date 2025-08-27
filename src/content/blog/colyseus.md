@@ -5,7 +5,7 @@ date: 3/27/2025
 description:
     Become a gladiator with the new KAPLAY x Colyseus guide!
 image: banners/coly.png
-imageFocus: ["center", "71%"]
+imageFocus: ["center", "100%"]
 ---
 
 # KAPLAY x Colyseus
