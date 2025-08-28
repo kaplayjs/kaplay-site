@@ -18,7 +18,7 @@ and this project adheres to
 
 ### Fixed
 
-- Various grammar and formatting errors - @imaginarny
+- Various grammar and formatting errors - @imaginarny, @lajbel
 
 ## [1.5.0] - 2025-08-25
 
