@@ -1,0 +1,50 @@
+
+---
+title: TypeScript
+description: Learn how to use the new TypeScript features.
+url: taf
+version: "4000"
+---
+
+# TypeScript Advanced Features
+
+The TypeScript Advanced Features (a.k.a TAF) are a series of options that can help to TypeScript developers to wrote stronger code and get a better autocomplete.
+
+## Using TypeScript Advanced Features
+
+You can enable TAF using the `KAPLAYOpt.types` property, which you've to pass a `kaplayTypes()` call:
+
+```js
+import { kaplay, kaplayTypes } from "kaplay";
+
+const k = kaplay({
+    types: kaplayTypes<Opt<{
+        // TypeScript Options here
+    }>>();
+}); 
+```
+
+## Typing Scenes
+
+When typing scenes, you can use `TypesOpt.scenes`, where you define scene names and arguments they receive, using a Tuple object:
+
+```ts
+import { kaplay, kaplayTypes } from "kaplay";
+
+const k = kaplay({
+    types: kaplayTypes<Opt<{
+        scenes: {
+            // Scene "game" receives a string as first param
+	        "game": [playerName: string] // or just [string]
+        }
+    }>>();
+});
+
+k.scene("game", (playerName) => {
+	// playerName is typed as "string"
+}):
+
+// Autocomplete will suggest "game"
+k.go("game", 20); // Error [TODO]
+```
+
