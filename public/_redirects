@@ -1,11 +1,14 @@
-/docs /docs/guides/
+/docs /docs/
+/docs/ /docs/guides/
 
 /guides /docs/guides/ 301
 /guides/* /docs/guides/:splat 301
 
 /doc /docs/api/
 /doc/* /docs/api/:splat 301
-/reference /docs/api/reference
+
+/reference /reference/
+/reference/ /docs/api/reference/
 
 /lib/kaplay.master.js https://cdn.kaplayjs.com/kaplay.master.js
 
