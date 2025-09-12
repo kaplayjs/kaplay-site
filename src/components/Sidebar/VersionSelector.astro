@@ -17,8 +17,9 @@ const versions = {
 ---
 
 <div class:list={["dropdown grow min-w-0", "after:absolute after:inset-0 after:pointer-events-none focus-within:after:pointer-events-auto"]}>
-    <button
-        type="button"
+    <div
+        tabindex="0"
+        role="button"
         class="btn btn-sm flex-nowrap font-medium text-white text-center size-full min-h-none px-2 no-animation [.dropdown:focus-within_&]:bg-neutral"
     >
         <span class="w-full py-0.5 text-nowrap text-ellipsis overflow-x-hidden" tabindex="-1">
@@ -38,9 +39,12 @@ const versions = {
         >
             <path d="m6 9 6 6 6-6"></path>
         </svg>
-    </button>
+    </div>
 
-    <ul class="dropdown-content menu w-max min-w-full mt-1.5 p-1.5 space-y-0.5 bg-base-100 rounded-lg border border-base-content/5 shadow-2xl z-[1]">
+    <ul
+        tabindex="0"
+        class="dropdown-content menu w-max min-w-full mt-1.5 p-1.5 space-y-0.5 bg-base-100 rounded-lg border border-base-content/5 shadow-2xl z-[1] focus-visible:ring-2 focus-visible:ring-base-content"
+    >
         {
             Object.entries(versions).map(([version, { label, url }]) => (
                 <li>
@@ -48,7 +52,7 @@ const versions = {
                         class={cn(
                             "btn btn-sm btn-ghost px-2 py-0.5 h-auto w-full justify-start font-normal text-wrap text-left text-base-subheading rounded-md no-animation",
                             {
-                                "bg-base-content/5 pointer-events-none": version == selectedByDefault,
+                                "bg-base-content/5": version == selectedByDefault,
                             },
                         )}
                         href={url}
