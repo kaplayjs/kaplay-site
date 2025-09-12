@@ -40,7 +40,7 @@ if (sidebarMode === "guides") {
                 <div class="flex gap-px bg-base-50 p-px rounded-lg justify-center mb-5">
                     <VersionSelector />
                     <a
-                        class={cn("btn btn-sm btn-ghost bg-base-200 p-1", { "bg-base-content/20": pathname == "/changelog" })}
+                        class={cn("btn btn-sm btn-ghost bg-base-200 p-1 focus-visible:z-[1]", { "bg-base-content/20": pathname == "/changelog" })}
                         href="/changelog"
                         title="Changelog"
                     >
