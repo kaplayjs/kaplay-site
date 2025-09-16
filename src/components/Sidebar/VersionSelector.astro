@@ -1,40 +1,66 @@
 ---
+import { cn } from "@/util/cn";
+
 const version = __KAPLAY_VERSION__;
 const selectedByDefault = version.startsWith("4") ? "v4000" : "v3001";
 
-const versionNames = {
-    v4000: selectedByDefault == "v4000" ? version : "v4000",
-    v3001: selectedByDefault == "v3001" ? version : "v3001",
+const versions = {
+    v4000: {
+        label: selectedByDefault == "v4000" ? version : "v4000",
+        url: "https://v4000.kaplayjs.com/docs/guides/",
+    },
+    v3001: {
+        label: selectedByDefault == "v3001" ? version : "v3001",
+        url: "https://kaplayjs.com/docs/guides/",
+    },
 };
 ---
 
-<select id="versionSelect" class="select select-sm w-full text-center mx-auto block text-white bg-base-200" data-always-select={selectedByDefault}>
-    <option value="v4000" selected={selectedByDefault === "v4000"}>
-        {versionNames.v4000}
-    </option>
-    <option value="v3001" selected={selectedByDefault === "v3001"}>
-        {versionNames.v3001}
-    </option>
-</select>
+<div class:list={["dropdown grow min-w-0", "after:absolute after:inset-0 after:pointer-events-none focus-within:after:pointer-events-auto"]}>
+    <div
+        tabindex="0"
+        role="button"
+        class="btn btn-sm flex-nowrap font-medium text-white text-center size-full min-h-none px-2 no-animation [.dropdown:focus-within_&]:bg-neutral"
+    >
+        <span class="w-full py-0.5 text-nowrap text-ellipsis overflow-x-hidden" tabindex="-1">
+            {version}
+        </span>
 
-<script>
-    const links: Record<string, string> = {
-        v4000: "https://v4000.kaplayjs.com/guides/install",
-        v3001: "https://kaplayjs.com/guides/install",
-        kaboom: "https://kaboomjs.com",
-    };
+        <svg
+            class="shrink-0"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+        >
+            <path d="m6 9 6 6 6-6"></path>
+        </svg>
+    </div>
 
-    document.addEventListener("astro:page-load", () => {
-        const versionSelect = document.querySelector<HTMLSelectElement>("#versionSelect")!;
-        if (!versionSelect) return;
-
-        const selectedByDefault = versionSelect.dataset.alwaysSelect;
-
-        versionSelect.addEventListener("change", () => {
-            const version = versionSelect.value;
-            window.open(links[version]);
-
-            versionSelect.value = selectedByDefault!;
-        });
-    });
-</script>
+    <ul
+        tabindex="0"
+        class="dropdown-content menu w-max min-w-full mt-1.5 p-1.5 space-y-0.5 bg-base-100 rounded-lg border border-base-content/5 shadow-2xl z-[1] focus-visible:ring-2 focus-visible:ring-base-content"
+    >
+        {
+            Object.entries(versions).map(([version, { label, url }]) => (
+                <li>
+                    <a
+                        class={cn(
+                            "btn btn-sm btn-ghost px-2 py-0.5 h-auto w-full justify-start font-normal text-wrap text-left text-base-subheading rounded-md no-animation",
+                            {
+                                "bg-base-content/5": version == selectedByDefault,
+                            },
+                        )}
+                        href={url}
+                    >
+                        {label}
+                    </a>
+                </li>
+            ))
+        }
+    </ul>
+</div>

@@ -8,6 +8,12 @@ and this project adheres to
 
 ## [unreleased]
 
+## [1.5.2] - 2025-09-12
+
+### Changed
+
+- Docs version select is now replaced with a custom dropdown that navigates in the same tab - @imaginarny
+
 ## [1.5.1] - 2025-08-27
 
 ### Changed

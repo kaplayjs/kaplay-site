@@ -122,8 +122,9 @@ const l = Astro.currentLocale as Locale;
 
                         {link.dropdown && (
                             <div class:list={["dropdown dropdown-end join-item"]}>
-                                <button
-                                    type="button"
+                                <div
+                                    tabindex="0"
+                                    role="button"
                                     class:list={[
                                         "btn uppercase h-full min-h-11 p-2",
                                         {
@@ -148,11 +149,11 @@ const l = Astro.currentLocale as Locale;
                                     >
                                         <path d="m6 9 6 6 6-6" />
                                     </svg>
-                                </button>
+                                </div>
 
                                 <ul
                                     tabindex="0"
-                                    class="dropdown-content menu w-max mt-2 lg:mt-[1.125rem] -mr-px p-3 space-y-1 bg-base-100 rounded-xl border border-base-content/5 shadow-2xl z-[1]"
+                                    class="dropdown-content menu w-max mt-2 lg:mt-[1.125rem] -mr-px p-3 space-y-1 bg-base-100 rounded-xl border border-base-content/5 shadow-2xl z-[1] focus-visible:ring-2 focus-visible:ring-base-content"
                                 >
                                     {link.dropdown.map((link) => (
                                         <li>
