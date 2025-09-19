@@ -8,6 +8,12 @@ and this project adheres to
 
 ## [unreleased]
 
+## [1.5.3] - 2025-09-19
+
+### Fixed
+
+- Crew outlined font dimensions in the KAPLAYGROUND import instructions were incorrect - @imaginarny
+
 ## [1.5.2] - 2025-09-12
 
 ### Changed

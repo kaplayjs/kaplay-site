@@ -6,36 +6,26 @@ import {
     type Tag,
 } from "@kaplayjs/crew";
 
-export type Crew = {
-    [K in keyof typeof assets]: typeof assets[K] & {
-        imports: {
-            [key: string]: {
-                original: string;
-                outlined: string;
-            };
-        };
-    };
-};
+export type Crew = typeof assets;
 
 const crew = {} as Crew;
+
+const highlightImports = async (imports: Record<string, string>) =>
+    Object.fromEntries(
+        await Promise.all(
+            Object.entries(imports).map(async (
+                [k, v],
+            ) => [k, await highlight(v)]),
+        ),
+    );
 
 for (const [key, value] of Object.entries(assets).sort()) {
     crew[key] = {
         ...value,
-        imports: Object.fromEntries(
-            await Promise.all(
-                Object.entries(value.imports).map(async ([k, v]) => {
-                    return [k, {
-                        original: await highlight(v),
-                        outlined: "outlined" in value
-                            ? await highlight(
-                                v.replaceAll(key, `${key}-o`),
-                            )
-                            : undefined,
-                    }];
-                }),
-            ),
-        ),
+        imports: {
+            importInCrew: await highlightImports(value.imports.importInCrew),
+            importInPG: await highlightImports(value.imports.importInPG),
+        },
     };
 }
 
