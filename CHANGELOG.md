@@ -12,8 +12,8 @@ and this project adheres to
 
 ### Added
 
-- Now installation guide display the correct cli command for `create-kaplay` 
-  depending on docs - @lajbel
+- Now installation guide shows the correct cli command for `create-kaplay`
+  depending on docs version - @lajbel
 
 ## [1.5.3] - 2025-09-19
 
