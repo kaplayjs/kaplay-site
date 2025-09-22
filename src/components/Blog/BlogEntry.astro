@@ -2,7 +2,7 @@
 // A card that represents a blog post. With Image of the blog, title, author, date and a short description.
 
 import { getEntry } from "astro:content";
-import CrewBadge from "../Content/CrewBadge.astro";
+import CrewBadge, { type CrewBadgeProps } from "../Content/CrewBadge.astro";
 
 type Props = {
     entry: string;
@@ -25,7 +25,7 @@ const entryData = entry.data;
                 class="absolute inset-0 h-full w-full rounded-box object-cover bg-base-300 text-base-300 hover:scale-105 transition-all"
             />
 
-            {entryData?.crewBadge && <CrewBadge {...entryData.crewBadge} class="absolute top-3 left-3" />}
+            {entryData?.crewBadge && <CrewBadge {...(entryData.crewBadge as CrewBadgeProps)} class="absolute top-3 left-3" />}
         </a>
     </figure>
     <div class="flex-auto p-6">

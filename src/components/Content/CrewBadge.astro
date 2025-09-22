@@ -2,7 +2,7 @@
 import { cn } from "@/util/cn";
 import { assets, type SpriteCrewAsset } from "@kaplayjs/crew";
 
-export interface Props {
+export interface CrewBadgeProps {
     crew?: SpriteCrewAsset;
     text?: string;
     class?: string;
@@ -11,7 +11,9 @@ export interface Props {
     borderColor?: keyof typeof textColors;
 }
 
-const { crew = "mark", text = "ohhi", bgColor = "purple", textColor = "white", borderColor, class: className } = Astro.props;
+interface Props extends CrewBadgeProps {}
+
+const { crew = "mark", text = "ohhi", bgColor = "purple", textColor = "white", borderColor, class: className } = Astro.props as CrewBadgeProps;
 
 const textColors = {
     white: "text-white",

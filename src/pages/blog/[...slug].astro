@@ -1,5 +1,5 @@
 ---
-import CrewBadge from "@/components/Content/CrewBadge.astro";
+import CrewBadge, { type CrewBadgeProps } from "@/components/Content/CrewBadge.astro";
 import Prose from "@/components/Content/Prose.astro";
 import SidebarPage from "@/layouts/SidebarPage.astro";
 import type { CollectionEntry } from "astro:content";
@@ -84,7 +84,7 @@ const imagePosY = imagePosParsed(imageFocus?.[1] ?? imagePosX);
                 {...imageFocus && { style: `--obj-pos-x: ${imagePosX}; --obj-pos-y: ${imagePosY};` }}
             />}
 
-            {entry.data?.crewBadge && <CrewBadge {...entry.data.crewBadge} class="absolute top-4 left-4 sm:scale-[1.4] origin-top-left" />}
+            {entry.data?.crewBadge && <CrewBadge {...(entry.data.crewBadge as CrewBadgeProps)} class="absolute top-4 left-4 sm:scale-[1.4] origin-top-left" />}
         </div>
 
         <div
