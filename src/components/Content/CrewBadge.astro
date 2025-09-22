@@ -2,7 +2,7 @@
 import { cn } from "@/util/cn";
 import { assets, type SpriteCrewAsset } from "@kaplayjs/crew";
 
-export interface CrewBadgeProps {
+export interface Props {
     crew?: SpriteCrewAsset;
     text?: string;
     class?: string;
@@ -11,7 +11,7 @@ export interface CrewBadgeProps {
     borderColor?: keyof typeof textColors;
 }
 
-const { crew = "mark", text = "ohhi", bgColor = "purple", textColor = "white", borderColor, class: className }: CrewBadgeProps = Astro.props;
+const { crew = "mark", text = "ohhi", bgColor = "purple", textColor = "white", borderColor, class: className } = Astro.props;
 
 const textColors = {
     white: "text-white",
@@ -56,12 +56,12 @@ const bgColors = {
 
 <strong
     class={cn(
-        "inline-flex m-0.5 ml-1 align-middle font-normal drop-shadow-2 [p_&]:ml-2 [p_&]:mr-1 [p_&]:mt-0",
+        "inline-flex shrink-0 m-0.5 ml-1 align-middle font-normal drop-shadow-2 [p_&]:ml-2 [p_&]:mr-1 [p_&]:mt-0",
         textColors?.[borderColor || textColor],
         className,
     )}
 >
-    <span class="relative">
+    <span class="relative shrink-0">
         <span class={cn(["absolute top-0 right-0 h-full w-1/2 pr-px box-content", bgColors[bgColor], { "w-3/4": crew == "burpman" }])} aria-hidden="true"
         ></span>
         <img src={assets[crew].sprite} class="h-5 !m-0 object-scale-down scale-125 !rounded-none" alt={crew} />

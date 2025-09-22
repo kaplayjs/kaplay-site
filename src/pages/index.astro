@@ -1,9 +1,12 @@
 ---
+import CrewBadge from "@/components/Content/CrewBadge.astro";
+import JustForVersion from "@/components/Content/JustForVersion.astro";
 import About from "@/components/Land/About.astro";
 import AboutFeatured from "@/components/Land/AboutFeatured.astro";
 import BlocksSection from "@/components/Land/Blocks/BlocksSection.astro";
 import LandButton from "@/components/Land/LandButton.astro";
 import TestimonialSection from "@/components/Land/TestimonialSection.astro";
+import Banner from "@/components/Navbar/Banner.astro";
 import Messages from "@/components/Util/Messages.astro";
 import People from "@/components/Util/People.astro";
 import NavbarPage from "@/layouts/NavbarPage.astro";
@@ -22,6 +25,13 @@ import { assets } from "@kaplayjs/crew";
     <Fragment slot="head">
         <link rel="preconnect" href="https://unpkg.com" />
     </Fragment>
+
+    <JustForVersion version="3001" slot="banner">
+        <Banner href="https://v4000.kaplayjs.com/docs/guides/install/">
+            <CrewBadge crew="firing" bgColor="orange" borderColor="yellow">v4000</CrewBadge>
+            <p>It's time to try out the <span class="text-rose-900">@next</span> version of KAPLAY!</p>
+        </Banner>
+    </JustForVersion>
 
     <About>
         <Fragment slot="title">
