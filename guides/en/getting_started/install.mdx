@@ -9,6 +9,7 @@ order: "basics-0"
 
 import Info from "@/components/Content/Info.astro";
 import InstallationCode from "@/components/Content/InstallationCode.astro";
+import JustForVersion from "@/components/Content/JustForVersion.astro";
 
 # Installation
 
@@ -23,14 +24,23 @@ Once you have [Node.js](https://nodejs.org/en/download) installed, the easiest w
 [`our installation package`](https://www.npmjs.com/package/create-kaplay), which
 will generate a project for you using the **recommended** structure.
 
+<JustForVersion version="3001">
 ```sh
-npx create-kaplay myGame && cd myGame
+npx create-kaplay myGame 
 ```
+</JustForVersion>
+
+
+<JustForVersion version="4000">
+```sh
+npx create-kaplay myGame --version next
+```
+</JustForVersion>
 
 Then, using `npm run dev` you can start the **development server**, where you can test your game locally at [`https://localhost:5173`](https://localhost:5173).
 
 ```sh
-npm run dev
+cd myGame && npm run dev
 ```
 
 That's it! You're ready to **start making games**. If you want to know all the options available

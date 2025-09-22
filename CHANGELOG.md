@@ -8,6 +8,13 @@ and this project adheres to
 
 ## [unreleased]
 
+## [1.5.4] - 2025-09-22
+
+### Added
+
+- Now installation guide display the correct cli command for `create-kaplay` 
+  depending on docs - @lajbel
+
 ## [1.5.3] - 2025-09-19
 
 ### Fixed
