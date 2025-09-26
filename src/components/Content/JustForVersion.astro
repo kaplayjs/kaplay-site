@@ -1,7 +1,5 @@
 ---
-import { assets } from "@kaplayjs/crew";
-import { marked } from "marked";
-import kaplaySubmodulePackageJson from "../../../kaplay/package.json";
+import isVersion from "../../util/isVersion";
 
 interface Props {
     version: string;
@@ -9,20 +7,6 @@ interface Props {
 }
 
 let { version, requireToBeEqualIn = "major" } = Astro.props;
-
-const isVersion = () => {
-    const [major, minor, patch] = kaplaySubmodulePackageJson.version.replace(/^(\d+\.\d+\.\d+).*/, "$1").split(".");
-    const [checkMajor, checkMinor, checkPatch] = version.split(".");
-
-    switch (requireToBeEqualIn) {
-        case "major":
-            return major === checkMajor;
-        case "minor":
-            return major === checkMajor && minor === checkMinor;
-        case "patch":
-            return patch === checkPatch && minor === checkMinor && patch === checkPatch;
-    }
-};
 ---
 
-{isVersion() && <slot />}
+{isVersion(version, requireToBeEqualIn) && <slot />}
