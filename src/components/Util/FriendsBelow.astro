@@ -1,26 +1,36 @@
 ---
-import { assets } from "@kaplayjs/crew";
+import { cn } from "@/util/cn";
+import { assets, type SpriteCrewAsset } from "@kaplayjs/crew";
 
-export type AssetName = keyof {
-    [K in keyof typeof assets as typeof assets[K] extends { kind: "Sprite" } ? K : never]: any;
-};
+export type AssetName = SpriteCrewAsset;
 
 type Props = {
-    friends?: AssetName[];
+    friends?: SpriteCrewAsset[];
     offset?: number;
     limited?: boolean;
+    hoverable?: boolean;
     class?: string;
     innerClass?: string;
 };
 
-const { friends, offset = 0, limited, class: className, innerClass } = Astro.props;
+const { friends, offset = 0, limited, hoverable = true, class: className, innerClass } = Astro.props;
 
 const offsets = ["top-2", "top-4", "top-6", "top-8", "top-10"].reverse();
+const HoverableEl = hoverable ? "a" : "div";
 ---
 
 <div class:list={["friends-below relative z-10", className]}>
-    <div class:list={["flex w-full items-center justify-center", innerClass]}>
-        <a class="hoverable special-friends" href="/crew">
+    <div class:list={cn(["flex w-full items-center justify-center", innerClass])}>
+        <HoverableEl
+            {...hoverable
+                ? {
+                      class: "hoverable special-friends",
+                      href: "/crew",
+                  }
+                : {
+                      class: "contents",
+                  }}
+        >
             <div class:list={[`friends relative -z-10 flex w-full flex-row justify-center gap-4 ${offsets[offset]}`]}>
                 {
                     friends?.map((friend) => (
@@ -29,7 +39,7 @@ const offsets = ["top-2", "top-4", "top-6", "top-8", "top-10"].reverse();
                                 src={assets[friend].outlined}
                                 alt="KAFriend"
                                 class:list={[
-                                    "w-auto",
+                                    "w-auto mx-auto",
                                     {
                                         "h-14": limited,
                                         "h-auto": !limited,
@@ -49,7 +59,7 @@ const offsets = ["top-2", "top-4", "top-6", "top-8", "top-10"].reverse();
                     ))
                 }
             </div>
-        </a>
+        </HoverableEl>
     </div>
 
     <slot />

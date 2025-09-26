@@ -1,4 +1,5 @@
 import type { Locale } from "@/util/i18n.ts";
+import isVersion from "@/util/isVersion";
 import { assets } from "@kaplayjs/crew";
 
 interface NavbarLink {
@@ -86,6 +87,12 @@ export const secondLinksRow: NavbarLinksRow = {
                     url: "/docs/api/",
                     icon: assets.api_book.outlined,
                 },
+                {
+                    name: "v4000",
+                    url: (isVersion("3000") ? "https://v4000.kaplayjs.com" : "")
+                        + "/next/",
+                    icon: assets.fire.outlined,
+                },
             ],
         },
     ],
@@ -118,6 +125,12 @@ export const secondLinksRow: NavbarLinksRow = {
                     name: "API (EN)",
                     url: "/docs/api/",
                     icon: assets.api_book.outlined,
+                },
+                {
+                    name: "v4000",
+                    url: (isVersion("3000") ? "https://v4000.kaplayjs.com" : "")
+                        + "/next/",
+                    icon: assets.fire.outlined,
                 },
             ],
         },

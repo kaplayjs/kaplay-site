@@ -11,9 +11,7 @@ const l = Astro.currentLocale as Locale;
 const { messages = defaultMessages[l] } = Astro.props;
 ---
 
-<div
-    class="messages flex flex-col sm:flex-row justify-center items-center gap-2 w-full max-w-6xl mx-auto mb-4 px-3 is-paused"
->
+<div class="messages flex flex-col sm:flex-row justify-center items-center gap-2 w-full max-w-6xl mx-auto mb-4 px-3 is-paused">
     {
         messages.map((message, i) => (
             <p
@@ -21,32 +19,37 @@ const { messages = defaultMessages[l] } = Astro.props;
                     "px-4 py-2 rounded-3xl shadow-2xl opacity-0",
                     i == messages.length - 1
                         ? "bg-primary text-black rounded-br-md origin-bottom-right"
-                        : "bg-white/10 rounded-bl-md origin-bottom-left",
+                        : "bg-base-content/10 rounded-bl-md origin-bottom-left",
                 ]}
-                style={`animation-delay: ${
-                    0.65 * i + (i == messages.length - 1 ? 0.3 : 0)
-                }s`}
+                style={`animation-delay: ${0.65 * i + (i == messages.length - 1 ? 0.3 : 0)}s`}
                 set:html={message.trim().replace(/\s+/g, " ")}
-            ></p>
+            />
         ))
     }
 </div>
 
 <script>
-    document.querySelectorAll(".messages.is-paused").forEach(el => {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (!entry.isIntersecting) return;
+    document.addEventListener("astro:page-load", () => {
+        document.querySelectorAll(".messages.is-paused").forEach((el) => {
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (!entry.isIntersecting) return;
 
-                el.classList.remove("is-paused");
-                observer.disconnect();
-            });
-        }, {
-            rootMargin: "-30% 0% -30% 0%",
-            threshold: 0,
+                        el.classList.remove("is-paused");
+                        observer.disconnect();
+                    });
+                },
+                {
+                    rootMargin: "-30% 0% -30% 0%",
+                    threshold: 0,
+                },
+            );
+
+            observer.observe(el);
+
+            el.addEventListener("click", () => el.classList.remove("is-paused"));
         });
-
-        observer.observe(el);
     });
 </script>
 

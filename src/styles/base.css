@@ -107,7 +107,9 @@ label:not(.cursor-default),
 input[type="range"]:not(.cursor-default),
 input[type="radio"]:not(.cursor-default),
 .hoverable:not(.disabled),
-.collapse:not(.collapse-open):not(.collapse-close) > input[type="checkbox"] {
+.collapse:not(.collapse-open):not(.collapse-close) > input[type="checkbox"],
+.collapse:not(.collapse-open):not(.collapse-close)
+    > input[type="radio"]:not(:checked) {
     cursor: url(/cursor_pointer.png) 8 4, auto;
 }
 
