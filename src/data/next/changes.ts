@@ -56,7 +56,7 @@ export const changes: {
     {
         title: "Tags separated from Components",
         description:
-            "Component IDs are no longer tags. But, instead of `obj.is(\"sprite\")` you can use `obj.has(\"sprite\")`. Can be reverted with tagComponentIds option",
+            "Component IDs are no longer tags. But, instead of `obj.is(\"sprite\")` you can use `obj.has(\"sprite\")`. Can be reverted with `tagComponentIds` option",
         icon: "pencil",
         links: [
             {

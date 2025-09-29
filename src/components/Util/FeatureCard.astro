@@ -26,14 +26,14 @@ const { title, description, guide, links, icon } = data;
 marked.use({
     useNewRenderer: true,
     renderer: {
-        codespan: ({ text }) => `<code class="bg-base-content/5 px-1 py-0.5 rounded-md break-all">${text}</code>`,
+        codespan: ({ text }) => `<code class="bg-base-content/5 px-1 py-0.5 rounded-md break-words">${text}</code>`,
     },
 });
 ---
 
 {
     Astro.slots.has("default") || description ? (
-        <div class={cn(["card flex-1 basis-5/12 bg-base-200 rounded-[inherit]", className])}>
+        <div class={cn(["card flex-1 basis-5/12 w-full min-w-0 bg-base-200 rounded-[inherit]", className])}>
             <div class="card-body">
                 <div class="flex justify-between gap-2">
                     <h3 class="card-title">{title}</h3>
