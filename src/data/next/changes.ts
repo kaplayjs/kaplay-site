@@ -22,7 +22,7 @@ export const changes: {
     {
         title: "Global Z-index Sorting",
         description:
-            "Objects using `z()` are now sorted globally, meaning any child can be drawn above any parent siblings, or any object",
+            "Objects using `z()` are now sorted globally, meaning any child can be drawn above any parent siblings, or any object (within the same layer)",
         icon: "ghosty",
     },
     {
