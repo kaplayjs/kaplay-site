@@ -254,6 +254,29 @@ Previously, `obj.hp` was only a getter property.
 The other methods like events `obj.onHeal()`, `obj.onHurt()`, etc. remain
 unchanged. Read more in `HealthComp` API docs.
 
+## Changed: Shaders alpha channel behavior
+
+Shaders now require **premultiplied alpha**. It improves performance and allows
+for correct blending/filtering at object edges avoiding color fringes.
+
+```glsl
+// BEFORE
+vec4(0, 1.0, 0, u_alpha);
+```
+
+RGB kept original intensity and was multiplied by alpha during blending, which
+could cause artifacts. E.g. green channel going from `1` to `1 * u_alpha`.
+
+Now, without premultiplication, it would stay solid green.
+
+```glsl
+// AFTER
+vec4(0, 1.0 * u_alpha, 0, u_alpha); // (0, 0.5, 0, 0.5) if u_alpha = 0.5
+```
+
+Premultiply RGB values by alpha in your shaders manually to ensure correct and
+consistent transparency.
+
 ---
 
 ## Upcoming changes
