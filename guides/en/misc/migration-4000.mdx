@@ -112,11 +112,11 @@ exists. There is no replacement for it. Use regular images instead.
 
 ## Changed: Component IDs are no longer tags
 
-Before, used components would add their IDs as tags along the user definded tags.
-This behavior could cause some collisions or unexpected results.
+Before, used components would add their IDs as tags along the user defined
+tags. This behavior could cause some collisions or unexpected results.
 
-There was a new API introduced to keep the original usability. You can either
-update your code, or revert this behavior.
+There was a new API introduced while keeping the original usability. You can
+either update your code, or revert this behavior.
 
 1. Replace every use of `obj.is()` when checking for component presence, to
    `obj.has()`:
@@ -131,30 +131,10 @@ obj.is("sprite");
 obj.has("sprite");
 ```
 
-Also, obviously the `obj.tags` array won't include the component IDs either.
-You will need a custom query to get e.g. all objects with a sprite component:
+Also, clearly the `obj.tags` array won't include the component IDs either.
+Currently, there is no way to retrieve an array of used component IDs.
 
-```js
-get("*", { recursive: true }).filter((obj) => obj.has("sprite"));
-```
-
-Similar will happen with `obj.onTag()` and `obj.onUntag()`. Those won't be
-triggered for component IDs. Use `obj.onUse()` and `obj.onUnuse()` in place of
-those:
-
-```js
-// BEFORE
-obj.onTag("sprite", () => debug.log("sprite comp added"));
-obj.onUntag("sprite", () => debug.log("sprite comp removed"));
-```
-
-```js
-// AFTER
-obj.onUse("sprite", () => debug.log("sprite comp added"));
-obj.onUnuse("sprite", () => debug.log("sprite comp removed"));
-```
-
-Or alternatively, you can add them as tags manually where needed (e.g.
+Alternatively, you can add them as tags manually where needed (e.g.
 `"sprite"`) if it makes sense to you. More in [Tags guide](/docs/guides/tags/).
 
 2. If you have much more complicated use case, you can revert it to the original
