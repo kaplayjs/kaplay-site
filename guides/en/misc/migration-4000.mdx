@@ -228,6 +228,32 @@ kaplay({
 });
 ```
 
+## Changed: Health component API
+
+`health()` component API was streamlined to use getter/setter property instead
+of helper methods to update the `obj.hp` value.
+
+```js
+// BEFORE
+obj.heal();
+obj.hurt();
+obj.heal(3);
+obj.hurt(2);
+```
+
+```js
+// AFTER
+obj.hp++;
+obj.hp--;
+obj.hp += 3;
+obj.hp -= 2; // or += -2
+```
+
+Previously, `obj.hp` was only a getter property.
+
+The other methods like events `obj.onHeal()`, `obj.onHurt()`, etc. remain
+unchanged. Read more in `HealthComp` API docs.
+
 ---
 
 ## Upcoming changes
