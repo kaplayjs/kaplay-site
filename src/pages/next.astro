@@ -8,6 +8,7 @@ import Messages from "@/components/Util/Messages.astro";
 import { marked } from "marked";
 import { features, changes, faq } from "@/data/next";
 import FeatureCard from "@/components/Util/FeatureCard.astro";
+import prefixVersionUrl from "@/util/prefixVersionUrl";
 ---
 
 <NavbarPage
@@ -70,15 +71,14 @@ import FeatureCard from "@/components/Util/FeatureCard.astro";
                     >
                         <div class="p-1 bg-gradient-to-br from-primary via-rose-400 to-violet-400 rounded-box shadow-2xl shadow-neutral/50">
                             <div class="flex flex-wrap sm:flex-nowrap justify-between gap-4 p-4 sm:p-10 bg-base-200/[98%] rounded-xl">
-                                <LandButton class="w-full sm:w-auto" kind="yellowish" href="https://v4000.kaplayjs.com/docs/guides/install/"
-                                    >How to install</LandButton
+                                <LandButton class="w-full sm:w-auto" kind="yellowish" href={prefixVersionUrl("/docs/guides/install")}>How to install</LandButton
                                 >
                                 <div class="hidden sm:flex divider grow self-center my-0"></div>
-                                <LandButton class="w-full sm:w-auto" kind="greenish" href="https://v4000.kaplayjs.com/docs/guides/migration-4000/"
+                                <LandButton class="w-full sm:w-auto" kind="greenish" href={prefixVersionUrl("/docs/guides/migration-4000")}
                                     >Migration Guide</LandButton
                                 >
                                 <div class="hidden sm:flex divider grow self-center my-0"></div>
-                                <LandButton class="w-full sm:w-auto" kind="blueish" href="https://v4000.kaplayjs.com/changelog/">Full Changelog</LandButton>
+                                <LandButton class="w-full sm:w-auto" kind="blueish" href={prefixVersionUrl("/changelog")}>Full Changelog</LandButton>
                             </div>
                         </div>
                     </FriendsBelow>
@@ -226,12 +226,10 @@ import FeatureCard from "@/components/Util/FeatureCard.astro";
 
                     <div class="p-1 bg-gradient-to-br from-primary via-rose-400 to-violet-400 rounded-box shadow-2xl shadow-neutral/50">
                         <div class="flex flex-wrap sm:flex-nowrap justify-center gap-4 bg-base-300 p-5 pb-6 rounded-xl border border-base-content/10">
-                            <LandButton class="w-full sm:w-auto" kind="yellowish" href="https://v4000.kaplayjs.com/docs/guides/install/">Install Now</LandButton
+                            <LandButton class="w-full sm:w-auto" kind="yellowish" href={prefixVersionUrl("/docs/guides/install")}>Install Now</LandButton>
+                            <LandButton class="w-full sm:w-auto" kind="greenish" href={prefixVersionUrl("/docs/guides/migration-4000")}>Migrate Game</LandButton
                             >
-                            <LandButton class="w-full sm:w-auto" kind="greenish" href="https://v4000.kaplayjs.com/docs/guides/migration-4000/"
-                                >Migrate Game</LandButton
-                            >
-                            <LandButton class="w-full sm:w-auto" kind="blueish" href="https://v4000.kaplayjs.com/changelog/">View Changelog</LandButton>
+                            <LandButton class="w-full sm:w-auto" kind="blueish" href={prefixVersionUrl("/changelog")}>View Changelog</LandButton>
                         </div>
                     </div>
                 </div>

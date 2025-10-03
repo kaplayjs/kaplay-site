@@ -1,3 +1,4 @@
+import prefixVersionUrl from "@/util/prefixVersionUrl";
 import { type SpriteCrewAsset } from "@kaplayjs/crew";
 
 export const changes: {
@@ -33,7 +34,9 @@ export const changes: {
         links: [
             {
                 name: "KAPLAY Option",
-                url: "https://v4000.kaplayjs.com/docs/api/KAPLAYOpt/#KAPLAYOpt-narrowPhaseCollisionAlgorithm",
+                url: prefixVersionUrl(
+                    "/docs/api/KAPLAYOpt/#KAPLAYOpt-narrowPhaseCollisionAlgorithm",
+                ),
             },
         ],
     },
@@ -45,11 +48,13 @@ export const changes: {
         links: [
             {
                 name: "RIP make()",
-                url: "https://kaplayjs.com/docs/api/ctx/make/",
+                url: prefixVersionUrl("/docs/api/ctx/make/", "3000"),
             },
             {
                 name: "Creating Objects",
-                url: "https://v4000.kaplayjs.com/docs/guides/game_objects/#creating-game-object-dynamically",
+                url: prefixVersionUrl(
+                    "/docs/guides/game_objects/#creating-game-object-dynamically",
+                ),
             },
         ],
     },
@@ -61,15 +66,17 @@ export const changes: {
         links: [
             {
                 name: "KAPLAY Option",
-                url: "https://v4000.kaplayjs.com/docs/api/KAPLAYOpt/#KAPLAYOpt-tagComponentIds",
+                url: prefixVersionUrl(
+                    "/docs/api/KAPLAYOpt/#KAPLAYOpt-tagComponentIds",
+                ),
             },
             {
                 name: "is()",
-                url: "https://v4000.kaplayjs.com/docs/api/GameObjRaw/#GameObjRaw-is",
+                url: prefixVersionUrl("/docs/api/GameObjRaw/#GameObjRaw-is"),
             },
             {
                 name: "has()",
-                url: "https://v4000.kaplayjs.com/docs/api/GameObjRaw/#GameObjRaw-has",
+                url: prefixVersionUrl("/docs/api/GameObjRaw/#GameObjRaw-has"),
             },
         ],
     },
@@ -80,7 +87,7 @@ export const changes: {
             "There were many changes to the API, mainly as a quality of life improvements or little options and features added here and there, that didn't make it back to the v3001",
         guide: {
             label: "Learn more in Migration Guide",
-            url: "https://v4000.kaplayjs.com/docs/guides/migration-4000/",
+            url: prefixVersionUrl("/docs/guides/migration-4000"),
         },
     },
 ];

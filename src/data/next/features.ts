@@ -1,3 +1,4 @@
+import prefixVersionUrl from "@/util/prefixVersionUrl";
 import { type SpriteCrewAsset } from "@kaplayjs/crew";
 
 export const features: {
@@ -19,12 +20,12 @@ export const features: {
             "Create prefabricated objects with built-in serialization, ready to be reused or saved & loaded as-is",
         icon: "copy",
         guide: {
-            url: "https://v4000.kaplayjs.com/docs/guides/prefabs/",
+            url: prefixVersionUrl("/docs/guides/prefabs"),
         },
         links: [
             {
                 name: "createPrefab()",
-                url: "https://v4000.kaplayjs.com/docs/api/ctx/createPrefab/",
+                url: prefixVersionUrl("/docs/api/ctx/createPrefab"),
             },
         ],
     },
@@ -34,7 +35,7 @@ export const features: {
             "Draw a picture composed of any primitives or sprites optimally by skipping the repeated drawing pipeline and render to framebuffer",
         icon: "art",
         guide: {
-            url: "https://v4000.kaplayjs.com/docs/guides/picture/",
+            url: prefixVersionUrl("/docs/guides/picture"),
         },
         links: [
             {
@@ -51,15 +52,15 @@ export const features: {
         links: [
             {
                 name: "Area Shape",
-                url: "https://v4000.kaplayjs.com/docs/api/AreaCompOpt/?preview=Shape",
+                url: prefixVersionUrl("/docs/api/AreaCompOpt/?preview=Shap"),
             },
             {
                 name: "Circle()",
-                url: "https://v4000.kaplayjs.com/docs/api/Circle/",
+                url: prefixVersionUrl("/docs/api/Circle"),
             },
             {
                 name: "Ellipse()",
-                url: "https://v4000.kaplayjs.com/docs/api/Ellipse/",
+                url: prefixVersionUrl("/docs/api/Ellipse"),
             },
         ],
     },
@@ -69,12 +70,12 @@ export const features: {
             "Create a custom cursor with ability to control it even without a mouse! More accessibility for cursor-based games",
         icon: "cursor",
         guide: {
-            url: "https://v4000.kaplayjs.com/docs/guides/fake_mouse/",
+            url: prefixVersionUrl("/docs/guides/fake_mouse"),
         },
         links: [
             {
                 name: "Component",
-                url: "https://v4000.kaplayjs.com/docs/api/ctx/fakeMouse/",
+                url: prefixVersionUrl("/docs/api/ctx/fakeMouse"),
             },
             {
                 name: "Example",
@@ -88,12 +89,12 @@ export const features: {
             "Render a video right to the canvas easily using the built-in `video()` component",
         icon: "play",
         guide: {
-            url: "https://v4000.kaplayjs.com/docs/guides/video/",
+            url: prefixVersionUrl("/docs/guides/video"),
         },
         links: [
             {
                 name: "Component",
-                url: "https://v4000.kaplayjs.com/docs/api/ctx/video/",
+                url: prefixVersionUrl("/docs/api/ctx/video"),
             },
             {
                 name: "Example",
@@ -107,7 +108,9 @@ export const features: {
         links: [
             {
                 name: "setParent()",
-                url: "https://v4000.kaplayjs.com/docs/api/GameObjRaw/#GameObjRaw-setParent",
+                url: prefixVersionUrl(
+                    "/docs/api/GameObjRaw/#GameObjRaw-setParen",
+                ),
             },
         ],
     },

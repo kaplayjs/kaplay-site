@@ -9,7 +9,7 @@ import Banner from "@/components/Navbar/Banner.astro";
 import Messages from "@/components/Util/Messages.astro";
 import People from "@/components/Util/People.astro";
 import NavbarPage from "@/layouts/NavbarPage.astro";
-import isVersion from "@/util/isVersion";
+import prefixVersionUrl from "@/util/prefixVersionUrl";
 import { assets } from "@kaplayjs/crew";
 ---
 
@@ -26,7 +26,7 @@ import { assets } from "@kaplayjs/crew";
         <link rel="preconnect" href="https://unpkg.com" />
     </Fragment>
 
-    <Banner href={(isVersion("3000") ? "https://v4000.kaplayjs.com" : "") + "/next/"} slot="banner">
+    <Banner href={prefixVersionUrl("/next")} slot="banner">
         <CrewBadge crew="firing" bgColor="orange" borderColor="yellow">v4000</CrewBadge>
         <p>It's time to try out the <span class="text-rose-900">@next</span> version of KAPLAY!</p>
     </Banner>
