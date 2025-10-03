@@ -1,0 +1,125 @@
+import prefixVersionUrl from "@/util/prefixVersionUrl";
+import { type SpriteCrewAsset } from "@kaplayjs/crew";
+
+export const features: {
+    title: string;
+    description?: string;
+    icon: SpriteCrewAsset;
+    guide?: {
+        url: string;
+        label?: string;
+    };
+    links?: {
+        name: string;
+        url: string;
+    }[];
+}[] = [
+    {
+        title: "Prefabs & Serialization",
+        description:
+            "Create prefabricated objects with built-in serialization, ready to be reused or saved & loaded as-is",
+        icon: "copy",
+        guide: {
+            url: prefixVersionUrl("/docs/guides/prefabs"),
+        },
+        links: [
+            {
+                name: "createPrefab()",
+                url: prefixVersionUrl("/docs/api/ctx/createPrefab"),
+            },
+        ],
+    },
+    {
+        title: "Picture API",
+        description:
+            "Draw a picture composed of any primitives or sprites optimally by skipping the repeated drawing pipeline and render to framebuffer",
+        icon: "art",
+        guide: {
+            url: prefixVersionUrl("/docs/guides/picture"),
+        },
+        links: [
+            {
+                name: "Example",
+                url: "https://play.kaplayjs.com/?example=picture",
+            },
+        ],
+    },
+    {
+        title: "Circle & Ellipse Collision Shapes",
+        description:
+            "Circular colliders were previously not possible in the v3001. Now you can use a `new Circle()` or `Ellipse()` as area shapes",
+        icon: "portal",
+        links: [
+            {
+                name: "Area Shape",
+                url: prefixVersionUrl("/docs/api/AreaCompOpt/?preview=Shap"),
+            },
+            {
+                name: "Circle()",
+                url: prefixVersionUrl("/docs/api/Circle"),
+            },
+            {
+                name: "Ellipse()",
+                url: prefixVersionUrl("/docs/api/Ellipse"),
+            },
+        ],
+    },
+    {
+        title: "Fake Mouse",
+        description:
+            "Create a custom cursor with ability to control it even without a mouse! More accessibility for cursor-based games",
+        icon: "cursor",
+        guide: {
+            url: prefixVersionUrl("/docs/guides/fake_mouse"),
+        },
+        links: [
+            {
+                name: "Component",
+                url: prefixVersionUrl("/docs/api/ctx/fakeMouse"),
+            },
+            {
+                name: "Example",
+                url: "https://play.kaplayjs.com/?example=fakeMouse",
+            },
+        ],
+    },
+    {
+        title: "Video",
+        description:
+            "Render a video right to the canvas easily using the built-in `video()` component",
+        icon: "play",
+        guide: {
+            url: prefixVersionUrl("/docs/guides/video"),
+        },
+        links: [
+            {
+                name: "Component",
+                url: prefixVersionUrl("/docs/api/ctx/video"),
+            },
+            {
+                name: "Example",
+                url: "https://play.kaplayjs.com/?example=video",
+            },
+        ],
+    },
+    {
+        title: "Object Parent Changing",
+        icon: "heart",
+        links: [
+            {
+                name: "setParent()",
+                url: prefixVersionUrl(
+                    "/docs/api/GameObjRaw/#GameObjRaw-setParen",
+                ),
+            },
+        ],
+    },
+    {
+        title: "Improved TypeScript & Intellisense",
+        icon: "check_mark",
+    },
+    {
+        title: "Full ECS under the hood",
+        icon: "home",
+    },
+];

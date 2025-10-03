@@ -12,12 +12,14 @@ const { href, class: className } = Astro.props;
 <a
     href={href}
     class={cn([
-        "block px-2 pb-3 font-semibold leading-tight bg-gradient-to-r from-[#abdd64] via-[#ffae84] to-[#bf7adf] [&+nav]:rounded-t-xl min-w-0 [&+nav]:-mt-3",
+        "block px-2 pb-3 font-semibold bg-gradient-to-r from-[#abdd64] via-[#ffae84] to-[#bf7adf] [&+nav]:rounded-t-xl min-w-0 [&+nav]:-mt-3",
         "hover:[&>*]:scale-[1.02]",
         className,
     ])}
 >
-    <div class="flex items-center justify-center gap-x-2 gap-y-0.5 mx-auto py-1.5 w-full max-w-[72.5rem] text-sm text-neutral transition-transform">
+    <div
+        class="flex items-center justify-center gap-x-2 gap-y-0.5 mx-auto py-1.5 w-full max-w-[72.5rem] text-sm leading-tight text-neutral transition-transform"
+    >
         <slot />
     </div>
 </a>

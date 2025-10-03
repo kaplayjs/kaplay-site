@@ -10,45 +10,26 @@ import Info from "@/components/Content/Info.astro";
 
 # v3001 to v4000 Migration
 
-<Info crew="gun" title="Important!">
-This guide is currently based on `master` KAPLAY version (the one that match the last GitHub commit), it's version we recommend
-for all developers trying out v4000!
-</Info>
+Update KAPLAY library like this:
+
+```sh
+npm install kaplay@next
+```
+
+Then follow along. Not everything mentioned below will affect your game. We are
+listing everything that got removed, renamed, changed, and some of the [upcoming
+changes](#upcoming-changes) at the very end.
+
+---
 
 ## Removed: `make()`
 
-`make()` is an internal function that KAPLAY uses for creating the `GameObjRaw` interface
-without adding it to the tree. If you was using it, it was for one of these 2 reasons:
+`make()` is an internal function that KAPLAY uses for creating the `GameObjRaw`
+interface without adding it to the tree. If you were using it, it was for one
+of these two reasons:
 
-1. If you were using it for prefab-like factory functions, **like this:**
-
-```js
-// BEFORE
-const makeEnemy = (x = 100, y = 100) => {
-    const obj = make([
-        sprite("alien"),
-        pos(x, y),
-    ]);
-
-    return obj;
-};
-
-const car1 = add(makeEnemy()); // (100, 100)
-const car2 = add(makeEnemy(400, 200)); // (400, 200)
-```
-
-```js
-// NOW
-const enemy = add([sprite("alien")]);
-const enemyPrefab = createPrefab("enemy", enemy);
-
-const enemy1 = addPrefab("enemy"); // (100, 100)
-const enemy2 = addPrefab("enemy", [pos(400, 200)]); // (400, 200)
-```
-
-Check the [Prefab guide](/docs/guides/prefabs) for more information.
-
-1. If you were using it for "modifying" the object before its "creation", **like this:**
+1. Using it for "modifying" the object before its "creation", can be updated
+   like this:
 
 ```js
 // BEFORE
@@ -59,8 +40,238 @@ obj.sprite = "mark";
 add(obj);
 ```
 
-TODO: Do the now
+```js
+// AFTER
+const makeObj = () => [sprite("bean")];
 
-## Renamed: `onShow`, `onHidden`, `onResize`
+const obj = add([...makeObj(), sprite("mark")]);
+```
 
-TODO
+```js
+// Or literally, modifying an object on add()
+const makeObj = () => [
+    sprite("bean"),
+    {
+        add() {
+            this.sprite = "mark";
+        },
+    },
+];
+
+const obj = add(makeObj());
+```
+
+2. Using it for prefab-like factory functions, can be updated like this:
+
+```js
+// BEFORE
+const makeEnemy = (x = 100, y = 100) => {
+    const obj = make([sprite("alien"), pos(x, y)]);
+
+    return obj;
+};
+
+const enemy1 = add(makeEnemy()); // (100, 100)
+const enemy2 = add(makeEnemy(400, 200)); // (400, 200)
+```
+
+```js
+// AFTER
+const makeEnemy = (x = 100, y = 100) => {
+    return [sprite("alien"), pos(x, y)];
+};
+
+const enemy1 = add(makeEnemy()); // (100, 100)
+const enemy2 = add(makeEnemy(400, 200)); // (400, 200)
+```
+
+Factory functions are the easiest drop-in replacement for `make()`. Besides
+returning an array of objects, you can also call `add()` right inside and
+return it. Learn more about
+[Creating game object dynamically](/docs/guides/game_objects#creating-game-object-dynamically).
+
+Or, create new objects by copying existing ones **using prefabs**:
+
+```js
+const enemy1 = add([sprite("alien"), pos(100)]); // (100, 100)
+
+const enemyPrefab = createPrefab("enemy", enemy);
+
+const enemy2 = addPrefab("enemy", [pos(400, 200)]); // (400, 200)
+```
+
+Prefabs can also load serialized objects and a lot more! Check the
+[Prefab guide](/docs/guides/prefabs) for more information.
+
+## Removed: `loadPedit()`
+
+Dropped support for now legacy assets created in pedit editor that no longer
+exists. There is no replacement for it. Use regular images instead.
+
+---
+
+## Changed: Component IDs are no longer tags
+
+Before, used components would add their IDs as tags along the user defined
+tags. This behavior could cause some collisions or unexpected results.
+
+There was a new API introduced while keeping the original usability. You can
+either update your code, or revert this behavior.
+
+1. Replace every use of `obj.is()` when checking for component presence, to
+   `obj.has()`:
+
+```js
+// BEFORE
+obj.is("sprite");
+```
+
+```js
+// AFTER
+obj.has("sprite");
+```
+
+Also, clearly the `obj.tags` array won't include the component IDs either.
+Currently, there is no way to retrieve an array of used component IDs.
+
+Alternatively, you can add them as tags manually where needed (e.g.
+`"sprite"`) if it makes sense to you. More in [Tags guide](/docs/guides/tags/).
+
+2. If you have much more complicated use case, you can revert it to the original
+   behavior with `tagComponentIds` KAPLAY Option:
+
+```js
+kaplay({
+    tagComponentIds: true,
+});
+```
+
+## Changed: Global z-index sorting
+
+Objects using `z()` component are now sorted globally, meaning any child can be
+drawn above any parent siblings, or any object (within the same `layer()` if used).
+
+Previously, children of objects using `z()` would inherit the drawing order and
+its scope, so they could not escape and draw in order higher than the parent
+itself, or lower for that matter (behind the parent).
+
+**If you are using `z()` on children objects, you might run into an issue that
+children of one object are now drawn above the other object siblings despite
+the first parent being drawn first/lower.**
+
+You will have to solve it by setting higher `z()` for parent objects as well as
+needed, or start using `layer()` more regularly. Objects of a layer below another
+layer still can't be drawn above the higher order layer as they are creating a
+separate stacking context. This will vary from case to case depending on your
+game, so there is not an ultimate solution. You can get more help on our
+[Discord](https://discord.com/invite/aQ6RuQm3TF) with your use case.
+
+You can also try to ensure the order of components/children drawn/added if
+possible and skip z-sorting altogether. Suitable for simple cases like this:
+
+```js
+// Within the same object, yellow rect will be behind the text
+const marker = add([
+    {
+        draw() {
+            drawRect({
+                width: this.width,
+                height: this.height,
+                color: YELLOW,
+            });
+        },
+    },
+    text("Ohhi!"),
+    color(BLACK),
+]);
+```
+
+For more complex objects, you could still create an "empty" wrapping parent
+object with children added in the right order as well.
+
+## Changed: GJK is now the default collision algorithm replacing SAT
+
+GJK (Gilbert-Johnson-Keerthi) is faster and more versatile algorithm allowing
+any shapes unlike SAT (Separating Axis Theorem). This allows the use of circle
+and ellipse as collision shapes.
+
+If you are noticing the change of behavior in collisions, this might be the
+reason. Especially for free roaming objects on level based platformers (depending
+on how implemented).
+
+If it affects you and you don't know how to mitigate it, you can revert it to
+the previous SAT algorithm with this KAPLAY option:
+
+```js
+kaplay({
+    narrowPhaseCollisionAlgorithm: "sat",
+});
+```
+
+## Changed: Health component API
+
+`health()` component API was streamlined to use getter/setter property instead
+of helper methods to update the `obj.hp` value.
+
+```js
+// BEFORE
+obj.heal();
+obj.hurt();
+obj.heal(3);
+obj.hurt(2);
+```
+
+```js
+// AFTER
+obj.hp++;
+obj.hp--;
+obj.hp += 3;
+obj.hp -= 2; // or += -2
+```
+
+Previously, `obj.hp` was only a getter property.
+
+The other methods like events `obj.onHeal()`, `obj.onHurt()`, etc. remain
+unchanged. Read more in `HealthComp` API docs.
+
+## Changed: Shaders alpha channel behavior
+
+Shaders now require **premultiplied alpha**. It improves performance and allows
+for correct blending/filtering at object edges avoiding color fringes.
+
+```glsl
+// BEFORE
+vec4(0, 1.0, 0, u_alpha);
+```
+
+RGB kept original intensity and was multiplied by alpha during blending, which
+could cause artifacts. E.g. green channel going from `1` to `1 * u_alpha`.
+
+Now, without premultiplication, it would stay solid green.
+
+```glsl
+// AFTER
+vec4(0, 1.0 * u_alpha, 0, u_alpha); // (0, 0.5, 0, 0.5) if u_alpha = 0.5
+```
+
+Premultiply RGB values by alpha in your shaders manually to ensure correct and
+consistent transparency.
+
+---
+
+## Upcoming changes
+
+<Info crew="github" title="Important!">
+    Following changes are based on `master` KAPLAY version (the one that matches the last GitHub commit). It can be installed with `npm i
+    github:kaplayjs/kaplay`
+</Info>
+
+### Renamed: Global events (WIP)
+
+<span class="head-badge">Not implemented yet</span>
+
+`onShow()` `→` `onTabShow()`
+
+`onHide()` `→` `onTabHide()`
+
+`onResize()` `→` `onTabResize()`

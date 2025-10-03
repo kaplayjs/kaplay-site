@@ -8,11 +8,16 @@ and this project adheres to
 
 ## [unreleased]
 
-## [1.5.5] - 2025-09-22
+## [1.5.5] - 2025-10-03
 
 ### Added
 
 - Banner to try out KAPLAY v4000 was added to landing page - @imaginarny
+- New /next page with KAPLAY v4000 features, changes, and FAQ was added - @imaginarny
+
+### Changed
+
+- Migration guide for v4000 was updated - @imaginarny
 
 ## [1.5.4] - 2025-09-22
 

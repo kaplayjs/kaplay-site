@@ -1,0 +1,77 @@
+---
+import { cn } from "@/util/cn";
+import { assets, type SpriteCrewAsset } from "@kaplayjs/crew";
+import { marked } from "marked";
+
+type Props = {
+    data: {
+        title: string;
+        description?: string;
+        icon: SpriteCrewAsset;
+        guide?: {
+            url: string;
+            label?: string;
+        };
+        links?: {
+            url: string;
+            name?: string;
+        }[];
+    };
+    class?: string;
+};
+
+const { data, class: className } = Astro.props;
+const { title, description, guide, links, icon } = data;
+
+marked.use({
+    useNewRenderer: true,
+    renderer: {
+        codespan: ({ text }) => `<code class="bg-base-content/5 px-1 py-0.5 rounded-md break-words">${text}</code>`,
+    },
+});
+---
+
+{
+    Astro.slots.has("default") || description ? (
+        <div class={cn(["card flex-1 basis-5/12 w-full min-w-0 bg-base-200 rounded-[inherit]", className])}>
+            <div class="card-body overflow-x-hidden">
+                <div class="flex justify-between gap-2">
+                    <h3 class="card-title">{title}</h3>
+                    <img class="h-6 sm:h-8 w-auto" src={assets[icon].outlined} width="32" height="32" aria-hidden="true" />
+                </div>
+
+                <slot>{description && <p class="max-w-3xl" set:html={marked.parseInline(description)} />}</slot>
+
+                {(guide || links) && (
+                    <div class="card-actions mt-2">
+                        {guide && (
+                            <a href={guide.url} target="_blank" class="btn btn-sm btn-ghost text-base-subheading bg-green-300/20">
+                                {guide?.label ?? "Read Guide"}
+                            </a>
+                        )}
+
+                        {links?.map((link) => (
+                            <a href={link.url} target="_blank" class="btn btn-sm btn-ghost text-base-subheading bg-base-content/10">
+                                {link.name}
+                            </a>
+                        ))}
+                    </div>
+                )}
+            </div>
+        </div>
+    ) : (
+        <div class={cn(["flex gap-2 items-center justify-between flex-1 basis-52 px-8 py-6 bg-base-200 rounded-[inherit]", className])}>
+            <div class="flex flex-wrap items-center gap-2">
+                <h3 class="font-semibold">{title}</h3>
+
+                {links?.map((link) => (
+                    <a href={link.url} target="_blank" class="btn btn-xs btn-ghost text-base-subheading bg-base-content/10">
+                        {link.name}
+                    </a>
+                ))}
+            </div>
+
+            <img class="h-6 w-auto object-scale-down" src={assets[icon].outlined} width="40" height="40" aria-hidden="true" />
+        </div>
+    )
+}

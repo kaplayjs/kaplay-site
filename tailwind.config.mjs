@@ -38,12 +38,22 @@ export default {
                 "base-highlight":
                     "color-mix(in oklch, oklch(var(--bc)) 30%, oklch(var(--b1)))",
             },
+            animation: {
+                "scale-in":
+                    "scaleIn 0.4s forwards cubic-bezier(0.33, 1, 0.68, 1)",
+            },
+            keyframes: {
+                scaleIn: {
+                    "0%": { transform: "scale(0)", opacity: "0" },
+                    "100%": { transform: "scale(1)", opacity: "1" },
+                },
+            },
         },
     },
     plugins: [
         require("daisyui"),
         require("@tailwindcss/typography"),
-        ({ addVariant }) => addVariant('hover-hover', '@media (hover: hover)'),
+        ({ addVariant }) => addVariant("hover-hover", "@media (hover: hover)"),
     ],
     /** @type {import('daisyui').Config} */
     daisyui: {

@@ -1,0 +1,239 @@
+---
+import LandButton from "@/components/Land/LandButton.astro";
+import FriendsBelow from "@/components/Util/FriendsBelow.astro";
+import NavbarPage from "@/layouts/NavbarPage.astro";
+import { Code } from "astro/components";
+import { assets } from "@kaplayjs/crew";
+import Messages from "@/components/Util/Messages.astro";
+import { marked } from "marked";
+import { features, changes, faq } from "@/data/next";
+import FeatureCard from "@/components/Util/FeatureCard.astro";
+import prefixVersionUrl from "@/util/prefixVersionUrl";
+---
+
+<NavbarPage
+    meta={{
+        title: "KAPLAY.js, the next version of library v4000",
+        description: "The next version of KAPLAY library, new features, and differences.",
+        keywords: "kaplay, kaboom.js, kaplay.js, game, library, javascript, easy, simple, html5, html5 games",
+    }}
+    pageClass="scroll-smooth scroll-pt-6"
+>
+    <div
+        class="pt-px [--overlow-h:4.5rem] mb-[var(--overlow-h)] bg-base-200/80 bg-image-pattern [background-position:center_bottom_-25px] bg-clip-content border-b border-b-base-content/5"
+    >
+        <div class="flex flex-col sm:gap-4 pt-7 sm:pt-14 px-7 bg-gradient-to-b via-base-200/80 from-base-200 to-transparent rounded-xl">
+            <header class="w-full max-w-6xl mx-auto">
+                <div class="flex flex-wrap sm:flex-nowrap items-center gap-y-4">
+                    <div class="flex-1 basis-1/2 min-w-fit sm:pr-6">
+                        <strong class="font-bold text-[#ea6262]">@next version</strong>
+                        <h1 class="flex flex-wrap items-baseline gap-[0.25em] text-white text-4xl sm:text-5xl font-black md:leading-[3.2rem]">
+                            KAPLAY
+
+                            <span class="flex items-end gap-[0.25em] font-hand text-[106%] text-primary">
+                                <img class="shrink-0 h-8 sm:h-10 w-auto" src={assets.firing.outlined} width="40" height="40" aria-hidden="true" />
+                                <span>v4000</span>
+                            </span>
+                        </h1>
+
+                        <div class="flex items-center gap-2 -mx-2 -mb-2">
+                            <div class="inline-flex">
+                                <Code lang="sh" code="npx create-kaplay myGame -v next" wrap={true} class="text-xs [--rounded-box:0.75rem]" />
+                            </div>
+
+                            <span class="font-mono font-bold text-xs leading-none text-base-content/50">or</span>
+
+                            <div class="inline-flex">
+                                <Code lang="sh" code="npm i kaplayjs@next" wrap={true} class="text-xs [--rounded-box:0.75rem]" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 basis-1/2 -mx-4 sm:mx-0 opacity-0 scale-0 origin-bottom-left animate-scale-in [animation-delay:0.2s]">
+                        <div class="text-sm md:text-base px-4 py-3 rounded-3xl rounded-bl-md bg-base-content/10">
+                            <p
+                                >The next version of KAPLAY.js library is v4000. Learn about <a href="#features" class="link-hover font-medium text-white"
+                                    >new features</a
+                                > and <a href="#changes" class="link-hover font-medium text-white">notable changes</a> compared to the previous v3001.</p
+                            >
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <section class="-mb-[var(--overlow-h)]">
+                <div class="w-auto max-w-[78rem] -mx-5 sm:mx-auto">
+                    <FriendsBelow
+                        friends={["marks_legend", "btfly", "history"]}
+                        offset={2}
+                        hoverable={false}
+                        innerClass="px-9 [&_.contents>*]:justify-between [&_.friends>*]:basis-[4rem]"
+                    >
+                        <div class="p-1 bg-gradient-to-br from-primary via-rose-400 to-violet-400 rounded-box shadow-2xl shadow-neutral/50">
+                            <div class="flex flex-wrap sm:flex-nowrap justify-between gap-4 p-4 sm:p-10 bg-base-200/[98%] rounded-xl">
+                                <LandButton class="w-full sm:w-auto" kind="yellowish" href={prefixVersionUrl("/docs/guides/install")}>How to install</LandButton
+                                >
+                                <div class="hidden sm:flex divider grow self-center my-0"></div>
+                                <LandButton class="w-full sm:w-auto" kind="greenish" href={prefixVersionUrl("/docs/guides/migration-4000")}
+                                    >Migration Guide</LandButton
+                                >
+                                <div class="hidden sm:flex divider grow self-center my-0"></div>
+                                <LandButton class="w-full sm:w-auto" kind="blueish" href={prefixVersionUrl("/changelog")}>Full Changelog</LandButton>
+                            </div>
+                        </div>
+                    </FriendsBelow>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <section id="features" class="px-7">
+        <div class="w-full max-w-6xl mx-auto space-y-4">
+            <h2 class="font-bold text-3xl text-white"><span class="font-hand text-[106%] text-[#ea6262]">Hottest</span> Features</h2>
+
+            <div class="flex flex-wrap flex-col sm:flex-row gap-px p-px bg-base-50 rounded-xl -mx-2">
+                {features.filter((f) => f.description).map((feature) => <FeatureCard data={feature} />)}
+
+                {
+                    features.filter((f) => !f.description).length > 0 && (
+                        <div class="flex flex-wrap gap-px w-full rounded-[inherit]">
+                            {features
+                                .filter((f) => !f.description)
+                                .map((feature) => (
+                                    <FeatureCard data={feature} />
+                                ))}
+                        </div>
+                    )
+                }
+
+                <FeatureCard
+                    class="basis-full bg-base-300"
+                    data={{
+                        title: "Many more features coming soon!",
+                        icon: "history",
+                    }}
+                >
+                    <p
+                        >You can look forward to stuff like <strong class="font-medium text-base-subheading">Assets unloading</strong>, reworked <strong
+                            class="font-medium text-base-subheading">Hover</strong
+                        > & similar events like <strong class="font-medium text-base-subheading">gestures</strong>, <strong
+                            class="font-medium text-base-subheading">UI</strong
+                        > components, and much more!</p
+                    >
+                </FeatureCard>
+            </div>
+        </div>
+    </section>
+
+    <section id="changes" class="px-7">
+        <div class="w-full max-w-6xl mx-auto space-y-4">
+            <div class="flex flex-wrap items-baseline gap-x-2">
+                <h2 class="font-bold text-3xl text-white">Notable <span class="font-hand text-[106%] text-[#ffb879]">Changes</span></h2>
+                <p class="font-bold text-xl">Compared to v3001</p>
+            </div>
+
+            <div class="flex flex-wrap flex-col sm:flex-row gap-px p-px bg-base-50 rounded-xl -mx-2">
+                {changes.filter((c) => c.description).map((change) => <FeatureCard data={change} />)}
+
+                {
+                    changes.filter((c) => !c.description).length > 0 && (
+                        <div class="flex flex-wrap gap-px w-full rounded-[inherit]">
+                            {changes
+                                .filter((c) => !c.description)
+                                .map((change) => (
+                                    <FeatureCard data={change} />
+                                ))}
+                        </div>
+                    )
+                }
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="-mb-20 bg-base-200 bg-image-pattern bg-bottom">
+        <div class="px-7 pb-40 bg-gradient-to-b from-base-100 via-base-100/80 to-base-transparent rounded-xl">
+            <div class="relative w-full max-w-6xl mx-auto">
+                <div class="font-hand font-black leading-none text-8xl -my-5 px-6 text-base-content/10">FAQ</div>
+
+                <div class="flex flex-wrap flex-col sm:flex-row gap-px p-px bg-base-50 rounded-xl -mx-2">
+                    <div class="flex flex-col gap-px flex-1 basis-5/12 rounded-[inherit]">
+                        <div class="card flex-1 basis-5/12 bg-base-300 rounded-[inherit]">
+                            <div class="card-body flex justify-between gap-6">
+                                <div class="flex flex-row flex-wrap justify-between gap-4">
+                                    <h2 class="font-bold text-2xl min-[440px]:text-3xl lg:text-4xl text-white">
+                                        Frequently Asked
+                                        <span class="flex items-baseline gap-1 font-hand text-[#6bc96c] text-[110%]">
+                                            <img
+                                                class="relative top-1 shrink-0 w-6 min-[440px]:w-8 lg:w-9 h-auto"
+                                                src={assets.question_mark.outlined}
+                                                width="32"
+                                                height="32"
+                                                aria-hidden="true"
+                                            />
+                                            <span>Questions</span>
+                                        </span>
+                                    </h2>
+
+                                    <img
+                                        class="-ml-4 w-14 min-[440px]:w-20 lg:w-24 h-auto object-contain pixelated"
+                                        src={assets.beenking.outlined}
+                                        width="96"
+                                        height="81"
+                                        aria-hidden="true"
+                                    />
+                                </div>
+
+                                <div class="flex flex-col justify-between gap-2">
+                                    <h3 class="font-bold text-md sm:text-lg tracking-widest">TL;DR</h3>
+
+                                    <div class="flex items-center bg-base-200 -m-7 mt-0 pt-4 px-4 border border-base-content/5 rounded-lg">
+                                        <img class="mb-4 h-6 md:h-10 animate-scale-in" src={assets.mark.outlined} aria-hidden="true" />
+
+                                        <div class="relative w-full text-sm md:text-base">
+                                            <div class="[:not(:has(.is-paused))_&]:hidden absolute top-1/2 left-4 -mt-2 -translate-y-1/2 loading loading-dots"
+                                            ></div>
+                                            <div class="[&>*]:flex-row">
+                                                <Messages messages={["Should I try v4000?", "Absolutely."]} />
+                                            </div>
+                                        </div>
+
+                                        <img class="mb-4 h-6 md:h-10 animate-scale-in" src={assets.pog.outlined} aria-hidden="true" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col gap-px flex-1 basis-5/12 rounded-[inherit]">
+                        {
+                            faq.map(({ question, answer }) => (
+                                <div class="collapse collapse-arrow px-4 py-3 bg-base-200 rounded-[inherit] focus-within:z-[1]">
+                                    <input class="peer" type="radio" name="faq" autocomplete="off" />
+                                    <h3 class="collapse-title text-xl font-medium peer-hover:text-white peer-checked:text-white transition-colors">
+                                        {question}
+                                    </h3>
+                                    <div class="collapse-content">
+                                        <p class="max-w-3xl" set:html={marked.parseInline(answer)} />
+                                    </div>
+                                </div>
+                            ))
+                        }
+                    </div>
+                </div>
+
+                <div class="flex flex-col justify-center items-center mt-12">
+                    <h2 class="font-hand font-black leading-none text-5xl -mb-1.5 px-6 text-base-content/10">Let's GO!</h2>
+
+                    <div class="p-1 bg-gradient-to-br from-primary via-rose-400 to-violet-400 rounded-box shadow-2xl shadow-neutral/50">
+                        <div class="flex flex-wrap sm:flex-nowrap justify-center gap-4 bg-base-300 p-5 pb-6 rounded-xl border border-base-content/10">
+                            <LandButton class="w-full sm:w-auto" kind="yellowish" href={prefixVersionUrl("/docs/guides/install")}>Install Now</LandButton>
+                            <LandButton class="w-full sm:w-auto" kind="greenish" href={prefixVersionUrl("/docs/guides/migration-4000")}>Migrate Game</LandButton
+                            >
+                            <LandButton class="w-full sm:w-auto" kind="blueish" href={prefixVersionUrl("/changelog")}>View Changelog</LandButton>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</NavbarPage>
