@@ -1,7 +1,7 @@
 {
     "name": "kaplay-site",
     "type": "module",
-    "version": "1.5.5",
+    "version": "1.5.6",
     "scripts": {
         "install": "cd kaplay && pnpm i",
         "dev": "npm run doc && astro dev",

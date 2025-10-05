@@ -1,0 +1,13 @@
+---
+import type { DataTypeProps } from "../Utils/types.ts";
+
+type TypeDataObjectKeyword = {
+    kind: "ObjectKeyword";
+};
+
+interface Props extends DataTypeProps {
+    data: TypeDataObjectKeyword;
+}
+---
+
+<span data-dg-object-keyword data-dg-primitive>object</span>

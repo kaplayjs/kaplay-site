@@ -13,6 +13,7 @@ import DGBooleanKeyword from "./Keywords/DGBooleanKeyword.astro";
 import DGNullKeyword from "./Keywords/DGNullKeyword.astro";
 import DGNumberKeyword from "./Keywords/DGNumberKeyword.astro";
 import DGStringKeyword from "./Keywords/DGStringKeyword.astro";
+import DGObjectKeyword from "./Keywords/DGObjectKeyword.astro";
 import DGVoidKeyword from "./Keywords/DGVoidKeyword.astro";
 import EnumMember from "./Other/DGEnumMember.astro";
 import ParenthesizedType from "./Other/ParenthesizedType.astro";
@@ -131,6 +132,8 @@ const kind = data?.kind;
                 return <DGUndefinedKeyword data={data} depth={depth} />;
             case "UnknownKeyword":
                 return <DGUnknownKeyword data={data} depth={depth} />;
+            case "ObjectKeyword":
+                return <DGObjectKeyword data={data} depth={depth} />;
             case "ThisType":
                 return <DGThisType data={data} depth={depth} />;
 

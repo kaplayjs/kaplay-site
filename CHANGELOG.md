@@ -6,7 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [unreleased]
+## [1.5.6] - 2025-10-5
+
+### Fixed
+
+- Guide on Guides had wrong instructions to setup the repo - @lajbel
+- Now ObjectKeyword is properly rendered in API Docs - @lajbel
 
 ## [1.5.5] - 2025-10-03
 
