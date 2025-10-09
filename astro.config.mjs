@@ -15,12 +15,12 @@ import { defineConfig } from "astro/config";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeKatex from "rehype-katex";
 import rehypeSlug from "rehype-slug";
+import remarkGithub from "remark-github";
 import remarkMath from "remark-math";
 import kaplayPackageJson from "./kaplay/package.json";
 import websitePackageJson from "./package.json";
 import { rehypeKAPLAY } from "./plugins/rehypeKAPLAY";
 import { rehypeWrapTables } from "./plugins/rehypeWrap";
-
 // https://astro.build/config
 export default defineConfig({
     site: "https://kaplayjs.com",
@@ -83,7 +83,10 @@ export default defineConfig({
                 transformerNotationWordHighlight(),
             ],
         },
-        remarkPlugins: [remarkMath],
+        remarkPlugins: [remarkMath, [remarkGithub, {
+            // @ts-ignore
+            repository: "kaplayjs/kaplay",
+        }]],
         rehypePlugins: [
             rehypeSlug,
             [rehypeAutolinkHeadings, {
