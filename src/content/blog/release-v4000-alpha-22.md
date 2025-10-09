@@ -31,7 +31,7 @@ where before it has been impossible, until now:
 
 ![](https://i.imgur.com/5RbnIcd.gif)
 
-In the other side, we got **contraints**, a way to restrict the movement of
+In the other side, we got **constraints**, a way to restrict the movement of
 game objects.
 
 ![](https://i.imgur.com/rx9PLXM.gif)
