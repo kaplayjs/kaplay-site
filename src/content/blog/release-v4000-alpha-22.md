@@ -40,7 +40,7 @@ A lot of more was added, like improvements in **Animation API**, new **AI** meth
 and new ways to transform objects (with skew). Thanks to all contributors helping with KAPLAY.
 I'll leave you with the full changelog.
 
-## [4000.0.0-alpha.22] - 2025-10-7
+## [4000.0.0-alpha.22] - 2025-10-9
 
 ### Added
 
