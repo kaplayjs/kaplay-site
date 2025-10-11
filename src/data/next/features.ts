@@ -103,6 +103,18 @@ export const features: {
         ],
     },
     {
+        title: "Lifetime Scopes",
+        description:
+            "Decide when an Event Handler should be cancelled prefixing it with `app`, `scene`, or `obj`",
+        icon: "config",
+        links: [
+            {
+                name: "Example",
+                url: "https://play.kaplayjs.com/?example=scopes",
+            },
+        ],
+    },
+    {
         title: "Object Parent Changing",
         icon: "heart",
         links: [
