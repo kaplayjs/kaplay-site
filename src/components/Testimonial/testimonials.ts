@@ -8,7 +8,7 @@ export const testimonials = [
         social_user: "endel",
         social_type: "twitter",
         avatar: "/kaplayers/endel.webp",
-        friend: "mark",
+        friend: "glady",
         shape: "circle",
     },
     {
