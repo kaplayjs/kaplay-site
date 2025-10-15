@@ -8,6 +8,12 @@ and this project adheres to
 
 ## [unreleased]
 
+## [1.5.7] - 2025-10-15
+
+### Fixed
+
+- Fixed missing titles in legacy JSON API docs (used by Markbot) - @imaginarny
+
 ## [1.5.6] - 2025-10-5
 
 ### Fixed
