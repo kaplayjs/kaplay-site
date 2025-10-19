@@ -11,6 +11,7 @@
         "preview": "astro preview",
         "astro": "astro",
         "doc": "node scripts/buildDoc.js",
+        "lunaria:build": "lunaria build",
         "contributors": "node scripts/contributors.js",
         "generate:changelog": "node scripts/generateChangelog.js",
         "fmt": "dprint fmt",

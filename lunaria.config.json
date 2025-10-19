@@ -1,0 +1,25 @@
+{
+    "$schema": "./node_modules/@lunariajs/core/config.schema.json",
+    "repository": {
+        "name": "kaplayjs/kaplay-site",
+        "branch": "main",
+        "hosting": "github"
+    },
+    "files": [
+        {
+            "location": "content/guides/**/*.md",
+            "pattern": "content/guides/@lang/@path",
+            "type": "universal"
+        }
+    ],
+    "defaultLocale": {
+        "label": "English",
+        "lang": "en"
+    },
+    "locales": [
+        {
+            "label": "Spanish",
+            "lang": "es"
+        }
+    ]
+}
