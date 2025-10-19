@@ -4,6 +4,7 @@
         "title": "Localization Status",
         "description": "Online localization status dashboard of the KAPLAY Site."
     },
+    "outDir": "./dist/translation-status",
     "repository": {
         "name": "kaplayjs/kaplay-site",
         "branch": "main",

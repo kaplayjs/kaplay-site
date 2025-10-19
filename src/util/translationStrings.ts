@@ -1,5 +1,5 @@
-import navbarEn from "./en/navbar";
-import navbarEs from "./es/navbar";
+import navbarEn from "../locales/en/navbar";
+import navbarEs from "../locales/es/navbar";
 
 export default {
     en: {
