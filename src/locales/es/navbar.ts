@@ -1,6 +1,10 @@
 import prefixVersionUrl from "@/util/prefixVersionUrl";
 import { assets } from "@kaplayjs/crew";
+import { getRelativeLocaleUrl } from "astro:i18n";
 import type { NavbarLink } from "../en/navbar";
+
+// TODO: Make it being /about again
+const guidesUrl = getRelativeLocaleUrl("es", "/docs/guides/");
 
 export default {
     firstLinksRow: [{
@@ -31,8 +35,8 @@ export default {
             target: "_blank",
         },
         {
-            name: "Docs (EN)",
-            url: "/docs/guides/",
+            name: "Docs (1% ES)",
+            url: guidesUrl,
             highlight: "docs",
             icon: assets.api_book.outlined,
             dropdown: [

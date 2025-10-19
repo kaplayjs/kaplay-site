@@ -1,5 +1,9 @@
 {
     "$schema": "./node_modules/@lunariajs/core/config.schema.json",
+    "dashboard": {
+        "title": "Localization Status",
+        "description": "Online localization status dashboard of the KAPLAY Site."
+    },
     "repository": {
         "name": "kaplayjs/kaplay-site",
         "branch": "main",
@@ -14,7 +18,7 @@
         {
             "location": "src/locales/**/*.ts",
             "pattern": "src/locales/@lang/@path",
-            "type": "dictionary"
+            "type": "universal"
         }
     ],
     "defaultLocale": {
