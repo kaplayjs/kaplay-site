@@ -4,6 +4,7 @@
     "version": "1.5.7",
     "scripts": {
         "install": "npm run generate:changelog && cd kaplay && pnpm i",
+        "postinstall": "npm run doc",
         "dev": "npm run doc && astro dev",
         "start": "npm run doc && npm run contributors && astro dev",
         "build": "npm run doc && npm run contributors && npm run generate:changelog && astro check && astro build && pnpm run pagefind:build",

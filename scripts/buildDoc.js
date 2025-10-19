@@ -267,3 +267,11 @@ await fs.writeFile(
         compMap,
     }),
 );
+
+console.log(`
+KAPLAY.js TSC Docs built successfully. 🦖
+
++ doc.json
++ public/doc.json
++ src/data/comps.json
+`);
