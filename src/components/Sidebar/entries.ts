@@ -1,5 +1,5 @@
+import guidesData from "@/../content/guides/data.json";
 import doc from "@/../doc.json";
-import guidesData from "@/../guides/data.json";
 import { booksInfo } from "@/data/booksData";
 import {
     getCollection,

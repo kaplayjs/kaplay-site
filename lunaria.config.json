@@ -10,6 +10,11 @@
             "location": "content/guides/**/*.md",
             "pattern": "content/guides/@lang/@path",
             "type": "universal"
+        },
+        {
+            "location": "src/locales/**/*.ts",
+            "pattern": "src/locales/@lang/@path",
+            "type": "dictionary"
         }
     ],
     "defaultLocale": {
