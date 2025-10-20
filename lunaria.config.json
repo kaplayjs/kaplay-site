@@ -2,7 +2,8 @@
     "$schema": "./node_modules/@lunariajs/core/config.schema.json",
     "dashboard": {
         "title": "Localization Status",
-        "description": "Online localization status dashboard of the KAPLAY Site."
+        "description": "Online localization status dashboard of the KAPLAY Site.",
+        "customCss": ["./src/styles/lunaria.css"]
     },
     "outDir": "./dist/translation-status",
     "repository": {

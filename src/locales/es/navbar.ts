@@ -35,7 +35,7 @@ export default {
             target: "_blank",
         },
         {
-            name: "Docs (1% ES)",
+            name: "Docs",
             url: guidesUrl,
             highlight: "docs",
             icon: assets.api_book.outlined,
