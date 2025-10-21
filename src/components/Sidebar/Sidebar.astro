@@ -5,6 +5,7 @@ import { getBlogEntries, getBookEntries, getDocEntries, getGuidesEntries } from 
 import SidebarEntries from "./SidebarEntries.astro";
 import SidebarContentNav from "./SidebarContentNav.astro";
 import { cn } from "@/util/cn";
+import type { Locale } from "@/util/i18n";
 
 export interface LinkListEntry {
     id: string;
@@ -30,8 +31,10 @@ type Props = SidebarProps;
 const { sidebarMode, headings, pageAlign } = Astro.props;
 let renderList: SidebarEntry[] = [];
 
+const currentLocale = Astro.currentLocale as Locale;
+
 if (sidebarMode === "guides") {
-    renderList = await getGuidesEntries();
+    renderList = await getGuidesEntries(currentLocale);
 } else if (sidebarMode === "reference") {
     renderList = await getDocEntries();
 } else if (sidebarMode === "blog") {

@@ -1,7 +1,12 @@
 ---
+import type { Locale } from "@/util/i18n";
 import type { SidebarEntry, SidebarProps } from "./Sidebar.astro";
 import SidebarFolder from "./SidebarFolder.astro";
 import SidebarLink from "./SidebarLink.astro";
+import translationStrings from "@/util/translationStrings";
+
+const currentLocale = Astro.currentLocale as Locale;
+const t = translationStrings[currentLocale]["sidebar"];
 
 interface Props extends SidebarProps {
     sidebarEntries: SidebarEntry[];
@@ -17,7 +22,7 @@ const url = Astro.url;
             <input
                 id="sidebar-search"
                 class="peer grow min-w-0"
-                placeholder={sidebarMode == "reference" ? "Search for API..." : "Search for Guides..."}
+                placeholder={sidebarMode == "reference" ? t["sidebar"]["searchForApi"] : t["sidebar"]["searchForGuides"]}
                 type="text"
                 autocomplete="off"
             />

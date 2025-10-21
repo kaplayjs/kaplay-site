@@ -1,14 +1,14 @@
 ---
 import NavigationButtons from "@/components/Content/NavigationButtons.astro";
 import Prose from "@/components/Content/Prose.astro";
-import { filterGuides, getGuidesEntries, sortGuides } from "@/components/Sidebar/entries.ts";
+import { getGuidesEntries } from "@/components/Sidebar/entries.ts";
 import SidebarPage from "@/layouts/SidebarPage.astro";
 import type { Locale } from "@/util/i18n";
 import { getCollection, render } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 
 export async function getStaticPaths() {
-    const entries = await getCollection("guides");
+    const entries = (await getCollection("guides")).filter((entry) => entry.data.language === "es");
 
     const entriesByLocale = entries.flatMap((entry) => {
         return {

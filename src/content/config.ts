@@ -39,6 +39,7 @@ const guideCollection = defineCollection({
             order: z.optional(z.string()),
             hidden: z.optional(z.boolean()),
             noAds: z.optional(z.boolean()),
+            language: z.optional(z.string()),
         }),
 });
 

@@ -7,6 +7,10 @@ import type { SidebarEntry, SidebarProps } from "./Sidebar.astro";
 import { getBlogEntries, getBookEntries, getDocEntries, getGuidesEntries } from "./entries.ts";
 import changelogIcon from "@/assets/history.png";
 import { cn } from "@/util/cn";
+import type { Locale } from "@/util/i18n";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import translationStrings from "@/util/translationStrings";
+import SidebarLanguageSelector from "./SidebarLanguageSelector.astro";
 
 type Props = SidebarProps;
 
@@ -15,8 +19,11 @@ const pathname = Astro.url.pathname;
 
 let renderList: SidebarEntry[] = [];
 
+const currentLocale = Astro.currentLocale as Locale;
+const t = translationStrings[currentLocale]["sidebar"];
+
 if (sidebarMode === "guides") {
-    renderList = await getGuidesEntries();
+    renderList = await getGuidesEntries(currentLocale);
 } else if (sidebarMode === "reference") {
     renderList = await getDocEntries();
 } else if (sidebarMode === "blog") {
@@ -24,6 +31,9 @@ if (sidebarMode === "guides") {
 } else if (sidebarMode === "books") {
     renderList = await getBookEntries();
 }
+
+const docsGuidesUrl = getRelativeLocaleUrl(currentLocale, "/docs/guides/");
+const docsApiUrl = getRelativeLocaleUrl(currentLocale, "/docs/api/");
 ---
 
 <div class="drawer-side z-50 h-dvh md:p-px md:pt-0 bg-base-50 max-md:!bg-transparent">
@@ -37,21 +47,40 @@ if (sidebarMode === "guides") {
                     </a>
                 </figure>
 
-                <div class="flex gap-px bg-base-50 p-px rounded-lg justify-center mb-5">
-                    <VersionSelector />
-                    <a
-                        class={cn("btn btn-sm btn-ghost bg-base-200 p-1 focus-visible:z-[1]", { "bg-base-content/20": pathname == "/changelog" })}
-                        href="/changelog"
-                        title="Changelog"
-                    >
-                        <img src={changelogIcon.src} class="w-6 h-full object-scale-down" />
-                    </a>
+                <div class="flex flex-col mb-5 gap-px">
+                    <div class="flex gap-px bg-base-50 p-px rounded-lg justify-center">
+                        <VersionSelector />
+                        <a
+                            class={cn("btn btn-sm btn-ghost bg-base-200 p-1 focus-visible:z-[1]", { "bg-base-content/20": pathname == "/changelog" })}
+                            href="/changelog"
+                            title="Changelog"
+                        >
+                            <img src={changelogIcon.src} class="w-6 h-full object-scale-down" />
+                        </a>
+                    </div>
+
+                    <div class="flex gap-px bg-base-50 p-px rounded-lg justify-center">
+                        <SidebarLanguageSelector />
+                        <a
+                            class={cn("btn btn-sm btn-ghost bg-base-200 p-1 focus-visible:z-[1]", { "bg-base-content/20": pathname == "/changelog" })}
+                            href="/changelog"
+                            title="Changelog"
+                        >
+                            <img src={changelogIcon.src} class="w-6 h-full object-scale-down" />
+                        </a>
+                    </div>
                 </div>
 
                 <ul class="flex-col gap-2 bg-neutral p-1 rounded-xl border border-base-100 mb-4">
-                    <SidebarCategoryLink href="/docs/guides" icon="marks_legend" selected={sidebarMode === "guides"}> Guides </SidebarCategoryLink>
-                    <SidebarCategoryLink href="/docs/api" icon="api_book" selected={sidebarMode === "reference"}> API Reference </SidebarCategoryLink>
-                    <SidebarCategoryLink href="/blog" icon="paper" selected={sidebarMode === "blog"}> Blog </SidebarCategoryLink>
+                    <SidebarCategoryLink href={docsGuidesUrl} icon="marks_legend" selected={sidebarMode === "guides"}
+                        >{t["sidebar"]["guides"]}</SidebarCategoryLink
+                    >
+                    <SidebarCategoryLink href={docsApiUrl} icon="api_book" selected={sidebarMode === "reference"}
+                        >{t["sidebar"]["reference"]}</SidebarCategoryLink
+                    >
+                    <SidebarCategoryLink href="/blog" icon="paper" selected={sidebarMode === "blog"}>
+                        Blog {currentLocale != "en" ? "(EN)" : ""}
+                    </SidebarCategoryLink>
                 </ul>
 
                 <SidebarList sidebarMode={sidebarMode} sidebarEntries={renderList} />

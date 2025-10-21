@@ -1,6 +1,7 @@
-import guidesData from "@/../content/guides/data.json";
 import doc from "@/../doc.json";
 import { booksInfo } from "@/data/booksData";
+import { type Locale, localesData } from "@/util/i18n";
+import translationStrings from "@/util/translationStrings";
 import {
     getCollection,
     type InferEntrySchema,
@@ -8,13 +9,14 @@ import {
 } from "astro:content";
 import type { LinkListEntry, SidebarEntry } from "./Sidebar.astro";
 
-type Category = keyof typeof guidesData.categories;
-
 const version = __KAPLAY_MAJOR__;
 const allDoc = doc.types as any;
 
-export const getGuidesEntries = async () => {
-    const guides = (await getCollection("guides")).filter(filterGuides);
+export const getGuidesEntries = async (locale: Locale) => {
+    const guidesData = translationStrings[locale]["guidesSidebar"];
+    const guides = (await getCollection("guides")).filter((entry) => {
+        return filterGuides(entry, locale);
+    });
     const categories = Object.keys(guidesData.categories);
 
     const sortedGuides: LinkListEntry[] = guides.sort(sortGuides).map((
@@ -23,17 +25,19 @@ export const getGuidesEntries = async () => {
         id: guide.id,
         description: guide.data.description,
         title: guide.data.title,
-        url: `/docs/guides/${guide.data.url ?? guide.id.split("/")[2]}`,
+        url: `${localesData[locale]["url"]}docs/guides/${
+            guide.data.url ?? guide.id.split("/")[2]
+        }`,
         folder: guide.id.split("/")[1],
     }));
 
     const guidesByCategory = Object.groupBy(sortedGuides, (guide) => {
         return guide.folder ?? "no-folder";
-    });
+    }) as Record<string, LinkListEntry[]>;
 
     const renderList: SidebarEntry[] = categories.map((category) => {
         return {
-            folder: guidesData.categories[<Category> category].displayName,
+            folder: guidesData.categories[category].displayName,
             linkList: guidesByCategory[category] ?? [],
         };
     });
@@ -212,9 +216,20 @@ const filterByHidden = (entry: {
     return !entry.data.hidden;
 };
 
+const filterByLocale = (
+    entry: {
+        data: InferEntrySchema<"guides">;
+    },
+    locale: Locale,
+): boolean => {
+    const entryLocale = entry.data.language ?? "en";
+    return entryLocale == locale;
+};
+
 export const filterGuides = (entry: {
     data: InferEntrySchema<"guides">;
-}): boolean => {
-    return filterByVersion(entry) && filterByHidden(entry);
+}, locale: Locale): boolean => {
+    return filterByVersion(entry) && filterByHidden(entry)
+        && filterByLocale(entry, locale);
 };
 // #endregion
