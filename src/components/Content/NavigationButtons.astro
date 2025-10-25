@@ -1,11 +1,9 @@
 ---
-export type NavigationTags = {
-    url: string;
-    title: string;
-};
+import type { CollectionListElement } from "../ContentLayer/getCollectionOrder";
+
 type Props = {
-    previous: NavigationTags | null;
-    next: NavigationTags | null;
+    previous: CollectionListElement | null;
+    next: CollectionListElement | null;
 };
 const { previous, next } = Astro.props;
 ---
