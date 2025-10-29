@@ -43,6 +43,7 @@
         "astro-pagefind": "^1.6.0",
         "astro-robots-txt": "^1.0.0",
         "cheerio": "^1.0.0",
+        "dom-to-image": "^2.6.0",
         "github-contributors": "^0.4.1",
         "hast": "^1.0.0",
         "js-beautify": "^1.15.4",
