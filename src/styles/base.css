@@ -454,3 +454,11 @@ pre button.copy {
         @apply relative top-10 -mt-2;
     }
 }
+
+.head-badge-2 {
+    @apply badge badge-ghost flex w-fit h-auto py-0.5 text-base-subheading
+        bg-base-content/10 border-none;
+
+}
+
+

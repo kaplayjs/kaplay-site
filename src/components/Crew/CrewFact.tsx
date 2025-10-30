@@ -79,12 +79,17 @@ export const CrewFact = (
 			class="flex-1 rounded-box p-4 sm:p-8 flex lg:flex-none w-full h-full lg:my-2.5 2xl:my-10 lg:mx-auto max-w-5xl"
 		>
 			<div class="flex flex-col items-center justify-center gap-6 w-full">
-				<div class="flex-1 flex flex-col items-center justify-center gap-4 p-8"
+				<div class="flex-1 flex flex-col items-center justify-center p-8"
 					id="crew-fact-container"
 				>
-					<h2 class="text-4xl font-semibold mb-2">
-						The <span class="font-hand">Crew Fact</span> of the Day
-					</h2>
+					<span class="text-lg text-white/70 head-badge-2">
+						{new Date().toLocaleDateString("en-US", {
+							weekday: "long", year: "numeric", month: "long", day: "numeric"
+						})}
+					</span>
+					<p class="text-4xl font-bold mb-6 text-white">
+						The <span class="font-hand font-normal text-transparent text-[2.55rem] bg-gradient-to-r from-[#abdd64] via-[#ffae84] to-[#bf7adf] bg-clip-text">Crew Fact</span> of the Day
+					</p>
 					<div class="flex flex-col">
 						<div class="flex items-center justify-center w-36 h-36 rounded-xl bg-base-200/50 border-2 border-base-content/10">
 							<img
@@ -94,11 +99,11 @@ export const CrewFact = (
 								style="image-rendering: ;"
 							/>
 						</div>
-						<h2 class="text-2xl font-bold text-white text-center">
+						<h2 class="text-2xl text-white text-center mt-2">
 							{crewItem.name}
 						</h2>
 					</div>
-					<p class="text-base-content mb-4 lg:mb-0 text-2xl italic ">
+					<p class="text-2xl italic ">
 						“{crewSecret}”</p>
 				</div>
 
