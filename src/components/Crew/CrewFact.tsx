@@ -98,7 +98,7 @@ export const CrewFact = (
 							{crewItem.name}
 						</h2>
 					</div>
-					<p class="text-base-content/70 mb-4 lg:mb-0 text-2xl italic ">
+					<p class="text-base-content mb-4 lg:mb-0 text-2xl italic ">
 						“{crewSecret}”</p>
 				</div>
 
