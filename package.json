@@ -1,7 +1,7 @@
 {
     "name": "kaplay-site",
     "type": "module",
-    "version": "1.5.7",
+    "version": "1.5.8",
     "scripts": {
         "install": "npm run generate:changelog && cd kaplay && pnpm i",
         "postinstall": "npm run doc",
