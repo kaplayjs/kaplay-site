@@ -31,14 +31,18 @@ export const CrewList = ({ openModal }: CrewListProps) => {
         if (!keywordFilter) return true;
 
         const crewItem = assets[asset as keyof typeof assets];
-        const searchTerm = keywordFilter.toLowerCase();
-
-        return crewItem.name
+        const keywords = keywordFilter
+            .trim()
             .toLowerCase()
-            .includes(searchTerm)
-            || (crewItem?.searchTerms ?? []).some(term =>
-                term.includes(searchTerm)
-            );
+            .split(/\s+/)
+            .filter(Boolean);
+
+        return keywords.some((keyword) =>
+            crewItem.name.toLowerCase().includes(keyword)
+            || (crewItem?.searchTerms ?? []).some((term) =>
+                term.toLowerCase().includes(keyword)
+            )
+        );
     };
 
     const crewItems = useMemo(
