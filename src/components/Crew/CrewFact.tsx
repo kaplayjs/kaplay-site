@@ -12,10 +12,7 @@ type FactData = {
 	suffix?: string;
 };
 
-const factsData: Record<
-	keyof (typeof assets)[keyof typeof assets]["crewmeta"],
-	FactData
-> = {
+const factsData = {
 	birthday: {
 		icon: assets.egg_crack.outlined,
 		tooltip: "Day/Month",
@@ -38,7 +35,10 @@ const factsData: Record<
 	origin: {
 		icon: assets.portal.outlined,
 	},
-};
+} satisfies Record<
+	keyof (typeof assets)[keyof typeof assets]["crewmeta"],
+	FactData
+>;
 
 const genderWord = [
 	["He", "Him", "His"],
@@ -63,6 +63,8 @@ export const CrewFact = (
 		domtoImage
 			.toPng(node, {
 				bgcolor: "#2a303c",
+				width: 720,
+				height: 405,
 			})
 			.then((dataUrl) => {
 				const link = document.createElement("a");
@@ -76,7 +78,7 @@ export const CrewFact = (
 
 	return (
 		<div
-			class="flex-1 rounded-box p-4 sm:p-8 flex lg:flex-none w-full h-full lg:my-2.5 2xl:my-10 lg:mx-auto max-w-5xl"
+			class="flex-1 rounded-box p-4 sm:p-8 flex lg:flex-none w-full h-full lg:my-2.5 2xl:my-10 lg:mx-auto max-w-5xl bg-base-200"
 		>
 			<div class="flex flex-col items-center justify-center gap-6 w-full">
 				<div class="flex-1 flex flex-col items-center justify-center p-8"
@@ -96,15 +98,21 @@ export const CrewFact = (
 								src={crewItem.kind == "Sprite" ? crewItem.outlined : "no"}
 								alt={crewItem.name}
 								class="w-24 h-24 object-contain"
-								style="image-rendering: ;"
+								style="image-rendering: pixelated;"
 							/>
 						</div>
-						<h2 class="text-2xl text-white text-center mt-2">
+						<h2 class="text-xl text-center my-2">
 							{crewItem.name}
 						</h2>
 					</div>
-					<p class="text-2xl italic ">
-						“{crewSecret}”</p>
+					<p class="text-2xl flex items-center justify-center gap-2">
+						<img src={factsData.age.icon} alt="icon" class="inline scale-down h-8 mx-1" />
+						<span>Today is his <span class="text-white">birthday</span></span>
+						<img src={factsData.age.icon} alt="icon" class="inline scale-down h-8 mx-1" />
+					</p>
+					<p class="hidden text-2xl italic">
+						{"“" + crewSecret + "”"}
+					</p>
 				</div>
 
 				<div>

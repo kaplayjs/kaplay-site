@@ -1,5 +1,6 @@
 ---
 import { CrewItem } from "@/components/Crew/CrewItem";
+import { CrewFact } from "@/components/Crew/CrewFact";
 import Navbar from "@/components/Navbar/Navbar.astro";
 import Page from "@/layouts/Page.astro";
 import { assets } from "@/data/crew";
@@ -29,5 +30,6 @@ const { asset } = Astro.props;
     <main class="flex flex-col min-h-[100svh] scroll-smooth">
         <Navbar />
         <CrewItem client:load crewItem={asset as keyof typeof assets} />
+        <CrewFact client:load crewItem={asset as keyof typeof assets} />
     </main>
 </Page>
