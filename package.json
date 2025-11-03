@@ -1,7 +1,7 @@
 {
     "name": "kaplay-site",
     "type": "module",
-    "version": "1.5.8",
+    "version": "1.5.9",
     "scripts": {
         "install": "npm run generate:changelog && cd kaplay && pnpm i",
         "postinstall": "npm run doc",
@@ -27,6 +27,7 @@
         "@astrojs/markdown-remark": "^6.3.1",
         "@astrojs/mdx": "^4.2.5",
         "@astrojs/preact": "^4.1.0",
+        "@astrojs/rss": "^4.0.13",
         "@astrojs/sitemap": "^3.3.1",
         "@astrojs/tailwind": "^6.0.2",
         "@fontsource-variable/outfit": "^5.1.0",

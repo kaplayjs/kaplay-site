@@ -8,6 +8,12 @@ and this project adheres to
 
 ## [unreleased]
 
+## [1.5.9] - 2025-11-03
+
+### Added
+
+- RSS Feed for blogs (https://kaplayjs.com/blog/rss.xml) - @lajbel
+
 ## [1.5.8] - 2025-11-01
 
 ### Added

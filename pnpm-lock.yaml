@@ -23,6 +23,9 @@ importers:
       '@astrojs/preact':
         specifier: ^4.1.0
         version: 4.1.0(@babel/core@7.27.3)(@types/node@20.17.30)(jiti@1.21.7)(preact@10.26.7)(yaml@2.7.1)
+      '@astrojs/rss':
+        specifier: ^4.0.13
+        version: 4.0.13
       '@astrojs/sitemap':
         specifier: ^3.3.1
         version: 3.3.1
@@ -262,6 +265,9 @@ packages:
   '@astrojs/prism@3.2.0':
     resolution: {integrity: sha512-GilTHKGCW6HMq7y3BUv9Ac7GMe/MO9gi9GW62GzKtth0SwukCu/qp2wLiGpEujhY+VVhaG9v7kv/5vFzvf4NYw==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=22.0.0}
+
+  '@astrojs/rss@4.0.13':
+    resolution: {integrity: sha512-ugW4DmGn8kgfl8/qecU3EcKCAuEBrZqY7eYfa6at0sY7HGEwRdzsOafLE437RwDMP2ZuxfKnCNABs99YVhX0kg==}
 
   '@astrojs/sitemap@3.3.1':
     resolution: {integrity: sha512-GRnDUCTviBSNfXJ0Jmur+1/C+z3g36jy79VyYggfe1uNyEYSTcmAfTTCmbytrRvJRNyJJnSfB/77Gnm9PiXRRg==}
@@ -2199,6 +2205,10 @@ packages:
   fast-uri@3.0.6:
     resolution: {integrity: sha512-Atfo14OibSv5wAp4VWNsFYE1AchQRTv9cBGWET4pZWHzYshFSS9NQI6I57rdKn9croWVMbYFbLhJ+yJvmZIIHw==}
 
+  fast-xml-parser@5.3.1:
+    resolution: {integrity: sha512-jbNkWiv2Ec1A7wuuxk0br0d0aTMUtQ4IkL+l/i1r9PRf6pLXjDgsBsWwO+UyczmQlnehi4Tbc8/KIvxGQe+I/A==}
+    hasBin: true
+
   fastparse@1.1.2:
     resolution: {integrity: sha512-483XLLxTVIwWK3QTrMGRqUfUpoOs/0hbQrl2oz4J0pAcm3A3bu84wxTFqGqkJzewCLdME38xJLJAxBABfQT8sQ==}
 
@@ -3612,6 +3622,9 @@ packages:
     resolution: {integrity: sha512-iq6eVVI64nQQTRYq2KtEg2d2uU7LElhTJwsH4YzIHZshxlgZms/wIc4VoDQTlG/IvVIrBKG06CrZnp0qv7hkcQ==}
     engines: {node: '>=12'}
 
+  strnum@2.1.1:
+    resolution: {integrity: sha512-7ZvoFTiCnGxBtDqJ//Cu6fWtZtc7Y3x+QOirG15wztbdngGSkht27o2pyGWrVy0b4WAy3jbKmnoK6g5VlVNUUw==}
+
   style-to-js@1.1.16:
     resolution: {integrity: sha512-/Q6ld50hKYPH3d/r6nr117TZkHR0w0kGGIVfpG9N6D8NymRPM9RqCUv4pRpJ62E5DqOYx2AFpbZMyCPnjQCnOw==}
 
@@ -4448,6 +4461,11 @@ snapshots:
   '@astrojs/prism@3.2.0':
     dependencies:
       prismjs: 1.30.0
+
+  '@astrojs/rss@4.0.13':
+    dependencies:
+      fast-xml-parser: 5.3.1
+      picocolors: 1.1.1
 
   '@astrojs/sitemap@3.3.1':
     dependencies:
@@ -6326,6 +6344,10 @@ snapshots:
       micromatch: 4.0.8
 
   fast-uri@3.0.6: {}
+
+  fast-xml-parser@5.3.1:
+    dependencies:
+      strnum: 2.1.1
 
   fastparse@1.1.2: {}
 
@@ -8249,6 +8271,8 @@ snapshots:
   strip-ansi@7.1.0:
     dependencies:
       ansi-regex: 6.1.0
+
+  strnum@2.1.1: {}
 
   style-to-js@1.1.16:
     dependencies:
