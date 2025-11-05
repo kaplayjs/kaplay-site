@@ -1,0 +1,110 @@
+---
+title: KAPLAY v4000 Alpha 23
+author: lajbel
+date: 11/5/2025
+description: Alpha 23 introduces exciting new features like Scopes and enhanced text options.
+image: banners/pumpka-dino.png
+imageFocus: ["center", "100%"]
+crewBadge:
+    text: "v4000 Alpha 23"
+    crew: github
+    bgColor: red
+    borderColor: lightpink
+---
+
+import Code from "@/components/Content/CodeWithKAPLAYGROUND.astro";
+
+# KAPLAY v4000 Alpha 23
+
+> lajbel, 11/5/2025, from the inside of the Pumpka
+
+Hey! lajbel here. Let me introduce you to the next version of KAPLAY, the alpha 23. Before
+getting into all the new features, let's see how to install it:
+
+```bash
+npm install kaplay@4000.0.0-alpha.23
+```
+
+## Lifetime Scopes
+
+The first thing I would like to introduce is the **Lifetime Scopes** feature.
+Before, it was impossible to have event handlers that wouldn't be destroyed in scene change,
+now it is! There are three scopes:
+
+- `app`: These event handlers are not canceled automatically.
+- `scene`: These event handlers are canceled on scene change. (Note that now you can access `scene` as an object, also still use `scene()`)
+- `obj`: These event handlers need to be used with an object (`obj = add([])`) and them are canceled on object destroy
+
+The list of supported handlers is in the type `GameEventHandlers`.
+
+Let's see this quick example:
+
+<Code code={`
+kaplay({
+    defaultLifetimeScope: "scene", // "scene" is default
+});
+
+loadBean();
+
+app.onKeyPress("a", () => {
+    debug.log("I run until cancelled");
+});
+
+scene("bean", () => {
+    const obj = add([ sprite("bean") ]);
+
+    obj.onKeyPress("o", () => {
+        debug.log("I run until obj get destroyed");
+        obj.destroy();
+    });
+
+    scene.onKeyPress("s", () => { // or just onUpdate(() => {
+        debug.log("I run until scene is changed", "current scene is bean");
+        go("rice");
+    });
+});
+
+scene("rice", () => {
+    scene.onKeyPress("s", () => { // or just onUpdate(() => {
+        debug.log("I run until scene is changed", "current scene is rice");
+    });
+});
+
+go("bean");
+`}
+/>
+
+More explanations will come in a future guide, as it is a quite big feature.
+
+## The skew property in Text Transformation 
+
+Now in the Text Transformation API (`TextCompOpt.styles`) you can use the `skew` property, let's see an example
+creating text italics:
+
+<Code code={`
+kaplay({ background: "black" });
+
+add([
+    pos(100, 100),
+    text(
+        "oh [i]hi[/i]",
+        {
+            styles: {
+                i: {
+                    skew: 20,
+                },
+            },
+        },
+    ),
+]);
+
+`}
+/>
+
+## Little perfomance improvements
+
+If you were using `maxFps` you may get better perfomance with this version due to
+some bug fixes related to this.
+
+So, that's all for this version, next version will include **UI** and **Hover Refactor**,
+we'll talk more about it in the next release. Thank you, I leave you with the changelog.
