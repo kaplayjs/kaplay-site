@@ -8,6 +8,20 @@ and this project adheres to
 
 ## [unreleased]
 
+## [1.5.9] - 2025-11-03
+
+### Added
+
+- RSS Feed for blogs (https://kaplayjs.com/blog/rss.xml) - @lajbel
+
+## [1.5.8] - 2025-11-01
+
+### Added
+
+- Crew package was updated with many new sprites: pumpka, spider web, star and many sparkles - @imaginarny
+- Added support for crew keyword search by url parameter e.g. `?keyword=bean` - @imaginarny
+- Now you can search multiple keywords in crew at once - @imaginarny
+
 ## [1.5.7] - 2025-10-15
 
 ### Fixed

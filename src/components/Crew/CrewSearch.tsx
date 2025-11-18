@@ -52,7 +52,20 @@ export const CrewSearch = ({
             : 0;
     };
 
+    const initKeywordFromURL = () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const keyword = urlParams.get("keyword");
+
+        if (keyword) setKeywordFilter(keyword);
+
+        const url = new URL(window.location.href);
+        url.search = "";
+        window.history.replaceState({}, "", url);
+    };
+
     useEffect(() => {
+        initKeywordFromURL();
+
         new ResizeObserver(entries => {
             for (const entry of entries) {
                 const target = entry.target as HTMLElement;

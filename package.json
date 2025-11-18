@@ -1,7 +1,7 @@
 {
     "name": "kaplay-site",
     "type": "module",
-    "version": "1.5.7",
+    "version": "1.5.9",
     "scripts": {
         "install": "npm run generate:changelog && cd kaplay && pnpm i",
         "postinstall": "npm run doc",
@@ -29,12 +29,13 @@
         "@astrojs/markdown-remark": "^6.3.1",
         "@astrojs/mdx": "^4.2.5",
         "@astrojs/preact": "^4.1.0",
+        "@astrojs/rss": "^4.0.13",
         "@astrojs/sitemap": "^3.3.1",
         "@astrojs/tailwind": "^6.0.2",
         "@fontsource-variable/outfit": "^5.1.0",
         "@fontsource/darumadrop-one": "^5.1.1",
         "@fontsource/dm-mono": "^5.2.6",
-        "@kaplayjs/crew": "^2.0.1",
+        "@kaplayjs/crew": "^2.1.0",
         "@lunariajs/core": "^0.1.1",
         "@nanostores/persistent": "^0.10.2",
         "@types/js-beautify": "^1.14.3",

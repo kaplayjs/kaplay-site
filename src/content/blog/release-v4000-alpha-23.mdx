@@ -1,0 +1,246 @@
+---
+title: KAPLAY v4000 Alpha 23
+author: lajbel
+date: 11/5/2025
+description: Alpha 23 introduces exciting new features like Scopes and enhanced text options.
+image: banners/pumpka-dino.png
+imageFocus: ["center", "30%"]
+crewBadge:
+    text: "v4000 Alpha 23"
+    crew: github
+    bgColor: red
+    borderColor: lightpink
+---
+
+import Code from "@/components/Content/CodeWithKAPLAYGROUND.astro";
+
+# KAPLAY v4000 Alpha 23
+
+> lajbel, 11/5/2025, from the inside of the Pumpka
+
+Hey! lajbel here. Let me introduce you to the next version of KAPLAY, the alpha 23. Before
+getting into all the new features, let's see how to install it:
+
+```bash
+npm install kaplay@4000.0.0-alpha.23
+```
+
+## Lifetime Scopes
+
+The first thing I would like to introduce is the **Lifetime Scopes** feature.
+Before, it was impossible to have event handlers that wouldn't be destroyed in scene change,
+now it is! There are three scopes:
+
+- `app`: These event handlers are not canceled automatically.
+- `scene`: These event handlers are canceled on scene change. (Note that now you can access `scene` as an object, also still use `scene()`)
+- `obj`: These event handlers need to be used with an object (`obj = add([])`) and them are canceled on object destroy
+
+The list of supported handlers is in the type `GameEventHandlers`.
+
+Let's see this quick example:
+
+<Code code={`
+kaplay({
+    defaultLifetimeScope: "scene", // "scene" is default
+});
+
+loadBean();
+
+app.onKeyPress("a", () => {
+    debug.log("I run until cancelled");
+});
+
+scene("bean", () => {
+    const obj = add([ sprite("bean") ]);
+
+    obj.onKeyPress("o", () => {
+        debug.log("I run until obj get destroyed");
+        obj.destroy();
+    });
+
+    scene.onKeyPress("s", () => { // or just onUpdate(() => {
+        debug.log("I run until scene is changed", "current scene is bean");
+        go("rice");
+    });
+});
+
+scene("rice", () => {
+    scene.onKeyPress("s", () => { // or just onUpdate(() => {
+        debug.log("I run until scene is changed", "current scene is rice");
+    });
+});
+
+go("bean");
+`}
+/>
+
+More explanations will come in a future guide, as it is a quite big feature.
+
+## The skew property in Text Transformation 
+
+Now in the Text Transformation API (`TextCompOpt.styles`) you can use the `skew` property, let's see an example
+creating text italics:
+
+<Code code={`
+kaplay({ background: "black" });
+
+add([
+    pos(100, 100),
+    text(
+        "oh [i]hi[/i]",
+        {
+            styles: {
+                i: {
+                    skew: 20,
+                },
+            },
+        },
+    ),
+]);
+
+`}
+/>
+
+## Little perfomance improvements
+
+If you were using `maxFps` you might get better perfomance with this version thanks to
+some bug fixes related to this.
+
+So, that's all for this version, next version will include **UI** and **Hover Refactor**,
+we'll talk more about it in the next release. Thank you, I leave you with the changelog.
+
+## [4000.0.0-alpha.23] - 2025-11-05
+
+### Added
+
+- Added `getGamepadAnalogButton()` to read the analog value of buttons like the
+  triggers - @dragoncoder047
+
+  ```js
+  isGamepadButtonDown("rtrigger"); // -> true/false, 0/1
+  getGamepadAnalogButton("rtrigger"); // -> analog value between 0 (not pressed) and 1 (fully pressed)
+  ```
+
+- Added chorded button bindings using the Buttons API, so you can bind different
+  actions to `tab` and `shift+tab`, and handle them like normal. Also works with
+  gamepads and mouse! - @dragoncoder047
+
+  ```js
+  kaplay({
+      buttons: {
+          forward: {
+              keyboard: "tab",
+              gamepad: "south",
+          },
+          backward: {
+              keyboard: "shift+tab",
+              gamepad: "rshoulder+south",
+          },
+      },
+  });
+  ```
+
+- Added `skew` to text formatting, so now italics is possible - @dragoncoder047
+
+- Added **lifetime scopes**, a way to define the lifetime of an event handler
+  using a specific scope, `scene`, `app` or a game object - @lajbel,
+  @dragoncoder047
+
+  ```js
+  app.onUpdate(() => {
+      // runs until it is cancelled
+  });
+
+  scene("game", () => {
+      const obj = add([]);
+
+      obj.onUpdate(() => {
+          // runs until obj is destroyed
+      });
+
+      scene.onUpdate(() => { // or just onUpdate(() => {
+          // runs until scene is changed
+      });
+  });
+  ```
+
+  All the available handlers in the scopes are `GameEventHandlers` ones:
+
+  - `onKeyDown()`
+  - `onKeyPress()`
+  - `onKeyPressRepeat()`
+  - `onKeyRelease()`
+  - `onCharInput()`
+  - `onMouseDown()`
+  - `onMousePress()`
+  - `onMouseRelease()`
+  - `onMouseMove()`
+  - `onScroll()`
+  - `onTouchStart()`
+  - `onTouchMove()`
+  - `onTouchEnd()`
+  - `onGamepadConnect()`
+  - `onGamepadDisconnect()`
+  - `onGamepadButtonDown()`
+  - `onGamepadButtonPress()`
+  - `onGamepadButtonRelease()`
+  - `onGamepadStick()`
+  - `onButtonDown()`
+  - `onButtonPress()`
+  - `onButtonRelease()`
+  - `onTabHide()`
+  - `onTabShow()`
+
+  And this game object handlers may differ when using it with `obj` and
+  `scene`/`app`:
+
+  - `onFixedUpdate()`
+  - `onUpdate()`
+  - `onDraw()`
+
+- Added `app` scope for app event handlers - @lajbel
+  ```js
+  app.onUpdate(() => {
+      // runs until it is cancelled
+  });
+  ```
+
+- Added `KAPLAYOpt.defaultLifetimeScope` for setting the default lifetime scope
+  used for event handlers - @lajbel
+
+  ```js
+  kaplay({
+      defaultLifetimeScope: "app", // default is "scene"
+  });
+
+  onKeyPress("space", () => {
+      // runs until is cancelled
+  });
+  ```
+
+- Added `skew` to text formatting, so now italics is possible - @dragoncoder047
+
+### Changed
+
+- (**!**) Renamed `onShow()` to `onTabShow()` and `onHide()` to `onTabHide()` -
+  @lajbel
+
+- In addition to being the `scene()` function, now `scene` is also a scope for
+  scene event handlers - @lajbel
+
+  ```js
+  scene("game", () => {
+      scene.onUpdate(() => { // or just onUpdate(() => {
+          // runs until scene is changed
+      });
+  });
+  ```
+
+### Fixed
+
+- Now `pushScene()` and `popScene()` give the arguments to the scene in the same
+  way that `go()` does rather than passing them all to the first argument as an
+  array - @dragoncoder047
+- Fixed a flicker due to the fadeIn not setting opacity until the next frame -
+  @mflerackers
+- Fixed FPS cap not working correctly - @mflerackers, @dragoncoder047
