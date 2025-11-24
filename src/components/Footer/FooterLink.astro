@@ -8,11 +8,6 @@ type Props = {
 const { href, external, rel } = Astro.props;
 ---
 
-<a
-    class="link-hover link"
-    {href}
-    target={external ? "_blank" : "_parent"}
-    rel={rel}
->
+<a class="link-hover link" {href} target={external ? "_blank" : "_parent"} rel={rel}>
     <slot />
 </a>
