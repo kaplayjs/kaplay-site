@@ -7,7 +7,7 @@
         "postinstall": "npm run doc",
         "dev": "npm run doc && astro dev",
         "start": "npm run doc && npm run contributors && astro dev",
-        "build": "npm run doc && npm run contributors && npm run generate:changelog && npm run lunaria:build && astro check && astro build && pnpm run pagefind:build",
+        "build": "npm run doc && npm run contributors && npm run generate:changelog && astro check && astro build && pnpm run pagefind:build",
         "preview": "astro preview",
         "astro": "astro",
         "doc": "node scripts/buildDoc.js",
