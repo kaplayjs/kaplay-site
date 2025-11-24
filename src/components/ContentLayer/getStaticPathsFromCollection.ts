@@ -3,9 +3,10 @@ import { type CollectionKey, getCollection } from "astro:content";
 
 export const getStaticPathsFromCollection = async <T extends CollectionKey>(
     collection: T,
-    locale: Locale,
+    locale?: Locale,
 ) => {
     const entries = await getCollection(collection, (entry) => {
+        if (!locale) return true;
         return entry.data.language === locale;
     });
 
@@ -15,7 +16,8 @@ export const getStaticPathsFromCollection = async <T extends CollectionKey>(
                 entry,
             },
             params: {
-                slug: entry.id,
+                // @ts-expect-error
+                slug: entry.data.originalId ?? entry.id,
             },
         };
     });

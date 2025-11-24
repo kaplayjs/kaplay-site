@@ -1,42 +1,17 @@
 ---
 import NavigationButtons from "@/components/Content/NavigationButtons.astro";
 import Prose from "@/components/Content/Prose.astro";
-import { getGuidesEntries } from "@/components/Sidebar/entries.ts";
+import { getCollectionPreviousAndNext } from "@/components/ContentLayer/getCollectionPreviousAndNext";
+import { getStaticPathsFromCollection } from "@/components/ContentLayer/getStaticPathsFromCollection";
 import SidebarPage from "@/layouts/SidebarPage.astro";
-import type { Locale } from "@/util/i18n";
-import { getCollection, render } from "astro:content";
-import type { CollectionEntry } from "astro:content";
+import { render } from "astro:content";
 
 export async function getStaticPaths() {
-    const entries = (await getCollection("guides")).filter((entry) => entry.data.language === "es");
-
-    const entriesByLocale = entries.flatMap((entry) => {
-        return {
-            props: {
-                entry,
-            },
-            params: {
-                slug: entry.data.url ?? entry.id.split("/")[2],
-            },
-        };
-    });
-
-    return entriesByLocale.filter(Boolean);
+    return getStaticPathsFromCollection("guides", "es");
 }
 
-const previousAndNextPage = async (entry: CollectionEntry<"guides">) => {
-    const entries = (await getGuidesEntries(Astro.currentLocale as Locale)).flatMap((s) => s.linkList);
-    const currentIndex = entries.findIndex((e) => e.id === entry.id);
-    const previous = currentIndex === 0 ? null : entries[currentIndex - 1];
-    const next = currentIndex === entries.length - 1 ? null : entries[currentIndex + 1];
-    return {
-        previous: previous ? { url: previous.url!, title: previous.title } : null,
-        next: next ? { url: next.url!, title: next.title } : null,
-    };
-};
-
 const { entry } = Astro.props;
-const { previous, next } = await previousAndNextPage(entry);
+const { previous, next } = await getCollectionPreviousAndNext("guides", entry, "es");
 const { Content, headings } = await render(entry);
 ---
 
@@ -47,7 +22,8 @@ const { Content, headings } = await render(entry);
         image: entry.data.image?.src,
         keywords: "kaplayjs, guides, documentation",
     }}
-    sidebarMode="guides"
+    collection="guides"
+    category="guides"
     headings={headings}
     noAd={entry.data.ads ?? false}
 >

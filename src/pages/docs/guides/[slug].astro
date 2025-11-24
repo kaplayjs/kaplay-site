@@ -22,7 +22,8 @@ const { Content, headings } = await render(entry);
         image: entry.data.image?.src,
         keywords: "kaplayjs, guides, documentation",
     }}
-    sidebarMode="guides"
+    collection="guides"
+    category="guides"
     headings={headings}
     noAd={entry.data.ads ?? false}
 >

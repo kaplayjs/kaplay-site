@@ -1,47 +1,20 @@
 ---
 import type { MarkdownHeading } from "astro";
 import Footer from "../Footer/Footer.astro";
-import { getBlogEntries, getBookEntries, getDocEntries, getGuidesEntries } from "./entries";
 import SidebarEntries from "./SidebarEntries.astro";
 import SidebarContentNav from "./SidebarContentNav.astro";
 import { cn } from "@/util/cn";
-import type { Locale } from "@/util/i18n";
+import type { CollectionKey } from "astro:content";
 
-export interface LinkListEntry {
-    id: string;
-    title: string;
-    description: string;
-    url: string;
-    folder?: string;
-}
-
-export type SidebarEntry = {
-    linkList: LinkListEntry[];
-    folder: string;
-};
-
-export type SidebarProps = {
-    sidebarMode?: "guides" | "reference" | "blog" | "books";
+export interface SidebarProps {
+    collection?: CollectionKey;
+    category?: string;
     headings?: MarkdownHeading[];
     pageAlign?: "left" | "center";
-};
+}
 
 type Props = SidebarProps;
-
-const { sidebarMode, headings, pageAlign } = Astro.props;
-let renderList: SidebarEntry[] = [];
-
-const currentLocale = Astro.currentLocale as Locale;
-
-if (sidebarMode === "guides") {
-    renderList = await getGuidesEntries(currentLocale);
-} else if (sidebarMode === "reference") {
-    renderList = await getDocEntries();
-} else if (sidebarMode === "blog") {
-    renderList = await getBlogEntries();
-} else if (sidebarMode === "books") {
-    renderList = await getBookEntries();
-}
+const { collection, category, headings, pageAlign } = Astro.props;
 ---
 
 <div id="drawer" class:list={["drawer z-20 h-full md:drawer-open md:border-r border-base-content/5", `page-${pageAlign || "left"}`]}>
@@ -63,8 +36,7 @@ if (sidebarMode === "guides") {
 
         <Footer friendsClass="mt-auto" {...pageAlign != "center" && { friendsInnerClass: "max-w-[50rem]" }} />
     </div>
-
-    <SidebarEntries sidebarMode={sidebarMode} />
+    {collection && <SidebarEntries collection={collection} category={category} />}
 
     <div class="max-md:hidden fixed bottom-0 left-[300px] right-0 bg-corner-radius -scale-y-100 pointer-events-none border-t z-40"></div>
 </div>

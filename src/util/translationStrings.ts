@@ -1,19 +1,19 @@
-import guidesSidebarEn from "../locales/en/guidesSidebar";
+import collectionsEn from "../locales/en/collections";
 import navbarEn from "../locales/en/navbar";
 import sidebar from "../locales/en/sidebar";
-import guidesSidebarEs from "../locales/es/guidesSidebar";
+import collectionsEs from "../locales/es/collections";
 import navbarEs from "../locales/es/navbar";
 import sidebarEs from "../locales/es/sidebar";
 
 export default {
     en: {
         "navbar": navbarEn,
-        "guidesSidebar": guidesSidebarEn,
+        "collections": collectionsEn,
         "sidebar": sidebar,
     },
     es: {
         "navbar": navbarEs,
-        "guidesSidebar": guidesSidebarEs,
+        "collections": collectionsEs,
         "sidebar": sidebarEs,
     },
 };

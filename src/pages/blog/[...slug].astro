@@ -3,13 +3,13 @@ import CrewBadge, { type CrewBadgeProps } from "@/components/Content/CrewBadge.a
 import Prose from "@/components/Content/Prose.astro";
 import SidebarPage from "@/layouts/SidebarPage.astro";
 import type { CollectionEntry } from "astro:content";
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
     const entries = await getCollection("blog");
 
     return entries.map((entry) => ({
-        params: { slug: entry.slug },
+        params: { slug: entry.id },
         props: {
             entry,
             imageFocus: entry.data?.imageFocus,
@@ -20,14 +20,14 @@ export async function getStaticPaths() {
 const previousAndNextPage = async (entry: CollectionEntry<"blog">) => {
     const entries = (await getCollection("blog")).sort((a, b) => Number(new Date(b.data.date)) - Number(new Date(a.data.date)));
     const currentIndex = entries.findIndex((e) => e.id === entry.id);
-    const previous = currentIndex === 0 ?  entries[entries.length - 1] : entries[currentIndex - 1];
+    const previous = currentIndex === 0 ? entries[entries.length - 1] : entries[currentIndex - 1];
     const next = currentIndex === entries.length - 1 ? entries[0] : entries[currentIndex + 1];
     return { previous, next };
 };
 
 const { entry, imageFocus } = Astro.props;
-const { Content, headings } = await entry.render();
-const { previous, next } = await previousAndNextPage(entry)
+const { Content, headings } = await render(entry);
+const { previous, next } = await previousAndNextPage(entry);
 
 const imagePosParsed = (p: string) => (["left", "top"].includes(p) ? "0%" : ["right", "bottom"].includes(p) ? "100%" : ["center"].includes(p) ? "50%" : p);
 const imagePosX = imagePosParsed(imageFocus?.[0] ?? "50%");
@@ -41,7 +41,8 @@ const imagePosY = imagePosParsed(imageFocus?.[1] ?? imagePosX);
         keywords: "kaplayjs, guides, documentation",
         image: "/" + entry.data.image,
     }}
-    sidebarMode="blog"
+    collection="blog"
+    category="blog"
     headings={headings}
     pageAlign="center"
     noAd
@@ -56,33 +57,41 @@ const imagePosY = imagePosParsed(imageFocus?.[1] ?? imagePosX);
         >
             <a
                 class="absolute inset-0 rounded-[inherit] opacity-15 hover:opacity-100 transition-all overflow-hidden"
-                href={`/${previous.collection}/${previous.slug}`}
+                href={`/${previous.collection}/${previous.id}`}
             >
-                {previous.data.image && <img
-                    class:list={[
-                        "absolute -inset-x-4 inset-y-0 w-[calc(100%+2rem)] max-w-none h-full object-cover rounded-[inherit] text-base-300",
-                        "object-[var(--obj-pos-x)_var(--obj-pos-y)] xl:object-[var(--obj-pos-x)_clamp(100%,var(--obj-pos-y)-2rem,0%)]",
-                        "hover:translate-x-4 transition-all",
-                    ]}
-                    src={"/" + previous.data.image}
-                    alt={previous.slug + " featured image"}
-                    {...previous.data.imageFocus && { style: `--obj-pos-x: ${imagePosParsed(previous.data.imageFocus[0])}; --obj-pos-y: ${imagePosParsed(previous.data.imageFocus[1])};` }}
-                />}
+                {
+                    previous.data.image && (
+                        <img
+                            class:list={[
+                                "absolute -inset-x-4 inset-y-0 w-[calc(100%+2rem)] max-w-none h-full object-cover rounded-[inherit] text-base-300",
+                                "object-[var(--obj-pos-x)_var(--obj-pos-y)] xl:object-[var(--obj-pos-x)_clamp(100%,var(--obj-pos-y)-2rem,0%)]",
+                                "hover:translate-x-4 transition-all",
+                            ]}
+                            src={"/" + previous.data.image}
+                            alt={previous.id + " featured image"}
+                            {...(previous.data.imageFocus && {
+                                style: `--obj-pos-x: ${imagePosParsed(previous.data.imageFocus[0])}; --obj-pos-y: ${imagePosParsed(previous.data.imageFocus[1])};`,
+                            })}
+                        />
+                    )
+                }
             </a>
         </div>
 
-        <div
-            class="relative w-full md:w-full max-w-[49rem] [.page-center_&]:max-w-[66rem] h-60 xl:h-[330px] bg-base-200 rounded-box"
-        >
-            {entry.data.image && <img
-                class:list={[
-                    "absolute inset-0 size-full object-cover rounded-[inherit] text-base-200",
-                    "object-[var(--obj-pos-x)_var(--obj-pos-y)] xl:object-[var(--obj-pos-x)_clamp(100%,var(--obj-pos-y)-2rem,0%)]",
-                ]}
-                src={"/" + entry.data.image}
-                alt={entry.slug + " featured image"}
-                {...imageFocus && { style: `--obj-pos-x: ${imagePosX}; --obj-pos-y: ${imagePosY};` }}
-            />}
+        <div class="relative w-full md:w-full max-w-[49rem] [.page-center_&]:max-w-[66rem] h-60 xl:h-[330px] bg-base-200 rounded-box">
+            {
+                entry.data.image && (
+                    <img
+                        class:list={[
+                            "absolute inset-0 size-full object-cover rounded-[inherit] text-base-200",
+                            "object-[var(--obj-pos-x)_var(--obj-pos-y)] xl:object-[var(--obj-pos-x)_clamp(100%,var(--obj-pos-y)-2rem,0%)]",
+                        ]}
+                        src={"/" + entry.data.image}
+                        alt={entry.id + " featured image"}
+                        {...(imageFocus && { style: `--obj-pos-x: ${imagePosX}; --obj-pos-y: ${imagePosY};` })}
+                    />
+                )
+            }
 
             {entry.data?.crewBadge && <CrewBadge {...(entry.data.crewBadge as CrewBadgeProps)} class="absolute top-4 left-4 sm:scale-[1.4] origin-top-left" />}
         </div>
@@ -94,20 +103,24 @@ const imagePosY = imagePosParsed(imageFocus?.[1] ?? imagePosX);
             ]}
             data-tip={next.data.title}
         >
-            <a
-                class="absolute inset-0 rounded-[inherit] opacity-15 hover:opacity-100 transition-all overflow-hidden"
-                href={`/${next.collection}/${next.slug}`}
-            >
-                {next.data.image && <img
-                    class:list={[
-                        "absolute -inset-x-4 inset-y-0 w-[calc(100%+2rem)] max-w-none h-full object-cover rounded-[inherit] text-base-300",,
-                        "object-[var(--obj-pos-x)_var(--obj-pos-y)] xl:object-[var(--obj-pos-x)_clamp(100%,var(--obj-pos-y)-2rem,0%)]",
-                        "hover:-translate-x-4 transition-all",
-                    ]}
-                    src={"/" + next.data.image}
-                    alt={next.slug + " featured image"}
-                    {...next.data.imageFocus && { style: `--obj-pos-x: ${imagePosParsed(next.data.imageFocus[0])}; --obj-pos-y: ${imagePosParsed(next.data.imageFocus[1])};` }}
-                />}
+            <a class="absolute inset-0 rounded-[inherit] opacity-15 hover:opacity-100 transition-all overflow-hidden" href={`/${next.collection}/${next.id}`}>
+                {
+                    next.data.image && (
+                        <img
+                            class:list={[
+                                "absolute -inset-x-4 inset-y-0 w-[calc(100%+2rem)] max-w-none h-full object-cover rounded-[inherit] text-base-300",
+                                ,
+                                "object-[var(--obj-pos-x)_var(--obj-pos-y)] xl:object-[var(--obj-pos-x)_clamp(100%,var(--obj-pos-y)-2rem,0%)]",
+                                "hover:-translate-x-4 transition-all",
+                            ]}
+                            src={"/" + next.data.image}
+                            alt={next.id + " featured image"}
+                            {...(next.data.imageFocus && {
+                                style: `--obj-pos-x: ${imagePosParsed(next.data.imageFocus[0])}; --obj-pos-y: ${imagePosParsed(next.data.imageFocus[1])};`,
+                            })}
+                        />
+                    )
+                }
             </a>
         </div>
 

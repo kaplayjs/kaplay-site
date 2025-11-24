@@ -1,14 +1,18 @@
 ---
+import type { SidebarEntryGroup } from "./Sidebar.types";
+
 interface Props {
-    title: string;
-    id: string;
-    isOpen?: boolean;
+    group: SidebarEntryGroup;
+    isOpen: boolean;
 }
 
-const { title, id, isOpen = true, ...props } = Astro.props;
+const {
+    group: { name: title },
+    isOpen,
+} = Astro.props;
 ---
 
-<div class="folder | flex flex-col mt-0.5" folder-state={isOpen ? "open" : "closed"} id={id} data-sidebar-folder {...props}>
+<div class="folder | flex flex-col mt-0.5" folder-state={isOpen ? "open" : "closed"} id={title} data-sidebar-folder>
     <p class="folder-title | btn btn-ghost btn-sm w-full justify-start font-medium text-left text-lg text-white">
         {title}
     </p>

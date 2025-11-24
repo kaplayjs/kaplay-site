@@ -4,10 +4,14 @@ import { defineCollection, z } from "astro:content";
 const genericSchema = z.object({
     title: z.string(),
     description: z.string(),
+    url: z.string(),
     language: z.optional(z.string()),
+    category: z.optional(z.string()),
+    group: z.optional(z.string()),
 });
 
 const guideCollection = defineCollection({
+    type: "content_layer",
     loader: glob({
         pattern: "**/*.{md,mdx}",
         base: "./content/guides/",
@@ -17,22 +21,21 @@ const guideCollection = defineCollection({
             const name = options.data["url"] as string
                 ?? nameWithExtension.replace(/\.(md|mdx)$/, "");
 
+            // NEW
             options.data["language"] = language;
             options.data["category"] = category;
-            options.data["folder"] = folder;
+            options.data["group"] = folder;
+            options.data["url"] = `/docs/guides/${name}`;
 
             return name;
         },
     }),
-    type: "content_layer",
     schema: ({ image }) =>
         z.intersection(
             genericSchema,
             z.object({
                 image: z.optional(image()),
                 url: z.optional(z.string()),
-                category: z.optional(z.string()),
-                folder: z.optional(z.string()),
                 version: z.optional(z.string()),
                 order: z.optional(z.string()),
                 hidden: z.optional(z.boolean()),
@@ -42,7 +45,22 @@ const guideCollection = defineCollection({
 });
 
 const blogCollection = defineCollection({
-    type: "content", // v2.5.0 and later
+    type: "content_layer",
+    loader: glob({
+        pattern: "**/*.{md,mdx}",
+        base: "./content/blog/",
+        generateId(options) {
+            const nameWithExtension = options.entry;
+            const name = options.data["url"] as string
+                ?? nameWithExtension.replace(/\.(md|mdx)$/, "");
+
+            options.data["category"] = "blog";
+            options.data["group"] = "Blog";
+            options.data["url"] = `/blog/${name}`;
+
+            return name;
+        },
+    }),
     schema: z.intersection(
         genericSchema,
         z.object({
@@ -64,7 +82,21 @@ const blogCollection = defineCollection({
 });
 
 const booksCollection = defineCollection({
-    type: "content", // v2.5.0 and later
+    type: "content_layer",
+    loader: glob({
+        pattern: "**/*.{md,mdx}",
+        base: "./content/books/",
+        generateId(options) {
+            const nameWithExtension = options.entry;
+            const name = options.data["url"] as string
+                ?? nameWithExtension.replace(/\.(md|mdx)$/, "");
+
+            options.data["category"] = "How to be a Bean Wizard";
+            options.data["group"] = "Chapter 1";
+
+            return name;
+        },
+    }),
     schema: z.intersection(
         genericSchema,
         z.object({
@@ -94,11 +126,13 @@ const apiDocsCollection = defineCollection({
             const docJson = JSON.parse(text);
             const groups = docJson.groups;
             const allTypes = docJson.types;
+            const ctxTypes = allTypes.KaboomCtx?.[0].members
+                ?? allTypes.KAPLAYCtx?.[0].members;
             const entries: any[] = [];
 
             for (const typeKey of Object.keys(allTypes)) {
                 const type = allTypes[typeKey];
-                const folder = Object.entries(groups).find(
+                const group = Object.entries(groups).find(
                     ([_, group]: any) => {
                         if (group.entries.includes(typeKey)) {
                             return true;
@@ -110,10 +144,41 @@ const apiDocsCollection = defineCollection({
 
                 const entryData = {
                     id: typeKey,
-                    title: "placeholder",
+                    originalId: typeKey,
+                    title: typeKey,
                     description: "placeholder",
-                    entry: type,
-                    folder: folder?.[0] || "Ungrouped",
+                    type: type,
+                    group: group?.[0] || "Miscalenous",
+                    category: "apiDocs",
+                    isCtx: false,
+                    url: `/docs/api/${typeKey}`,
+                };
+
+                entries.push(entryData);
+            }
+
+            for (const typeKey of Object.keys(ctxTypes)) {
+                const type = ctxTypes[typeKey];
+                const group = Object.entries(groups).find(
+                    ([_, group]: any) => {
+                        if (group.entries.includes(typeKey)) {
+                            return true;
+                        }
+
+                        return false;
+                    },
+                );
+
+                const entryData = {
+                    id: `ctx-${typeKey}`,
+                    originalId: typeKey,
+                    title: typeKey,
+                    description: "placeholder",
+                    type: type,
+                    group: group?.[0] || "Ungrouped",
+                    category: "apiDocs",
+                    isCtx: true,
+                    url: `/docs/api/ctx/${typeKey}`,
                 };
 
                 entries.push(entryData);
@@ -125,8 +190,9 @@ const apiDocsCollection = defineCollection({
     schema: z.intersection(
         genericSchema,
         z.object({
-            folder: z.string(),
-            entry: z.any(),
+            type: z.any(),
+            originalId: z.string(),
+            isCtx: z.boolean(),
         }),
     ),
 });
