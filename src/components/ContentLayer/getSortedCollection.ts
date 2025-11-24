@@ -25,6 +25,11 @@ export const getSortedCollection = async <T extends CollectionKey>(
             break;
         case "apiDocs":
             (entriesArray as CollectionEntry<"apiDocs">[]).sort(sortApiDocs);
+            break;
+        case "blog":
+            (entriesArray as CollectionEntry<"blog">[]).sort(sortBlog)
+                .reverse();
+            break;
 
         default:
             break;
@@ -59,20 +64,29 @@ export function sortApiDocs(
     a: CollectionEntry<"apiDocs">,
     b: CollectionEntry<"apiDocs">,
 ) {
+    const aSpecialValue = a.id == "kaplay" ? 0 : 1;
     const aPrefix = a.data.isCtx ? 0 : 1;
     const aSort = a.data.title;
     const aGroup = getOrderNumberInApiDocsGroup(a.data.group);
-    const aLocal = `${aGroup}-${aPrefix}-${aSort}`;
+    const aLocal = `${aSpecialValue}-${aGroup}-${aPrefix}-${aSort}`;
 
+    const bSpecialValue = b.id == "kaplay" ? 0 : 1;
     const bPrefix = b.data.isCtx ? 0 : 1;
     const bSort = b.data.title;
     const bGroup = getOrderNumberInApiDocsGroup(b.data.group);
-    const bLocal = `${bGroup}-${bPrefix}-${bSort}`;
+    const bLocal = `${bSpecialValue}-${bGroup}-${bPrefix}-${bSort}`;
 
     return aLocal.localeCompare(bLocal, undefined, {
         numeric: true,
         sensitivity: "base",
     });
+}
+
+export function sortBlog(
+    a: CollectionEntry<"blog">,
+    b: CollectionEntry<"blog">,
+) {
+    return new Date(a.data.date).getTime() - new Date(b.data.date).getTime();
 }
 
 export function getOrderNumberInApiDocsGroup(group?: string) {

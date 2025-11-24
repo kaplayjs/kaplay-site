@@ -90,9 +90,11 @@ const booksCollection = defineCollection({
             const nameWithExtension = options.entry;
             const name = options.data["url"] as string
                 ?? nameWithExtension.replace(/\.(md|mdx)$/, "");
+            const [lang, book, chapter] = name.split("/");
 
-            options.data["category"] = "How to be a Bean Wizard";
+            options.data["category"] = "books";
             options.data["group"] = "Chapter 1";
+            options.data["url"] = `/books/${book}/${chapter}`;
 
             return name;
         },

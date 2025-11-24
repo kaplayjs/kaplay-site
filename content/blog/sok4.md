@@ -14,7 +14,7 @@ crewBadge:
     borderColor: yellow
 ---
 
-# State of KAPLAY #4
+# State of KAPLAY #&#8203;4
 
 > {writer.userName}, 16th of February, 2025, from Bean's racing car
 

@@ -12,7 +12,7 @@ crewBadge:
     borderColor: lightpink
 ---
 
-# State of KAPLAY #5
+# State of KAPLAY #&#8203;5
 
 > lajbel, FRIDAY 13th (☠️) of June, 2025, from KAPLAY HQ
 

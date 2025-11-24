@@ -1,5 +1,4 @@
 import type { Locale } from "@/util/i18n";
-import { sortObjectByKeys } from "@/util/sortObjectByKeys";
 import translationStrings from "@/util/translationStrings";
 import type { CollectionKey } from "astro:content";
 import type {

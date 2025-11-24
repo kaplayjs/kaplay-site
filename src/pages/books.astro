@@ -1,7 +1,9 @@
 ---
 import Prose from "@/components/Content/Prose.astro";
+import { getSortedCollection } from "@/components/ContentLayer/getSortedCollection";
 import { booksInfo } from "@/data/booksData";
 import SidebarPage from "@/layouts/SidebarPage.astro";
+console.log((await getSortedCollection("books"))[0].id);
 ---
 
 <SidebarPage
@@ -9,6 +11,7 @@ import SidebarPage from "@/layouts/SidebarPage.astro";
         description: "The books of the KAPLAY Team.",
     }}
     collection="books"
+    category="books"
 >
     <Prose>
         <h1>We do books too!</h1>

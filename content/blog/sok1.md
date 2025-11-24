@@ -14,7 +14,7 @@ crewBadge:
     borderColor: lightpink
 ---
 
-# State of KAPLAY #1
+# State of KAPLAY #&#8203;1
 
 > lajbel, July 15, 2024
 
