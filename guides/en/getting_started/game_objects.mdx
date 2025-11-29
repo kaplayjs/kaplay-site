@@ -237,13 +237,13 @@ onKeyPress("space", () => {
 ### How to get children
 
 You can use `obj.get()` to get children. Optionally, it takes a `GetOpt` options object, where
-`GetOpt.recursive` makes it work recursively get all children and their descendants.
+`GetOpt.recursive` makes it work recursively to get all children and their descendants.
 
 <Code
     code={`
 bag.get("*"); // Get all children [2]
 // We can pass recursive: true for getting descendants too
-bah.get("favorite", { recursive: true }); // The favorite! [superMiniBag] 
+bag.get("favorite", { recursive: true }); // The favorite! [superMiniBag] 
     `}
     pgCode={`
 kaplay();
@@ -277,7 +277,7 @@ debug.log(bag.get("favorite", { recursive: true })[0].scale); // The favorite!
 
 ## Creating game object dynamically
 
-One way for create a game object dynamically is creating a function that returns
+One way for create a game object dynamically is by creating a function that returns
 a list of components:
 
 <Code
