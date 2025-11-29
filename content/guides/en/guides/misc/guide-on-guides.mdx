@@ -1,0 +1,236 @@
+---
+title: Creating Guides
+description: You shouldn't see this
+url: contributor-guide-on-guides
+order: "misc-4"
+hidden: true
+ads: false
+---
+
+import Info from "@/components/Content/Info.astro";
+import Code from "@/components/Content/CodeWithKAPLAYGROUND.astro";
+import JustForVersion from "@/components/Content/JustForVersion.astro";
+import InstallationCode from "@/components/Content/InstallationCode.astro";
+import RenderedMarkdown from "@/components/Content/RenderedMarkdown.astro";
+
+# Creating Guides
+
+<Info crew="mark" title="Advice">
+This guide tries to be brief so you can start as soon as possible, so I won't go into too much detail about the whys and wherefores. Some of the guides that are on our documentation **still doesn't follow these guidelines** so it's also cool check some for updating them, I think the best example right now is [Game Objects](/docs/guides/game_objects/).
+</Info>
+
+Hey! Before starting, let's stand this guide is just for the one wondering to
+contribute with **KAPLAY Docs**, specifically the **guides** part. Thanks for your interest on improving **KAPLAY** ♥
+
+## Get the repo
+
+```
+git clone https://github.com/kaplayjs/kaplay-site.git
+git submodule init
+git submodule update
+pnpm ci
+pnpm dev
+```
+
+Then, when you finish, just [Open a PR](https://github.blog/developer-skills/github/beginners-guide-to-github-creating-a-pull-request/).
+
+## Guidelines
+
+### Communication
+
+The most important thing for creating a guide is the communication with KAPLAY
+Dev internals, you can use the [#dev](https://discord.com/channels/883781994583056384/883782527809122367) channel,
+telling us what guide are you updating (so no other dev interfers with that) or any other question/blocker you got.
+
+### Creating your guide
+
+After cloning the repo, go to  `/guides/en/` and create in any of the category
+folders an `.mdx` file, for example `/guides/en/concepts/anchor.mdx`.
+
+This is the frontmatter used in all guides:
+
+```yml
+---
+title: Creating Guides # The title, it appears in the sidebar
+description: You shouldn't see this # Description for metadata
+version: "4000" # Don't use it unless the guide is only for v4000
+url: contributor-guide-on-guides # The url
+order: "misc-4" # The order string, just follow the others in the same category
+hidden: true # Hide it
+noads: true # Disable ads (used in Contributors pages)
+---
+```
+
+You can know available categories just looking the folders inside `/guides/` or `/guides/data.json`.
+
+### Writing style
+
+There's little things you've to take in account in the writing style
+
+- **Main Title** should be the same than frontmatter `title`.
+- Talk to the user as **you**. Instead of "we can use `get()` for..." do "you can use `get()`" for
+- Try to do descriptive titles, instead of **Introduction** -> **How to X** / **Creating X**
+
+#### "X Operations" or "How To" collection sections
+
+Some guides include many **How to** section under a "X Operations" section, as a complement of main content, check for example
+[Game Object](/docs/guides/game_objects) guide, we could standarize this format:
+
+```mdx
+## [Title of Guide] Operations 
+
+### How to [thing]
+
+You can do [thing] with [thing they can use]
+```
+
+<Info title="Don't make them the whole thing!" crew="bobo">
+Remember, these sections shouldn't replace the main content of the guide but give some common
+questions with their responses, another good exmaple is [Tags](/docs/guides/tags) guide, first it introduces
+what is a tag, how to use them, and then the operations.
+</Info>
+
+## Components and features in Markdown
+
+There's some special components and Markdown features you must know for creating a great
+quality document piece.
+
+### `Info` component
+
+Display useful information or tips.
+
+#### Usage
+
+```jsx
+import Info from "@/components/Content/Info.astro";
+
+<Info crew="mark" title="oh!">
+Say hi!
+</Info>
+```
+
+#### Props
+| Prop              | Description                             |
+|-------------------|-----------------------------------------|
+| `crew`: `string`  | Crew member to display                  |
+| `title`: `string` | Title to display, it supports MarkDown  |
+
+
+#### Rendered
+
+<RenderedMarkdown>
+<Info crew="mark" title="oh!">
+Say hi!
+</Info>
+</RenderedMarkdown>
+
+There's many cool usages of this component among guides.
+
+### `JustForVersion` component
+
+Display useful information or tips.
+
+#### Usage
+
+```jsx
+import JustForVersion from "@/components/Content/JustForVersion.astro";
+
+<JustForVersion version="4000">
+## This Markdown
+
+Is just rendered in the 4000 version.
+</JustForVersion>
+```
+
+#### Props
+| Prop              | Description                             |
+|-------------------|-----------------------------------------|
+| `version`: `string`  | The version to display                  |
+| `requireToBeEqualIn`: `"major", "minor" or "patch"` | The level of numbers the component will check for conditionally rendering, being just major in `major`, major and minor in `minor` and the three numbers in `patch`.   |
+
+
+#### Rendered
+
+
+<JustForVersion version="4000">
+<RenderedMarkdown>
+## This Markdown
+
+Is just rendered in the 4000 version.
+</RenderedMarkdown>
+</JustForVersion>
+
+<JustForVersion version="3001">
+<RenderedMarkdown>
+Yeah, you **wont** see it on this version of docs, but hey, those v4000 fools can't read this one!
+</RenderedMarkdown>
+</JustForVersion>
+
+
+### `Code` component
+
+Render JavaScript code with an option to Open in KAPLAYGROUND. Don't worry 
+by formatting, it auto formats.
+
+#### Usage
+
+```jsx
+import Code from "@/components/Content/CodeWithKAPLAYGROUND.astro";
+
+<Code
+    code={`
+// Code to be rendered
+    `}
+    pgCode={`
+// Code to be played
+    `}
+/>
+```
+
+#### Props
+
+| Prop                        | Description                                                                                                                    |
+|-----------------------------|--------------------------------------------------------------------------------------------------------------------------------|
+| `code`: `string`            | The JavaScript code to be rendered.                                                                                            |
+| `pgCode?`: `string`         | The JavaScript code to be played in KAPLAYGROUND, if there's not, `code` is used                                               |
+| `addKAPLAYCall?`: `boolean` | If no `pgCode`, it will use `code` inserting `kaplay()` in the start                                                           |
+| `loadCrew`: `string[]`      | Load sprites from crew in the start of the example. Just works if `addKAPLAYCall` is true, and just work with sprites for now. |
+
+#### Rendered
+
+<RenderedMarkdown>
+<Code
+    code={`
+// Code to be rendered
+    `}
+    pgCode={`
+// Code to be played
+    `}
+/>
+</RenderedMarkdown>
+
+### API Docs links
+
+You can easily link to API Docs writing an entry name them between backticks (`):
+
+```mdx
+You can use `get(*)` for getting all objects. There's also `GameObjRaw.get()`. 
+It doesn't matter the content between (), it will be ignored for generating the link.
+```
+
+#### Rendered
+
+<RenderedMarkdown>
+You can use `get()` for getting all objects. There's also `GameObjRaw.get()`.
+</RenderedMarkdown>
+
+### Special aliases for API Docs links
+
+You can use convenient alias like `obj` for refer to `GameObjRaw`, there's the
+table with all special aliases and features around this:
+
+| This                  | Refers to      | Works in                                                                                                                 |
+|-----------------------|----------------|--------------------------------------------------------------------------------------------------------------------------|
+| obj                   | `GameObjRaw`   | Referring to `GameObjRaw` members. `obj.id` links to `GameObjRaw.id`                                                     |
+| debug                 | `Debug`        | Referring to `Debug` members. `debug.log()` links to `Debug.log()`                                                       |
+| obj.[componentMethod] | That component | Referring to component members as they were part of `obj`. `obj.onDoubleJump()` links to `DoubleJumpComp.onDoubleJump()` |

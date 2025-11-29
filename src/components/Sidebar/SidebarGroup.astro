@@ -1,0 +1,36 @@
+---
+import type { SidebarEntryGroup } from "./Sidebar.types";
+
+interface Props {
+    group: SidebarEntryGroup;
+    isOpen: boolean;
+}
+
+const {
+    group: { name: title },
+    isOpen,
+} = Astro.props;
+---
+
+<div class="folder | flex flex-col mt-0.5" folder-state={isOpen ? "open" : "closed"} id={title} data-sidebar-folder>
+    <p class="folder-title | btn btn-ghost btn-sm w-full justify-start font-medium text-left text-lg text-white">
+        {title}
+    </p>
+    <ul class="folder-content | mx-3.5 space-y-px pl-0.5 flex-col gap-2 border-l border-base-content/15">
+        <slot />
+    </ul>
+</div>
+
+<script>
+    document.addEventListener("click", (event) => {
+        const target = event.target as HTMLElement;
+
+        if (target.classList.contains("folder-title") || target.closest(".folder-title")) {
+            const folder = target.closest(".folder");
+            if (folder) {
+                const folderState = folder.getAttribute("folder-state");
+                folder.setAttribute("folder-state", folderState === "open" ? "closed" : "open");
+            }
+        }
+    });
+</script>

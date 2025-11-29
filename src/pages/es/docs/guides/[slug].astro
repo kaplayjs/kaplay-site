@@ -1,0 +1,34 @@
+---
+import NavigationButtons from "@/components/Content/NavigationButtons.astro";
+import Prose from "@/components/Content/Prose.astro";
+import { getCollectionPreviousAndNext } from "@/components/ContentLayer/getCollectionPreviousAndNext";
+import { getStaticPathsFromCollection } from "@/components/ContentLayer/getStaticPathsFromCollection";
+import SidebarPage from "@/layouts/SidebarPage.astro";
+import { render } from "astro:content";
+
+export async function getStaticPaths() {
+    return getStaticPathsFromCollection("guides", "es");
+}
+
+const { entry } = Astro.props;
+const { previous, next } = await getCollectionPreviousAndNext("guides", entry, "es");
+const { Content, headings } = await render(entry);
+---
+
+<SidebarPage
+    meta={{
+        title: "KAPLAY Guides, " + entry.data.title,
+        description: entry.data.description,
+        image: entry.data.image?.src,
+        keywords: "kaplayjs, guides, documentation",
+    }}
+    collection="guides"
+    category="guides"
+    headings={headings}
+    noAd={entry.data.ads ?? false}
+>
+    <Prose>
+        <Content />
+        <NavigationButtons previous={previous} next={next} />
+    </Prose>
+</SidebarPage>

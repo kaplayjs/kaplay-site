@@ -1,0 +1,9 @@
+:root {
+    --b0: #323844;
+}
+
+html, body {
+    background: var(--b0);
+    min-height: 100dvh;
+    cursor: url(/cursor_default.png) 8 6, auto;
+}

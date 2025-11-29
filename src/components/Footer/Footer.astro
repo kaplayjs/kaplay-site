@@ -5,6 +5,7 @@ import sponsorsData from "../../data/sponsors.json";
 import FriendsBelow from "../Util/FriendsBelow.astro";
 import FooterLink from "./FooterLink.astro";
 import FooterNav from "./FooterNav.astro";
+import FooterLanguageSelector from "./FooterLanguageSelector.astro";
 
 const sponsors = Object.values(sponsorsData);
 const sponsorImages = import.meta.glob<{ default: ImageMetadata }>("/src/assets/sponsors/*.{jpeg,jpg,png,gif}");
@@ -33,6 +34,7 @@ const { class: className, friendsClass, friendsInnerClass } = Astro.props;
                 <FooterLink href="/presskit"> Press Kit </FooterLink>
                 <FooterLink href="/books/how_to_be_a_bean_wizard/introduction"> Become a Bean Wizard now! </FooterLink>
                 <FooterLink href="/docs/guides/contributor-guide-on-guides">Contribute with this website </FooterLink>
+                <FooterLink href="/translation-progress">Translation Progress</FooterLink>
             </FooterNav>
 
             <FooterNav title="PRESENCE" icon="burpman" columns={2} class="[&_.icon]:ml-1.5">
@@ -93,7 +95,10 @@ const { class: className, friendsClass, friendsInnerClass } = Astro.props;
                 </div>
             </div>
 
-            KAPLAY Website, {__SITE_VERSION__}
+            <div class="flex flex-col gap-2">
+                <FooterLanguageSelector />
+                <div>KAPLAY Website, {__SITE_VERSION__}</div>
+            </div>
         </aside>
     </footer>
 </FriendsBelow>

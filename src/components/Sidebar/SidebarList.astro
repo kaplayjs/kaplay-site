@@ -1,23 +1,28 @@
 ---
-import type { SidebarEntry, SidebarProps } from "./Sidebar.astro";
-import SidebarFolder from "./SidebarFolder.astro";
+import type { Locale } from "@/util/i18n";
+import type { SidebarProps } from "./Sidebar.astro";
+import SidebarGroup from "./SidebarGroup.astro";
 import SidebarLink from "./SidebarLink.astro";
+import translationStrings from "@/util/translationStrings";
+import { getSidebarEntriesFromCollection } from "../ContentLayer/getSidebarEntriesFromCollection";
 
-interface Props extends SidebarProps {
-    sidebarEntries: SidebarEntry[];
-}
+const currentLocale = Astro.currentLocale as Locale;
+const t = translationStrings[currentLocale]["sidebar"];
 
-const { sidebarEntries, sidebarMode } = Astro.props as Props;
+type Props = SidebarProps;
+
+const { collection, category } = Astro.props;
 const url = Astro.url;
+const sidebarCollection = await getSidebarEntriesFromCollection(collection!, category!, currentLocale);
 ---
 
-<div data-sidebar-entries transition:persist={sidebarMode}>
+<div data-sidebar-entries transition:persist={collection}>
     <form class="sticky -top-1 -mt-2 mb-2.5 -mx-4 pt-4 px-4 bg-base-300" action="javascript:void(0)">
         <label class="input flex items-center gap-1 h-auto min-h-0 px-3.5 py-2 border-base-content/5" aria-label="Search">
             <input
                 id="sidebar-search"
                 class="peer grow min-w-0"
-                placeholder={sidebarMode == "reference" ? "Search for API..." : "Search for Guides..."}
+                placeholder={collection == "apiDocs" ? t["sidebar"]["searchForApi"] : t["sidebar"]["searchForGuides"]}
                 type="text"
                 autocomplete="off"
             />
@@ -45,15 +50,15 @@ const url = Astro.url;
     </form>
 
     {
-        sidebarEntries.map(({ linkList, folder }) => {
+        sidebarCollection.groups.map((group) => {
             return (
-                <SidebarFolder title={folder} id={folder} isOpen={linkList.length > 0}>
-                    {linkList.map(({ title, url: link }) => (
+                <SidebarGroup group={group} isOpen={group.entries.length > 0}>
+                    {group.entries.map(({ name: title, url: link }) => (
                         <SidebarLink href={link} data-sidebar-entry data-title={title} data-url={link} current={link == url.pathname}>
                             {title}
                         </SidebarLink>
                     ))}
-                </SidebarFolder>
+                </SidebarGroup>
             );
         })
     }

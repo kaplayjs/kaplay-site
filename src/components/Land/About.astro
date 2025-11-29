@@ -13,9 +13,7 @@ const bannerSprites = {
     ghostiny: { width: 41, height: 47, x: 397, y: 146 },
 };
 const bannerSpritesCount = Object.keys(bannerSprites).length;
-const spriteMaxWidth = Math.max(
-    ...Object.values(bannerSprites).map(v => v.width),
-);
+const spriteMaxWidth = Math.max(...Object.values(bannerSprites).map((v) => v.width));
 const { src: bannerSpritesUrl } = await getImage({
     src: kaplayBannerSprites,
     format: "png",
@@ -26,30 +24,19 @@ const { src: patternWaveUrl } = await getImage({
 });
 ---
 
-<div
-    class="relative flex-1 flex -mt-4 p-px pt-[calc(1rem+1px)] bg-base-50 z-20 2xl:[.bottom-0+&]:-mt-20"
-    id="about"
->
-    <div
-        class="flex-1 bg-[#2a303c] bg-image-pattern [background-position:right_6px_top_-6px] rounded-r-xl"
-        aria-hidden="true"
-    ></div>
+<div class="relative flex-1 flex -mt-4 p-px pt-[calc(1rem+1px)] bg-base-50 z-20 2xl:[.bottom-0+&]:-mt-20" id="about">
+    <div class="flex-1 bg-[#2a303c] bg-image-pattern [background-position:right_6px_top_-6px] rounded-r-xl" aria-hidden="true"></div>
 
-    <div
-        class="flex flex-col md:grid min-[900px]:grid-cols-2 gap-px h-full w-full max-w-[72.5rem] mx-auto"
-    >
+    <div class="flex flex-col md:grid min-[900px]:grid-cols-2 gap-px h-full w-full max-w-[72.5rem] mx-auto">
         <div
             class="relative col-span-2 min-[900px]:col-span-1 row-start-1 min-[900px]:col-start-2 flex items-center justify-center px-8 lg:px-10 py-6 lg:py-12 bg-base-300 rounded-xl overflow-hidden"
         >
             <div
                 class="absolute bottom-0 right-0 w-[200%] h-[256px] -translate-y-1/2 -rotate-45 origin-top-right pixelated animate-[waveMove_6s_linear_infinite]"
                 style={`background-image: url('${patternWaveUrl}')`}
-                aria-hidden="true"
-            ></div>
+                aria-hidden="true"></div>
 
-            <div
-                class="relative max-w-xs min-[900px]:max-w-[438px] animate-[levitating_6s_infinite_alternate]"
-            >
+            <div class="relative max-w-xs min-[900px]:max-w-[438px] animate-[levitating_6s_infinite_alternate]">
                 <Image
                     src={kaplayBanner}
                     alt="KAPLAY Banner"
@@ -63,55 +50,36 @@ const { src: patternWaveUrl } = await getImage({
                 />
 
                 {
-                    Object.values(bannerSprites).map((
-                        { width, x, y },
-                        i,
-                    ) => (
+                    Object.values(bannerSprites).map(({ width, x, y }, i) => (
                         <div
                             class="absolute pixelated animate-[spriting_3s_infinite_alternate]"
                             aria-hidden="true"
                             style={`
-                        top: ${
-                                (y / kaplayBanner.height) * 100
-                            }%;
-                        left: ${
-                                (x / kaplayBanner.width) * 100
-                            }%;
-                        width: ${
-                                (width / kaplayBanner.width) * 100
-                            }%;
-                        height: ${
-                                (49 / kaplayBanner.height) * 100
-                            }%;
+                        top: ${(y / kaplayBanner.height) * 100}%;
+                        left: ${(x / kaplayBanner.width) * 100}%;
+                        width: ${(width / kaplayBanner.width) * 100}%;
+                        height: ${(49 / kaplayBanner.height) * 100}%;
                         background: url('${bannerSpritesUrl}') ${
-                                (spriteMaxWidth * i)
-                                / (spriteMaxWidth * bannerSpritesCount
-                                    - width)
-                                * 100
-                            }% 0% / auto 100% no-repeat;
-                        ${
-                                i % 2 == 0 && "animation-delay: 0.5s"
-                            }
-                    `.split("\n").map(s => s.trim()).join("")}
-                        ></div>
+                            ((spriteMaxWidth * i) / (spriteMaxWidth * bannerSpritesCount - width)) * 100
+                        }% 0% / auto 100% no-repeat;
+                        ${i % 2 == 0 && "animation-delay: 0.5s"}
+                    `
+                                .split("\n")
+                                .map((s) => s.trim())
+                                .join("")}
+                        />
                     ))
                 }
             </div>
         </div>
 
-        <div
-            class="min-[900px]:row-start-1 row-span-2 flex flex-col lg:items-center justify-center bg-base-300 rounded-xl p-9 py-10 sm:p-16"
-        >
+        <div class="min-[900px]:row-start-1 row-span-2 flex flex-col lg:items-center justify-center bg-base-300 rounded-xl p-9 py-10 sm:p-16">
             <div class="flex-1 flex flex-col max-w-xl justify-evenly">
-                <h1
-                    class="text-white text-4xl sm:text-5xl font-bold md:leading-[3.2rem]"
-                >
+                <h1 class="text-white text-4xl sm:text-5xl font-bold md:leading-[3.2rem]">
                     <slot name="title" />
                 </h1>
 
-                <div
-                    class="bg-base-200 w-full flex flex-row p-4 rounded-xl items-center gap-4 mt-4"
-                >
+                <div class="bg-base-200 w-full flex flex-row p-4 rounded-xl items-center gap-4 mt-4">
                     <slot name="promotion" />
                 </div>
 
@@ -119,25 +87,18 @@ const { src: patternWaveUrl } = await getImage({
                     <slot name="description" />
                 </p>
 
-                <div
-                    class="mt-2 md:mt-4 flex flex-row flex-wrap gap-x-4 gap-y-5"
-                >
+                <div class="mt-2 md:mt-4 flex flex-row flex-wrap gap-x-4 gap-y-5">
                     <slot name="buttons" />
                 </div>
             </div>
         </div>
 
-        <div
-            class="grid grid-cols-2 md:grid-cols-1 min-[900px]:grid-cols-2 gap-px md:max-w-64 min-[900px]:max-w-full"
-        >
+        <div class="grid grid-cols-2 md:grid-cols-1 min-[900px]:grid-cols-2 gap-px md:max-w-64 min-[900px]:max-w-full">
             <slot name="featured" />
         </div>
     </div>
 
-    <div
-        class="flex-1 bg-[#2a303c] bg-image-pattern [background-position:left_-5px_top_-6px] rounded-l-xl"
-        aria-hidden="true"
-    ></div>
+    <div class="flex-1 bg-[#2a303c] bg-image-pattern [background-position:left_-5px_top_-6px] rounded-l-xl" aria-hidden="true"></div>
 </div>
 
 <style>

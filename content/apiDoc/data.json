@@ -1,0 +1,23 @@
+{
+    "groupsOrder": [
+        "Start",
+        "Assets",
+        "Game Obj",
+        "Components",
+        "Input",
+        "Audio",
+        "Events",
+        "Info",
+        "Data",
+        "Timer",
+        "Math",
+        "Scenes",
+        "Rendering",
+        "Physics",
+        "Draw",
+        "Debug",
+        "Plugins",
+        "Constants",
+        "Miscalenous"
+    ]
+}
