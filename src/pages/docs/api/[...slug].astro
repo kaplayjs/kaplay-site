@@ -1,27 +1,35 @@
 ---
-import { getStaticPathsFromCollection } from "@/components/ContentLayer/getStaticPathsFromCollection";
+import doc from "@/../doc.json";
 import DocEntry from "@/components/Doc/DocEntry.astro";
 import DocPreview from "@/components/Doc/DocPreview.astro";
 import SidebarPage from "@/layouts/SidebarPage.astro";
 
 export async function getStaticPaths() {
-    return (await getStaticPathsFromCollection("apiDocs")).filter((e) => e.props.entry.data.isCtx == false);
+    const allDoc: any = doc.types;
+    const allDocKeys: string[] = Object.keys(doc.types).filter((k) => k !== "KAPLAYCtx" && k !== "KaboomCtx" && k !== "undefined");
+
+    return allDocKeys.map((key) => ({
+        params: { slug: key },
+        props: {
+            type: allDoc[key] as any[],
+            name: key,
+        },
+    }));
 }
 
-const { entry } = Astro.props;
+const { type } = Astro.props;
 ---
 
 <SidebarPage
     meta={{
-        title: "KAPLAY Docs, " + entry.data.type[0].name,
-        description: entry.data.type[0].name,
+        title: "KAPLAY Docs, " + type[0].name,
+        description: type[0].name,
         keywords: "kaplayjs, guides, documentation",
     }}
-    collection="apiDocs"
-    category="apiDocs"
+    sidebarMode="reference"
 >
     <div class="min-h-dvh max-w-[50rem] p-4">
-        {entry.data.type?.map((refData, i) => <DocEntry index={i} data={refData} />)}
+        {type?.map((refData, i) => <DocEntry index={i} data={refData} />)}
     </div>
 
     <DocPreview />

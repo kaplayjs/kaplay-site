@@ -24,14 +24,12 @@ if (!params) {
 }
 ---
 
-<span
-    >({
+<span>({
         params.map((param: any, i: number) => (
-            <>
-                {param.name}
-                {optionalMark(param)}: <TypeSig data={param.type} />
-                {i !== params.length - 1 && ", "}
+            <>{param.name}
+                {optionalMark(param)}: <TypeSig data={param.type} />{
+                    i !== params.length - 1 && ", "
+                }
             </>
         ))
-    })</span
->
+    })</span>

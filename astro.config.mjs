@@ -21,7 +21,6 @@ import kaplayPackageJson from "./kaplay/package.json";
 import websitePackageJson from "./package.json";
 import { rehypeKAPLAY } from "./plugins/rehypeKAPLAY";
 import { rehypeWrapTables } from "./plugins/rehypeWrap";
-
 // https://astro.build/config
 export default defineConfig({
     site: "https://kaplayjs.com",
@@ -73,10 +72,6 @@ export default defineConfig({
         defaultLocale: "en",
         routing: {
             prefixDefaultLocale: false,
-            fallbackType: "redirect",
-        },
-        fallback: {
-            es: "en",
         },
     },
     markdown: {

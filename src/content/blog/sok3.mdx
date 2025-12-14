@@ -1,0 +1,113 @@
+---
+title: "State of KAPLAY #3"
+author: lajbel
+date: 10/2/2024
+description:
+    It is October and comes with a lot of news, from in-person events to
+    performance improvements.
+image: banners/sok3.png
+crewBadge:
+    text: "SOK #3"
+    crew: sok
+    bgColor: darkgreen
+---
+
+import { Image } from "astro:assets"; import flyersImage from
+"./assets/flyers.png"; import godotImage from "./assets/godottokaplay.png";
+import kaplaygroundImage from "./assets/kaplaygrounddiffs.png";
+
+# State of KAPLAY #3
+
+> lajbel, 2nd of October, 2024 - Writing from Ghosty's house
+
+Hey KAPLAYERS! How are you? Welcome to The State of KAPLAY #3, the blog where we
+talk about KAPLAY. And yes, I'm keeping my promise reality publishing this blog
+2 of October.
+
+## KAPLAY Updates, what devs are cooking? 🧑‍🍳
+
+Okay, what are we cooking on KAPLAY? Our math expert **MF** is working on many
+performance improvements for **v4000**. Actually he has a branch where he
+improved the processing of game objects in general, at the point where our
+_bench.js_ example with 5000 game objects with `[sprite(), pos()]` passed from
+**25 to 60fps** on Chromium.
+
+I'm working on optimizations on our Texture Packer, so you can remove sprites
+from memory, to save resources in larger games. Also, I'm redoing many examples
+so they are up-to-date and more intuitive.
+
+These PRs will be very important and bring KAPLAY v4000 one step closer.
+
+Other things includes bug fixes, collisions adjustments and more. We released
+two versions, **v4000.0.0-alpha.5** and **v3001.0.0-beta.3**. Here's the
+[changelog](https://github.com/kaplayjs/kaplay/releases/tag/3001.0.0-beta.2).
+
+From here, thanks to all our contributors, specially to _dragoncoder047_,
+_niceEli_ and _imaginarny_. Thanks for your contributions!
+
+## KAPLAY touching grass in an event
+
+KAPLAY Recently went to the **FIJA** (_International Feria of Argentinian
+Videogames_, me and my official team helper, _Jairo_, went to represent KAPLAY.
+We presented KAPLAY to many people, gifted stickers and also gave away some
+pins. From here, thanks to [Himu](https://himu.ar) for give us **his half of a
+stand** THANK YOU SO MUCH.
+
+Here are some pictures of the **FIJA**:
+
+<div class="flex flex-col flex-wrap gap-2 lg:flex-row">
+    <figure>
+        <Image src={flyersImage} alt="Our stand" class="lg:max-w-sm" />
+        <figcaption>Our flyers</figcaption>
+    </figure>
+    <figure>
+        <Image
+            src={godotImage}
+            alt="Godot user using KAPLAY"
+            class="lg:max-w-sm"
+        />
+        <figcaption>Godot user using KAPLAY</figcaption>
+    </figure>
+</div>
+
+Thanks to everyone who came, I haven't seen any community member but many people
+interesting on become a true KAPLAYER.
+
+## KAPLAYGROUND v2, spoilers
+
+The thing I'm working on most is KAPLAYGROUND v2, it comes with a lot of new
+features
+
+- Multi-file editing
+- Two modes, project & examples, with classic KAPLAYGROUND experience
+- Importing assets and saving them
+- Project & Examples browsing
+- Some cool editor integrations like seeing previews of `loadXXXX` funcs, or
+  load assets from a Context Menu instead of writing them manually.
+
+I don't have a date for it at the moment, but probably coming this month. You
+can also try [this preview version](https://new-editor.kaplay.pages.dev/)
+
+<Image src={kaplaygroundImage} alt="KAPLAYGROUND v2" style="width: 70%;" />
+
+## KAPLAY entering Minecraft
+
+Yes, we got a **Minecraft Server** SMP, thanks to
+[niceEli](https://niceeli.tech/), he setup a Minecraft server for us, where you
+can play with your friends, build stuff and show your beans. Here's a picture of
+me:
+
+![lajcraft](./assets/lajcraft.png)
+
+You can join us at:
+
+```
+mc.kaplayjs.com:58247 Java
+mcbr.kaplayjs.com port 3248 Bedrock
+```
+
+## And from the Jurassic...
+
+From the Jurassic we have to say bye bye, we will come with the next news on
+KAPLAY soon. Maybe a release this month...? Yes, that, KAPLAY v3001 date will be
+revealed this month, so stay alive!

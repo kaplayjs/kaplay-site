@@ -1,41 +1,41 @@
 [
-    {
-        "id": 0,
-        "name": "Eggou",
-        "developer": "FJ Team",
-        "vanityUrl": "eggou",
-        "sticker": "egg",
-        "featuredDescription": "Beat a robo-chicken in a flying chicken game!",
-        "description": "A robo-chicken robbed the eggs of a chicken coop. Our protagonist, Eggou, is very angry and will take revenge on the robo-chicken. Help Eggou to recover the eggs and defeat the robo-chicken.",
-        "tags": ["open-source"],
-        "upload": "https://html-classic.itch.zone/html/8640582/index.html",
-        "canvasWidth": 680,
-        "canvasHeight": 500,
-        "controls": {
-            "move": {
-                "keyboard": "wasd"
-            },
-            "shoot": {
-                "keyboard": "space"
-            }
-        }
-    },
-    {
-        "id": 1,
-        "name": "Clickery Hexagon",
-        "developer": "AmySpark",
-        "vanityUrl": "clickery",
-        "sticker": "pointer",
-        "featuredDescription": "Click an hexagon to make virtual numbers **go up**.",
-        "description": "Click an hexagon to make virtual numbers **go up**.",
-        "tags": ["open-source"],
-        "upload": "https://html-classic.itch.zone/html/10093664-1071304/public/index.html",
-        "canvasWidth": 1024,
-        "canvasHeight": 576,
-        "controls": {
-            "interact": {
-                "mouse": "click"
-            }
-        }
+  {
+    "id": 0,
+    "name": "Eggou",
+    "developer": "FJ Team",
+    "vanityUrl": "eggou",
+    "sticker": "egg",
+    "featuredDescription": "Beat a robo-chicken in a flying chicken game!",
+    "description": "A robo-chicken robbed the eggs of a chicken coop. Our protagonist, Eggou, is very angry and will take revenge on the robo-chicken. Help Eggou to recover the eggs and defeat the robo-chicken.",
+    "tags": ["open-source"],
+    "upload": "https://html-classic.itch.zone/html/8640582/index.html",
+    "canvasWidth": 680,
+    "canvasHeight": 500,
+    "controls": {
+      "move": {
+        "keyboard": "wasd"
+      },
+      "shoot": {
+        "keyboard": "space"
+      }
     }
+  },
+  {
+    "id": 1,
+    "name": "Clickery Hexagon",
+    "developer": "AmySpark",
+    "vanityUrl": "clickery",
+    "sticker": "pointer",
+    "featuredDescription": "Click an hexagon to make virtual numbers **go up**.",
+    "description": "Click an hexagon to make virtual numbers **go up**.",
+    "tags": ["open-source"],
+    "upload": "https://html-classic.itch.zone/html/10093664-1071304/public/index.html",
+    "canvasWidth": 1024,
+    "canvasHeight": 576,
+    "controls": {
+      "interact": {
+        "mouse": "click"
+      }
+    }
+  }
 ]

@@ -10,11 +10,12 @@
     }
 }
 
-.game[data-featured="true"] {
+
+.game[data-featured="true"]  {
     height: 340px;
 
     & .title {
-        @apply text-2xl;
+        @apply text-2xl;   
     }
 
     & .description {
