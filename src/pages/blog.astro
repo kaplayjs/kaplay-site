@@ -13,8 +13,7 @@ const orderedBlogs = blogs.sort((a, b) => Number(new Date(b.data.date)) - Number
         title: "KAPLAY Blog",
         description: "A collection of blog posts about KAPLAY.",
     }}
-    collection="blog"
-    category="blog"
+    sidebarMode="blog"
 >
     <Prose>
         <h1>Blog</h1>
@@ -22,7 +21,7 @@ const orderedBlogs = blogs.sort((a, b) => Number(new Date(b.data.date)) - Number
     </Prose>
 
     <div class="flex max-w-screen-lg flex-col gap-4 px-4 pb-4">
-        {orderedBlogs.map((blog) => <BlogEntry entry={blog.id} />)}
+        {orderedBlogs.map((blog) => <BlogEntry entry={blog.slug} />)}
     </div>
 
     <Prose>

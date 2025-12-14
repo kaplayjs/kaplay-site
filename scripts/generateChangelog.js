@@ -62,7 +62,6 @@ let result = await remark()
 result = `---
 title: Changelog
 description: Know the latest feature in KAPLAY.
-url: "/changelog"
 ---\n\n` + result;
 
 const changelogPath = path.resolve(

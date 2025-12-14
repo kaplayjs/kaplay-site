@@ -20,18 +20,33 @@ const game = gameList[id];
         data-featured={String(featured)}
     >
         <div class="absolute top-0 -z-10 h-full w-full">
-            <div class={`game-image w-full h-full bg-cover bg-center rounded-box absolute`} style={`background-image: url('/games/${id}/play.gif')`}> </div>
-            <div class={`game-cover w-full h-full bg-cover bg-center rounded-box absolute`} style={`background-image: url('/games/${id}/thumb.png')`}> </div>
+            <div
+                class={`game-image w-full h-full bg-cover bg-center rounded-box absolute`}
+                style={`background-image: url('/games/${id}/play.gif')`}
+            >
+            </div>
+            <div
+                class={`game-cover w-full h-full bg-cover bg-center rounded-box absolute`}
+                style={`background-image: url('/games/${id}/thumb.png')`}
+            >
+            </div>
         </div>
         <main class="bottom-0 mt-auto space-y-2 bg-base-200 bg-opacity-90 p-6">
             <div>
                 <h1 class="title font-bold">{game.name}</h1>
                 <p class="description text-sm">{game.developer}</p>
             </div>
-            <p class="text-xl italic" set:html={marked.parseInline(game.featuredDescription)} />
+            <p
+                class="text-xl italic"
+                set:html={marked.parseInline(game.featuredDescription)}
+            />
         </main>
         <div class="absolute -bottom-4 -right-4 rotate-12">
-            <img src={assets[game.sticker as keyof typeof assets]["outlined"]} alt="GitHub" class="w-10" />
+            <img
+                src={assets[game.sticker as keyof typeof assets]["outlined"]}
+                alt="GitHub"
+                class="w-10"
+            />
         </div>
     </article>
 </a>

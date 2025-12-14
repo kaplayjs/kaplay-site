@@ -1,11 +1,9 @@
 ---
 import hamburgerIcon from "@/assets/hamburger.webp";
 import type { Locale } from "@/util/i18n.ts";
-import translationStrings from "@/util/translationStrings";
+import { firstLinksRow, secondLinksRow } from "./Navbar.locales.ts";
 
 const l = Astro.currentLocale as Locale;
-const firstLinksRow = translationStrings[l].navbar.firstLinksRow;
-const secondLinksRow = translationStrings[l].navbar.secondLinksRow;
 ---
 
 <!-- Navbar -->
@@ -27,7 +25,7 @@ const secondLinksRow = translationStrings[l].navbar.secondLinksRow;
                 class="menu dropdown-content flex-nowrap z-[1] w-60 gap-2 rounded-box bg-base-200 mt-2 -mr-2 p-6 shadow-2xl border border-base-100 max-h-[calc(100svh-4.5rem)] overflow-hidden overflow-y-auto"
             >
                 {
-                    [...firstLinksRow, ...secondLinksRow].map((link) => (
+                    [...firstLinksRow[l], ...secondLinksRow[l]].map((link) => (
                         <li>
                             <a
                                 class:list={[
@@ -76,7 +74,7 @@ const secondLinksRow = translationStrings[l].navbar.secondLinksRow;
     <div class="hidden w-full max-w-[72.5rem] grid-cols-5 gap-2 md:grid mx-auto">
         <ul class="col-span-2 hidden gap-2 md:flex">
             {
-                firstLinksRow.map((link) => (
+                firstLinksRow[l].map((link) => (
                     <li>
                         <a class="btn btn-ghost font-semibold uppercase" href={link.url} data-astro-reload={link?.reload}>
                             <img src={link.icon} width="24" height="24" aria-hidden="true" class="px-0 py-0" />
@@ -96,7 +94,7 @@ const secondLinksRow = translationStrings[l].navbar.secondLinksRow;
 
         <ul class="col-span-2 hidden justify-end gap-0 lg:gap-2 md:flex">
             {
-                secondLinksRow.map((link) => (
+                secondLinksRow[l].map((link) => (
                     <li
                         class:list={{
                             "mx-3 first:ml-0 last:mr-0 [.mx-3+&]:ml-0.5": link.highlight,

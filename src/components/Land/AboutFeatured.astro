@@ -2,7 +2,7 @@
 import { assets } from "@kaplayjs/crew";
 
 export type AssetName = keyof {
-    [K in keyof typeof assets as (typeof assets)[K] extends { kind: "Sprite" } ? K : never]: any;
+    [K in keyof typeof assets as typeof assets[K] extends { kind: "Sprite" } ? K : never]: any;
 };
 
 type Props = {

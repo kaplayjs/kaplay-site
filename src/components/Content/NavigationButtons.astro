@@ -1,10 +1,11 @@
 ---
-import type { CollectionEntry } from "astro:content";
-import type { CollectionKey } from "astro:content";
-
+export type NavigationTags = {
+    url: string;
+    title: string;
+};
 type Props = {
-    previous: CollectionEntry<CollectionKey> | null;
-    next: CollectionEntry<CollectionKey> | null;
+    previous: NavigationTags | null;
+    next: NavigationTags | null;
 };
 const { previous, next } = Astro.props;
 ---
@@ -14,7 +15,7 @@ const { previous, next } = Astro.props;
         {
             previous && (
                 <a
-                    href={previous.id}
+                    href={previous.url}
                     class="not-prose card gap-1 mb-6 bg-base-content/5 p-4 no-underline hover:bg-base-content/10 transition-colors"
                     aria-label="Previous guide"
                 >
@@ -36,7 +37,7 @@ const { previous, next } = Astro.props;
                         </svg>
                         Previous
                     </div>
-                    <div class="mt-auto font-bold leading-tight text-primary">{previous.data.title}</div>
+                    <div class="mt-auto font-bold leading-tight text-primary">{previous.title}</div>
                 </a>
             )
         }
@@ -45,7 +46,7 @@ const { previous, next } = Astro.props;
         {
             next && (
                 <a
-                    href={next.id}
+                    href={next.url}
                     class="not-prose card gap-1 mb-6 bg-base-content/5 p-4 no-underline hover:bg-base-content/10 transition-colors"
                     aria-label="Next guide"
                 >
@@ -67,7 +68,7 @@ const { previous, next } = Astro.props;
                             </>
                         </svg>
                     </div>
-                    <div class="font-bold leading-tight text-primary text-right">{next.data.title}</div>
+                    <div class="font-bold leading-tight text-primary text-right">{next.title}</div>
                 </a>
             )
         }

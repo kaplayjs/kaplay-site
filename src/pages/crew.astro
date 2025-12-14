@@ -6,12 +6,16 @@ import NavbarPage from "@/layouts/NavbarPage.astro";
 <NavbarPage
     meta={{
         title: "KAPLAY Crew Wiki",
-        description: "The wiki (assets manager) for KAPLAY, where you can browse, download and read about our official assets.",
-        keywords: "kaplay, kaboom.js, kaplay.js, game, library, javascript, easy, simple, html5, html5 games",
+        description:
+            "The wiki (assets manager) for KAPLAY, where you can browse, download and read about our official assets.",
+        keywords:
+            "kaplay, kaboom.js, kaplay.js, game, library, javascript, easy, simple, html5, html5 games",
     }}
     pageClass="bg-image-pattern"
 >
-    <div class="flex flex-col h-[calc(100svh-4.5rem)] md:h-[calc(100svh-5rem)] scroll-smooth">
+    <div
+        class="flex flex-col h-[calc(100svh-4.5rem)] md:h-[calc(100svh-5rem)] scroll-smooth"
+    >
         <CrewApp client:load />
     </div>
 </NavbarPage>

@@ -16,7 +16,9 @@ const controls = game.controls as any;
 ---
 
 <article class="game-view | relative mb-20 h-full w-full transform rounded-box">
-    <div class="flex-col:flex-row flex h-full w-full items-center lg:justify-start">
+    <div
+        class="flex-col:flex-row flex h-full w-full items-center lg:justify-start"
+    >
         <div class="w-full max-w-md rounded-r-box bg-base-200">
             <h1 class="p-4 text-3xl font-bold">{game.developer}</h1>
         </div>
@@ -39,43 +41,50 @@ const controls = game.controls as any;
             <div class="flex flex-wrap justify-center gap-4">
                 {
                     controlNames.map((control) => {
-                        const input = controls[control];
-                        const keyboardInput = input["keyboard"];
-                        const isWasd = keyboardInput === "wasd";
+        const input = controls[control];
+        const keyboardInput = input["keyboard"];
+        const isWasd = keyboardInput === "wasd";
 
-                        if (!keyboardInput) return;
+        if (!keyboardInput) return;
 
-                        if (isWasd) {
-                            return (
-                                <div class="flex items-center justify-center gap-4">
-                                    <div>
-                                        <p class="font-bold uppercase">{control}</p>
-                                    </div>
-                                    <div>
-                                        <div class="flex w-full justify-center">
-                                            <kbd class="kbd">W</kbd>
-                                        </div>
-                                        <div class="flex w-full justify-center">
-                                            <kbd class="kbd">A</kbd>
-                                            <kbd class="kbd">S</kbd>
-                                            <kbd class="kbd">D</kbd>
-                                        </div>
-                                    </div>
+        if (isWasd) {
+            return (
+                        <div class="flex items-center justify-center gap-4">
+                            <div>
+                                <p class="font-bold uppercase">
+                                    {control}
+                                </p>
+                            </div>
+                            <div>
+                                <div class="flex w-full justify-center">
+                                    <kbd class="kbd">W</kbd>
                                 </div>
-                            );
-                        } else {
-                            return (
-                                <div class="flex items-center justify-center gap-4">
-                                    <div>
-                                        <p class="font-bold uppercase">{control}</p>
-                                    </div>
-                                    <div>
-                                        <kbd class="kbd">{keyboardInput.toUpperCase()}</kbd>
-                                    </div>
+                                <div class="flex w-full justify-center">
+                                    <kbd class="kbd">A</kbd>
+                                    <kbd class="kbd">S</kbd>
+                                    <kbd class="kbd">D</kbd>
                                 </div>
-                            );
-                        }
-                    })
+                            </div>
+                        </div>
+                    );
+        }
+        else {
+            return (
+                        <div class="flex items-center justify-center gap-4">
+                            <div>
+                                <p class="font-bold uppercase">
+                                    {control}
+                                </p>
+                            </div>
+                            <div>
+                                <kbd class="kbd">
+                                    {keyboardInput.toUpperCase()}
+                                </kbd>
+                            </div>
+                        </div>
+                    );
+        }
+    })
                 }
             </div>
         </div>

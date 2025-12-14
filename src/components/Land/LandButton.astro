@@ -3,7 +3,13 @@ import { cn } from "@/util/cn";
 import type { HTMLAttributes } from "astro/types";
 
 interface Props extends HTMLAttributes<"a"> {
-    kind?: "yellowish" | "greenish" | "blueish" | "mini-redish" | "mini-yellowish" | "githubish";
+    kind?:
+        | "yellowish"
+        | "greenish"
+        | "blueish"
+        | "mini-redish"
+        | "mini-yellowish"
+        | "githubish";
 }
 
 const { kind = "yellowish", class: className, ...props } = Astro.props as Props;

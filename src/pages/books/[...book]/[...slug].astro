@@ -1,23 +1,22 @@
 ---
 import Prose from "@/components/Content/Prose.astro";
-import { getSortedCollection } from "@/components/ContentLayer/getSortedCollection";
 import SidebarPage from "@/layouts/SidebarPage.astro";
-import { render } from "astro:content";
+import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
-    const entries = await getSortedCollection("books");
+    const entries = await getCollection("books");
 
     return entries.map((entry) => ({
         params: {
-            slug: entry.id.split("/")[2],
-            book: entry.id.split("/")[1],
+            slug: entry.slug.split("/")[2],
+            book: entry.slug.split("/")[1],
         },
         props: { entry },
     }));
 }
 
 const { entry } = Astro.props;
-const { Content, headings } = await render(entry);
+const { Content, headings } = await entry.render();
 ---
 
 <SidebarPage
@@ -26,8 +25,7 @@ const { Content, headings } = await render(entry);
         description: entry.data.description,
         keywords: "kaplayjs, guides, documentation",
     }}
-    collection="books"
-    category="books"
+    sidebarMode="books"
     headings={headings}
 >
     <link

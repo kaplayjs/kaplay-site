@@ -7,11 +7,12 @@ interface Props {
     isHome?: boolean;
 }
 
-const { onlyClassic = false, preferStart = false, isHome = false } = Astro.props;
+const { onlyClassic = false, preferStart = false, isHome = false } =
+    Astro.props;
 ---
 
 <div
-    class=""
+    class="2xl:justify-star bottom-0 right-0 z-50 flex h-auto min-h-[18rem] items-center justify-center p-6 2sm:min-h-[12.5rem] md:p-4 2xl:fixed"
     class:list={{
         "md:justify-start": preferStart,
     }}
@@ -19,9 +20,12 @@ const { onlyClassic = false, preferStart = false, isHome = false } = Astro.props
     <script
         async
         type="text/javascript"
-        src={`//cdn.carbonads.com/carbon.js?serve=CW7DE53Y&placement=kaplayjscom&format=${onlyClassic ? "responsive" : "cover"}`}
+        src={`//cdn.carbonads.com/carbon.js?serve=CW7DE53Y&placement=kaplayjscom&format=${
+            onlyClassic ? "responsive" : "cover"
+        }`}
         id="_carbonads_js"
-        data-astro-rerun></script>
+        data-astro-rerun
+    ></script>
     <script async>
         // @ts-ignore
         window.observer = new MutationObserver((mutations) => {

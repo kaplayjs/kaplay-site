@@ -1,33 +1,30 @@
 {
-    "extends": "astro/tsconfigs/strict",
-    "compilerOptions": {
-        "baseUrl": ".",
-        "paths": {
-            "@/*": [
-                "./src/*"
-            ],
-            "~/*": [
-                "./*"
-            ]
-        },
-        "jsx": "react-jsx",
-        "jsxImportSource": "preact",
-        "resolveJsonModule": true,
-        "noImplicitAny": false,
-        "target": "ESNext",
-        "module": "ESNext",
-        "types": [
-            "./src/.env.d.ts"
-        ]
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
     },
-    "include": [
-        ".astro/types.d.ts",
-        "**/*"
-    ],
-    "exclude": [
-        "kaplay",
-        "scripts",
-        "dist",
-        "public"
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact",
+    "resolveJsonModule": true,
+    "noImplicitAny": false,
+    "target": "ESNext",
+    "module": "ESNext",
+    "types": [
+      "./src/.env.d.ts"
     ]
+  },
+  "include": [
+    ".astro/types.d.ts",
+    "**/*"
+  ],
+  "exclude": [
+    "kaplay",
+    "scripts",
+    "dist",
+    "public"
+  ]
 }
