@@ -14,12 +14,13 @@ export function compressCode(str: string) {
 
 interface Props {
     code: string;
+    exampleUrl?: string;
     pgCode?: string;
     loadCrew?: string[];
     addKAPLAYCall?: boolean;
 }
 
-let { code, pgCode, addKAPLAYCall, loadCrew } = Astro.props;
+let { code, pgCode, addKAPLAYCall, loadCrew, exampleUrl } = Astro.props;
 
 let visualCode = code;
 let playgroundCode = pgCode ?? code;
@@ -45,7 +46,9 @@ visualCode = js_beautify(visualCode, formatterOptions);
 playgroundCode = js_beautify(playgroundCode, formatterOptions);
 
 const compressedCode = compressCode(playgroundCode);
-const kaplaygroundUrl = `https://play.kaplayjs.com/?code=${encodeURIComponent(compressedCode)}&version=master`;
+const kaplaygroundUrl = exampleUrl
+    ? `https://play.kaplayjs.com/?example=${exampleUrl}`
+    : `https://play.kaplayjs.com/?code=${encodeURIComponent(compressedCode)}&version=master`;
 ---
 
 <div class="flex flex-col gap-1.5 flex-1 bg-base-200 p-1.5 rounded-box min-h-0">

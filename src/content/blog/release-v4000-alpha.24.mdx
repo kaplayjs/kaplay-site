@@ -1,0 +1,146 @@
+---
+title: KAPLAY v4000 Alpha 24
+author: lajbel
+date: 12/18/2025
+description: Alpha 24 introduces life-saving features like polygonal shape creation made easy, new broad phase algorithms and new ways to use text tags.
+image: banners/lightning-goldflies.webp
+imageFocus: ["center", "30%"]
+crewBadge:
+    text: "v4000 Alpha 24"
+    crew: github
+    bgColor: red
+    borderColor: lightpink
+---
+
+import Code from "@/components/Content/CodeWithKAPLAYGROUND.astro";
+
+# KAPLAY v4000 Alpha 24
+
+> lajbel, 12/18/2025, eating cookies and drinking milk 
+
+Hey! lajbel here. You can already smell the snow and hear Santa preparing the presents (and maybe he uses beans instead of elves now!).
+
+Now it's the time to me walking you through the new features and bug fixes of the new version of KAPLAY. 
+
+But before driving into the features, let's recap the installation process for installing the **@next** KAPLAY version:
+
+```sh
+npm i kaplay@next
+```
+
+## Easy polygonal shapes creation
+
+New polygonal helpers and functions just landed KAPLAY! `createRegularPolygon()` and `createStartPolygon()`, they will create the necessary `Vec2` points for making a shape with `polygon()`, like a **Hexagon** (still not Clickery) or a **star**.
+
+<Code exampleUrl="polygongeneration" code={`
+const hex = createRegularPolygon(50, 6);
+  
+add([
+	pos(100, 100),
+	polygon(hex),
+]);
+
+const star = createStarPolygon(50, 20, 16);
+
+add([
+	pos(200, 100),
+	polygon(star),
+	color(YELLOW),
+]);
+`}
+/>
+
+It's great for fast testing shapes, enjoy them!
+
+## Generate area with a sprite
+
+Yes, now you can easily infer the shape of a sprite using the new `getSpriteOutline()` function. We *may not recommend creating your game areas like that* but if it works for you, great!
+
+<Code exampleUrl="automaticCollider" code={`
+let poly;
+onLoad(() => {
+    poly = getSpriteOutline("apple", 0, true, 5);
+
+    apple = add([
+        sprite("apple"),
+        area({ shape: poly }),
+        pos(200, 400),
+        "gm",
+    ]);
+});
+`}
+/>
+
+## Improved text formatting using \[color=rainbow\] tags! \[/color\]
+
+Now you can define parameters inside a text tag for dynamically change how the style looks, depending on a variable. Imagine all the \[color=rainbow\] possibilities \[/color\]:
+
+<Code exampleUrl="bbcode" code={`
+add([
+    pos(100, 100),
+    text(
+        "[color=pink]This[/color] [color=skyblue]is[/color] [color=white]awesome![/color]",
+        {
+            styles: {
+                color(i, ch, param) {
+                    return {
+                        color: rgb(param),
+                    };
+                },
+            },
+            size: 32,
+            width: 500,
+        },
+    ),
+])
+`}
+/>
+
+## New Broad Phase Algorithms 
+
+In this update, Vertical Sweep and Prune, Quadtree (\*1) and the possibility of choose the broad phase algorithm was added. You can choose it using `KAPLAYOpt.broadPhaseCollisionAlgorithm`:
+
+```js
+kaplay({
+	broadPhaseAlgorithm: "quadtree",
+});
+```
+
+For the ones like me who doesn't know what a Broad Phase Algorithm is, basically is an algorithm that can detect easily what objects have a **high possibility** of collide, so it performs less collision checks, so more performance. 
+
+Each algorithm may work better or worse depending on the type of game, so choose carefully! 
+
+## Thanks
+
+Time for saying goodbye! Thank you reader for your time, and thanks to all the contributors, specially, the ones who made possible this relaese, @dragoncoder047, @mflerackers, @milosilo-dev and @anthonygood. 
+
+## Changelog for v4000.0.0-alpha.24
+
+### Added
+
+- Added the `maxTimeStep` and `fixedUpdateMode` options, as well as
+  `setFixedSpeed()` for more granular control over fixed update and timing -
+  @dragoncoder047
+- Added parameterized formatting tags like `"[color=red]Red text![/color]"` in
+  `CharTransformFunc` for more powerful text formatting options -
+  @dragoncoder047
+- Added `createRegularPolygon()` and `createStarPolygon()` to create 2D regular
+  polytopes - @mflerackers
+- Added `createCogPolygon()` to create 2D regular cogs - @mflerackers
+- Added `getSpriteOutline()` that takes a sprite asset and returns a polygon
+  showing the outline - @milosilo-dev
+- Added Quadtree for collision detection (only for fixed size screen for now,
+  needs expansion) - @mflerackers (\*1)
+- Added vertical sweep and prune - @mflerackers
+- Added configuration to choose broad phase algorithm - @mflerackers
+
+### Fixed
+
+- Fixed the `fakeMouse()` component not giving the right position when the
+  camera transform was not the identity matrix - @dragoncoder047
+- Fixed tall fonts being cropped - @anthonygood
+- Fixed the sprite animation `onEnd()` callback being called before the
+  animation actually stopped, so if the onEnd callback started a new animation,
+  the new animation was instantly stopped - @dragoncoder047
+- Now `playMusic()` actually uses the requested volume and playback rate given
+  in the options - @dragoncoder047
