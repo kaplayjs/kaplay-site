@@ -20,9 +20,9 @@ import Code from "@/components/Content/CodeWithKAPLAYGROUND.astro";
 
 Hey! lajbel here. You can already smell the snow and hear Santa preparing the presents (and maybe he uses beans instead of elves now!).
 
-Now it's the time to me walking you through the new features and bug fixes of the new version of KAPLAY. 
+Now it's my time to walk you through the new features and bug fixes of the new version of KAPLAY. 
 
-But before driving into the features, let's recap the installation process for installing the **next** KAPLAY version:
+But before diving into the features, let's recap the command for  downloading the **next** KAPLAY version:
 
 ```sh
 npm i kaplay@next
@@ -30,7 +30,7 @@ npm i kaplay@next
 
 ## Easy polygonal shapes creation
 
-New polygonal helpers and functions just landed KAPLAY! `createRegularPolygon()` and `createStartPolygon()`, they will create the necessary `Vec2` points for making a shape with `polygon()`, like a **Hexagon** (still not Clickery) or a **star**.
+New polygonal helpers and functions just landed in KAPLAY! `createRegularPolygon()` and `createStarPolygon()` will create the necessary `Vec2` points for making a shape with `polygon()`, like a **Hexagon** (still not Clickery) or a **star**.
 
 <Code exampleUrl="polygongeneration" code={`
 const hex = createRegularPolygon(50, 6);
@@ -50,7 +50,7 @@ add([
 `}
 />
 
-It's great for fast testing shapes, enjoy them!
+It's great for fast testing of shapes, enjoy them!
 
 ## Generate area with a sprite
 
@@ -73,7 +73,7 @@ onLoad(() => {
 
 ## Improved text formatting using \[color=rainbow\] tags! \[/color\]
 
-Now you can define parameters inside a text tag for dynamically change how the style looks, depending on a variable. Imagine all the \[color=rainbow\] possibilities \[/color\]:
+Now you can define parameters inside a text tag to dynamically change how the style looks, depending on a variable. Imagine all the \[color=rainbow\] possibilities \[/color\]:
 
 <Code exampleUrl="bbcode" code={`
 add([
@@ -98,7 +98,7 @@ add([
 
 ## New Broad Phase Algorithms 
 
-In this update, Vertical Sweep and Prune, Quadtree (\*1) and the possibility of choose the broad phase algorithm was added. You can choose it using `KAPLAYOpt.broadPhaseCollisionAlgorithm`:
+In this update, Vertical Sweep and Prune, Quadtree (\*1) and the possibility of choosing the broad phase algorithm was added. You can choose it using `KAPLAYOpt.broadPhaseCollisionAlgorithm`:
 
 ```js
 kaplay({
@@ -106,13 +106,13 @@ kaplay({
 });
 ```
 
-For the ones like me who doesn't know what a Broad Phase Algorithm is, basically is an algorithm that can detect easily what objects have a **high possibility** of collide, so it performs less collision checks, so more performance. 
+For the ones like me who doesn't know what a Broad Phase Algorithm is, it's basically an algorithm that can detect easily what objects have a **high possibility** of collision, so it performs less collision checks, so more performance. 
 
 Each algorithm may work better or worse depending on the type of game, so choose carefully! 
 
 ## Thanks
 
-Time for saying goodbye! Thank you reader for your time, and thanks to all the contributors, specially, the ones who made possible this relaese, @dragoncoder047, @mflerackers, @milosilo-dev and @anthonygood. 
+Time for saying goodbye! Thank you reader for your time, and thanks to all the contributors, especially those who made possible this relaese, @dragoncoder047, @mflerackers, @milosilo-dev and @anthonygood. 
 
 ## Changelog for v4000.0.0-alpha.24
 
@@ -144,3 +144,5 @@ Time for saying goodbye! Thank you reader for your time, and thanks to all the c
   the new animation was instantly stopped - @dragoncoder047
 - Now `playMusic()` actually uses the requested volume and playback rate given
   in the options - @dragoncoder047
+
+> Corrections made by @imaginarny: 11
