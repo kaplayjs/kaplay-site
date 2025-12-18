@@ -1,0 +1,19 @@
+---
+import { marked } from "marked";
+
+type Props = {
+    count: string;
+    author: string;
+};
+
+const { author, count } = Astro.props;
+---
+
+<aside class="mb-4 mt-4 rounded-l-md rounded-r-box border-l-8 border-red-500 bg-base-200 px-4 py-2 text-base">
+    <div class="flex items-center gap-3 text-xl my-2.5">
+        <span
+            >Corrections made by <a target={"blank"} href={`https://github.com/${author}`}>@{author}</a>: <span class="text-red-400 font-bold">{count}</span
+            ></span
+        >
+    </div>
+</aside>
