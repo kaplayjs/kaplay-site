@@ -1,0 +1,78 @@
+---
+title: KAPLAY v4000 Alpha 25
+author: lajbel
+date: 12/25/2025
+description: Alpha 25 optimizes various parts of KAPLAY core. 
+image: banners/santa-claws.png
+imageFocus: ["center", "30%"]
+crewBadge:
+    text: "v4000 Alpha 25"
+    crew: github
+    bgColor: red
+    borderColor: lightpink
+---
+
+import Code from "@/components/Content/CodeWithKAPLAYGROUND.astro";
+import CorrectionCounter from "@/components/Content/CorrectionCounter.astro";
+
+# KAPLAY v4000 Alpha 25
+
+> lajbel, 12/25/2025, preparing next year gifts 
+
+Hey! lajbel here. **Merry KA-Mas**, And as a KA-Mas present from Santa Claws, we have one of the **last alphas**, yes, we're close to our **NEXT big milestone**.
+
+Let's recap the installation command:
+
+```sh
+npm i kaplay@next
+# If you want to use specifically this alpha
+# npm i kaplay@4000.0.0-alpha.25
+```
+
+## Optimizations in transform, collisions and hovers
+
+If you check the changelog, most of the changes are related to transform and collisions, they're optimizations that @mflerackers (our math dog) done. They were a serie of PR who optimized various parts of the code:
+
+- #973 - Add versioning in collisions, it reduce unnecessary recalculations.
+- #978 - Refactor hover/click system to be more efficient. Now instead the mouse doing hover checks for every game object (even if not needed), now is the game object itself that perform them, so, more unnecessary calculations removed.
+
+## `retrieve()` method
+
+The retrieve method returns a set of objects potentially intersecting the rectangle.
+
+<Code exampleUrl="retrieve" code={`
+onMouseMove(pos => {
+    let beans = get("*");
+
+    for (const bean of beans) {
+        bean.color = WHITE;
+    }
+
+    retrieve(new Rect(pos.sub(2, 2), 4, 4), bean => {
+        debug.log(bean.id);
+        bean.color = RED;
+    });
+});
+`}
+/>
+
+## Thanks
+
+Thank you reader for your time, and thanks to all the contributors, especially those who made possible this release, even in holidays, [**@dragoncoder047**](https://github.com/dragoncoder047), [**@mflerackers**](https://github.com/mflerackers) and me (because it's important to recognize your own work). 
+
+## Changelog for 4000.0.0-alpha.25 
+
+### Added
+
+- Added the `fakeMouseMove` event in `FakeMouseComp`, it will triggers when you move the object - @lajbel 
+- Global `retrieve()` method to get the objects with area within a certain rectangle - @mflerackers
+
+### Changed
+
+- Transforms are now only recalculated when needed. Thus static objects no longer increase computation in the transform phase - @mflerackers
+- Areas are now only recalculated when the area settings or (optional) renderArea has changed - @mflerackers
+- World (transformed) areas are now only recalculated when the area or transform has changed - @mflerackers
+- World bounding boxes are now only recalculated when the world area has changed - @mflerackers
+- Broad stage collision detection spatial structures are now only updated when an object's world bounding box has changed - @mflerackers
+- You can no longer change the position of an object by doing obj.pos.x += 1. You need to assign a new Vec2 or use moveBy instead - @mflerackers
+- The grid broadphase has been rewritten for performance - @mflerackers
