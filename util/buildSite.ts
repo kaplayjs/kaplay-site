@@ -7,8 +7,12 @@ export function buildSite(): AstroIntegration {
     return {
         name: '🦖',
         hooks: {
-            'astro:config:setup'({ logger, command }) {
-                if (command !== "build" && command !== "dev" && command !== "sync") return;
+            'astro:config:setup'({ logger }) {
+                const isGitHubActions = process.env.GITHUB_ACTIONS === 'true';
+
+                if (isGitHubActions) {
+                    logger.info(`Skiping KAPLAY generation process, as not needed in Github Actions`)
+                }
 
                 logger.info(`Generating docs.json from kaplay submodule...`)
                 try {
