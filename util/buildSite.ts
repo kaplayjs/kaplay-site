@@ -11,7 +11,8 @@ export function buildSite(): AstroIntegration {
                 const isGitHubActions = process.env.GITHUB_ACTIONS === 'true';
 
                 if (isGitHubActions) {
-                    logger.info(`Skiping KAPLAY generation process, as not needed in Github Actions`)
+                    logger.info(`Skipping KAPLAY generation process, as not needed in Github Actions`);
+                    return;
                 }
 
                 logger.info(`Generating docs.json from kaplay submodule...`)
