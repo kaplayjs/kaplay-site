@@ -4,22 +4,20 @@
     "version": "1.5.9",
     "scripts": {
         "install": "cd kaplay && pnpm i",
-        "dev": "npm run generate:all && astro dev",
-        "start": "npm run generate:all && astro dev",
-        "build": "npm run generate:all && astro check && astro build && pnpm run pagefind:build",
+        "dev": "astro dev",
+        "start": "astro dev",
+        "build": "astro check && astro build",
         "preview": "astro preview",
         "check": "astro check",
         "astro": "astro",
         "generate:docs": "node scripts/buildDoc.js",
         "generate:contributors": "node scripts/contributors.js",
         "generate:changelog": "node scripts/generateChangelog.js",
-        "generate:all": "npm run generate:contributors && npm run generate:changelog && npm run generate:docs",
         "fmt": "dprint fmt",
         "cf:deploy": "npm run build && wrangler pages deploy dist",
         "cf:preview": "wrangler pages dev dist",
         "fast:dev": "astro dev",
-        "fast:build": "NODE_ENV=fastproduction astro build",
-        "pagefind:build": "pagefind --site dist"
+        "fast:build": "NODE_ENV=fastproduction astro build"
     },
     "dependencies": {
         "@astrojs/check": "^0.9.4",
@@ -75,9 +73,11 @@
         "dprint": "^0.50.0",
         "dts-bundle-generator": "^9.5.1",
         "pagefind": "^1.1.1",
+        "picocolors": "^1.1.1",
         "prettier": "^3.5.3",
         "prettier-plugin-astro": "^0.14.1",
         "prettier-plugin-tailwindcss": "^0.6.8",
+        "pretty-ms": "^9.3.0",
         "rehype-autolink-headings": "^7.1.0",
         "rehype-slug": "^6.0.0",
         "remark": "^15.0.1",
@@ -87,6 +87,7 @@
         "shiki": "^1.21.0",
         "shiki-transformer-copy-button": "^0.0.3",
         "tailwind-merge": "^2.5.3",
+        "vite": "^7.3.0",
         "wrangler": "^3.80.0"
     },
     "packageManager": "pnpm@9.5.0+sha512.140036830124618d624a2187b50d04289d5a087f326c9edfc0ccd733d76c4f52c3a313d4fc148794a2a9d81553016004e6742e8cf850670268a7387fc220c903"

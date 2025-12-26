@@ -13,7 +13,7 @@ interface Props extends DataTypeProps {
     data: DataTypeQuery;
 }
 
-const { data, depth } = Astro.props;
+const { data } = Astro.props;
 ---
 
 <span data-dg-type-query>typeof {data.exprName.escapedText}</span>

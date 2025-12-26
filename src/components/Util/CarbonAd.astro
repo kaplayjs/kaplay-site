@@ -4,11 +4,9 @@ import "./CarbonAd.css";
 interface Props {
     onlyClassic?: boolean;
     preferStart?: boolean;
-    isHome?: boolean;
 }
 
-const { onlyClassic = false, preferStart = false, isHome = false } =
-    Astro.props;
+const { onlyClassic = false, preferStart = false } = Astro.props;
 ---
 
 <div
@@ -19,14 +17,12 @@ const { onlyClassic = false, preferStart = false, isHome = false } =
 >
     <script
         async
+        is:inline
         type="text/javascript"
-        src={`//cdn.carbonads.com/carbon.js?serve=CW7DE53Y&placement=kaplayjscom&format=${
-            onlyClassic ? "responsive" : "cover"
-        }`}
+        src={`//cdn.carbonads.com/carbon.js?serve=CW7DE53Y&placement=kaplayjscom&format=${onlyClassic ? "responsive" : "cover"}`}
         id="_carbonads_js"
-        data-astro-rerun
-    ></script>
-    <script async>
+        data-astro-rerun></script>
+    <script async is:inline>
         // @ts-ignore
         window.observer = new MutationObserver((mutations) => {
             mutations.forEach((mutation) => {
@@ -42,7 +38,7 @@ const { onlyClassic = false, preferStart = false, isHome = false } =
             });
         });
     </script>
-    <script data-astro-rerun>
+    <script is:inline>
         window.observer.observe(document.body, {
             childList: true,
             subtree: true,

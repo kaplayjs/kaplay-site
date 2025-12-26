@@ -1,4 +1,4 @@
-import doc from "@/../doc.json";
+import doc from "@/data/generated/docs.json";
 import DocEntry from "@/components/LegacyDoc/DocEntry.astro";
 import { experimental_AstroContainer } from "astro/container";
 import * as cheerio from "cheerio";
@@ -37,7 +37,7 @@ type DocEntryData = {
     tags?: JSDocTag[];
 };
 
-export async function GET({ params, request }) {
+export async function GET({ params }) {
     const slug = params.slug;
     const allDoc: any = doc.types;
     let type: any[] = [];

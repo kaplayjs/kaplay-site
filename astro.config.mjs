@@ -21,6 +21,8 @@ import kaplayPackageJson from "./kaplay/package.json";
 import websitePackageJson from "./package.json";
 import { rehypeKAPLAY } from "./plugins/rehypeKAPLAY";
 import { rehypeWrapTables } from "./plugins/rehypeWrap";
+import { buildSite } from "./util/buildSite.ts";
+
 // https://astro.build/config
 export default defineConfig({
     site: "https://kaplayjs.com",
@@ -37,18 +39,12 @@ export default defineConfig({
                 websitePackageJson.version,
             ),
         },
-        plugins: [
-            {
-                buildStart() {
-                    console.log(
-                        "Building KAPLAY website for ",
-                        kaplayPackageJson.version,
-                    );
-                },
-            },
-        ],
+        build: {
+            chunkSizeWarningLimit: 5000,
+        },
     },
     integrations: [
+        buildSite(),
         mdx(),
         tailwind(),
         astroMetaTags(),

@@ -1,8 +1,6 @@
 import fs from "fs/promises";
 import ts from "typescript";
 
-console.log("building doc...");
-
 // generate .d.ts / docs data
 let dts = await fs.readFile(`kaplay/dist/doc.d.ts`, "utf-8");
 
@@ -246,7 +244,7 @@ for (const comp of groups["Components"].entries) {
 }
 
 await fs.writeFile(
-    "doc.json",
+    "src/data/generated/docs.json",
     JSON.stringify({
         types,
         groups: sortedGroups,
@@ -262,16 +260,8 @@ await fs.writeFile(
 );
 
 await fs.writeFile(
-    "src/data/comps.json",
+    "src/data/generated/comps.json",
     JSON.stringify({
         compMap,
     }),
 );
-
-console.log(`
-KAPLAY.js TSC Docs built successfully. 🦖
-
-+ doc.json
-+ public/doc.json
-+ src/data/comps.json
-`);

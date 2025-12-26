@@ -1,5 +1,5 @@
 ---
-import doc from "@/../doc.json";
+import doc from "@/data/generated/docs.json";
 import DocEntry from "./DocEntry.astro";
 
 const allDoc = doc.types as any;
@@ -12,11 +12,11 @@ const docEntries = Object.values(docGroups)
 
 {
     docEntries.map((entry) => {
-        const referenceList = allDoc[entry as keyof typeof allDoc] ?? ctxDoc[entry as keyof typeof ctxDoc];
+        const referenceList: any[] = allDoc[entry as keyof typeof allDoc] ?? ctxDoc[entry as keyof typeof ctxDoc];
 
         return (
             <>
-                {referenceList?.map((reference: any, i) => (
+                {referenceList?.map((reference, i) => (
                     <DocEntry index={i} data={reference} />
                 ))}
 

@@ -1,5 +1,5 @@
 import docsReplacement from "../../custom.json";
-import generatedDocs from "../../doc.json";
+import generatedDocs from "@/data/generated/docs.json";
 
 const docs = generatedDocs as any;
 
@@ -32,7 +32,7 @@ for (const key of Object.keys(docsReplacement)) {
         const replacementForParents = docsReplacement[key] as any[];
 
         replacementForParents.forEach((replacementForParent, i) => {
-            const originalMemberArr = originalEntries[i].members?.[member];
+            const originalMemberArr: any[] = originalEntries[i].members?.[member];
 
             originalMemberArr.forEach((ogMember, i) => {
                 const replaceMember = replacementForParent[i];

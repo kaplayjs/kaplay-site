@@ -1,7 +1,6 @@
 ---
 import type { MarkdownHeading } from "astro";
 import Footer from "../Footer/Footer.astro";
-import { getBlogEntries, getBookEntries, getDocEntries, getGuidesEntries } from "./entries";
 import SidebarEntries from "./SidebarEntries.astro";
 import SidebarContentNav from "./SidebarContentNav.astro";
 import { cn } from "@/util/cn";
@@ -28,17 +27,6 @@ export type SidebarProps = {
 type Props = SidebarProps;
 
 const { sidebarMode, headings, pageAlign } = Astro.props;
-let renderList: SidebarEntry[] = [];
-
-if (sidebarMode === "guides") {
-    renderList = await getGuidesEntries();
-} else if (sidebarMode === "reference") {
-    renderList = await getDocEntries();
-} else if (sidebarMode === "blog") {
-    renderList = await getBlogEntries();
-} else if (sidebarMode === "books") {
-    renderList = await getBookEntries();
-}
 ---
 
 <div id="drawer" class:list={["drawer z-20 h-full md:drawer-open md:border-r border-base-content/5", `page-${pageAlign || "left"}`]}>

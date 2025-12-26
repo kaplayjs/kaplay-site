@@ -1,5 +1,5 @@
-import doc from "../doc.json";
-import compMapJson from "../src/data/comps.json";
+import compMapJson from "../src/data/generated/comps.json";
+import doc from "../src/data/generated/docs.json";
 
 interface QueryResult {
     apiEntry: string;

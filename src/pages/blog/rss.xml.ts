@@ -1,7 +1,8 @@
 import rss from "@astrojs/rss";
+import type { APIContext } from "astro";
 import { getCollection } from "astro:content";
 
-export async function GET(context) {
+export async function GET(context: APIContext) {
     const blog = (await getCollection("blog")).sort(
         (a, b) =>
             new Date(a.data.date).getTime()
@@ -12,7 +13,7 @@ export async function GET(context) {
     return rss({
         title: "KAPLAY.js Blog",
         description: "All the official updates in KAPLAY development.",
-        site: context.site,
+        site: context.site ?? "https://kaplayjs.com",
         items: blog.map((post) => ({
             title: post.data.title,
             pubDate: new Date(post.data.date),

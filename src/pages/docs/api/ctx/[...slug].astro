@@ -1,5 +1,5 @@
 ---
-import doc from "@/../doc.json";
+import doc from "@/data/generated/docs.json";
 import DocEntry from "@/components/Doc/DocEntry.astro";
 import DocPreview from "@/components/Doc/DocPreview.astro";
 import SidebarPage from "@/layouts/SidebarPage.astro";
@@ -12,7 +12,7 @@ export async function getStaticPaths() {
     return allKaboomDocKeys.map((key) => ({
         params: { slug: key },
         props: {
-            type: kaboomDoc[key],
+            type: kaboomDoc[key] as any[],
             name: key,
         },
     }));

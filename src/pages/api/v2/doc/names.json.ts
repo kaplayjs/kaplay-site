@@ -1,6 +1,6 @@
-import doc from "@/../doc.json";
+import doc from "@/data/generated/docs.json";
 
-export async function GET({ params, request }) {
+export async function GET() {
     const allDoc: any = doc.types;
     const allDocKeys: string[] = Object.keys(allDoc).filter(
         (k) => k !== "KAPLAYCtx" && k !== "KaboomCtx" && k !== "undefined",

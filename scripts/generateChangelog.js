@@ -73,10 +73,4 @@ const changelogPath = path.resolve(
 );
 
 fs.mkdirSync(path.dirname(changelogPath), { recursive: true });
-
-try {
-    fs.writeFileSync(changelogPath, String(result), "utf8");
-    console.log(`changelog generated to ${changelogPath}`);
-} catch (err) {
-    console.error("failed to generate changelog:", err);
-}
+fs.writeFileSync(changelogPath, String(result), "utf8");

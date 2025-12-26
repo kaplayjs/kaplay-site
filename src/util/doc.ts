@@ -1,4 +1,4 @@
-import doc from "@/../doc.json";
+import doc from "@/data/generated/docs.json";
 
 export const isCtxMember = (item: string) => {
     const allDoc = doc.types as any;

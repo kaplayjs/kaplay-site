@@ -1,7 +1,7 @@
 import fs from "fs";
 import contributors from "github-contributors";
 
-const dist = "src/data/contributors.json";
+const dist = "src/data/generated/contributors.json";
 let opts = {};
 
 let contributorsList = new Map();
@@ -30,7 +30,6 @@ contributorsAndThen("kaplayjs/kaplay", () => {
                 JSON.stringify(Array.from(contributorsList.values()), null, 2),
                 (err) => {
                     if (err) return console.log(err);
-                    console.log(`Contributors list has been saved to ${dist}`);
                 },
             );
         });

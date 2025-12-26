@@ -1,7 +1,8 @@
-import doc from "@/../doc.json";
+import doc from "@/data/generated/docs.json";
 import DocEntry from "@/components/Doc/DocEntry.astro";
 import { experimental_AstroContainer } from "astro/container";
 import * as cheerio from "cheerio";
+import type { APIContext } from "astro";
 const container = await experimental_AstroContainer.create();
 
 export async function getStaticPaths() {
@@ -37,8 +38,8 @@ type DocEntryData = {
     tags?: JSDocTag[];
 };
 
-export async function GET({ params, request }) {
-    const slug = params.slug;
+export async function GET({ params }: APIContext) {
+    const slug = params.slug!;
     const allDoc: any = doc.types;
     let type: any[] = [];
 

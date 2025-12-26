@@ -91,7 +91,7 @@ const isAnchor = (element: Element) =>
     && element.properties
     && "href" in element.properties;
 
-const isBacktickCode = (element: Element, parent?: any) =>
+const isBacktickCode = (element: Element) =>
     element.tagName == "code";
 
 const getUrl = (element: Element) => {

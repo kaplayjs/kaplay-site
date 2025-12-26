@@ -10,7 +10,7 @@ interface Props extends DataTypeProps {
     data: TypeDataStringLiteral;
 }
 
-const { data, depth } = Astro.props;
+const { data } = Astro.props;
 ---
 
 <span data-dg-string-literal>"{data.text}"</span>

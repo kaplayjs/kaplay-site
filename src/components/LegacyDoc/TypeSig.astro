@@ -82,7 +82,7 @@ const keyword = data?.kind;
 
             // prettier-ignore
             return <Fragment>{Object.entries(data.members)?.map(([, variants]: [string, any]) =>
-                    variants?.map((mem: any, i: number) => (
+                    variants?.map((mem: any) => (
                         <DocEntry data={mem} parent={`${parentData?.name}`} />
                     )),
                 )}</Fragment>
