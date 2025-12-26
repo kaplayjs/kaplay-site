@@ -13,8 +13,9 @@ JavaScript game library to make games fast and fun.
 1. clone repo
 2. run
 
-```
+```sh
 git submodule init
 git submodule update
-pnpm i
+pnpm i # Install dependencies
+pnpm doc # Generate docs from submodule
 ```
