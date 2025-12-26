@@ -1,4 +1,5 @@
 import fs from "fs/promises";
+import path from "path";
 import ts from "typescript";
 
 // generate .d.ts / docs data
@@ -243,6 +244,9 @@ for (const comp of groups["Components"].entries) {
     }
 }
 
+await fs.mkdir(path.dirname("src/data/generated/docs.json"), {
+    recursive: true,
+});
 await fs.writeFile(
     "src/data/generated/docs.json",
     JSON.stringify({

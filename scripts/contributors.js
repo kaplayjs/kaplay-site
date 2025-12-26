@@ -1,7 +1,9 @@
-import fs from "fs";
+import fs from "fs/promises";
 import contributors from "github-contributors";
+import path from "path";
 
-const dist = "src/data/generated/contributors.json";
+const dist = path.join("src", "data", "generated", "contributors.json");
+await fs.mkdir(path.dirname(dist), { recursive: true });
 let opts = {};
 
 let contributorsList = new Map();
