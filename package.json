@@ -13,7 +13,7 @@
         "generate:docs": "node scripts/buildDoc.js",
         "generate:contributors": "node scripts/contributors.js",
         "generate:changelog": "node scripts/generateChangelog.js",
-        "generate:all": "pnpm generate:docs && pnpm generate:contributors && pnpm generate:docs",
+        "generate:all": "pnpm generate:docs && pnpm generate:contributors && pnpm generate:changelog",
         "fmt": "dprint fmt",
         "cf:deploy": "npm run build && wrangler pages deploy dist",
         "cf:preview": "wrangler pages dev dist",
