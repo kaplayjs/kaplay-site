@@ -8,7 +8,7 @@ export function buildSite(): AstroIntegration {
         name: '🦖',
         hooks: {
             'astro:config:setup'({ logger, command }) {
-                if (command !== "build" && command !== "dev") return;
+                if (command !== "build" && command !== "dev" && command !== "sync") return;
 
                 logger.info(`Generating docs.json from kaplay submodule...`)
                 try {
