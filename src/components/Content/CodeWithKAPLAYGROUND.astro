@@ -13,13 +13,14 @@ export function compressCode(str: string) {
 
 interface Props {
     code: string;
+    nopg?: boolean;
     exampleUrl?: string;
     pgCode?: string;
     loadCrew?: string[];
     addKAPLAYCall?: boolean;
 }
 
-let { code, pgCode, addKAPLAYCall, loadCrew, exampleUrl } = Astro.props;
+let { code, pgCode, addKAPLAYCall, loadCrew, exampleUrl, nopg: noKAPLAYGROUNDLink = false } = Astro.props;
 
 let visualCode = code;
 let playgroundCode = pgCode ?? code;
@@ -81,14 +82,18 @@ const kaplaygroundUrl = exampleUrl
                     </span>
                 </button>
             </div>
-            <div
-                class="flex h-full tooltip tooltip-bottom before:text-xs before:py-1.5 before:left-auto before:right-0 before:translate-x-0 before:mt-0.5 after:mt-0.5"
-                data-tip="Open in KAPLAYGROUND"
-            >
-                <a class="btn btn-xs bg-base-100 h-full rounded-xl aspect-square" target="_blank" href={kaplaygroundUrl}>
-                    <img src={assets.play.outlined} class="w-5 h-5 object-scale-down ml-0.5" />
-                </a>
-            </div>
+            {
+                !noKAPLAYGROUNDLink && (
+                    <div
+                        class="flex h-full tooltip tooltip-bottom before:text-xs before:py-1.5 before:left-auto before:right-0 before:translate-x-0 before:mt-0.5 after:mt-0.5"
+                        data-tip="Open in KAPLAYGROUND"
+                    >
+                        <a class="btn btn-xs bg-base-100 h-full rounded-xl aspect-square" target="_blank" href={kaplaygroundUrl}>
+                            <img src={assets.play.outlined} class="w-5 h-5 object-scale-down ml-0.5" />
+                        </a>
+                    </div>
+                )
+            }
         </div>
     </div>
 
