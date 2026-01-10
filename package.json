@@ -1,7 +1,7 @@
 {
     "name": "kaplay-site",
     "type": "module",
-    "version": "1.5.9",
+    "version": "1.5.10",
     "scripts": {
         "install": "cd kaplay && pnpm i && cd .. && pnpm run generate:all",
         "dev": "astro dev",

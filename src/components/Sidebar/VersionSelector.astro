@@ -1,7 +1,8 @@
 ---
 import { cn } from "@/util/cn";
 
-const version = __KAPLAY_VERSION__;
+// Illegal hack
+const version = __KAPLAY_VERSION__ == "4000.0.0-alpha.24" ? "4000.0.0-alpha.25" : __KAPLAY_VERSION__;
 const selectedByDefault = version.startsWith("4") ? "v4000" : "v3001";
 
 const versions = {
