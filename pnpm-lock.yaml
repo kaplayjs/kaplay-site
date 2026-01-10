@@ -80,6 +80,9 @@ importers:
       hast:
         specifier: ^1.0.0
         version: 1.0.0
+      hast-util-to-text:
+        specifier: ^4.0.2
+        version: 4.0.2
       js-beautify:
         specifier: ^1.15.4
         version: 1.15.4
@@ -110,6 +113,9 @@ importers:
       rehype-mathjax:
         specifier: ^6.0.0
         version: 6.0.0
+      rehype-parse:
+        specifier: ^9.0.1
+        version: 9.0.1
       remark-attr:
         specifier: ^0.11.1
         version: 0.11.1
@@ -125,6 +131,9 @@ importers:
       typescript:
         specifier: ^5.6.3
         version: 5.6.3
+      unified:
+        specifier: ^11.0.5
+        version: 11.0.5
       unist-util-visit:
         specifier: ^5.0.0
         version: 5.0.0

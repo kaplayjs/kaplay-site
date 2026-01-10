@@ -18,10 +18,9 @@ The sprites are probably most of your visual aspects of your game.
 To load a sprite, you can use the `loadSprite()` function. This function mainly
 takes two parameters: the sprite name and the sprite path.
 
-<Code
-    code={"loadSprite(\"bean\", \"sprites/bean.png\")"}
-    nopg
-/>
+```js
+loadSprite(\"bean\", \"sprites/bean.png\")
+```
 
 This will load the sprite `bean` from the `sprites/bean.png` file.
 
@@ -33,8 +32,7 @@ set options related to animations.
 
 ![assets eggs](./assets/eggs.png)
 
-<Code
-    code={`
+```js
 loadSprite("player", "sprites/player.png", {
     sliceX: 2, // how many sprites are in the X axis
     sliceY: 2, // how many sprites are in the Y axis
@@ -43,10 +41,7 @@ loadSprite("player", "sprites/player.png", {
         ghosty: { from: 4, to: 4 },
     },
 });
-   
-`}
-    nopg
-/>
+```
 
 This will load the spritesheet, and create two animations, `crack` and `ghosty`.
 
@@ -54,22 +49,18 @@ This will load the spritesheet, and create two animations, `crack` and `ghosty`.
 
 To use a sprite in a Game Object, you must use the `sprite()` component.
 
-<Code
-    code={`
+```js
 kaplay();
 loadSprite("bean", "sprites/bean.png");
 
 const bean = k.add([sprite("bean"), pos(100, 100)]);
-`}
-    nopg
-/>
+```
 
 And your bean will be here!
 
 You can also set different parameters
 
-<Code
-    code={`
+```js
 const bean = k.add([
     sprite("bean", {
         frame: 1, // the frame of the sprite
@@ -79,21 +70,14 @@ const bean = k.add([
     }),
     pos(100, 100),
 ]);
-`}
-    nopg
-/>
+```
 
 ## Playing animations
 
 To play an animation, you can use the `SpriteComp.play()` method.
 
-<Code
-    code={`
+```js
 const player = k.add([sprite("player"), pos(100, 100)]);
 
 player.play("crack");
-`}
-    nopg
-/>
-
-## Custom area for sprite() componet 
+```

@@ -1,5 +1,6 @@
 ---
 import { Code } from "astro:components";
+import CustomCode from "../Content/CustomCode.astro";
 
 export interface Props {
     tag: string;
@@ -18,7 +19,7 @@ const getItem = (items: any[]) => {
     (
         <Fragment>
             {tag === "example" ? (
-                <Code code={items.join("").replace(/^```js\s+|```$/g, "")} lang="js" data-jsdoc-example />
+                <CustomCode code={items.join("").replace(/^```js\s+|```$/g, "")} data-language="js" data-jsdoc-example classForWindow="my-4" />
             ) : tag === "param" ? (
                 <p class="prose" data-jsdoc-tag>
                     <code data-jsdoc-name class="py-0.5 px-1.5 font-medium">

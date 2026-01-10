@@ -1,0 +1,80 @@
+---
+import { Code } from "astro:components";
+import { unified } from "unified";
+import rehypeParse from "rehype-parse";
+import { transformerNotationDiff, transformerNotationHighlight, transformerNotationWordHighlight } from "@shikijs/transformers";
+import type { BundledLanguage, LanguageRegistration, SpecialLanguage } from "shiki/types";
+import { toText } from "hast-util-to-text";
+
+interface Props {
+    code?: string;
+    classForWindow?: string;
+    class?: string;
+    style?: astroHTML.JSX.CSSProperties;
+    "data-language"?: BundledLanguage | SpecialLanguage | LanguageRegistration | undefined;
+}
+
+let code: string;
+const language = Astro.props["data-language"]!;
+const { classForWindow, class: className, style, code: customCode } = Astro.props;
+
+if (customCode) {
+    code = customCode;
+} else {
+    const htmlCode = await Astro.slots.render("default");
+
+    const astCode = unified().use(rehypeParse, { fragment: true }).parse(htmlCode);
+
+    code = toText(astCode, {
+        whitespace: "pre",
+    });
+}
+---
+
+<div class="flex flex-col gap-1.5 flex-1 bg-base-200 p-1.5 rounded-box min-h-0" class:list={classForWindow}>
+    <div class="flex items-center justify-between h-10">
+        <div class="flex items-center gap-1.5 px-3.5 pt-0.5">
+            <div class="size-2.5 bg-base-content/15 rounded-full"></div>
+            <div class="size-2.5 bg-base-content/15 rounded-full"></div>
+            <div class="size-2.5 bg-base-content/15 rounded-full"></div>
+        </div>
+        <div class="flex h-full gap-1.5 not-prose">
+            <div
+                class="flex h-full tooltip tooltip-bottom before:text-xs before:py-1.5 before:left-auto before:right-0 before:translate-x-0 before:mt-0.5 after:mt-0.5"
+                data-tip="Copy code"
+                data-code={code}
+            >
+                <button
+                    class="swap btn btn-xs bg-base-100 h-full rounded-xl aspect-square"
+                    onclick="
+                        navigator.clipboard.writeText(this.parentElement.getAttribute('data-code'));
+                        this.classList.add('swap-active');
+                        setTimeout(() => this.classList.remove('swap-active'), 500);
+                    "
+                    aria-label="Copy link to clipboard"
+                >
+                    <span class="swap-off flex items-center justify-center h-[inherit] aspect-square" aria-hidden="true">
+                        <img class="opacity-75 [.btn:hover_&]:opacity-100 transition-opacity" src="/copy.png" width="22" height="22" aria-hidden="true" />
+                    </span>
+
+                    <span class="swap-on flex items-center justify-center h-[inherit] aspect-square" aria-hidden="true">
+                        <img src="/copied.png" width="22" height="22" aria-hidden="true" />
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex-1 flex min-h-0">
+        <div class="flex flex-1 bg-base-300 rounded-xl overflow-hidden">
+            <Code
+                class:list={className}
+                style={style}
+                lang={language}
+                code={code}
+                transformers={// @ts-expect-error
+                [transformerNotationDiff(), transformerNotationHighlight(), transformerNotationWordHighlight()]}
+            />
+        </div>
+    </div>
+</div>

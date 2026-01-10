@@ -1,7 +1,7 @@
 ---
-import { Code } from "astro:components";
 import kaplaySubmodulePackageJson from "../../../kaplay/package.json";
 import type { BundledLanguage } from "shiki";
+import CustomCode from "./CustomCode.astro";
 
 interface Props {
     mode: "module" | "script_tag";
@@ -26,4 +26,4 @@ kaplay();`;
 }
 ---
 
-<Code lang={lang} code={code} />
+<CustomCode data-language={lang} code={code} />
