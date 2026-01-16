@@ -10,7 +10,7 @@ JavaScript game library to make games fast and fun.
 
 ## Contributing
 
-1. clone repo
+1. fork repo
 2. run
 
 ```sh
