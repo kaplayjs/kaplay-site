@@ -13,7 +13,7 @@ There are two main components which implement physics in KAPLAY. Area and Body.
 Area is used to define the area of the object. This can be seen as the collision
 shape, whether the object is actually solid or not. When using just area,
 without body, the object is not solid, but still reports overlapping with other
-areas. Area has three events for this:
+areas as long as you set the isSensor flag. Area has three events for this:
 
 - onCollide which is fired when the collision starts.
 - onCollideUpdate which is fired during collision.

@@ -11,6 +11,25 @@ import Info from "@/components/Content/Info.astro";
 
 Here's some tips on optimizing performance / maintainability for KAPLAY games
 
+## Choose a collision detection algorithm which fits your game
+
+There is no perfect collision detection algorithm, which one is better depends 
+on the kind of game you are creating. A side-scroller works best with "sap" or
+Sweep-and-Prune. A vertical shooter does best with "sapv", a vertical version
+of Sweep-and-Prune. For a game which spans both directions, like a top down
+strategy game for example, it depends whether the screen is uniformly filled
+or if objects are clumped together in some areas. For the former you best use
+"grid" which is a hash grid, while the latter does better with "quadtree",
+which is exactly that.
+These are all broad-phase collisions detection algorithms, which do the first
+selection. You can also specify the narrow-phase algorithm, which does the
+more precise collision detection. Default is "gjk", or Gilbert–Johnson–Keerthi,
+which supports both polygon and curved surfaces. If you don't need circles or
+other curved shapes, you can use "sat" or Separating Axis Theorem, which only
+supports polygons. Lastly there is the simple "box", which implements collision
+using Minkowski difference, and only works with AABB or axis aligned bounding
+boxes.
+
 ## Game Object is not always the answer
 
 Game objects are great for managing game entities, but they have a cost. If you
