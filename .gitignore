@@ -32,5 +32,3 @@ public/pagefind
 public/doc.json
 src/data/generated/**
 src/content/**/changes.md
-package.json
-pnpm-workspace.yaml
