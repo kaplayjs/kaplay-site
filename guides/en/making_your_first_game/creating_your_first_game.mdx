@@ -13,6 +13,8 @@ For setting up KAPLAY development, see the
 
 ![game](intro/game.png)
 
+You can find the source code at the [end](#full-game-code-here) or in the [KAPLAYGROUND](https://play.kaplayjs.com/?example=runner)!
+
 Let's start by initializing the context with the `kaplay()` function.
 
 ```js
@@ -57,7 +59,7 @@ will give the game obj certain functionality.
 > character, a bullet, a rock, a cloud
 
 For example, some component might decide what's the shape, some components might
-decide if it should subject to gravity, some components might decide what color
+decide if it should be subject to gravity, some components might decide what color
 it is, some component might decide how long it can live.
 
 ![comps](intro/comps.png)
@@ -66,8 +68,8 @@ If you're having trouble understanding, consider this Human Bean:
 
 ![humanbean](intro/humanbean.png)
 
-Human are also composed from a list of components, each component provides
-different functionalities, which is exactly what component means in KAPLAY.
+Humans are also composed from a list of components, each component providing
+different functionalities, which is exactly what a component means in KAPLAY.
 `add()` is the function you use to assemble all the components into a game
 object in KAPLAY:
 
@@ -78,11 +80,11 @@ start making the actual player character in our game:
 
 ```js
 // putting together our player character
-const bean = add([sprite("bean"), pos(80, 40), area(), body()]);
+const player = add([sprite("bean"), pos(80, 40), area(), body()]);
 
 // .jump() when "space" key is pressed
 onKeyPress("space", () => {
-    bean.jump();
+    player.jump();
 });
 ```
 
@@ -93,17 +95,27 @@ Let's see what components we're using:
 - `pos()` gives it a position on screen, at X: 80 Y: 40
 - `area()` gives it a collider area, so we can check for collisions with other
   characters later on
-- `body()` gives it a physical body, making it fall due to gravity and ability
-  to jump,
+- `body()` gives it a physical body, making it fall due to gravity and giving it the ability
+  to jump
 
 We're also testing out our player character with a little interaction here.
-`onKeyPress()` registers an event that runs every time user presses a certain
+`onKeyPress()` registers an event that runs every time the user presses a certain
 key. In this case, we're calling the `.jump()` method (which is provided by the
-`body()` component) when `"space"` key is pressed. Go ahead and slap that space
-key!
+`body()` component) when `"space"` key is pressed.
 
-With the `body()` component, our Bean is going to keep falling into oblivion if
-we don't hit "space" key enough. Let's add a static platform for Bean to land
+But before your player can jump, you need to set up gravity at the beginning.
+
+```js
+//Setting up gravity
+setGravity(1600);
+```
+
+`setGravity()` define the gravity of your world, everything with a `body()` will be falling down.
+
+Now that the gravity is set up, go ahead and slap that space key!
+
+With the `body()` component, our Player is going to keep falling into oblivion if
+we don't hit "space" key enough. Let's add a static platform for Player to land
 on.
 
 ```js
@@ -133,23 +145,17 @@ component
 - `color()` makes it render with an RGB color, we give it a R: 127 G: 200 B: 255
   which is a blue-ish color
 
-Now, before run, we should define the gravity of our world:
-
-```js
-setGravity(1600);
-```
-
-Pretty straightforward! Refresh the game and you should see our Bean is now
+Pretty straightforward! Refresh the game and you should see our Player is now
 safely landed on a static blue platform.
 
 ![land](intro/land.png)
 
-Let's also make sure our Bean can only jump when isGrounded.
+Let's also make sure our Player can only jump when isGrounded.
 
 ```js
 onKeyPress("space", () => {
-    if (bean.isGrounded()) {
-        bean.jump();
+    if (player.isGrounded()) {
+        player.jump();
     }
 });
 ```
@@ -166,11 +172,12 @@ build a game object from components again.
 add([
     rect(48, 64),
     area(),
+    body({isStatic: true}),
     outline(4),
     pos(width(), height() - 48),
     anchor("botleft"),
     color(255, 180, 255),
-    move(LEFT, 240),
+    move(LEFT, 480),
 ]);
 ```
 
@@ -202,21 +209,22 @@ tags to quickly describe behaviors for a group of objects.
 add([
     rect(48, 64),
     area(),
+    body({isStatic: true}),
     outline(4),
     pos(width(), height() - 48),
     anchor("botleft"),
     color(255, 180, 255),
-    move(LEFT, 240),
-    "tree", // add a tag here
+    move(LEFT, 480),
+    "tree" // add a tag here
 ]);
 ```
 
 To add a tag we simply put a string in the component array. Then we can check
-for collision between Bean and any object with tag "tree".
+for collision between Player and any object with tag "tree".
 
 ```js
-bean.onCollide("tree", () => {
-    addKaboom(bean.pos);
+player.onCollide("tree", () => {
+    addKaboom(player.pos);
     shake();
 });
 ```
@@ -231,7 +239,7 @@ animation, it accepts 1 argument the position to spawn, which we pass in the
 player's current position with `.pos` (which is provided by the `pos()`
 component).
 
-The second thing is `shake()`, which just shakes the screen,
+The second thing is `shake()`, which just shakes the screen.
 
 ![hit](intro/hit.gif)
 
@@ -239,6 +247,14 @@ Here's a trick. Try pressing `F1` in the game. See all the blue outlines? This
 is inspect mode and it'll show all the bounding boxes of every game obj with
 `area()` component. Also try hovering over each game object to inspect its
 states like position and tags.
+
+If you're using Chrome, `F1` doesn't work, you can add a debugKey when calling `kaplay()` at the start.
+
+```js
+kaplay({
+    debugKey:"w"
+});
+```
 
 ![inspect](intro/inspect.png)
 
@@ -256,14 +272,14 @@ loop(1, () => {
         pos(width(), height() - 48),
         anchor("botleft"),
         color(255, 180, 255),
-        move(LEFT, 240),
+        move(LEFT, 480),
         "tree", // add a tag here
     ]);
 });
 ```
 
-Let's just put the tree adding code inside a `loop()`. The first argument is the
-time in seconds here, so it'll spawn a tree every 1 seconds.
+Let's just put the tree spawning code inside a `loop()`. The first argument is the
+time in seconds here, so it'll spawn a tree every 1 second.
 
 Sick! Lots of trees coming to you now. Now we already have most of the game
 mechanics done. Some improvements we can make:
@@ -276,8 +292,8 @@ rect(48, rand(24, 64)),
 ```
 
 2. It'll be more fun if the trees spawn at different intervals. We cannot do
-   that from `loop()`, but we can compose that with recursive `wait()`s, which
-   waits for x seconds to execute some code.
+   that with `loop()`, but we can achieve that with recursive `wait()`s, which
+   wait for x seconds before executing some code.
 
 ```js
 function spawnTree() {
@@ -295,9 +311,9 @@ spawnTree();
 See? We're calling `spawnTree()` recursively / endlessly, with a random interval
 between 0.5 - 1.5 seconds each time.
 
-Before adding a score counter, let's actually complete the game loop first, by
-sending player to a game-over scene when they hit a tree. We can achieve this
-with KAPLAY's `scene()` system
+Before adding a score counter, let's actually complete the game loop first by
+sending the bean to a game-over scene when they hit a tree. We can achieve this
+with KAPLAY's `scene()` system.
 
 ```js
 scene("game", () => {
@@ -323,8 +339,10 @@ kaplay();
 loadSprite("bean", "sprites/bean.png");
 
 scene("game", () => {
-    // add bean
+    // add gravity
+    // add player
     // add platform
+    // add function spawnTree()
     // spawn trees
 });
 
@@ -341,13 +359,13 @@ scene("lose", () => {
 });
 ```
 
-So in the "lose" scene, we'll add a piece of text in the center says "Game Over"
+So in the "lose" scene, we'll add a piece of text in the center that says "Game Over"
 (`text()` is a component that renders text). Go ahead and go to this scene when
-player collides with a tree:
+the player collides with a tree:
 
 ```js
 player.onCollide("tree", () => {
-    addKaboom(bean.pos);
+    addKaboom(player.pos);
     shake();
     go("lose"); // go to "lose" scene here
 });
@@ -373,13 +391,50 @@ onUpdate(() => {
 });
 ```
 
-We can use the `onUpdate()` function, which takes a function, and runs it every
-frame. In this case we're going to increment the score, and update the score
+We can use the `onUpdate()` function, which takes a function and runs it every
+frame. In this case, we're going to increment the score and update the score
 label's text every frame.
 
-Full game code here:
+Now let's display the score in the losing scene by passing `score` to the scene
+and add the core loop to return to the game when pressing a key.
 
 ```js
+scene("game", () => {
+    //code
+    player.onCollide("tree", () =>{
+        addKaboom(player.pos);
+        shake();
+        go("lose", score);
+    });
+    //code
+
+});
+
+scene("lose", (score) =>{
+    add([text("Game Over"), pos(center()), anchor("center")]);
+
+    // display score
+    add([
+        text(score),
+        pos(width() / 2, height() / 2 + 80),
+        scale(2),
+        anchor("center"),
+    ]);
+
+    // go back to game when space is pressed
+    onKeyPress("space", () => go("game"));
+    onMousePress(() => go("game"));
+})
+```
+
+## Full game code here:
+
+You can also play the result in the [KAPLAYGROUND](https://play.kaplayjs.com/?example=runner)!
+
+```js
+import kaplay from "kaplay";
+import "kaplay/global"; // comment if you want to use the k. prefix
+
 const FLOOR_HEIGHT = 48;
 const JUMP_FORCE = 800;
 const SPEED = 480;
@@ -422,13 +477,14 @@ scene("game", () => {
 
     // jump when user press space
     onKeyPress("space", jump);
-    onClick(jump);
+    onMousePress(jump);
 
     function spawnTree() {
         // add tree obj
         add([
             rect(48, rand(32, 96)),
             area(),
+            body({isStatic: true}),
             outline(4),
             pos(width(), height() - FLOOR_HEIGHT),
             anchor("botleft"),
@@ -436,7 +492,6 @@ scene("game", () => {
             move(LEFT, SPEED),
             "tree",
         ]);
-
         // wait a random amount of time to spawn next tree
         wait(rand(0.5, 1.5), spawnTree);
     }
@@ -465,12 +520,7 @@ scene("game", () => {
 });
 
 scene("lose", (score) => {
-    add([
-        sprite("bean"),
-        pos(width() / 2, height() / 2 - 80),
-        scale(2),
-        anchor("center"),
-    ]);
+    add([text("Game Over"), pos(center()), anchor("center")]);
 
     // display score
     add([
@@ -480,9 +530,9 @@ scene("lose", (score) => {
         anchor("center"),
     ]);
 
-    // go back to game with space is pressed
+    // go back to game when space is pressed
     onKeyPress("space", () => go("game"));
-    onClick(() => go("game"));
+    onMousePress(() => go("game"));
 });
 
 go("game");
