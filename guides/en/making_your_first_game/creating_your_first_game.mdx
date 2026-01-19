@@ -13,7 +13,7 @@ For setting up KAPLAY development, see the
 
 ![game](intro/game.png)
 
-You can find the source code at the [end](#full-game-code-here) or in the [KAPLAYGROUND !](https://play.kaplayjs.com/?example=runner).
+You can find the source code at the [end](#full-game-code-here) or in the [KAPLAYGROUND](https://play.kaplayjs.com/?example=runner)!
 
 Let's start by initializing the context with the `kaplay()` function.
 
@@ -423,13 +423,13 @@ scene("lose", (score) =>{
 
     // go back to game when space is pressed
     onKeyPress("space", () => go("game"));
-    onClick(() => go("game"));
+    onMousePress(() => go("game"));
 })
 ```
 
 ## Full game code here:
 
-You can also play the result in the [KAPLAYGROUND !](https://play.kaplayjs.com/?example=runner)
+You can also play the result in the [KAPLAYGROUND](https://play.kaplayjs.com/?example=runner)!
 
 ```js
 import kaplay from "kaplay";
@@ -476,8 +476,8 @@ scene("game", () => {
     }
 
     // jump when user press space
-    onKeyPress("space", () => jump());
-    onClick(() => jump());
+    onKeyPress("space", jump);
+    onMousePress(jump);
 
     function spawnTree() {
         // add tree obj
@@ -490,12 +490,13 @@ scene("game", () => {
             anchor("botleft"),
             color(255, 180, 255),
             move(LEFT, SPEED),
-            "tree"
+            "tree",
         ]);
-            // wait a random amount of time to spawn next tree
-            wait(rand(0.5, 1.5), spawnTree);
+        // wait a random amount of time to spawn next tree
+        wait(rand(0.5, 1.5), spawnTree);
     }
 
+    // start spawning trees
     spawnTree();
 
     // lose if player collides with any game obj with tag "tree"
@@ -531,7 +532,7 @@ scene("lose", (score) => {
 
     // go back to game when space is pressed
     onKeyPress("space", () => go("game"));
-    onClick(() => go("game"));
+    onMousePress(() => go("game"));
 });
 
 go("game");
