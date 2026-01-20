@@ -723,18 +723,8 @@ $$
 Most math and graphics systems use post multiplication. The matrices are the
 same, but transposed. Vectors are column vectors in this case.
 
-$$
-\begin{bmatrix}
-1 & 0 & t_x\\
-0 & 1 & t_y\\
-0 & 0 & 1
-\end{bmatrix} \times
-\begin{bmatrix}
-v_x \\
-v_y \\
-1
-\end{bmatrix}
-=
+# $$\begin{bmatrix}1 & 0 & t_x\\0 & 1 & t_y\\0 & 0 & 1\end{bmatrix} \times\begin{bmatrix}v_x \\v_y \\1\end{bmatrix}
+
 \begin{bmatrix}
 v_x + t_x \\
 v_y + t_y \\

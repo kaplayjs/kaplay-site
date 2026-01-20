@@ -1,0 +1,130 @@
+---
+title: KAPLAY v4000 Alpha 26
+author: lajbel
+date: 01/20/2026
+description: Alpha 26 introduces breaking changes in area and performance improvements. 
+image: banners/sneaky.png
+imageFocus: ["center", "30%"]
+crewBadge:
+    text: "v4000 Alpha 26"
+    crew: github
+    bgColor: red
+    borderColor: lightpink
+---
+
+import Code from "@/components/Content/CodeWithKAPLAYGROUND.astro";
+
+# KAPLAY v4000 Alpha 26
+
+> lajbel, 01/20/2026, in bean's house 
+
+Hey! lajbel here. We're in the new year! 20**26**, and I'm happy to showcase you the KAPLAY v4000 Alpha **26**.
+
+As usual, let's see how to install this version:
+
+```sh
+npm i kaplay@next
+# If you want to use specifically this alpha
+# npm i kaplay@4000.0.0-alpha.26
+```
+
+## (!) Breaking Changes in Area
+
+If you are an `area()` user, you must know that now if an area doesn't have `AreaComp.isSensor: true` it will not process collisions. Now, let's explain why.
+
+Imagine you had an UI object, like a button and it is above the enemies. If enemies have `area` and the button too, the button will collide with the enemy. A previous workaround was using `AreaComp.collisionIgnore`, but collisions kept being processed. Now, by default, areas don't collide. This is way more performant.
+
+```js
+// BEFORE
+const collidableObject = add([
+	area(),
+]);
+
+// NOW
+const collidableObject = add([
+	area({ isSensor: true }),
+]);
+```
+
+Also, we decided to not add a way to make all areas `AreaComp.isSensor`: `true` by default, as a way to encourage performance-improving practices.
+
+## `AreaComp.isVisuallyColliding`
+
+When you need to test if an object collides with another object in the screen space (and not in the world space, where the collision system works), you can use `AreaComp.isVisuallyColliding`, this is useful with `fixed()` objects, for example. Note that this requires extra processing that is outside the collision system. 
+
+## Connectivity maps and flood fill
+
+> Written by MF
+
+A connectivity map marks all islands in a graph with a unique ID, this way, for example, when pathfinding, you can first figure out if there even exists a path before starting to look for it, and if the start and destination are found to be in two separate islands (meaning there is no chance of there being any path), skip the path search step.  
+
+[Flood fill](https://en.wikipedia.org/wiki/Flood_fill) is used to mark all similar nodes from a (set of) starting node(s). You can use it to pop all balls of similar color, like in puzzle bobble, or tsum tsum. But there's lots of other usages too. Like puzzle bubble uses it to know which ball are attached to the ceiling, by flooding from all ceiling balls regardless of color. All balls not "filled" are loose.
+
+<Code exampleUrl="floodfill" code={`
+function testFill() {
+	const grid = new NavGrid(2, 3, (a, b) => true);
+
+	debug.log(floodFill(grid, 0, node => (node & 1) == 0));
+	debug.log(floodFill(grid, 1, node => node & 1));
+}
+
+testFill();
+
+function testConnectivity() {
+	const grid = new NavGrid(2, 3, (a, b) => (a & 1) === (b & 1));
+	console.log(buildConnectivityMap(grid));
+}
+
+testConnectivity();
+`}
+/>
+
+
+## Acknowledgments
+
+Thank you reader for your time, and thanks to all the contributors, especially those who made this release possible: @Stanko, @mflerackers, @dragoncoder047 and @benhuangbmj.
+
+Also, I hope you're enjoying these release blogs. 
+
+## Changelog for 4000.0.0-alpha.26
+
+### Added
+
+- Added `floodFill()` for puzzle games - @mflerackers
+- Added `AreaComp.isVisuallyColliding` to test collisions in screen space. This
+  can be used for fixed objects which do not necessarily collide in world space.
+  Note that this involves additional processing as it tests outside the
+  collision system, which works in world space - @mflerackers
+- Added `buildConnectivityMap()` - @mflerackers
+- Added `buildConvexHull()` - @mflerackers
+
+### Changed
+
+- **(!)** Added `AreaCompOpt.isSensor`. Areas without body or is sensor will no
+  longer be eligible for collisions - @mflerackers
+- Both worldPos and screenPos are properties now - @mflerackers
+
+### Fixed
+
+- Fixed `tween()` not cloning the passed vectors/colors - @lajbel
+- Fixed `timer()` related events (tween/loop/wait) not taking `debug.timeScale`
+  into account - @Stanko
+- Fixed the vibration effect on bodies introduced in alpha.25 thanks to
+  @lajbel's debugging skills - @mflerackers
+- Fixed `SpriteComp.hasAnim()` returning false erroneously when the animation
+  named was just constant frame 0 - @dragoncoder047
+- Fixed `levelComp.serialize()` use _for...of_ in the place of the _for...in_
+  when looping through the tile object keys - @benhuangbmj
+- Fixed input events attached to a game object having the event's paused value
+  reset when the object is paused or unpaused - @dragoncoder047
+- Hidden objects are processed again in transform - @mflerackers
+- When the parent is changed, the transform is invalidated - @mflerackers
+- Fixed click and hover for `fixed()` objects - @mflerackers
+- Object toWorld/fromWorld/toScreen/fromScreen work more logical now -
+  @mflerackers
+- Sticky platforms work again - @mflerackers
+
+## Removed
+
+- **(!)** `onClick(() => {})` was removed, use `onMousePress()` instead.
+  `onClick("tag", () => {});` stays the same,

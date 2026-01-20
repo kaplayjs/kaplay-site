@@ -7,6 +7,5 @@ export const highlight = async (
     return await codeToHtml(code, {
         theme: "github-dark",
         lang: language,
-
     });
 };
