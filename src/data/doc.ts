@@ -1,5 +1,5 @@
 import generatedDocs from "@/data/generated/docs.json";
-import docsReplacement from "../../custom.json";
+import docsReplacement from "./custom.json";
 
 const docs = generatedDocs as any;
 

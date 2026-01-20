@@ -1,0 +1,83 @@
+{
+  "kaplay": [
+    {
+      "kind": "MethodSignature",
+      "id": 0,
+      "name": "kaplay",
+      "parameters": [
+        {
+          "kind": "Parameter",
+          "id": 0,
+          "name": "gopt",
+          "questionToken": true,
+          "type": {
+            "kind": "TypeReference",
+            "id": 0,
+            "typeName": "KAPLAYOpt"
+          }
+        }
+      ],
+      "type": {
+        "kind": "TypeReference",
+        "id": 0,
+        "typeName": "KAPLAYCtx"
+      }
+    }
+  ],
+  "KAPLAYCtx.add": [
+    [
+      {
+        "kind": "MethodSignature",
+        "id": 0,
+        "name": "add",
+        "parameters": [
+          {
+            "kind": "Parameter",
+            "id": 0,
+            "name": "comps",
+            "questionToken": true,
+            "type": {
+              "kind": "TypeReference",
+              "id": 0,
+              "typeName": "CompList"
+            }
+          }
+        ],
+        "type": {
+          "kind": "TypeReference",
+          "id": 0,
+          "typeName": "GameObj",
+          "typeArguments": null
+        }
+      }
+    ]
+  ],
+  "GameObjRaw.add": [
+    [
+      {
+        "kind": "MethodSignature",
+        "id": 0,
+        "name": "add",
+        "parameters": [
+          {
+            "kind": "Parameter",
+            "id": 0,
+            "name": "comps",
+            "questionToken": true,
+            "type": {
+              "kind": "TypeReference",
+              "id": 0,
+              "typeName": "CompList"
+            }
+          }
+        ],
+        "type": {
+          "kind": "TypeReference",
+          "id": 0,
+          "typeName": "GameObj",
+          "typeArguments": null
+        }
+      }
+    ]
+  ]
+}

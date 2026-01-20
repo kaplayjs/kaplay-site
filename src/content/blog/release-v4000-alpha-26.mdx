@@ -46,6 +46,8 @@ const collidableObject = add([
 ]);
 ```
 
+Note that `body()` objects doesn't need `AreaComp.isSensor`.
+
 Also, we decided to not add a way to make all areas `AreaComp.isSensor`: `true` by default, as a way to encourage performance-improving practices.
 
 ## `AreaComp.isVisuallyColliding`
