@@ -1,5 +1,5 @@
-import doc from "@/data/generated/docs.json";
 import DocEntry from "@/components/LegacyDoc/DocEntry.astro";
+import doc from "@/data/generated/docs.json";
 import { experimental_AstroContainer } from "astro/container";
 import * as cheerio from "cheerio";
 const container = await experimental_AstroContainer.create();

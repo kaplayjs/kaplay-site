@@ -1,6 +1,6 @@
-import doc from "@/data/generated/docs.json";
 import guidesData from "@/../guides/data.json";
 import { booksInfo } from "@/data/booksData";
+import doc from "@/data/generated/docs.json";
 import {
     getCollection,
     type InferEntrySchema,
@@ -33,7 +33,7 @@ export const getGuidesEntries = async () => {
 
     const renderList: SidebarEntry[] = categories.map((category) => {
         return {
-            folder: guidesData.categories[<Category>category].displayName,
+            folder: guidesData.categories[<Category> category].displayName,
             linkList: guidesByCategory[category] ?? [],
         };
     });
@@ -95,8 +95,9 @@ export const getBookEntries = async () => {
             folder: booksInfo[category].title ?? category,
             linkList: booksByCategory[category].map((book: any) => ({
                 title: book.data.title,
-                url: `/books/${book.slug.split("/")[1]}/${book.slug.split("/")[2]
-                    }`,
+                url: `/books/${book.slug.split("/")[1]}/${
+                    book.slug.split("/")[2]
+                }`,
                 description: "",
             })),
         })),

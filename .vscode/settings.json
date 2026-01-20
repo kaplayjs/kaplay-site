@@ -1,10 +1,10 @@
 {
-  "[astro]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "workbench.colorCustomizations": {
-    "statusBar.noFolderBackground": "#19A119",
-    "statussBar.prominentBackground": "#19A119"
-  },
-  "typescript.tsdk": "node_modules/typescript/lib"
+    "[astro]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "workbench.colorCustomizations": {
+        "statusBar.noFolderBackground": "#19A119",
+        "statussBar.prominentBackground": "#19A119"
+    },
+    "typescript.tsdk": "node_modules/typescript/lib"
 }
