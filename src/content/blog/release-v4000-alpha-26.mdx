@@ -50,7 +50,7 @@ Note that `body()` objects don't need `AreaComp.isSensor`.
 
 Also, we decided to not add a way to make all areas `AreaComp.isSensor`: `true` by default, as a way to encourage performance-improving practices.
 
-## `AreaComp.isVisuallyColliding`
+## AreaComp.isVisuallyColliding
 
 When you need to test if an object collides with another object in the screen space (and not in the world space, where the collision system works), you can use `AreaComp.isVisuallyColliding`, this is useful with `fixed()` objects, for example. Note that this requires extra processing that is outside the collision system. 
 
