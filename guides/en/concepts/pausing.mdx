@@ -28,13 +28,15 @@ When an object is paused, its `GameObjRaw.onUpdate()` event no longer runs, and 
 
 Since we have learned that the children of paused objects are paused as well, we can take it as an advantage and structure our game objects in a way that makes pausing and unpausing the core game loop easy.
 
-We will create a `game` object that will be used as the parent of all other objects that need to be paused, such as the player or enemies, while excluding other objects like the pause menu, so they continue to work. As mentioned earlier, if we paused the `root` object itself, features like pause menu wouldn't be possible. You could also query and iterate each object to pause manually, but it's just easier doing it this way instead.
+We will create a `game` object that will be used as the parent of all other objects that need to be paused, such as the player or enemies, while excluding other objects like the pause menu, so they continue to work. As mentioned earlier, if we paused the `root` object itself, features like pause menu wouldn't be possible. You could also query and iterate each object to pause manually, but it's just easier doing it this way instead. Also, if some of your children were already paused intentionally, you don't have to track them either, as they will retain their paused state.
 
 ```js
 // The parent object
 const game = add();
 // Children will get paused as well
 const player = game.add([sprite("bean"), ...]);
+// Objects attached to root won't get paused
+const pauseMenu = add([text("Pause Menu"), ...]);
 ```
 
 Our parent game object does not require any particular component to work, can be empty just like that.
@@ -57,17 +59,18 @@ If you had previously any events registered globally and don't want them to work
 // Before
 loop(1, () => debug.log("ohhi!"));
 //After
+const game = add([timer()]); // timer comp needed for loop
 game.loop(1, () => debug.log("ohhi!"));
 
 // Before
-onButtonPress("right", () => player.move(420, 0));
+onKeyPress("space", () => player.jump());
 // After
-player.onButtonPress("right", () => player.move(420, 0));
+player.onKeyPress("space", () => player.jump());
 ```
 
 ## Full Example
 
-You can see the pausing of the core game loop while still having a working pause menu by pressing the <kbd class="kbd kbd-sm">P</kbd> key in the [KAPLAYGROUND Pause Menu example](https://play.kaplayjs.com/?example=pauseMenu).
+You can see the pausing of the core game loop while still having a working pause menu by pressing the <kbd class="kbd kbd-sm">P</kbd> or <kbd class="kbd kbd-sm">ESC</kbd> key in the [KAPLAYGROUND Pause Menu example](https://play.kaplayjs.com/?example=pauseMenu).
 
 ## Bonus: Using addLevel()
 
