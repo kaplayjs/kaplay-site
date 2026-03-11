@@ -1,0 +1,91 @@
+---
+title: Pausing
+description: How to pause your game or game objects easily
+url: pausing
+---
+
+import Info from "@/components/Content/Info.astro";
+
+# Pausing
+
+Pause is a common feature in many games. Since pausing is a built-in feature of [Game Objects](/docs/guides/game_objects), we will demonstrate how to leverage them to [pause a game](#pausing-and-resuming-a-game) as well.
+
+<Info crew="pause" title="Looking for pausing the game runtime for debug purposes?">
+    You can learn about controlling time in the [Debug Mode](/docs/guides/debug_mode#controlling-time) guide instead.
+</Info>
+
+## Pausing Game Objects
+
+Objects have a getter/setter property `GameObjRaw.paused` to which you can assign a `boolean`. So pausing a game object is as simple as the following:
+
+```js
+obj.paused = true;
+```
+
+When an object is paused, its `GameObjRaw.onUpdate()` event no longer runs, and no event listeners attached to it are triggered. It will only continue to be drawn (`GameObjRaw.hidden` can control that). The same applies to its children. Because of this, you can't attach any unpause logic to the object itself, as it would be impossible for it to react afterward.
+
+## Pausing and Resuming a Game
+
+Since we have learned that the children of paused objects are paused as well, we can take it as an advantage and structure our game objects in a way that makes pausing and unpausing the core game loop easy.
+
+We will create a `game` object that will be used as the parent of all other objects that need to be paused, such as the player or enemies, while excluding other objects like the pause menu, so they continue to work. As mentioned earlier, if we paused the `root` object itself, features like pause menu wouldn't be possible. You could also query and iterate each object to pause manually, but it's just easier doing it this way instead. Also, if some of your children were already paused intentionally, you don't have to track them either, as they will retain their paused state.
+
+```js
+// The parent object
+const game = add();
+// Children will get paused as well
+const player = game.add([sprite("bean"), ...]);
+// Objects attached to root won't get paused
+const pauseMenu = add([text("Pause Menu"), ...]);
+```
+
+Our parent game object does not require any particular component to work, can be empty just like that.
+
+Then, we can register a global event listener to toggle its `paused` property. You should now remember that if we attached it to the game object itself, it would never listen for the unpause event once it gets paused.
+
+```js
+onKeyPress("p", () => (game.paused = !game.paused));
+```
+
+Now, when you press the <kbd class="kbd kbd-sm">P</kbd> key, the entire game object, including its children, will get paused and resumed with each sequential press. Forever.
+
+<Info crew="bag" title="Don't forget!">
+    To update the existing event listeners...
+</Info>
+
+If you had previously any events registered globally and don't want them to work during the paused state, attach them instead to the `game` object or the corresponding child. For example:
+
+```js
+// Before
+loop(1, () => debug.log("ohhi!"));
+//After
+const game = add([timer()]); // timer comp needed for loop
+game.loop(1, () => debug.log("ohhi!"));
+
+// Before
+onKeyPress("space", () => player.jump());
+// After
+player.onKeyPress("space", () => player.jump());
+```
+
+## Full Example
+
+You can see the pausing of the core game loop while still having a working pause menu by pressing the <kbd class="kbd kbd-sm">P</kbd> or <kbd class="kbd kbd-sm">ESC</kbd> key in the [KAPLAYGROUND Pause Menu example](https://play.kaplayjs.com/?example=pauseMenu).
+
+## Bonus: Using addLevel()
+
+The `addLevel()` function returns a `GameObj` as well, so the `paused` property is available. Therefore, the `paused` state can be set on the level itself:
+
+```js
+const level = addLevel(/* level args */);
+level.paused = true;
+```
+
+In case you would like to couple more stuff together as we did with the `game` object as the parent, you can do so by using the `level()` component instead.
+
+```js
+const game = add();
+const levelObj = game.add([level(/* level args */)]);
+// Can pause game instead again
+game.paused = true;
+```
