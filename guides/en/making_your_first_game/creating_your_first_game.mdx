@@ -215,7 +215,7 @@ add([
     anchor("botleft"),
     color(255, 180, 255),
     move(LEFT, 480),
-    "tree" // add a tag here
+    "tree", // add a tag here
 ]);
 ```
 
@@ -268,6 +268,7 @@ loop(1, () => {
     add([
         rect(48, 64),
         area(),
+        body({isStatic: true}),
         outline(4),
         pos(width(), height() - 48),
         anchor("botleft"),
