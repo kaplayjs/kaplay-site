@@ -109,7 +109,7 @@ const types = {};
 const groups = {};
 const sortedGroups = {};
 const miscGroup = {
-    name: "Miscalenous",
+    name: "Miscellaneous",
     entries: [],
 };
 
@@ -213,7 +213,7 @@ for (const group of Object.keys(groups)) {
     }
 }
 
-sortedGroups["Miscalenous"] = miscGroup;
+sortedGroups["Miscellaneous"] = miscGroup;
 
 for (const sectionOrder of Object.keys(sectionsSort)) {
     const section = sortedGroups[sectionOrder];
