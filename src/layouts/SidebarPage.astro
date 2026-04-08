@@ -6,6 +6,7 @@ import Page, { type MetaTagData } from "./Page.astro";
 import SearchDialog from "@/components/Search/SearchDialog.astro";
 import "@/components/Doc/Styles/DocGeneration.css";
 import "@shikijs/twoslash/style-rich.css";
+import redirectScript from "@/util/redirectToPreferredVersion";
 
 type Props = {
     meta?: MetaTagData;
@@ -16,6 +17,13 @@ const { sidebarMode, meta, headings, noAd, pageAlign } = Astro.props;
 ---
 
 <Page meta={meta} class="scroll-pt-[5.625rem]">
+    {
+        import.meta.env.PROD && (
+            // Redirects docs to the preferred version on site navigation or exact endpoints
+            <script is:inline set:html={`(${redirectScript})()`} slot="head" />
+        )
+    }
+
     <script src="/pagefind/pagefind-ui.js" is:inline defer slot="head"></script>
     <slot name="head" slot="head" />
 

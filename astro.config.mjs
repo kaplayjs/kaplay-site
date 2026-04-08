@@ -28,6 +28,7 @@ export default defineConfig({
     site: "https://kaplayjs.com",
     vite: {
         define: {
+            __KAPLAY_DEFAULT_VERSION__: JSON.stringify("3001"),
             __KAPLAY_VERSION__: JSON.stringify(kaplayPackageJson.version),
             __KAPLAY_MAJORMINOR__: JSON.stringify(
                 kaplayPackageJson.version.replace(/(\d+\.\d+).*/, "$1"),
