@@ -7,13 +7,15 @@ import SearchDialog from "@/components/Search/SearchDialog.astro";
 import "@/components/Doc/Styles/DocGeneration.css";
 import "@shikijs/twoslash/style-rich.css";
 import redirectScript from "@/util/redirectToPreferredVersion";
+import VersionNotice from "@/components/Util/VersionNotice.astro";
 
 type Props = {
     meta?: MetaTagData;
     noAd?: boolean;
+    version?: string;
 } & SidebarProps;
 
-const { sidebarMode, meta, headings, noAd, pageAlign } = Astro.props;
+const { sidebarMode, meta, headings, noAd, pageAlign, version } = Astro.props;
 ---
 
 <Page meta={meta} class="scroll-pt-[5.625rem]">
@@ -28,6 +30,8 @@ const { sidebarMode, meta, headings, noAd, pageAlign } = Astro.props;
     <slot name="head" slot="head" />
 
     <Sidebar sidebarMode={sidebarMode} headings={headings} pageAlign={pageAlign}>
+        <VersionNotice slot="page-start" version={version} />
+
         <slot />
 
         {!noAd && <CarbonAd slot="ad" preferStart />}
