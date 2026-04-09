@@ -14,9 +14,15 @@ export const prefixVersionUrl: (
             + url.replace(/^\/|\/$/g, "") + "/",
         isCurVersion ? import.meta.env.SITE : undefined,
     );
-    if (!isCurVersion) link.searchParams.append("noredirect", "");
+    if (link.pathname.startsWith("/docs")) {
+        link.searchParams.append("noredirect", "");
+    }
 
-    return link[isCurVersion ? "pathname" : "href"].replace(/=$|=(?=&)/g, "");
+    return (
+        isCurVersion
+            ? link.pathname + link.search + link.hash
+            : link.href
+    ).replace(/=$|=(?=&)/g, "");
 };
 
 export default prefixVersionUrl;
