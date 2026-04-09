@@ -13,10 +13,10 @@ export default function redirectToPreferredVersion() {
     const refOrigin = document.referrer
         ? (new URL(document.referrer)).origin
         : "";
-    const pathname = location.pathname.replace(/\/$/, "");
+    const path = location.pathname.replace(/\/$/, "");
     if (
-        !pathname.endsWith("/guides")
-        && !pathname.endsWith("/api")
+        !path.endsWith("/guides")
+        && !path.endsWith("/api")
         && refOrigin != location.origin
     ) return;
 
@@ -27,7 +27,7 @@ export default function redirectToPreferredVersion() {
         return match ? decodeURIComponent(match[2]) : null;
     };
 
-    const version = getCookie() || __KAPLAY_DEFAULT_VERSION__;
+    const version = getCookie() || __KAPLAY_MAJOR__;
     const versionSubdomain = version != __KAPLAY_DEFAULT_VERSION__
         ? `v${version}.`
         : "";
@@ -38,7 +38,7 @@ export default function redirectToPreferredVersion() {
 
     if (subdomain == versionSubdomain) return;
 
-    const { host, search, hash } = window.location;
+    const { host, pathname, search, hash } = window.location;
     const redirectHost = host.replace(subdomain, "");
     location.replace(
         `//${versionSubdomain}${redirectHost}${pathname}${search}${hash}`,
