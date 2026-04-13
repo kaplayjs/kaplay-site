@@ -19,6 +19,8 @@ const { sidebarMode, meta, headings, noAd, pageAlign, version } = Astro.props;
 ---
 
 <Page meta={meta} class="scroll-pt-[5.625rem]">
+    <style slot="head" is:inline set:html="html{background-color:#2a303c}"></style>
+
     {
         import.meta.env.PROD && (
             // Redirects docs to the preferred version on site navigation or exact endpoints
