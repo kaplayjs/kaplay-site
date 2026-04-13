@@ -48,7 +48,7 @@ export const changes: {
         links: [
             {
                 name: "RIP make()",
-                url: prefixVersionUrl("/docs/api/ctx/make/", "3000"),
+                url: prefixVersionUrl("/docs/api/ctx/make/", "3001"),
             },
             {
                 name: "Creating Objects",

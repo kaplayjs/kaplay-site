@@ -4,10 +4,25 @@ export const prefixVersionUrl: (
     url: string,
     version?: string,
 ) => string = (url, version = "4000") => {
-    const subdomain = version != "3000" ? `v${version}.` : "";
+    const isCurVersion = isVersion(version);
+    const subdomain = version != __KAPLAY_DEFAULT_VERSION__
+        ? `v${version}.`
+        : "";
 
-    return (!isVersion(version) ? `https://${subdomain}kaplayjs.com/` : "/")
-        + url.replace(/^\/|\/$/g, "") + "/";
+    const link = new URL(
+        (!isCurVersion ? `https://${subdomain}kaplayjs.com/` : "/")
+            + url.replace(/^\/|\/$/g, "") + "/",
+        isCurVersion ? import.meta.env.SITE : undefined,
+    );
+    if (link.pathname.startsWith("/docs")) {
+        link.searchParams.append("noredirect", "");
+    }
+
+    return (
+        isCurVersion
+            ? link.pathname + link.search + link.hash
+            : link.href
+    ).replace(/=$|=(?=&)/g, "");
 };
 
 export default prefixVersionUrl;

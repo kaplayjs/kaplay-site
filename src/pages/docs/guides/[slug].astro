@@ -50,6 +50,7 @@ const { Content, headings } = await render(entry);
     sidebarMode="guides"
     headings={headings}
     noAd={entry.data.noAds ?? false}
+    version={entry.data.version}
 >
     <Prose>
         <Content

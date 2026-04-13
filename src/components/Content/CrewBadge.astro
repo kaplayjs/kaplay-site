@@ -58,7 +58,7 @@ const bgColors = {
 
 <strong
     class={cn(
-        "inline-flex shrink-0 m-0.5 ml-1 align-middle font-normal drop-shadow-2 [p_&]:ml-2 [p_&]:mr-1 [p_&]:mt-0",
+        "inline-flex shrink-0 m-0.5 ml-1 align-middle font-hand font-normal drop-shadow-2 [p_&]:ml-2 [p_&]:mr-1 [p_&]:mt-0",
         textColors?.[borderColor || textColor],
         className,
     )}
@@ -69,7 +69,7 @@ const bgColors = {
         <img src={assets[crew].sprite} class="h-5 !m-0 object-scale-down scale-125 !rounded-none" alt={crew} />
     </span>
     <span class:list={["flex items-center rounded-r-lg pl-1.5 pr-2 py-1.5", bgColors[bgColor]]}>
-        <span class:list={["self-center -mt-1 font-hand text-sm leading-none", textColors[textColor]]}>
+        <span class:list={["self-center -mt-1 text-sm leading-none", textColors[textColor]]}>
             {Astro.slots.has("default") ? <slot /> : text}
         </span>
     </span>

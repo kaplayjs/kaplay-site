@@ -1,0 +1,30 @@
+---
+import isVersion from "@/util/isVersion";
+import prefixVersionUrl from "@/util/prefixVersionUrl";
+import CrewBadge from "@/components/Content/CrewBadge.astro";
+
+type Props = {
+    version?: string;
+};
+
+const { version } = Astro.props;
+const versionUrl = prefixVersionUrl(Astro.url.pathname, version);
+---
+
+{
+    version && !isVersion(version) && (
+        <div class="mt-4 md:mt-3.5 mb-4 mx-4 md:mx-3.5">
+            <a href={versionUrl} class="inline-block hover-hover:hover:scale-105 transition-transform origin-left">
+                <CrewBadge
+                    crew="lightning"
+                    bgColor="lightorange"
+                    borderColor="lightorange"
+                    textColor="black"
+                    class="sm:scale-110 origin-left m-0 font-sans font-bold"
+                >
+                    <span class="block translate-y-0.5">This is only available in v{version}!</span>
+                </CrewBadge>
+            </a>
+        </div>
+    )
+}

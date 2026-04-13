@@ -6,6 +6,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.11] - 2026-04-13
+
+### Added
+
+- Added a version compatibility notice to the guides when viewed on an
+  incompatible version - @imaginarny
+- Improved the 404 page and added a notice about possible API Reference entry
+  missing in the selected version but available in another - @imaginarny
+
+### Changed
+
+- After changing the docs version, you will be redirected to the same page in
+  that version instead of the docs index page - @imaginarny
+- The selected docs version is now remembered, and you will be redirected to it
+  when navigating or visiting `/docs/guides` or `/docs/api` directly - @imaginarny
+
 ## [1.5.10] - 2026-01-10
 
 ### Added

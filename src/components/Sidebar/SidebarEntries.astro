@@ -54,7 +54,7 @@ if (sidebarMode === "guides") {
                     <SidebarCategoryLink href="/blog" icon="paper" selected={sidebarMode === "blog"}> Blog </SidebarCategoryLink>
                 </ul>
 
-                <SidebarList sidebarMode={sidebarMode} sidebarEntries={renderList} />
+                {!!renderList.length && <SidebarList sidebarMode={sidebarMode} sidebarEntries={renderList} />}
 
                 <div
                     id="sidebar-back-to-top"

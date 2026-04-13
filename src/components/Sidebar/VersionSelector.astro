@@ -45,6 +45,7 @@ const versions = {
     <ul
         tabindex="0"
         class="dropdown-content menu w-max min-w-full mt-1.5 p-1.5 space-y-0.5 bg-base-100 rounded-lg border border-base-content/5 shadow-2xl z-[1] focus-visible:ring-2 focus-visible:ring-base-content"
+        data-version-selector-list
     >
         {
             Object.entries(versions).map(([version, { label, url }]) => (
@@ -57,6 +58,7 @@ const versions = {
                             },
                         )}
                         href={url}
+                        data-version={version.replace("v", "")}
                     >
                         {label}
                     </a>
@@ -65,3 +67,20 @@ const versions = {
         }
     </ul>
 </div>
+
+<script>
+    import { navigate } from "astro:transitions/client";
+
+    document.addEventListener("astro:page-load", () => {
+        const anchors = document.querySelectorAll<HTMLAnchorElement>("[data-version-selector-list] [data-version]");
+        const updatedUrl = (href = location.href) => new URL(location.pathname + location.search + location.hash, href).toString();
+        anchors?.forEach((a) => {
+            a.href = updatedUrl(a.href);
+            a.addEventListener("click", (e) => {
+                e.preventDefault();
+                document.cookie = `docsPreferredVersion=${a.dataset.version}; domain=.${location.hostname.split(".").slice(-2).join(".")}; path=/`;
+                navigate(updatedUrl(a.href));
+            });
+        });
+    });
+</script>
