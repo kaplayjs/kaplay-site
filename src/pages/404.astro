@@ -46,13 +46,13 @@ import { assets } from "@/data/crew";
         const referrerSubdomain = referrer.hostname.replace(referrerDomain, "").replace(/\.$/, "");
         const version = (referrerSubdomain || __KAPLAY_DEFAULT_VERSION__).replace("v", "");
 
-        if (referrerDomain != location.hostname || location.hostname.startsWith(referrerSubdomain)) {
+        if (referrerDomain != location.hostname || location.hostname.startsWith(referrerSubdomain) || !location.pathname.startsWith("/docs/api")) {
             loaded();
             return;
         }
 
         const url = referrer + location.pathname.substring(1);
-        const fetchApiUrl = url.replace("ctx/", "ctx.").replace(/\/$/, "") + (url.endsWith(".json") ? "" : ".json");
+        const fetchApiUrl = url.replace("/docs/api", "/api/v2/doc").replace("ctx/", "ctx.").replace(/\/$/, "") + (url.endsWith(".json") ? "" : ".json");
 
         const res = await fetch(fetchApiUrl);
         if (!res.ok) {
