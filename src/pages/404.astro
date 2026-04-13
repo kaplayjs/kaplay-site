@@ -36,20 +36,20 @@ import { assets } from "@/data/crew";
         const loader = document.querySelector("#notice-404-loader");
         const loaded = () => loader?.classList.toggle("swap-active", true);
 
-        if (!document.referrer) {
+        if (!document.referrer || !location.pathname.startsWith("/docs/api")) {
             loaded();
             return;
         }
 
         const referrer = new URL(document.referrer);
-        const referrerDomain = referrer.hostname.split(".").slice(-2).join(".");
-        const referrerSubdomain = referrer.hostname.replace(referrerDomain, "").replace(/\.$/, "");
-        const version = (referrerSubdomain || __KAPLAY_DEFAULT_VERSION__).replace("v", "");
-
-        if (referrerDomain != location.hostname || location.hostname.startsWith(referrerSubdomain) || !location.pathname.startsWith("/docs/api")) {
+        if (referrer.hostname === location.hostname) {
             loaded();
             return;
         }
+
+        const referrerDomain = referrer.hostname.split(".").slice(-2).join(".");
+        const referrerSubdomain = referrer.hostname.replace(referrerDomain, "").replace(/\.$/, "");
+        const version = (referrerSubdomain || __KAPLAY_DEFAULT_VERSION__).replace("v", "");
 
         const url = referrer + location.pathname.substring(1);
         const fetchApiUrl = url.replace("/docs/api", "/api/v2/doc").replace("ctx/", "ctx.").replace(/\/$/, "") + (url.endsWith(".json") ? "" : ".json");
