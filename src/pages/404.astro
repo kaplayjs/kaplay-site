@@ -1,16 +1,90 @@
 ---
+import Info from "@/components/Content/Info.astro";
 import Prose from "@/components/Content/Prose.astro";
 import SidebarPage from "@/layouts/SidebarPage.astro";
+import { assets } from "@/data/crew";
 ---
 
-<SidebarPage>
+<SidebarPage meta={{ title: "404 Not Found" }}>
     <Prose>
-        <h1>404</h1>
-        <p class="min-h-screen">
-            Whoops! Looks like you have found a page that doesn't exist.
-            <a href="/" data-astro-reload>
-                <span class="text-primary"> Go back to the homepage</span>
-            </a>.
+        <h1 class="flex items-center gap-4 flex-wrap"
+            >404 <img class="shrink-0 !my-0 w-10 sm:w-11 rotate-6" src={assets.ghostiny.outlined} width="40" height="40" aria-hidden="true" /> Not Found</h1
+        >
+        <p>
+            Whoops! Looks like you have found a page that doesn't exist.<br />
+            <a href="/" data-astro-reload>Go back to the homepage</a>.
         </p>
+
+        <div id="notice-404-loader" class="swap grid place-content-stretch my-6 cursor-[inherit] select-auto">
+            <div class="swap-off skeleton my-0 w-full pointer-events-none"></div>
+
+            <Info class="swap-on my-0 w-full" id="notice-404" crew="api_book" title="If you got here from the API Reference page...">
+                <div data-content class="pl-11">
+                    <p
+                        >This feature might not exist in the selected version, but it could in another.<br />
+                        Try changing the version in the sidebar select.</p
+                    >
+                </div>
+            </Info>
+        </div>
     </Prose>
 </SidebarPage>
+
+<script>
+    // When user switches version browsing API Reference docs and the feature does not exist in the selected version
+    document.addEventListener("astro:page-load", async () => {
+        const loader = document.querySelector("#notice-404-loader");
+        const loaded = () => loader?.classList.toggle("swap-active", true);
+
+        if (!document.referrer) {
+            loaded();
+            return;
+        }
+
+        const referrer = new URL(document.referrer);
+        const referrerDomain = referrer.hostname.split(".").slice(-2).join(".");
+        const referrerSubdomain = referrer.hostname.replace(referrerDomain, "").replace(/\.$/, "");
+        const version = (referrerSubdomain || __KAPLAY_DEFAULT_VERSION__).replace("v", "");
+
+        if (referrerDomain != location.hostname || location.hostname.startsWith(referrerSubdomain)) {
+            loaded();
+            return;
+        }
+
+        const url = referrer + location.pathname.substring(1);
+        const fetchApiUrl = url.replace("ctx/", "ctx.").replace(/\/$/, "") + (url.endsWith(".json") ? "" : ".json");
+
+        const res = await fetch(fetchApiUrl);
+        if (!res.ok) {
+            loaded();
+            return;
+        }
+
+        const data = (await res.json())?.[0];
+
+        if (data.name) {
+            const notice = document.querySelector("#notice-404");
+            const heading = notice?.querySelector("h3");
+            const content = notice?.querySelector("[data-content]");
+
+            if (heading)
+                heading.innerHTML = `However, <code class="font-code text-white px-2 bg-base-content/15 rounded-lg">${data.name}</code> exists in v${version}!`;
+            if (content) {
+                const backBtn = document.createElement("button");
+                backBtn.classList.add("btn", "btn-sm", "btn-neutral", "mb-4", "-ml-3");
+                backBtn.textContent = `Go back to v${version} page`;
+                backBtn.onclick = () => {
+                    const versionSwitch = document.querySelector(`[data-version-selector-list] [data-version="${version}"]`);
+                    if (versionSwitch) versionSwitch.dispatchEvent(new Event("click"));
+                    else location.href = url + "?noredirect";
+                };
+
+                content.innerHTML = data.description ? `<p><q>${data.description}</q></p>` : ``;
+
+                content.append(backBtn);
+            }
+        }
+
+        loaded();
+    });
+</script>
