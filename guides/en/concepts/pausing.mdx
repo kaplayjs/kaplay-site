@@ -49,6 +49,24 @@ onKeyPress("p", () => (game.paused = !game.paused));
 
 Now, when you press the <kbd class="kbd kbd-sm">P</kbd> key, the entire game object, including its children, will get paused and resumed with each sequential press. Forever.
 
+<Info crew="lightning" title="Caveat: Be aware that the order in which objects are added might matter">
+    If you have registerred the same event for the game (or its children) and pausing as well, for example a click to jump and click for a pause/resume button, issues might arise
+</Info>
+
+Game objects will register the click event first within the same frame. Then, if you click on a button to resume, `game.paused` will become `false` before the event callbacks run, causing the game click listeners to trigger unintentionally.
+
+**A safer way for handling this click (or any shared event) would be to add its object before the game object and do:**
+
+```js
+pauseBtn.onClick(() => {
+    const gamePaused = !game.paused;
+    if (gamePaused) game.paused = gamePaused;
+    else wait(0, () => game.paused = gamePaused);
+});
+```
+
+On unpausing, `game.paused = false` is delayed by one frame so that events are not triggered by the same click (within the same frame). Otherwise, you would (un)pause and jump at the same time. In other words, you want an immediate pause and a deferred unpause.
+
 <Info crew="bag" title="Don't forget!">
     To update the existing event listeners...
 </Info>
