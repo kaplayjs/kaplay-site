@@ -71,17 +71,16 @@ const { class: className, friendsClass, friendsInnerClass } = Astro.props;
             <div class="flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
                 <Image src={kaplayLogo} alt="KAPLAY logo" height={47} quality={100} loading={"eager"} format="png" class="pixelated" />
 
-                <div class="inline-flex items-center justify-evenly flex-wrap gap-0 sm:gap-4">
+                <div class="inline-flex items-center justify-evenly flex-wrap gap-x-6 sm:gap-x-8">
                     {
                         sponsors.map((sponsor) => (
-                            <a href={sponsor.url} target="_blank" class="grow-0 shrink basis-1/2 sm:basis-auto">
+                            <a href={sponsor.url} target="_blank" class="grow-0 shrink basis-1/2 sm:basis-auto max-w-32 2xl:max-w-44">
                                 <Image
                                     src={sponsorImages[`/src/assets/sponsors/${sponsor.image}`]()}
                                     alt={sponsor.name}
-                                    width={200}
-                                    height={80}
+                                    height={56}
                                     class:list={[
-                                        "h-24 object-scale-down",
+                                        "h-14 object-scale-down",
                                         {
                                             "mix-blend-screen": sponsor?.lighten ?? false,
                                         },
