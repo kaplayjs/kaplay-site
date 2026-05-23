@@ -310,7 +310,7 @@ $$
 ## Partial derivatives
 
 Sometimes we have functions with more than one input. In that case we can
-calculate partial integrals, which are integrals in one of the dimensions of the
+calculate partial derivatives, which are derivatives in one of the dimensions of the
 function.
 
 For example the function
