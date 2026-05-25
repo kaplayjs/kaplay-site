@@ -389,6 +389,71 @@ $$
 length(u) = \sqrt{(u_x^2 + u_y^2)}
 $$
 
+## Left or right
+
+Using the dot product, which gives us a scaled cosine of the angle between two vectors, we can know whether something is left or right of our character. This is handy when we want to shoot from a pirate ship for example. We can check whether the enemy ship is left or right and fire the cannons on the correct side.
+
+$$
+\begin{gathered}
+dot(u,v) < 0 : left \\
+dot(u,v) = 0 : front/behind \\
+dot(u,v) > 0 : right
+\end{gathered}
+$$
+## Front or behind
+
+Similarly, the cross product, which gives us a scaled sine of the angle between two vectors, can be used to know if something is in front or behind us. This is handy when an enemy needs to stop moving when we look in their direction.
+
+$$
+\begin{gathered}
+cross(u,v) < 0 : behind \\
+cross(u,v) = 0 : left/right \\
+cross(u,v) > 0 : front
+\end{gathered}
+$$
+
+In case there is any doubt on how to use it, the vector u can be the direction vector of the player. In the case that the player is defined by a position and angle, this will be (cos(angle), sin(angle)), in the case that you use a position and a vector, good job. The vector v is the vector from the player towards the enemy, so enemy.pos - player.pos.
+
+## Projection
+
+Projection is an operation with many useful applications. We can for example find the point on a line closest to a given point, or split a force vector into a frictional and normal force. We will describe here the vector projection. So given two vectors, $u$ and $v$, we project $u$ onto $v$. It is easy to derive the vector projection using the concepts we already saw.
+First of all, when $u$ is projected onto $v$, the length of the resulting vector will vary between $-u$ and $u$. The exact length will depend on the angle between $u$ and $v$. If you think about it for a moment, it becomes clear that we can use the cosine of the angle between the two vectors as a way to calculate the ratio of the amount of $u$. remaining. If the angle is 0, the cosine will be 1, thus the entire length is preserved. If the angle is 90, the cosine will be 0, thus the length will be 0. So the formula we get is
+$$
+(u\cdot \hat v)\hat v
+$$
+Note that $\hat v$ is the unit vector of v, since the length of v should not matter.  Thus $u\cdot \hat v$, which is equal to $\|u\|cos(\alpha)$ and called the scalar projection, is the length of the resulting vector. While this formula works, it isn't that great that we need to normalize v, so let's get rid of that. We know that $\hat v$ is $\frac{v}{|v|}$, so we actually have
+$$
+(u\cdot \frac{v}{\|v\|})\frac{v}{\|v\|}
+$$
+or
+$$
+\frac{u\cdot v}{\|v\|^2}v
+$$
+and since the length squared is equal to the dot product, we get
+$$
+\frac{u\cdot v}{v\cdot v}v
+$$
+thus removing the need for any square root.
+Practically, if we want to project a point $c$ onto a line $ab$, we simply calculate the vector projection of $c-a$ onto $b-a$ to get a vector $v$. Then our projected point is $a + v$.
+Using projection of a point on a line we can for example easily tell if a line intersects a circle. To do this, we simply project the center into the line. The distance between the center and the projected point is the minimum distance between the center and the line. This if this distance is smaller than the radius of the circle, we know that the line intersects the circle.
+
+## Rejection
+
+The vector rejection of $u$ and $v$, is the part of u which is projected on the vector orthogonal to $v$. Instead of calculating that orthogonal vector, we can simply use $u - proj(u, v)$, since the rejection is the part of $u$ which was lost by projection. 
+The scalar rejection is $\|u\|sin(\alpha)$, and in this case it gives the length of the orthogonal vector.
+
+## Reflection
+
+The reflection of a vector v on a surface with normal n is
+$$
+u - \frac{2 ( u\cdot n)}{\|n\|^2}n
+$$
+or
+$$
+u - \frac{2 (u\cdot n)}{n\cdot n}n
+$$
+Reflection can be used in physics to calculate the direction after a collision, or for light calculations like specular highlights.
+
 ## 2D Vectors do not form an algebra
 
 Since 2D vectors do not have a product which is left and right distributive,
