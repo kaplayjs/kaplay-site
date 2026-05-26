@@ -1,0 +1,5 @@
+allowBuilds:
+  dprint: true
+  esbuild: true
+  sharp: true
+  workerd: true
