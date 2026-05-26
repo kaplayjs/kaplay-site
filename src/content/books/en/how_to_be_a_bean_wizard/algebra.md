@@ -389,26 +389,26 @@ $$
 length(u) = \sqrt{(u_x^2 + u_y^2)}
 $$
 
-## Left or right
+# Front or behind
 
-Using the dot product, which gives us a scaled cosine of the angle between two vectors, we can know whether something is left or right of our character. This is handy when we want to shoot from a pirate ship for example. We can check whether the enemy ship is left or right and fire the cannons on the correct side.
+Using the dot product, which gives us a scaled cosine of the angle between two vectors, we can know whether something is front or behind of our character. This is handy when an enemy needs to stop moving when we look in their direction.
 
 $$
 \begin{gathered}
-dot(u,v) < 0 : left \\
-dot(u,v) = 0 : front/behind \\
-dot(u,v) > 0 : right
+dot(u,v) < 0 : behind \\
+dot(u,v) = 0 : left/right \\
+dot(u,v) > 0 : front
 \end{gathered}
 $$
-## Front or behind
+# Left or right
 
-Similarly, the cross product, which gives us a scaled sine of the angle between two vectors, can be used to know if something is in front or behind us. This is handy when an enemy needs to stop moving when we look in their direction.
+Similarly, the cross product, which gives us a scaled sine of the angle between two vectors, can be used to know if something is in left or right from us. This is handy when we want to shoot from a pirate ship for example. We can check whether the enemy ship is left or right and fire the cannons on the correct side.
 
 $$
 \begin{gathered}
-cross(u,v) < 0 : behind \\
-cross(u,v) = 0 : left/right \\
-cross(u,v) > 0 : front
+cross(u,v) < 0 : left \\
+cross(u,v) = 0 : front/behind \\
+cross(u,v) > 0 : right
 \end{gathered}
 $$
 
