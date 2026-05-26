@@ -56,8 +56,8 @@ jobs:
       - name: Checkout submodule to v3001
         run: |
           cd kaplay
-          git fetch origin
-          git checkout -B v3001 origin/v3001
+          git fetch origin v3001
+          git checkout FETCH_HEAD
       - name: Install dependencies
         run: pnpm i
       - name: Build website
