@@ -389,7 +389,7 @@ $$
 length(u) = \sqrt{(u_x^2 + u_y^2)}
 $$
 
-# Front or behind
+## Front or behind
 
 Using the dot product, which gives us a scaled cosine of the angle between two vectors, we can know whether something is front or behind of our character. This is handy when an enemy needs to stop moving when we look in their direction.
 
@@ -400,7 +400,8 @@ dot(u,v) = 0 : left/right \\
 dot(u,v) > 0 : front
 \end{gathered}
 $$
-# Left or right
+
+## Left or right
 
 Similarly, the cross product, which gives us a scaled sine of the angle between two vectors, can be used to know if something is in left or right from us. This is handy when we want to shoot from a pirate ship for example. We can check whether the enemy ship is left or right and fire the cannons on the correct side.
 
@@ -573,6 +574,43 @@ So do all engines and editors interpolate scale wrong? Yes, yes they do. Just
 like the lack of a rotate function with a vector parameter, we are dealing with
 something which isn't well understood by most people. Some audio engineers know,
 but graphics people are still in the dark.
+
+## Line intersection 
+Using the line equation, we can check whether two lines intersect. If we have $y=a+bx$ and $y=c+dx$, we need to find one x,y for which both equations are true. 
+
+Since there's one y, we can say that $a+bx=c+dx$, thus $a-c=dx-bx$ or $a-c=(d-b)x$ or $x=\frac{a-c}{d-b}$. 
+
+We see immediately that there is no solution if their slopes are identical, as we divide by 0 in that case. This is logical since in that case the lines are parallel. 
+
+However, we still need to check if the intercept isn't the same as well, since in that case we just have identical lines, which intersect in every point. In all other cases, we now know x, and can find y easily by filling in x in one of the two line equations.
+
+## Line segment intersection
+Using vectors, we can quite quickly check whether two lines segments intersect. 
+
+If we have the segment ab and cd, we can make the vectors $\hat{ab}$ and $\hat{cd}$ as $b-a$ and $d-c$ respectively.
+
+To find the intersection, we first take the cross product, $\hat{ab}\times\hat{cd}$. Since the cross product is the scaled sine, we know that if it is 0, the sine is zero and thus the lines are parallel since the sine is zero when the angle between the lines is 0. This is exactly the same as when we tested whether the slopes were equal.
+
+Now we make the vector $\hat{ca}$, so $a-c$ and take the cross product with $\hat{cd}$, so $\hat{cd}\times\hat{ca}$ and divide it by the earlier $\hat{ab}\times\hat{cd}$. This quotient $\frac{\hat{cd}\times\hat{ca}}{\hat{ab}\times\hat{cd}}$ is between 0 and 1 if the intersection lies on the segment cd.
+
+Similarly we take the cross product with $\hat{ab}$, so $\hat{ab}\times\hat{ca}$ and divide it by the earlier $\hat{ab}\times\hat{cd}$. This quotient $\frac{\hat{ab}\times\hat{ca}}{\hat{ab}\times\hat{cd}}$ is between 0 and 1 if the intersection lies on the segment ac.
+
+If both are true, the segments intersect.
+
+To understand why this is, or where the quotients come from, we need to look at the vector form of the line equations. The line ab for example can be written as $a+s(b-a)$ or $a+s\hat{ab}$ for $s$ in $[0,1]$. So we look for scalars $s$ and $t$ for which we get a point $p$, which will be the intersection
+$$
+\begin{gathered}
+p=a+s\hat{ab} \\
+p=c+t\hat{cd}
+\end{gathered}
+$$
+ Since p is the same in each equation we get $a+s\hat{ab} = c+t\hat{cd}$. To find $s$, we can first subtract $a$ from both sides $$s\hat{ab} = c-a+t\hat{cd}$$
+ This gives us $c-a$ or $\hat{ac}$. $$s\hat{ab} = \hat{ac}+t\hat{cd}$$
+ Then we use the cross product with $\hat{cd}$ to get rid of $t\hat{cd}$ $$s\hat{ab}\times\hat{cd} = (\hat{ac}+t\hat{cd})\times\hat{cd}$$
+ Since $\hat{cd}\times\hat{cd}$ is 0, we get $$s\hat{ab}\times\hat{cd} = \hat{ac}\times\hat{cd}$$
+ So $s$ is$$s=\frac{\hat{ac}\times\hat{cd}}{\hat{ab}\times\hat{cd}}$$
+ In the same way we can calculate $t$ to get  $$t=\frac{\hat{ac}\times\hat{ab}}{\hat{ab}\times\hat{cd}}$$
+ 
 
 # Matrices
 
