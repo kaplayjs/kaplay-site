@@ -578,7 +578,7 @@ but graphics people are still in the dark.
 ## Line intersection 
 Using the line equation, we can check whether two lines intersect. If we have $y=a+bx$ and $y=c+dx$, we need to find one x,y for which both equations are true. 
 
-Since there's one y, we can say that $a+bx=c+dx$, thus $a-c=dx-bx$ or $a-c=(d-b)x$ or $x=\frac{a-c}{d-b}$. 
+Since there's one y, we can say that $$a+bx=c+dx$$ thus $$a-c=dx-bx$$ or $$a-c=(d-b)x$$ or $$x=\frac{a-c}{d-b}$$
 
 We see immediately that there is no solution if their slopes are identical, as we divide by 0 in that case. This is logical since in that case the lines are parallel. 
 
@@ -591,9 +591,10 @@ If we have the segment ab and cd, we can make the vectors $\hat{ab}$ and $\hat{c
 
 To find the intersection, we first take the cross product, $\hat{ab}\times\hat{cd}$. Since the cross product is the scaled sine, we know that if it is 0, the sine is zero and thus the lines are parallel since the sine is zero when the angle between the lines is 0. This is exactly the same as when we tested whether the slopes were equal.
 
-Now we make the vector $\hat{ca}$, so $a-c$ and take the cross product with $\hat{cd}$, so $\hat{cd}\times\hat{ca}$ and divide it by the earlier $\hat{ab}\times\hat{cd}$. This quotient $\frac{\hat{cd}\times\hat{ca}}{\hat{ab}\times\hat{cd}}$ is between 0 and 1 if the intersection lies on the segment cd.
+Now we make the vector $\hat{ac}$, so $c-a$ and take the cross product with $\hat{cd}$, so $\hat{ac}\times\hat{cd}$ and divide it by the earlier $\hat{ab}\times\hat{cd}$. This quotient $\frac{\hat{ac}\times\hat{cd}}{\hat{ab}\times\hat{cd}}$ is between 0 and 1 if the intersection lies on the segment cd.
 
-Similarly we take the cross product with $\hat{ab}$, so $\hat{ab}\times\hat{ca}$ and divide it by the earlier $\hat{ab}\times\hat{cd}$. This quotient $\frac{\hat{ab}\times\hat{ca}}{\hat{ab}\times\hat{cd}}$ is between 0 and 1 if the intersection lies on the segment ac.
+Similarly we take the cross product with $\hat{ab}$, so $\hat{ac}\times\hat{ab}$ and divide it by the earlier $\hat{ab}\times\hat{cd}$. This quotient $\frac{\hat{ac}\times\hat{ab}}{\hat{ab}\times\hat{cd}}$ is between 0 and 1 if the intersection lies on the segment ab.
+If both are true, the segments intersect.
 
 If both are true, the segments intersect.
 
