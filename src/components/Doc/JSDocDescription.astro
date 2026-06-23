@@ -9,10 +9,14 @@ const doc: any[] = jsDoc?.doc ?? [];
 
 {
     jsDoc ? (
-        <p class="prose" data-pagefind-weight="5" data-jsdoc-description>
+        <p
+            class="prose max-w-none pb-2 prose-code:font-code prose-code:font-normal prose-code:bg-base-300/55 prose-code:rounded-lg prose-code:py-1 [&_*]:box-decoration-clone"
+            data-pagefind-weight="5"
+            data-jsdoc-description
+        >
             {doc.map((e) => (
                 <>
-                    {e.kind === "JSDocText" && e.text}
+                    {e.kind === "JSDocText" && <Fragment set:html={marked.parseInline(e.text)} />}
                     {e.kind === "JSDocLink" && (
                         <TypeLink name={e.name}>
                             <span set:html={marked.parseInline(e.text, {})} />

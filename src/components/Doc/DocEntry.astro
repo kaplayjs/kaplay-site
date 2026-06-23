@@ -39,5 +39,5 @@ if (index) id += `-${index}`;
     {...props}
 >
     <DocFor index={index} data={data} depth={depth} parent={parent} />
-    {depth > 0 && divider && <div class="divider [section:last-child_&]:hidden before:h-px after:h-px mt-2 [p+&]:mt-0 -mb-3" />}
+    {depth > 0 && divider && <div class="divider [section:last-child_&]:hidden before:h-px after:h-px mt-2 [.prose+&]:mt-0 -mb-3" />}
 </EntryEl>

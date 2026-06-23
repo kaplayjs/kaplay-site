@@ -1,6 +1,9 @@
 ---
-import { Code } from "astro:components";
+import { marked } from "marked";
 import CustomCode from "../Content/CustomCode.astro";
+import TypeLink from "./TypeLink.astro";
+import { experimental_AstroContainer } from "astro/container";
+import type { BundledLanguage } from "shiki";
 
 export interface Props {
     tag: string;
@@ -10,31 +13,68 @@ export interface Props {
 
 const { tag, items, paramName } = Astro.props;
 
-const getItem = (items: any[]) => {
-    return items.flat?.()[0]?.text ?? items[0] ?? "";
+const container = await experimental_AstroContainer.create();
+const itemsHtml = await (async () =>
+    (
+        await Promise.all(
+            items.flat().map(async (e) => {
+                if (e === null) return "";
+                if (typeof e === "string") return await marked.parseInline(e);
+                if (e?.kind === "JSDocText") return await marked.parseInline(e?.text ?? "");
+                if (e?.kind === "JSDocLink") {
+                    return container.renderToString(TypeLink, {
+                        props: {
+                            name: e.name,
+                            html: await marked.parseInline(e.text),
+                        },
+                    });
+                }
+                return "";
+            }),
+        )
+    ).join(""))();
+
+const parseExample = (txt: string) => {
+    const match = txt.match(/([\s\S]*?)```(js|ts)*\n([\s\S]*?)```/);
+    return {
+        label: match?.[1].trim() ?? "",
+        code: match?.[3].trim() ?? txt.replace(/^[\s\S]*?```(js|ts)\s+|```$/g, ""),
+        lang: (match?.[2] as BundledLanguage) ?? "js",
+    };
 };
 ---
 
 {
-    (
-        <Fragment>
-            {tag === "example" ? (
-                <CustomCode code={items.join("").replace(/^```js\s+|```$/g, "")} data-language="js" data-jsdoc-example classForWindow="my-4" />
-            ) : tag === "param" ? (
-                <p class="prose" data-jsdoc-tag>
-                    <code data-jsdoc-name class="py-0.5 px-1.5 font-medium">
-                        {tag}
-                    </code>{" "}
-                    <span data-jsdoc-describe>{paramName ?? "unknown"}</span> <span data-jsdoc-value>{getItem(items)}</span>
-                </p>
-            ) : (
-                <p class="prose" data-jsdoc-tag>
-                    <code data-jsdoc-name class="py-0.5 px-1.5 font-medium">
-                        {tag}
-                    </code>{" "}
-                    <span data-jsdoc-value>{getItem(items)}</span>
-                </p>
-            )}
-        </Fragment>
+    tag === "example" ? (
+        items.map((e) => {
+            const { label, code, lang } = parseExample(e);
+            return (
+                <>
+                    {label && (
+                        <p class="prose" data-jsdoc-tag>
+                            <code data-jsdoc-name class="py-0.5 px-1.5 font-medium whitespace-normal" set:text="example" />{" "}
+                            <span data-jsdoc-describe>{label}</span>
+                        </p>
+                    )}
+
+                    <CustomCode code={code} data-language={lang} data-jsdoc-example classForWindow="my-4" />
+                </>
+            );
+        })
+    ) : tag === "param" ? (
+        <p class="prose" data-jsdoc-tag>
+            <code data-jsdoc-name class="py-0.5 px-1.5 font-medium">
+                {tag}
+            </code>{" "}
+            <span data-jsdoc-describe>{paramName ?? "unknown"}</span>&#32;
+            <span data-jsdoc-value set:html={itemsHtml} />
+        </p>
+    ) : (
+        <p class="prose" data-jsdoc-tag>
+            <code data-jsdoc-name class="py-0.5 px-1.5 font-medium">
+                {tag}
+            </code>{" "}
+            <span data-jsdoc-value set:html={itemsHtml} />
+        </p>
     )
 }

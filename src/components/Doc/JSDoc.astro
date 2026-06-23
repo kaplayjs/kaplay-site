@@ -1,4 +1,5 @@
 ---
+import { marked } from "marked";
 import JSDocDescription from "./JSDocDescription.astro";
 import JSDocTag from "./JSDocTag.astro";
 
@@ -22,10 +23,10 @@ const otherTags = tags.filter((tag) => tag.tag !== "param");
         <JSDocDescription data={data} />
     ) : (
         jsDoc.doc && (
-            <p
-                class="pt-1 pb-2"
+            <div
+                class="pt-1 pb-2 prose leading-normal max-w-none [&>:first-child]:mb-0 space-y-4 prose-code:font-code prose-code:font-normal prose-code:bg-base-300/55 prose-code:rounded-lg prose-code:py-1 prose-pre:bg-base-300 prose-pre:rounded-xl [&_*]:box-decoration-clone [&_:last]:pb-0"
                 data-jsdoc-description
-                set:html={jsDoc.doc.replace(/`([^\`]*)`/g, `<code class="font-code px-1.5 py-0.5 bg-neutral/40 rounded-lg box-decoration-clone">$1</code>`)}
+                set:html={marked.parse(jsDoc.doc)}
             />
         )
     )
