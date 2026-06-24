@@ -17,5 +17,5 @@ JavaScript game library to make games fast and fun.
 git submodule init
 git submodule update
 pnpm i # Install dependencies
-pnpm doc # Generate docs from submodule
+pnpm generate:docs # Generate docs from submodule
 ```
