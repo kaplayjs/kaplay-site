@@ -3,7 +3,7 @@
     "type": "module",
     "version": "1.5.12",
     "scripts": {
-        "install": "cd kaplay && pnpm i && cd .. && npm run generate:all",
+        "install": "cd kaplay && npm i && cd .. && npm run generate:all",
         "dev": "astro dev",
         "start": "astro dev",
         "build": "astro check && astro build",
