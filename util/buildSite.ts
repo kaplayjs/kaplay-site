@@ -19,7 +19,7 @@ export function buildSite(): AstroIntegration {
 
                 logger.info(`Generating docs.json from kaplay submodule...`);
                 try {
-                    execSync("pnpm run generate:docs");
+                    execSync("npm run generate:docs");
                     logger.info(
                         `docs.json generated: ${
                             pc.blue("/src/data/generated/docs.json")
@@ -31,7 +31,7 @@ export function buildSite(): AstroIntegration {
 
                 logger.info(`Generating contributors.json...`);
                 try {
-                    execSync("pnpm run generate:contributors");
+                    execSync("npm run generate:contributors");
                     logger.info(
                         `contributors.json generated: ${
                             pc.blue("/src/data/generated/contributors.json")
@@ -43,7 +43,7 @@ export function buildSite(): AstroIntegration {
 
                 logger.info(`Generating changelog...`);
                 try {
-                    execSync("pnpm run generate:changelog");
+                    execSync("npm run generate:changelog");
                     logger.info(
                         `Changelog generated: ${
                             pc.blue("/src/content/misc/en/changes.md")

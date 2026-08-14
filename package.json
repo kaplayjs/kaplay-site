@@ -3,7 +3,7 @@
     "type": "module",
     "version": "1.5.12",
     "scripts": {
-        "install": "cd kaplay && pnpm i && cd .. && pnpm run generate:all",
+        "install": "cd kaplay && pnpm i && cd .. && npm run generate:all",
         "dev": "astro dev",
         "start": "astro dev",
         "build": "astro check && astro build",
@@ -13,7 +13,7 @@
         "generate:docs": "node scripts/buildDoc.js",
         "generate:contributors": "node scripts/contributors.js",
         "generate:changelog": "node scripts/generateChangelog.js",
-        "generate:all": "pnpm generate:docs && pnpm generate:contributors && pnpm generate:changelog",
+        "generate:all": "npm run generate:docs && npm run generate:contributors && npm run generate:changelog",
         "fmt": "dprint fmt",
         "cf:deploy": "npm run build && wrangler pages deploy dist",
         "cf:preview": "wrangler pages dev dist",
@@ -50,7 +50,6 @@
         "marked": "^13.0.3",
         "nanostores": "^0.10.3",
         "pako": "^2.1.0",
-        "pnpm": "11.1.1",
         "preact": "^10.26.7",
         "rehype": "^13.0.2",
         "rehype-attr": "^3.0.3",
@@ -93,6 +92,5 @@
         "tailwind-merge": "^2.5.3",
         "vite": "^7.3.0",
         "wrangler": "^3.80.0"
-    },
-    "packageManager": "pnpm@11.1.1+sha512.d1fdf5f73c617b64fa1a56a81c3c8dfe0e966e33a6010aa256b517ae77be21d93e05affc0de1a83b0e4f29d569f68b446ae8f068cd7247c0bb3df0fb4d7bdf9a"
+    }
 }

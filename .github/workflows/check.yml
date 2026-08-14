@@ -10,14 +10,14 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: true
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v4
+      - name: Setup NPM
+        uses: npm/action-setup@v4
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: 'pnpm'
+          cache: 'npm'
       - name: Install dependencies
-        run: pnpm i
+        run: npm i
       - name: Run checker 
-        run: pnpm check 
+        run: npm check 
