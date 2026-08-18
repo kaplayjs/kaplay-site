@@ -32,7 +32,7 @@ const k = kaplay({
 k.hi(); // from myPlugin
 ```
 
-## Creating a plugin
+## How to get started
 
 We recommend using our templates:
 
@@ -41,6 +41,53 @@ We recommend using our templates:
   (for TypeScript)
 
 Both are minimal and simple templates for create and publish plugins on NPM.
+
+## Actually creating a plugin
+
+You can use plugins as a way of adding your own code as features and extending or modifying existing functionality inside the KAPLAY context in your project, this is an approach to modulating your code or adding external code in an organized way.
+
+If you wanted to, let's say, add a `funky()` component to the KAPLAY context, you could do it like this:
+
+```js
+function myPlugin(k) {
+    return {
+        funky(time) {
+            let isFunky = false;
+
+            return {
+                id: "funky",
+                require: ["scale", "color"],
+                add() {
+                },
+                update() {
+                    if (!isFunky) return;
+
+                    this.color = rgb(rand(0, 255), rand(0, 255), rand(0, 255));
+                    this.scale = vec2(rand(1, 2));
+                },
+                inspect() {
+                    return "funky: " + isFunky;
+                },
+                getFunky() {
+                    isFunky = true;
+                },
+            },
+        }
+    };
+}
+
+const k = kaplay({
+    plugins: [myPlugin],
+});
+
+// Then we can add the funky() component to our object from the KAPLAY context, like this:
+k.add([
+    k.sprite("bean"),
+    k.funky(),
+])
+```
+
+Of course, this is not really the best use of plugins, as they shine their brightest when used as a way to add multiple series of components and systems into KAPLAY, like some custom Physics/Collisions systems that have been published.
 
 ## Browse Plugins
 
