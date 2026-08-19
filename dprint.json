@@ -15,7 +15,7 @@
     "exec": {
         "cwd": "${configDir}",
         "commands": [{
-            "command": "pnpm prettier --stdin-filepath {{file_path}}",
+            "command": "npm prettier --stdin-filepath {{file_path}}",
             "exts": ["astro"]
         }]
     },
