@@ -15,7 +15,7 @@
     "exec": {
         "cwd": "${configDir}",
         "commands": [{
-            "command": "npm prettier --stdin-filepath {{file_path}}",
+            "command": "node ./node_modules/prettier/bin/prettier.cjs --stdin-filepath {{file_path}}",
             "exts": ["astro"]
         }]
     },
