@@ -6,6 +6,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.12] - 2026-06-23
+
+### Added
+
+- Added support for multiple separate examples per API docs entry - @imaginarny
+
+### Changed
+
+- Markdown is now enabled on API docs descriptions and tags - @imaginarny
+
+### Fixed
+
+- Fixed API Reference docs parsing issues: - @imaginarny
+  - Missing type links or incomplete types in descriptions
+  - Broken formatting of some descriptions due to unformatted markdown
+  - Multiple code examples merged into a single code block with broken formatting
+
 ## [1.5.11] - 2026-04-13
 
 ### Added

@@ -3,7 +3,7 @@ import path from "path";
 import ts from "typescript";
 
 // generate .d.ts / docs data
-let dts = await fs.readFile(`kaplay/dist/doc.d.ts`, "utf-8");
+let dts = normalize(await fs.readFile(`kaplay/dist/doc.d.ts`, "utf-8"));
 
 const f = ts.createSourceFile("ts", dts, ts.ScriptTarget.Latest, true);
 
@@ -29,6 +29,34 @@ function transform(o, f) {
     }
 
     return o;
+}
+
+function normalize(src) {
+    let res = src;
+
+    // ensure @example indetation won't collapse
+    res = res.replace(
+        /^(([ \t]*)\*[ \t]*@example)[ \t]+([^\n]+)/gm,
+        (_, tag, indent, firstLine) => {
+            return `${tag}\n${indent}* ${firstLine}`;
+        },
+    );
+
+    // TS can't navigate symbols of complex @links when parsing AST without typeChecker
+    // {@link Ctx.prop}
+    // {@link Ctx["prop"]}
+    // {@link Ctx["prop"]|Ctx.prop}
+    res = res.replace(
+        /\{@link\s+(\S*)(?:\.(?:\["([^"]+)"\]|(\S*))|\["([^"]+)"\])\s*(?:\|[^\}]*)?\}/gm,
+        (_, ctx, p1, p2, p3) => {
+            const prop = p1 ?? p2 ?? p3;
+            return ctx === "KAPLAYCtx"
+                ? `{@link ${prop}}`
+                : `\`${ctx}.${prop}\``;
+        },
+    );
+
+    return res;
 }
 
 // transform and prune typescript ast to a format more meaningful to us
