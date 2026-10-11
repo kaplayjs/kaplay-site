@@ -174,3 +174,256 @@ function specie(specie: string): SpecieComp {
     };
 }
 ```
+
+## Prefabs
+
+Components are the building blocks of every object in KAPLAY.
+
+But now, in KAPLAY v4000 we support prefabs and serialization of components
+, which allows you to define game objects once and save and load them as assets
+letting you instantiate them multiple ways from these assets.
+
+This is achieved by serializing custom component data which can be used to recreate the components.
+
+You can read a little more about them on the Prefabs guide [here](../concepts/prefabs.mdx)
+
+The important thing to know, is that when creating a custom component, if it calls for, you have to add a serializing property.
+These make it so the component can be re-built when using prefabs, for example:
+
+```js
+// funkyTime being how long will the object be funky for.
+function funky(funkyTime) {
+    return {
+        // The ID of the component so it can be registered for later.
+        id: "funky",
+        // ...Code for your funky component
+        serialize() {
+            return {
+                // It's stored for later when KAPLAY tries to rebuild your object it will use this as a parameter.
+                funkyTime: funkyTime,
+            };
+        },
+    };
+}
+```
+
+Now, how does KAPLAY interpret my custom component's serialize function?
+
+KAPLAY doesn't, you do.
+
+This is achieved by registering the prefab factory of your component, the code looks a little like this:
+
+```js
+// The function that actually interprets the data serialized by your component's serialize() funciton.
+function funkyFactory(data) {
+    return funky(data.funkyTime);
+}
+
+// Actually calling the function that registers the prefab for your function, this makes it so that KAPLAY
+// Can actually call the funkyFactory whenever it needs to create a prefab that uses your funky component
+registerPrefabFactory("funky", funkyFactory);
+```
+
+In a different format, it can also be done like:
+
+```js
+registerPrefabFactory("funky", (data) => {
+    return funky(data.funkyTime);
+});
+```
+
+## Best practices
+
+When creating your custom components it is important to have certain rules
+and guidelines in what should go and not go inside a custom component.
+
+Building a custom component requires balancing things like performance, maintainability
+and the usability of it, rather than thinking what a custom component does we should ask
+ourselves a better question. "What data does this hold and what does it do with it?"
+
+For this we can use the a simplified-modified version of the `health()` component:
+
+```js
+// We define a function which is our component, takes maxHP as a parameter, it starts using data.
+function health(hp, maxHP) {
+    // 1. Adding errors to help prevent hours-long journeys debugging your own code.
+    if (hp == null) {
+        throw new Error("health() requires an initial amount of hp.")
+    }
+
+    return {
+        // We add an ID that differentiates this component from the other so it's unique.
+        id: "health",
+        // We add a property which is equal to the parameter we added.
+        maxHP: maxHP,
+
+        // We add code that runs once the component is added to the object.
+        add() {
+            if (this.maxHP) this.maxHP = this.hp
+        }
+
+        // 2. We use getters and setters for the main property in our component.
+        // This let's us catch changes, check rules before setting the property
+        // And update other systems accordingly.
+        get hp() {
+            return hp;
+        },
+    
+        set hp(value) {
+            hp = value
+        },
+
+        get dead() {
+            return this.hp <= 0,
+        }
+
+        // Functionality to trigger certain behaviours on this object which are defined by the component. 
+        heal(hpToAdd) {
+            // Here, "this" refers to the GameObject this component is added to.
+            hp = this.maxHP ? clamp(this.hp + val, 0, this.maxHP) : val;
+            this.trigger("heal", hpToAdd)
+        },
+
+        onHeal(action: (hpToAdd) => void) {
+            this.on("heal", action)
+        },
+        
+        hurt(hpToDec) {
+            hp = this.maxHP ? clamp(this.hp - val, 0, this.maxHP) : val;
+            this.trigger("huyrt", hpToDec)
+        },
+        
+        onHeal(action: (hpToAdd) => void) {
+            this.on("heal", action)
+        }
+
+        // 3. We use existing debugging properties in our game library (KAPLAY)
+        // When enabling debug.inspect mode by using the keybind or setting `debug.inspect` to true
+        // You can hover over objects and see that each component adds a property that
+        // Can be inspected this way, to see how it's changing
+        inspect() {
+            return `health: ${hp}`
+        },
+    }
+}
+```
+
+As we saw in the previous example, there's a few good practices we can keep in mind when
+creating custom components, which will make our lifes easier down the road creating more.
+
+1. Add error handling so your code runs SAFELY, this way you can give yourself clues on
+   what went wrong (this one is true always)
+
+2. Use getters and setters to add validation and rules when acessing and changing important
+   properties inside your component
+
+3. Use all the debugging tools you have on hand, including the game library, the window
+   console and even build new ones! (this one is true always too)
+
+Now, these are some of the DOs when building a custom component, but what about the DON'Ts?
+
+## Worst practices
+
+One of the main things you should keep in mind when writing components is planning out beforehand
+what they contain, and what they will do with that information.
+
+Adding behaviours and logic in components is allowed, since functions like `add()`, `update()`, `draw()`
+and `destroy()`.
+But adding too much logic is bad too! You should try keeping your components as simple as possible and
+modulate different behaviours into different components
+So they can even be used for later.
+
+This includes doing things like `PlayerComponent()` or `EnemyComponent()` as these objects can become
+too complex with time.
+You should rather sepparate as much as possible this data in different components, so it can be reused
+in different entities.
+
+If `PlayerComponent()` does things like adding health, having a position, having a speed, having attack
+and defense all in one
+Maybe you should move these into different components, like this:
+
+`PlayerComponent()` ❌
+├── `✔️ health()`: Adds hp, maxHP, heal/hurt functions,
+├── `✔️ pos()`: Adds an X and Y position and other transform operations.
+├── `✔️ body()`: Adds velocity and other math functions.
+└── `✔️ stats()`: Adds only the attack and defense properties.
+
+This is also known as GOD components, as they're usually coded to do everything in a game object, let's look
+at an example:
+
+### DON'T ❌:
+
+```js
+function GOD() {
+    return {
+        update() {
+            // ... Extremely long update function that manages EVERYTHING inside the game scene or a single game object
+        },
+    };
+}
+```
+
+### DO ✔️:
+
+```js
+// Modulating different behaviours and properties into multiple components that can be reused indifferent game objects
+function health() {...}
+function pos() {...}
+function drag() {...}
+function area() {...}
+function body() {...}
+
+k.onUpdate(() => {
+    // ...Adding your (complex) logic and your object's extended logic inside the game scene rather than on a single component
+})
+```
+
+Finally, you should keep in mind that components are made for an entity, and these hold data and behaviours
+REGARDING that entity, not existing game features.
+
+Things like physics pipelines/asset-managers or graphic contexts should not be stored in an object/component
+These should be managed like systems inside your game.
+
+### DON'T ❌:
+
+```js
+function sound() {
+    return {
+        playSound() {
+            // Component that includes grabbing the sound source, playing it and managing.
+            // This does not regard an object at all.
+        },
+    };
+}
+```
+
+### DO ✔️:
+
+```js
+// Function that plays a sound inside of the game
+function playSound() {
+    // ...Your sound and behaviour regarding sound completely sepparated from a GameObject
+    // Maybe this would be used WITH a GameObject, but not inside of it.
+}
+
+onButtonPress("jump", () => {
+    bean.jump();
+    playSound("woohoo"); // fun!
+});
+```
+
+These behaviours that can be considered as added features and extension of the library can even be thought of as Plugins!
+If you're interested in learning about plugins and creating your own read the Plugins guide [here](./plugins.mdx)
+
+And if you need some behaviour regarding these systems, you have to rethink the way they're implemented regarding objects.
+
+A good way to see if you're doing a good job regarding this is to check if your component calls for `this` in ANY of it, if not, it doesn't
+regard the object.
+
+```js
+function myWrongComponent() {
+    return {
+        // ...Hmmm, this component seems to not call for this in any moment, i must be doing something wrong.
+    };
+}
+```
