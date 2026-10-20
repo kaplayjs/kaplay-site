@@ -72,7 +72,9 @@ const statements = transform(f.statements, (k, v) => {
         case "name":
         case "typeName":
         case "tagName":
-            return v.escapedText;
+            return (v && typeof v === "object" && "escapedText" in v)
+                ? v.escapedText
+                : v;
         case "pos":
             return typeof v === "number" ? undefined : v;
         case "kind":
