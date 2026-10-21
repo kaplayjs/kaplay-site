@@ -226,6 +226,18 @@ span.line.diff.remove::before {
     @apply bg-gray-300 bg-opacity-40;
 }
 
+/** KaTex **/
+
+.katex-display {
+    @apply whitespace-normal overflow-y-hidden overflow-x-auto scrollbar-thin;
+    container-type: inline-size;
+
+    > .katex {
+        @apply whitespace-normal;
+        font-size: clamp(0.825rem, 3.25cqi, 1.5rem);
+    }
+}
+
 /** UTILS **/
 
 .text-base-subheading {
