@@ -7,11 +7,11 @@ type CrewTagsProps = {
     setFilter: (val: string[]) => void;
     onTagHover: (
         tag: string,
-        e: preact.JSX.TargetedMouseEvent<HTMLButtonElement>,
+        e: preact.TargetedMouseEvent<HTMLButtonElement>,
     ) => void;
     onTagFocus: (
         tag: string,
-        e: preact.JSX.TargetedFocusEvent<HTMLButtonElement>,
+        e: preact.TargetedFocusEvent<HTMLButtonElement>,
     ) => void;
 };
 

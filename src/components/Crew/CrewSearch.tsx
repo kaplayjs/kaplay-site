@@ -39,8 +39,8 @@ export const CrewSearch = ({
     const updateMessage = (
         tag: string,
         e:
-            | preact.JSX.TargetedMouseEvent<HTMLButtonElement>
-            | preact.JSX.TargetedFocusEvent<HTMLButtonElement>,
+            | preact.TargetedMouseEvent<HTMLButtonElement>
+            | preact.TargetedFocusEvent<HTMLButtonElement>,
     ) => {
         setMessage(tagsMessages[tag] || "");
         const { offsetLeft } = e.currentTarget;
