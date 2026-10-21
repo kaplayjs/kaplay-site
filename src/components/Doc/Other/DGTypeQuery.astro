@@ -1,4 +1,5 @@
 ---
+import TypeLink from "../TypeLink.astro";
 import type { DataTypeProps } from "../Utils/types.ts";
 
 export type DataTypeQuery = {
@@ -16,4 +17,4 @@ interface Props extends DataTypeProps {
 const { data } = Astro.props;
 ---
 
-<span data-dg-type-query>typeof {data.exprName.escapedText}</span>
+<span data-dg-type-query>typeof <TypeLink name={data.exprName.escapedText} /></span>

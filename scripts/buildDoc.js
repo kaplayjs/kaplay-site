@@ -43,16 +43,15 @@ function normalize(src) {
     );
 
     // TS can't navigate symbols of complex @links when parsing AST without typeChecker
-    // {@link Ctx.prop}
     // {@link Ctx["prop"]}
     // {@link Ctx["prop"]|Ctx.prop}
+    // They are parsed to following formatting: {@link Ctx.prop}
     res = res.replace(
-        /\{@link\s+(\S*)(?:\.(?:\["([^"]+)"\]|(\S*))|\["([^"]+)"\])\s*(?:\|[^\}]*)?\}/gm,
-        (_, ctx, p1, p2, p3) => {
-            const prop = p1 ?? p2 ?? p3;
-            return ctx === "KAPLAYCtx"
-                ? `{@link ${prop}}`
-                : `\`${ctx}.${prop}\``;
+        /\{@link\s+([^}\s]+)([^}]*)\}/gm,
+        (match, target) => {
+            const normalized = target.replace(/\["([^"]+)"\]/g, ".$1");
+            const cleanTarget = normalized.replace(/\|.*$/, "");
+            return match.replace(target, cleanTarget);
         },
     );
 
