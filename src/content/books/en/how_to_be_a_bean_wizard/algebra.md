@@ -422,25 +422,29 @@ First of all, when $u$ is projected onto $v$, the length of the resulting vector
 $$
 (u\cdot \hat v)\hat v
 $$
-Note that $\hat v$ is the unit vector of v, since the length of v should not matter.  Thus $u\cdot \hat v$, which is equal to $\|u\|cos(\alpha)$ and called the scalar projection, is the length of the resulting vector. While this formula works, it isn't that great that we need to normalize v, so let's get rid of that. We know that $\hat v$ is $\frac{v}{|v|}$, so we actually have
+
+Note that $\hat v$ is the unit vector of v, since the length of v should not matter. Thus $u\cdot \hat v$, which is equal to $\|u\|cos(\alpha)$ and called the scalar projection, is the length of the resulting vector. While this formula works, it isn't that great that we need to normalize v, so let's get rid of that. We know that $\hat v$ is $\frac{v}{|v|}$, so we actually have
 $$
 (u\cdot \frac{v}{\|v\|})\frac{v}{\|v\|}
 $$
+
 or
 $$
 \frac{u\cdot v}{\|v\|^2}v
 $$
+
 and since the length squared is equal to the dot product, we get
 $$
 \frac{u\cdot v}{v\cdot v}v
 $$
+
 thus removing the need for any square root.
 Practically, if we want to project a point $c$ onto a line $ab$, we simply calculate the vector projection of $c-a$ onto $b-a$ to get a vector $v$. Then our projected point is $a + v$.
 Using projection of a point on a line we can for example easily tell if a line intersects a circle. To do this, we simply project the center into the line. The distance between the center and the projected point is the minimum distance between the center and the line. This if this distance is smaller than the radius of the circle, we know that the line intersects the circle.
 
 ## Rejection
 
-The vector rejection of $u$ and $v$, is the part of u which is projected on the vector orthogonal to $v$. Instead of calculating that orthogonal vector, we can simply use $u - proj(u, v)$, since the rejection is the part of $u$ which was lost by projection. 
+The vector rejection of $u$ and $v$, is the part of u which is projected on the vector orthogonal to $v$. Instead of calculating that orthogonal vector, we can simply use $u - proj(u, v)$, since the rejection is the part of $u$ which was lost by projection.
 The scalar rejection is $\|u\|sin(\alpha)$, and in this case it gives the length of the orthogonal vector.
 
 ## Reflection
@@ -449,10 +453,12 @@ The reflection of a vector v on a surface with normal n is
 $$
 u - \frac{2 ( u\cdot n)}{\|n\|^2}n
 $$
+
 or
 $$
 u - \frac{2 (u\cdot n)}{n\cdot n}n
 $$
+
 Reflection can be used in physics to calculate the direction after a collision, or for light calculations like specular highlights.
 
 ## 2D Vectors do not form an algebra
@@ -575,17 +581,41 @@ like the lack of a rotate function with a vector parameter, we are dealing with
 something which isn't well understood by most people. Some audio engineers know,
 but graphics people are still in the dark.
 
-## Line intersection 
-Using the line equation, we can check whether two lines intersect. If we have $y=a+bx$ and $y=c+dx$, we need to find one x,y for which both equations are true. 
+## Line intersection
 
-Since there's one y, we can say that $$a+bx=c+dx$$ thus $$a-c=dx-bx$$ or $$a-c=(d-b)x$$ or $$x=\frac{a-c}{d-b}$$
+Using the line equation, we can check whether two lines intersect. If we have $y=a+bx$ and $y=c+dx$, we need to find one x,y for which both equations are true.
 
-We see immediately that there is no solution if their slopes are identical, as we divide by 0 in that case. This is logical since in that case the lines are parallel. 
+Since there's one y, we can say that
+
+$$
+a+bx=c+dx
+$$
+
+thus
+
+$$
+a-c=dx-bx
+$$
+
+or
+
+$$
+a-c=(d-b)x
+$$
+
+or
+
+$$
+x=\frac{a-c}{d-b}
+$$
+
+We see immediately that there is no solution if their slopes are identical, as we divide by 0 in that case. This is logical since in that case the lines are parallel.
 
 However, we still need to check if the intercept isn't the same as well, since in that case we just have identical lines, which intersect in every point. In all other cases, we now know x, and can find y easily by filling in x in one of the two line equations.
 
 ## Line segment intersection
-Using vectors, we can quite quickly check whether two lines segments intersect. 
+
+Using vectors, we can quite quickly check whether two lines segments intersect.
 
 If we have the segment ab and cd, we can make the vectors $\hat{ab}$ and $\hat{cd}$ as $b-a$ and $d-c$ respectively.
 
@@ -605,13 +635,42 @@ p=a+s\hat{ab} \\
 p=c+t\hat{cd}
 \end{gathered}
 $$
- Since p is the same in each equation we get $a+s\hat{ab} = c+t\hat{cd}$. To find $s$, we can first subtract $a$ from both sides $$s\hat{ab} = c-a+t\hat{cd}$$
- This gives us $c-a$ or $\hat{ac}$. $$s\hat{ab} = \hat{ac}+t\hat{cd}$$
- Then we use the cross product with $\hat{cd}$ to get rid of $t\hat{cd}$ $$s\hat{ab}\times\hat{cd} = (\hat{ac}+t\hat{cd})\times\hat{cd}$$
- Since $\hat{cd}\times\hat{cd}$ is 0, we get $$s\hat{ab}\times\hat{cd} = \hat{ac}\times\hat{cd}$$
- So $s$ is$$s=\frac{\hat{ac}\times\hat{cd}}{\hat{ab}\times\hat{cd}}$$
- In the same way we can calculate $t$ to get  $$t=\frac{\hat{ac}\times\hat{ab}}{\hat{ab}\times\hat{cd}}$$
- 
+
+Since p is the same in each equation we get $a+s\hat{ab} = c+t\hat{cd}$. To find $s$, we can first subtract $a$ from both sides
+
+$$
+s\hat{ab} = c-a+t\hat{cd}
+$$
+
+This gives us $c-a$ or $\hat{ac}$.
+
+$$
+s\hat{ab} = \hat{ac}+t\hat{cd}
+$$
+
+Then we use the cross product with $\hat{cd}$ to get rid of $t\hat{cd}$
+
+$$
+s\hat{ab}\times\hat{cd} = (\hat{ac}+t\hat{cd})\times\hat{cd}
+$$
+
+Since $\hat{cd}\times\hat{cd}$ is 0, we get
+
+$$
+s\hat{ab}\times\hat{cd} = \hat{ac}\times\hat{cd}
+$$
+
+So $s$ is
+
+$$
+s=\frac{\hat{ac}\times\hat{cd}}{\hat{ab}\times\hat{cd}}
+$$
+
+In the same way we can calculate $t$ to get
+
+$$
+t=\frac{\hat{ac}\times\hat{ab}}{\hat{ab}\times\hat{cd}}
+$$
 
 # Matrices
 
@@ -676,7 +735,9 @@ $$I =
 \end{bmatrix}
 $$
 
-$$A * I = A$$
+$$
+A * I = A
+$$
 
 ## Translation matrix
 

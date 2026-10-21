@@ -41,7 +41,11 @@ const props = isType
     {...props}
     data-dg-reference
     class:list={{
-        // prettier-ignore
         "hoverable link link-primary link-hover underline decoration-current decoration-dashed decoration-1 underline-offset-2 transition-colors": isType,
     }}>{name}</span
->{data.typeArguments ? <Fragment>{"<"}<TypeArguments args={data.typeArguments}/>{">"}{}</Fragment> : ""}
+>{
+    // prettier-ignore
+    data.typeArguments
+        ? <Fragment>{"<"}<TypeArguments args={data.typeArguments} />{">"}{""}</Fragment>
+        : ""
+}
