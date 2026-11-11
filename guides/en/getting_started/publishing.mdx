@@ -100,3 +100,21 @@ Now, as Itch.io, only upload a zip with your fabulous `index.html` game file.
 You can tag your game in the different platforms with the tag `kaplayjs` and
 
 `&kaplay`. We will probably see it and even promote in our social media :D
+
+## Your own link with deed.page
+
+If you want to share the game at its own URL instead of a game portal,
+[deed.page](https://deed.page) can host the built folder with one `curl`
+request and no account. With `create-kaplay`, `npm run build` writes the game
+to `dist`:
+
+```sh
+npm run build
+tar -C dist -czf game.tar.gz .
+curl -sS -T game.tar.gz "https://deed.page/v1/sites?slug=my-kaplay-game"
+```
+
+Pick your own slug. The response includes the game's URL
+(`https://my-kaplay-game.deed.page/`) and an owner token. Keep the token,
+because you need it to update or delete the site later. The relative paths from
+[Asset paths](#asset-paths) work here too.
