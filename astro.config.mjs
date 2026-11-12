@@ -22,6 +22,7 @@ import websitePackageJson from "./package.json";
 import { rehypeKAPLAY } from "./plugins/rehypeKAPLAY";
 import { rehypeWrapTables } from "./plugins/rehypeWrap";
 import { buildSite } from "./util/buildSite.ts";
+import { serveExternalAssets } from "./util/serveExternalAssets.ts";
 
 // https://astro.build/config
 export default defineConfig({
@@ -54,6 +55,7 @@ export default defineConfig({
         pagefind(),
         preact(),
         cloudflareRedirects(),
+        serveExternalAssets("guides"),
     ],
     output: "static",
     contentLayer: true,
