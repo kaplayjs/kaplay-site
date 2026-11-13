@@ -7,6 +7,7 @@ version: "4000"
 ---
 
 import Info from "@/components/Content/Info.astro";
+import previewVideo from "./assets/wavedash/game/preview.mp4";
 
 # What is Wavedash?
 
@@ -233,7 +234,7 @@ You'll have to fill the following fields:
   Your browser does not support the video tag.
 </video>
 - **Tags:** Words that describe your game's genre and mechanics, these are how players that prefer certain games find you. Favor accuracy over reach.
-> Puzzle, Sokoban, 2D
+<source src={previewVideo} type="video/mp4" />
 
 In our case, we also selected Keyboard + Mouse as input method, Wide mobile layout and English as its language.
 
