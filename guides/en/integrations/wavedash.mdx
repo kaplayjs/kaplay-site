@@ -29,11 +29,14 @@ features to your game like achievements, leaderboards AND multiplayer.
 
 ![Screenshot of the SDK page](assets/wavedash/sdk.png)
 
-So you're interested! Good! Now, how do we go about publishing our game to Wavedash? We'll teach you here in a way no one else could!
+So you're interested? Good! Now, how do we go about publishing our game to Wavedash? We'll teach you here in a way no one else could!
 
 # How to publish your game in Wavedash?
 
 ## Making our game
+
+For this example, we will be using the sokoban example, which can be found and playable [here](https://play.kaplayjs.com/?example=sokoban) at the [KAPLAYGROUND](https://play.kaplayjs.com)!
+Ported and exported using [`create-kaplay`](https://github.com/kaplayjs/create-kaplay).
 
 Let's try to upload our sokoban game into Wavedash, currently, our game's structure looks like this:
 
@@ -51,20 +54,15 @@ sokoban
 └── package.json
 ```
 
-For this example, we will be using the sokoban example, which can be found and playable [here](https://play.kaplayjs.com/?example=sokoban)! at the [KAPLAYGROUND](https://play.kaplayjs.com)
-Ported and exported exported using the [create-kaplay](https://github.com/kaplayjs/create-kaplay).
-
 <Info
     crew="bean"
     title="Where can i find more games?">
-Other than the sokoban example, KAPLAY has tons of other polished examples and small contained games in the playground! Find them [here](https://play.kaplayjs.com/).
+Other than the sokoban example, KAPLAY has tons of other polished examples and small self-contained games in the playground! Find them [here](https://play.kaplayjs.com/).
 </Info>
 
 ### BUT WAIT!!!!
 
-First, you must understand that when Wavedash loads your game, it will await for it to call the `Wavedash.init()` function from the SDK to unveil it from the loading screen.
-
-You don't have to install and setup the Wavedash SDK into your game as Wavedash will inject its SDK into your code.
+First, you must understand that when Wavedash loads your game, it applies its own loading screen on top of your game, and doesn't remove that until you call the `Wavedash.init()` function from the SDK.
 
 You can check if your game is being run into Wavedash's website by checking for `window.Wavedash` in an if, and then run Wavedash.init() after your game is ready to play for it to start! If it's not running in Wavedash's website, it won't do anything, that's why it would be ideal to keep to keep it, if you intend to make Wavedash one of your publishing platforms.
 
@@ -87,9 +85,7 @@ if (window.Wavedash) {
 <Info
     crew="ghosty"
     title="What about the loading screen?">
-Right now, the loading screen will go from 0 to your game playing, if you would like to update it more profesionally, you could use the function `Wavedash.updateLoadProgressZeroToOne()` inside the `k.onLoading()` function and pass `k.loadProgress()` as a parameter, so it looks a a bit nicer.
-
-Like this:
+Right now, the loading screen will go from 0 to your game playing, if you would like to update it more profesionally, you could use the function `Wavedash.updateLoadProgressZeroToOne()` inside the `k.onLoading()` function and pass `k.loadProgress()` as a parameter, so it looks a a bit nicer, like this:
 
 ```js
 onLoading(() => {
@@ -103,23 +99,21 @@ onLoading(() => {
 
 ## Getting into Wavedash
 
-Before anything, we must first create our account on Wavedash! So everyone can know who published such a great game! In this case, yours.
+Before anything, you must first create an account on Wavedash, so everyone can know who published such a great game -- in this case, you!
 
-First we'll enter into our search bar https://wavedash.com and we'll find the homepage:
+First, just go to https://wavedash.com
 
 ![Screenshot of the home page](assets/wavedash/homepage.png)
 
-And we'll direct our eyes to the **Join Wavedash** segment on the bottom left part of the website.
+We can either sign up using google, apple, or the usual email and password option below them.
 
-We can either sign up using google or apple, if we don't feel like using either we can press **Sign in** and then the part where it says **Create an account**
+![Screenshot of the sign in page](assets/wavedash/signup.png)
 
-![Screenshot of the sign in page](assets/wavedash/signin.png)
-
-Once we have an account, we'll take a look at the topleft side panel, and click the option that says **Developer** and click that. Once we do that, we'll find ourselves here:
+Once you have an account, we'll take a look at the top left side panel, and click the option that says **Developer**. That will take you here:
 
 ![Developer portal](assets/wavedash/developerportal.png)
 
-We'll create a project and name it, now we have our project!
+Create a project and name it, now you have your project!
 
 ![Project website](assets/wavedash/project.png)
 
@@ -129,13 +123,11 @@ We could either install the CLI in our computers, authenticate and create a `wav
 
 ```toml
 game_id = "YOUR_GAME_ID_HERE"
-upload_dir = "./exports/web"
-
-[godot]
-version = "4.5-stable"
+upload_dir = "./dist"
+entrypoint = "index.html"
 ```
 
-And we could continue configuring it and uploading it this way, but for the sake of this blog, we'll keep doing the traditional way (uploading it from the developer portal).
+Or we could continue configuring it and uploading it this way, for the sake of this blog, we'll keep doing the traditional way (uploading it from the web interface).
 
 <Info
     crew="mark"
@@ -145,21 +137,25 @@ If you want to keep learning how to go about this, Wavedash has tons of document
 
 ## Preparing our build
 
-Now we have to prepare our game into a format that Wavedash understands, how does Wavedash actually make our game playable?
+Now you have to prepare your game into a format that Wavedash understands.
 
-We have to prepare a _build_! Right now our game is only code, but we have to export it in a format that is playable for our browser engine.
+So how does Wavedash actually make our game playable?
 
-We can do this using the command found in the `package.json` file in our project called _"zip"_, like this:
+You have to prepare a _build_! Right now the game is just a bunch of code and asset files sitting in a folder on your computer, but you can't upload each file individually to Wavedash.
 
-```bash
+Wavedash expects a .zip file containing all of the HTML, JavaScript, CSS, and assets (such as sounds and sprites) that the game needs.
+
+This might be different than the way you have your game set up for testing locally, so if you are confused, stop and make sure you understand what files the game is loading, and from where, when you start your game locally for testing.
+
+In this case, we have used _`create-kaplay`_ to set up the project because it's simple and anyone can use it and effortlessly port their project to it and start following the tutorial. If you're not using it and you're having trouble exporting your project, consider switching to it! If not, continue.
+
+_`create-kaplay`_ includes a `package.json` script called `zip`, which does the exact things needed to create the .zip file that can be uploaded to Wavedash. So open a terminal and run
+
+```sh
 npm run zip
 ```
 
-The command that actually builds the `dist` folder (which is the one that we will upload) will differ from project to project, and that's why it's important for you to understand the way that your project is set-up from the get-go.
-
-In this case, we chose to use the `*create-kaplay*` template because it's simple and anyone can create it and effortlessly port their project to it, and start following the tutorial, if you're not using it and you're having trouble exporting your project, consider switching to it! If not, we may continue.
-
-Right now we find ourselves with our dist folder! Which looks a bit like this:
+At this point, you should find in your `dist/` folder:
 
 ```
 dist
@@ -173,20 +169,20 @@ dist
 
 This is the folder that contains all of the important stuff needed for our game to be actually runnable on a browser engine!
 
-We'll zip this file with our compression tool of choice into a `*.zip` file and once we have it, we'll click on the **Upload new build button**!
+If you ran `npm run zip`, you'll also have a `game.zip` file alongside this. Once you have a zip file of your game, go back to Wavedash and click on the **Upload new build** button!
 
 ![Dragging the zip onto the page](assets/wavedash/dragging.png)
 
-We'll find ourselves with this screen:
+Once it finishes uploading, you will get this screen:
 
 ![Final touches](assets/wavedash/uploading.png)
 
-We'll select `Engine > Other` (since we're using KAPLAY) and `Entrypoint > *index.html*`, since it's the entrypoint of our game.
-The build message is optional, but if this is not the first build we're uploading we can list our changes to track what has been happening in our builds
+Select `Engine > Other` (since we're using KAPLAY) and `Entrypoint > *index.html*`, since it's the entrypoint of our game.
 
-And we'll click **Upload build**.
+The build message is optional, but if this is not the first build you're uploading, you can paste the list of new changes from your changelog.
+Finally, click **Upload build**.
 
-And just like that, we'll have successfully uploaded our first build in our Wavedash project, yay!!
+And just like that, you'll have successfully uploaded your first build in your Wavedash project, yay!!
 
 <Info
     crew="beant"
@@ -200,7 +196,7 @@ Not yet little kaplayer, we still have a bit of road left until that.
 
 ## Playtesting
 
-First, we have to check that our game is fully functional, for this we'll press the **Playtest** button on our build, to check everything is working correctly.
+First, you have to check that your game is fully functional. Press the **Playtest** button on our build, to check everything is working correctly.
 
 ![Playtesting](assets/wavedash/playtesting.png)
 
@@ -210,10 +206,9 @@ It seems our game is up and running!
 
 ## Final touches
 
-To actually publish our game, we have to make it appealing to everyone who is scrolling on Wavedash, we need to add things like a description and a thumbnail, for it to captures the players.
+To actually get people to play your game, you have to make it appealing to everyone who is scrolling on Wavedash. So, you need to add things like a description and a thumbnail.
 
-We'll go back by clicking on the project's on the top of the screen and then move from _Builds_ all the way over to **Metadata** which should have a small yellow dot.
-
+Go back by clicking on the projects on the top of the screen and then select the **Metadata** tab which should have a small yellow dot. (Wavedash highlights this after you upload your first build since every game needs some amount of metadata!)
 ![Setting the metadata](assets/wavedash/metadata.png)
 
 You'll have to fill the following fields:
@@ -240,4 +235,11 @@ You'll have to fill the following fields:
 - **Tags:** Words that describe your game's genre and mechanics, these are how players that prefer certain games find you. Favor accuracy over reach.
 > Puzzle, Sokoban, 2D
 
+In our case, we also selected Keyboard + Mouse as input method, Wide mobile layout and English as its language.
+
+<Info
+    crew="beenking"
+    title="This metadata might sound familiar...">
+If you are familiar with Steam games, these images and preview videos are the exact same kind of things that get put on Steam pages! So, keep these videos for later and don't delete them from your computer once you've uploaded them to Wavedash --- if you ever want to also publish to Steam later, you can reuse them!
+</Info>
 In our case, we also selected Keyboard + Mouse as input method, Wide mobile layout and English as its language.
