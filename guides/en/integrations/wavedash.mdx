@@ -229,7 +229,9 @@ You'll have to fill the following fields:
 
 - **Preview Video:** A 16:9 MP4, WebM or MOV between 5 seconds and 5 minutes long up to 200MB. Wavedash keeps the first 10 seconds and drops the audio, this should be an actual preview of what your game looks like, make it a selling point! And lead with gameplay.
 
-  <source src={previewVideo} type="video/mp4" />
+  <video width="640" height="360" controls>
+    <source src={previewVideo} type="video/mp4" />
+    </video>
 
 - **Tags:** Words that describe your game's genre and mechanics, these are how players that prefer certain games find you. Favor accuracy over reach.
 
