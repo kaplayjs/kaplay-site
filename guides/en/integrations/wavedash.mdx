@@ -21,12 +21,12 @@ and even monetization and a creator fund. Have you been looking for it? Good! Be
 
 With the online game distribution platform [**Wavedash**](https://wavedash.com/) you'll find all of these features and more.
 With **Wavedash** you'll find that players will be able to find your game easily and play it instantly
-from different browsers and mobile devices thanks to modern web technologies and more importantly, it
+from different browsers and mobile devices thanks to modern web technologies and even better, it
 runs your games locally on your device's hardware so the player will have no cloud lag when playing.
 
 And most importantly, **Wavedash** provides developer tools and [SDKs](https://docs.wavedash.com/sdk/overview) that allows YOU as a developer
-manage an configure and publish your game all from the CLI and also easily integrate social
-features to your game like achievements, leaderboards AND multiplayer.
+to manage and configure and publish your game all from the CLI while also allowing to easily integrate social
+features to your game like achievements, leaderboards AND multiplayer, isn't that cool?
 
 ![Screenshot of the SDK page](assets/wavedash/sdk.png)
 
@@ -51,14 +51,14 @@ So you're interested? Good! Now, how do we go about it? Let's dive into the guid
 For this example, we will be using the sokoban example, which can be found and playable [here](https://play.kaplayjs.com/?example=sokoban) at the [KAPLAYGROUND](https://play.kaplayjs.com)!
 Ported and exported using [`create-kaplay`](https://github.com/kaplayjs/create-kaplay).
 
-Let's try to upload our sokoban game into Wavedash, currently, our game's structure looks like this:
+We'll upload our sokoban game into Wavedash, currently, our game's structure looks like this:
 
 ```
 sokoban
 ├── node_modules # The folder where our packages were installed
 ├── public/ # Our assets folder
-│ ├── sprites
-│ ├── sounds
+│ ├── sprites/
+│ ├── sounds/
 ├── src/ # The folder where our code is located
 │ ├── main.js # The main code
 ├── index.html
@@ -77,7 +77,7 @@ Other than the sokoban example, KAPLAY has tons of other polished examples and s
 
 First, you must understand that when Wavedash loads your game, it applies its own loading screen on top of your game, and doesn't remove that until you call the `Wavedash.init()` function from the SDK.
 
-You can check if your game is being run into Wavedash's website by checking for `window.Wavedash` in an if, and then run Wavedash.init() after your game is ready to play for it to start! If it's not running in Wavedash's website, it won't do anything, that's why it would be ideal to keep to keep it, if you intend to make Wavedash one of your publishing platforms.
+You can check if your game is being run into Wavedash's website by checking for `window.Wavedash` in an if, and then run `Wavedash.init()` after your game is ready to play for it to start! If it's not running in Wavedash's website, it won't do anything, that's why it would be ideal to keep to keep it, if you intend to make Wavedash one of your publishing platforms.
 
 It could look a little bit like this:
 
@@ -114,7 +114,7 @@ onLoading(() => {
 
 Before anything, you must first create an account on Wavedash, so everyone can know who published such a great game -- in this case, you!
 
-First, just go to https://wavedash.com
+First, just go to https://wavedash.com.
 
 ![Screenshot of the home page](assets/wavedash/publishing/homepage.png)
 
@@ -142,17 +142,11 @@ entrypoint = "index.html"
 
 Or we could continue configuring it and uploading it this way, for the sake of this blog, we'll keep doing the traditional way (uploading it from the web interface).
 
-<Info
-    crew="mark"
-    title="I want to go the CLI route!">
-If you want to keep learning how to go about this, Wavedash has tons of documentation regarding to uploading your builds this way, it's quite convenient! You can find more about it in: https://docs.wavedash.com/cli/installation
-</Info>
-
 ## Preparing our build
 
 Now you have to prepare your game into a format that Wavedash understands.
 
-So how does Wavedash actually make our game playable?
+So how does Wavedash actually make your game playable?
 
 You have to prepare a _build_! Right now the game is just a bunch of code and asset files sitting in a folder on your computer, but you can't upload each file individually to Wavedash.
 
@@ -162,7 +156,7 @@ This might be different than the way you have your game set up for testing local
 
 In this case, we have used _`create-kaplay`_ to set up the project because it's simple and anyone can use it and effortlessly port their project to it and start following the tutorial. If you're not using it and you're having trouble exporting your project, consider switching to it! If not, continue.
 
-_`create-kaplay`_ includes a `package.json` script called `zip`, which does the exact things needed to create the .zip file that can be uploaded to Wavedash. So open a terminal and run
+_`create-kaplay`_ includes a `package.json` script called `zip`, which does the exact things needed to create the `.zip` file that can be uploaded to Wavedash. So open a terminal and run
 
 ```sh
 npm run zip
@@ -200,7 +194,7 @@ And just like that, you'll have successfully uploaded your first build in your W
 <Info
     crew="beant"
     title="I had issues!">
-Oh no! If you had any problem uploading your build, you can either check the official documentation in: https://docs.wavedash.com/ or join the discord server for **Wavedash** _(discord.gg/wavedashdotcom)_ or **KAPLAY** where i'm sure someone will be happy to help you!
+Oh no! If you had any problem uploading your build, you can either check the official documentation in: https://docs.wavedash.com/ or join the discord server for **Wavedash** _(discord.gg/wavedashdotcom)_ or [**KAPLAY**](https://discord.com/invite/aQ6RuQm3TF) where i'm sure someone will be happy to help you!
 </Info>
 
 ### Is my game up? Can everyone see it?!
@@ -290,11 +284,11 @@ I know how it feels, it's really important that you take short breaks every now 
 
 ## Achievements and leaderboards
 
-Wavedash offers us the possibility to add things like _achievements_ and _leaderboards_ into our games, now why would we do that? Now it may seem like a hassle and unnecesary now that our game is out, but it actually makes your game even more enjoyable! How so? Well..
+Wavedash offers us the possibility to add things like _achievements_ and _leaderboards_ into our games, now why would we do that? It may seem like a hassle and unnecesary now that our game is out, but it actually makes your game even more enjoyable! How so? Well..
 
 **Achievements:** They offer developer-controlled goals, clear objectives that players can follow.
 These are actually very useful too because YOU as a developer can make use of them in a way that players get hints of what they need to do,
-even exploring to find new areas or mechanics, while also activating the part of the brain inside players that makes them want to grab every single one and complete the game to the max!
+even exploring to find new areas or mechanics, while also activating the part of the brain inside players that makes them want to get every single one and complete the game to the max!
 
 In our game, we'll make a simple achievement for finishing the game and one for finishing in the least possible amount of moves, what will you make? You can always use them as breadcrumbs to guide players in the right path to understand the mechanics.
 
@@ -327,7 +321,7 @@ You'll find this panel, we filled ours so you have a little idea of how it shoul
 - Title: The readable name of your achievement.
 - ID: The code name for your achievement, Wavedash will automatically assign it but you can change it to snake_case, camelCase or kebab-case.
 - Description: Any text regarding your achievement, you either give instructions on how to give it and a little witty joke on it :)
-- Secret: Wheter the information related to the icon won't be revelead to the player until they unlock it
+- Secret: Wheter the information related to the icon won't be revelead to the player until they unlock it.
 - Trigger type: Wavedash offers to unlock the icon automatically for you once a certain statistic has been reached, these statistics come from the **Statistics** tab, we won't get into it but you can read more about it [here](https://docs.wavedash.com/sdk/achievements) along the documentation for achievements.
 
 <Info
@@ -372,7 +366,7 @@ We've added the least moves achievement too, but didn't make it secret as to tea
 
 ![Achievements added](assets/wavedash/achievements/achievements3.png)
 
-Now our achievements exist, but how do we make it so they actually get unlocked INSIDE the game?
+Now that our achievements exist, how do we make it so they actually get unlocked INSIDE the game?
 
 We can _achieve_ this, with a one-liner! We have to call:
 
@@ -429,7 +423,7 @@ Nice! Now that we've added achievements, how about we move to _leaderboards_?
 
 ## Leaderboards
 
-Now that we've done achievements, leaderboards are a bit simpler and more or less the same process, we'll go to the **Achievements** tab in our game project, on the same part where we find **Builds**, **Achievements** and **Metadata**, we've learned to navigate the Wavedash project page, nice!
+Now that we've done achievements, leaderboards are more or less the same process, we'll go to the **Achievements** tab in our game project, on the same part where we find **Builds**, **Achievements** and **Metadata**, we've learned to navigate the Wavedash project page, nice!
 
 ![Leaderboards page](assets/wavedash/Leaderboards/leaderboards1.png)
 
@@ -466,7 +460,7 @@ if (response.success) {
 }
 ```
 
-The code side of submitting a score is a bit more complex than unlock an achievement, since we have to first grab the leaderboard and use async code.
+The code side of submitting a score is a bit more complex compared to the code we use to unlock an achievement, since we have to first grab the leaderboard and use async code.
 
 Let's go step by step on how to submit a score, in our case, we'll have to run:
 
@@ -541,7 +535,7 @@ I can tell you a bit about the **CLI**.
 
 It has been mentioned before, but we didn't go much further into it, what is it?
 
-It's a cross-platform command line tool that allows you to manage, test and upload and publish builds all from your project's command line without even touching the browser!
+It's a cross-platform command line tool that allows you to manage, test, upload and publish builds all from your project's command line without even touching the browser!
 
 You can find how to install [here](https://docs.wavedash.com/cli/installation) in the installation guide.
 
