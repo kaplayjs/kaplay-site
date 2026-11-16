@@ -9,15 +9,15 @@ version: "4000"
 import Info from "@/components/Content/Info.astro";
 import previewVideo from "./assets/wavedash/game/preview.mp4";
 
-# What is Wavedash?
-
 You just finished your KAPLAY game, it's a masterpiece, it's the greatest game
 that there has ever existed, but now.... Where do you publish it?
 How do you go about sharing it to the world so that everyone can see it?
 
 There are always multiple options, but it's difficult to find one that is completely
 free, browser-based and has tools and services like social and cloud features, dedicated SDK
-and even monetization and a creator fund.
+and even monetization and a creator fund. Have you been looking for it? Good! Because do i have the page for you...
+
+# What is Wavedash?
 
 With the online game distribution platform [**Wavedash**](https://wavedash.com/) you'll find all of these features and more.
 With **Wavedash** you'll find that players will be able to find your game easily and play it instantly
@@ -30,7 +30,19 @@ features to your game like achievements, leaderboards AND multiplayer.
 
 ![Screenshot of the SDK page](assets/wavedash/sdk.png)
 
-So you're interested? Good! Now, how do we go about publishing our game to Wavedash? We'll teach you here in a way no one else could!
+So you're interested? Good! Now, how do we go about it? Let's dive into the guide, where we'll teach you how to publish your game in Wavedash in a way no one else could!
+
+### **This guide will cover:**
+
+- How to _sign up_ in [Wavedash](https://wavedash.com)
+- What things do you need to get it published?
+- How to _actually_ publish your game
+- How to add final touches, such as _achievements_ and _leaderboards_, integrating them with Wavedash
+
+### **Prerequisites or good to know/have:**
+
+- Same as **KAPLAY**'s: Node.js, npm and Git installed ideally
+- Understanding your project's setup and `create-kaplay`
 
 # How to publish your game in Wavedash?
 
@@ -104,19 +116,19 @@ Before anything, you must first create an account on Wavedash, so everyone can k
 
 First, just go to https://wavedash.com
 
-![Screenshot of the home page](assets/wavedash/homepage.png)
+![Screenshot of the home page](assets/wavedash/publishing/homepage.png)
 
 We can either sign up using google, apple, or the usual email and password option below them.
 
-![Screenshot of the sign in page](assets/wavedash/signup.png)
+![Screenshot of the sign in page](assets/wavedash/publishing/signup.png)
 
 Once you have an account, we'll take a look at the top left side panel, and click the option that says **Developer**. That will take you here:
 
-![Developer portal](assets/wavedash/developerportal.png)
+![Developer portal](assets/wavedash/publishing/developerportal.png)
 
 Create a project and name it, now you have your project!
 
-![Project website](assets/wavedash/project.png)
+![Project website](assets/wavedash/publishing/project.png)
 
 We can go about different ways to upload our game into Wavedash.
 
@@ -165,18 +177,18 @@ dist
 │ ├── index-CSS9Ze-F.js.map
 ├── sprites/ # Our sprites folder
 ├── sounds/ # Our sounds folder
-├── index.html
+└── index.html
 ```
 
 This is the folder that contains all of the important stuff needed for our game to be actually runnable on a browser engine!
 
 If you ran `npm run zip`, you'll also have a `game.zip` file alongside this. Once you have a zip file of your game, go back to Wavedash and click on the **Upload new build** button!
 
-![Dragging the zip onto the page](assets/wavedash/dragging.png)
+![Dragging the zip onto the page](assets/wavedash/publishing/dragging.png)
 
 Once it finishes uploading, you will get this screen:
 
-![Final touches](assets/wavedash/uploading.png)
+![Final touches](assets/wavedash/publishing/uploading.png)
 
 Select `Engine > Other` (since we're using KAPLAY) and `Entrypoint > *index.html*`, since it's the entrypoint of our game.
 
@@ -199,9 +211,9 @@ Not yet little kaplayer, we still have a bit of road left until that.
 
 First, you have to check that your game is fully functional. Press the **Playtest** button on our build, to check everything is working correctly.
 
-![Playtesting](assets/wavedash/playtesting.png)
+![Playtesting](assets/wavedash/publishing/playtesting.png)
 
-![Playtesting](assets/wavedash/playtesting1.png)
+![Playtesting](assets/wavedash/publishing/playtesting1.png)
 
 It seems our game is up and running!
 
@@ -210,7 +222,7 @@ It seems our game is up and running!
 To actually get people to play your game, you have to make it appealing to everyone who is scrolling on Wavedash. So, you need to add things like a description and a thumbnail.
 
 Go back by clicking on the projects on the top of the screen and then select the **Metadata** tab which should have a small yellow dot. (Wavedash highlights this after you upload your first build since every game needs some amount of metadata!)
-![Setting the metadata](assets/wavedash/metadata.png)
+![Setting the metadata](assets/wavedash/publishing/metadata.png)
 
 You'll have to fill the following fields:
 
@@ -245,3 +257,327 @@ In our case, we also selected Keyboard + Mouse as input method, Wide mobile layo
 If you are familiar with Steam games, these images and preview videos are the exact same kind of things that get put on Steam pages! So, keep these videos for later and don't delete them from your computer once you've uploaded them to Wavedash --- if you ever want to also publish to Steam later, you can reuse them!
 </Info>
 In our case, we also selected Keyboard + Mouse as input method, Wide mobile layout and English as its language.
+
+And once we've put the finishing touches, we'll go back to the **builds** tab and click <u>**publish**</u> on the publish you want to make public to everyone, after that, Wavedash will show this screen.
+![Titling the publishing build](assets/wavedash/publishing/almostdone.png)
+
+Here, you'll name your release build, it can be something like first release or 1.0 so everyone knows it's the first version of the game.
+
+And with that, we have finally published our game in Wavedash! YAY!!!
+
+![Bean jumping](assets/wavedash/happy.gif)
+
+Let's look at our profile and see it!
+
+![Profile with game published](assets/wavedash/profile.png)
+
+Ahhh... doesn't that look nice... 😌 All of your hardwork has payed off and it's out there! For all of the world to see!! Must be nice, we're extremely proud of you!
+
+You should take a break! And baste yourself in all of your work, try your game! play it and re-play it, send it to all of your friends!
+
+But hey, between us, there's more you can do for your game after it's out, you know? Rest for a bit, prepare yourself and then, only then, and i'll tell you...
+
+...
+
+<Info
+    crew="zombean"
+    title="Have you been working for long?">
+I know how it feels, it's really important that you take short breaks every now and then, experts recommend you take a 15 minute break n' stretch for every hour you spend sitting working, you don't want to look like a zombean do you?
+</Info>
+
+# How do i add extra touches?
+
+... All well rested and energized? Good! Now, let's get into:
+
+## Achievements and leaderboards
+
+Wavedash offers us the possibility to add things like _achievements_ and _leaderboards_ into our games, now why would we do that? Now it may seem like a hassle and unnecesary now that our game is out, but it actually makes your game even more enjoyable! How so? Well..
+
+**Achievements:** They offer developer-controlled goals, clear objectives that players can follow.
+These are actually very useful too because YOU as a developer can make use of them in a way that players get hints of what they need to do,
+even exploring to find new areas or mechanics, while also activating the part of the brain inside players that makes them want to grab every single one and complete the game to the max!
+
+In our game, we'll make a simple achievement for finishing the game and one for finishing in the least possible amount of moves, what will you make? You can always use them as breadcrumbs to guide players in the right path to understand the mechanics.
+
+- **"Finished!"** Complete the game. ![Profile with game published](assets/wavedash/game/box.png)
+- **"Couch potato"** Complete the game in the least amount of moves possible. ![Profile with game published](assets/wavedash/game/sok.png)
+
+**Leaderboards:** Although less common, they do make an appearence in certain games with a more competitive aspect to them, not only games with multiplayer like shooters or fighting games but also
+certain games with stats, like platformers! Where sometimes players will fight with each other to reach a certain level as fast as possible, these can be tracked with an online leaderboard where the person with less time
+is the winner. This makes players want to practice and play your game to death, until they're better than anyone else muehehehe.
+
+We'll make a single one where the players that finish with the least amount of moves, go on top, and the more moves you take you'll get farther down :(
+
+- **"Moves"** A descending leaderboard for the amount of moves a player takes to complete the game.
+
+Now, we've decided we want to add achievements and leaderboards into our game and we have drafted up the necessary things for them, but how do we get them into our game?
+
+## Achievements
+
+First, we'll get into achievements, click on the **Achievements** tab, on the same row where we found _Builds_ and _Metadata_, you'll find this page:
+
+![Achievements page](assets/wavedash/achievements/achievements1.png)
+
+This means you have NO achievements, let's make one! Click on **Add achievement**
+
+You'll find this panel, we filled ours so you have a little idea of how it should look like when filled.
+
+![Adding an achievement page](assets/wavedash/achievements/achievements2.png)
+
+- Image: The icon for your game, you can use a random sprite or design one specifically for it!
+- Title: The readable name of your achievement.
+- ID: The code name for your achievement, Wavedash will automatically assign it but you can change it to snake_case, camelCase or kebab-case.
+- Description: Any text regarding your achievement, you either give instructions on how to give it and a little witty joke on it :)
+- Secret: Wheter the information related to the icon won't be revelead to the player until they unlock it
+- Trigger type: Wavedash offers to unlock the icon automatically for you once a certain statistic has been reached, these statistics come from the **Statistics** tab, we won't get into it but you can read more about it [here](https://docs.wavedash.com/sdk/achievements) along the documentation for achievements.
+
+<Info
+crew="gigagantrum"
+title="But i have too many achievements! What shall i do?!">
+Don't fret my little Gigagantrum, Wavedash offers a way to import your achievements in bulk, using the following JSON format:
+
+```json
+{
+    "achievements": [
+        {
+            "identifier": "FIRST_KILL",
+            "display_name": "First Blood",
+            "description": "Get your first kill",
+            "secret": false,
+            "stat_requirement": null
+        },
+        {
+            "identifier": "GOLD_100K",
+            "display_name": "Rich!",
+            "description": "Collect 100,000 gold",
+            "stat_requirement": {
+                "stat": "GOLD_COLLECTED",
+                "threshold": 100000
+            }
+        }
+    ],
+    "stats": [
+        {
+            "identifier": "GOLD_COLLECTED",
+            "display_name": "Gold Collected"
+        }
+    ]
+}
+```
+
+It also works for importing stats easily, but do keep in mind that existing achievements/stats will be overwritten! You can use this feature by clicking on the the little dropdown arrow to the side of the **Add achievement** button.
+
+</Info>
+
+We've added the least moves achievement too, but didn't make it secret as to tease players with the possibility that there's a smarter path, aha!
+
+![Achievements added](assets/wavedash/achievements/achievements3.png)
+
+Now our achievements exist, but how do we make it so they actually get unlocked INSIDE the game?
+
+We can _achieve_ this, with a one-liner! We have to call:
+
+```js
+Wavedash.setAchievement("first_win", true);
+```
+
+Which takes 2 parameters, the ID field of the achievement and wheter we want to save the achievement to the server right now, by-passing a brief auto-save delay.
+
+That's it! No more, in our case, if we want to unlock the "Finished!" achievement, it would look a little bit like this:
+
+```js
+if (currentIdx > levels.length - 1) {
+    if (window.Wavedash) Wavedash.setAchievement("FINISHED", true);
+    go("win");
+}
+```
+
+If this is the last level in the `levels` array, we check if window.Wavedash exists, and if it does, we unlock the achievement with the `ID` "Finished" and unlock it without waiting for sync, then we go to the "win" scene, pretty simple right?
+
+Now you have to check what are the conditions for your achievement to unlock, this usually runs inside a function or an if that's being constantly checked, be very thorough when checking the conditions, you don't want your players to mistakenly get the achievement with too much or not enough difficulty.
+
+<Info
+crew="karat"
+title="Hey, psshh">
+If you need to check if an achievement has been unlocked in your game to color a little icon or whatever, you can always do:
+
+```js
+Wavedash.getAchievement("FINISHED");
+```
+
+Which will return a boolean that will be true when the achievement is unlocked, add cutesie colors to your games people!
+</Info>
+
+Once you've modified your code and made your build, go back to the **Builds** tab, you'll have to upload it, now that your game is publihed, this build will **NOT** be published, since it's unpublished, no one will be able to play it for now, only you and the people with your link, phew...
+
+Now, play for a bit and try to unlock your achievement, remember to playtest very thoroughly and oh-!
+
+![Achievements unlocked](assets/wavedash/achievements/achievements4.png)
+
+We were able to unlock ours! Pretty neat, were you able to unlock yours? I hope so.
+
+After creating and implementing our achievements we'll publish our new build with them working, when publishing for the second time you'll find this panel:
+
+![New changes](assets/wavedash/achievements/achievements5.png)
+
+We filled it a bit with the changes we made, now we click publish and yup! Our new build is online, yoo-hoo! Now every player that opens the game will be playing this build, as it will overwrite the previous one, pretty neat.
+
+![Achievements](assets/wavedash/achievements/achievements6.png)
+
+Below our game, in the side panel with all the information related to our game, we can click on the **Achievements** button and see they're now available for everyone! The one we unlocked appears as LOCKED because it was unlocked in playtesting, so it will automatically not count.
+
+Nice! Now that we've added achievements, how about we move to _leaderboards_?
+
+## Leaderboards
+
+Now that we've done achievements, leaderboards are a bit simpler and more or less the same process, we'll go to the **Achievements** tab in our game project, on the same part where we find **Builds**, **Achievements** and **Metadata**, we've learned to navigate the Wavedash project page, nice!
+
+![Leaderboards page](assets/wavedash/Leaderboards/leaderboards1.png)
+
+Let's go ahead and click on that **New leaderboard** button shall we?
+
+![Creating a new leaderboard](assets/wavedash/Leaderboards/leaderboards2.png)
+
+Leaderboards are a lot simpler than achievements! We have:
+
+- Name: Similar to the ID field that we pass when unlocking achievements, it's a codename for our leaderboard, but in this case it's NOT the id, more on that later.
+- Display name: The readable name of our leaderboard, the one everyone will recognize it as.
+- Sort: Wheter the leaderboard is ascending or descending in its values.
+- Display: How the values will be displayed, they can be displayed as a raw number or time (seconds/miliseconds/game ticks).
+- Visibility: Wheter the leaderboard will be visible to everyone or not.
+
+Once we click on **Create leaderboard** we'll have our leaderboard created, but the thing is... How do we put values in it...
+
+Actually, in a pretty similar way to how we unlocked the achievements, we have to run a little willy piece of code to do this, it looks like this:
+
+```js
+const leaderboard = await Wavedash.getLeaderboard("speedrun-times");
+if (!leaderboard.success) throw new Error(leaderboard.message);
+const leaderboardId = leaderboard.data.id;
+
+const response = await Wavedash.uploadLeaderboardScore(
+    leaderboardId,
+    1500,
+    true,
+);
+if (response.success) {
+    console.log(`Your rank: ${response.data.globalRank}`);
+    // Where this run placed, even if your saved standing didn't change
+    console.log(`This run ranked: ${response.data.submittedRank}`);
+}
+```
+
+The code side of submitting a score is a bit more complex than unlock an achievement, since we have to first grab the leaderboard and use async code.
+
+Let's go step by step on how to submit a score, in our case, we'll have to run:
+
+```js
+const leaderboard = await Wavedash.getLeaderboard("moves");
+```
+
+To get the information pertaining the leaderboard, we'll have to run this in an async function and await the result, we'll also have to check wheter the fetching of the information was successful or not to continue.
+
+Once we do that, we can grab the `id` of the leaderboard, which is how Wavedash is gonna recognize it.
+
+```js
+const leaderboard = await Wavedash.getLeaderboard("moves");
+if (!leaderboard.success) throw new Error(leaderboard.message);
+const leaderboardId = leaderboard.data.id;
+```
+
+Now with the `id` we can upload a leaderboard score, but what do we need to call the `Wavedash.uploadLeaderboardScore()` function? well...
+
+```ts
+uploadLeaderboardScore(
+    leaderboardId: Id<"leaderboards">, // The ID passed from leaderboard.data.id.
+    score: number, // The score to upload.
+    keepBest: boolean, // Wheter to keep the best score as THE user of the score, or the more recent one.
+    ugcId?: Id<"userGeneratedContent"> // Pass the user-generated content, you can learn more about it here https://docs.wavedash.com/sdk/ugc.
+    metadata?: any, // Extra data that you can pass and then fetch.
+)
+```
+
+This is the typing for the function, if we were to pass our data to it, it would look a bit like this:
+
+```js
+const leaderboard = await Wavedash.getLeaderboard("moves");
+if (!leaderboard.success) throw new Error(leaderboard.message);
+const leaderboardId = leaderboard.data.id;
+
+const response = await Wavedash.uploadLeaderboardScore(
+    leaderboardId,
+    movesTotal,
+    true,
+);
+```
+
+And that's how we upload a score! When we go step by step it doesn't look that hard anymore does it? We'll implement this in our "win" scene, you'd publish the scores at the end of a level or after whatever event you want to keep track happened.
+
+Some activity-specific leaderboards you could make are things like who beat the level the fastest or who made the most damage in one single hit, maybe distance traveled in roguelike games or more time survived, just a few ideas, something that seems easy but takes a bit more skill than you thought initially hehe...
+
+Now that we've implemented our leaderboards correctly, we're not gonna be able to "test" them properly, as there is no way to check for leaderboards in a playtest build, but if you've done everything correctly (like us) they will be working :)
+
+Next and at last, we're gonna publish our build, just like last time!
+
+![Publishing a build with leaderboards](assets/wavedash/Leaderboards/leaderboards3.png)
+
+Once your build is up, you can try getting a leaderboard to check if they're working.
+
+And if you check just before the **Achievements** button like last time, you're gonna find the **Leaderboards** button, click on it after doing something that would make the player publish a score, if you check...
+
+![Leaderboards below overview](assets/wavedash/Leaderboards/leaderboards4.png)
+
+Look at that! The score is up! It seems to be working nicely, that's a relief...
+
+At last... it seems that both our **Achievements** and **Leaderboards** are working nicely, if you've followed everything to a T, it should be working nicely, congratulations!
+
+## Final notes
+
+<Info
+    crew="beantle"
+    title="Can i get any latest tips?">
+Yeah! Actually...
+
+I can tell you a bit about the **CLI**.
+
+It has been mentioned before, but we didn't go much further into it, what is it?
+
+It's a cross-platform command line tool that allows you to manage, test and upload and publish builds all from your project's command line without even touching the browser!
+
+You can find how to install [here](https://docs.wavedash.com/cli/installation) in the installation guide.
+
+It has a lot of useful tools like:
+
+```bash
+wavedash dev
+```
+
+To check your current exported build, or:
+
+```bash
+wavedash build push
+```
+
+That uploads your current exported build to the project page, very useful right?
+
+</Info>
+
+Finally, it seems that our journey is over, let's go back shall we? What did we learn today? We learned to:
+
+- How to make a Wavedash account.
+- How to make a export of our game with `create-kaplay` for web uploading.
+- How to upload that export and make a build in Wavedash.
+- How to setup our game for publishing.
+- How to add achievements and leaderboards in our game.
+
+Seems like we learned a lot, good job!
+
+If you had any questions or doubts during the process on Wavedash you can either go check their [documentation](https://docs.wavedash.com/), checking their [help center](https://wavedash.com/help) or more directly email support@wavedash.com if the query could't be solved in the website.
+
+Regarding us, if you have any question about KAPLAY or how does it play into all of the publishing, you can find our other guides and API docs in the left
+sidebar as usual and are very welcome to our helpful
+[KAPLAY Discord](https://discord.com/invite/aQ6RuQm3TF) as well! We'll be more than happy to help you and give you feedback on all of your creations!
+
+Thanks for reading, Good luck with your games!
+
+<Info crew="kat" title="Byebye kaplayer! Hope to see you again here soon! :)"></Info>
