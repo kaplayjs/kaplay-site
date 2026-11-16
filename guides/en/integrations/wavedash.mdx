@@ -1,13 +1,18 @@
 ---
-title: How to Wavedash
-description: How to publish, configure and expand your game in Wavedash.
+title: Publish to Wavedash
+description: How to configure, publish and expand your game on Wavedash.
 url: wavedash
-order: "misc-2"
-version: "4000"
+publicImage: /banners/wavedash-publishing.png
+order: "integrate-1"
 ---
 
 import Info from "@/components/Content/Info.astro";
 import previewVideo from "./assets/wavedash/game/preview.mp4";
+import { assets } from "@kaplayjs/crew";
+
+# Integrate and Publish to Wavedash
+
+![Wavedash Publishing](/banners/wavedash-publishing.png)
 
 You just finished your KAPLAY game, it's a masterpiece, it's the greatest game
 that there has ever existed, but now.... Where do you publish it?
@@ -15,9 +20,9 @@ How do you go about sharing it to the world so that everyone can see it?
 
 There are always multiple options, but it's difficult to find one that is completely
 free, browser-based and has tools and services like social and cloud features, dedicated SDK
-and even monetization and a creator fund. Have you been looking for it? Good! Because do i have the page for you...
+and even monetization and a creator fund. Have you been looking for it? Good! Because do I have a website for you...
 
-# What is Wavedash?
+## What is Wavedash?
 
 With the online game distribution platform [**Wavedash**](https://wavedash.com/) you'll find all of these features and more.
 With **Wavedash** you'll find that players will be able to find your game easily and play it instantly
@@ -25,7 +30,7 @@ from different browsers and mobile devices thanks to modern web technologies and
 runs your games locally on your device's hardware so the player will have no cloud lag when playing.
 
 And most importantly, **Wavedash** provides developer tools and [SDKs](https://docs.wavedash.com/sdk/overview) that allows YOU as a developer
-to manage and configure and publish your game all from the CLI while also allowing to easily integrate social
+to manage, configure, and publish your game, all from the CLI while also allowing to easily integrate social
 features to your game like achievements, leaderboards AND multiplayer, isn't that cool?
 
 ![Screenshot of the SDK page](assets/wavedash/sdk.png)
@@ -42,18 +47,22 @@ So you're interested? Good! Now, how do we go about it? Let's dive into the guid
 ### **Prerequisites or good to know/have:**
 
 - Same as **KAPLAY**'s: Node.js, npm and Git installed ideally
-- Understanding your project's setup and `create-kaplay`
+- Understanding of your project's setup and `create-kaplay`
 
-# How to publish your game in Wavedash?
+## How to publish your game in Wavedash?
 
-## Making our game
+### Making our game
 
-For this example, we will be using the sokoban example, which can be found and playable [here](https://play.kaplayjs.com/?example=sokoban) at the [KAPLAYGROUND](https://play.kaplayjs.com)!
+For this example, we will be using the sokoban example, which can be found and played [here](https://play.kaplayjs.com/?example=sokoban) at the [KAPLAYGROUND](https://play.kaplayjs.com)!
 Ported and exported using [`create-kaplay`](https://github.com/kaplayjs/create-kaplay).
+
+```sh
+npx create-kaplay -e sokoban -v next sokoban
+```
 
 We'll upload our sokoban game into Wavedash, currently, our game's structure looks like this:
 
-```
+```sh
 sokoban
 ├── node_modules # The folder where our packages were installed
 ├── public/ # Our assets folder
@@ -69,7 +78,7 @@ sokoban
 
 <Info
     crew="bean"
-    title="Where can i find more games?">
+    title="Where can I find more games?">
 Other than the sokoban example, KAPLAY has tons of other polished examples and small self-contained games in the playground! Find them [here](https://play.kaplayjs.com/).
 </Info>
 
@@ -77,7 +86,7 @@ Other than the sokoban example, KAPLAY has tons of other polished examples and s
 
 First, you must understand that when Wavedash loads your game, it applies its own loading screen on top of your game, and doesn't remove that until you call the `Wavedash.init()` function from the SDK.
 
-You can check if your game is being run into Wavedash's website by checking for `window.Wavedash` in an if, and then run `Wavedash.init()` after your game is ready to play for it to start! If it's not running in Wavedash's website, it won't do anything, that's why it would be ideal to keep to keep it, if you intend to make Wavedash one of your publishing platforms.
+You can check if your game is being run on Wavedash's website by checking for `window.Wavedash` in an `if` condition, and then run `Wavedash.init()` after your game is ready to play for it to start! If it's not running in Wavedash's website, it won't do anything, that's why it would be ideal to keep it that way, if you intend to make Wavedash one of your publishing platforms.
 
 It could look a little bit like this:
 
@@ -140,7 +149,7 @@ upload_dir = "./dist"
 entrypoint = "index.html"
 ```
 
-Or we could continue configuring it and uploading it this way, for the sake of this blog, we'll keep doing the traditional way (uploading it from the web interface).
+We could continue configuring it and uploading it this way, but for the sake of keeping this guide simple, we'll keep doing it the traditional way (uploading it from the web interface).
 
 ## Preparing our build
 
@@ -156,7 +165,7 @@ This might be different than the way you have your game set up for testing local
 
 In this case, we have used _`create-kaplay`_ to set up the project because it's simple and anyone can use it and effortlessly port their project to it and start following the tutorial. If you're not using it and you're having trouble exporting your project, consider switching to it! If not, continue.
 
-_`create-kaplay`_ includes a `package.json` script called `zip`, which does the exact things needed to create the `.zip` file that can be uploaded to Wavedash. So open a terminal and run
+_`create-kaplay`_ includes a `package.json` script called `zip`, which does the exact things needed to create the `.zip` file that can be uploaded to Wavedash. So open a terminal and run:
 
 ```sh
 npm run zip
@@ -164,7 +173,7 @@ npm run zip
 
 At this point, you should find in your `dist/` folder:
 
-```
+```sh
 dist
 ├── assets
 │ ├── index-CSS9Ze-F.js
@@ -174,7 +183,7 @@ dist
 └── index.html
 ```
 
-This is the folder that contains all of the important stuff needed for our game to be actually runnable on a browser engine!
+This is the folder that contains all of the important stuff needed for our game to be actually runnable in a browser engine!
 
 If you ran `npm run zip`, you'll also have a `game.zip` file alongside this. Once you have a zip file of your game, go back to Wavedash and click on the **Upload new build** button!
 
@@ -222,26 +231,26 @@ You'll have to fill the following fields:
 
 - **Title:** The readable name of your game! It can be different from the game's url.
 
-> Sokoban
+  > Sokoban
 
 - **Description:** What makes your game different? The reason why everyone should play it! It shows up on the game's page, keep it as short as possible, no wall of lore.
 
-> Our rendition on "How to make a sokoban-like game in KAPLAY!"
+  > Our rendition on "How to make a sokoban-like game in KAPLAY!"
+  >
+  > Has a few levels, we hope you like it!
 
-> Has a few levels, we hope you like it!
-
-- **Cover Art:** A single 16:9 image used as the icon of your game, must be anywhere from 250x140 to 1920x1080 (up to 25 MB). It must read as your game's face. See [content guidelines](https://docs.wavedash.com/publishing/content-guidelines) for what can go in and not.
+- **Cover Art:** A single 16:9 image used as the thumbnail of your game, must be anywhere from 250x140 to 1920x1080 (up to 25 MB). It must be representative of the game and include the game title as well. See [content guidelines](https://docs.wavedash.com/publishing/content-guidelines) for what can go in and not.
   ![Sokoban Cover](assets/wavedash/game/sokoban-cover.png)
 
-- **Preview Video:** A 16:9 MP4, WebM or MOV between 5 seconds and 5 minutes long up to 200MB. Wavedash keeps the first 10 seconds and drops the audio, this should be an actual preview of what your game looks like, make it a selling point! And lead with gameplay.
+- **Preview Video:** A 16:9 MP4, WebM or MOV between 5 seconds and 5 minutes long up to 200MB. Wavedash keeps the first 10 seconds and drops the audio, this should be an actual preview of what your game looks like, make it a selling point and feature the gameplay!
 
-  <video width="640" height="360" controls>
+  <video width="728" height="410" controls loop muted autoplay>
     <source src={previewVideo} type="video/mp4" />
-    </video>
+  </video>
 
 - **Tags:** Words that describe your game's genre and mechanics, these are how players that prefer certain games find you. Favor accuracy over reach.
 
-> Puzzle, Sokoban, 2D
+  > Puzzle, Sokoban, 2D
 
 In our case, we also selected Keyboard + Mouse as input method, Wide mobile layout and English as its language.
 
@@ -251,12 +260,12 @@ In our case, we also selected Keyboard + Mouse as input method, Wide mobile layo
 If you are familiar with Steam games, these images and preview videos are the exact same kind of things that get put on Steam pages! So, keep these videos for later and don't delete them from your computer once you've uploaded them to Wavedash --- if you ever want to also publish to Steam later, you can reuse them!
 </Info>
 
-And once we've put the finishing touches, we'll go back to the **builds** tab and click <u>**publish**</u> on the publish you want to make public to everyone, after that, Wavedash will show this screen.
+And once we've put the finishing touches, we'll go back to the **Builds** tab and click <u>**Publish**</u> if you want to make it public to everyone, after that, Wavedash will show this screen:
 ![Titling the publishing build](assets/wavedash/publishing/almostdone.png)
 
 Here, you'll name your release build, it can be something like first release or 1.0 so everyone knows it's the first version of the game.
 
-And with that, we have finally published our game in Wavedash! YAY!!!
+And with that, we have finally published our game on Wavedash! YAY!!!
 
 ![Bean jumping](assets/wavedash/happy.gif)
 
@@ -268,7 +277,7 @@ Ahhh... doesn't that look nice... 😌 All of your hardwork has payed off and it
 
 You should take a break! And baste yourself in all of your work, try your game! play it and re-play it, send it to all of your friends!
 
-But hey, between us, there's more you can do for your game after it's out, you know? Rest for a bit, prepare yourself and then, only then, and i'll tell you...
+But hey, between us, there's more you can do for your game after it's out, you know? Rest for a bit, prepare yourself and then, only then, I'll tell you...
 
 ...
 
@@ -278,11 +287,11 @@ But hey, between us, there's more you can do for your game after it's out, you k
 I know how it feels, it's really important that you take short breaks every now and then, experts recommend you take a 15 minute break n' stretch for every hour you spend sitting working, you don't want to look like a zombean do you?
 </Info>
 
-# How do i add extra touches?
+## How do I add extra touches?
 
 ... All well rested and energized? Good! Now, let's get into:
 
-## Achievements and leaderboards
+### Achievements and leaderboards
 
 Wavedash offers us the possibility to add things like _achievements_ and _leaderboards_ into our games, now why would we do that? It may seem like a hassle and unnecesary now that our game is out, but it actually makes your game even more enjoyable! How so? Well..
 
@@ -326,7 +335,7 @@ You'll find this panel, we filled ours so you have a little idea of how it shoul
 
 <Info
 crew="gigagantrum"
-title="But i have too many achievements! What shall i do?!">
+title="But I have too many achievements! What shall I do?!">
 Don't fret my little Gigagantrum, Wavedash offers a way to import your achievements in bulk, using the following JSON format:
 
 ```json
@@ -528,7 +537,7 @@ At last... it seems that both our **Achievements** and **Leaderboards** are work
 
 <Info
     crew="beantle"
-    title="Can i get any latest tips?">
+    title="Can I get any last tips?">
 Yeah! Actually...
 
 I can tell you a bit about the **CLI**.
@@ -557,14 +566,14 @@ That uploads your current exported build to the project page, very useful right?
 
 Finally, it seems that our journey is over...
 
-You can play our finished product at https://wavedash.com/games/kaplay-sokoban !
+You can play our finished product at https://wavedash.com/games/kaplay-sokoban or in the embed right below!
 Featuring:
 
 - Achievements
 - Leaderboard
 - A whole lotta cutesie-style like no one ever can do it 😎
 
-[![Cover with link that sends to the game](assets/wavedash/game/sokoban-cover.png)](https://wavedash.com/games/kaplay-sokoban)
+<div style="position:relative;box-sizing:content-box;width:100%;aspect-ratio:16 / 9;padding-bottom:40px;"><iframe src="https://wavedash.com/embed/games/kaplay-sokoban" style="position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:14px;" allow="autoplay; fullscreen; clipboard-read; clipboard-write; gamepad; hid; cross-origin-isolated; pointer-lock; orientation-lock; accelerometer; gyroscope; magnetometer; xr-spatial-tracking; camera; microphone; focus-without-user-activation *; screen-wake-lock; keyboard-map;" allowfullscreen></iframe></div>
 
 Now, after all that, let's go back shall we? What did we learn today? We learned to:
 
