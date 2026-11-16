@@ -55,7 +55,7 @@ export const AudioPlayer = (
         progressRaf.current = requestAnimationFrame(onPlaying);
     };
 
-    const onSeek = (e: preact.JSX.TargetedEvent<HTMLInputElement>) => {
+    const onSeek = (e: preact.TargetedEvent<HTMLInputElement>) => {
         if (!audio?.current) return;
 
         if (!audio.current.paused && progressRaf.current) {
@@ -79,7 +79,7 @@ export const AudioPlayer = (
         onPlaying();
     };
 
-    const onVolumeChange = (e: preact.JSX.TargetedEvent<HTMLInputElement>) => {
+    const onVolumeChange = (e: preact.TargetedEvent<HTMLInputElement>) => {
         if (!audio?.current) return;
 
         const value = (e.target as HTMLInputElement).valueAsNumber;

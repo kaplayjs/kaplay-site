@@ -3,7 +3,7 @@
     "type": "module",
     "version": "1.5.12",
     "scripts": {
-        "install": "cd kaplay && pnpm i && cd .. && pnpm run generate:all",
+        "install": "cd kaplay && npm i && cd .. && npm run generate:all",
         "dev": "astro dev",
         "start": "astro dev",
         "build": "astro check && astro build",
@@ -13,7 +13,7 @@
         "generate:docs": "node scripts/buildDoc.js",
         "generate:contributors": "node scripts/contributors.js",
         "generate:changelog": "node scripts/generateChangelog.js",
-        "generate:all": "pnpm generate:docs && pnpm generate:contributors && pnpm generate:changelog",
+        "generate:all": "npm run generate:docs && npm run generate:contributors && npm run generate:changelog",
         "fmt": "dprint fmt",
         "cf:deploy": "npm run build && wrangler pages deploy dist",
         "cf:preview": "wrangler pages dev dist",
@@ -49,8 +49,8 @@
         "js-beautify": "^1.15.4",
         "marked": "^13.0.3",
         "nanostores": "^0.10.3",
+        "npm": "^12.0.2",
         "pako": "^2.1.0",
-        "pnpm": "11.1.1",
         "preact": "^10.26.7",
         "rehype": "^13.0.2",
         "rehype-attr": "^3.0.3",
@@ -94,5 +94,17 @@
         "vite": "^7.3.0",
         "wrangler": "^3.80.0"
     },
-    "packageManager": "pnpm@11.1.1+sha512.d1fdf5f73c617b64fa1a56a81c3c8dfe0e966e33a6010aa256b517ae77be21d93e05affc0de1a83b0e4f29d569f68b446ae8f068cd7247c0bb3df0fb4d7bdf9a"
+    "allowScripts": {
+        "dprint@0.49.1": true,
+        "dprint@0.50.2": true,
+        "esbuild@0.25.12": true,
+        "esbuild@0.27.0": true,
+        "esbuild@0.27.7": true,
+        "esbuild@0.17.19": true,
+        "sharp@0.34.5": true,
+        "sharp@0.33.5": true,
+        "workerd@1.20260114.0": true,
+        "workerd@1.20250718.0": true
+    },
+    "strict-allow-scripts": true
 }

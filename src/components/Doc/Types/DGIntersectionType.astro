@@ -17,9 +17,10 @@ const { data, depth } = Astro.props;
 
 <span data-dg-intersection-type
     >{
+        // prettier-ignore
         data.types.map((t, i) => (
             <Fragment>
-                <DocFor data={t} depth={depth} />{i < data.types.length - 1 ? " &" : ""}{}
+                <DocFor data={t} depth={depth} />{i < data.types.length - 1 ? " &" : ""}{""}
             </Fragment>
         ))
     }</span

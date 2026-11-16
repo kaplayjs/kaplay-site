@@ -17,11 +17,7 @@ const doc: any[] = jsDoc?.doc ?? [];
             {doc.map((e) => (
                 <>
                     {e.kind === "JSDocText" && <Fragment set:html={marked.parseInline(e.text)} />}
-                    {e.kind === "JSDocLink" && (
-                        <TypeLink name={e.name}>
-                            <span set:html={marked.parseInline(e.text, {})} />
-                        </TypeLink>
-                    )}
+                    {e.kind === "JSDocLink" && <TypeLink name={e.name}>{e.text && <span set:html={marked.parseInline(e.text, {})} />}</TypeLink>}
                 </>
             ))}
         </p>

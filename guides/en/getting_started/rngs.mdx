@@ -1,0 +1,136 @@
+---
+title: RNGs
+description: Learn how to set and use random number generators in KAPLAY.
+url: rngs
+order: "basics-9"
+---
+
+# Random Number Generators
+
+Random number generators, or RNGs, produce pseudo-random values that KAPLAY uses for functions like `rand()`, `randi()`, `chance()`, `choose()`, and `shuffle()`.
+
+## Set an RNG when creating a game
+
+The default RNG is set to `lce`, if you wish to change it set the `rng` option in `kaplay()`.
+
+```js
+import kaplay from "kaplay";
+
+kaplay({
+  rng: {
+    type: "xorshift32",
+  },
+});
+```
+
+KAPLAY supports three built-in RNG types: `lce`, `xorshift32` and `alea`
+
+## Set a seed
+
+A seed makes random output repeatable.
+
+Seeded RNGs are useful for tests, replays, debugging and procedural generation. This means that if you hard-code it at start, your game will always produce identical random numbers sequence.
+
+```js
+kaplay({
+  rng: {
+    type: "lce",
+    seed: 12345,
+  },
+});
+```
+
+The seed type must match the RNG type.
+
+```js
+kaplay({
+  rng: {
+    type: "alea",
+    // For alea it is advisable to use three string seeds to ensure good entrophy
+    seed: ["kaplay", "rocks", "hard"],
+  },
+});
+```
+
+## Built-in RNGs
+
+| Type | Seed Type | Notes |
+| --- | --- | --- |
+| `"lce"` | `number` | Linear congruential engine. Default RNG. Tiny, fast and deterministic. Good for simple deterministic gameplay. |
+| `"xorshift32"` | `number` | Tiny and fast. Better distribution than `"lce"` while staying very lightweight. Good general-purpose choice. |
+| `"alea"` | `string` or `string[]` | String-seeded RNG. Slightly slower, but higher randomness quality for game and procedural generation. |
+
+## Change the RNG in runtime
+
+Use `setRNG()` to replace the current RNG after the game starts.
+
+```js
+setRNG({
+  type: "xorshift32",
+  seed: 54321,
+});
+```
+
+Use `randSeed()` to read or set the seed of the current RNG.
+
+```js
+randSeed(12345);
+
+const seed = randSeed();
+```
+
+For `"alea"`, use a string or an array of strings.
+
+```js
+randSeed(["world", "level-2", "rooms"]);
+```
+
+## Set a custom RNG
+
+Use `type: "custom"` with an object that implements the random generator API.
+
+A custom RNG must provide `gen(), save(), load()` and `seed`.
+
+```js
+const customRNG = {
+  _seed: 1,
+
+  get seed() {
+    return this._seed;
+  },
+
+  set seed(value) {
+    // If you need it, here you can add seed type validation
+    this._seed = value;
+  },
+
+  gen() {
+    this._seed = (this._seed * 16807) % 2147483647;
+    return (this._seed - 1) / 2147483646;
+  },
+
+  save() {
+    return JSON.stringify({
+      seed: this._seed,
+    });
+  },
+
+  load(data) {
+    const state = JSON.parse(data);
+
+    if (typeof state.seed !== "number") {
+      return false;
+    }
+
+    this._seed = state.seed;
+    return true;
+  },
+};
+
+kaplay({
+  rng: {
+    type: "custom",
+    rng: customRNG,
+  },
+});
+```

@@ -3,7 +3,7 @@ import { assets } from "@/data/crew";
 type CrewListItem404Props = {
     onClick: (
         crewItem: keyof typeof assets,
-        e: preact.JSX.TargetedMouseEvent<HTMLAnchorElement>,
+        e: preact.TargetedMouseEvent<HTMLAnchorElement>,
     ) => void;
 };
 
