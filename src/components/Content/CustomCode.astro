@@ -31,7 +31,7 @@ if (customCode) {
 }
 ---
 
-<div class="flex flex-col gap-1.5 flex-1 bg-base-200 p-1.5 rounded-box min-h-0" class:list={classForWindow}>
+<div class="flex flex-col gap-1.5 flex-1 bg-base-200 [.bg-base-200_&]:bg-base-100 p-1.5 rounded-box min-h-0 [&+&]:mt-2" class:list={classForWindow}>
     <div class="toolbar flex items-center justify-between h-10">
         <div class="flex items-center gap-1.5 px-3.5 pt-0.5">
             <div class="size-2.5 bg-base-content/15 rounded-full"></div>
@@ -45,7 +45,7 @@ if (customCode) {
                 data-code={code}
             >
                 <button
-                    class="swap btn btn-xs bg-base-100 h-full rounded-xl aspect-square"
+                    class="swap btn btn-xs btn-ghost bg-base-content/5 h-full rounded-xl aspect-square"
                     onclick="
                         navigator.clipboard.writeText(this.parentElement.getAttribute('data-code'));
                         this.classList.add('swap-active');

@@ -19,13 +19,17 @@ import remarkGithub from "remark-github";
 import remarkMath from "remark-math";
 import kaplayPackageJson from "./kaplay/package.json";
 import websitePackageJson from "./package.json";
+import { rehypeExternalLinks } from "./plugins/rehypeExternalLinks.ts";
 import { rehypeKAPLAY } from "./plugins/rehypeKAPLAY";
 import { rehypeWrapTables } from "./plugins/rehypeWrap";
 import { buildSite } from "./util/buildSite.ts";
+import { serveExternalAssets } from "./util/serveExternalAssets.ts";
+
+const site = "https://kaplayjs.com";
 
 // https://astro.build/config
 export default defineConfig({
-    site: "https://kaplayjs.com",
+    site,
     vite: {
         define: {
             __KAPLAY_DEFAULT_VERSION__: JSON.stringify("3001"),
@@ -54,6 +58,7 @@ export default defineConfig({
         pagefind(),
         preact(),
         cloudflareRedirects(),
+        serveExternalAssets("guides"),
     ],
     output: "static",
     contentLayer: true,
@@ -93,6 +98,7 @@ export default defineConfig({
             [rehypeKatex, {}],
             [rehypeKAPLAY, {}],
             [rehypeWrapTables, {}],
+            [rehypeExternalLinks, { site }],
         ],
     },
 });

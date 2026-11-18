@@ -48,7 +48,8 @@
     /* Content */
     .prose {
         aside,
-        p img {
+        p img,
+        p:has(img) {
             break-inside: avoid;
         }
 

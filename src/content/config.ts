@@ -34,6 +34,7 @@ const guideCollection = defineCollection({
             title: z.string(),
             description: z.string(),
             image: z.optional(image()),
+            publicImage: z.optional(z.string()),
             category: z.optional(z.string()),
             version: z.optional(z.string()),
             order: z.optional(z.string()),

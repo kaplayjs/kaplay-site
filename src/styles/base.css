@@ -436,10 +436,14 @@ pre button.copy {
 }
 
 .md-table-wrapper {
-    @apply overflow-auto my-8;
+    @apply overflow-y-hidden overflow-x-auto my-8;
 
     table {
         @apply my-0;
+    }
+
+    table img {
+        @apply inline-block align-middle my-0;
     }
 }
 
