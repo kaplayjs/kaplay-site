@@ -203,7 +203,7 @@ And just like that, you'll have successfully uploaded your first build in your W
 <Info
     crew="beant"
     title="I had issues!">
-Oh no! If you had any problem uploading your build, you can either check the official documentation in: https://docs.wavedash.com/ or join the discord server for [**Wavedash**](_discord.gg/wavedashdotcom_) or [**KAPLAY**](https://discord.com/invite/aQ6RuQm3TF) where i'm sure someone will be happy to help you!
+Oh no! If you had any problem uploading your build, you can either check the official documentation on: https://docs.wavedash.com/ or join the discord server for [**Wavedash**](https://discord.gg/wavedashdotcom) or [**KAPLAY**](https://discord.com/invite/aQ6RuQm3TF) where i'm sure someone will be happy to help you!
 </Info>
 
 ### Is my game up? Can everyone see it?!
@@ -212,7 +212,7 @@ Not yet little kaplayer, we still have a bit of road left until that.
 
 ## Playtesting
 
-First, you have to check that your game is fully functional. Press the **Playtest** button on our build, to check everything is working correctly.
+First, you have to check that your game is fully functional. Press the **Playtest** button on our build, to check if everything is working correctly.
 
 ![Playtesting](assets/wavedash/publishing/playtesting.png)
 
@@ -301,14 +301,16 @@ even exploring to find new areas or mechanics, while also activating the part of
 
 In our game, we'll make a simple achievement for finishing the game and one for finishing in the least possible amount of moves, what will you make? You can always use them as breadcrumbs to guide players in the right path to understand the mechanics.
 
-- **"Finished!"** Complete the game. ![Profile with game published](assets/wavedash/game/box_sturdy-o.png)
-- **"Couch potato"** Complete the game in the least amount of moves possible. ![Profile with game published](assets/wavedash/game/sok-o.png)
+| Image | Title & Description |
+|-------|---------------------|
+| ![Box](assets/wavedash/game/box_sturdy-o.png) | **"Finished!"** - Complete the game.                                           |
+| ![Sok](assets/wavedash/game/sok-o.png)        | **"Couch potato"** - Complete the game in the least amount of moves possible.  |
 
 **Leaderboards:** Although less common, they do make an appearence in certain games with a more competitive aspect to them, not only games with multiplayer like shooters or fighting games but also
-certain games with stats, like platformers! Where sometimes players will fight with each other to reach a certain level as fast as possible, these can be tracked with an online leaderboard where the person with less time
-is the winner. This makes players want to practice and play your game to death, until they're better than anyone else muehehehe.
+certain games with stats, like platformers! Where sometimes players will fight with each other to reach a certain level as fast as possible, these can be tracked with an online leaderboard where the person with the lowest time
+is the winner. This makes players want to practice and play your game like there's no tomorrow, until they're better than anyone else, muehehehe.
 
-We'll make a single one where the players that finish with the least amount of moves, go on top, and the more moves you take you'll get farther down :(
+We'll make a single one where the players that finish with the least amount of moves, go on top, and the more moves you take you'll get farther down 🥲:
 
 - **"Moves"** A descending leaderboard for the amount of moves a player takes to complete the game.
 
@@ -326,12 +328,12 @@ You'll find this panel, we filled ours so you have a little idea of how it shoul
 
 ![Adding an achievement page](assets/wavedash/achievements/achievements2.png)
 
-- Image: The icon for your game, you can use a random sprite or design one specifically for it!
-- Title: The readable name of your achievement.
-- ID: The code name for your achievement, Wavedash will automatically assign it but you can change it to snake_case, camelCase or kebab-case.
-- Description: Any text regarding your achievement, you either give instructions on how to give it and a little witty joke on it :)
-- Secret: Wheter the information related to the icon won't be revelead to the player until they unlock it.
-- Trigger type: Wavedash offers to unlock the icon automatically for you once a certain statistic has been reached, these statistics come from the **Statistics** tab, we won't get into it but you can read more about it [here](https://docs.wavedash.com/sdk/achievements) along the documentation for achievements.
+- **Image**: The icon for the achievement notification, you can use a random sprite or design one specifically for it!
+- **Title**: The readable name of your achievement.
+- **ID**: The code name for your achievement, Wavedash will automatically assign it but you can change it to snake_case, camelCase or kebab-case.
+- **Description**: Any text regarding your achievement, you either give instructions on how to get it and a little witty joke with it :)
+- **Secret**: Whether the information related to the icon won't be revelead to the player until they unlock it.
+- **Trigger type**: Wavedash offers to unlock the icon automatically for you once a certain statistic has been reached, these statistics come from the **Statistics** tab, we won't get into it but you can read more about it [here](https://docs.wavedash.com/sdk/achievements) along the documentation for achievements.
 
 <Info
 crew="gigagantrum"
@@ -383,9 +385,9 @@ We can _achieve_ this, with a one-liner! We have to call:
 Wavedash.setAchievement("first_win", true);
 ```
 
-Which takes 2 parameters, the ID field of the achievement and wheter we want to save the achievement to the server right now, by-passing a brief auto-save delay.
+Which takes 2 parameters, the ID field of the achievement and whether we want to save the achievement to the server right away, bypassing a brief auto-save delay.
 
-That's it! No more, in our case, if we want to unlock the "Finished!" achievement, it would look a little bit like this:
+That's it and nothing more! In our case, if we want to unlock the "Finished!" achievement, it would look a little bit like this:
 
 ```js
 if (currentIdx > levels.length - 1) {
@@ -394,14 +396,14 @@ if (currentIdx > levels.length - 1) {
 }
 ```
 
-If this is the last level in the `levels` array, we check if window.Wavedash exists, and if it does, we unlock the achievement with the `ID` "Finished" and unlock it without waiting for sync, then we go to the "win" scene, pretty simple right?
+If this was the last level in the `levels` array, we check if `window.Wavedash` exists, and if it does, we unlock the achievement with the `ID` `"FINISHED"` and unlock it without waiting for the autosave sync, then we go to the `"win"` scene, pretty simple right?
 
-Now you have to check what are the conditions for your achievement to unlock, this usually runs inside a function or an if that's being constantly checked, be very thorough when checking the conditions, you don't want your players to mistakenly get the achievement with too much or not enough difficulty.
+Now you have to check what are the conditions for your achievement to unlock, this usually runs inside a function or an `if` condition that's being constantly checked, be very thorough when checking the conditions, you don't want your players to mistakenly get the achievement with too high or not enough difficulty.
 
 <Info
 crew="karat"
 title="Hey, psshh">
-If you need to check if an achievement has been unlocked in your game to color a little icon or whatever, you can always do:
+If you need to check if an achievement has been unlocked in your game to color a little icon or anything, you can always do:
 
 ```js
 Wavedash.getAchievement("FINISHED");
@@ -410,15 +412,15 @@ Wavedash.getAchievement("FINISHED");
 Which will return a boolean that will be true when the achievement is unlocked, add cutesie colors to your games people!
 </Info>
 
-Once you've modified your code and made your build, go back to the **Builds** tab, you'll have to upload it, now that your game is publihed, this build will **NOT** be published, since it's unpublished, no one will be able to play it for now, only you and the people with your link, phew...
+Once you've modified your code and made your build, go back to the **Builds** tab, you'll have to upload it. Now, that your game is published, this new build will **NOT** get published automatically. No one will be able to play it yet, only you and the people with your link, phew...
 
-Now, play for a bit and try to unlock your achievement, remember to playtest very thoroughly and oh-!
+Now, play for a bit and try to unlock your achievement, remember to playtest very thoroughly before you publish and oh-!
 
 ![Achievements unlocked](assets/wavedash/achievements/achievements4.png)
 
 We were able to unlock ours! Pretty neat, were you able to unlock yours? I hope so.
 
-After creating and implementing our achievements we'll publish our new build with them working, when publishing for the second time you'll find this panel:
+After creating and implementing our achievements, we'll publish our new build with them working, when publishing for the second time you'll find this panel:
 
 ![New changes](assets/wavedash/achievements/achievements5.png)
 
@@ -426,27 +428,27 @@ We filled it a bit with the changes we made, now we click publish and yup! Our n
 
 ![Achievements](assets/wavedash/achievements/achievements6.png)
 
-Below our game, in the side panel with all the information related to our game, we can click on the **Achievements** button and see they're now available for everyone! The one we unlocked appears as LOCKED because it was unlocked in playtesting, so it will automatically not count.
+Below our game, in the side panel with all the information related to our game, we can click on the **Achievements** button and see they're now available for everyone! The one we unlocked appears as LOCKED because it was unlocked during playtesting, so it won't count automatically.
 
 Nice! Now that we've added achievements, how about we move to _leaderboards_?
 
 ## Leaderboards
 
-Now that we've done achievements, leaderboards are more or less the same process, we'll go to the **Achievements** tab in our game project, on the same part where we find **Builds**, **Achievements** and **Metadata**, we've learned to navigate the Wavedash project page, nice!
+Leaderboards are more or less the same process as achievements. We'll go to the **Leaderboards** tab in our game project, which is in the same menu we found **Builds**, **Achievements** and **Metadata** earlier. We've learned to navigate the Wavedash project page, nice!
 
 ![Leaderboards page](assets/wavedash/Leaderboards/leaderboards1.png)
 
-Let's go ahead and click on that **New leaderboard** button shall we?
+Let's go ahead and click on that **+ New leaderboard** button, shall we?
 
 ![Creating a new leaderboard](assets/wavedash/Leaderboards/leaderboards2.png)
 
 Leaderboards are a lot simpler than achievements! We have:
 
-- Name: Similar to the ID field that we pass when unlocking achievements, it's a codename for our leaderboard, but in this case it's NOT the id, more on that later.
-- Display name: The readable name of our leaderboard, the one everyone will recognize it as.
-- Sort: Wheter the leaderboard is ascending or descending in its values.
-- Display: How the values will be displayed, they can be displayed as a raw number or time (seconds/miliseconds/game ticks).
-- Visibility: Wheter the leaderboard will be visible to everyone or not.
+- **Name**: Similar to the ID field that we pass when unlocking achievements, it's a codename for our leaderboard, but in this case it's NOT the id, more on that later.
+- **Display name**: The readable name of our leaderboard, the one everyone will recognize it as.
+- **Sort**: Whether the leaderboard is ascending or descending in its values.
+- **Display**: How the values will be displayed, they can be displayed as a raw number or time (seconds/miliseconds/game ticks).
+- **Visibility**: Whether the leaderboard will be visible to everyone or not.
 
 Once we click on **Create leaderboard** we'll have our leaderboard created, but the thing is... How do we put values in it...
 
@@ -477,9 +479,9 @@ Let's go step by step on how to submit a score, in our case, we'll have to run:
 const leaderboard = await Wavedash.getLeaderboard("moves");
 ```
 
-To get the information pertaining the leaderboard, we'll have to run this in an async function and await the result, we'll also have to check wheter the fetching of the information was successful or not to continue.
+To get the information pertaining the leaderboard, we'll have to run this in an async function and await the result, we'll also have to check whether the fetching of the information was successful or not to continue.
 
-Once we do that, we can grab the `id` of the leaderboard, which is how Wavedash is gonna recognize it.
+Once we do that, we can grab the `id` of the leaderboard, which is how Wavedash is going to recognize it.
 
 ```js
 const leaderboard = await Wavedash.getLeaderboard("moves");
@@ -493,7 +495,7 @@ Now with the `id` we can upload a leaderboard score, but what do we need to call
 uploadLeaderboardScore(
     leaderboardId: Id<"leaderboards">, // The ID passed from leaderboard.data.id.
     score: number, // The score to upload.
-    keepBest: boolean, // Wheter to keep the best score as THE user of the score, or the more recent one.
+    keepBest: boolean, // Whether to keep the best score as THE score of the user, or the more recent one.
     ugcId?: Id<"userGeneratedContent"> // Pass the user-generated content, you can learn more about it here https://docs.wavedash.com/sdk/ugc.
     metadata?: any, // Extra data that you can pass and then fetch.
 )
@@ -513,25 +515,25 @@ const response = await Wavedash.uploadLeaderboardScore(
 );
 ```
 
-And that's how we upload a score! When we go step by step it doesn't look that hard anymore does it? We'll implement this in our "win" scene, you'd publish the scores at the end of a level or after whatever event you want to keep track happened.
+And that's how we upload a score! When we go step by step it doesn't look that hard anymore does it? We'll implement this in our "win" scene, you'd publish the scores at the end of a level or after whatever event you want to keep track of happened.
 
-Some activity-specific leaderboards you could make are things like who beat the level the fastest or who made the most damage in one single hit, maybe distance traveled in roguelike games or more time survived, just a few ideas, something that seems easy but takes a bit more skill than you thought initially hehe...
+Some activity-specific leaderboards you could make are things like who beat the level the fastest or who made the most damage in one single hit, maybe distance traveled in roguelike games or time survived, just a few ideas, something that seems easy but takes a bit more skill than you thought initially hehe...
 
-Now that we've implemented our leaderboards correctly, we're not gonna be able to "test" them properly, as there is no way to check for leaderboards in a playtest build, but if you've done everything correctly (like us) they will be working :)
+Now that we've implemented our leaderboards correctly, we're not going to be able to "test" them properly, as there is no way to check for leaderboards in a playtest build, but if you've done everything correctly (like us) they will be working :).
 
-Next and at last, we're gonna publish our build, just like last time!
+Finally, we're going to publish our build, just like last time!
 
 ![Publishing a build with leaderboards](assets/wavedash/Leaderboards/leaderboards3.png)
 
-Once your build is up, you can try getting a leaderboard to check if they're working.
+Once your build is up, you can try getting to a leaderboard by playing to verify the leaderboards are working.
 
-And if you check just before the **Achievements** button like last time, you're gonna find the **Leaderboards** button, click on it after doing something that would make the player publish a score, if you check...
+Now in the same side menu as we checked **Achievements** before, the **Leaderboards** button appeared. Click on it to check after you completed your required action that publishes the score, in our case when we finished the game, and...
 
 ![Leaderboards below overview](assets/wavedash/Leaderboards/leaderboards4.png)
 
 Look at that! The score is up! It seems to be working nicely, that's a relief...
 
-At last... it seems that both our **Achievements** and **Leaderboards** are working nicely, if you've followed everything to a T, it should be working nicely, congratulations!
+At last... it seems that both our **Achievements** and **Leaderboards** are working nicely, and if you've followed everything *to a T*, it should be working nicely for you as well, congratulations!
 
 ## Final notes
 
@@ -546,7 +548,7 @@ It has been mentioned before, but we didn't go much further into it, what is it?
 
 It's a cross-platform command line tool that allows you to manage, test, upload and publish builds all from your project's command line without even touching the browser!
 
-You can find how to install [here](https://docs.wavedash.com/cli/installation) in the installation guide.
+You can find how to install it [here](https://docs.wavedash.com/cli/installation) in the installation guide.
 
 It has a lot of useful tools like:
 
@@ -573,22 +575,21 @@ Featuring:
 - Leaderboard
 - A whole lotta cutesie-style like no one ever can do it 😎
 
-<div style="position:relative;box-sizing:content-box;width:100%;aspect-ratio:16 / 9;padding-bottom:40px;"><iframe src="https://wavedash.com/embed/games/kaplay-sokoban" style="position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:14px;" allow="autoplay; fullscreen; clipboard-read; clipboard-write; gamepad; hid; cross-origin-isolated; pointer-lock; orientation-lock; accelerometer; gyroscope; magnetometer; xr-spatial-tracking; camera; microphone; focus-without-user-activation *; screen-wake-lock; keyboard-map;" allowfullscreen></iframe></div>
+<div style="position:relative;box-sizing:content-box;width:100%;margin:2rem 0;aspect-ratio:16 / 9;padding-bottom:40px;"><iframe src="https://wavedash.com/embed/games/kaplay-sokoban" style="position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:14px;" allow="autoplay; fullscreen; clipboard-read; clipboard-write; gamepad; hid; cross-origin-isolated; pointer-lock; orientation-lock; accelerometer; gyroscope; magnetometer; xr-spatial-tracking; camera; microphone; focus-without-user-activation *; screen-wake-lock; keyboard-map;" allowfullscreen></iframe></div>
 
-Now, after all that, let's go back shall we? What did we learn today? We learned to:
+Now, after all that, let's recap, shall we? What did we learn today? We learned to:
 
 - How to make a Wavedash account.
-- How to make a export of our game with `create-kaplay` for web uploading.
+- How to make an export of our game with `create-kaplay` for web uploading.
 - How to upload that export and make a build in Wavedash.
 - How to setup our game for publishing.
-- How to add achievements and leaderboards in our game.
+- How to add achievements and leaderboards to our game.
 
 Seems like we learned a lot, good job!
 
-If you had any questions or doubts during the process on Wavedash you can either go check their [documentation](https://docs.wavedash.com/), checking their [help center](https://wavedash.com/help) or more directly email support@wavedash.com if the query could't be solved in the website.
+If you had any questions or doubts during the process on Wavedash side, you can either go check their [documentation](https://docs.wavedash.com/), [help center](https://wavedash.com/help/center), or contact them directly by email at support@wavedash.com if your question wasn't already answered on their website.
 
-Regarding us, if you have any question about KAPLAY or how does it play into all of the publishing, you can find our other guides and API docs in the left
-sidebar as usual, ifnot, you can go to https://kaplayjs.com/docs/api/ and find all of our API, you're also very welcome to join our helpful
+Regarding us, if you have any question about KAPLAY, it's [publishing](/docs/guides/publishing) options or in general, you can find our other [guides](/docs/guides) and [API docs](/docs/api) in the left sidebar as usual, and you're also very welcome to join our helpful
 [KAPLAY Discord](https://discord.com/invite/aQ6RuQm3TF) as well! We'll be more than happy to help you and give you feedback on all of your creations!
 
 Thanks for reading, Good luck with your games!
