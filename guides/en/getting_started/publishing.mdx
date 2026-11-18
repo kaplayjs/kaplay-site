@@ -8,6 +8,7 @@ order: "cbasics-0"
 ---
 
 import Info from "@/components/Content/Info.astro";
+import Cols from "@/components/Content/Cols.astro";
 
 # Publishing a KAPLAY game
 
@@ -15,36 +16,39 @@ When we finish our game, the most important moment is to... Publish it!
 
 ## Preparing the game
 
-We should prepare our game for publishing in different platforms.
+We should prepare our game for publishing on different platforms.
 
 ### Assets and source code
 
 The first thing you should know is that both your `public` and `dist` folders (or
 whatever they are called) should be the same folder. We recommend having a file
-tree like:
+tree like this:
 
-```
+```sh
 game/
-┣ public/
+┣ public/ # Or dist/
 ┃ ┣ sprites/
 ┃ ┣ sounds/
-┃ ┣ index.html - Your bundled index.html file
-┃ ┣ game.js - Your bundled game file
+┃ ┣ index.html # Your bundled index.html file
+┃ ┣ game.js # Your bundled game file
 ```
 
 This way, when you zip `public`, you will have all your assets and code files in
 the same folder. This is usually the folder you upload to game platforms like
 **Itch.io** and **Newgrounds.com**.
 
-<Info crew="ghosty" title="If you use create-kaplay...">
-If you use `create-kaplay` template, you start with `public` dir by by default.
+<Info crew="sparkles" title="If you use [create-kaplay](/docs/guides/install)...">
+If you use `npx create-kaplay` template, you start with `public` folder for your
+assets, but `dist` folder is used for publishing. Assets from `public` will be
+included in `dist` automatically after running `npm run build` or `npm run zip`.
+Resulting `dist/game.zip` is ready to publish.
 </Info>
 
 ### Asset paths
 
 When you host your games in web portals, you should use _relative paths_.
 
-Actually you may have something like this:
+Actually, you may have something like this:
 
 ```js
 loadSprite("bean", "/sprites/bean.png");
@@ -55,7 +59,7 @@ There's two ways to handle this:
 - Update all your imports to start with `./`
 - Use `loadRoot()`
 
-`loadRoot()` inserts what it's passed at the start of every url:
+`loadRoot()` sets what is added at the start of every url:
 
 ```js
 loadRoot("."); // will add "." at start of every url
@@ -64,7 +68,8 @@ loadSprite("bean", "/sprites/bean.png"); // -> ./sprites/bean.png
 ```
 
 <Info crew="bean" title="Watch out!">
-Your `loadRoot()` depends on how your URLs are. Maybe using `loadRoot("./")` *is a better option*
+Your `loadRoot()` depends on how you define URLs. Maybe using `loadRoot("./")`
+*is a better option*.
 </Info>
 
 ```js
@@ -73,30 +78,52 @@ loadRoot("./"); // will add "./" at start of every url
 loadSprite("bean", "sprites/bean.png"); // -> ./sprites/bean.png
 ```
 
+Now you should be ready to publish on various platforms!
+
+---
+
 ## Itch.io
 
-First, go to your account. Then **Upload a new project**
+First, go to your account. Then **Upload new project**.
 
-![image](./assets/itchio-1.png)
+![Itch.io Dropdown](./assets/itchio-1.png)
 
 Then, in **Kind of project**, you should select **HTML**, so itch.io will let
-you upload a web game.
+you upload a web game:
 
-![image](./assets/itchio-2.png)
+![Kind Select](./assets/itchio-2.png)
 
 After that, the only thing left to do is to upload your zip with your game
 files, or if you have a single `index.html` file (very tasteful), upload it!
 
-[**Itch.io Documentation about HTML5 games**](https://itch.io/docs/creators/html5)
+More details on [**Itch.io Documentation about HTML5 games**](https://itch.io/docs/creators/html5).
+
+---
 
 ## Newgrounds.com
 
-First, go to the up arrow and select Game
+First, click on the up arrow icon and select **Game**:
 
 ![image](./assets/newgrounds-1.png)
 
-Now, as Itch.io, only upload a zip with your fabulous `index.html` game file.
+Now, same as with Itch.io, only upload a zip with your fabulous `index.html`
+game file and its assets.
 
-You can tag your game in the different platforms with the tag `kaplayjs` and
+---
 
-`&kaplay`. We will probably see it and even promote in our social media :D
+## Wavedash.com
+
+<Cols class="[&>:last-child]:self-center">
+[![Wavedash publishing](/banners/wavedash-publishing.png)](/docs/guides/wavedash)
+
+We have a separate guide that will teach you [how to publish on Wavedash](/docs/guides/wavedash)
+and integrate its features, such as achievements, leaderboards, and more!
+</Cols>
+
+---
+
+<Info crew="burpman" title="Get discovered!">
+You can tag your game on different platforms with the tag `kaplayjs` and
+`&kaplay`, or set made with KAPLAY if possible. We will probably see it and
+even promote on our social media! 😄
+</Info>
