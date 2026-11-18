@@ -16,12 +16,12 @@ const { crew = "burpman", title = "Level Up!", ...props } = Astro.props;
 <aside class={cn("mb-4 mt-4 rounded-l-md rounded-r-box border-l-8 border-primary bg-base-200 px-4 py-2 text-base", props?.class)} {...props}>
     <div class="not-prose flex items-center gap-3 text-xl font-bold my-2.5">
         {assets[crew].kind == "Sprite" && <img src={assets[crew].outlined} class="h-8" />}
-        <h3 set:html={marked.parse(title)} />
+        <h3 set:html={marked.parseInline(title)} class="[&_a]:text-primary" />
     </div>
 
     {
         Astro.slots.has("default") && (
-            <div class="-mt-0.5 empty:mt-0 [&_p]:my-3">
+            <div class="-mt-0.5 empty:mt-0 [&_p]:my-3 [&:has(>[class*=bg]:last-child)]:pb-2">
                 <slot class="prose" />
             </div>
         )
