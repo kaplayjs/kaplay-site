@@ -8,12 +8,12 @@ type CrewTagProps = {
     children?: preact.ComponentChildren;
     onHover: (
         tag: string,
-        e: preact.JSX.TargetedMouseEvent<HTMLButtonElement>,
+        e: preact.TargetedMouseEvent<HTMLButtonElement>,
     ) => void;
-    onKeyDown: (e: preact.JSX.TargetedKeyboardEvent<HTMLButtonElement>) => void;
+    onKeyDown: (e: preact.TargetedKeyboardEvent<HTMLButtonElement>) => void;
     onFocus: (
         tag: string,
-        e: preact.JSX.TargetedFocusEvent<HTMLButtonElement>,
+        e: preact.TargetedFocusEvent<HTMLButtonElement>,
     ) => void;
     tabindex: 0 | -1;
 };

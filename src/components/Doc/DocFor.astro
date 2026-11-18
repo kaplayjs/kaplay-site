@@ -38,6 +38,7 @@ import DGTypeQuery from "./Other/DGTypeQuery.astro";
 import DGTypeLiteral from "./Types/DGTypeLiteral.astro";
 import DGUnknownKeyword from "./Keywords/DGUnknownKeyword.astro";
 import DGThisType from "./Keywords/DGThisType.astro";
+import DGSymbolKeyword from "./Keywords/DGSymbolKeyword.astro";
 
 type Props = {
     index?: number;
@@ -134,6 +135,8 @@ const kind = data?.kind;
                 return <DGUnknownKeyword data={data} depth={depth} />;
             case "ObjectKeyword":
                 return <DGObjectKeyword data={data} depth={depth} />;
+            case "SymbolKeyword":
+                return <DGSymbolKeyword data={data} depth={depth} />;
             case "ThisType":
                 return <DGThisType data={data} depth={depth} />;
 

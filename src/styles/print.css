@@ -1,0 +1,115 @@
+@media print {
+    @media (max-width: 148mm) {
+        html {
+            font-size: 0.875rem;
+        }
+    }
+
+    /* Layout setup */
+    body {
+        visibility: hidden;
+    }
+    main:has(.main-content) {
+        position: static;
+        display: block;
+    }
+    .main-content {
+        visibility: visible;
+        position: absolute;
+        inset: 0;
+        padding: 0;
+    }
+    .main-content > .prose {
+        padding: 0;
+    }
+
+    /* Headings */
+    h1:not(.inline) {
+        font-size: 2.5rem !important;
+    }
+    .prose {
+        > :is(h1:not(:first-child), h2, h3, h4, h5, h6):not(.inline) {
+            margin: 2rem 0 1rem;
+            break-inside: avoid;
+        }
+        h1:not(:first-child):not(.inline) {
+            font-size: 1.8em !important;
+            line-height: 1.11 !important;
+        }
+    }
+    :not(.inline) > .heading-anchor-link::after {
+        content: "";
+        display: block;
+        height: 3rem;
+        margin-bottom: -3rem;
+        break-inside: avoid;
+    }
+
+    /* Content */
+    .prose {
+        aside,
+        p img {
+            break-inside: avoid;
+        }
+
+        hr {
+            --tw-prose-hr: rgba(0, 0, 0, 0.12);
+            margin: 1.5em 0;
+        }
+    }
+
+    /* Codeblocks */
+    .prose {
+        * pre {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .rounded-box:has(pre) {
+            margin-top: 0.5rem !important;
+        }
+        pre {
+            & + & {
+                margin-top: 1rem !important;
+            }
+        }
+
+        pre code {
+            white-space: pre-wrap;
+        }
+        .overflow-hidden:has(pre) {
+            overflow: visible;
+        }
+    }
+
+    /* Borderred blocks */
+    aside,
+    .prose .md-doc-code,
+    .prose p > code,
+    .prose a > code,
+    .prose > pre,
+    .prose .rounded-box:has(pre),
+    div[class*="bg-"][class*="p-"]:not([class~="p-px"]) {
+        outline: 1px solid rgba(0, 0, 0, 0.12);
+        outline-offset: -1px;
+    }
+
+    /* Dividers */
+    section.border-l {
+        border-color: rgba(0, 0, 0, 0.12) !important;
+    }
+    .divider::before, .divider::after {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    }
+
+    /* Hidden layout */
+    dialog,
+    .no-print,
+    .drawer-side,
+    .drawer-content > header,
+    .toolbar,
+    .pagination,
+    .friends-below:has(footer) {
+        display: none !important;
+    }
+}

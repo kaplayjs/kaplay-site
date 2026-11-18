@@ -2,16 +2,37 @@
 import { doc } from "@/data/doc";
 
 interface Props {
-    name: string;
+    name:
+        | string
+        | {
+              kind: string;
+              left: { kind: string; escapedText: string };
+              right: { kind: string; escapedText: string };
+          };
+    html?: string;
 }
 
-const { name } = Astro.props;
+const { name: nameSrc, html } = Astro.props;
+let name = nameSrc;
+let namespaced: string[] = [];
+let formattedName = html || name;
+
+if (typeof name === "object") {
+    namespaced = Object.values(name)
+        .map((v) => (typeof v === "object" ? v.escapedText : undefined))
+        .filter((v) => typeof v === "string");
+    name = namespaced[0] === "KAPLAYCtx" ? namespaced[1] : namespaced.join("-");
+    if (!html) formattedName = namespaced.join(".");
+}
 
 const ctxMember = doc.types.KaboomCtx?.[0].members[name] ?? doc.types.KAPLAYCtx?.[0].members[name];
 const typesMember = doc.types[name];
+const namespaceMember = !ctxMember && doc.types[namespaced[0]]?.[0]?.members?.[namespaced[1]];
 
-let isType = Boolean(typesMember) || Boolean(ctxMember);
 let isTypesMember = Boolean(typesMember);
+let isCtxMember = Boolean(ctxMember);
+let isNamespaceMember = Boolean(namespaceMember);
+let isType = isTypesMember || isCtxMember || isNamespaceMember;
 
 if (name == "KAPLAYCtx") {
     isType = false;
@@ -21,7 +42,7 @@ if (name == "KAPLAYCtx") {
 const props = isType
     ? {
           "data-type-link": isType,
-          "data-link-type": `${isTypesMember ? "/" : "/ctx/"}${name}`,
+          "data-link-type": `${isTypesMember ? "/" : isNamespaceMember ? `/${namespaced[0]}#` : "/ctx/"}${name}`,
       }
     : {};
 ---
@@ -31,6 +52,7 @@ const props = isType
     data-dg-reference
     class:list={{
         // prettier-ignore
-        "hoverable link link-primary link-hover underline decoration-current decoration-dashed underline-offset-2 transition-colors": isType,
-    }}>{name}</span
->
+        "hoverable link link-primary link-hover underline decoration-current decoration-dashed underline-offset-2 [&_*]:text-[inherit] transition-colors": isType,
+    }}
+    set:html={(await Astro.slots.render("default")) || formattedName}
+/>

@@ -363,8 +363,9 @@
         };
 
         const updateUrl = (path: string) => {
-            const newUrl = new URL(window.location.toString());
+            let newUrl: URL | string = new URL(window.location.toString());
             newUrl.searchParams.set("preview", path.replace(/^\//, ""));
+            newUrl = newUrl.toString().replaceAll("%23", "#").replaceAll("%2F", "/");
             window.history.replaceState({}, "", newUrl);
         };
 
